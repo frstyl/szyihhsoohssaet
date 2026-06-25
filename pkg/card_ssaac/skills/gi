@@ -1,0 +1,40 @@
+local gi = fk.CreateSkill{
+  name = "gi",
+  tags = { Skill.Compulsory },
+}
+
+Fk:loadTranslationTable{
+  ["gi"] = "旗",
+  [":gi"] = "鎖，伱不能越過轉段.咒術對伱附加率-50%",
+}
+
+gi:addEffect(fk.BeforeTurnOver, {
+  anim_type = "defensive",
+  can_trigger = function (self, event, target, player, data)
+    return target == player and player:hasSkill(gi.name) and player.faceup
+  end,
+  on_use = function (self, event, target, player, data)
+    data.prevented = true
+  end,
+})
+gi:addEffect(fk.EventPhaseSkipping, {
+  anim_type = "defensive",
+  can_trigger = function (self, event, target, player, data)
+    return target == player and player:hasSkill(gi.name)
+  end,
+  on_use = function (self, event, target, player, data)
+    data.skipped = false
+  end,
+})
+gi:addEffect(fk.TargetConfirmed, {
+  anim_type = "drawcard",
+  can_trigger = function (self, event, target, player, data)
+    return target == player and player:hasSkill(gi.name) and
+      data.card.type == Card.TypeTrick and data.from ~= player
+  end,
+  on_use = function (self, event, target, player, data)
+    player:drawCards(1, gi.name)
+  end,
+})
+
+return gi

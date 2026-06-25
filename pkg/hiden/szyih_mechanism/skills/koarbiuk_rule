@@ -1,0 +1,218 @@
+local koarbiuk_rule = fk.CreateSkill {
+  name = "#koarbiuk_rule",
+}
+
+Fk:loadTranslationTable{
+  ["#koarbiuk_rule"] = "葢伏",
+  ["#koarbiuk-use"] = "%src預段 你可以使用葢伏牌",
+
+  ["koarbiuk"] = "葢伏",
+
+  ["@@koarbiuk-inarea"] = "葢伏",
+}
+
+local S = require "packages/szyihhsoohssaet/szyih_guos" 
+
+-- local askToUseKoarbiukCard = function(room, players, params)  --同旹
+--   -- local room=players[1].room
+
+
+--   if #players == 0 then  --爲何不在先
+--     room.logic:trigger(fk.AfterAskForNullification, nil, { eventData = params.event_data })
+--     return nil
+--   end
+
+--   params.cancelable = (params.cancelable == nil) and true or params.cancelable
+--   local extra_data = params.extra_data and table.simpleClone(params.extra_data) or {}
+--   params.prompt = params.prompt or ""
+
+--   local card_name, pattern, prompt, cancelable, event_data =
+--     params.skill_name, params.pattern, params.prompt,
+--     params.cancelable, params.event_data
+
+--   local temp={}
+--       for _, p in ipairs(players) do 
+--         local t= S.getPlayerKoarbiukCards(p)
+--         for _, id in ipairs(t) do 
+--               table.insert(temp,id)
+--         end
+--       end
+       
+--   pattern=tostring(Exppattern{ id =temp})
+
+--   local command = "AskForUseCard"
+
+--   local useResult
+--   local disabledSkillNames = {}
+
+--   repeat
+--     useResult = nil
+
+--     local data = {card_name, pattern, prompt, cancelable, extra_data, disabledSkillNames}
+
+--     Fk.currentResponsePattern = pattern
+
+--     local eventData = {
+--       cardName = card_name,
+--       pattern = pattern,
+--       extraData = extra_data,
+--       eventData = event_data,
+--     }
+--     room.logic:trigger(fk.HandleAskForPlayCard, nil, eventData, true)
+
+--     local req = Request:new(players, command, 1)
+--     req.focus_players = room.alive_players
+--     req.focus_text = card_name
+
+--     for _, p in ipairs(players) do 
+--       local koarbiuk_discard = S.getPlayerKoarbiukCards(p)
+        
+--       data[5].expand_cids= koarbiuk_discard
+--       req:setData(p, data) 
+--     end
+
+--     req:ask()
+--     local winner = req.winners[1]
+
+--     eventData.afterRequest = true
+--     eventData.overtimes = req.overtimes
+--     room.logic:trigger(fk.HandleAskForPlayCard, nil, eventData, true)
+
+--     if winner then
+--       local result = req:getResult(winner)
+--       useResult = room:handleUseCardReply(winner, result)
+
+--       if type(useResult) == "string" and useResult ~= "" then
+--         table.insertIfNeed(disabledSkillNames, useResult)
+--       end
+--     end
+--     Fk.currentResponsePattern = nil
+--   until type(useResult) ~= "string"
+
+--   local askForNullificationData = {
+--     result = useResult,
+--     eventData = event_data,
+--   }
+--   room.logic:trigger(fk.AfterAskForNullification, nil, askForNullificationData)
+--   return useResult
+-- end
+
+
+koarbiuk_rule:addEffect(fk.EventPhaseStart, {  --手牌可用之牌 葢牌何用
+  priority = 0,
+  can_trigger = function(self, event, target, player, data)
+    if not ( target==player --同旹 止問1次
+    and target.phase == Player.Judge) then return nil 
+    end   --應爲單獨旹機
+    return true
+  end,
+
+  on_trigger = function(self, event, target, player, data)
+    local room=player.room
+    local cardNames={"ssaet","hzaac_tshjes","thou_liac_hzvoans_dduoh"}      --令牌技能註冊何旹可用??  --暗殺--"^(.)|.|.|.|ambush__ssaet",
+    local pattern=""
+    local setPattern =function()
+          local t={}
+          local n={}
+        for _, name in ipairs(cardNames)do
+
+          if name=="ssaet" then
+            table.insert(t,tostring(Exppattern{ name = {"ambush__ssaet"} }))  --id? name?
+          else
+            table.insert(t,name)
+          end
+        end
+        pattern=table.concat(t,";")
+    end
+    while 1 do
+      local players={}
+      local expand={}
+      for _, p in ipairs(room.alive_players) do
+        if #S.getPlayerKoarbiukCards(p)>0 and p~=target then 
+          table.insert(players, p)
+          expand[p.id]=S.getPlayerKoarbiukCards({p},"hzaac_tshjes,thou_liac_hzvoans_dduoh;.|.|.|.|ambush__ssaet")
+          -- return true 
+        end
+      end
+      if #players==0 then return end
+      setPattern()
+      local ids=S.getAllKoarbiukCards(table.concat(cardNames,";"))
+      -- local ids=S.getAllKoarbiukCards(setPattern())
+
+      local params={
+        pattern = tostring(Exppattern{ id = ids }),
+        skill_name = "#koarbiuk_rule",  --提示
+        prompt = "#koarbiuk-use:"..target.id,
+        cancelable = true,
+        -- skip = true,
+        -- event_data = data,
+        extra_data = {
+          exclusive_targets = {target.id},  --又用Id矣
+          bypass_distances = true,  --葢伏特性
+          bypass_times = false,
+          extraUse = false,
+        }
+      }
+
+        Fk.currentResponseReason = "koarbiuk_rule"
+        local use = S.askToUseKoarbiukCard(room, players,  params, nil, expand)  --不同角色不同
+        if use then
+          -- room:addTableMark(use.from, "koarbiuk-phase", use.card.trueName)  --每个牌名1次?
+
+          use.extra_data = use.extra_data or {}
+          use.extra_data.koarbiuk = true
+          -- use.from:removeVirtualEquip(use.card.id)
+          room:useCard(use)
+          
+          table.removeOne(cardNames,use.card.name)
+          if #cardNames==0 then return end
+        else
+          Fk.currentResponseReason = nil
+          return --畢 false 
+        end
+
+    end
+  end,
+})
+
+koarbiuk_rule:addEffect("visibility", {
+  card_visible = function (self, player, card)
+    -- local owner = Fk:currentRoom():getCardOwner(card)
+    -- if owner and (#card:getTableMark("@@koarbiuk-inarea")>0
+    -- (or owner:getVirualEquip(card.id) and owner:getVirualEquip(card.id).name == "koarbiuk_card")) then
+    --   return player == owner
+    -- end
+    if table.contains(S.getPlayerKoarbiukCards(player),card.id ) then
+      return true
+    elseif table.contains(S.getAllKoarbiukCards(),card.id ) then
+       
+        return false
+    end
+  end,
+  -- move_visible = function (self, player, info, move)
+  --   local cid = info.cardId
+  --   if move.from and move.toArea == Card.PlayerJudge then
+  --     local from = Fk:currentRoom():getPlayerById(move.from)
+  --     if #Fk:getCardById(cid):getTableMark("@@koarbiuk-inarea")>0 or (from:getVirualEquip(cid) and from:getVirualEquip(cid).name == "koarbiuk_card") then
+  --       return false
+  --     end
+  --   end
+  -- end,
+})
+
+
+-- koarbiuk_rule:addEffect("filter", {  --prohibitResponse prohibitXX 除使用皆單純選牌(固定目幖也止選牌)
+--   handly_cards = function (self, player)
+
+--     local koarbiuk_discard = table.filter(player:getCardIds("j"),   -- szyih_guos.getPlayerKoarbiukCards
+--       function(id)
+--         local card = player:getVirualEquip(id)
+--         return card and card.name == "koarbiuk_card"
+--       end)
+--     return koarbiuk_discard
+--     -- if player:hasSkill(skill.name) then
+--     --   return player:getPile("$role_carriage")
+--     -- end
+--   end,
+-- })
+return koarbiuk_rule

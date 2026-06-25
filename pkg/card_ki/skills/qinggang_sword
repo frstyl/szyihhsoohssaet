@@ -1,0 +1,39 @@
+local skill = fk.CreateSkill {
+  name = "#qinggang_sword_skill",
+  tags = { Skill.Compulsory },
+  attached_equip = "qinggang_sword",
+}
+
+skill:addEffect(fk.TargetSpecified, {
+  can_trigger = function(self, event, target, player, data)
+    return target == player and player:hasSkill(skill.name) and data.card and data.card.trueName == "ssaet" and not data.to.dead
+  end,
+  on_cost = function(self, event, target, player, data)
+    event:setCostData(self, { tos = { data.to.id } })
+    return true
+  end,
+  on_use = function(self, event, target, player, data)
+      -- player.room:addTableMark(data.to,"@@punsmuoh-MarkArmorNullified",data.id)  --次數?
+      -- player.room.logic:getCurrentEvent():findParent(GameEvent.UseCard, true):addCleaner(function()
+      --    table.removeOne(data.to:getTableMark("@@punsmuoh-MarkArmorNullified"), data.id) 
+      -- )
+
+      player.room:addPlayerMark(data.to,"@@punsmuoh-MarkArmorNullified",1)  --次數?
+      player.room.logic:getCurrentEvent():findParent(GameEvent.UseCard, true):addCleaner(function()
+         player.room:removePlayerMark(data.to,"@@punsmuoh-MarkArmorNullified", 1) 
+      )
+  end,
+})
+-- skill:addEffect(fk.CardUseFinished, {
+--   can_refresh = function(self, event, target, player, data)
+--     return data.extra_data and data.extra_data.qinggang_tag and table.contains(data.extra_data.qinggang_tag, player.id)
+--   end,
+--   on_refresh = function(self, event, target, player, data)
+--     local room = player.room
+--     while table.removeOne(data.extra_data.qinggang_tag, player.id) do
+--       room:removePlayerMark(player, MarkEnum.MarkArmorNullified)
+--     end
+--   end,
+-- })
+
+return skill

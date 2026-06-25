@@ -1,0 +1,119 @@
+
+
+local kximqkaap= fk.CreateSkill({
+  name = "kximqkaap",
+  tags = {Skill.Compulsory},
+})
+
+Fk:loadTranslationTable{
+["kximqkaap"] = "金甲",
+[":kximqkaap"] = "鎖定恆續.視爲伱裝僃虛賽唐猊",
+}
+local S = require "packages/szyihhsoohssaet/szyih_guos" 
+
+kximqkaap:addEffect(fk.GameStart, {
+    can_refresh = Util.FalseFunc,
+})
+-- local canAdd=function(player)
+--   return 
+--            player:hasSkill(kximqkaap.name)
+--       and  player:getMark("_kximqkaap")==0 
+--       and  player:hasEmptyEquipSlot(Card.SubtypeArmor) 
+--       and not table.find(player:getEquipments(Card.SubtypeArmor), function(id)
+--         return Fk:getCardById(id).name == "soeojs_doac_ceej" end)
+--   end
+
+  
+-- local canRemove=function(player)
+--   return player:getMark("_kximqkaap")>0 and  player:hasEmptyEquipSlot(Card.SubtypeArmor) ==false
+--   end
+-- --防具欄增 防具欄失去牌 獲得技能 技能緟生效
+-- local spec_add={
+--   on_trigger = function (self, event, target, player, data)
+--     local room=player.room
+--       player.room:setPlayerMark(player,"_kximqkaap",1)  --true
+--       -- local t=player:getTableMark("@[:]virtual_equip")
+--       -- table.insertIfNeed(t,"soeojs_doac_ceej")
+--       -- player.room:setPlayerMark(player,"@[:]virtual_equip",t)
+--       player.room:addTableMark(player,"@[:]virtual_equip","soeojs_doac_ceej")
+--       Fk:cloneCard("soeojs_doac_ceej"):onInstall(room, player)
+--   end,
+-- }
+
+-- local spec_remove={
+--   on_trigger = function (self, event, target, player, data)
+--     local room=player.room
+
+--     --  player:getMark(@_kximqkaap)>0 and not table.find(player:getEquipments(Card.SubtypeArmor), function(id)
+--     --     return Fk:getCardById(id).name == "soeojs_doac_ceej") 
+
+--       player.room:setPlayerMark(player,"_kximqkaap",0)  --true
+--       player.room:removeTableMark(player,"@[:]virtual_equip","soeojs_doac_ceej")
+--       if not table.find(player:getEquipments(Card.SubtypeArmor), function(id)
+--         return Fk:getCardById(id).name == "soeojs_doac_ceej" end) then --多个防具欄 --多來源
+--           Fk:cloneCard("soeojs_doac_ceej"):onUninstall(room, player)
+--       end
+--   end,
+-- }
+-- kximqkaap:addEffect(fk.AreaAborted, {  --puar
+--   priority=9,
+--   can_trigger = function(self, event, target, player, data)
+--     return target==player and canRemove(player)
+--   end,
+--   on_trigger=spec_remove.on_trigger,
+-- })
+
+-- kximqkaap:addEffect(fk.AreaResumed, {  
+--   priority=9,
+--   can_trigger = function(self, event, target, player, data)
+--     return target==player and canAdd(player)
+--   end,
+--   on_trigger=spec_add.on_trigger,
+-- })
+
+-- kximqkaap:addEffect(fk.AfterCardsMove, {
+--   priority=9,
+--   can_trigger = function(self, event, target, player, data)
+--     if not player:hasSkill(kximqkaap.name) then return end
+--     for _, move in ipairs(data) do
+--       if move.to==player and move.toArea == Card.PlayerEquip then--上裝僃   --應爲判斷是否置入某欄 
+--         return canRemove(player)
+--         -- return true
+--       end
+--     end
+--   end,
+--   on_trigger=spec_remove.on_trigger,
+-- })
+
+-- kximqkaap:addEffect(fk.AfterCardsMove, {
+--   priority=9,
+--   can_trigger = function(self, event, target, player, data)
+--     if not player:hasSkill(kximqkaap.name) then return end
+--     for _, move in ipairs(data) do
+--       if move.from == player then --下裝僃 --應爲判斷是否離開某欄 
+--         for _, info in ipairs(move.moveInfo) do
+--           if info.fromArea == Card.PlayerEquip then
+--             return  canAdd(player)
+--           end
+--         end
+--       end
+--     end
+--   end,
+--   on_trigger=spec_add.on_trigger,
+-- })
+
+
+kximqkaap: addAcquireEffect(function (self, player)
+
+      player.room:setPlayerMark(player,"_kximqkaap",1)  --true
+      S.addVirtualEquip(player,"soeojs_doac_ceej",kximqkaap.name)
+end)
+
+kximqkaap:addLoseEffect(function (self, player)
+
+      player.room:setPlayerMark(player,"_kximqkaap",0)  --true
+      S.removeVirtualEquip(player,"soeojs_doac_ceej",kximqkaap.name)
+end
+)
+
+return kximqkaap

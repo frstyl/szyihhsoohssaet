@@ -1,0 +1,125 @@
+local cardSkill = fk.CreateSkill {
+  name = "tsja_szji_hzfan_hzoon_skill",
+}
+
+
+Fk:loadTranslationTable{
+["tsja_szji_hzfan_hzoon"] = "借屍還䰟",
+[":tsja_szji_hzfan_hzoon"] = "一名角色A進入瀕死旹,,指定1死亾角色B使用,A死B復活.",
+}
+
+
+local S = require "packages/szyihhsoohssaet/szyih_guos" 
+
+cardSkill:addEffect("cardskill", {
+  prompt = "#tsja_szji_hzfan_hzoon",
+  -- mod_target_filter = function(self, player, to_select, selected, card, extra_data)  --无法選死
+  --   return to_select.dead
+  -- end,
+  -- target_filter = function(self, player, to_select, selected, _, card, extra_data)
+  --   return to_select.dead
+  -- end,
+  -- target_num = 1,  --算單體  --不能選死
+  -- on_use = function (self, room, cardUseEvent)
+  --     local tos = table.map(table.filter(room.players, function(p) return p.dead end), function(p) return "seat#" .. tostring(p.seat) end)
+  --     if #tos > 0 then
+  --       local targets = room:askToChoice(from, {choices = tos, skill_name = cardSkill.name, prompt = "#revive-ask"})
+  --       if targets then
+  --         local to = tonumber(string.sub(targets, 6))
+  --         for _, p in ipairs(room.players) do
+  --           if p.seat == to then
+  --               cardUseEvent.tos=p  --過可選擇判定
+  --             break
+  --           end
+  --         end
+  --       end
+  --     end
+  -- end,
+  on_effect = function(self, room, effect)  
+      if not effect.responseToEvent then return end
+      local tos = table.map(table.filter(room.players, function(p) 
+            return p.dead 
+          end), 
+        function(p) return "seat#" .. tostring(p.seat) 
+      end)
+      if #tos <= 0 then return end
+        local targets = room:askToChoice(from, {choices = tos, skill_name = cardSkill.name, prompt = "#revive-ask"})
+        if targets then
+        local to = tonumber(string.sub(targets, 6))
+        for _, p in ipairs(room.players) do
+          if p.seat == to then
+              effect.to=p  --過可選擇判定
+            break
+          end
+        end
+      end
+      
+      room:killPlayer(effect.responseToEvent)
+    -- room:revivePlayer(effect.to, true, cardSkill.name)
+
+  if not effect.to.dead then return end
+  local data={
+    who = effect.to,
+    reason = cardSkill.name,
+    send_log = true,
+  }
+  -- room.logic:trigger(fk.BeforePlayerRevived, effect.to, data)
+
+  room:setPlayerProperty(effect.to, "dead", false)  --setPlayerProperty broadcastProperty
+  effect.to._splayer:setDied(false)
+  effect.to.maxHp=effect.to.maxHp>0 and effect.to.maxHp or 1
+  room:setPlayerProperty(effect.to, "dying", false)
+  room:setPlayerProperty(effect.to, "hp", 1)  --死者hp不歸零  --无旹機
+  table.insertIfNeed(room.alive_players, effect.to)
+  room:updateAllLimitSkillUI(effect.to)
+
+
+  room:sendLog { type = "#Revive", from = effect.to.id }
+  effect.to:drawCards(3,cardSkill.name)
+  room.logic:trigger(fk.AfterPlayerRevived, effect.to, data)
+
+  end,
+})
+
+
+cardSkill:addEffect(fk.EnterDying, {
+  priority = 0,
+  global = true,
+  can_trigger = function(self, event, target, player, data)
+    if player~=target then return end
+    local room = player.room
+    local players=S.getHolders({"tsja_szji_hzfan_hzoon"})
+      if  #players > 0  and #room.players>#room.alive_players  then
+        event:setCostData(self,{players=players})
+        return  true
+      end
+
+    
+  end,
+  on_trigger = function(self, event, target, player, data)
+    local room = player.room
+
+    local params={  --旣視感--askToUseRealCard active  非askForUse 无旹機 can_use有效
+      pattern = "tsja_szji_hzfan_hzoon",
+      skill_name = "tsja_szji_hzfan_hzoon",  --提示
+      prompt = "#tsja_szji_hzfan_hzoon-use:"..target.id,
+      cancelable = true,
+      -- skip = true,
+      -- event_data = data,
+      extra_data = {
+        tsja_szji_hzfan_hzoon = true,
+      }
+    }
+    
+    local use = room:askToNullification(event:getCostData(self).players, params)  --選上家再選下家?
+    if use then 
+
+      use.toCard=use.card
+      use.responseToEvent=data
+      room:useCard(use)
+    end
+
+  end,
+})
+
+return cardSkill

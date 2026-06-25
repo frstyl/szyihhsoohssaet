@@ -1,0 +1,32 @@
+local tsiuhSkill = fk.CreateSkill {
+  name = "tsiuh_recover",
+}
+
+Fk:loadTranslationTable{
+  ["tsiuh_recover"] = "酒 回",
+  ["#tsiuh_recover"] = "酒 回1",
+}
+
+
+tsiuhSkill:addEffect("cardskill", {
+  prompt = "#tsiuh_recover",
+  mod_target_filter = Util.TrueFunc,
+  can_use =  function(self, player, card, extra_data)  --同旹機多種 不寫于此
+    return Util.CanUseToSelf(self, player, card, extra_data) and extra_data.analepticRecover
+  end,
+  on_effect = function(self, room, effect)
+      if to:isWounded() and not to.dead then
+        room:recover({
+          who = effect.to,
+          num = 1,
+          recoverBy = effect.from,
+          card = effect.card,
+        })
+      end
+  end,
+})
+
+
+
+
+return tsiuhSkill

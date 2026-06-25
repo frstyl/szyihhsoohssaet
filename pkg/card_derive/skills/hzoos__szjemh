@@ -1,0 +1,202 @@
+local cardSkill = fk.CreateSkill {
+  name = "hzoos__szjemh_skill",
+}
+
+Fk:loadTranslationTable{
+  ["#AskForhzoos__szjemh"] = "是否對目幖爲 %dest 之【%arg】使用 防患未肰？",
+  -- ["#AskForhzoos__szjemhWithoutTo"] = "是否對 %src 使用之【%arg】使用防患未肰？",
+}
+local S = require "packages/szyihhsoohssaet/szyih_guos" 
+
+-- cardSkill:addEffect("cardskill", {
+--   can_use = Util.FalseFunc,
+--   offset_func= Util.FalseFunc,
+--   on_effect = function(self, room, effect)
+--     if effect.responseToEvent  then
+--       effect.responseToEvent.isCancellOut = true
+--     end
+--   end,
+-- })
+
+cardSkill:addEffect(fk.PreCardEffect, { --以可用之牌分
+  global = true,
+  mute = true,
+  priority = 0,  --同旹自選 用牌?
+  can_trigger = function(self, event, target, player, data)  --禁使用(牌名)/抵消/響應
+    if player.seat~=1 then return end --問一次
+    if  data.isCancellOut or data.nullified then return end 
+
+
+    local cardNames={}
+    if S.getCardTypeByName(data.card.trueName) ==2    then 
+      cardNames={"hzoos__szjemh"}
+      if data:isOnlyTarget(data.to) or data.tos==nil or #data.tos==0 then 
+        table.insert(cardNames,"tsiac_keejs_dzius_keejs")  
+      end
+    elseif data.card.trueName == "ssaet" then
+      cardNames = {"theem_prac_kaemh_tsoavs"}
+    end
+
+    for _, name in ipairs(data.prohibitedCardNames or {}) do
+      table.removeOne(cardNames,name)
+    end
+    if #cardNames==0 then return end
+
+    local players=table.filter(player.room.alive_players,function(p)
+        return not data:isUnoffsetable(p)  and not data:isDisresponsive(p) 
+      end)
+    if #players==0 then return end
+
+
+
+    event:setCostData(self,{players=players,cardNames=cardNames})
+    return true    
+  end,
+  on_trigger = function(self, event, target, player, data) --問何問
+    local room=player.room
+    local players=event:getCostData(self).players
+    local cardNames=event:getCostData(self).cardNames
+    local holders={} --不等于players
+    -- local loopTimes = data:getResponseTimes()
+
+    -- for i = 1, loopTimes do
+    local pattern=""
+    local expand={}  --展開 koarbiuk
+    local s_params={}  --單獨設 params
+    -- -- local e_params={}
+    -- for _, p in ipairs(holders) do
+    --   expand[p.id]=S.getPlayerKoarbiukCards({p},"tsiac_keejs_dzius_keejs")
+    -- end
+    -- if data:isOnlyTarget(data.to) then
+    --   s_params[data.to.id]=table.simpleClone(params)
+    --   s_params[data.to.id].pattern=table.concat({pattern,"tsiac_keejs_dzius_keejs"},";")
+    -- end
+    local setPattern=function()
+      local t={}
+      local trueNames={}
+      local names={}
+      local idNames={}
+      local sNames={}
+      for _, name in ipairs(cardNames) do  --轉爲trueName ids
+        if name=="hzoos__szjemh" then
+          table.insert(trueNames,name)
+        elseif table.contains({"tsiac_keejs_dzius_keejs", "theem_prac_kaemh_tsoavs"},name) then
+          table.insert(names,"hand__"..name)
+          table.insert(idNames,name)
+          table.insert(sNames,name)
+        end
+      end
+
+
+      if #trueNames>0 then  --未禁展開牌, 葢牌不應展開不合旹者
+        local tp=tostring(Exppattern{ trueName = trueNames })
+        table.insert(t,tp)
+        holders=S.getHolders(tp,players,fk.ReasonUse,nil, data) 
+      end
+
+      if #names>0 then
+        local tp=tostring(Exppattern{ name = names })
+        table.insert(t,tp)
+        table.insertTableIfNeed(holders, S.getHolders(tp,players,fk.ReasonUse,nil,data) )
+      end
+
+      if  #idNames>0  then
+          local tp=tostring(Exppattern{ trueName = idNames })
+          ids = {}
+          for _, p in ipairs(players) do
+            local cs= S.getPlayerKoarbiukCards({p},tp)  
+            if #cs>0 then
+              expand[p.id]= cs --askToUseKoarbiukCard  中搜索展開?
+              table.insertIfNeed(holders,p)
+              table.insertTableIfNeed(ids, cs)
+            end
+          end
+          if #ids >0 then
+            table.insert(t,tostring(Exppattern{ id = ids }))
+          end
+
+          -- local ids,ps =S.getPlayerKoarbiukCards(players,tp)
+          -- if #ids>0 then
+          --           table.insert(t,tp)
+          --           -- table.insert(t,tostring(Exppattern{ id = ids }))
+            
+          --   -- local ps=S.getHolders("tsiac_keejs_dzius_keejs",players,fk.ReasonUse,"k") 
+          --   for _, p in ipairs(ps) do
+          --     expand[p.id]=S.getPlayerKoarbiukCards({p},tp)  --askToUseKoarbiukCard  中搜索展開?
+          --     table.insertIfNeed(holders,p)
+          --   end
+          -- end
+      end
+
+
+      pattern = table.concat(t,";")
+
+
+      if  #sNames>0 then  --hand__
+        local tp= table.concat(sNames,";") --tostring(Exppattern{ trueName = ms })
+        if #S.getHolders(tp,{data.to},fk.ReasonUse,nil,data)~=1 then return end
+        table.insertIfNeed(holders,data.to)
+        s_params[data.to.id]=s_params[data.to.id] or {}
+        s_params[data.to.id][pattern] = "."
+        s_params[data.to.id][pattern] =table.concat({tp,t[1]},";")
+      end
+    end
+    setPattern()
+
+    if #holders==0 then return end
+    if  table.contains({ "hzoos__szjemh" ,"tsiac_keejs_dzius_keejs"}, data.card.trueName) then
+      player.room:animDelay(2)
+    end
+
+    Fk.currentResponsePattern = pattern --?有用?
+
+    local to = data.to
+    local prompt = ""
+    if data.to then
+      prompt = "#AskForhzoos__szjemh::" .. data.to.id .. ":" .. data.card.name
+    elseif data.from then
+      prompt = "#AskForhzoos__szjemhWithoutTo:" .. data.from.id .. "::" .. data.card.name
+    end
+
+    local extra_data
+    if #data.tos > 1 then
+      if data.use then  --
+        extra_data = { useEventId = data.use.id, effectTo = data.to.id }
+      end
+    end
+    local params = { ---@type AskToUseCardParams
+      pattern = pattern,
+      skill_name = "hzoos__szjemh",
+      prompt = prompt,
+      cancelable = true,
+      extra_data = extra_data,
+      event_data = data
+    }
+
+    -- while true do   --每名限1次? 抵消
+      -- local use = room:askTohzoos__szjemh(players, params)
+
+
+      local use = S.askToUseKoarbiukCard(room,holders, params,s_params,expand)
+      if use then
+        use.toCard = data.card
+        use.responseToEvent = data
+        room:useCard(use)
+        
+        return  --總限1次
+        -- table.remove(cardNames, use.card.trueName)--tureName
+      end
+      -- if #cardNames==0 or data.isCancellOut then
+      --   return
+      -- end
+    -- end
+      -- if not data.isCancellOut then
+      --   break
+      -- end
+
+      -- data.isCancellOut = i == loopTimes
+    -- end
+  end,
+})
+
+return cardSkill

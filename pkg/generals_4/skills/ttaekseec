@@ -1,0 +1,93 @@
+
+
+local ttaekseec= fk.CreateSkill{
+  name = "ttaekseec",
+}
+
+
+
+Fk:loadTranslationTable{
+["ttaekseec"] = "摘星",
+[":ttaekseec"] = "當一判斷牌生效歬,若其爲花色爲方片,伱可預打出一牌A發動,A作爲新判定牌,伱獲得元判定牌,抽1.",
+["#ttaekseec-ask"] = "摘星  打出一张牌改變 %src 判定",
+}
+
+ttaekseec:addEffect(fk.AskForRetrial,{
+	anim_type = "control",
+	can_trigger = function(self, event, target, player, data)
+	  return player:hasSkill(ttaekseec.name) and data.card.suit==Card.Diamond
+	end,
+	on_cost = function(self, event, target, player, data)
+    local response = player.room:askToResponse(player,{ ---@type AskToUseCardParams
+        skill_name = ttaekseec.name,
+        -- pattern = '.|.|.|hand',  --待
+        pattern = '.|.|.',  --待
+        prompt = "#ttaekseec-ask:" .. data.who.id,
+        cancelable = true,
+        -- event_data = effect
+      })
+    if response then
+      event:setCostData(self, {responses = response})
+      return true
+    end
+    end,
+    on_use = function(self, event, target, player, data)
+      local room = player.room
+      local logic = room.logic
+      local respondCardData = event:getCostData(self).responses
+      --1
+      local newId = respondCardData.card:getEffectiveId()
+      local oldId = data.card:getEffectiveId()
+      -- room:responseCard(respond)  
+      if logic:trigger(fk.PreCardRespond, respondCardData.from, respondCardData) then--打出 後續作爲判定牌 不執行RespondCard:clear()
+        logic:breakEvent()
+      end
+      room:moveCards{
+        ids = {newId},
+        from = player,
+        toArea = Card.Processing,
+        moveReason =  fk.ReasonResponse ,
+        skillName = ttaekseec.name,
+      }
+      logic:trigger(fk.CardResponding, respondCardData.from, respondCardData)
+      data.card = respondCardData.card  --可能爲轉化牌
+      room:sendLog{
+      type = "#ChangedJudge",
+      from = player.id,
+      to = { data.who.id },
+      arg2 = respondCardData.card:toLogString(),
+      arg = ttaekseec.name,
+      }
+      if newId and room:getCardArea(newId) == Card.Processing then  --改判牌緟過filter
+        data.card = room:filterCard(newId, data.who, true)
+      end
+      --2
+      if  oldId and room:getCardArea(oldId)==  Card.Processing then  --old可能爲虛 轉化牌操作全部子牌
+    --  self:moveCardTo(card, Card.PlayerHand, player, reason, skill_name, nil, visible, proposer or player, moveMark, visiblePlayers)
+        if not player.dead then
+          room:moveCards{
+            ids = { oldId },
+            toArea =  Card.PlayerHand,
+            moveReason =  fk.ReasonJustMove,
+            to =  player ,
+            skillName = ttaekseec.name,
+            }
+
+        else
+          room:moveCards{
+            ids = { oldId },
+            toArea = Card.DiscardPile,
+            moveReason = fk.ReasonJudge,
+            to = nil,
+            skillName = ttaekseec.name,
+            }
+        end
+      end
+      --3
+      if not player.dead then
+        player:drawCards(1, ttaekseec.name)
+      end
+	end,
+})
+
+return ttaekseec

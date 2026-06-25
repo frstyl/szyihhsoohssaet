@@ -1,0 +1,141 @@
+local deecstsshaek = fk.CreateSkill {
+  name = "deecstsshaek",
+}
+
+Fk:loadTranslationTable{
+  ["deecstsshaek"] = "定策",
+  [":deecstsshaek"] = "主旹,預選1錦囊与1其他角色A發動.伱將此牌交予A与其同旹選擇1項,若相同執行之,否則伱使用此牌(无視距離).若執行➀➁且目標相同,A可使用此牌.選項➀視爲使用殺➁令1已損角色回1(護甲+1)➂抽2➃緟鑄1至4手牌",
+
+  ["#deecstsshaek"] = "定策 選擇角色錦囊",
+
+  ["#deecstsshaek-ask"] = "定策 選擇1項 來自%src",
+  ["#deecstsshaek-use"] = "定策 使用牌",
+
+  ["$deecstsshaek1"] = "小弚有一計",
+}
+
+deecstsshaek:addEffect("active", {
+  anim_type = "control",
+  target_num = 1,
+  card_num = 1,
+  prompt = "#deecstsshaek",
+  can_use = function(self, player)
+    return player:usedSkillTimes(deecstsshaek.name, Player.HistoryPhase) == 0
+  end,
+  card_filter = function(self, player, to_select, selected)
+    return #selected == 0 and Fk:getCardById(to_select).type==Card.TypeTrick --待
+  end,
+  -- target_filter = function(self, player, to_select, selected, selected_cards)
+  --     return #selected == 0 
+  -- end,
+  target_filter = function(self, player, to_select, selected)
+    return   to_select~=player
+  end,
+  on_use = function(self, room, effect)
+    local player=effect.from
+    local to=effect.tos[1]
+    local user=player
+    room:moveCardTo(effect.cards, Player.Hand, to, fk.ReasonGive, deecstsshaek.name, nil, false, player.id)
+    --active
+
+    local req = Request:new({player, to}, "AskForUseActiveSkill")
+    req.focus_text = deecstsshaek.name
+    req.focus_players = room:getOtherPlayers(player, false)
+    local extraData = {
+      "deecstsshaek_active",
+      "#deecstsshaek-ask:"..player.id,
+      false,
+      {froms={player.id,to.id},
+    },
+    }
+    for _, p in ipairs({player, to}) do
+      req:setData(p, extraData)
+    end
+    req:ask()
+    if req:getResult(player)  == "" or req:getResult(player).interaction_data ~= req:getResult(to).interaction_data  then
+      goto usecard
+    end
+    if req:getResult(player).interaction_data =="deecstsshaek-draw" then
+      player:drawCards(2,deecstsshaek.name)
+      to:drawCards(2,deecstsshaek.name)
+      goto throwcard
+    end
+
+    if req:getResult(player).interaction_data =="deecstsshaek-recast" then
+    if #req:getResult(player).card.subcards==0 or #req:getResult(to).card.subcards==0 then
+            goto usecard
+    end
+      room:recastCard( req:getResult(player).card.subcards, player, deecstsshaek.name)
+      room:recastCard( req:getResult(to).card.subcards, to, deecstsshaek.name)
+      goto throwcard
+    end
+
+    if req:getResult(player).interaction_data =="deecstsshaek-ssaet" then
+      if #req:getResult(player).targets == 0 or  #req:getResult(to).targets == 0 then 
+        goto throwcard 
+      end
+      room:useVirtualCard("ssaet", nil, player, room:getPlayerById(req:getResult(player).targets[1]), deecstsshaek.name, true)
+      room:useVirtualCard("ssaet", nil, to, room:getPlayerById(req:getResult(to).targets[1]), deecstsshaek.name, true)
+      if req:getResult(player).targets[1]==req:getResult(to).targets[1] then  --應該id
+        user=to
+        goto usecard
+      else
+        goto throwcard
+      end
+    end
+
+    if req:getResult(player).interaction_data =="deecstsshaek-recover" then
+      if #req:getResult(player).targets == 0 or  #req:getResult(to).targets == 0 then 
+        goto throwcard 
+      end
+      if room:getPlayerById(req:getResult(player).targets[1]):isWounded() then
+        room:recover({
+          who = room:getPlayerById(req:getResult(player).targets[1]),  --就應用id
+          num = 1,
+          recoverBy = player,
+          skillName = deecstsshaek.name,
+        })
+      else
+      room:changeShield(room:getPlayerById(req:getResult(player).targets[1]),1)
+      end
+      if room:getPlayerById(req:getResult(player).targets[12]):isWounded() then
+        room:recover({
+          who = room:getPlayerById(req:getResult(to).targets[1]),
+          num = 1,
+          recoverBy = to,
+          skillName = deecstsshaek.name,
+        })
+      else
+        room:changeShield(room:getPlayerById(req:getResult(player).targets[2]),1)
+      end
+      if req:getResult(player).targets[1]==req:getResult(to).targets[1] then
+          user=to
+        goto usecard
+      else
+        goto throwcard
+      end
+    end
+
+    ::throwcard::
+    room:throwCard(effect.cards, deecstsshaek.name, to, player)
+    goto ed
+
+    ::usecard::
+      room:askToUseRealCard(user,{
+        pattern=effect.cards,
+        skill_name = deecstsshaek.name,
+        prompt = "#deecstsshaek-use",
+        extra_data = {
+          bypass_times = true,
+          bypass_distances= true,
+          extraUse = true,
+        },
+        expand_pile=effect.cards,
+        skip=false,
+        cancelable=true, --必用?
+      })
+      ::ed::
+  end,
+})
+
+return deecstsshaek

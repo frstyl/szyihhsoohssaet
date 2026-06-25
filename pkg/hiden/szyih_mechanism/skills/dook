@@ -1,0 +1,35 @@
+local dook = fk.CreateSkill {
+  name = "dook_rule",
+}
+
+Fk:loadTranslationTable{
+  ["dook"] = "毒",  --技能
+  ["@@dook"] = "毒",  --幖記
+  ["@@antirecover-turn"] = "回復无效",
+  ["#PreventRecoverBySkill"] = "由于 %arg 的效果，%from 受到回復被防止",
+
+}
+
+dook:addEffect(fk.TurnStart, {
+  globle=true,
+  can_trigger = function(self, event, target, player, data)
+    return target==player and player:getMark("@@dook")>0
+  end,
+  on_trigger = function(self, event, target, player, data)
+    player.room:loseHp(player,1,"dook")  --毒skill
+    player.room:setPlayerMark(player,"@@dook",0)
+    player.room:setPlayerMark(player,"@@antirecover-turn",1)
+  end,
+})
+
+dook:addEffect(fk.PreHpRecover, {
+  globle=true,
+  can_trigger = function(self, event, target, player, data)
+    return target==player and player:getMark("@@antirecover-turn")>0
+  end,
+  on_trigger = function(self, event, target, player, data)
+    data.prevented=true
+    player.room:sendLog{ type = "#PreventRecoverBySkill", from = player.id, arg = "dook" }
+  end,
+})
+return dook

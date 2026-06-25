@@ -1,0 +1,175 @@
+local ddxenqtous = fk.CreateSkill {
+  name = "ddxenqtous",
+}
+
+-- local S = require "packages/szyihhsoohssaet/szyih_guos" 
+
+Fk:loadTranslationTable{
+  ["ddxenqtous"] = "纏鬥",
+  [":ddxenqtous"] = "主動,將全部手牌(至少1)轉化爲鬥將或任意殺使用.此殺次數限制且不可被響應;此鬥將无距離限制且其對目幖致傷旹,伱可令非目幖已損角色回復1,伱受到此鬥將傷害後,伱与對方各抽1",
+--失敗各抽1 --如過彊改陰陽轉換技
+  ["#ddxenqtous"] = "纏鬥：將全部手牌轉化爲殺或鬥將",
+  ["#ddxenqtous-choose"] = "纏鬥：令1角色回1",
+
+  ["$ddxenqtous1"] = "賊將,怎敢暗算吾兄。",
+  ["$ddxenqtous2"] = "伱止躲得我箭,須躲不得我槍。",
+  ["$ddxenqtous2"] = "伱昰廝倒敢賣弄弓箭。",
+  ["$ddxenqtous2"] = "賊將,不自量力",
+}
+
+ddxenqtous:addEffect("viewas", {
+  anim_type = "offensive",
+  prompt = "#ddxenqtous",
+  mute_card = true,
+  interaction = function(self, player)
+    return UI.CardNameBox {
+      choices = player:getViewAsCardNames(ddxenqtous.name, {"ssaet","tous_tsiacs"}, player:getCardIds("h")),
+      all_choices = {"ssaet","tous_tsiacs"},
+      default_choice = "AskToChooseCards",
+    }
+  end,
+  card_filter = Util.FalseFunc,
+  view_as = function(self, player, cards)  --待改 如轉化歬不能用 轉化後不能用
+    if Fk.all_card_types[self.interaction.data] == nil then return end
+    local card = Fk:cloneCard(self.interaction.data)
+    card:addSubcards(player:getCardIds("h"))
+    card.skillName = self.name
+    -- S.iii(4)
+    -- S.MixCard(card) --koaz
+    return card
+  end,
+  before_use = function(self, player, use)
+    if use.card.trueName == "ssaet" then
+    use.disresponsiveList = table.simpleClone(player.room.players)
+    else  --tous_tsiacs 同旹結算多張?
+      local t={      
+        cardid=use.card.id,
+        from = player,
+        tos = {},
+      }
+      -- player.room:setPlayerMark(player,"__ddxenqtous_tous_tsiacs-phase", t)
+      use.extra_data=      use.extra_data or{}
+      use.extra_data.ddxenqtous=t
+    end
+  end,
+  enabled_at_play = function(self, player)
+    return not player:isKongcheng()  --不能用如手牌之牌
+  end,
+  enabled_at_response = function(self, player)
+    return false
+  end,
+})
+
+ddxenqtous:addEffect("targetmod", {
+  bypass_times = function(self, player, skill2, scope, card)
+    return card and scope == Player.HistoryPhase and table.contains(card.skillNames, ddxenqtous.name)
+  end,
+  bypass_distances = function(self, player, skill2, card)
+    return card and card.trueName=="tous_tsiacs" and table.contains(card.skillNames, ddxenqtous.name)
+  end,
+})
+
+-- ddxenqtous:addEffect(fk.TargetSpecified, {
+--   can_trigger = function(self, event, target, player, data)
+--     return target == player and player:hasSkill(ddxenqtous.name) and data.card.trueName == "ssaet" and     data.card.skillName = ddxenqtous.name
+--   end,
+--   on_trigger = function(self, event, target, player, data)
+--       data.disresponsive = true  --unoffsetableList抵消
+--   end,
+-- })
+
+-- ddxenqtous:addEffect(fk.TargetSpecified, {
+--   can_refresh = function (self, event, target, player, data)
+--     return  table.contains(data.card.skillNames, ddxenqtous.name)
+--   end,
+--   on_refresh = function (self, event, target, player, data)
+--     local room=player.room
+--       local t=player:getMark("__ddxenqtous_tous_tsiacs-phase")
+--       t.tos=data.use.tos  --tos AimGroup
+--       player.room:setPlayerMark(player,"__ddxenqtous_tous_tsiacs-phase",t)
+
+--   end,
+-- })
+
+-- CardUseFinished Damage
+ddxenqtous:addEffect(fk.DamageCaused, {  --parent
+  is_delay_effect = true,
+  can_trigger = function(self, event, target, player, data)
+    if not player.dead and player.room.logic:damageByCardEffect() then  --目幖
+      local use_event = player.room.logic:getCurrentEvent():findParent(GameEvent.UseCard, true)
+      if use_event then
+        local use = use_event.data
+        return use.extra_data and use.extra_data.ddxenqtous
+            and use.extra_data.ddxenqtous.from==player
+
+      end
+    end
+  end,
+  on_trigger = function(self, event, target, player, data)
+    local room = player.room
+    local tos = {}
+    -- local t=player:getMark("__ddxenqtous_tous_tsiacs-phase")
+
+    local use_event = player.room.logic:getCurrentEvent():findParent(GameEvent.UseCard, true)
+    if not use_event then tos ={target}
+    else
+      tos=use_event.data.tos
+    end
+
+    local targets = table.filter(room.alive_players , function(p)
+      return (not table.contains(tos, p)) and p:isWounded()
+    end)
+
+    local to = room:askToChoosePlayers(player, {
+      min_num = 1,
+      max_num = 1,
+      targets = targets,
+      skill_name = ddxenqtous.name,
+      prompt = "#ddxenqtous-choose",
+      cancelable = true,
+    })
+    if #to==1 then 
+      room:recover({
+        who = to[1],
+        num = 1,
+        recoverBy = player,
+        skillName = ddxenqtous.name,
+      })
+    end
+  end,
+})
+
+ddxenqtous:addEffect(fk.Damaged, { --砸自己
+  is_delay_effect = true,
+  can_trigger = function(self, event, target, player, data)
+    if target~=player 
+    or player.dead 
+    or (not data.card )
+
+    or data.card.name~="tous_tsiacs"
+    or (not table.contains(data.card.skillNames, ddxenqtous.name))  then return end
+
+      local use_event = player.room.logic:getCurrentEvent():findParent(GameEvent.UseCard, true)
+      if use_event then
+        local use = use_event.data
+        return use.extra_data and use.extra_data.ddxenqtous
+            and use.extra_data.ddxenqtous.from==player
+
+      end
+
+  end,
+  on_trigger = function(self, event, target, player, data)
+    player:drawCards(1,ddxenqtous.name)
+    data.from:drawCards(1,ddxenqtous.name)
+  end,
+})
+-- ddxenqtous:addEffect(fk.CardUseFinished, {  --應用table記彔多个使用
+--   can_refresh = function (self, event, target, player, data)
+--     return data.card and data.card.extra_data and  data.card.extra_data.ddxenqtous
+--   end,
+--   on_refresh = function (self, event, target, player, data)
+--     player.room:setPlayerMark(player,"__ddxenqtous_tous_tsiacs-phase", nil)
+--   end,
+-- })
+
+return ddxenqtous

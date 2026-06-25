@@ -1,0 +1,62 @@
+local tsiocsmoa = fk.CreateSkill {
+  name = "tsiocsmoa",
+}
+
+Fk:loadTranslationTable{
+  ["tsiocsmoa"] = "縱魔",
+  [":tsiocsmoa"] = "當伱可選擇殺旹,伱可預將1牌轉化爲殺使用發動.此殺无視距離且致傷旹,伱可執行,伱抽1,視爲使用猛虎下山(目幖需打出屬性殺)",
+
+  ["#tsiocsmoa-invoke"] = "縱魔 是否對 %src 發動 0牌确定則其弃牌",
+}
+
+tsiocsmoa:addEffect("viewas", {
+  anim_type = "offensive",
+  pattern = "ssaet",
+  prompt = "#tsiocsmoa",
+  mute_card = true,
+  handly_pile = true,
+  card_filter = function(self, player, to_select, selected)
+    return #selected == 0--默認裝僃
+  end,
+  view_as = function(self, player, cards)
+    if #cards ~= 1 then return end
+    local c = Fk:cloneCard("ssaet")
+    c.skillName = tsiocsmoa.name
+    c:addSubcard(cards[1])
+    return c
+  end,
+  enabled_at_play = Util.TrueFunc,
+  enabled_at_response = function(self, player, response)
+    return  not response
+  end,
+})
+
+
+tsiocsmoa:addEffect("targetmod", {
+  bypass_distances = function(self, player, skill, card)
+    return card and table.contains(card.skillNames, tsiocsmoa.name)
+  end,
+})
+
+
+tsiocsmoa:addEffect(fk.DamageCaused, {
+  anim_type = "offensive",
+  can_trigger = function(self, event, target, player, data)
+    return  target==player and player:hasSkill(tsiocsmoa.name)
+    and data.card
+    and table.contains(data.card.skillNames, tsiocsmoa.name) 
+    and not data.prevented
+  end,
+  on_use = function(self, event, target, player, data)
+    player:drawCards(1,tsiocsmoa.name)
+    -- if player.dead then return end
+    local card = Fk:cloneCard("maach_hsooh_hzaah_ssaen")
+    card.skillName = tsiocsmoa.name
+    card.skill = Fk.skills["tsiocsmoa__maach_hsooh_hzaah_ssaen_skill"]
+    player.room:useCard(card)
+    
+  end,
+})
+
+
+return tsiocsmoa

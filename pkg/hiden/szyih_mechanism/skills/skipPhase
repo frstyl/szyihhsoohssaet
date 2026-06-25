@@ -1,0 +1,29 @@
+local skipPhase = fk.CreateSkill {
+  name = "skipPhase_skill",
+}
+
+-- Fk:loadTranslationTable{
+--   ["@loav"] = "牢",  --qml
+-- }
+
+skipPhase:addEffect(fk.EventPhaseChanging, {
+  -- name = "#loav",
+  -- global = true,  --武將技不需 卡牌需要
+  -- events = {fk.PreTurnStart},
+  mute = true,
+  priority = 0, -- game rule?
+
+  can_refresh = Util.TrueFunc,  --function() return true end
+  on_refresh = function(self, event, target, player, data)
+    local t = target:getTableMark("toSkipPhases")
+    if t[data.phase]  and t[data.phase] >0 then
+      data.skipped = true
+      t[data.phase] = t[data.phase] -1  --change
+	  end
+end,
+})
+-- Fk:addSkill(skipPhase)
+
+
+return skipPhase
+

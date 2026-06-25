@@ -1,0 +1,46 @@
+local sk = fk.CreateSkill {
+  name = "kaeh_hqvoans_toav_skill&",  --&幖記非武將技主動
+  attached_equip = "kaeh_hqvoans_toav",
+}
+Fk:loadTranslationTable{
+  ["kaeh_hqvoans_toav_skill&"] = "解腕刀",
+  [":kaeh_hqvoans_toav_skill&"] = "階段限4.主動.伱下次使用殺无視次數",  --此次?用殺旹才有此
+  ["#kaeh_hqvoans_toav&"] = "解腕刀 下次使用殺无視次數",
+  -- ["#kaeh_hqvoans_toav_ssaet"] = "飛燕弩 使用殺",
+  ["@@kaeh_hqvoans_toav"] = "解腕",
+}
+
+sk:addEffect("active", {
+  prompt = "#kaeh_hqvoans_toav&",
+  card_filter = Util.FalseFunc,
+  -- max_phase_use_time = 4,
+  can_use = function(self, player)
+    return player:getMark("@@kaeh_hqvoans_toav") ==0
+    and  player:usedSkillTimes(sk.name, Player.HistoryPhase) < 4  --裝僃得失刷新技能?
+  end,
+  on_use = function(self, room, effect)
+    room:setPlayerMark(effect.from,"@@kaeh_hqvoans_toav",1)
+  end,
+})
+
+sk:addEffect("targetmod", {
+  bypass_times = function(self, player, skill, scope, card, to)  --player所屬牌card
+    return card and card.trueName=="ssaet" and player:getMark("@@kaeh_hqvoans_toav") >0
+  end,
+})
+
+sk:addEffect(fk.PreCardUse, {
+  can_refresh = function (self, event, target, player, data)
+    return target == player and data.card.trueName=="ssaet" and player:getMark("@@kaeh_hqvoans_toav") >0 --按 不需hasSkill
+  end,
+  on_refresh = function (self, event, target, player, data)
+    player.room:setPlayerMark(player,"@@kaeh_hqvoans_toav",0)
+    data.extraUse = true
+  end
+})
+
+sk:addLoseEffect (function (self, player)
+    player.room:setPlayerMark(player,"@@kaeh_hqvoans_toav",0) 
+end)
+
+return sk

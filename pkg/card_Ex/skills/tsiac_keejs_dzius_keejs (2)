@@ -1,0 +1,305 @@
+local skill = fk.CreateSkill {
+  name = "tsiac_keejs_dzius_keejs_skill",
+}
+
+Fk:loadTranslationTable{
+  ["tsiac_keejs_dzius_keejs_skill"] = "將計就計",
+  ["#tsiac_keejs_dzius_keejs-use"] = "%src 使用%arg，是否使用【將計就計】抵消 獲得%arg？",
+}
+
+local S = require "packages/szyihhsoohssaet/szyih_guos" 
+
+local spec = {
+  global = true,
+  priority = 0,  --旣爲0 return true
+  can_trigger =  function(self, event, target, player, data) --trigger逐个詢問 改爲ask--抵消爲何寫于流程 不可能不生成旹機--中斷旹機 技能用不了--瀕死正用旹機 --p return true data.asked   priority = 0,
+    return target==player 
+        and  data.card.type == Card.TypeTrick 
+        and not (data.disresponsive or data.unoffsetable) 
+        and not (
+          table.contains(data.prohibitedCardNames or Util.DummyTable, "buac_hzfan_mujs_nzjen") 
+          and
+          table.contains(data.prohibitedCardNames or Util.DummyTable, "tsiac_keejs_dzius_keejs")
+          )  --酒肉亦同旹問 , 曾不如此  --改改給水攻
+  end,
+  on_trigger = function (self, event, target, player, data)
+    -- local pattern=""  --可用牌于此詢問歬加入 data --被禁不加
+    -- local names={}
+    -- if #data.tos<2 then --比如
+    --   pattern= "buac_hzfan_mujs_nzjen,tsiac_keejs_dzius_keejs"
+    --   names={"buac_hzfan_mujs_nzjen","tsiac_keejs_dzius_keejs"}
+    -- else
+    --   pattern = "buac_hzfan_mujs_nzjen"
+    --   names={"buac_hzfan_mujs_nzjen"}
+    -- end
+
+    -- local canuse={}
+    -- for _, name in ipairs(names) do
+    --   if not (table.contains(data.prohibitedCardNames or Util.DummyTable, name))  then
+    --     table.insert(canuse,name)
+    --   end
+    -- end
+
+    local room = target.room
+    local players = {}
+    Fk.currentResponsePattern =pattern  --有ask 此有何用
+    local cardEffectData = data
+
+      --全不能用才不加--止需有1則問--技能可以多匹配--葢牌有才算 不能分是否爲nulli
+    for _, p in ipairs(room.alive_players) do
+      if cardEffectData:isDisresponsive(p)   --提歬 viewAs亦屬用牌 不用牌不在此流程
+      or cardEffectData:isUnoffsetable(p) then
+        goto continue
+      end
+
+      -- local playercanuse={}
+      local cards={}
+      local name = "buac_hzfan_mujs_nzjen"
+      local cardCloned = Fk:cloneCard(name)
+
+      if  table.contains(data.prohibitedCardNames or Util.DummyTable, "buac_hzfan_mujs_nzjen")  then --渻判定 走新循環??
+        goto tsiacJudge  --全封无on_trigger
+      end
+
+      if not p:prohibitUse(cardCloned) then  --都被禁不察   card class
+           cards = p:getHandlyIds()
+          for _, cid in ipairs(cards) do
+            if Fk:getCardById(cid).trueName == "buac_hzfan_mujs_nzjen" 
+            -- and
+            --   (not (
+            --     cardEffectData:isDisresponsive(p) or  --不應在歬??? 應單獨有 某角色不可使用某牌
+            --     cardEffectData:isUnoffsetable(p)
+            --   ))
+            then
+              table.insert(players, p)
+              -- break  --break ?? continue
+              goto continue
+            end        
+          end
+        end
+
+        -- if #playercanuse>0 then  --要不continue 
+        ::tsiacJudge::
+        -- if  table.contains(players, p) then goto continue end
+
+        if  table.contains(data.prohibitedCardNames or Util.DummyTable, "tsiac_keejs_dzius_keejs")  then 
+          goto viewAsJudge  --全封无on_trigger
+        end
+
+        -- local cards = {}
+        cards={}
+        for _, c in ipairs (player:getCardIds("j")) do
+          local card = player:getVirualEquip(id)  --有葢牌就問 无論是否有將???手牌中用將 viewAs?
+          if card and card.truename == "koarbiuk_card" 
+            and Fk:getCardById(cid).trueName then  --需要?直接加j--function getkoar
+            -- table.insert(cards,c) --id
+
+              table.insertIfNeed(players, p)
+              -- break
+              goto continue
+          end
+        end
+
+        -- name ="tsiac_keejs_dziuis_keejs"
+        -- for _, cid in ipairs(cards) do
+        --     if Fk:getCardById(cid).trueName == name 
+        --     -- and
+        --     --   (not (
+        --     --     data:isDisresponsive(p) or
+        --     --     data:isUnoffsetable(p)
+        --     --   ))
+        --     then
+        --       table.insertIfNeed(players, p)
+        --       -- break
+        --       goto continue
+        --     end
+          
+        -- end
+
+        ::viewAsJudge::
+        local playercanuse={}
+        if not  table.contains(data.prohibitedCardNames or Util.DummyTable, "buac_hzfan_mujs_nzjen")  then 
+          table.insert(playercanuse, "buac_hzfan_mujs_nzjen")
+        end
+
+        if not  table.contains(data.prohibitedCardNames or Util.DummyTable, "tsiac_keejs_dzius_keejs") then
+                    table.insert(playercanuse, "tsiac_keejs_dzius_keejs")
+        end
+
+        for  _, name in ipairs(playercanuse) do  --此處方需 canuse
+
+          -- Self = p -- for enabledAtResponse
+          for _, s in ipairs(table.connect(p.player_skills, rawget(p, "_fake_skills"))) do
+            ---@cast s ViewAsSkill
+            if
+              s.pattern and
+              Exppattern:Parse(name):matchExp(s.pattern) and  --此name in playercanuse  --str
+              (s:enabledAtNullification(p, data) or s:enabledAtResponse(p)) 
+              -- and
+              -- (not (
+              --   data:isDisresponsive(p) or
+              --   data:isUnoffsetable(p)
+              -- ))
+            then
+              table.insert(players, p)
+              -- break
+              goto continue 
+            end
+          end
+        end
+        -- end
+      
+      ::continue::
+      -- end  --上continue 
+    end  --break
+
+    local prompt = ""
+    if data.to then
+      prompt = "#AskForNullification::" .. data.to.id .. ":" .. data.card.name
+    elseif data.from then
+      prompt = "#AskForNullificationWithoutTo:" .. data.from.id .. "::" .. data.card.name
+    end
+
+    local extra_data
+    if #data.tos > 1 then
+      local parentUseEvent = room.logic:getCurrentEvent():findParent(GameEvent.UseCard)
+      if parentUseEvent then
+        extra_data = { useEventId = parentUseEvent.id, effectTo = data.to.id }
+      end
+    end
+
+    if #players > 0 
+      and (data.card.trueName == "buac_hzfan_mujs_nzjen" or data.card.trueName == "tsiac_keejs_dzius_keejs" )
+    then
+      room:animDelay(2)  --若个速過條 --給null復null用
+    end
+
+    local params = { ---@type AskToUseCardParams  --不含expand_pile 
+      skill_name = "buac_hzfan_mujs_nzjen",
+      pattern = pattern,
+      prompt = prompt,
+      cancelable = true,
+      extra_data = extra_data,
+      event_data = data
+    }
+    local use = askToUseKoarbiukCard(room,players, params)  --直接問全部?on_trigger  --額外? --緟寫 req 
+    if use then
+      use.toCard = data.card
+      use.responseToEvent = data
+      room:useCard(use)
+    end
+
+    Fk.currentResponsePattern = nil  --有何用 旹機止askToNullification
+    return true
+  end,
+}
+
+--闪前
+skill:addEffect(fk.PreCardEffect, spec)
+
+--无懈后
+-- skill:addEffect(fk.BeforeCardEffect, spec)
+
+skill:addEffect(fk.CardUseFinished, {
+  mute = true,
+  is_delay_effect = true,
+  can_trigger = function (self, event, target, player, data)
+    if player.room:getCardArea(data.card) == Card.Processing and not player.dead then
+      local to
+      player.room.logic:getCurrentEvent():searchEvents(GameEvent.CardEffect, 1, function (e)
+        local effect = e.data
+        if effect.extra_data then
+          to = effect.extra_data.tsiac_keejs_dzius_keejs
+          return to and not to.dead
+        end
+      end)
+      if to == player then
+        return true
+      end
+    end
+  end,
+  on_cost = Util.TrueFunc,
+  on_use = function (self, event, target, player, data)
+    player.room:moveCardTo(data.card, Card.PlayerHand, player, fk.ReasonJustMove, skill.name, nil, true, player)
+  end,
+})
+
+return skill
+
+
+  -- elseif
+  --   cardEffectData.card.type == Card.TypeTrick and
+  --   not (cardEffectData.disresponsive or cardEffectData.unoffsetable) and
+  --   not table.contains(cardEffectData.prohibitedCardNames or Util.DummyTable, "buac_hzfan_mujs_nzjen")
+  -- then
+  --   local players = {}
+  --   Fk.currentResponsePattern = "buac_hzfan_mujs_nzjen"
+  --   local cardCloned = Fk:cloneCard("buac_hzfan_mujs_nzjen")
+  --   for _, p in ipairs(room.alive_players) do
+  --     if not p:prohibitUse(cardCloned) then
+  --       local cards = p:getHandlyIds()
+  --       for _, cid in ipairs(cards) do
+  --         if Fk:getCardById(cid).trueName == "buac_hzfan_mujs_nzjen" and
+  --           (not (
+  --             cardEffectData:isDisresponsive(p) or
+  --             cardEffectData:isUnoffsetable(p)
+  --           ))
+  --         then
+  --           table.insert(players, p)
+  --           break
+  --         end
+  --       end
+  --       if not table.contains(players, p) then
+  --         Self = p -- for enabledAtResponse
+  --         for _, s in ipairs(table.connect(p.player_skills, rawget(p, "_fake_skills"))) do
+  --           ---@cast s ViewAsSkill
+  --           if
+  --             s.pattern and
+  --             Exppattern:Parse("buac_hzfan_mujs_nzjen"):matchExp(s.pattern) and
+  --             (s:enabledAtNullification(p, cardEffectData) or s:enabledAtResponse(p)) and
+  --             (not (
+  --               cardEffectData:isDisresponsive(p) or
+  --               cardEffectData:isUnoffsetable(p)
+  --             ))
+  --           then
+  --             table.insert(players, p)
+  --             break
+  --           end
+  --         end
+  --       end
+  --     end
+  --   end
+--     local prompt = ""
+--     if cardEffectData.to then
+--       prompt = "#AskForNullification::" .. cardEffectData.to.id .. ":" .. cardEffectData.card.name
+--     elseif cardEffectData.from then
+--       prompt = "#AskForNullificationWithoutTo:" .. cardEffectData.from.id .. "::" .. cardEffectData.card.name
+--     end
+
+--     local extra_data
+--     if #cardEffectData.tos > 1 then
+--       local parentUseEvent = room.logic:getCurrentEvent():findParent(GameEvent.UseCard)
+--       if parentUseEvent then
+--         extra_data = { useEventId = parentUseEvent.id, effectTo = cardEffectData.to.id }
+--       end
+--     end
+--     if #players > 0 and cardEffectData.card.trueName == "buac_hzfan_mujs_nzjen" then
+--       room:animDelay(2)
+--     end
+--     local params = { ---@type AskToUseCardParams
+--       skill_name = "buac_hzfan_mujs_nzjen",
+--       pattern = "buac_hzfan_mujs_nzjen",
+--       prompt = prompt,
+--       cancelable = true,
+--       extra_data = extra_data,
+--       event_data = cardEffectData
+--     }
+--     local use = room:askToNullification(players, params)
+--     if use then
+--       use.toCard = cardEffectData.card
+--       use.responseToEvent = cardEffectData
+--       room:useCard(use)
+--     end
+--   end
+--   Fk.currentResponsePattern = nil
+-- end

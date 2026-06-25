@@ -1,0 +1,29 @@
+local tooshzeen_active = fk.CreateSkill({
+  name = "tooshzeen_active",
+})
+
+tooshzeen_active:addEffect("active", {
+  mute = true,
+  min_card_num = 1, --0?
+  max_card_num = 3,
+  target_num = 0,
+  -- expand_pile = extra_data.extra_ids,
+  card_filter = function (self, player, to_select, selected)
+
+    return  #selected == 0 and (Fk:getCardById(to_select).suit==Card.Club   or not player:prohibitDiscard(Fk:getCardById(to_select)) )
+    or
+   (
+      #selected <4 
+      and  Fk:getCardById(selected[1]).suit~=Card.Club  
+      and   Fk:getCardById(to_select).suit~=Card.Club  
+      and (not player:prohibitDiscard(Fk:getCardById(to_select)))
+      and table.every(selected, function (id)
+        return Fk:getCardById(to_select):compareSuitWith(Fk:getCardById(id), true)
+      end) 
+    )
+  end,
+  target_filter = Util.FalseFunc,
+})
+
+
+return tooshzeen_active

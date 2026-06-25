@@ -1,0 +1,165 @@
+local tshjitjjevs = fk.CreateSkill{
+  name = "tshjitjjevs",
+  tags = { Skill.Compulsory },
+}
+
+Fk:loadTranslationTable{
+  ["tshjitjjevs"] = "七燿",
+  [":tshjitjjevs"] = "鎖定恆續.伱視爲裝僃七星劍.",
+
+  ["@[:]virtual_equip"] = "虛兵",
+  ["$tshjitjjevs1"] = "寒光纵横，血战八方！",
+  ["$tshjitjjevs2"] = "七燿霜刃，力贯山河！",
+}
+
+local S = require "packages/szyihhsoohssaet/szyih_guos" 
+--攻程不對
+local canAdd=function(player)
+  return 
+           player:hasSkill(tshjitjjevs.name)
+      and  player:getMark("_tshjitjjevs")==0 
+      and  player:hasEmptyEquipSlot(Card.SubtypeWeapon) 
+      -- and not table.find(player:getEquipments(Card.SubtypeWeapon), function(id)
+      --   return Fk:getCardById(id).name == "tshjit_seec_kiams" end)
+  end
+
+  
+local canRemove=function(player)
+  return player:getMark("_tshjitjjevs")>0 
+  and  
+  (player:hasEmptyEquipSlot(Card.SubtypeWeapon) ==false
+  -- or  not Fk.skills[tshjitjjevs.name]:isEffectable(player)
+  )
+  end
+  
+--武器欄增 武器欄失去牌 獲得技能 技能緟生效
+local spec_add = function (player)
+     room=player.room
+      player.room:setPlayerMark(player,"_tshjitjjevs",1)  --true
+      S.addVirtualEquip(player,"tshjit_seec_kiams",tshjitjjevs.name)
+  end
+
+
+local spec_remove= function (player)
+      player.room:setPlayerMark(player,"_tshjitjjevs",0)  --true
+      S.removeVirtualEquip(player,"tshjit_seec_kiams",tshjitjjevs.name)
+  end
+
+--   tshjitjjevs:addEffect(fk.EventAcquireSkill, {
+--   can_refresh = function (self, event, target, player, data)
+--     return target==player and canRemove(player)
+--   end,
+--   on_refresh=function (self, event, target, player, data)
+--     spec_remove(player)
+--   end,
+-- })
+
+-- tshjitjjevs:addEffect(fk.EventLoseSkill, {
+--   can_refresh = function (self, event, target, player, data)
+--     return target==player and canAdd(player)
+--   end,
+--   on_refresh=function (self, event, target, player, data)
+--     spec_add(player)
+--   end,
+-- })
+
+-- tshjitjjevs:addEffect(fk.AreaAborted, {  --puar
+--   priority=9,
+--   can_trigger = function(self, event, target, player, data)
+--     return target==player and canRemove(player)
+--   end,
+--   on_trigger=function (self, event, target, player, data)
+--     spec_remove(player)
+--   end,
+-- })
+
+-- tshjitjjevs:addEffect(fk.AreaResumed, {  
+--   priority=9,
+--   can_trigger = function(self, event, target, player, data)
+--     return target==player and canAdd(player)
+--   end,
+--   on_trigger=function (self, event, target, player, data)
+--     spec_add(player)
+--   end,
+-- })
+
+-- tshjitjjevs:addEffect(fk.AfterCardsMove, {
+--   priority=9,
+--   can_trigger = function(self, event, target, player, data)
+--     return  player:hasSkill(tshjitjjevs.name,true) 
+--   end,
+--   on_trigger=function (self, event, target, player, data)
+--     if canAdd(player) then
+--     spec_add(player)
+--     elseif canRemove(player) then
+--     spec_remove(player)
+--     end
+--   end,
+-- })
+
+-- tshjitjjevs:addEffect(S.AfterinvalidateSkill, {
+--   priority=9,
+--   can_trigger = function(self, event, target, player, data)
+--     return  canRemove(player)
+--   end,
+--   on_trigger=function (self, event, target, player, data)
+--     spec_remove(player)
+--   end,
+-- })
+
+-- tshjitjjevs:addEffect(S.AftervalidateSkill, {
+--   priority=9,
+--   can_trigger = function(self, event, target, player, data)
+--     return  canAdd(player)
+--   end,
+--   on_trigger=function (self, event, target, player, data)
+--     spec_add(player)
+--   end,
+-- })
+
+tshjitjjevs: addAcquireEffect(function (self, player)
+    if canAdd(player)
+    then
+    spec_add(player)
+    end
+end)
+
+tshjitjjevs:addLoseEffect(function (self, player)
+   if player:getMark("_tshjitjjevs")>0 then
+    spec_remove(player)
+   end
+end
+)
+
+tshjitjjevs:addEffect(fk.DamageCaused, {
+  can_trigger = function(self, event, target, player, data)
+    return target == player and player:hasSkill(tshjitjjevs.name) 
+    and (not data.chain) 
+    and player.room.logic:damageByCardEffect()
+    and
+      data.card and data.card.trueName == "ssaet" and not data.to:isNude()
+    and Fk.skills["#tshjit_seec_kiams_skill"] ~= nil and Fk.skills["#tshjit_seec_kiams_skill"]:isEffectable(player)
+  end,
+  on_trigger = function(self, event, target, player, data)
+    if not player.room:askToSkillInvoke(player, {
+      skill_name = "#tshjit_seec_kiams_skill",
+    }) then return end
+
+    local room = player.room
+    -- room:broadcastPlaySound("./packages/standard_cards/audio/card/eight_diagram")
+    -- room:setEmotion(player, "./packages/standard_cards/image/anim/eight_diagram")
+    local skill = Fk.skills["#tshjit_seec_kiams_skill"]
+    skill:use(event, target, player, data)
+  end,
+})
+
+-- tshjitjjevs:addEffect("atkrange", {  --武器距離爲何不屬技能 統一
+--   fixed_func = function (self, from)
+--     if from:getMark("_tshjitjjevs")>0 then
+--       return 2
+--     end
+--   end,
+-- })
+
+
+return tshjitjjevs

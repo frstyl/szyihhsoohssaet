@@ -1,0 +1,14 @@
+local card_times = fk.CreateSkill {
+  name = "card_times_prohibit_skill",
+}
+
+
+
+card_times:addEffect("prohibit", {
+  -- global = true,
+  prohibit_use = function(self, player, card)
+    return player and card and (player:getTableMark("_card_times_prohibit-round")[card.trueName] or 0 )>4
+  end,
+})
+
+return card_times

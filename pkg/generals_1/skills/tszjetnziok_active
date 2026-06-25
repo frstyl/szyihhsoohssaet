@@ -1,0 +1,134 @@
+local tszjetnziok_active = fk.CreateSkill {
+  name = "tszjetnziok_active",
+}
+Fk:loadTranslationTable{
+  ["tszjetnziok_active"] = "折辱",
+  [":tszjetnziok_active"] = "主旹,伱可預弃1{黑/紅}牌,与1其它已損角色(不可与伱次發動所選相同)發動.{其回1,失1/其抽x,弃x+1手牌(x爲其已損體力值)},本輪其體力改變旹,{數值翻倍/正負反轉}.執行後,若目幖半損,伱可對其執行別一項.",
+
+  ["#tszjetnziok_active"] = "折辱： 弃1{黑/紅}牌与1其它已損角色 其體力變化{翻倍/反轉}",
+  -- ["@@tszjetnziok_active-inarea"] = "折辱",
+  ["#tszjetnziok_active-discard"] = "折辱： 執行別一項 ",
+
+  ["@@tszjetnziok_active-reverse-round"] = "反轉",
+  ["@@tszjetnziok_active-double-round"] = "翻倍",
+  ["#HpChangeReverse"] = "由于 %arg 效果，%from 體力變化值翻倍",
+  ["#HpChangeDouble"] = "由于 %arg 效果，%from 體力變化值反轉",
+
+  ["$tszjetnziok_active1"] = "林敎頭洗腳夫",
+}
+
+
+tszjetnziok_active:addEffect("active", {
+  mute = true,
+  prompt = "#tszjetnziok_active",
+  card_num = 1,
+  target_num = 1,
+  max_phase_use_time=1,
+  -- handly_pile = true,  --弃
+  card_filter = function(self, player, to_select, selected)
+    if #selected ~= 0 then return end
+    local card=Fk:getCardById(to_select)
+    return card.color ~= Card.NoColor
+    --  return ( player:getMark("_tszjetnziok_active-color-phase")==0 and card.color ~= Card.NoColor)
+    --  or (player:getMark("_tszjetnziok_active-color-phase")~=0 and card.color == player:getMark("_tszjetnziok_active-color-phase"))
+  end,
+  target_filter = function(self, player, to_select, selected,selected_cards,card, extra_data)
+    return 
+  --   (player:getMark("_tszjetnziok_active-times-phase")==1 and player:getMark("_tszjetnziok_active")==to_select.id)
+  -- or
+     (
+      -- player:getMark("_tszjetnziok_active-times-phase")==0
+    --  and 
+     to_select~=player 
+     and to_select:isWounded() 
+     and to_select.id~=player:getMark("_tszjetnziok_active")
+  )
+  --   and (
+  --     (player:getMark("tszjetnziok_active-color")==0 and to_select.id~=player:getMark("_tszjetnziok_active"))
+  --   or (player:getMark("tszjetnziok_active-color")~=0 and to_select.id==player:getMark("_tszjetnziok_active"))
+  -- )
+  end,
+  -- feasible = function (self, player, selected, selected_cards)
+  --   if #selected_cards == 1 then
+  --     if #selected == 0 then
+  --       return table.contains(player:getCardIds("h"), selected_cards[1])
+  --     else
+  --       local card = Fk:cloneCard("iron_chain")
+  --       card:addSubcard(selected_cards[1])
+  --       card.skillName = tszjetnziok_active.name
+  --       return card.skill:feasible(player, selected, {}, card)
+  --     end
+  --   end
+  -- end,
+  on_use = function(self, room, effect)
+    local player =effect.from
+    local to =effect.tos[1]
+
+    local color=Fk:getCardById(effect.cards[1]).color
+    room:throwCard(effect.cards, tszjetnziok_active.name,player,player)
+    room:setPlayerMark(player,"_tszjetnziok_active",to.id)
+    -- room:addPlayerMark(player,"_tszjetnziok_active-times-phase",1)
+
+    local exec = function()
+      if color == Card.Red then
+        to:drawCards(to:getLostHp(),tszjetnziok_active.name)
+        room:askToDiscard(to,{
+            min_num = to:getLostHp()+1,
+            max_num = to:getLostHp()+1,
+            skill_name = tszjetnziok_active.name,
+            include_equip = false,
+            cancelable = false,
+            skip=false,
+          })
+
+        -- room:setPlayerMark(player,"_tszjetnziok_active-color-phase",1)  --Card.Black== 1 止能用
+        room:setPlayerMark(to,"@@tszjetnziok_active-reverse-round",1)
+      elseif  color == Card.Black then
+        room:recover{  --hp滿 當爲 recover prevented
+          who = to,
+          num = 1,
+          recoverBy = player,
+          skillName = tszjetnziok_active.name,
+        }
+        room:loseHp(to,1,tszjetnziok_active.name)
+        -- room:setPlayerMark(player,"_tszjetnziok_active-color-phase",2)
+        room:setPlayerMark(to,"@@tszjetnziok_active-double-round",1)
+      end
+
+    end
+    
+
+    exec()
+    if   to.hp<=(to.maxHp+1)//2 and not to.dead and not player:isKongcheng() then  --次數?
+      color= color==Card.Red and Card.Black or Card.Red
+      local theColor=table.filter(player:getCardIds("h"), function(id)
+        return Fk:getCardById(id).color==color
+      end)
+      local discards = room:askToDiscard(player, {
+        min_num = 1,
+        max_num = 1,
+        include_equip = false,
+        skill_name = tszjetnziok_active.name,
+        prompt = "#tszjetnziok_active-discard",  --..color==Card.Red and "black" or "red"
+        pattern=tostring(Exppattern{ id = theColor }),
+        cancelable = true,
+        skip = true,
+      })
+      if #discards>0 then
+        room:throwCard(discards, tszjetnziok_active.name,player,player)
+        exec()
+      end
+      -- room:askToUseActiveSkill(player,{
+      --   skill_name=tszjetnziok_active.name,
+      --   cancelable=true,
+      --   skip=false,
+      --   extra_data={
+      --     target=to.id,
+      --   }
+      -- })
+    end
+
+  end,
+})
+
+return tszjetnziok_active
