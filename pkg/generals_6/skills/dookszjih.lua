@@ -51,17 +51,14 @@ dookszjih:addEffect(fk.DamageCaused, {
     end
   end,
   on_use = function(self, event, target, player, data)
-    if  #event:getCostData(self).cards ==0 then
+    local cards = event:getCostData(self).cards
+    if  #cards ==0 then
 
       S.changeDamage({damageData=data,num=data.damage ==-1,skillName=dookszjih.name})
         -- data:changeDamage(-1)
       player.room:addPlayerMark(data.to,"@loav",1)
-    elseif #event:getCostData(self).cards ==1 then
-      room:responseCard({
-          card=Fk:getCardById(cards[1]),
-          from=player,
-          attachedSkillAndUser={muteCard=true},
-        })
+    elseif #cards ==1 then
+      S.playCard(player,cards,dookszjih.name)
       player.room:setPlayerMark(data.to,"@@dook",1)
       room:addSkill("dook_rule")
     end

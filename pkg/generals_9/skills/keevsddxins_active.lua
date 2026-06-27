@@ -13,6 +13,9 @@ Fk:loadTranslationTable{
   ["$keevsddxins_active2"] = "戰書已下開戰",
 
 }
+
+local S = require "packages/szyihhsoohssaet/szyih_guos" 
+
 keevsddxins_active:addEffect("viewas", {  --不失效
   anim_type = "offensive",
   prompt = "#keevsddxins_active",
@@ -26,6 +29,7 @@ keevsddxins_active:addEffect("viewas", {  --不失效
     if #cards ~= 1 then return  end
     local card = Fk:cloneCard("tous_tsiacs")
     card:addSubcards(cards)
+    S.mixCard(card)
     card.skillName = keevsddxins_active.name
     return card
   end,

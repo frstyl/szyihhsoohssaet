@@ -11,6 +11,8 @@ Fk:loadTranslationTable{
 
 }
 
+local S = require "packages/szyihhsoohssaet/szyih_guos" 
+
 kxeqlvoan:addEffect("filter", {
   card_filter = function(self, to_select, player)
     return player:hasSkill(kxeqlvoan.name)
@@ -30,7 +32,7 @@ kxeqlvoan:addEffect(fk.DamageInflicted, {
     and data.card and data.card.trueName=="hzaac_tshjes"
   end,
   on_use = function(self, event, target, player, data)
-    data:changeDamage(1)
+    S.changeDamage({damageData=data,num=1,skillName=kxeqlvoan.name})
   end,
 })
 

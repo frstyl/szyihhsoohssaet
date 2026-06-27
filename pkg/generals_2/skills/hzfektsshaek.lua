@@ -39,7 +39,8 @@ hzfektsshaek:addEffect("viewas", {
   view_as = function(self, player, cards)
     if #cards ~= 1 or not self.interaction.data then return end
     local card = Fk:cloneCard(self.interaction.data)
-    card:addSubcards(cards)  --number?
+    card:addSubcard(cards[1])  --number?
+    S.mixCard(card)
     card.skillName = hzfektsshaek.name
     return card
   end,

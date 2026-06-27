@@ -17,6 +17,7 @@ Fk:loadTranslationTable{
   ["$ssaocqlioc1"] = "一對白龍爭上下",
   ["$ssaocqlioc2"] = "董一撞在此",
 }
+local S = require "packages/szyihhsoohssaet/szyih_guos" 
 
 -- ssaocqlioc:addEffect(fk.PreCardUse, {
 --   anim_type = "offensive",
@@ -129,6 +130,7 @@ ssaocqlioc:addEffect(fk.AskForCardUse, {
           local new_card = Fk:cloneCard("szjemh")
           new_card.skillName = ssaocqlioc.name
           new_card:addSubcards(room:getSubcardsByRule(respond.card, { Card.Processing }))
+		  S.mixCard(new_card)
           data.result = {
             from = player,
             card = new_card,

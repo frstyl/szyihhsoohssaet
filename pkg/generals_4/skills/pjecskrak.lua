@@ -35,7 +35,6 @@ pjecskrak:addEffect("viewas", {
     local card = Fk:cloneCard("ssaet")
     card:addSubcards(cards)
     card.skillName = pjecskrak.name
-
     S.mixCard(card)
     return card
   end,

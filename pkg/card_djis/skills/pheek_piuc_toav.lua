@@ -4,22 +4,17 @@ local skill = fk.CreateSkill {
   attached_equip = "pheek_piuc_toav",
 }
 
+local S = require "packages/szyihhsoohssaet/szyih_guos" 
+
 skill:addEffect(fk.DamageCaused, {
   can_trigger = function(self, event, target, player, data)
     return target == player and player:hasSkill(skill.name) and
       data.to:isKongcheng() and data.card and data.card.trueName == "ssaet" and data.by_user
   end,
   on_use = function(self, event, target, player, data)
-    data:changeDamage(1)
+    S.changeDamage({damageData=data,num=1,skillName=skill.name})
   end,
 })
 
-skill:addAI({
-  correct_func = function(self, logic, event, target, player, data)
-    if self.skill:triggerable(event, target, player, data) then
-      data.damage = data.damage + 1
-    end
-  end,
-}, nil, nil, true)
 
 return skill

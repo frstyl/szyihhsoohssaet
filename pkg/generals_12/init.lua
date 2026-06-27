@@ -153,6 +153,16 @@ Fk:loadTranslationTable{
 ["illustrator:tsziu__lihtsyins"] = "畫師",
 ["~tsziu__lihtsyins"] = "｡",
 }
+
+General:new(extension, "dzoan__muohsioc", "tsiacs", 4):addSkills{"likgxim","tvoanspjes"}
+Fk:loadTranslationTable{
+["dzoan__muohsioc"] = "武松",
+["#dzoan__muohsioc"] = "泛舟化外",
+["designer:dzoan__muohsioc"] = "設計",
+["cv:dzoan__muohsioc"] = "配音",
+["illustrator:dzoan__muohsioc"] = "畫師",
+["~dzoan__muohsioc"] = "｡",
+}
 --115. 第一百一十四回　寧海軍宋江弔孝　湧金門張順歸神
 --116. 第一百一十五回　張順魂捉方天定　宋江智取寧海軍
 --117. 第一百一十六回　盧俊義分兵歙州道　宋公明大戰烏龍嶺

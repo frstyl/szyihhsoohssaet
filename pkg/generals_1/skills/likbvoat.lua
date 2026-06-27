@@ -67,7 +67,8 @@ likbvoat:addEffect(fk.DamageCaused, {
     if choice == "likbvoat-get" then return end
 
     room:throwCard(throw, likbvoat.name, to, player)  --新來者不計
-    data:changeDamage(#throw) 
+
+    S.changeDamage({damageData=data,num=#throw,skillName=likbvoat.name})
   end,
 })
 

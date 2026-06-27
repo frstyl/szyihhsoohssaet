@@ -10,6 +10,8 @@ Fk:loadTranslationTable{
 
 }
 
+local S = require "packages/szyihhsoohssaet/szyih_guos" 
+
 kximqthoac:addEffect(fk.DamageInflicted, {
   anim_type = "defensive",
   can_trigger = function(self, event, target, player, data)
@@ -17,6 +19,7 @@ kximqthoac:addEffect(fk.DamageInflicted, {
   end,
   on_use = function(self, event, target, player, data)
     data:preventDamage()
+S.preventDamage({damageData=data,prevented=true, skillName=kximqthoac.name})
     if  player:usedSkillTimes(kximqthoac.name, Player.HistoryTurn) >1 then
       player.room:loseHp(player,1,kximqthoac.name)
     end

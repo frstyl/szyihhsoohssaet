@@ -43,7 +43,7 @@ Fk:loadTranslationTable{
 ["~hqeenqzzyins"] = "虎落平陽被犬欺",
 }
 
-General:new(extension, "quacqhqrac", "pujh", 4):addSkills {"hzouhpuat","hsoavsssik" }
+General:new(extension, "quacqhqrac", "pujh", 4):addSkills {"hzouhpuat"}--,"hsoavsssik" 
 Fk:loadTranslationTable{
 ["quacqhqrac"] = "王英",
 ["#quacqhqrac"] = "矮腳虎",
@@ -166,7 +166,7 @@ Fk:loadTranslationTable{
 
 --37. 第三十六回　沒遮攔追趕及時雨　船火兒夜鬧潯陽江
 
-General:new(extension, "miukhzveoc", "tsiacs", 5):addSkills { "muoqtssioh"}
+General:new(extension, "miukhzveoc", "tsiacs", 5):addSkills { "muoqtssioh","bjevsgxes"}
 Fk:loadTranslationTable{
 ["miukhzveoc"] = "穆弘",
 ["#miukhzveoc"] = "沒遮攔",
@@ -270,18 +270,27 @@ Fk:loadTranslationTable{
 ["~hvoacqmunqprach"] = "小人已知過失止求早死",
 }
 
-General:new(extension, "tsoartoeoktsziac", "kvoan", 3):addSkills {"tshjechkeens", "phjenqtheec" }
+General:new(extension, "tshoartoeoktsziac", "kvoan", 3):addSkills {"tshjechkeens", "phjenqtheec" }
 Fk:loadTranslationTable{
-["tsoartoeoktsziac"] = "蔡得章",
-["#tsoartoeoktsziac"] = "江州太守",
-["designer:tsoartoeoktsziac"] = "設計",
-["cv:tsoartoeoktsziac"] = "配音",
-["illustrator:tsoartoeoktsziac"] = "畫師",
-["~tsoartoeoktsziac"] = "本以爲立下奇功 不想反招此禍事",
+["tshoartoeoktsziac"] = "蔡得章",
+["#tshoartoeoktsziac"] = "江州太守",
+["designer:tshoartoeoktsziac"] = "設計",
+["cv:tshoartoeoktsziac"] = "配音",
+["illustrator:tshoartoeoktsziac"] = "畫師",
+["~tshoartoeoktsziac"] = "本以爲立下奇功 不想反招此禍事",
+}
+General:new(extension, "tshoarkrac", "kvoan", 4):addSkills {"kaaqszio"}--, "dvoatguan" 
+Fk:loadTranslationTable{
+["tshoarkrac"] = "蔡京",
+["#tshoarkrac"] = "姦相",
+["designer:tshoarkrac"] = "設計",
+["cv:tshoarkrac"] = "配音",
+["illustrator:tshoarkrac"] = "畫師",
+["~tshoarkrac"] = "此事",
 }
 --40 樑山泊漢汉劫法場 白龍廟英雄小聚義
 
-General:new(extension, "sp__tsiachkracs", "mjin", 3):addSkills{"bracqttiacs","hzfenqkijh"}   --"hzfektszuo" tsjecqsvoans  -- bracqttiacs
+General:new(extension, "sp__tsiachkracs", "mjin", 3):addSkills{"bracqttiacs"}   --"hzfektszuo" tsjecqsvoans  -- bracqttiacs
 Fk:loadTranslationTable{
 ["sp__tsiachkracs"] = "蔣敬",
 ["#sp__tsiachkracs"] = "神算子",

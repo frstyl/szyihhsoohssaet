@@ -17,7 +17,7 @@ tsziukzzyit_hzaechquns:addEffect(fk.DamageCaused, {
   end,
   on_trigger = function(self, event, target, player, data)
     player.room:sendLog{ type = "#guacqboavs-effected", from = player.id}
-    data:changeDamage(1)
+    S.changeDamage({damageData= data, num=1, skillName=tsziukzzyit_hzaechquns.name})
   end,
 })
 

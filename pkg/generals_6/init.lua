@@ -189,7 +189,7 @@ Fk:loadTranslationTable{
 ["~looqtsyinscxes"] = "生爲大宋人死爲大宋鬼",
 }
 
-General:new(extension, "kaahdzzjeh", "tsiacs", 3,3, General.Female):addSkills{"hzoaqnoar","tszuoqhqaec"}
+General:new(extension, "kaahdzzjeh", "mjin", 3,3, General.Female):addSkills{"hzoaqnoar","tszuoqhqaec"}
 Fk:loadTranslationTable{
 ["kaahdzzjeh"] = "賈氏",
 ["#kaahdzzjeh"] = "毒薔薇",

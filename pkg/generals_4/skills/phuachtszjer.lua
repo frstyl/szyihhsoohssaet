@@ -12,6 +12,7 @@ Fk:loadTranslationTable{
   ["$phuachtszjer1"] = "以假亂眞",
   ["$phuachtszjer2"] = "精雕細𣪲,萬无一失",
 }
+local S = require "packages/szyihhsoohssaet/szyih_guos" 
 
 phuachtszjer:addAcquireEffect(function (self, player, is_start)
   player.room:handleAddLoseSkills(player, "phuachtszjer_active&", nil, false, true)
@@ -35,6 +36,7 @@ phuachtszjer:addEffect("viewas", {
     local card = Fk:cloneCard(self.interaction.data)
     card.skillName = phuachtszjer.name
     card:addSubcards(cards)
+    S.mixCard(card)
     return card
   end,
   before_use = function (self, player, use)

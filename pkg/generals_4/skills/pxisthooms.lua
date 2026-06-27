@@ -8,6 +8,7 @@ Fk:loadTranslationTable{
 
 ["#pxisthooms"] = "祕探 將1手牌轉化爲探聽使用",
 }
+local S = require "packages/szyihhsoohssaet/szyih_guos" 
 
 pxisthooms:addEffect("viewas", {--視爲使用? 使用虛牌?
   anim_type = "defensive",
@@ -25,6 +26,7 @@ pxisthooms:addEffect("viewas", {--視爲使用? 使用虛牌?
     local c = Fk:cloneCard("thooms_theec")
     c.skillName = pxisthooms.name
     c:addSubcards(cards)
+    S.mixCard(c)
     return c
   end,
   enabled_at_play = function(self, player)

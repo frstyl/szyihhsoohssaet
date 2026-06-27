@@ -1,6 +1,7 @@
 local cardSkill = fk.CreateSkill {
   name = "buak_koavh_qwe_nzjin_skill",
 }
+local S = require "packages/szyihhsoohssaet/szyih_guos" 
 
 
 cardSkill:addEffect("cardskill", {
@@ -45,6 +46,7 @@ cardSkill:addEffect("cardskill", {
         local cards = room:getSubcardsByRule(effect.card, { Card.Processing })
         if #cards>0 then
         card:addSubcards(cards)
+        S.mixCard(card)
         end
         room:useCard({
         from = from,

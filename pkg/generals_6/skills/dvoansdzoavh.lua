@@ -14,6 +14,9 @@ Fk:loadTranslationTable{
   ["$dvoansdzoavh2"] = "銅盔不武金甲正好合身",
 }
 
+
+local S = require "packages/szyihhsoohssaet/szyih_guos" 
+
 dvoansdzoavh:addEffect("active", {
   anim_type = "support",
   prompt = "#dvoansdzoavh",
@@ -52,7 +55,7 @@ dvoansdzoavh:addEffect(fk.DamageCaused, {
   end,
   on_trigger = function(self, event, target, player, data)
     player.room:removeCardMark(Fk:getCardById(player:getEquipment(Card.SubtypeWeapon)),"@dvoansdzoavh",1)  --
-    data:changeDamage(1)
+    S.changeDamage({damageData=data,num=1,skillName=dvoansdzoavh.name})
   end,
 })
 
@@ -67,7 +70,7 @@ dvoansdzoavh:addEffect(fk.DamageCaused, {
   end,
   on_trigger = function(self, event, target, player, data)
     player.room:removeCardMark(Fk:getCardById(player:getEquipment(Card.SubtypeArmor)),"@dvoansdzoavh",1)  --
-    data:changeDamage(-1)
+    S.changeDamage({damageData=data,num=-1,skillName=dvoansdzoavh.name})
   end,
 })
 

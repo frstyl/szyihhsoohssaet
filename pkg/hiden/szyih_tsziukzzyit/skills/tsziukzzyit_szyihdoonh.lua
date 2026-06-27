@@ -17,7 +17,7 @@ tsziukzzyit_hzaechquns:addEffect(fk.DamageInflicted, {
     and table.contains({ fk.ThunderDamage ,fk.FireDamage },data.damageType) 
   end,
   on_trigger = function(self, event, target, player, data)
-    data:changeDamage(-1)
+    S.changeDamage({damageData=data, num = -1,skillName=tsziukzzyit_hzaechquns.name})
   end,
 })
 

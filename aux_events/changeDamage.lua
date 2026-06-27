@@ -69,7 +69,7 @@ szyih_guos.changeDamage = function(ChangeDamageData)
   if not dat.prevented then  --增加globle , 增傷加上限
     dat.extra_data=dat.extra_data or {}
     dat.extra_data.changeRecord =dat.extra_data.changeRecord or {}
-    table.isnert(dat.extra_data.changeRecord,{dat.skillName,dat.num})
+    table.insert(dat.extra_data.changeRecord,{dat.skillName,dat.num})
     room:sendLog { type = "#changeDamageBySkill", from = to.id , arg=dat.skillName or "unknown", arg2 = dat.num}
 
     -- dat.damageData:changeDamage(dat.num)
@@ -78,7 +78,7 @@ szyih_guos.changeDamage = function(ChangeDamageData)
   logic:trigger(szyih_guos.AfterChangeDamage, to, dat)  --CancellOut
 
   if dat.damageData.damage <=0 then --breakCheck前
-    dat.damageData.damage ==0
+    dat.damageData.damage = 0
     stages = {
       {fk.Damage, "from"},
       {fk.Damaged, "to"},

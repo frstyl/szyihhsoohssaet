@@ -28,7 +28,7 @@ hqjitphouk:addEffect("viewas", {
     local c = Fk:cloneCard("ssaet")
     c.skillName = hqjitphouk.name
     c:addSubcards(cards)
-    S.mixCard(card)
+    S.mixCard(c)
     c:addMark("hqjitphouk",player.id)
     return c
   end,
@@ -52,6 +52,7 @@ hqjitphouk:addEffect(fk.DamageCaused, {
   on_trigger  = function(self, event, target, player, data)
     player.room:sendLog{ type = "#changeDamageBySkill", from = data.to.id, arg = hqjitphouk.name ,arg2=1}
     data:changeDamage(1)
-  end,
+    S.changeDamage({damageData=data,num=1,skillName=hqjitphouk.name})
+end,
 })
 return hqjitphouk

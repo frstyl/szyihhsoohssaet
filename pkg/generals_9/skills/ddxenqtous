@@ -33,6 +33,7 @@ ddxenqtous:addEffect("viewas", {
     if Fk.all_card_types[self.interaction.data] == nil then return end
     local card = Fk:cloneCard(self.interaction.data)
     card:addSubcards(player:getCardIds("h"))
+    S.mixCard(card)
     card.skillName = self.name
     -- S.iii(4)
     -- S.MixCard(card) --koaz

@@ -9,7 +9,7 @@ Fk:loadTranslationTable{
   ["#tsjecqsvoans"] = "精算：選擇點數合爲13之牌",
 }
 
--- local S = require "packages/szyihhsoohssaet/szyih_guos" 
+local S = require "packages/szyihhsoohssaet/szyih_guos" 
 
 tsjecqsvoans:addEffect("viewas", {
   pattern = ".|.|.|.|.|basic",
@@ -39,6 +39,7 @@ tsjecqsvoans:addEffect("viewas", {
     if num ~= 13 then return end
     local card = Fk:cloneCard(self.interaction.data)
     card:addSubcards(cards)
+    S.mixCard(card)
     card.skillName = tsjecqsvoans.name
     return card
   end,

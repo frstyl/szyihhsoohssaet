@@ -1,14 +1,15 @@
 local cardSkill = fk.CreateSkill {
   name = "chaos__ssaet_skill",
 }
+local S = require "packages/szyihhsoohssaet/szyih_guos" 
 
 local ssaet_skill = Fk.skills["ssaet_skill"] --[[ @as ActiveSkill ]]
 
--- local S = require "packages/szyihhsoohssaet/szyih_guos" 
 cardSkill:addEffect("cardskill", {
   prompt = function(self, player, selected_cards)
     local ssaet = Fk:cloneCard("chaos__ssaet")
     ssaet:addSubcards(selected_cards)
+    S.mixCard(ssaet)
     local max_num = self:getMaxTargetNum(player, ssaet) -- halberd
     if max_num > 1 then
       local num = #table.filter(Fk:currentRoom().alive_players, function (p)

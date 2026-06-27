@@ -13,7 +13,7 @@ Fk:loadTranslationTable{
 
 
 --62 第六十一回 放冷箭燕青救主　劫法場石秀跳樓
-General:new(extension, "tshoarpiuk", "tsiacs", 5):addSkills{"kveetsjih"}
+General:new(extension, "tshoarpiuk", "tsiacs", 5):addSkills{"kveetsjih","dzoeojqgiu"}
 Fk:loadTranslationTable{
 ["tshoarpiuk"] = "蔡福",
 ["#tshoarpiuk"] = "鐵臂膊",

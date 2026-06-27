@@ -13,8 +13,8 @@ Fk:loadTranslationTable{
 
 local S = require "packages/szyihhsoohssaet/szyih_guos" 
 
-
-koarbiuk_rule:addEffect(fk.EventPhaseStart, {  --手牌可用之牌 葢牌何用
+--EventPhaseStart
+koarbiuk_rule:addEffect(fk.EventPhaseProceeding, {  --手牌可用之牌 葢牌何用
   priority = 0,
   can_trigger = function(self, event, target, player, data)
     if not ( target==player --同旹 止問1次

@@ -93,7 +93,7 @@ Fk:loadTranslationTable{
 --26　偷骨殖何九送喪　供人頭武二設祭
 --27 母夜叉孟州道賣人肉　武都頭十字坡遇張青
 
-General:new(extension, "soonqnzjisnniac", "pujh", 4, 4,General.Female):addSkills { "hseakteems","nzjinnziuk" }
+General:new(extension, "soonqnzjisnniac", "pujh", 4, 4,General.Female):addSkills { "hsoeokkteems","nzjinqnziuk" }
 Fk:loadTranslationTable{
 ["soonqnzjisnniac"] = "孫二娘",
 ["#soonqnzjisnniac"] = "母夜叉",

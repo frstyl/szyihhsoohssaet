@@ -196,14 +196,14 @@ Fk:loadTranslationTable{
 ["~lihhqics"] = "援盡糧絕已何取勝",
 }
 
-General:new(extension, "doohhsic", "tsiacs", 4):addSkills {"kuujhmjens","gwisliac" }
+General:new(extension, "doohhsic", "tsiacs", 4):addSkills {"kujhmjens","gwisliac" }
 Fk:loadTranslationTable{
 ["doohhsic"] = "杜興",
 ["#doohhsic"] = "鬼臉兒",
 ["designer:doohhsic"] = "設計",
 ["cv:doohhsic"] = "配音",
 ["illustrator:doohhsic"] = "畫師",
-["~doohhsic"] = "糧艸",
+["~doohhsic"] = "糧艸沒已 我如何嚮哥哥交代",
 }
 
 --48. 第四十七回　一丈青單捉王矮虎　宋公明二打祝家莊
