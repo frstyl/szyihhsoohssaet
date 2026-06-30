@@ -50,7 +50,7 @@ hzeepkoot:addEffect(fk.DamageInflicted, {
           attachedSkillAndUser={muteCard=true},
         })
     else
-      room:loseHp(player,1,hzeepkoot.name)
+      room:loseHp(player,1,hzeepkoot.name,player)
     end
 
       S.changeDamage({damageData=data,num=(data.damage ==1 and -1 or 1-data.damage),skillName=hzeepkoot.name})

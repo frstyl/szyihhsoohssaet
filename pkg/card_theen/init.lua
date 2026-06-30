@@ -89,7 +89,7 @@ tsiac_keejs_dzius_keejs,
 
 local tsjek_tshoavh_doon_liac = fk.CreateCard{
   name = "tsjek_tshoavh_doon_liac",
-  type = Card.TypeBasic,
+  type = Card.TypeTrick,
   sub_type = Card.SubtypeDelayedTrick,
   skill = "tsjek_tshoavh_doon_liac_skill",
 }

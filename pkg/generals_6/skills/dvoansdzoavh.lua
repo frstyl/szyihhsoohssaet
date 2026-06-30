@@ -4,7 +4,7 @@ local dvoansdzoavh = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["dvoansdzoavh"] = "鍛造",
-  [":dvoansdzoavh"] = "主旹，伱可弃1手牌併(自伱手牌區裝僃區或兵)選擇1武器牌或防具牌(每牌每段限1次)發動,彊化之",
+  [":dvoansdzoavh"] = "主旹，伱可打出1手牌併(自伱手牌區裝僃區或兵)選擇1武器牌或防具牌(每牌每段限1次)發動,彊化之",
 
   ["#dvoansdzoavh"] = "鍛造：選擇 所弃牌 与 裝僃",
 
@@ -23,7 +23,7 @@ dvoansdzoavh:addEffect("active", {
   expand_pile="jiucqleens",
   card_num = 2,
   card_filter = function(self, player, to_select, selected)
-    return #selected ==  0 and not player:prohibitDiscard(to_select)
+    return #selected ==  0 and not player:prohibitResponse(to_select)
     or (#selected ==  1 
       and not table.contains(player:getTableMark("_dvoansdzoavh-phase"), to_select)
       and   table.contains({Card.SubtypeArmor,Card.SubtypeWeapon }, Fk:getCardById(to_select).sub_type )
@@ -31,7 +31,7 @@ dvoansdzoavh:addEffect("active", {
   end,
   on_use = function(self, room, effect)
     local player = effect.from
-    room:throwCard(effect.cards[1], dvoansdzoavh.name, effect.from, effect.from)
+    S.playCard(effect.from,effect.cards,dvoansdzoavh.name)
     local card = Fk:getCardById(effect.cards[2])
     room:addCardMark(card,"@dvoansdzoavh",1)  --
     room:addTableMark(player,"_dvoansdzoavh-phase",effect.cards[2])  --

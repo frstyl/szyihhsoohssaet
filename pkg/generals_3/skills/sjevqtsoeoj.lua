@@ -15,6 +15,8 @@ Fk:loadTranslationTable{
 ["$sjevqtsoeoj2"] = "財可通神,止當破財消災",
 }
 
+local S = require "packages/szyihhsoohssaet/szyih_guos" 
+
 sjevqtsoeoj:addEffect(fk.DamageInflicted, {
   anim_type = "defensive",
   prompt = "#sjevqtsoeoj",
@@ -49,7 +51,7 @@ sjevqtsoeoj:addEffect(fk.DamageInflicted, {
     room:moveCardTo(event:getCostData(self).cards, Player.Hand, to, fk.ReasonGive, sjevqtsoeoj.name, nil, false, player.id,nil)
 
     if to==data.from then
-      data:preventDamage()     
+    S.preventDamage({damageData=data,skillName=sjevqtsoeoj.name})
       return 
     end
     if not to.dead then

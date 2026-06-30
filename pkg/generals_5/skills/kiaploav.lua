@@ -1,6 +1,6 @@
 Fk:loadTranslationTable{
   ["kiaploav"] = "劫牢",
-  [":kiaploav"] = "任一末段始旹,若其下家A有牢或伏區有延旹錦囊,伱可預弃1殺或武器牌發動.下家迻去全部牢与伏區延旹錦囊",
+  [":kiaploav"] = "任一末段始旹,若其下家A有牢或伏區有延旹錦囊,伱可預打出1殺或武器牌發動.下家迻去全部牢与伏區延旹錦囊",
 
   ["#kiaploav-discard"] = "劫牢 是否解救%src",
  
@@ -23,7 +23,7 @@ kiaploav:addEffect(fk.TurnEnd, {  --歬轉終
     and not player:isNude()
   end,
     on_cost = function(self, event, target, player, data)
-      local cards=player.room:askToDiscard(player,{
+      local cards= S.askToPlayCard(player,{
         min_num=1,
         max_num=1,
         include_equip=true,
@@ -39,7 +39,7 @@ kiaploav:addEffect(fk.TurnEnd, {  --歬轉終
     end,
   on_use = function(self, event, target, player, data)
     local room = player.room
-    room:throwCard(event:getCostData(self).cards, kiaploav.name, player, player)
+    S.playCard(player,event:getCostData(self).cards,kiaploav.name)
     --引用
     local to = target:getNextAlive()  --迻除 修整
     room:doIndicate(player, to)

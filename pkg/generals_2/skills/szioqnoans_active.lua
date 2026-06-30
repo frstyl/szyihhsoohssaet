@@ -27,7 +27,7 @@ szioqnoans_active:addEffect("active", {
   }
   end,
   card_filter = function (self, player, to_select, selected)
-    return #selected == 0 and not player:prohibitResponse(to_select) --and not player:prohibitDiscard(to_select)
+    return #selected == 0 and not player:prohibitResponse(to_select)
   end,
 })
 

@@ -114,7 +114,7 @@ tooshzeen:addEffect(fk.AfterCardsMove, {
     skip = true,  --不執行
   })
     if not yes then
-      room:loseHp(to, 1, tooshzeen.name)
+      room:loseHp(to, 1, tooshzeen.name,player)
       return
     end
     if #dat.cards ==1 then

@@ -90,7 +90,7 @@ jiacqmuoh:addEffect(fk.CardUseFinished, {
     player.room:obtainCard(player, data.card, true, fk.ReasonJustMove, player, jiacqmuoh.name)
     end
     if data.extra_data.jiacqmuoh.adjacent then
-      room:loseHp(player,1,jiacqmuoh.name)
+      room:loseHp(player,1,jiacqmuoh.name,player)
     end
 
   end,

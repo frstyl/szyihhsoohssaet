@@ -22,7 +22,7 @@ cardSkill:addEffect("cardskill", {
   end,
 })
 
-cardSkill:addEffect(fk.PreCardEffect, { --以可用之牌分
+cardSkill:addEffect(fk.PreCardEffect, { --以可用之牌分  ---HandleAskForPlayCard
   -- global = true,
   mute = true,
   priority = 0,  --同旹自選 用牌?
@@ -35,7 +35,7 @@ cardSkill:addEffect(fk.PreCardEffect, { --以可用之牌分
     local cardNames={}
     if S.getCardTypeByName(data.card.trueName) ==2    then 
       cardNames={"buac_hzfan_mujs_nzjen"}
-      if data:isOnlyTarget(data.to) or data.tos==nil or #data.tos==0 then 
+      if  data.tos==nil or #data.tos==0 or (data.to and data:isOnlyTarget(data.to) )then 
         table.insert(cardNames,"tsiac_keejs_dzius_keejs")  
       end
     elseif data.card.trueName == "ssaet" then

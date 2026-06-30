@@ -4,7 +4,7 @@ local pikhzaoc = fk.CreateSkill{
 --kiamsquoh  
 Fk:loadTranslationTable{
   ["pikhzaoc"] = "逼降",  --還是白板
-  [":pikhzaoc"] = "➀伱使用殺結算終伱對目幖角色A可發動.若此殺對A致傷➀,未對A致傷➁.➀A需交与伱1牌,使用牌不能指定爲伱且不能影響伱所使用牌;➁伱選擇獲得技能[刀兵]或[劍雨].伱轉始旹,清除此技能效果",
+  [":pikhzaoc"] = "➀伱使用殺結算終伱對目幖角色A可發動.若此殺對A➀致傷,A需交与伱1牌,自守;➁未致傷,伱選擇獲得技能｢刀兵｣或｢劍雨｣.伱轉始旹,清除此技能效果",--死旹清
 
   ["#pikhzaoc-invoke"] = "逼降 對 %src 致傷,是否發動",
   ["#pikhzaoc-no-invoke"] = "逼降 未對 %src 致傷,是否發動",
@@ -18,7 +18,6 @@ Fk:loadTranslationTable{
 }
 
 
---  e.data.damageDealt==nil or e.data.damageDealt[data.to]==nil e.data.damageDealt[data.to]==0 
 
 pikhzaoc:addEffect(fk.CardUseFinished, {
   can_trigger = function(self, event, target, player, data)
@@ -66,7 +65,8 @@ pikhzaoc:addEffect(fk.CardUseFinished, {
       -- data:setNullified(to)
       -- data:setDisresponsive(to)
       room:addTableMark(player, "@@pikhzaoc", to.id)
-
+      room:addPlayerMark(player, "@@dzjissziuh", 1)
+      room:addSkill("dzjissziuh")
     else
 
       local all_choices={"toavqprac","kiamsquoh"}
@@ -77,7 +77,7 @@ pikhzaoc:addEffect(fk.CardUseFinished, {
         end
       end
       if #choices==0 then return end
-        local skill_name = room:askToChoice(player, {
+      local skill_name = room:askToChoice(player, {
         choices = choices, 
         all_choices=all_choices,
         skill_name = pikhzaoc.name, 
@@ -101,37 +101,45 @@ pikhzaoc:addEffect(fk.CardUseFinished, {
 })
 
 
-pikhzaoc:addEffect("prohibit", {
-  is_prohibited = function(self, from, to, card)
-    return card and from and  to and (
-      -- table.contains(from:getTableMark("@@pikhzaoc"), to.id)
-    -- or
-      table.contains(to:getTableMark("@@pikhzaoc"), from.id)
-    )
-  end,
-})
+-- pikhzaoc:addEffect("prohibit", {
+--   is_prohibited = function(self, from, to, card)
+--     return card and from and  to and (
+--       -- table.contains(from:getTableMark("@@pikhzaoc"), to.id)
+--     -- or
+--       table.contains(to:getTableMark("@@pikhzaoc"), from.id)
+--     )
+--   end,
+-- })
 
-pikhzaoc:addEffect(fk.CardUsing, {
-  -- mute = true,
-  can_refresh = function(self, event, target, player, data)
-    return data.from==player and player:getMark("@@pikhzaoc")~=0 
-  end,
-  on_refresh = function(self, event, target, player, data)
-    local room = player.room
-    player:broadcastSkillInvoke(pikhzaoc.name)
-    data.disresponsiveList = data.disresponsiveList or {}
-    room:notifySkillInvoked(player, pikhzaoc.name, "offensive")
-    local tos=table.map(player:getTableMark("@@pikhzaoc"), Util.Id2PlayerMapper)
-    table.insertTableIfNeed(data.disresponsiveList, tos)
-  end,
-})
+-- pikhzaoc:addEffect(fk.CardUsing, {
+--   -- mute = true,
+--   can_refresh = function(self, event, target, player, data)
+--     return data.from==player and player:getMark("@@pikhzaoc")~=0 
+--   end,
+--   on_refresh = function(self, event, target, player, data)
+--     local room = player.room
+--     player:broadcastSkillInvoke(pikhzaoc.name)
+--     data.disresponsiveList = data.disresponsiveList or {}
+--     room:notifySkillInvoked(player, pikhzaoc.name, "offensive")
+--     local tos=table.map(player:getTableMark("@@pikhzaoc"), Util.Id2PlayerMapper)
+--     table.insertTableIfNeed(data.disresponsiveList, tos)
+--   end,
+-- })
 
 pikhzaoc:addEffect(fk.TurnStart, {
   can_refresh = function(self, event, target, player, data)
     return player == target   and (player:getMark("@@pikhzaoc")~=0 or player:getMark("pikhzaoc_skill")~=0 )
   end,
   on_refresh = function(self, event, target, player, data)
-    player.room:setPlayerMark(player, "@@pikhzaoc", 0)
+    local room=player.room
+    if player:getMark("@@pikhzaoc")~=0  then
+      for _, p in ipairs(player:getMark("@@pikhzaoc")) do
+        room:removePlayerMark(p,"@@dzjissziuh",1)
+      end
+        room:setPlayerMark(p,"@@pikhzaoc",nil)
+    end
+
+    player.room:setPlayerMark(player, "@@pikhzaoc", nil)
     if player:getMark("pikhzaoc_skill")~=0  then
       player.room:handleAddLoseSkills(player, "-"..table.concat(player:getMark("pikhzaoc_skill"), "|-"))
     end

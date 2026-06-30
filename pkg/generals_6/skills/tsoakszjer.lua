@@ -13,6 +13,8 @@ Fk:loadTranslationTable{
   ["$tsoakszjer2"] = "昰个卻正是反詩汝若里得來",
 }
 
+local S = require "packages/szyihhsoohssaet/szyih_guos" 
+
 tsoakszjer:addEffect(fk.TargetSpecifying, {
   anim_type = "drawcard",
   can_trigger = function(self, event, target, player, data)
@@ -44,7 +46,7 @@ tsoakszjer:addEffect(fk.DamageInflicted, {
     return target == player and player:hasSkill(tsoakszjer.name) and #player:getCardIds("j")>0
   end,
   on_use = function(self, event, target, player, data)
-    data:preventDamage()
+    S.preventDamage({damageData=data,skillName=tsoakszjer.name})
   end,
 })
 return tsoakszjer

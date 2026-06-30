@@ -29,8 +29,8 @@ equipSkill:addEffect(fk.PreDamage, {
     end
   end,
   on_refresh = function(self, event, target, player, data)
-      player.room:loseHp(data.to, data.damage, equipSkill.name) --cardSkill?
-      data:preventDamage()  --damage = 0
+      player.room:loseHp(data.to, data.damage, equipSkill.name,player) --cardSkill?
+      data:preventDamage()  --damage = 0 无旹機
   end,
 })
 

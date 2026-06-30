@@ -12,13 +12,16 @@ Fk:loadTranslationTable{
 
   ["$tsjasthoeojs1"] = "白銀在此將了去",  --
 }
+
+local S = require "packages/szyihhsoohssaet/szyih_guos" 
+
 tsjasthoeojs:addEffect(fk.EventPhaseStart, {
   can_trigger = function(self, event, target, player, data)
     return player:hasSkill(tsjasthoeojs.name) and target~=player
     and target.phase==Player.Play
     end,
   on_cost = function(self, event, target, player, data)
-    local cards=player.room:askToDiscard(player, {
+    local cards= S.askToPlayCard(player, {
         min_num = 1,
         max_num = 999,
         include_equip = true,
@@ -37,7 +40,7 @@ tsjasthoeojs:addEffect(fk.EventPhaseStart, {
     local room=player.room
     local cards=event:getCostData(self).cards
     local n=#cards
-    room:throwCard(cards, tsjasthoeojs.name, player, player)
+    S.playCard(player,event:getCostData(self).cards,tsjasthoeojs.name)
     target:drawCards(n,tsjasthoeojs.name)
     local t=target:getTableMark("@@tsjasthoeojs-phase") 
     t[player.id]=n
@@ -64,7 +67,7 @@ tsjasthoeojs:addEffect(fk.EventPhaseEnd, {
       local m=n - #cards
     room:moveCardTo(cards, Player.Hand, player , fk.ReasonGive, tsjasthoeojs.name, nil, false, target)
     if m>0 then 
-      room:loseHp(target,m,tsjasthoeojs.name)
+      room:loseHp(target,m,tsjasthoeojs.name,player)
     end
   end,
 })

@@ -22,6 +22,7 @@ cardSkill:addEffect("cardskill", {
         card = effect.card,
         recoverBy = effect.from,
         skillName = cardSkill.name,
+        event_data= effect,
       }
     end
   end,

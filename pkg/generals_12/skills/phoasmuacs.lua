@@ -3,13 +3,15 @@ local phoasmuacs = fk.CreateSkill {
 }
 Fk:loadTranslationTable{
   ["phoasmuacs"] = "破妄",
-  [":phoasmuacs"] = "當伱可使用防患未肰抵消目幖爲伱之牌旹,若伱手牌數不等于體力值伱可發動.伱弃x手牌或流失x體力,視爲使用防患未肰.(x爲伱手牌數體力值)",
+  [":phoasmuacs"] = "當伱可使用防患未肰抵消目幖爲伱之牌旹,若伱手牌數不等于體力值伱可發動.伱打出x手牌或流失x體力,視爲使用防患未肰.(x爲伱手牌數體力值)",
 
   ["#phoasmuacs"] = "破妄 視爲使用防患未肰旹",
-  ["#phoasmuacs-discard"] = "破妄 弃%arg手牌",
+  ["#phoasmuacs-discard"] = "破妄 打出%arg手牌",
 
   ["$phoasmuacs1"] = "不破不立破而後立",
 }
+
+local S = require "packages/szyihhsoohssaet/szyih_guos" 
 
 phoasmuacs:addEffect("viewas", {
   anim_type = "defensive",
@@ -29,7 +31,7 @@ phoasmuacs:addEffect("viewas", {
   before_use = function(self, player, use)
     local n =player:getHandcardNum()-player.hp
     if n>0 then
-      player.room:askToDiscard(player, {
+       S.askToPlayCard(player, {
         min_num = n,
         max_num = n,
         include_equip = false,
@@ -39,7 +41,7 @@ phoasmuacs:addEffect("viewas", {
         skip = false
       })
     else
-      player.room:loseHp(player,-n,phoasmuacs.name)
+      player.room:loseHp(player,-n,phoasmuacs.name,player)
     end
   end,
   -- enabled_at_play =  function(self, player)

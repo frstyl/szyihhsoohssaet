@@ -4,8 +4,9 @@ local doavsmaah = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["doavsmaah"] = "盜馬",
-  [":doavsmaah"] = "主旹,伱可預弃1牌選其它裝僃區同花坐騎牌發動.伱將其置入除其所屬角色裝僃區",
+  [":doavsmaah"] = "主旹,伱可預打出1牌選其它裝僃區同花坐騎牌發動.伱將其置入除其所屬角色裝僃區",
 }
+local S = require "packages/szyihhsoohssaet/szyih_guos" 
 
 doavsmaah:addEffect("active", {
   anim_type = "control",
@@ -14,7 +15,7 @@ doavsmaah:addEffect("active", {
   card_num=1,
   target_num=1,
   card_filter = function(self, player, to_select, selected)
-    return   not player:prohibitDiscard(to_select) 
+    return   not player:prohibitResponse(to_select) 
   end,
   target_filter = function(self, player, to_select, selected, selected_cards)
     if #selected_cards==0 then return end
@@ -24,7 +25,7 @@ doavsmaah:addEffect("active", {
     end) >0
   end,
   on_use = function(self, room, effect)
-    room:throwCard(effect.cards,doavsmaah.name,effect.from,effect.from)
+    S.playCard(effect.from,effect.cards,doavsmaah.name)
     if effect.from.dead then return end
     local player =effect.from
     local target=effect.tos[1]

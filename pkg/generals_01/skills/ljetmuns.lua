@@ -1,6 +1,6 @@
 Fk:loadTranslationTable{
   ["ljetmuns"] = "裂璺",
-  [":ljetmuns"] = "鎖定.伱死亾旹必發.選1至2角色,其流失x體力.(x爲其裝僃區牌數至少爲1)",
+  [":ljetmuns"] = "鎖定.伱死亾旹必發.選1至2角色,伱令其流失x體力.(x爲其裝僃區牌數至少爲1)",
 
   ["#ljetmuns-choose"] = "裂璺 1至2角色發動,伱弃其裝僃區全部牌",
 
@@ -43,7 +43,7 @@ ljetmuns:addEffect(fk.Death, {
       prompt = "#ljetmuns-choose",
       cancelable = true,
     })
-    player.room:loseHp(tos[1], math.max(1,#tos[1]:getCardIds("e")))
+    player.room:loseHp(tos[1], math.max(1,#tos[1]:getCardIds("e")),player)
   end,
 })
 

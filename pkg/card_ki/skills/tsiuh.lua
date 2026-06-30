@@ -33,6 +33,7 @@ tsiuhSkill:addEffect("cardskill", {
           num = 1,
           recoverBy = effect.from,
           card = effect.card,
+          event_data= effect,
         })
       end
     else

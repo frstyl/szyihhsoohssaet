@@ -61,7 +61,7 @@ biukkeek:addEffect(fk.EventPhaseStart, {
         choices={"biukkeek-damage","biukkeek-times"},  --背水
       }) 
       if choice  =="biukkeek-damage" then
-        room:loseHp(player,1,biukkeek.name)
+        room:loseHp(player,1,biukkeek.name,player)
         use.additionalDamage=1
       else
         use.unoffsetableList = table.simpleClone(room.players)

@@ -73,7 +73,7 @@ leecqkveet:addEffect(fk.DamageInflicted, {
     --   --     cancelable = false,
     --   --   })
     --   -- end
-    --   data:preventDamage()
+    --  S.preventDamage({damageData=data,skillName=leecqkveet.name})
     --   if not player.dead then
     --     player:drawCards(1,leecqkveet.name)
     --   end

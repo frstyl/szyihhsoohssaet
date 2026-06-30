@@ -7,10 +7,11 @@ Fk:loadTranslationTable{
   ["tszhiocqphioc_active"] = "䡴鋒",
   -- [":tszhiocqphioc_active"] = "每段限1.主動,弃3異花牌或2裝僃牌發動.伱令1至2角色各抽2,其中1角色執行1額外轉",
 
-  ["#tszhiocqphioc-active"] = "䡴鋒  弃牌",
+  ["#tszhiocqphioc-active"] = "䡴鋒  打出牌",
 
 }
 
+local S = require "packages/szyihhsoohssaet/szyih_guos" 
 
 tszhiocqphioc_active:addEffect("active", {
   anim_type = "offensive",
@@ -29,9 +30,9 @@ tszhiocqphioc_active:addEffect("active", {
   card_filter = function(self, player, to_select, selected)
     if  #selected>= (player:getLostHp() >1 and player:getLostHp() or 1 )then return false end
     if #selected<2 then 
-      return not player:prohibitDiscard(selected) 
+      return not player:prohibitResponse(selected) 
     else
-      return not player:prohibitDiscard(selected) 
+      return not player:prohibitResponse(selected) 
       and
       Fk:getCardById(to_select).number - Fk:getCardById(selected[#selected]).number
      ==
@@ -41,7 +42,7 @@ tszhiocqphioc_active:addEffect("active", {
   end,
   on_use = function(self, room, effect)
     local n =#effect.cards
-    room:throwCard(effect.cards, tszhiocqphioc_active.name, effect.from, effect.from)
+    S.playCard(effect.from,effect.cards,"tszhiocqphioc")
     effect.from:drawCards(n, tszhiocqphioc_active.name)
     room:setPlayerMark(effect.from,"@@tszhiocqphioc",n)
 

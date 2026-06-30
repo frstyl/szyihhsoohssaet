@@ -226,7 +226,7 @@ end
 ---@field public customFrom? ServerPlayer @ 新响应者
 ---@field public attachedSkillAndUser? { user: integer, skillName: string, muteCard: boolean } @ 附加技能、使用者与卡牌静音，用于转化技
 
----@class AskToPlayCardParamss: AskToSkillInvokeParams
+---@class AskToPlayCardParamss: AskToSkillInvokeParams #兼容askToDiscard
 ---@field skillName? string @ 
 ---@field pattern? string @ 
 ---@field prompt? string @ 

@@ -4,9 +4,11 @@ local hzaacqhzeec = fk.CreateSkill {
 
 Fk:loadTranslationTable{
 ["hzaacqhzeec"] = "行刑",
-[":hzaacqhzeec"] = "當其他角色進入瀕死旹,若其在伱攻程內,伱可預弃1♠牌發動,其死亾且視爲由伱殺死",  --失去體力?
-["#hzaacqhzeec-discard"] = "行刑:  %src 進入瀕死,伱可弃1♠牌 將其拖出去宰掉",
+[":hzaacqhzeec"] = "當其他角色進入瀕死旹,若其在伱攻程內,伱可預打出1♠牌發動,其死亾且視爲由伱殺死",  --失去體力?
+["#hzaacqhzeec-discard"] = "行刑:  %src 進入瀕死,伱可打出1♠牌 將其拖出去宰掉",
 }
+
+local S = require "packages/szyihhsoohssaet/szyih_guos" 
 
 hzaacqhzeec:addEffect(fk.EnterDying, {
   anim_type = "drawcard",
@@ -16,7 +18,7 @@ hzaacqhzeec:addEffect(fk.EnterDying, {
   end,
 
   on_cost = function(self, event, target, player, data)
-      local cards = player.room:askToDiscard(player, {
+      local cards =  S.askToPlayCard(player, {
         min_num = 1,
         max_num = 1,
         include_equip = true,
@@ -32,7 +34,7 @@ hzaacqhzeec:addEffect(fk.EnterDying, {
       end
   end,
   on_use = function(self, event, target, player, data)
-    player.room:throwCard(event:getCostData(self).cards, hzaacqhzeec.name, player, player)
+    S.playCard(player,event:getCostData(self).cards,hzaacqhzeec.name)
     player.room:killPlayer{
       who = target,
       killer = player,

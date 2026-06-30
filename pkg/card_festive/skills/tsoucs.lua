@@ -25,6 +25,7 @@ cardSkill:addEffect("cardskill", {
         card = effect.card,
         recoverBy = effect.from,
         skillName = cardSkill.name,
+        event_data= effect,
       }
     end
       room:handleAddLoseSkills(effect.to, "ljeqsoav", nil, false, false)

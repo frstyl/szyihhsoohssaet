@@ -4,10 +4,11 @@ local tshiuqssaet = fk.CreateSkill({
 
 Fk:loadTranslationTable{
   ["tshiuqssaet"] = "秌殺",
-  [":tshiuqssaet"] = "主旹,伱預弃x梅花手牌選擇x其它角色伱至其距離不大于1者發動.伱對所選角色各与1傷",  --可无色  --梅花?
+  [":tshiuqssaet"] = "主旹,伱預打出x♣️手牌選擇x其它角色伱至其距離不大于1者發動.伱對所選角色各与1傷",  --可无色  --♣️?
 
-  ["#puohquat"] = "秌殺：選x梅花牌与x名至其距離不大于1其它角色",
+  ["#puohquat"] = "秌殺：選x♣️牌与x名至其距離不大于1其它角色",
 }
+local S = require "packages/szyihhsoohssaet/szyih_guos" 
 
 tshiuqssaet:addEffect("active", {
   anim_type = "offensive",
@@ -18,7 +19,7 @@ tshiuqssaet:addEffect("active", {
   --   return player:usedSkillTimes(tshiuqssaet.name, Player.HistoryPhase) < 1 
   -- end,
   card_filter = function(self, player, to_select, selected)
-    return          table.contains(player:getCardIds("h"), to_select) and not player:prohibitDiscard(to_select) 
+    return          table.contains(player:getCardIds("h"), to_select) and not player:prohibitResponse(to_select) 
     -- and   table.every(selected, function (id)
     --   return Fk:getCardById(to_select):compareSuitWith(Fk:getCardById(id), true)
     -- end)
@@ -34,7 +35,7 @@ tshiuqssaet:addEffect("active", {
   end,
   on_use = function(self, room, effect)
     local player = effect.from
-    room:throwCard(effect.cards, tshiuqssaet.name, player, player)
+    S.playCard(effect.from,effect.cards,tshiuqssaet.name)
     for _, p in ipairs(effect.tos) do
       if not p.dead then
         room:damage{

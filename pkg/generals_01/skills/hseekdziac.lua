@@ -2,9 +2,11 @@ local hseekdziac = fk.CreateSkill {
   name = "hseekdziac",
 }
 
+local S = require "packages/szyihhsoohssaet/szyih_guos"
+
 Fk:loadTranslationTable{
   ["hseekdziac"] = "鬩牆",
-  [":hseekdziac"] = "主旹,伱預弃1紅牌指定2其它角色發動:所選角色拼點,贏者交予伱1牌,未贏者流失1體力",
+  [":hseekdziac"] = "主旹,伱預打出1紅牌指定2其它角色發動:所選角色拼點,贏者交予伱1牌,未贏者流失1體力",
   
   ["#hseekdziac-active"] = "鬩牆 弃1紅牌指定2其它角色",
   ["#hseekdziac-give"] = "鬩牆 選擇牌交予%src",
@@ -19,7 +21,7 @@ hseekdziac:addEffect("active", {
   card_num = 1,
   target_num = 2,
   card_filter = function(self, player, to_select, selected)
-    return #selected == 0 and not player:prohibitDiscard(to_select) and Fk:getCardById(to_select).color==Card.Red
+    return #selected == 0 and not player:prohibitResponse(to_select) and Fk:getCardById(to_select).color==Card.Red
   end,
   target_filter = function(self, player, to_select, selected)
     -- if #selected < 2 and to_select ~= player  then  --and to_select:isMale()
@@ -33,11 +35,10 @@ hseekdziac:addEffect("active", {
   end,
   on_use = function(self, room, effect)
     local player = effect.from
-    room:throwCard(effect.cards, hseekdziac.name, player, player)
-
+    S.playCard(player,effect.cards,hseekdziac.name)
     local exe =function(p,win)
       if p.dead then return end
-      if not win then room:loseHp(p,1,hseekdziac.name)
+      if not win then room:loseHp(p,1,hseekdziac.name)  --无源
       else
         local cards = room:askToCards(p, {
           min_num = 1,

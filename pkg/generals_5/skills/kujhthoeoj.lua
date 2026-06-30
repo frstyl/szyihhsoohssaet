@@ -4,12 +4,15 @@ local kujhthoeoj = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["kujhthoeoj"] = "鬼胎",
-  [":kujhthoeoj"] = "一其他角色使用桃酒生效歬旹,若目幖不爲伱且伱已損,伱可弃1紅桃牌發動.此牌轉迻于伱",
+  [":kujhthoeoj"] = "一其他角色使用桃酒生效歬旹,若目幖不爲伱且伱已損,伱可打出1紅桃牌發動.此牌轉迻于伱",
 
-  ["#kujhthoeoj-invoke"] = "鬼胎 %src 對%dest 使用%arg 將生效 伱可弃1紅桃牌發動.此牌轉迻于伱",
+  ["#kujhthoeoj-invoke"] = "鬼胎 %src 對%dest 使用%arg 將生效 伱可打出1紅桃牌發動.此牌轉迻于伱",
 
   ["$kujhthoeoj1"] = "客官昰是毒酒不能欱",
 }
+
+local S = require "packages/szyihhsoohssaet/szyih_guos" 
+
 --BeforeCardEffect TargetSpecifying
 kujhthoeoj:addEffect(fk.BeforeCardEffect, {
   anim_type = "offensive",
@@ -22,7 +25,7 @@ kujhthoeoj:addEffect(fk.BeforeCardEffect, {
   end,
   on_cost = function(self, event, target, player, data)
     local room = player.room
-		local cards = room:askToDiscard(player, {
+		local cards =  S.askToPlayCard(player, {
 		  min_num = 1,
 		  max_num = 1,
 		  include_equip = true,
@@ -39,7 +42,7 @@ kujhthoeoj:addEffect(fk.BeforeCardEffect, {
   end,
   on_use = function(self, event, target, player, data)
     local room = player.room
-    room:throwCard(event:getCostData(self).cards, kujhthoeoj.name, player, player)
+    S.playCard(player,event:getCostData(self).cards,kujhthoeoj.name)
     data.to=player
   end,
 })

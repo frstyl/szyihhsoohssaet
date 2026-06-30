@@ -72,7 +72,8 @@ cardSkill:addEffect("cardskill", {
         card = effect.card,
         damage = 1,
         damageType = effect.card:getMark("@@card_damage_nature-phase") or 1,
-        skillName = cardSkill.name
+        skillName = cardSkill.name,
+        event_data= effect,
       })
       effect.from:drawCards(2,cardSkill.name)
       -- S.addTsziukzzyit()

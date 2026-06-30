@@ -26,7 +26,7 @@ gracqthoop:addEffect(fk.TargetSpecified, {
   end,
 
   on_use = function(self, event, target, player, data)
-    player.room:loseHp(player,1,gracqthoop.name)
+    player.room:loseHp(player,1,gracqthoop.name,player)
     S.useNullify(data.use)
     if player.dead then return end
     player.room:obtainCard(player, data.card, true, fk.ReasonPrey, player, gracqthoop.name)

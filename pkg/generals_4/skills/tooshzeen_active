@@ -1,6 +1,7 @@
 local tooshzeen_active = fk.CreateSkill({
   name = "tooshzeen_active",
 })
+local S = require "packages/szyihhsoohssaet/szyih_guos" 
 
 tooshzeen_active:addEffect("active", {
   mute = true,
@@ -10,7 +11,7 @@ tooshzeen_active:addEffect("active", {
   -- expand_pile = extra_data.extra_ids,
   card_filter = function (self, player, to_select, selected)
 
-    return  #selected == 0 and (Fk:getCardById(to_select).suit==Card.Club   or not player:prohibitDiscard(Fk:getCardById(to_select)) )
+    return  #selected == 0 and (Fk:getCardById(to_select).suit==Card.Club   or not player:prohibitResponse(Fk:getCardById(to_select)) )
     or
    (
       #selected <4 

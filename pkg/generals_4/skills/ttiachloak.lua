@@ -5,7 +5,7 @@ local ttiachloak = fk.CreateSkill{
 
 Fk:loadTranslationTable{
 ["ttiachloak"] = "漲落",
-[":ttiachloak"] = "每輪始旹,(若當輪此技能未發動)伱可發動:全體角色各將1牌迻出.當牌自局外(武將牌上武將牌㫄除外區)進入弃牌堆後,伱可發動至多x次,伱抽1",
+[":ttiachloak"] = "①每輪始旹,(每輪全場限1)伱可發動:全體角色各將x牌迻出,x由伱指定至小/大爲1/伱體力值.➁當牌自局外(武將牌上武將牌㫄除外區)進入弃牌堆後,伱可發動至多x次,伱抽1",
 
 ["#ttiachloak-choose"] = "漲落 選擇牌迻出",
 }

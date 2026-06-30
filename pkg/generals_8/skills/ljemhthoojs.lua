@@ -17,6 +17,8 @@ Fk:loadTranslationTable{
   -- ["$ljemhthoojs2"] = "",
 }
 
+local S = require "packages/szyihhsoohssaet/szyih_guos" 
+
 ljemhthoojs:addEffect(fk.DamageInflicted, {
   anim_type = "defensive",
   can_trigger = function(self, event, target, player, data)
@@ -53,7 +55,7 @@ ljemhthoojs:addEffect(fk.DamageInflicted, {
   end,
   on_use = function(self, event, target, player, data)
     player.room:sendLog{ type = "#PreventDamageBySkill", from = player.id, arg = ljemhthoojs.name }
-    data:preventDamage()
+    S.preventDamage({damageData=data,skillName=ljemhthoojs.name})
   end,
 })
 return ljemhthoojs

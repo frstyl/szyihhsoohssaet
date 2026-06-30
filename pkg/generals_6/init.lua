@@ -75,7 +75,7 @@ Fk:loadTranslationTable{
 ["~baacqkhih"] = "敵竟料于我先",
 }
 
-General:new(extension, "hzoanqthoav", "kvoan", 5):addSkills{"thoavqliak"}--"dzziacqszics"
+General:new(extension, "hzoanqthoav", "kvoan", 5):addSkills{"thoavqliak","dzziacqszics"}--
 Fk:loadTranslationTable{
 ["hzoanqthoav"] = "韓滔",
 ["#hzoanqthoav"] = "天目將",

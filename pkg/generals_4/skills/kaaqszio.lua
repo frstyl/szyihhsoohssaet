@@ -102,7 +102,7 @@ kaaqszio:addEffect("active", {
         end
       end
       if n==0 then return end
-      room:loseHp(to,n,kaaqszio.name)
+      room:loseHp(to,n,kaaqszio.name,effect.from)
 
       -- room:setPlayerMark(to,"@kaaqszio-phase",0)
       -- room:setPlayerMark(to,"@kaaqszio_n-phase",0)

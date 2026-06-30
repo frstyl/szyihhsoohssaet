@@ -34,7 +34,7 @@ sziohtoamh:addEffect(fk.DamageInflicted, {
   end,
   on_trigger = function(self, event, target, player, data)
     player.room:sendLog{ type = "#PreventDamageBySkill", from = player.id, arg = sziohtoamh.name }
-    data:preventDamage()
+    S.preventDamage({damageData=data,skillName=sziohtoamh.name})
   end,
 })
 

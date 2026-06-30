@@ -4,9 +4,9 @@ local hzoavqtooh = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["hzoavqtooh"] = "𠢕賭",
-  [":hzoavqtooh"] = "預段末段始旹,伱可預弃1黑桃牌發動.伱預測牌堆頂5牌點數分布爲大(8~13點至多)或小(1~6點至多),亮出牌堆頂5牌.若伱測對,伱獲得對應點數之牌.冣後將餘牌廢置.其它角色可于聲明旹參与,伱執行檢譣後,對者抽1,錯者弃1",
+  [":hzoavqtooh"] = "預段末段始旹,伱可預打1黑桃牌發動.伱預測牌堆頂5牌點數分布爲大(8~13點至多)或小(1~6點至多),亮出牌堆頂5牌.若伱測對,伱獲得對應點數之牌.冣後將餘牌廢置.其它角色可于聲明旹參与,伱執行檢譣後,對者抽1,錯者弃1",
 
-  ["#hzoavqtooh-invoke"] = "𠢕賭 弃1黑桃牌發動",
+  ["#hzoavqtooh-invoke"] = "𠢕賭 打出1黑桃牌發動",
   ["#hzoavqtooh-choose"] = "𠢕賭 選擇大(8~13點多)小(1~6點多)",
   ["#hzoavqtooh-Cancel"] = "𠢕賭 不賭",
   ["#hzoavqtooh-discard"] = "𠢕賭 失敗 弃1牌",
@@ -22,13 +22,15 @@ Fk:loadTranslationTable{
   ["$hzoavqtooh"] = "買定離手買定離手已嗚",
 }
 
+local S = require "packages/szyihhsoohssaet/szyih_guos" 
+
 hzoavqtooh:addEffect(fk.EventPhaseStart, {
   anim_type = "drawcard",
   can_trigger = function(self, event, target, player, data)
     return target == player and player:hasSkill(hzoavqtooh.name) and (player.phase == Player.Finish or player.phase == Player.Start )
   end,
   on_cost = function(self, event, target, player, data)
-    local cards = player.room:askToDiscard(player, {
+    local cards =  S.askToPlayCard(player, {
       min_num = 1,
       max_num = 1,
       include_equip = true,
@@ -45,7 +47,7 @@ hzoavqtooh:addEffect(fk.EventPhaseStart, {
   end,
   on_use = function(self, event, target, player, data)
     local room = player.room
-    room:throwCard(event:getCostData(self).cards, hzoavqtooh.name, player, player)
+    S.playCard(player,event:getCostData(self).cards,hzoavqtooh.name)
 
     local playerchoice=room:askToChoice(player, {
       choices = {"hzoavqtooh-doar","hzoavqtooh-sjevh"},

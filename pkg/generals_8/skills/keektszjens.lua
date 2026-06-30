@@ -5,9 +5,9 @@ local keektszjens = fk.CreateSkill {
 local S = require "packages/szyihhsoohssaet/szyih_guos" 
 
 Fk:loadTranslationTable{ --拆解
-  ["keektszjens"] = "擊戰",
-  [":keektszjens"] = "伱使用殺或鬥將旹可發動.此牌至結算終,其致傷旹傷害值+1,其被抵消旹,伱弃2手牌或流失1體力",
-  ["#keektszjens"] = "擊戰 失去體力加傷",
+  ["keektszjens"] = "激戰",
+  [":keektszjens"] = "伱使用殺或鬥將旹可發動.此牌至結算終,其致傷旹傷害值+1,其被抵消旹,伱選擇執行弃2手牌或流失1體力",
+  ["#keektszjens"] = "激戰 失去體力加傷",
 
   ["#changeDamageBySkill"] = "由于 %arg 的效果，對 %from 傷害 + %arg2",
 
@@ -67,7 +67,7 @@ keektszjens:addEffect(fk.CardEffectCancelledOut, {
         skip=false,
       })
       if #discards<3 then
-        room:loseHp(player,1,keektszjens.name)
+        room:loseHp(player,1,keektszjens.name,player)
       end
   end,
 })

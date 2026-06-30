@@ -61,7 +61,7 @@ local kiamsmuoh_spec = {
     room:cleanProcessingArea(cards)
 
     if nossaet==true then
-      room:loseHp(player, 1, kiamsmuoh.name)
+      room:loseHp(player, 1, kiamsmuoh.name,player)
     end
 
     -- local t=player:getTableMark("__kiamsmuoh_cardids-phase")
@@ -88,9 +88,9 @@ kiamsmuoh:addEffect(fk.PreDamage, {
   end,
   on_refresh = function(self, event, target, player, data)
     local n = data.damage
-    -- data:preventDamage()  --无旹機
-    data.prevented=true  --无旹機
-    player.room:loseHp(data.to, n, kiamsmuoh.name)
+     data:preventDamage()  --无旹機
+    --data.prevented=true  --无旹機
+    player.room:loseHp(data.to, n, kiamsmuoh.name,player)
   end,
 })
 

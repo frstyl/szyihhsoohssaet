@@ -1,10 +1,11 @@
+
 local koostsiocs = fk.CreateSkill {
   name = "koostsiocs",
 }
 
 Fk:loadTranslationTable{
 ["koostsiocs"] = "故縱",
-[":koostsiocs"] = "當其它角色A可使用打出(虛)閃,伱可預發動[振翮]發動.視爲A使用打出虛閃.此閃結算後,伱可執行:伱弃置A區域1牌2次,伱抽1",
+[":koostsiocs"] = "當其它角色A可使用打出閃旹,若其可因此使用/打出虛擬閃,伱可打出閃,若伱打出,發動.視爲A元旹機使用/打出虛閃.此閃結算後,伱可執行:伱弃置A區域1牌2次,伱抽1",
 
 ["#koostsiocs-invoke"] = "故縱: 代替 %src 使用打出閃",
 ["#koostsiocs-discard"] = "故縱: 是否弃 %src 牌",
@@ -30,24 +31,33 @@ local S = require "packages/szyihhsoohssaet/szyih_guos"
 --     end
 -- end
 
+-- local koostsiocs_on_cost= function(self, event, target, player, data)
+--     local yes, dat = player.room:askToUseActiveSkill(player, {  --askToChooseCardsAndPlayers 等實調用此 askToUseActiveSkill
+--       skill_name = "tszjinshzaek",
+--       prompt = "#koostsiocs-invoke:"..target.id,
+--       cancelable = true,
+--       skip = true,  --不執行
+--       -- extra_data = {
+--       --   expand_pile = temp,
+--       --   skillName = pujqkiams.name,
+--       -- },
+--       --  = {ids=ids},
+--     })
+--     if yes and dat then
+--       event:setCostData(self,{cards=dat.cards})
+--       return  true
+--     end
+-- end
 local koostsiocs_on_cost= function(self, event, target, player, data)
-    local yes, dat = player.room:askToUseActiveSkill(player, {  --askToChooseCardsAndPlayers 等實調用此 askToUseActiveSkill
-      skill_name = "tszjinshzaek",
-      prompt = "#koostsiocs-invoke:"..target.id,
-      cancelable = true,
-      skip = true,  --不執行
-      -- extra_data = {
-      --   expand_pile = temp,
-      --   skillName = pujqkiams.name,
-      -- },
-      --  = {ids=ids},
-    })
-    if yes and dat then
+    local respond = room:askToResponse(p, params)
+    if respond then
+      respond.skipDrop = true
+      room:responseCard(respond)
+
       event:setCostData(self,{cards=dat.cards})
       return  true
     end
 end
-
 local koostsiocs_on_use = function(self, event, target, player, data)
     local room = player.room
     local respond={
@@ -103,6 +113,7 @@ koostsiocs:addEffect(fk.AskForCardUse, {
     and Exppattern:Parse(data.pattern):matchExp("szjemh|0|nosuit|none") 
     -- and not player:prohibitUse(Fk:cloneCard("szjemh"))
     and not target:prohibitUse(Fk:cloneCard("szjemh"))
+    and not player:prohibitResponse(Fk:cloneCard("szjemh"))
   end,
   -- on_cost = function(self, event, target, player, data)
   --   local response = player.room:askToUseCard(player,{ ---@type AskToUseCardParams
@@ -127,20 +138,21 @@ koostsiocs:addEffect(fk.AskForCardResponse, {
     and Exppattern:Parse(data.pattern):matchExp("szjemh|0|nosuit|none") 
     -- and not player:prohibitResponse(Fk:cloneCard("szjemh"))
     and not target:prohibitResponse(Fk:cloneCard("szjemh"))
+    and not player:prohibitResponse(Fk:cloneCard("szjemh"))
   end,
-  on_cost = function(self, event, target, player, data)
-    local response = player.room:askToResponse(player,{ ---@type AskToUseCardParams
-        skill_name = koostsiocs.name,
-        pattern = 'szjemh',  --待
-        prompt = "#koostsiocs-ask:" .. target.id,
-        cancelable = true,
-        -- event_data = effect
-      })
-    if response then
-      event:setCostData(self, {responses = response})
-      return true
-    end
-  end,
+  -- on_cost = function(self, event, target, player, data)
+  --   local response = player.room:askToResponse(player,{ ---@type AskToUseCardParams
+  --       skill_name = koostsiocs.name,
+  --       pattern = 'szjemh',  --待
+  --       prompt = "#koostsiocs-ask:" .. target.id,
+  --       cancelable = true,
+  --       -- event_data = effect
+  --     })
+  --   if response then
+  --     event:setCostData(self, {responses = response})
+  --     return true
+  --   end
+  -- end,
   on_cost = koostsiocs_on_cost,
   on_use = koostsiocs_on_use,
 })

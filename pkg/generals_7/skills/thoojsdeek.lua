@@ -5,10 +5,10 @@ local thoojsdeek = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["thoojsdeek"] = "退敵",
-  [":thoojsdeek"] = "其它角色伏段終旹,伱可預弃1武器牌或流失1體力發動.其選擇弃1紅桃閃令伱回1或令伱選擇1項➀伱予其1傷➁伱弃其裝僃區全部牌➂伱令其本局攻程-1",
+  [":thoojsdeek"] = "其它角色伏段終旹,伱可預打出1武器牌或流失1體力發動.其選擇打出1紅桃閃令伱回1或令伱選擇1項➀伱予其1傷➁伱弃其裝僃區全部牌➂伱令其本局攻程-1",
 
   ["#thoojsdeek-invoke"] = "退敵 1武器牌或流失1體力 對%src 發動",
-  ["#thoojsdeek-discard"] = "退敵 弃紅桃閃",
+  ["#thoojsdeek-discard"] = "退敵 打出紅桃閃",
   ["#thoojsdeek-choose"] = "退敵 選擇1項",
 
   ["@thoojsdeek"] = "攻程-",
@@ -22,6 +22,8 @@ Fk:loadTranslationTable{
   ["$thoojsdeek2"] = "殺汝个措手不及",
 }
 
+local S = require "packages/szyihhsoohssaet/szyih_guos" 
+
 thoojsdeek:addEffect(fk.EventPhaseEnd, {
   anim_type = "control",
   can_trigger = function(self, event, target, player, data)
@@ -30,17 +32,17 @@ thoojsdeek:addEffect(fk.EventPhaseEnd, {
   on_cost = function(self, event, target, player, data)
     local room = player.room
     local yes, ret = room:askToUseActiveSkill(player, {
-      skill_name = "discard_skill", 
+      skill_name = "choose_cards_skill", 
       prompt = "#thoojsdeek-invoke:"..target.id, 
       cancelable = true, 
       extra_data = {
         num = 1,
         min_num = 0,
-        include_equip = true,
+        include_equip = false,
         skillName = thoojsdeek.name,
-        -- pattern = "ssaet|.|.;.|.|.|.|.|weapon",
-        -- pattern = ".|.|diamond;.|.|.|.|.|weapon",
-        pattern = ".|.|.|.|.|weapon",
+        pattern = tostring(Exppattern{ id = table.filter(player:getCardIds("he"), function (id)
+      return not player:prohibitResponse(Fk:getCardById(id)) and Fk:getCardById(id).sub_type = Card.SubtypeWeapon
+     end)}),
       }, 
       no_indicate = false,
       skip=true,
@@ -55,11 +57,11 @@ thoojsdeek:addEffect(fk.EventPhaseEnd, {
     local room = player.room
    local cards=event:getCostData(self).cards
     if #cards==0 then
-      room:loseHp(player,1,thoojsdeek.name)
+      room:loseHp(player,1,thoojsdeek.name,player)
     else
-      room:throwCard(cards,thoojsdeek.name,player,player)
+      S.playCard(player,cards,thoojsdeek.name)
     end
-    if  #room:askToDiscard(target, {
+    if  #S.askToPlayCard(target, {
       min_num = 1,
       max_num = 1,
       include_equip = true,

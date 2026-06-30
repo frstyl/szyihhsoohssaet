@@ -24,10 +24,11 @@ skill:addEffect("cardskill", {
         card = effect.card,
         recoverBy = effect.from,
         skillName = skill.name,
+        event_data= effect,
       }
     end
     if to:isKongcheng() then
-      room:loseHp(to,1,skill.name)
+      room:loseHp(to,1,skill.name,effect.from)
     return
     end
 
@@ -41,7 +42,7 @@ skill:addEffect("cardskill", {
         skip = false,
       })
     if #cards == 0 then
-      room:loseHp(to,1,skill.name)
+      room:loseHp(to,1,skill.name,effect.from)
     end
   end,
 })

@@ -68,7 +68,7 @@ gracqgi:addEffect(fk.TurnStart, {
   on_use = function(self, event, target, player, data)
    if player.dead then return end
    local room= player.room
-   room:loseHp(player,1,gracqgi.name)
+   room:loseHp(player,1,gracqgi.name,player)
    
    if player.dead then return end
     local catapult = table.find(U.prepareDeriveCards(room, {{"gracqgi__gi", Card.Diamond, 9}}, gracqgi.name), function (id)

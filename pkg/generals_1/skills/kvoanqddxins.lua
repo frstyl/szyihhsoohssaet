@@ -98,7 +98,7 @@ kvoanqddxins:addEffect(fk.CardUsing, {
 --     end
 --   end,
 --   on_use = function(self, event, target, player, data)
---     room:preventDamage()
+    --S.preventDamage({damageData=data,skillName=kvoanqddxins.name})  --skill??
 --   end,
 -- })
 

@@ -91,7 +91,7 @@ doucqtsziu:addEffect(fk.DamageInflicted, {
     for _, id in ipairs (t) do
       p=room:getPlayerById(id)
       if room:askToSkillInvoke(p, { skill_name = doucqtsziu.name,prompt="#doucqtsziu-ask:"..data.to.id }) then
-        room:loseHp(p,1,doucqtsziu.name)
+        room:loseHp(p,1,doucqtsziu.name,player)
 	    S.changeDamage({damageData=data,num=-1,skillName=doucqtsziu.name})
       if data.damage<1 then return end
       end

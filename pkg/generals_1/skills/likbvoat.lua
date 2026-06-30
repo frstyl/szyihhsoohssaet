@@ -48,7 +48,7 @@ likbvoat:addEffect(fk.DamageCaused, {
       prompt = "#likbvoat-choose" 
      })
     if choice == "Cancel" then return end
-    room:loseHp(player, 1,likbvoat.name)
+    room:loseHp(player, 1,likbvoat.name,player)
 
     -- if to.dead  or player.dead then return end
 

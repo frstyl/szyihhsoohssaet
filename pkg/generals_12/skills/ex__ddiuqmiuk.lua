@@ -1,3 +1,7 @@
+local ex__ddiuqmiuk = fk.CreateSkill{
+  name = "ex__ddiuqmiuk",
+}
+
 Fk:loadTranslationTable{
   ["ex__ddiuqmiuk"] = "綢繆",
   [":ex__ddiuqmiuk"] = "主動.選擇至多x角色發動,各緟鑄至多y.若所緟鑄牌同花,伱獲得技能浮槎(x爲伱體力值至少爲1,y爲輪數至少爲1)",
@@ -8,9 +12,9 @@ Fk:loadTranslationTable{
   ["$ex__ddiuqmiuk1"] = "今雖得勝歸朝仍須小心謹慎",
 }
 
-local ex__ddiuqmiuk = fk.CreateSkill{
-  name = "ex__ddiuqmiuk",
-}
+
+
+local S = require "packages/szyihhsoohssaet/szyih_guos" 
 
 ex__ddiuqmiuk:addEffect("active", {
   anim_type = "drawcard",
@@ -36,13 +40,14 @@ ex__ddiuqmiuk:addEffect("active", {
     local get=true
     for _, p in ipairs(effect.tos) do
       if not p.dead then
-        local cards = room:askToDiscard(p, {
+        local cards =  S.askToPlayCard(p, {
           min_num = n,
           max_num = n,
           include_equip = false,
           skill_name = ex__ddiuqmiuk.name,
           cancelable = false,
           prompt = "#ex__ddiuqmiuk-discard",
+          skip=false,
         })
         for _, id in ipairs(cards) do
           local suit= Fk:getCardById(id).suit

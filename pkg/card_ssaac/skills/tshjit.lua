@@ -50,7 +50,7 @@ cardSkill:addEffect("cardskill", {
       n=(n+1)%m
       if n==0 then n=m end
       if not tos[n].dead then
-        room:loseHp(tos[n],1,cardSkill.name)
+        room:loseHp(tos[n],1,cardSkill.name)  --无源
         room:delay(300) --ms
       end
       if effect.extra_data and effect.extra_data.tshjit==false then

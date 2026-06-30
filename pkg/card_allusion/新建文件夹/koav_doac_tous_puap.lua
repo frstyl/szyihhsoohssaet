@@ -23,6 +23,7 @@ koav_doac_tous_puap:addEffect("cardskill", {
       damage = 1,
       damageType = fk.ThunderDamage,
       skillName = koav_doac_tous_puap.name,
+      event_data= effect,
     })
   end,
 })

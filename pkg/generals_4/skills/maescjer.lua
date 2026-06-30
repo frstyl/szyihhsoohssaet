@@ -5,13 +5,14 @@ local maescjer = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["maescjer"] = "賣藝",
-  [":maescjer"] = "主旹,弃3有花且各異花牌或2裝僃牌發動.伱令其它角色各抽1,肰後其各可交与伱至少1牌令伱抽2,伱自交予伱牌數至多者選1令其本轉後執行1額外轉",
+  [":maescjer"] = "主旹,打出3有花且各異花牌或2裝僃牌發動.伱令其它角色各抽1,肰後其各可交与伱至少1牌令伱抽2,伱自交予伱牌數至多者選1令其本轉後執行1額外轉",
 
   ["#maescjer-active"] = "賣藝  弃牌",
   ["#maescjer-give"] = "賣藝  是否交予 %src 牌",
   ["#maescjer-active"] = "賣藝  選擇1角色執行額外轉",
 }
 
+local S = require "packages/szyihhsoohssaet/szyih_guos" 
 
 maescjer:addEffect("active", {
   anim_type = "offensive",
@@ -27,7 +28,7 @@ maescjer:addEffect("active", {
   --   }
   -- end,
   card_filter = function(self, player, to_select, selected)
-    if player:prohibitDiscard(to_select) then return end
+    if player:prohibitResponse(to_select) then return end
     if #selected <1 then 
       local c=Fk:getCardById(to_select)
       return c.type==Card.TypeEquip 
@@ -55,7 +56,7 @@ maescjer:addEffect("active", {
   -- end,
   on_use = function(self, room, effect)
     local player = effect.from
-    room:throwCard(effect.cards, maescjer.name, player, player)
+    S.playCard(effect.from,effect.cards,maescjer.name)
 
     local targets = room:getOtherPlayers(player)
     for _,p in ipairs(targets) do

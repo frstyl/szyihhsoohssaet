@@ -13,7 +13,7 @@ equipSkill:addEffect(fk.PreCardEffect, {
     and not S.isIgnoreArmorFromAToB(data.from, data.to, data.card, data.use, data)
   end,
   on_use = function(self, event, target, player, data)
-      local cards = player.room:askToDiscard(data.from, {
+      local cards =  S.askToPlayCard(data.from, {
         min_num = 1,
         max_num = 1,
         include_equip = false,

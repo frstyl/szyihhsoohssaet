@@ -113,7 +113,7 @@ tooshzeen:addEffect(fk.AfterCardsMove, {
 
     if #dat.cards ==1 then
       room:obtainCard(player, dat.cards, true, fk.ReasonGive, to, tooshzeen.name)
-      room:loseHp(to, 1, tooshzeen.name)
+      room:loseHp(to, 1, tooshzeen.name,player)
       if to.dead  then return end
       local ids ={card.id}
       ids= table.filter(ids, function (id)

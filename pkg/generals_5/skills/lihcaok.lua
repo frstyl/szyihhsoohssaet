@@ -3,7 +3,7 @@ local lihcaok = fk.CreateSkill {
 }
 Fk:loadTranslationTable{
 ["lihcaok"] = "理樂",
-[":lihcaok"] = "伱判定牌生效後,若其在處理區,伱可發動,伱獲取之",  --同隊不计入距离 均傷
+[":lihcaok"] = "伱判定牌生效後,若其在處理區,伱可發動,伱獲取之",
 
 ["#lihcaok-choose"] = "理樂 選擇一角色 視爲對其使用殺",
 }

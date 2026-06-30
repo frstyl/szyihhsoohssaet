@@ -114,12 +114,12 @@ cardSkill:addEffect(fk.AfterCardsMove, {
     local hp=function(card,player)
 
         if  card.suit == Card.Spade  then --1
-                player.room:loseHp(player,1,cardSkill.name)
+                player.room:loseHp(player,1,cardSkill.name,player)
         elseif card.suit == Card.Club   then
                 player.room:damage({
                     from = player,
                     to = player,
-                    card = card,  --
+                    card = card,  --是否使用
                     damage = 1,
                     damageType = fk.ThunderDamage,
                     skillName = "deep_skill",

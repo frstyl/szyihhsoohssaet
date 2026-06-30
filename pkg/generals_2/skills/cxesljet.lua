@@ -32,7 +32,7 @@ cxesljet:addEffect(fk.TargetConfirming, {
   end,
   on_use = function(self, event, target, player, data)
     local room = player.room
-    room:loseHp(player, 1, cxesljet.name)
+    room:loseHp(player, 1, cxesljet.name,player)
     data:cancelTarget(target)
 
     if data.from.dead or data.from:isNude() or  player.dead then return end

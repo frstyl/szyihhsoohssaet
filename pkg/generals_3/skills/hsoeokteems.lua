@@ -49,7 +49,7 @@ hsoeokteems:addEffect(fk.AfterCardsMove, {
         })
       end
       if choice=="loseHp" then
-        room:loseHp(p,1,hsoeokteems.name)
+        room:loseHp(p,1,hsoeokteems.name,player)
       else
         local card = room:askToChooseCard(p, {
           target = p,

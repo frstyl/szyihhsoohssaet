@@ -22,6 +22,7 @@ jiak:addEffect("cardskill", {
         card = effect.card,
         recoverBy = effect.from,
         skillName = jiak.name,
+        event_data= effect,
       }
       S.removeTsziukzzyit(effect.to)
   end,

@@ -32,8 +32,7 @@ cxestseet:addEffect(fk.DamageInflicted, {
   end,
   on_use = function(self, event, target, player, data)
     local room=player.room
-    room:loseHp(player,1,cxestseet.name)
-    -- data:preventDamage()
+    room:loseHp(player,1,cxestseet.name,player)
     S.preventDamage({damageData=data,skillName=cxestseet.name})
     if data.to.dead or player.dead then return end
     local choice= room:askToChoice(player, { choices = {"draw2","shield1"}, skill_name = cxestseet.name,       prompt = "#cxestseet-choose:"..data.to.id,})

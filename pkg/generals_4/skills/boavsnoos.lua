@@ -21,7 +21,7 @@ boavsnoos:addEffect(fk.CardUsing, {
 		return target==player and data.card.trueName=="ssaet" and player:hasSkill(boavsnoos.name)
 	end,
 	on_use = function(self, event, target, player, data)
-    player.room:loseHp(player, 1, boavsnoos.name)
+    player.room:loseHp(player, 1, boavsnoos.name,player)
     -- data.card.extra_data =data.card.extra_data or {}
     player.room:addTableMark(data.card, "boavsnoos-phase", player.id)
 

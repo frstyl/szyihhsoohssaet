@@ -23,7 +23,7 @@ skill:addEffect("cardskill", {
   on_effect = function(self, room, effect)
     to = effect.to
     if effect.to.dead then return end
-    room:loseHp(effect.to, 1, skill.name)
+    room:loseHp(effect.to, 1, skill.name,effect.from)
     if effect.to.dead then return end
     room:askToDiscard(to,{  --不必判斷手牌數
 		  min_num = 2,

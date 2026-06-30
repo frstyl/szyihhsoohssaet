@@ -31,7 +31,7 @@ bunqzjins:addEffect(fk.DamageCaused, {
 
   end,
   on_use = function(self, event, target, player, data)
-    -- player.room:loseHp(player,1,bunqzjins.name)
+    -- player.room:loseHp(player,1,bunqzjins.name,player)
     data.damageType = fk.FireDamage 
 
   end,

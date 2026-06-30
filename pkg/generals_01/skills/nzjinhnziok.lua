@@ -21,7 +21,7 @@ nzjinhnziok:addEffect(fk.DamageInflicted, {
   return player==target and player:hasSkill(nzjinhnziok.name) and S.hasTsziukzzyit(player,"mxiqquns")
   end,
   on_use = function(self, event, target, player, data)
-    data:preventDamage()
+    S.preventDamage({damageData=data,skillName=nzjinhnziok.name})  --skill??
   end,
 })
 

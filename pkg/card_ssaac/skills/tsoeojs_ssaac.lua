@@ -48,6 +48,7 @@ cardSkill:addEffect("cardskill", {
         recoverBy = effect.from,
         card = effect.card,
         skillName = cardSkill.name,
+        event_data= effect,
       })
     end
       -- local cards = room:askToDiscard(to, {

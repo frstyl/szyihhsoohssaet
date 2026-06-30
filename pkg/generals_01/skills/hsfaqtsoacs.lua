@@ -1,6 +1,6 @@
 Fk:loadTranslationTable{
   ["hsfaqtsoacs"] = "花葬",
-  [":hsfaqtsoacs"] = "鎖定.伱死亾旹必發.全體角色選1項➀流失1體力➁弃1牌.肰後弃牌點數至小者牢+1(未弃牌或牌无點視爲0)",
+  [":hsfaqtsoacs"] = "鎖定.伱死亾旹必發.全體角色選1項➀流失1體力(源自伱)➁自弃1牌.肰後弃牌點數至小者牢+1(未弃牌或牌无點視爲0)",
 
 
 
@@ -37,7 +37,7 @@ hsfaqtsoacs:addEffect(fk.Death, {
       })
       local n = 0 
       if not cards[1] then
-        room:loseHp(p,1)
+        room:loseHp(p,1,player)
         n=0
       else
         n=Fk:getCardById(cards[1]).number

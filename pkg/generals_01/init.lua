@@ -105,7 +105,7 @@ Fk:loadTranslationTable{
 }
 
 local hqxim__doucqkxevqsius =General:new(extension, "hqxim__doucqkxevqsius", "mjin", 3,3, General.Female)
-hqxim__doucqkxevqsius:addSkills { "liuqhzfa","hseekdziac","hsfaqdzoacs"}
+hqxim__doucqkxevqsius:addSkills { "liuqhzfa","hseekdziac","hsfaqtsoacs"}
 hqxim__doucqkxevqsius:addRelatedSkill("tsziukzzyit_dzjisjuoh")
 Fk:loadTranslationTable{
 ["hqxim__doucqkxevqsius"] = "童嬌秀",

@@ -11,6 +11,8 @@ Fk:loadTranslationTable{
   ["$tszjettszhioc1"] = "兄弟先走,我來擋駐來人",
 }
 
+local S = require "packages/szyihhsoohssaet/szyih_guos" 
+
 tszjettszhioc:addEffect(fk.DamageInflicted, {
   anim_type = "defensive",
   can_trigger = function(self, event, target, player, data)
@@ -28,7 +30,7 @@ tszjettszhioc:addEffect(fk.DamageInflicted, {
       if room:getCardArea(pindian.results[to].toCard) == Card.DiscardPile then
         room:moveCardTo(pindian.results[to].toCard, Card.PlayerHand, player, fk.ReasonJustMove, tszjettszhioc.name, nil, true, player)
       end
-      data:preventDamage()  ---不自動發報
+      S.preventDamage({damageData=data,skillName=tszjettszhioc.name})
       room:sendLog{ type = "#PreventDamageBySkill", from = data.to.id, arg = tszjettszhioc.name }
     else
       if  room:getCardArea(pindian.fromCard) == Card.DiscardPile then

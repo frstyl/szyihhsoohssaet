@@ -34,7 +34,7 @@ ddxevhhsioc:addEffect(fk.EventPhaseStart, {
     end
   end,
   on_use = function(self, event, target, player, data)
-    player.room:loseHp(event:getCostData(self).tos[1],1,ddxevhhsioc.name)
+    player.room:loseHp(event:getCostData(self).tos[1],1,ddxevhhsioc.name)  --无源
   end,
 })
 

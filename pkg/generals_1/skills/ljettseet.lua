@@ -33,10 +33,10 @@ ljettseet:addEffect(fk.Damaged, {
   on_use = function(self, event, target, player, data)
     local room=player.room
     local pindian = player:pindian({data.from}, ljettseet.name)
-    data:preventDamage()
+    S.preventDamage({damageData=data,skillName=ljettseet.name})
     if pindian.results[data.from].winner == player then return end
       if  not player.dead then
-        room:loseHp(player,1,ljettseet.name)
+        room:loseHp(player,1,ljettseet.name,player)
       end
        room:askToDiscard(player, {
           min_num = 1,

@@ -68,7 +68,7 @@ tszjetnziok_active:addEffect("active", {
           recoverBy = player,
           skillName = tszjetnziok_active.name,
         }
-        room:loseHp(to,1,tszjetnziok_active.name)
+        room:loseHp(to,1,tszjetnziok_active.name,effect.from)
         -- room:setPlayerMark(player,"_tszjetnziok_active-color-phase",2)
         room:setPlayerMark(to,"@@tszjetnziok_active-double-round",1)
       end

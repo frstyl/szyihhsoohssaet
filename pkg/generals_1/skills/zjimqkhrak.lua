@@ -78,7 +78,7 @@ zjimqkhrak:addEffect(fk.EventPhaseEnd, {  --應該記錄phase id,防段中段
   end,
   on_trigger = function(self, event, target, player, data)
     local room=player.room
-    -- room:loseHp(player,1,zjimqkhrak.name)
+    -- room:loseHp(player,1,zjimqkhrak.name,player)
     local from = room:getPlayerById(target:getMark("@@zjimqkhrak-phase"))
     -- local re=S.askToResponseReal(from,{
       -- skillName= zjimqkhrak.name,

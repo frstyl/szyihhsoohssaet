@@ -3,7 +3,7 @@ local cardSkill = fk.CreateSkill{
   name = "thou_theen_hzvoans_nzjit",
 }
 
-cardSkill:addEffect("active", {  --歬轉終
+cardSkill:addEffect("active", {
   prompt = "#thou_theen_hzvoans_nzjit",
   -- target_num = 1,
   on_use = function(self, room, effect)

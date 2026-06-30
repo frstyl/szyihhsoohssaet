@@ -3,7 +3,7 @@ local ddwenqszio = fk.CreateSkill {
 }
 Fk:loadTranslationTable{
   ["ddwenqszio"] = "傳書",
-  [":ddwenqszio"] = "主旹,預弃1牌發動。全體角色得1空｡輪終,全體角色可將空轉化爲殺使用",
+  [":ddwenqszio"] = "主旹,預打出1牌發動。全體角色得1空｡輪終,全體角色可將空轉化爲殺使用",
 
   ["#ddwenqszio-use"] = "傳書 將空牌轉化爲殺",
 }
@@ -20,10 +20,10 @@ ddwenqszio:addEffect("active", {
   -- end,
   card_filter = function(self, player, to_select, selected)
     return #selected == 0 
-    and  not player:prohibitDiscard(to_select)
+    and  not player:prohibitResponse(to_select)
   end,
   on_use = function(self, room, effect)
-    room:throwCard(effect.cards, ddwenqszio.name, effect.from, effect.from)
+    S.playCard(effect.from,effect.cards,ddwenqszio.name)
 
     for _, to in ipairs(room:getAlivePlayers()) do
       room:moveCards({

@@ -4,11 +4,13 @@ local hzaepdoos = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["hzaepdoos"] = "狹度",
-  [":hzaepdoos"] = "伱致傷後,伱可預弃1裝僃牌選擇其它角色距離1以內且非本次受傷者發動,伱与其1傷",
+  [":hzaepdoos"] = "伱致傷後,伱可預打出1裝僃牌選擇其它角色距離1以內且非本次受傷者發動,伱与其1傷",
 
   ["#hzaepdoos-invoke"] = "狹度 弃1裝僃對除%src外距離1角色1傷",
   ["$hzaepdoos1"] = "小可王倫且喜光臨草寨",
 }
+
+local S = require "packages/szyihhsoohssaet/szyih_guos"
 
 hzaepdoos:addEffect(fk.Damage, {
   anim_type = "offensive",
@@ -26,7 +28,7 @@ hzaepdoos:addEffect(fk.Damage, {
             return p~=data.to and player:compareDistance(p,1,"<=")  --compareDistance
             end),
             pattern=tostring(Exppattern{ id = table.filter(player:getCardIds("he"),function(cid)
-            return Fk:getCardById(cid).type==Card.TypeEquip and not player:prohibitDiscard(p)
+            return Fk:getCardById(cid).type==Card.TypeEquip and not player:prohibitResponse(p)
             end) }) ,
             prompt = "#hzaepdoos-invoke:"..data.to.id,
             skill_name = hzaepdoos.name,
@@ -40,7 +42,7 @@ hzaepdoos:addEffect(fk.Damage, {
   end,
   on_use = function(self, event, target, player, data)
     local room = player.room
-    room:throwCard(event:getCostData(self).cards, hzaepdoos.name, player, player)
+    S.playCard(player,carevent:getCostData(self).cards,hzaepdoos.name)
     room:damage{
       from = player,
       to = event:getCostData(self).tos[1],

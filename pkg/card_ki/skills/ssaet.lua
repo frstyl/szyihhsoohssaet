@@ -56,6 +56,10 @@ cardSkill:addEffect("cardskill", {
         damage = 1,
         damageType = fk.NormalDamage,
         skillName = cardSkill.name,--傳入cardUse cardEffect skillEffect Data
+        event_data= effect,
+        -- extra_data={
+        --   CardEffectData=effect,
+        -- }
       })
     end
   end,

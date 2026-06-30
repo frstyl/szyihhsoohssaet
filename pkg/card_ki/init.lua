@@ -111,10 +111,10 @@ local kiuc_szjih_sje_ttiac = fk.CreateCard{
   multiple_targets = true,
 }
 
-local ttis_tsiuh_szjet_jjen = fk.CreateCard{
-  name = "ttis_tsiuh_szjet_jjen",
+local ttxis_tsiuh_szjet_jjen = fk.CreateCard{
+  name = "ttxis_tsiuh_szjet_jjen",
   type = Card.TypeBasic,
-  skill = "ttis_tsiuh_szjet_jjen_skill",
+  skill = "ttxis_tsiuh_szjet_jjen_skill",
   multiple_targets = true,
 }
 
@@ -289,7 +289,7 @@ extension:loadCardSkels {
 
   buoh_teejh_tthiu_sjin, hqjin_deek_qwe_tsji, tous_tsiacs, hsiap_paak, liac_tshoavh_seen_hzaac,
   buac_hzfan_mujs_nzjen,
-  maach_hsooh_hzaah_ssaen, kiuc_szjih_sje_ttiac, hsiu_jiach_ssaac_sik, ttis_tsiuh_szjet_jjen,
+  maach_hsooh_hzaah_ssaen, kiuc_szjih_sje_ttiac, hsiu_jiach_ssaac_sik, ttxis_tsiuh_szjet_jjen,
   theen_looj, khxes_kheet_sis_tssaas,
 
 
@@ -408,8 +408,8 @@ extension:addCardSpec("kiuc_szjih_sje_ttiac", Card.Heart, 1)  --萬箭齊發
 
 extension:addCardSpec("hsiu_jiach_ssaac_sik", Card.Heart, 1)  --修養生息
 
-extension:addCardSpec("ttis_tsiuh_szjet_jjen", Card.Heart, 3)  --五穀 設筵管待
-extension:addCardSpec("ttis_tsiuh_szjet_jjen", Card.Heart, 4)
+extension:addCardSpec("ttxis_tsiuh_szjet_jjen", Card.Heart, 3)  --五穀 設筵管待
+extension:addCardSpec("ttxis_tsiuh_szjet_jjen", Card.Heart, 4)
 
 extension:addCardSpec("liac_tshoavh_seen_hzaac", Card.Heart, 7)  --糧艸先行
 extension:addCardSpec("liac_tshoavh_seen_hzaac", Card.Heart, 8)
@@ -519,11 +519,11 @@ Fk:loadTranslationTable{
   [":hsiu_jiach_ssaac_sik"] = "锦囊牌  <br /><b>旹機</b>：主旹  <br /><b>目幖</b>：全部角色  <br /><b>效果</b>：每名目幖角色回1。",
   ["#hsiu_jiach_ssaac_sik_skill"] = "全部角色回1",
 
-  ["ttis_tsiuh_szjet_jjen"] = "置酒設筵",
-  [":ttis_tsiuh_szjet_jjen"] = "锦囊牌  <br /><b>旹機</b>：主旹  <br /><b>目幖</b>：全部角色  <br /><b>額外</b>：執行前,亮出牌堆頂等于目幖角色数的牌，結算後廢置餘牌。  <br /><b>效果</b>：目幖角色獲得其中1牌，",
-  ["ttis_tsiuh_szjet_jjen_skill"] = "置酒設筵",
+  ["ttxis_tsiuh_szjet_jjen"] = "置酒設筵",
+  [":ttxis_tsiuh_szjet_jjen"] = "锦囊牌  <br /><b>旹機</b>：主旹  <br /><b>目幖</b>：全部角色  <br /><b>額外</b>：執行前,亮出牌堆頂等于目幖角色数的牌，結算後廢置餘牌。  <br /><b>效果</b>：目幖角色獲得其中1牌，",
+  ["ttxis_tsiuh_szjet_jjen_skill"] = "置酒設筵",
   ["Please choose cards"] = "请选择1卡牌",
-  ["#ttis_tsiuh_szjet_jjen_skill"] = "亮出牌堆顶等于全部角色数的牌，每名角色获得其中1牌",
+  ["#ttxis_tsiuh_szjet_jjen_skill"] = "亮出牌堆顶等于全部角色数的牌，每名角色获得其中1牌",
 
   ["theen_looj"] = "天雷",
   [":theen_looj"] = "法術-天災  <br /><b>旹機</b>：主旹  <br /><b>目幖</b>：伱  <br /><b>延旹</b>：將此牌置于目幖角色伏區,目幖伏段生效  <br /><b>效果</b>：目幖判定｡若結果:爲♠2-9，其受到3点无來源雷电傷害;否則將｢閃电｣至入至其下家伏區。  <br /><b>額外</b>：此牌被抵消後至入目幖下家伏區",

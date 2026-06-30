@@ -4,13 +4,16 @@ local mxishzvoeok = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["mxishzvoeok"] = "魅惑",
-  [":mxishzvoeok"] = "主旹,預弃1紅桃手牌指定1其它角色發動.若其已損回1,否則抽2,肰後伱執行相同效果",
+  [":mxishzvoeok"] = "主旹,預打出1紅桃手牌指定1其它角色發動.若其已損回1,否則抽2,肰後伱執行相同效果",
 
   ["#mxishzvoeok-active"] = "魅惑 選擇1紅桃手牌与1其它角色",
 
   ["$mxishzvoeok1"] = "伱若有心,喫了我昰半盞㱚酒",
 
 }
+
+local S = require "packages/szyihhsoohssaet/szyih_guos" 
+
 mxishzvoeok:addEffect("active", {
   anim_type = "support",
   prompt = "#mxishzvoeok-active",
@@ -19,7 +22,7 @@ mxishzvoeok:addEffect("active", {
     return #selected ==0 
     and table.contains(player:getCardIds("h"),to_select)
     and Fk:getCardById(to_select).suit==Card.Heart 
-    and not player:prohibitDiscard(to_select)
+    and not player:prohibitResponse(to_select)
   end,
   target_filter = function(self, player, to_select, selected)
     return #selected == 0 and to_select ~= player

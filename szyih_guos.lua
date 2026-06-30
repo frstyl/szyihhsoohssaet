@@ -1,15 +1,20 @@
 -- 階段 轉 越過
---getNextOne
---setSquad
+--getNextOne 上下家
+--setSquad 隊列
 -- 印空 getKhouc
 -- 葢伏操作 koarbiuk
--- 用牌 用葢牌 檢測 getHolders
--- 牌類 getCardType 類合成規則 mixCard
+-- 用牌 用葢牌 檢測 
+--getHolders
+-- 牌類 getCardType 
+--類合成規則 mixCard
 -- virtualEquip
 -- not_equip 非裝僃置入裝僃區
+--hasEquip
 --handleAddLoseSkills
 -- 咒術 hasTsziukzzyit
-
+--isIgnoreArmorFromAToB 无視
+--magicCanUse
+------------------------------------------------
 -- 改requst usecard能使用額外牌
 
 --改damage流程
@@ -751,7 +756,7 @@ szyih_guos.askToUseKoarbiukCard = function(room, players, params,special_params,
 
 
   askForUseCardData.afterRequest = true
-  room.logic:trigger(fk.HandleAskForPlayCard, nitargetl, askForUseCardData, true)
+  room.logic:trigger(fk.HandleAskForPlayCard, target, askForUseCardData, true)
   askForUseCardData.afterRequest = false
 
   -- prohibiteCheck()

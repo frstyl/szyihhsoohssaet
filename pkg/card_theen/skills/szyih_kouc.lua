@@ -43,6 +43,7 @@ skill:addEffect("cardskill", {
         damage = 1,
         damageType = fk.NormalDamage,
         skillName = skill.name,
+        event_data= effect,
       })
     else
       to:throwAllCards("e")

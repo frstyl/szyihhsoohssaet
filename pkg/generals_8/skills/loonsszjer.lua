@@ -4,9 +4,9 @@ local loonsszjer = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["loonsszjer"] = "論策",
-  [":loonsszjer"] = "主旹,預弃任意牌發動.伱抽所弃牌數,然後伱可展示3手牌選擇1角色.其選1項➀使用其中1牌,伱与其各抽1{+1}➁使用全部可用牌,无視距離次數{且不可響應}➂執行1{+1}主旹.伱于其選擇旹同旹選擇,若所選相同,增改效果",
+  [":loonsszjer"] = "主旹,預打出任意牌發動.伱抽所打出牌數,然後伱可展示3手牌選擇1角色.其選1項➀使用其中1牌,伱与其各抽1{+1}➁使用全部可用牌,无視距離次數{且不可響應}➂執行1{+1}主旹.伱于其選擇旹同旹選擇,若所選相同,增改效果",
 
-  ["#loonsszjer"] = "論策：預弃任意牌發動",
+  ["#loonsszjer"] = "論策：預打出任意牌發動",
   ["#loonsszjer-choose"] = "論策：展示三牌選一角色",
   ["#loonsszjer-choice"] = "論策：選擇",
   ["loonsszjer-useOne"] = "用一",
@@ -20,6 +20,7 @@ Fk:loadTranslationTable{
   ["$loonsszjer3"] = "諸將共勉 戮力克敵",
   ["$loonsszjer5"] = "忠言不聽 敗績不遠",
 }
+local S = require "packages/szyihhsoohssaet/szyih_guos" 
 
 loonsszjer:addEffect("active", {
   anim_type = "support",
@@ -35,14 +36,14 @@ loonsszjer:addEffect("active", {
   --   return player:usedSkillTimes(loonsszjer.name, Player.HistoryPhase) == 0
   -- end,
   card_filter =  function(self, player, to_select, selected)
-    return not player:prohibitDiscard(to_select)
+    return not player:prohibitResponse(to_select)
   end,
   -- target_filter = function(self, player, to_select, selected)
   --   return #selected == 0
   -- end,
   on_use = function(self, room, effect)
     local player=effect.from
-    room:throwCard(effect.cards, loonsszjer.name, player, player)
+    S.playCard(effect.from,effect.cards,loonsszjer.name)
     if player:isAlive() then
       player:drawCards(#effect.cards, loonsszjer.name)  --𢧵胡??
     end

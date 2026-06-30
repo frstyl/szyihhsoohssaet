@@ -58,6 +58,7 @@ hsio_hzvoach_hqjit_tshiac:addEffect("cardskill", {
         num = 1,
         recoverBy = to,
         skillName = hsio_hzvoach_hqjit_tshiac.name,
+        event_data= effect,
       })
     end
   end,

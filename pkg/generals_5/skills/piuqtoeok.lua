@@ -5,7 +5,7 @@ local piuqtoeok = fk.CreateSkill {
 
 Fk:loadTranslationTable {
   ["piuqtoeok"] = "不得",
-  [":piuqtoeok"] = "每局限1.其它角色A死亾亮出身分前,若伱与其身分均不公開,伱可發動,伱抽1,与A交換身分牌",
+  [":piuqtoeok"] = "每局限1.其它角色A死亾亮出身分前,若伱与其身分皆不公開,伱可發動,伱抽1,与A交換身分牌",
 
   ["#piuqtoeok-invoke"] = "不得：与 %dest 交换身分！",
 

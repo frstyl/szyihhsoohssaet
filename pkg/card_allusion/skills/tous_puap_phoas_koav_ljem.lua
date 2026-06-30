@@ -42,6 +42,7 @@ cardSkill:addEffect("cardskill", {
       damage = 1,
       damageType = fk.ThunderDamage,
       skillName = cardSkill.name,
+      event_data= effect,
     })
     end
   end,

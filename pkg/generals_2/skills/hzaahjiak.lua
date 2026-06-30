@@ -50,8 +50,8 @@ hzaahjiak:addEffect(fk.PreDamage, {
       prompt = "#hzaahjiak-invoke:"..data.to.id,
     }) then return end
     local n= data.damage
-    data:preventDamage()
-    player.room:loseHp(data.to, n, hzaahjiak.name)
+    data:preventDamage()  --无旹機
+    player.room:loseHp(data.to, n, hzaahjiak.name,player)
     local cid = room:askToChooseCard(player, { target = data.to, flag = "he", skill_name = hzaahjiak.name })
     room:obtainCard(player, cid, false, fk.ReasonPrey, player, hzaahjiak.name)
   end,

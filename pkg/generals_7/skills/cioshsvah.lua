@@ -58,7 +58,7 @@ cioshsvah:addEffect(fk.DamageInflicted, {
 				from=player,
 				attachedSkillAndUser={muteCard=true},
 			})
-      data:preventDamage()
+    S.preventDamage({damageData=data,skillName=cioshsvah.name})
       return
     end
 
@@ -108,13 +108,13 @@ cioshsvah:addEffect(fk.DamageInflicted, {
 --     end,
 --   on_use = function(self, event, target, player, data)
 --     if not event:getCostData(self) then
---       data:preventDamage()
+ --   S.preventDamage({damageData=data,skillName=cioshsvah.name})
 --       return
 --     end
 --     local room = player.room
 --     local cards=event:getCostData(self).cards
 --     if not table.contains(player:getCardIds("h"), cards[1]) then
---       -- data:preventDamage()  --御火失敗?
+--       --     S.preventDamage({damageData=data,skillName=cioshsvah.name})  --御火失敗?
 --       return
 --     end
 --     room:throwCard(cards, cioshsvah.name, player, player)

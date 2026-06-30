@@ -4,7 +4,7 @@ local sjiqkius = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["sjiqkius"] = "私救",
-  [":sjiqkius"] = "主旹,預弃1肉選擇1其它角色發動,其回2抽1,獲得報幖記(伱可發動1次私救)。",
+  [":sjiqkius"] = "主旹,預打出1肉選擇1其它角色發動,其回2抽1,獲得報幖記(伱可發動1次私救)。",
 
   ["#sjiqkius"] = "弃1肉 令1角色回2抽1",
 
@@ -12,6 +12,8 @@ Fk:loadTranslationTable{
 
   ["$sjiqkius1"] = "此地雖好也也不是安身之處",
 }
+
+local S = require "packages/szyihhsoohssaet/szyih_guos" 
 
 sjiqkius:addEffect("active", {
   anim_type = "support",
@@ -24,7 +26,7 @@ sjiqkius:addEffect("active", {
   card_filter = function(self, player, to_select, selected)
     return #selected == 0 and table.contains(player:getCardIds("h"), to_select)
     and Fk:getCardById(to_select).name=="nziuk"
-    and  not player:prohibitDiscard(to_select)
+    and  not player:prohibitResponse(to_select)
   end,
   target_filter = function(self, player, to_select, selected, selected_cards)
       return (#selected == 0 and to_select~=player) and to_select:isWounded()
@@ -32,7 +34,7 @@ sjiqkius:addEffect("active", {
   on_use = function(self, room, effect)
     local from = effect.from
     local to = effect.tos[1]  --
-    room:throwCard(effect.cards, sjiqkius.name, from, from)
+    S.playCard(effect.from,effect.cards,sjiqkius.name)
     room:recover{
       who = to,
       num = 2,

@@ -23,7 +23,7 @@ thoomqdzoeoj:addEffect(fk.EventPhaseStart, {
     local drawers = {}
     player:drawCards(1+player:getLostHp(),thoomqdzoeoj.name)
     if room:askToSkillInvoke(player, { skill_name = thoomqdzoeoj.name ,prompt="#thoomqdzoeoj-loseHp"}) then
-      room:loseHp(player,1,thoomqdzoeoj.name)
+      room:loseHp(player,1,thoomqdzoeoj.name,player)
       -- room:addPlayerMark(player, MarkEnum.AddMaxCardsInTurn, 2*player:getLostHp())
       room:addPlayerMark(player, MarkEnum.AddMaxCards, 1)
     end

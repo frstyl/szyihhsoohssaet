@@ -12,7 +12,7 @@ cardSkill:addEffect("cardskill", {
   offset_func= Util.FalseFunc,
   on_effect = function(self, room, effect)
     if effect.responseToEvent then
-      room:loseHp(effect.from,1,cardSkill.name)
+      room:loseHp(effect.from,1,cardSkill.name,effect.from)
       S.preventDamage({damageData=effect.responseToEvent,skillName=cardSkill.name})  --skill??
       if not effect.from.dead then effect.from.drawCards(1,cardSkill.name) end
     end

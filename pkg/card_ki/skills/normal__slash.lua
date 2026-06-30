@@ -53,7 +53,8 @@ skill:addEffect("cardskill", {
         card = effect.card,
         damage = 1,
         damageType = fk.NormalDamage,
-        skillName = skill.name
+        skillName = skill.name,
+        event_data= effect,
       })
     end
   end,

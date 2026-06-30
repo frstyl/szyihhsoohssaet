@@ -75,7 +75,7 @@ hsuohhsvah:addEffect("active", {
         -- damageType=fk.FireDamage,
         -- skillName = hsuohhsvah.name,
       -- }
-      -- room:loseHp(player,1,hsuohhsvah.name)
+      -- room:loseHp(player,1,hsuohhsvah.name,effect.from)
       -- room:invalidateSkill(player, hsuohhsvah.name,"-turn")  --待改
     -- else
       -- player:setSkillUseHistory(hsuohhsvah.name, 0, Player.HistoryGame)

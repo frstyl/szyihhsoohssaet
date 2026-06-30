@@ -14,7 +14,6 @@ pujqkiams_active:addEffect("active", {  --飛劍選牌
     or  ( 
       #selected == 1 
       and table.contains(player:getCardIds("h"), to_select) 
-    -- and (not player:prohibitDiscard(Fk:getCardById(to_select)) )
     and (not player:prohibitResponse(Fk:getCardById(to_select)) )
     and (not Fk:getCardById(to_select):compareColorWith(Fk:getCardById(selected[1])) )
   )

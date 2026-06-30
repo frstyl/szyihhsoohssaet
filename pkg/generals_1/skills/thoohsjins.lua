@@ -88,7 +88,7 @@ thoohsjins:addEffect(fk.DamageCaused, {
       local n=#throw
       room:throwCard(throw, thoohsjins.name, data.to, player)  --新來者不計?
       if n>2 and not player.dead then
-        room:loseHp(player,1,thoohsjins.name)
+        room:loseHp(player,1,thoohsjins.name,player)
       end
     -- elseif #event:getCostData(self).cards ==1 then
     --   player.room:throwCard(event:getCostData(self).cards, thoohsjins.name, player, player)

@@ -23,7 +23,7 @@ local S = require "packages/szyihhsoohssaet/szyih_guos"
 --   prompt = "#gxeqprac-ask",
 --   card_filter = function(to_select, selected, data)
 
---     return not (Self:prohibitDiscard(Fk:getCardById(to_select)) and table.contains(data[1][2], to_select))
+--     return not (Self:prohibitResponse(Fk:getCardById(to_select)) and table.contains(data[1][2], to_select))
 --   end,
 --   feasible = function(selected)
 --     return #selected == 1

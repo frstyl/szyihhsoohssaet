@@ -18,7 +18,7 @@ nzjipkous:addEffect(fk.PreDamage, {--
   end,
   on_use = function(self, event, target, player, data)
     player.room:changeMaxHp(player, - data.damage)
-    data:preventDamage()
+    data:preventDamage()  --无旹機
   end,
 })
 

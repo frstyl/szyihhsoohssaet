@@ -1,6 +1,6 @@
 Fk:loadTranslationTable{
   ["bjesphioc"] = "避鋒",
-  [":bjesphioc"] = "鎖定.伱死亾旹必發.全體有咒術{狂虣/命中}者流失1體力,抽2",
+  [":bjesphioc"] = "鎖定.伱死亾旹必發.伱令全體有咒術{狂虣/命中}者流失1體力,抽2",
 
 
 
@@ -24,7 +24,7 @@ bjesphioc:addEffect(fk.Death, {
     local room = player.room
     for _, p in ipairs(room:getOtherPlayers(player)) do
       if not p.dead and (S.hasTsziukzzyit(p, "guacqboavs") or S.hasTsziukzzyit(p, "mracsttiucs")) then
-        room:loseHp(p,1, bjesphioc.name)
+        room:loseHp(p,1, bjesphioc.name,player)
         if not p.dead then
         p:drawCards(2,bjesphioc.name)
         end

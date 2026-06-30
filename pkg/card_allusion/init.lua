@@ -215,7 +215,7 @@ quac_boa_thoom_hsoojh_szyet_piuc_dzjec,
 extension:addCardSpec("quac_boa_thoom_hsoojh_szyet_piuc_dzjec",Card.Club, 1)
 Fk:loadTranslationTable{
   ["quac_boa_thoom_hsoojh_szyet_piuc_dzjec"] = "王婆貪賄說風情",
-  [":quac_boa_thoom_hsoojh_szyet_piuc_dzjec"] = "事件牌  <br /><b>王婆說媒</b>: A殺死B後,對A与C使用,交換A与C全部手牌裝僃,伱獲取A之1牌.A/B/C均不爲伱.  <br /><b>魚水之歡</b>: 一角色A防具進入弃牌堆後,伱可弃此牌,令A回1",
+  [":quac_boa_thoom_hsoojh_szyet_piuc_dzjec"] = "事件牌  <br /><b>王婆說媒</b>: A殺死B後,對A与C使用,交換A与C全部手牌裝僃,伱獲取A之1牌.A/B/C皆不爲伱.  <br /><b>魚水之歡</b>: 一角色A防具進入弃牌堆後,伱可弃此牌,令A回1",
 
   ["cio_szyih_tszi_hsvoan"] = "魚水之歡",
 

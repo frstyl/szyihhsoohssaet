@@ -34,7 +34,7 @@ tsoaktthiac:addEffect("active", {
         end)
     )
   end,
-  on_use = function(self, room, effect)  --均滿足?
+  on_use = function(self, room, effect)  --皆滿足?
       effect.from:drawCards(1,tsoaktthiac.name)
       room:setPlayerMark(effect.from,"@@tsoaktthiac-turn",1)
       if not effect.from.dead and effect.from:hasMark("tsoaktthiac-phase") then

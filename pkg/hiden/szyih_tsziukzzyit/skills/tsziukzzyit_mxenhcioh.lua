@@ -20,8 +20,7 @@ tsziukzzyit_mxenhcioh:addEffect(fk.DamageInflicted, {
     return (target == player) and S.hasTsziukzzyit(player,"mxenhcioh")
   end,
   on_trigger  = function(self, event, target, player, data)
-    data:preventDamage()
-    player.room:sendLog{ type = "#PreventDamageBySkill", from = player.id, arg = "mxenhcioh" }
+    S.preventDamage({damageData=data,skillName="mxenhcioh"})
     S.removeTsziukzzyit(player,"mxenhcioh")
   end,
 })

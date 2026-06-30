@@ -39,7 +39,7 @@ skill:addEffect("cardskill", {
         if (from.dead or to.dead) then return end
         -- local choice=""
         if #to:getCardIds("e")==0 then
-          room:loseHp(to, 1, skill.name)
+          room:loseHp(to, 1, skill.name,effect.from)
           return
         end
             -- choice = "loseHp" 

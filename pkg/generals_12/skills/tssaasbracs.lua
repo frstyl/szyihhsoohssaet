@@ -26,7 +26,7 @@ local S = require "packages/szyihhsoohssaet/szyih_guos"
 
 --   end,
 --   on_use = function(self, event, target, player, data)
---     player.room:loseHp(player, 1, tssaasbracs.name)
+--     player.room:loseHp(player, 1, tssaasbracs.name,player)
 --     data:cancelTarget(target)
 --     room:addPlayerMark(player, MarkEnum.AddMaxCardsInTurn,1)
 --   end,
@@ -77,10 +77,10 @@ tssaasbracs:addEffect(fk.DamageInflicted, {
     end
   end,
   on_use = function(self, event, target, player, data)
-    player.room:loseHp(player, 1, tssaasbracs.name)
+    player.room:loseHp(player, 1, tssaasbracs.name,player)
     if player.dead then return end
     player.room:sendLog{ type = "#PreventDamageBySkill", from = player.id, arg = tssaasbracs.name }
-    data:preventDamage()
+    S.preventDamage({damageData=data,skillName=tssaasbracs.name})
     if event:getCostData(self).name==nil then return end
     player.room:addTableMark(player,"@[:]tssaasbracs",event:getCostData(self).name)
   end,

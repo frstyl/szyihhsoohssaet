@@ -4,15 +4,16 @@ local bvoattsjens = fk.CreateSkill {
 
 Fk:loadTranslationTable{
 ["bvoattsjens"] = "拔箭",  --誼
-[":bvoattsjens"] = "➀當伱受傷後伱可發動.伱體力上限-1,抽3➁伱令1其它角色進入瀕死旹,伱可預弃1裝僃牌發動,伱體力上限+1,抽2",  --瀕死?
+[":bvoattsjens"] = "➀當伱受傷後伱可發動.伱體力上限-1,抽3➁伱令1其它角色進入瀕死旹,伱可預打出1裝僃牌發動,伱體力上限+1,抽2",  --瀕死?
 
 ["#bvoattsjens-invoke"]="拔箭 是否流失1體力上限 抽3",
-["#bvoattsjens-discard"]="拔箭 弃1裝僃加1體力上限",
+["#bvoattsjens-discard"]="拔箭 打出1裝僃加1體力上限",
 
 ["$bvoattsjens1"] = "小傷而已",
 
 }
 
+local S = require "packages/szyihhsoohssaet/szyih_guos" 
 
 bvoattsjens:addEffect(fk.Damaged, {
   anim_type = "masochism",
@@ -39,7 +40,7 @@ bvoattsjens:addEffect(fk.EnterDying, {
     return target~=player and player:hasSkill(bvoattsjens.name) and data.killer == player
   end,
   on_cost = function(self, event, target, player, data)
-      local cards = player.room:askToDiscard(player,{
+      local cards =  S.askToPlayCard(player,{
           min_num = 1,
           max_num = 1,
           skill_name = bvoattsjens.name,
@@ -57,7 +58,7 @@ bvoattsjens:addEffect(fk.EnterDying, {
   end,
   on_use = function(self, event, target, player, data)
     local room = player.room
-    room:throwCard(event:getCostData(self).cards, bvoattsjens.name, player, player)
+    S.playCard(player,event:getCostData(self).cards,bvoattsjens.name)
     room:changeMaxHp(player, 1)
     if player.dead then return end
     player:drawCards(3, bvoattsjens.name)

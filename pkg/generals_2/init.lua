@@ -204,7 +204,7 @@ Fk:loadTranslationTable{
 ["~soocsmuans"] = "義到盡頭終是命",
 }
 
-General:new(extension, "doohtshjen", "pujh", 4,5):addSkills { "noophzeen","tshiaahhqximh"}
+General:new(extension, "doohtshjen", "pujh", 4,5):addSkills { "noophzeen","tshjahhqximh"}
 Fk:loadTranslationTable{
 ["doohtshjen"] = "杜遷",
 ["#doohtshjen"] = "摸著天",

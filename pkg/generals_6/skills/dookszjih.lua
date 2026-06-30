@@ -71,7 +71,7 @@ dookszjih:addEffect(fk.DamageCaused, {
 --     return target==player and player:getMark("@@dook")>0
 --   end,
 --   on_trigger = function(self, event, target, player, data)
---     player.room:loseHp(player,1,"dook")  --毒skill
+--     player.room:loseHp(player,1,"dook",player)  --毒skill
 --     player.room:setPlayerMark(player,"@@dook",0)
 --     player.room:setPlayerMark(player,"@@antirecover-turn",1)
 --   end,

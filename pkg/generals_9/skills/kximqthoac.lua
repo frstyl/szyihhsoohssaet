@@ -18,10 +18,9 @@ kximqthoac:addEffect(fk.DamageInflicted, {
     return target == player and player:hasSkill(kximqthoac.name)
   end,
   on_use = function(self, event, target, player, data)
-    data:preventDamage()
-S.preventDamage({damageData=data,prevented=true, skillName=kximqthoac.name})
+    S.preventDamage({damageData=data,prevented=true, skillName=kximqthoac.name})
     if  player:usedSkillTimes(kximqthoac.name, Player.HistoryTurn) >1 then
-      player.room:loseHp(player,1,kximqthoac.name)
+      player.room:loseHp(player,1,kximqthoac.name,player)
     end
     if  player:usedSkillTimes(kximqthoac.name, Player.HistoryTurn) >2 then
       player.room:recover{
@@ -50,7 +49,7 @@ kximqthoac:addEffect(fk.TurnStart, {
 --   end,
 --   on_trigger = function(self, event, target, player, data)
 --     if player.hp<2 and data.damageType==1 then
---       data:preventDamage()
+--           S.preventDamage({damageData=data,prevented=true, skillName=kximqthoac.name})
 --       -- return
 --     else
 --       if data.damage>1 then

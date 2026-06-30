@@ -5,6 +5,7 @@ local hqximqqwer_active = fk.CreateSkill {
 Fk:loadTranslationTable{
   ["hqximqqwer_active"] = "侌䘙",
 }
+local S = require "packages/szyihhsoohssaet/szyih_guos" 
 
 hqximqqwer_active:addEffect("active", {
   card_filter = function (self, player, to_select, selected)
@@ -36,7 +37,8 @@ hqximqqwer_active:addEffect(fk.DamageInflicted, {
     -- room:useCard(use)
     if not use or target.dead then return end      
     if use.damageDealt and use.damageDealt[data.from] then
-      data:preventDamage()
+      S.preventDamage({damageData=data,skillName="hqximqqwer"})
+
     end
   end,
 })
@@ -49,7 +51,7 @@ hqximqqwer_active:addEffect(fk.DamageInflicted, {
     and player:getMark("@@hqximqqwer")>0
   end,
   on_trigger=  function(self, event, target, player, data)
-        data:preventDamage()
+    S.preventDamage({damageData=data,skillName="hqximqqwer"})
     player.room:setPlayerMark(player,"@@hqximqqwer",0) 
   end,
 })

@@ -4,7 +4,7 @@ local szjethqeens = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["szjethqeens"] = "設宴",
-  [":szjethqeens"] = "➀主旹,伱可將1紅桃牌轉化爲置酒設筵使用發動.➁置酒設筵生效結算歬,伱可選擇1角色發動.其爲結算起點.➂置酒設筵取牌終,若有𠟇餘牌,伱可發動,伱獲取之",
+  [":szjethqeens"] = "➀主旹,伱可將1♥️牌轉化爲置酒設筵使用發動.➁置酒設筵生效結算歬,伱可選擇1角色發動.其爲結算起點.➂置酒設筵取牌終,若有𠟇餘牌,伱可發動,伱獲取之",
 
   ["#szjethqeens"] = "設宴：1紅桃牌轉化爲置酒設筵使用",
 
@@ -14,7 +14,7 @@ Fk:loadTranslationTable{
 
 szjethqeens:addEffect("viewas", {
   anim_type = "offensive",
-  pattern = "ttis_tsiuh_szjet_jjen",
+  pattern = "ttxis_tsiuh_szjet_jjen",
   prompt = "#szjethqeens",
   handly_pile = true,
   max_phase_use_time=1,
@@ -23,7 +23,7 @@ szjethqeens:addEffect("viewas", {
   end,
   view_as = function(self, player, cards)
     if #cards ~= 1 then return end
-    local c = Fk:cloneCard("ttis_tsiuh_szjet_jjen")
+    local c = Fk:cloneCard("ttxis_tsiuh_szjet_jjen")
     c.skillName = szjethqeens.name
     c:addSubcard(cards[1])
     return c
@@ -37,7 +37,7 @@ szjethqeens:addEffect("viewas", {
 
 szjethqeens:addEffect(fk.BeforeCardUseEffect, {
   can_trigger= function(self, event, target, player, data)
-    return  player:hasSkill(szjethqeens.name) and data.card.trueName=="ttis_tsiuh_szjet_jjen"
+    return  player:hasSkill(szjethqeens.name) and data.card.trueName=="ttxis_tsiuh_szjet_jjen"
   end,
   on_cost= function(self, event, target, player, data)
       local tos = player.room:askToChoosePlayers(player, {
@@ -71,7 +71,7 @@ szjethqeens:addEffect(fk.BeforeCardsMove, {
   can_trigger = function(self, event, target, player, data)
     if not  player:hasSkill(szjethqeens.name)  then return end
       for _, move in ipairs(data) do  --data MoveCards
-        if move.skillName=="ttis_tsiuh_szjet_jjen_skill" and  move.toArea == Card.DiscardPile then  
+        if move.skillName=="ttxis_tsiuh_szjet_jjen_skill" and  move.toArea == Card.DiscardPile then  
           return true
         end
       end
@@ -81,7 +81,7 @@ szjethqeens:addEffect(fk.BeforeCardsMove, {
     if player.dead then return end
     local cards={}  --直接改元迻動?
     for _, move in ipairs(data) do  --data MoveCards
-      if move.skillName=="ttis_tsiuh_szjet_jjen_skill" and  move.toArea == Card.DiscardPile then  
+      if move.skillName=="ttxis_tsiuh_szjet_jjen_skill" and  move.toArea == Card.DiscardPile then  
           for _, info in ipairs(move.moveInfo) do
             table.insert(cards,info)
           end

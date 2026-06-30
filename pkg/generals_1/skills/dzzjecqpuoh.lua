@@ -12,6 +12,8 @@ Fk:loadTranslationTable{
   ["$dzzjecqpuoh1"] = "小可王倫且喜光臨草寨",
 }
 
+local S = require "packages/szyihhsoohssaet/szyih_guos" 
+
 dzzjecqpuoh:addEffect(fk.AfterCardsMove, {
   anim_type = "drawcard",
   can_trigger = function(self, event, target, player, data)
@@ -155,7 +157,7 @@ dzzjecqpuoh:addEffect(fk.DamageInflicted, {
     local room=player.room
     if room:getCurrent()==player then
     -- local n = data.damage
-    data:preventDamage()
+    S.preventDamage({damageData=data,skillName=dzzjecqpuoh.name})  --skill??
     player:drawCards(1, dzzjecqpuoh.name)
     else
     --  local cards = 

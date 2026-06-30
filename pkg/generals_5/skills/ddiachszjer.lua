@@ -14,6 +14,8 @@ Fk:loadTranslationTable{
   ["$ddiachszjer2"] = "将军~您可要为奴家做主~",
 }
 
+local S = require "packages/szyihhsoohssaet/szyih_guos" 
+
 ddiachszjer:addEffect(fk.DamageInflicted, {
   anim_type = "masochism",
   can_trigger = function(self, event, target, player, data)
@@ -55,7 +57,7 @@ ddiachszjer:addEffect(fk.DamageInflicted, {
       room:useCard(use)
       end
     if  use and use.damageDealt then
-      data:preventDamage()
+      S.preventDamage({damageData=data,skillName=ddiachszjer.name})
     else
     if player.dead then return end
         local cards = room:askToDiscard(to, {

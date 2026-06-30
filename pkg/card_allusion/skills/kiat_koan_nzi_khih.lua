@@ -6,7 +6,7 @@ local cardSkill = fk.CreateSkill{
 local S = require "packages/szyihhsoohssaet/szyih_guos"
 
 
-cardSkill:addEffect("active", {  --歬轉終
+cardSkill:addEffect("active", {
   prompt = "#kiat_koan_nzi_khih",
   target_filter = function(self, player, to_select, selected,selected_cards)
     return #selected == 0 and to_select ~= player and not to_select:isKongcheng()

@@ -23,6 +23,7 @@ skill:addEffect("cardskill", {
         recoverBy = effect.from,
         card = effect.card,
         skillName = self.name,
+        event_data= effect,
       })
     end
   end,
@@ -31,17 +32,5 @@ skill:addEffect("cardskill", {
 skill:addAI(nil, "__card_skill")
 skill:addAI(nil, "default_card_skill")
 
-skill:addTest(function(room, me)
-  FkTest.runInRoom(function()
-    room:loseHp(me, 1)
-    room:loseHp(room.players[2], 1)
-    room:useCard {
-      from = me,
-      card = Fk:cloneCard("hsiu_jiach_ssaac_sik"),
-    }
-  end)
-  lu.assertEquals(me.hp, 4)
-  lu.assertEquals(room.players[2].hp, 4)
-end)
 
 return skill

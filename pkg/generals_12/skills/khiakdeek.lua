@@ -16,9 +16,6 @@ Fk:loadTranslationTable{
 
 local S = require "packages/szyihhsoohssaet/szyih_guos" 
 
-
-
-
 khiakdeek:addEffect(fk.CardUsing, {
   anim_type = "defensive",
   can_trigger = function(self, event, target, player, data)
@@ -46,12 +43,7 @@ khiakdeek:addEffect(fk.CardUsing, {
   end,
   on_use = function(self, event, target, player, data)
     local room=player.room
-    room:responseCard({
-				card=Fk:getCardById(event:getCostData(self).cards[1]),
-				from=player,
-				attachedSkillAndUser={muteCard=true},
-			})
-
+    S.playCard(player,event:getCostData(self).cards,khiakdeek.name)
     -- data.nullified=true
     S.useNullify(data,player,khiakdeek.name)  --殺進程?
     -- data:removeAllTargets()
@@ -62,7 +54,7 @@ khiakdeek:addEffect(fk.CardUsing, {
     -- end)
     local discard=false
     if #weapons~=0 then 
-      local cards=player.room:askToDiscard(data.from,{
+      local cards= S.askToPlayCard(data.from,{
           min_num=1,
           max_num=1,
           include_equip=true,
@@ -149,7 +141,7 @@ khiakdeek:addEffect(fk.CardUsing, {
 --   if #cards>0 then
 --   room:throwCard(cards, khiakdeek.name, player, player)
 --   else
---     room:loseHp(player,1,khiakdeek.name)
+--     room:loseHp(player,1,khiakdeek.name,player)
 --   end
 --   local weapons=data.from:getEquipments(Card.SubtypeWeapon)
 --   weapons=table.filter(weapons,function(id)

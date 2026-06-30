@@ -33,7 +33,7 @@ cardSkill:addEffect("cardskill", {
   -- end,
   offset_func= Util.FalseFunc,
   on_effect = function(self, room, effect)
-    if not effect.responseToEvent then 
+    if not effect.extra_data or not effect.extra_data.hqjin_szjer_ljis_doavs then 
       return
     end
     ---@field public from? ServerPlayer @ 伤害来源
@@ -50,22 +50,23 @@ cardSkill:addEffect("cardskill", {
     ---@field public dealtRecorderId integer? @ “实际造成的伤害”中对应的事件ID
     ---@field public prevented boolean? @ 伤害是否被防止
     local damage={}
-    damage.from=effect.responseToEvent.from
+    damage.from=effect.extra_data.hqjin_szjer_ljis_doavs.from
     damage.to=effect.to
-    damage.damage=effect.responseToEvent.damage
-    damage.card=effect.responseToEvent.card
-    damage.chain=effect.responseToEvent.chain
-    damage.damageType=effect.responseToEvent.damageType
-    damage.skillName=effect.responseToEvent.skillName
-    damage.beginnerOfTheDamage=effect.responseToEvent.beginnerOfTheDamage
+    damage.damage=effect.extra_data.hqjin_szjer_ljis_doavs.damage
+    damage.card=effect.extra_data.hqjin_szjer_ljis_doavs.card
+    damage.chain=effect.extra_data.hqjin_szjer_ljis_doavs.chain
+    damage.damageType=effect.extra_data.hqjin_szjer_ljis_doavs.damageType
+    damage.skillName=effect.extra_data.hqjin_szjer_ljis_doavs.skillName
+    damage.beginnerOfTheDamage=effect.extra_data.hqjin_szjer_ljis_doavs.beginnerOfTheDamage
     damage.by_user=false
-    damage.chain_table=effect.responseToEvent.chain_table
-    damage.isVirtualDMG=effect.responseToEvent.isVirtualDMG  --??
-    -- damage.dealtRecorderId=effect.responseToEvent.dealtRecorderId  --??
-    damage.extra_data = effect.responseToEvent.extra_data or {}
+    damage.chain_table=effect.extra_data.hqjin_szjer_ljis_doavs.chain_table
+    damage.isVirtualDMG=effect.extra_data.hqjin_szjer_ljis_doavs.isVirtualDMG  --??
+    -- damage.dealtRecorderId=effect.extra_data.hqjin_szjer_ljis_doavs.dealtRecorderId  --??
+    damage.extra_data = effect.extra_data.hqjin_szjer_ljis_doavs.extra_data or {}
     damage.extra_data.hqjin_szjer_ljis_doavs= effect.extra_data.hqjin_szjer_ljis_doavs
+    damage.event_data= effect.extra_data.hqjin_szjer_ljis_doavs.event_data
     room:damage(damage)
-    -- damage.prevented=effect.responseToEvent.prevented  --??
+    -- damage.prevented=effect.extra_data.hqjin_szjer_ljis_doavs.prevented  --??
 
     -- if not (effect.extra_data and  effect.extra_data.hqjin_szjer_ljis_doavs) then 
     --   effect.from:drawCards(1,cardSkill.name)
@@ -151,7 +152,7 @@ cardSkill:addEffect(fk.Damaged, {
       direction = use.tos[1]==S.getNextOne(data.to) and 1 or -1
     end
     use.extra_data = use.extra_data  or {}  --爲何要再寫
-    use.extra_data.hqjin_szjer_ljis_doavs={}
+    use.extra_data.hqjin_szjer_ljis_doavs=data
     use.extra_data.hqjin_szjer_ljis_doavs.direction=direction
     use.responseToEvent=data
       -- use.extra_data.hqjin_szjer_ljis_doavs.damage={}

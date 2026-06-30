@@ -3,6 +3,8 @@ local equipSkill = fk.CreateSkill {
   attached_equip = "pjen",
 }
 
+local S = require "packages/szyihhsoohssaet/szyih_guos"
+
 equipSkill:addEffect(fk.TargetSpecified, {
   can_trigger = function(self, event, target, player, data)
     if target == player and player:hasSkill(equipSkill.name)  and data.card.trueName=="ssaet"  and data.card.suit~=player.NoSuit then
@@ -31,11 +33,7 @@ equipSkill:addEffect(fk.TargetSpecified, {
       end
   end,
   on_use = function(self, event, target, player, data)
-    player.room:responseCard({
-				card=Fk:getCardById(event:getCostData(self).cards[1]),
-				from=player,
-				attachedSkillAndUser={muteCard=true},
-			})
+    S.playCard(player,carevent:getCostData(self).cards,equipSkill.name)
     data.additionalDamage = (data.additionalDamage or 0) + 1
   end,
 
