@@ -11,7 +11,7 @@ Fk:loadTranslationTable{
 
 --112. 第一百一十一回　張順夜伏金山寺　宋江智取潤州城
 
-General:new(extension, "puacqloap", "qwachloak__kvoan", 4):addSkills{"giocstseejs"}  --"quanqdzsios"
+General:new(extension, "puacqloap", "qwachloak__kvoan", 4):addSkills{"giocstseejs","siacqquan"}  --"quanqdzsios"
 Fk:loadTranslationTable{
 ["puacqloap"] = "方臘",
 ["#puacqloap"] = "永樂聖公",
@@ -167,7 +167,7 @@ Fk:loadTranslationTable{
 --116. 第一百一十五回　張順魂捉方天定　宋江智取寧海軍
 --117. 第一百一十六回　盧俊義分兵歙州道　宋公明大戰烏龍嶺
 --118. 第一百一十七回　睦州城箭射鄧元覺　烏龍嶺神助宋公明
---119. 第一百一十八回　盧俊義大戰昱嶺關　宋公明智取清溪洞
+--119. 第一百一十八回　盧俊義大戰昱嶺關　宋公明智取淸溪洞
 --120. 第一百一十九回　魯智深浙江坐化　宋公明衣錦還鄉
 --121. 第一百二十回　宋公明神聚蓼兒洼　徽宗帝夢游梁山泊
 --

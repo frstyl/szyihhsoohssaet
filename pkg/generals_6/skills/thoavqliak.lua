@@ -4,12 +4,12 @@ local thoavqliak = fk.CreateSkill({
 
 Fk:loadTranslationTable{
   ["thoavqliak"] = "韜略",
-  [":thoavqliak"] = "主旹或伱受傷後,伱可与1其它角色拼點發動.若伱贏,伱可移動場上1牌(置入對應區域替換元牌),沒贏,伱獲得對方拼點牌",
+  [":thoavqliak"] = "主旹或伱受傷後,伱可与1其它脚色拼點發動.若伱贏,伱可移動場上1牌(置入對應區域替換元牌),沒贏,伱獲得對方拼點牌",
 
-  ["#thoavqliak"] = "韜略：与一名角色拼点，若赢，迻動場上1牌",
+  ["#thoavqliak"] = "韜略：与一名脚色拼点，若赢，迻動場上1牌",
 
   -- ["#thoavqliak-discard"] = "韜略： 弃1手牌",
-  ["#thoavqliak-choose"] = "韜略： 選擇角色",
+  ["#thoavqliak-choose"] = "韜略： 選擇脚色",
 
   ["$thoavqliak1"] = "韜略傳家遠弊平地能擒虎",
 
@@ -73,7 +73,7 @@ thoavqliak:addEffect("active", {
         table.insertIfNeed(to_get, cid)
       end
       if #to_get > 0 then
-        room:obtainCard(player, to_get, true, fk.ReasonJustMove, player, "thoavqliak")
+        room:obtainCard(player, to_get, true, fk.ReasonPrey, player, "thoavqliak")
       end
       -- room:askToDiscard(player, {
       --     min_num = 1,

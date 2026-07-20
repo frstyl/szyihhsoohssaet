@@ -5,11 +5,11 @@ local maescjer = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["maescjer"] = "賣藝",
-  [":maescjer"] = "主旹,打出3有花且各異花牌或2裝僃牌發動.伱令其它角色各抽1,肰後其各可交与伱至少1牌令伱抽2,伱自交予伱牌數至多者選1令其本轉後執行1額外轉",
+  [":maescjer"] = "主旹,打出3有花且各異花牌或2裝僃牌發動.伱令其它脚色各抽1,肰後其各可交与伱至少1牌令伱抽2,伱自交予伱牌數至多者選1令其本轉後執行1額外轉",
 
   ["#maescjer-active"] = "賣藝  弃牌",
   ["#maescjer-give"] = "賣藝  是否交予 %src 牌",
-  ["#maescjer-active"] = "賣藝  選擇1角色執行額外轉",
+  ["#maescjer-active"] = "賣藝  選擇1脚色執行額外轉",
 }
 
 local S = require "packages/szyihhsoohssaet/szyih_guos" 

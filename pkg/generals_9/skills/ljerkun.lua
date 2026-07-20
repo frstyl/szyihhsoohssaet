@@ -4,9 +4,9 @@ local ljerkun = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["ljerkun"] = "勵軍",
-  [":ljerkun"] = "伱致傷後,伱可選1角色發動.其護甲+1",  --丈八
+  [":ljerkun"] = "伱致傷後,伱可選1脚色發動.其護甲+1",  --丈八
 
-  ["#ljerkun-ask"] = "勵軍 選1角色發動.其護甲+1",
+  ["#ljerkun-ask"] = "勵軍 選1脚色發動.其護甲+1",
 
   ["$ljerkun1"] = "看伱等已是秊衰命䀆",
   ["$ljerkun2"] = "汝昰斯未聽過我李成聞達之威名无"

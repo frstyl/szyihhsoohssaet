@@ -4,7 +4,7 @@ local hzouhpuat = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["hzouhpuat"] = "後發",
-  [":hzouhpuat"] = "其它角色殺不因使用打出進入弃牌堆後,伱可發動.獲得其中1至多.伱可將1+a殺轉化爲殺使用發動.伱爲此殺選a項➀不可抵消➁反无效➂无視防具➃目幖非鎖定技當轉失效(a爲1至4整數)",
+  [":hzouhpuat"] = "其它脚色殺不因使用打出進入弃牌堆後,伱可發動.獲得其中1至多.伱可將1+a殺轉化爲殺使用發動.伱爲此殺選a項➀不可抵消➁反无效➂无視防具➃目幖非鎖定技當轉失效(a爲1至4整數)",
 
   ["#hzouhpuat-choose"] = "後發 選擇所用殺与所弃牌",
   ["@@hzouhpuat-inhand"] = "後發",
@@ -140,7 +140,7 @@ hzouhpuat:addEffect(fk.AfterCardsMove, {
       end
   end,
   on_use = function(self, event, target, player, data)
-    player.room:moveCardTo(event:getCostData(self).cards, Player.Hand, player, fk.ReasonJustMove, hzouhpuat.name, nil, true, player,"@@hzouhpuat-inhand")
+    player.room:moveCardTo(event:getCostData(self).cards, Player.Hand, player, fk.ReasonPrey, hzouhpuat.name, nil, true, player,"@@hzouhpuat-inhand")
 end,
 })
 

@@ -5,7 +5,7 @@ local dzjecqdook = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["dzjecqdook"] = "情毒",
-  [":dzjecqdook"] = "伱其它角色主致傷後,伱可發動:伱爲其附加疢毒",
+  [":dzjecqdook"] = "伱其它脚色主致傷後,伱可發動:伱爲其附加疢毒",
 
   ["#dzjecqdook-invoke"] = "情毒 是否對 %src發動",
 

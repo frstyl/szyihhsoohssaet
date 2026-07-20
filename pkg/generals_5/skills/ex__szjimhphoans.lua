@@ -8,7 +8,7 @@ local ex__szjimhphoans= fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["ex__szjimhphoans"] = "宷判",
-  [":ex__szjimhphoans"] = "當一角色判斷牌生效歬,伱可發動,全體角色非鎖定技能失效至判定牌生效後.伱獲得元判定牌,該角色再次判定,以此次判定代替元判定",
+  [":ex__szjimhphoans"] = "當一脚色判斷牌生效歬,伱可發動,全體脚色非鎖定技能失效至判定牌生效後.伱獲得元判定牌,該脚色再次判定,以此次判定代替元判定",
   ["#ex__szjimhphoans-reJudge"] = "%from 发动了〖%arg〗 %to 新判定牌爲 %arg2",
 }
 
@@ -32,7 +32,7 @@ ex__szjimhphoans:addEffect(fk.AskForRetrial,{
       --1
       local oldId = data.card:getEffectiveId()
       if oldId  and room:getCardArea(oldId) ==  Card.Processing  and not  player.dead  then --data.card Card
-        player.room:obtainCard(player, oldId, true, fk.ReasonJustMove, player, ex__szjimhphoans.name)
+        player.room:obtainCard(player, oldId, true, fk.ReasonPrey, player, ex__szjimhphoans.name)
       end
       --2
       local judge = {

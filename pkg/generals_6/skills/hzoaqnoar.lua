@@ -1,6 +1,6 @@
 Fk:loadTranslationTable{
   ["hzoaqnoar"] = "何奈",
-  [":hzoaqnoar"] = "其它角色主段始旹,伱可將1紅桃手牌轉化爲无中生有對其使用",
+  [":hzoaqnoar"] = "其它脚色主段始旹,伱可將1紅桃手牌轉化爲无中生有對其使用",
 
   ["#hzoaqnoar-use"] = "何奈 昰否將紅桃手牌轉化爲无中生有對 %src 使用",
 

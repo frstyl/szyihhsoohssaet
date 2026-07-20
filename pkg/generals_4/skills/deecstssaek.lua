@@ -4,7 +4,7 @@ local deecstsshaek = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["deecstsshaek"] = "定策",
-  [":deecstsshaek"] = "輪限1.一角色A主段始旹,伱可發動.伱視爲使用[廟算于先],若A不爲伱,伱選擇1卽旹錦囊交予A,當段內A使用此牌伱可爲其增加1合理目幖",
+  [":deecstsshaek"] = "輪限1.一脚色A主段始旹,伱可發動.伱視爲使用[廟算于先],若A不爲伱,伱選擇1卽旹錦囊交予A,當段內A使用此牌伱可爲其增加1合理目幖",
 
   ["@@deecstsshaek-phase"] = "定策",
 

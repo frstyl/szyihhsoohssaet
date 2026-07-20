@@ -1,6 +1,6 @@
 Fk:loadTranslationTable{
   ["hqoomsmiu"] = "暗謀",
-  [":hqoomsmiu"] = "任一角色判斷牌生效前,伱可選其一手牌發動.伱打出此牌,以此牌代替元判定牌。",
+  [":hqoomsmiu"] = "任一脚色判斷牌生效前,伱可選其一手牌發動.伱打出此牌,以此牌代替元判定牌。",
 
   ["#hqoomsmiu-ask"] = "是否发动 暗謀，打出%dest一张牌代替 其 %arg 判定",
 

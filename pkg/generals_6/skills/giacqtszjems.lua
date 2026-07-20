@@ -1,8 +1,8 @@
 Fk:loadTranslationTable{
   ["giacqtszjems"] = "彊占",
-  [":giacqtszjems"] = "末段始旹,伱可選擇1有手牌其它角色發動.伱獲取其全部手牌,伱下个轉始旹,伱將全部手牌交与其",
+  [":giacqtszjems"] = "末段始旹,伱可選擇1有手牌其它脚色發動.伱取得其全部手牌,伱下个轉始旹,伱將全部手牌交与其",
 
-  ["#giacqtszjems-choose"] = "彊占 選擇目幖 獲取其全部手牌,伱下个轉始旹,伱將全部手牌交与其",
+  ["#giacqtszjems-choose"] = "彊占 選擇目幖 取得其全部手牌,伱下个轉始旹,伱將全部手牌交与其",
   ["@@giacqtszjems"] = "彊占",
 
   ["$giacqtszjems1"] = "我就是要占已伱後花園伱能拏把我怎像",

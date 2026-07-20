@@ -4,7 +4,7 @@ local tthiqhquans = fk.CreateSkill {
 
 Fk:loadTranslationTable{
 ["tthiqhquans"] = "癡怨",
-[":tthiqhquans"] = "其它角色回復體力後,伱可發動.其判定,若爲♠♥,伱抽2,♣♦,伱可弃1手牌,令其弃2手牌",
+[":tthiqhquans"] = "其它脚色回復體力後,伱可發動.其判定,若爲♠♥,伱抽2,♣♦,伱可弃1手牌,令其弃2手牌",
 
 ["#tthiqhquans-invoke"] = "癡怨 是否弃1手牌令%src弃2手牌",
 ["#tthiqhquans-discard"] = "癡怨弃2手牌",

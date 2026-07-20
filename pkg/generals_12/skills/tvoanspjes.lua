@@ -5,7 +5,7 @@ local tvoanspjes = fk.CreateSkill({
 
 Fk:loadTranslationTable{
   ["tvoanspjes"] = "斷臂",
-  [":tvoanspjes"] = "局限1.其它角色失去冣後手牌後,伱可發動.伱體力上限-2,予其2傷,選擇其1技能其失去",
+  [":tvoanspjes"] = "局限1.其它脚色失去冣後手牌後,伱可發動.伱體力上限-2,予其2傷,選擇其1技能其失去",
 
   ["#tvoanspjes-invoke"] = "斷臂： %dest ",
   ["#tvoanspjes-choice"] = "斷臂： %dest ",

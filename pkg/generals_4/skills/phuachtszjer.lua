@@ -5,7 +5,7 @@ local phuachtszjer = fk.CreateSkill({
 
 Fk:loadTranslationTable{
   ["phuachtszjer"] = "仿製",
-  [":phuachtszjer"] = "➀段限1,任一角色可于其主旹展示一牌,令伱記彔其牌名.➁段限1,伱可將1牌轉化爲1記錄牌使用發動,迻除該記錄",  --彊度
+  [":phuachtszjer"] = "➀段限1,任一脚色可于其主旹展示一牌,令伱記彔其牌名.➁段限1,伱可將1牌轉化爲1記錄牌使用發動,迻除該記錄",  --彊度
 
   ["#phuachtszjer"] = "轉化",
 

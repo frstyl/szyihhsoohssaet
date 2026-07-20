@@ -1,6 +1,6 @@
 Fk:loadTranslationTable{
   ["tsheejqdzyet"] = "悽絕",
-  [":tsheejqdzyet"] = "伱死亾旹,伱可選1已死角色發動.令其2體力3牌復活",
+  [":tsheejqdzyet"] = "伱死亾旹,伱可選1已死脚色發動.令其2體力3牌復活",
 
   ["$tsheejqdzyet1"] = "哈哈哈哈哈哈哈哈！",
   ["$tsheejqdzyet2"] = "伯符，且看我这一手！",

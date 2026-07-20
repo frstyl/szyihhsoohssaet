@@ -13,7 +13,7 @@ Fk:loadTranslationTable{
   ["@tszhyeqpoa_switch"] = "吹波",
 
   ["#tszhyeqpoa-recast"] = "吹波 緟鑄%arg",
-  ["#tszhyeqpoa-choose"] = "吹波 選擇1角色 予其1傷",
+  ["#tszhyeqpoa-choose"] = "吹波 選擇1脚色 予其1傷",
 
   ["$tszhyeqpoa1"] = "風來波起",  --1 --2 --3
 }

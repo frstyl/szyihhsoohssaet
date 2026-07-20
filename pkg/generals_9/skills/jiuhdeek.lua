@@ -4,7 +4,7 @@ local jiuhdeek = fk.CreateSkill {
 
 Fk:loadTranslationTable{
 ["jiuhdeek"] = "誘敵",
--- [":jiuhdeek"] = "當伱使用閃抵消其它角色所使用殺旹,伱可發動,伱抽1,視爲使用添兵減竈｡",
+-- [":jiuhdeek"] = "當伱使用閃抵消其它脚色所使用殺旹,伱可發動,伱抽1,視爲使用添兵減竈｡",
 [":jiuhdeek"] = "當伱可使用｢添兵減竈｣旹,若伱至目幖距離不大于1,伱可將紅牌轉化爲｢添兵減竈｣使用發動｡",
 
 ["#jiuhdeek"] = "誘敵 將紅牌轉化爲添兵減竈",

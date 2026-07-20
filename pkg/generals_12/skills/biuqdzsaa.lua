@@ -8,9 +8,9 @@ local biuqdzsaa = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["biuqdzsaa"] = "浮槎",
-  [":biuqdzsaa"] = "鎖，其它角色至你距离+1。輪終,若其它角色至伱距離皆大于x,伱獲勝(x爲遊戲人數至少爲5)",
+  [":biuqdzsaa"] = "鎖，其它脚色至你距离+1。輪終,若其它脚色至伱距離皆大于x,伱獲勝(x爲遊戲人數至少爲5)",
 
-  [":biuqdzsaa_inner"] = "鎖，其它角色至你距离+{1}。輪終,若其它角色至伱距離皆大于x,伱獲勝(x爲遊戲人數至少爲5)",
+  [":biuqdzsaa_inner"] = "鎖，其它脚色至你距离+{1}。輪終,若其它脚色至伱距離皆大于x,伱獲勝(x爲遊戲人數至少爲5)",
 }
 
 biuqdzsaa:addEffect("distance", {

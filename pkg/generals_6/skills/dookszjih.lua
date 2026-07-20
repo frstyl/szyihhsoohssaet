@@ -4,7 +4,7 @@ local dookszjih = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["dookszjih"] = "毒矢",  --毒💩️
-  [":dookszjih"] = "當伱使用殺對目幖角色致傷旹,伱可➀預打出1手牌發動,爲目幖附加毒.➁發動,此傷-1,目幖角色牢+1",
+  [":dookszjih"] = "當伱使用殺對目幖脚色致傷旹,伱可➀預打出1手牌發動,爲目幖附加毒.➁發動,此傷-1,目幖脚色牢+1",
 
   ["#dookszjih-invoke"] = "毒矢 打出0至1手牌對 %src 發動",
 

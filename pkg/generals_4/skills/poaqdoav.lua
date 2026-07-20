@@ -5,10 +5,10 @@ local poaqdoav = fk.CreateSkill{
 
 Fk:loadTranslationTable{
 ["poaqdoav"] = "波濤",
-[":poaqdoav"] = "伱預段始旹伱可發動,若全體角色伏區皆无牌,伱抽2,否則伱弃置場上1牌",
+[":poaqdoav"] = "伱預段始旹伱可發動,若全體脚色伏區皆无牌,伱選1脚色与其各抽1,否則伱弃置場上1牌",
 
-["#poaqdoav-nojudge"] = "波濤 場上伏區无牌 伱可令全體角色抽1",
-["#poaqdoav-judge"] = "波濤 場上伏區有牌 是否弃",
+-- ["#poaqdoav-nojudge"] = "波濤 場上伏區无牌 伱可令全體脚色抽1",
+-- ["#poaqdoav-judge"] = "波濤 場上伏區有牌 是否弃",
 
 }
 
@@ -53,7 +53,18 @@ poaqdoav:addEffect(fk.EventPhaseStart, {
       end
     end
     if nojudge then
-      player:drawCards(2,poaqdoav.name)
+      local tos = player.room:askToChoosePlayers(player, {
+        min_num = 1,
+        max_num = 1,
+        targets = player.room.alive_players,
+        -- targets = player.room:getOtherPlayers(player),
+        skill_name = poaqdoav.name,
+        prompt = "#poaqdoav-choose",
+        cancelable = false,
+      })
+      player:drawCards(1,poaqdoav.name)
+      if tos[1].dead then return end
+      tos[1].drawCards(1)
     else
       local tos = player.room:askToChoosePlayers(player, {
         min_num = 1,

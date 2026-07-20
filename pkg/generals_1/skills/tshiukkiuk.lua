@@ -7,7 +7,7 @@ local tshiukkiuk= fk.CreateSkill({
 
 Fk:loadTranslationTable{
 ["tshiukkiuk"] = "蹴鞠",
-[":tshiukkiuk"] = "當伱受傷旹,伱可發動.伱判定,若判定牌爲黑,伱可打出1手牌,將傷害轉予1其它角色",
+[":tshiukkiuk"] = "當伱受傷旹,伱可發動.伱判定,若判定牌爲黑,伱可打出1手牌,將傷害轉予1其它脚色",
 
 ["#tshiukkiuk-discard"] = "蹴鞠 打出1手牌 轉迻傷害",
 

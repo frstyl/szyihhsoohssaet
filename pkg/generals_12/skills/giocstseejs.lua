@@ -4,10 +4,10 @@ local giocstseejs = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["giocstseejs"] = "共濟",
-  [":giocstseejs"] = "輪始旹,伱可選1至x(x=Ceiling(存活角色數/2))其他角色發動.伱獲得各所選角色各1手牌,肰後伱各交与其1手牌",
+  [":giocstseejs"] = "輪始旹,伱受傷後,伱可選1至x(x=Ceiling(存活脚色數/2))其他脚色發動.伱取得所選脚色各1手牌,肰後伱各交与其1手牌",
 
-  -- ["#giocstseejs"] = "共濟 選擇角色",
-  ["#giocstseejs-choose"] = "共濟 選擇 %arg 角色",
+  -- ["#giocstseejs"] = "共濟 選擇脚色",
+  ["#giocstseejs-choose"] = "共濟 選擇 %arg 脚色",
   ["#giocstseejs-give"] = "共濟 交与%src 1牌",
 
   ["$giocstseejs1"] = "人人爲公,天下大同",
@@ -58,11 +58,7 @@ Fk:loadTranslationTable{
 --   end,
 -- })
 
-giocstseejs:addEffect(fk.RoundStart, {
-  anim_type = "control",
-  can_trigger = function(self, event, target, player, data)
-    return player:hasSkill(giocstseejs.name) 
-  end,
+local spec={
   on_cost = function(self, event, target, player, data)
     local room=player.room
     local n =(1+#room.alive_players)//2
@@ -83,7 +79,8 @@ giocstseejs:addEffect(fk.RoundStart, {
     local room = player.room
     local tos=event:getCostData(self).tos
     for _, p in ipairs(tos) do
-      if not (p.dead or player.dead or p:isKongcheng()) then
+      if  player.dead then return end
+      if not (p.dead or p:isKongcheng()) then
           local cid = room:askToChooseCard(player, { 
           target = p, 
           flag = "h", 
@@ -94,7 +91,8 @@ giocstseejs:addEffect(fk.RoundStart, {
     end
 
     for _, p in ipairs(tos) do
-      if not (p.dead or player.dead or player:isKongcheng()) then
+      if  player.dead then return end
+      if not (p.dead  or player:isKongcheng()) then
         local cid = room:askToCards(player, { 
           min_num =1, 
           max_num =1,
@@ -107,6 +105,23 @@ giocstseejs:addEffect(fk.RoundStart, {
       end
     end
   end,
+}
+
+giocstseejs:addEffect(fk.RoundStart, {
+  anim_type = "control",
+  can_trigger = function(self, event, target, player, data)
+    return player:hasSkill(giocstseejs.name) 
+  end,
+  on_cost=spec.on_cost,
+  on_use=spec.on_use,
 })
 
+giocstseejs:addEffect(fk.Damage, {
+  anim_type = "control",
+  can_trigger = function(self, event, target, player, data)
+    return data.to==player and player:hasSkill(giocstseejs.name) 
+  end,
+  on_cost=spec.on_cost,
+  on_use=spec.on_use,
+})
 return giocstseejs

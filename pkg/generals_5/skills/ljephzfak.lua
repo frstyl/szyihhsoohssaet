@@ -4,9 +4,9 @@ local ljephzfak = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["ljephzfak"] = "爉獲",
-  [":ljephzfak"] = "{伱使用殺指定目幖後/伱使用打出牌響應其它角色後},若其有手牌,伱可發動.伱獲取其1手牌",
+  [":ljephzfak"] = "{伱使用殺指定目幖後/伱使用打出牌響應其它脚色後},若其有手牌,伱可發動.伱取得其1手牌",
 
-  ["#ljephzfak-invoke"] = "爉獲 獲取%src手牌",
+  ["#ljephzfak-invoke"] = "爉獲 取得%src手牌",
 
   ["$ljephzfak"] = "伱跑不掉已",
 }

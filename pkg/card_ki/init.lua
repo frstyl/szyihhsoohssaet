@@ -14,6 +14,7 @@ local normal__ssaet = fk.CreateCard{
   name = "normal__ssaet",
   type = Card.TypeBasic, --int
   is_damage_card = true,
+  damage_type = fk.NormalDamage,
   skill = "normal__ssaet_skill",
 }
 
@@ -22,7 +23,6 @@ local szjemh = fk.CreateCard{
   type = Card.TypeBasic, --int
   skill = "szjemh_skill",
   is_passive=true,
-  is_damage_card = false,
 }
 
 local nziuk = fk.CreateCard{
@@ -61,7 +61,7 @@ local buac_hzfan_mujs_nzjen = fk.CreateCard{
 local hsiap_paak = fk.CreateCard{
   name = "hsiap_paak",
   type = Card.TypeBasic, --int
-  -- is_damage_card = true, --失去體力
+  -- is_damage_card = true, --流失體力
   skill = "hsiap_paak_skill",
 }
 
@@ -71,6 +71,7 @@ local tous_tsiacs = fk.CreateCard{
   type = Card.TypeBasic,
   skill = "tous_tsiacs_skill",
   is_damage_card = true,
+  damage_type = fk.NormalDamage,
 }
 
 local distance__tous_tsiacs = fk.CreateCard{
@@ -78,15 +79,16 @@ local distance__tous_tsiacs = fk.CreateCard{
   type = Card.TypeBasic,
   skill = "distance__tous_tsiacs_skill",
   is_damage_card = true,
+  damage_type = fk.NormalDamage,
 }
 extension:loadCardSkels {
   distance__tous_tsiacs,
 }
 Fk:loadTranslationTable{
   ["distance__tous_tsiacs"] = "鬥將",
-  [":distance__tous_tsiacs"] = "锦囊牌  <br /><b>旹機</b>：主旹  <br /><b>目幖</b>：攻程内1其它角色  <br /><b>效果</b>：由目幖角色始，其与伱輪流選擇執行1項➀打出1殺➁受到對方1傷,終止",
+  [":distance__tous_tsiacs"] = "锦囊牌  <br /><b>旹機</b>：主段執行旹  <br /><b>目幖</b>：攻程内1其它脚色  <br /><b>效果</b>：由目幖脚色始，其与伱輪流執行:可打出｢殺｣,若不打出受到倒對方1傷害,終止此流程",
   ["distance__tous_tsiacs_skill"] = "鬥將",
-  ["#distance__tous_tsiacs"] = "选择一名其它角色，由其开始，其与伱轮流打出1｢殺｣，直到其与伱中的一名角色未打出｢殺｣。<br />未打出｢殺｣的角色受到其与伱中的另一名角色造成的1点傷害",
+  ["#distance__tous_tsiacs"] = "选择一名其它脚色，由其开始，其与伱轮流打出1｢殺｣，直到其与伱中的一名脚色未打出｢殺｣。<br />未打出｢殺｣的脚色受到其与伱中的另一名脚色造成的1点傷害",
 }
 local liac_tshoavh_seen_hzaac = fk.CreateCard{
   name = "liac_tshoavh_seen_hzaac",
@@ -100,6 +102,7 @@ local maach_hsooh_hzaah_ssaen = fk.CreateCard{
   type = Card.TypeBasic,
   skill = "maach_hsooh_hzaah_ssaen_skill",
   is_damage_card = true,
+  damage_type = fk.NormalDamage,
   multiple_targets = true,
 }
 
@@ -108,13 +111,14 @@ local kiuc_szjih_sje_ttiac = fk.CreateCard{
   type = Card.TypeBasic,
   skill = "kiuc_szjih_sje_ttiac_skill",
   is_damage_card = true,
+  damage_type = fk.NormalDamage,
   multiple_targets = true,
 }
 
-local ttxis_tsiuh_szjet_jjen = fk.CreateCard{
-  name = "ttxis_tsiuh_szjet_jjen",
+local ttis_tsiuh_szjet_jjen = fk.CreateCard{
+  name = "ttis_tsiuh_szjet_jjen",
   type = Card.TypeBasic,
-  skill = "ttxis_tsiuh_szjet_jjen_skill",
+  skill = "ttis_tsiuh_szjet_jjen_skill",
   multiple_targets = true,
 }
 
@@ -130,6 +134,7 @@ local theen_looj = fk.CreateCard{  --閃電 可緟
   type = Card.TypeTrick,
   sub_type = Card.SubtypeDelayedTrick,
   is_damage_card = true,
+  damage_type = fk.ThunderDamage,
   skill = "theen_looj_skill",
   stackable_delayed = true,
 }
@@ -289,7 +294,7 @@ extension:loadCardSkels {
 
   buoh_teejh_tthiu_sjin, hqjin_deek_qwe_tsji, tous_tsiacs, hsiap_paak, liac_tshoavh_seen_hzaac,
   buac_hzfan_mujs_nzjen,
-  maach_hsooh_hzaah_ssaen, kiuc_szjih_sje_ttiac, hsiu_jiach_ssaac_sik, ttxis_tsiuh_szjet_jjen,
+  maach_hsooh_hzaah_ssaen, kiuc_szjih_sje_ttiac, hsiu_jiach_ssaac_sik, ttis_tsiuh_szjet_jjen,
   theen_looj, khxes_kheet_sis_tssaas,
 
 
@@ -408,8 +413,8 @@ extension:addCardSpec("kiuc_szjih_sje_ttiac", Card.Heart, 1)  --萬箭齊發
 
 extension:addCardSpec("hsiu_jiach_ssaac_sik", Card.Heart, 1)  --修養生息
 
-extension:addCardSpec("ttxis_tsiuh_szjet_jjen", Card.Heart, 3)  --五穀 設筵管待
-extension:addCardSpec("ttxis_tsiuh_szjet_jjen", Card.Heart, 4)
+extension:addCardSpec("ttis_tsiuh_szjet_jjen", Card.Heart, 3)  --五穀 設筵管待
+extension:addCardSpec("ttis_tsiuh_szjet_jjen", Card.Heart, 4)
 
 extension:addCardSpec("liac_tshoavh_seen_hzaac", Card.Heart, 7)  --糧艸先行
 extension:addCardSpec("liac_tshoavh_seen_hzaac", Card.Heart, 8)
@@ -453,162 +458,173 @@ Fk:loadTranslationTable{
 
 
   ["ssaet"] = "殺",
-  [":ssaet"] = "基本牌-行動  <br /><b>旹機</b>：主旹  <br /><b>目幖</b>：1其它角色  <br /><b>距離</b>：伱攻程内  <br /><b>次數</b>：每段限1次  <br /><b>效果</b>：對目幖角色造成1点傷害。",
+  [":ssaet"] = "基本牌-行動  <br /><b>旹機</b>：主段執行旹  <br /><b>目幖</b>：其它脚色  <br /><b>目幖數</b>：1 <br /><b>距離</b>：伱攻程内  <br /><b>次數</b>：同名牌每段限1次  <br /><b>效果</b>：對目幖脚色造成1点傷害。",
+  ["ssaet_skill"] = "殺",
   ["#ssaet-szjemh"] = "%src 對伱使用了｢殺｣，请使用1｢閃｣",
   ["#ssaet-szjemh-multi"] = "%src 對伱使用了｢殺｣，请使用1｢閃｣（此为第 %arg 張，共需 %arg2 張）",
-  ["#ssaet_skill"] = "选择攻程内的一名角色，對其造成1点傷害",
-  ["#ssaet_skill_multi"] = "选择攻程内的至多%arg名角色，對这些角色各造成1点傷害",
+  ["#ssaet_skill"] = "选择攻程内的一名脚色，對其造成1点傷害",
+  ["#ssaet_skill_multi"] = "选择攻程内的至多%arg名脚色，對这些脚色各造成1点傷害",
 
   
   ["szjemh"] = "閃",
-  [":szjemh"] = "基本牌-行動  <br /><b>旹機</b>：｢殺｣A對伱生效前  <br /><b>目幖</b>：A  <br /><b>效果</b>：抵消A對伱效果。  <br /><b>額外</b>：因動-抵消｡每旹機限1次｡",
+  [":szjemh"] = "基本牌-行動  <br /><b>旹機</b>：｢殺｣A對伱生效前  <br /><b>目幖</b>：A    <br /><b>目幖數</b>：0  <br /><b>效果</b>：抵消A對伱效果。  <br /><b>額外</b>：因動-抵消｡每旹機同名牌限1次｡",
+  ["szjemh_skill"] = "閃",
   ["szjemh_skill"] = "閃",
 
   ["nziuk"] = "肉",
-  [":nziuk"] = "基本牌-物資  <br /><b>旹機</b>：主旹/一名角色瀕死結算旹  <br /><b>目幖</b>：已受伤的伱/瀕死結算角色  <br /><b>效果</b>：目幖角色回1。",
+  [":nziuk"] = "基本牌-物資  <br /><b>旹機</b>：主段執行旹/一名脚色瀕死結算旹  <br /><b>目幖</b>：已損脚色  <br /><b>目幖數</b>：伱/瀕死結算脚色 <br /><b>效果</b>：目幖脚色回1。",
+  ["nziuk_skill"] = "肉",
   ["#nziuk_skill"] = "目幖回1",
 
   ["tsiuh"] = "酒",
-  [":tsiuh"] = "基本牌-物資<br/><b>旹機</b>：主旹/伱瀕死結算旹<br/><b>目幖</b>：伱  <br /><b>次數</b>：每轉限1次/任意次<br/><b>效果</b>：目幖角色當轉使用的下1｢殺｣傷害基數+1/目幖角色回1。",
+  [":tsiuh"] = "基本牌-物資<br/><b>旹機</b>：主段執行旹/伱瀕死結算旹  <br/><b>目幖</b>：任意  <br /><b>目幖數</b>：伱/伱  <br /><b>次數</b>：同名牌每轉限1次/任意次<br/><b>效果</b>：目幖脚色當轉使用的下1｢殺｣傷害基數+1/目幖脚色回1。",
+  ["tsiuh_skill"] = "酒",
   ["#tsiuh_skill"] = "伱于此回合内使用的下1｢殺｣的傷害值基数+1",
   ["@tsyis-turn"] = "醉",
 
   ["buac_hzfan_mujs_nzjen"] = "防患未肰",
-  [":buac_hzfan_mujs_nzjen"] = "锦囊牌  <br /><b>旹機</b>：锦囊牌A對伱生效前  <br /><b>目幖</b>：A  <br /><b>效果</b>：抵消A對伱效果    <br /><b>額外</b>：因動-抵消｡每旹機限1次",
+  [":buac_hzfan_mujs_nzjen"] = "锦囊牌  <br /><b>旹機</b>：锦囊牌A對伱生效前  <br /><b>目幖</b>：A    <br /><b>目幖數</b>：0   <br /><b>效果</b>：抵消A對伱效果    <br /><b>額外</b>：因動-抵消｡每旹機同名牌限1次",
+  ["buac_hzfan_mujs_nzjen_skill"] = "防患未肰",
   ["buac_hzfan_mujs_nzjen_skill"] = "防患未肰",
 
   ["buoh_teejh_tthiu_sjin"] = "釜底抽薪",
-  [":buoh_teejh_tthiu_sjin"] = "锦囊牌  <br /><b>旹機</b>：主旹  <br /><b>目幖</b>：1其它角色區域内有牌  <br /><b>效果</b>：伱弃置目幖角色區域内的1牌。",
+  [":buoh_teejh_tthiu_sjin"] = "锦囊牌  <br /><b>旹機</b>：主段執行旹  <br /><b>目幖</b>：其它脚色區域内有牌者  <br /><b>目幖數</b>：1  <br /><b>效果</b>：伱弃置目幖脚色區域内的1牌。",
   ["buoh_teejh_tthiu_sjin_skill"] = "釜底抽薪",
-  ["#buoh_teejh_tthiu_sjin_skill"] = "选择一名區域内有牌的其它角色，伱弃置其區域内的1牌",
+  ["#buoh_teejh_tthiu_sjin_skill"] = "选择一名區域内有牌的其它脚色，伱弃置其區域内的1牌",
 
   ["hqjin_deek_qwe_tsji"] = "因敵爲資",
-  [":hqjin_deek_qwe_tsji"] = "锦囊牌  <br /><b>旹機</b>：主旹  <br /><b>目幖</b>：1其它角色區域内有牌  <br /><b>距離</b>：伱至其距離等于1  <br /><b>效果</b>：伱获得目幖角色區域内的1牌。",
+  [":hqjin_deek_qwe_tsji"] = "锦囊牌  <br /><b>旹機</b>：主段執行旹  <br /><b>目幖</b>：其它脚色區域内有牌者  <br /><b>目幖數</b>：1  <br /><b>距離</b>：伱至其距離等于1  <br /><b>效果</b>：伱取得目幖脚色區域内的1牌。",
   ["hqjin_deek_qwe_tsji_skill"] = "因敵爲資",
-  ["#hqjin_deek_qwe_tsji_skill"] = "选择距离1的區域内有牌的角色，伱获得其區域内的1牌",
+  ["#hqjin_deek_qwe_tsji_skill"] = "选择距离1的區域内有牌的脚色，伱取得其區域内的1牌",
 
   ["tous_tsiacs"] = "鬥將",
-  [":tous_tsiacs"] = "锦囊牌  <br /><b>旹機</b>：主旹  <br /><b>目幖</b>：1其它角色  <br /><b>距離</b>：伱攻程内  <br /><b>效果</b>：由目幖角色始，其与伱輪流選擇執行1項➀打出1殺➁受到對方1傷,終止",
-  ["#tous_tsiacs_skill"] = "选择一名其它角色，由其开始，其与伱轮流打出1｢殺｣，直到其与伱中的一名角色未打出｢殺｣。<br />未打出｢殺｣的角色受到其与伱中的另一名角色造成的1点傷害",
+  [":tous_tsiacs"] = "锦囊牌  <br /><b>旹機</b>：主段執行旹  <br /><b>目幖</b>：其它脚色  <br /><b>目幖數</b>：1  <br /><b>距離</b>：伱攻程内  <br /><b>效果</b>：由目幖脚色始，其与伱輪流執行:可打出｢殺｣,若不打出受到倒對方1傷害,終止此流程",
+  ["tous_tsiacs_skill"] = "鬥將",
+  ["#tous_tsiacs_skill"] = "选择一名其它脚色，由其开始，其与伱轮流打出1｢殺｣，直到其与伱中的一名脚色未打出｢殺｣。<br />未打出｢殺｣的脚色受到其与伱中的另一名脚色造成的1点傷害",
 
   ["hsiap_paak"] = "脅迫",
-  [":hsiap_paak"] = "錦囊牌<br/><b>旹機</b>：主旹<br/><b>目幖</b>：其它角色A与A殺合理目幖B<br/><b>效果</b>：A需選擇➀對B使用殺,➁伱選擇獲取A 1裝僃或令A流失1體力",
+  [":hsiap_paak"] = "錦囊牌<br/><b>旹機</b>：主段執行旹<br/><b>目幖</b>：其它脚色A与A殺合理目幖B  <br /><b>目幖數</b>：1  <br/><b>效果</b>：A需選擇➀對B使用殺,➁伱選擇取得A 1裝僃或令A流失1體力",
   ["hsiap_paak_skill"] = "脅迫",
-  ["#hsiap_paak_skill"] = "選擇1其它角色A體力小于伱者,A之殺合理目幖B,對A使用 A需對B使用殺,否則伱選擇其將裝僃區1牌,其交与伱或令其流失1體力",
-  -- ["#hsiap_paak-choose"] = "脅迫 選擇1項令 %src 執行",
+  ["#hsiap_paak_skill"] = "選擇1其它脚色A體力小于伱者,A之殺合理目幖B,對A使用 A需對B使用殺,否則伱選擇其將裝僃區1牌,其交与伱或令其流失1體力",
+  ["#hsiap-subTarget"] = "脅迫 選擇 %src 殺目幖",
   ["#hsiap_paak-gainCard"] = "獲得裝僃",
   ["#hsiap_paak-ssaet"] ="%src 對伱使用 脅迫, 伱需對 %src 使用殺",
 
 
   ["liac_tshoavh_seen_hzaac"] = "粮艸先行",
-  [":liac_tshoavh_seen_hzaac"] = "锦囊牌  <br /><b>旹機</b>：主旹  <br /><b>目幖</b>：伱  <br /><b>效果</b>：目幖角色抽2。",
-  ["#liac_tshoavh_seen_hzaac"] = "伱抽2",
-
+  [":liac_tshoavh_seen_hzaac"] = "锦囊牌  <br /><b>旹機</b>：主段執行旹  <br /><b>目幖</b>：任意  <br /><b>目幖數</b>：伱  <br /><b>效果</b>：目幖脚色抽2。",
+  ["liac_tshoavh_seen_hzaac_skill"] = "粮艸先行",
+  ["#liac_tshoavh_seen_hzaac_skill"] = "伱抽2",
 
   
   ["maach_hsooh_hzaah_ssaen"] = "猛虎下山",
-  [":maach_hsooh_hzaah_ssaen"] = "锦囊牌  <br /><b>旹機</b>：主旹  <br /><b>目幖</b>：全部其它角色  <br /><b>效果</b>：目幖角色選擇執行1項➀打出1｢殺｣，➁受到伱1点傷害。",
-  ["#maach_hsooh_hzaah_ssaen_skill"] = "全部其它角色選擇執行1項➀打出1｢殺｣，➁受到伱1点傷害",
+  [":maach_hsooh_hzaah_ssaen"] = "锦囊牌  <br /><b>旹機</b>：主段執行旹  <br /><b>目幖</b>：其它脚色  <br /><b>目幖數</b>：全部其它脚色   <br /><b>效果</b>：目幖脚色可打出1｢殺｣，若未打出受到伱1点傷害。",
+  ["maach_hsooh_hzaah_ssaen_skil"] = "猛虎下山",
+  ["#maach_hsooh_hzaah_ssaen_skill"] = "全部其它脚色可打出1｢殺｣，若未打出受到伱1点傷害",
 
 
   ["kiuc_szjih_sje_ttiac"] = "弓矢斯張",
-  [":kiuc_szjih_sje_ttiac"] = "锦囊牌  <br /><b>旹機</b>：主旹  <br /><b>目幖</b>：全部其它角色  <br /><b>效果</b>：目幖角色選擇執行1項➀打出1｢閃｣，➁受到伱1点傷害。",
-  ["#kiuc_szjih_sje_ttiac_skill"] = "全部其它角色選擇執行1項➀打出1｢閃｣，➁受到伱1点傷害",
+  [":kiuc_szjih_sje_ttiac"] = "锦囊牌  <br /><b>旹機</b>：主段執行旹  <br /><b>目幖</b>：其它脚色  <br /><b>目幖數</b>：全部其它脚色  <br /><b>效果</b>：目幖脚色可打出1｢閃｣，若未打出受到伱1点傷害。",
+  ["kiuc_szjih_sje_ttiac_skill"] = "弓矢斯張",
+  ["#kiuc_szjih_sje_ttiac_skill"] = "全部其它脚色可打出1｢閃｣，若未打出受到伱1点傷害",
 
   ["hsiu_jiach_ssaac_sik"] = "修養生息",
-  [":hsiu_jiach_ssaac_sik"] = "锦囊牌  <br /><b>旹機</b>：主旹  <br /><b>目幖</b>：全部角色  <br /><b>效果</b>：每名目幖角色回1。",
-  ["#hsiu_jiach_ssaac_sik_skill"] = "全部角色回1",
+  [":hsiu_jiach_ssaac_sik"] = "锦囊牌  <br /><b>旹機</b>：主段執行旹  <br /><b>目幖</b>：任意  <br /><b>目幖數</b>：全部脚色  <br /><b>效果</b>：：每名目幖脚色回1。",
+  ["hsiu_jiach_ssaac_sik_skill"] = "修養生息",
+  ["#hsiu_jiach_ssaac_sik_skill"] = "全部脚色回1",
 
-  ["ttxis_tsiuh_szjet_jjen"] = "置酒設筵",
-  [":ttxis_tsiuh_szjet_jjen"] = "锦囊牌  <br /><b>旹機</b>：主旹  <br /><b>目幖</b>：全部角色  <br /><b>額外</b>：執行前,亮出牌堆頂等于目幖角色数的牌，結算後廢置餘牌。  <br /><b>效果</b>：目幖角色獲得其中1牌，",
-  ["ttxis_tsiuh_szjet_jjen_skill"] = "置酒設筵",
+  ["ttis_tsiuh_szjet_jjen"] = "置酒設筵",
+  [":ttis_tsiuh_szjet_jjen"] = "锦囊牌  <br /><b>旹機</b>：主段執行旹  <br /><b>目幖</b>任意  <br /><b>目幖數</b>全部脚色  <br /><b>額外</b>：執行前,亮出牌堆頂等于目幖脚色数的牌，結算後廢置餘牌。  <br /><b>效果</b>：目幖脚色獲得其中1牌，",
+  ["ttis_tsiuh_szjet_jjen_skill"] = "置酒設筵",
+  ["#ttis_tsiuh_szjet_jjen_skill"] = "亮出牌堆顶等于全部脚色数的牌，每名脚色取得其中1牌",
   ["Please choose cards"] = "请选择1卡牌",
-  ["#ttxis_tsiuh_szjet_jjen_skill"] = "亮出牌堆顶等于全部角色数的牌，每名角色获得其中1牌",
 
   ["theen_looj"] = "天雷",
-  [":theen_looj"] = "法術-天災  <br /><b>旹機</b>：主旹  <br /><b>目幖</b>：伱  <br /><b>延旹</b>：將此牌置于目幖角色伏區,目幖伏段生效  <br /><b>效果</b>：目幖判定｡若結果:爲♠2-9，其受到3点无來源雷电傷害;否則將｢閃电｣至入至其下家伏區。  <br /><b>額外</b>：此牌被抵消後至入目幖下家伏區",
+  [":theen_looj"] = "法術-天災  <br /><b>旹機</b>：主段執行旹  <br /><b>目幖</b>：伏區无同名牌者  <br /><b>目幖數</b>：伱  <br /><b>延旹</b>：將此牌置于目幖脚色伏區,目幖伏段執行旹生效  <br /><b>效果</b>：目幖判定｡若結果:爲♠2-9，其受到3点无來源雷电傷害;否則將｢閃电｣至入至其下家伏區。  <br /><b>額外</b>：此牌被抵消後至入目幖下家伏區",
+  ["theen_looj_skill"] = "天雷",
+  ["#theen_looj_skill"] = "天雷",
 
   ["khxes_kheet_sis_tssaas"] = "掎挈伺詐",
-  [":khxes_kheet_sis_tssaas"] = "锦囊牌  <br /><b>旹機</b>：主旹  <br /><b>目幖</b>：一名其它角色  <br /><b>延旹</b>：將此牌置于目幖角色伏區,目幖伏段生效  <br /><b>效果</b>：目幖判定｡若判定結果:不爲<font color='#CC3131'>♥</font>，目幖越過當轉(全部)主段。",
-  ["#khxes_kheet_sis_tssaas_skill"] = "选择一名其它角色，將此牌置于其伏區。其伏段判定：<br />若結果不为<font color='#CC3131'>♥</font>，其越過當轉(全部)主段",
+  [":khxes_kheet_sis_tssaas"] = "锦囊牌  <br /><b>旹機</b>：主段執行旹  <br /><b>目幖</b>：其它脚色伏區无同名牌者  <br /><b>目幖數</b>：1  <br /><b>延旹</b>：將此牌置于目幖脚色伏區,目幖伏段執行旹生效  <br /><b>效果</b>：目幖判定｡若判定結果:不爲<font color='#CC3131'>♥</font>，目幖越過當轉(全部)主段。",
+  ["#khxes_kheet_sis_tssaas_skill"] = "选择一名其它脚色，將此牌置于其伏區。其伏段執行旹判定：<br />若結果不为<font color='#CC3131'>♥</font>，其越過當轉(全部)主段",
 
   ["kaeh_hqvoans_toav"] = "解腕刀",
-  [":kaeh_hqvoans_toav"] = "裝僃牌·武器  <br/><b>武器</b>：使用後將此牌置于目幖角色武器欄,持續生效  <br/><b>攻程</b>：1  <br/><b>武器技能</b>：每段伱使用殺次數上限+2",
+  [":kaeh_hqvoans_toav"] = "裝僃牌·武器  <br /><b>目幖</b>：有武器欄者  <br /><b>目幖數</b>：伱     <br/><b>武器</b>：使用結算旹將此牌置于目幖脚色武器欄,持續生效  <br/><b>攻程</b>：1  <br/><b>武器技能</b>：每段伱使用殺次數上限+2",
   ["#kaeh_hqvoans_toav"] = "解腕刀",
 
   ["cio_ddiac_kiams"] = "魚腸劍",
-  [":cio_ddiac_kiams"] = "裝僃牌·武器  <br/><b>武器</b>：使用後將此牌置于目幖角色武器欄,持續生效    <br /><b>攻程</b>：２  <br /><b>武器技能</b>：鎖定.伱使用殺无視防具",
+  [":cio_ddiac_kiams"] = "裝僃牌·武器  <br /><b>目幖</b>：有武器欄者  <br /><b>目幖數</b>：伱       <br/><b>武器</b>：使用結算旹將此牌置于目幖脚色武器欄,持續生效    <br /><b>攻程</b>：２  <br /><b>武器技能</b>：鎖定.伱使用殺无視防具",
   ["#cio_ddiac_kiams_skill"] = "魚腸劍",
 
   ["tshjit_seec_kiams"] = "七星劍",
-  [":tshjit_seec_kiams"] = "裝僃牌·武器  <br/><b>武器</b>：使用後將此牌置于目幖角色武器欄,持續生效    <br /><b>攻程</b>：２  <br /><b>武器技能</b>：伱使用｢殺｣對目幖角色致傷旹，若目幖有牌且傷害未被防止，伱可發動｡防止此傷害，然後依次弃置目幖2x牌(x爲傷害值)。",
+  [":tshjit_seec_kiams"] = "裝僃牌·武器  <br /><b>目幖</b>：有武器欄者  <br /><b>目幖數</b>：伱       <br/><b>武器</b>：使用結算旹將此牌置于目幖脚色武器欄,持續生效    <br /><b>攻程</b>：２  <br /><b>武器技能</b>：伱使用｢殺｣對目幖脚色致傷旹，若目幖有牌且傷害未被防止，伱可發動｡防止此傷害，然後依次弃置目幖2x牌(x爲傷害值)。",
   ["#tshjit_seec_kiams_skill"] = "七星劍",
 
   ["ssaoc_toav"] = "日月雙刀",
-  [":ssaoc_toav"] = "裝僃牌·武器  <br/><b>武器</b>：使用後將此牌置于目幖角色武器欄,持續生效    <br /><b>攻程</b>：２  <br /><b>武器技能</b>：伱使用殺指定目幖後，伱可發動｡其執行一项：➀自弃1手牌➁令伱抽1。",
+  [":ssaoc_toav"] = "裝僃牌·武器  <br /><b>目幖</b>：有武器欄者  <br /><b>目幖數</b>：伱       <br/><b>武器</b>：使用結算旹將此牌置于目幖脚色武器欄,持續生效    <br /><b>攻程</b>：２  <br /><b>武器技能</b>：伱使用殺指定目幖後，伱可發動｡其執行一项：➀自弃1手牌➁令伱抽1。",
   ["#ssaoc_toav_skill"] = "日月雙刀",
   ["#ssaoc_toav-invoke"] = "日月雙刀： 伱需弃置1手牌，否則 %src 摸1牌",
 
   ["hqianh_cuat_toav"] = "靑龍偃月刀",
-  [":hqianh_cuat_toav"] = "裝僃牌·武器  <br/><b>武器</b>：使用後將此牌置于目幖角色武器欄,持續生效    <br/><b>攻程</b>：3<br/><b>武器技能</b>：伱使用殺被閃抵消後,伱可无視距離次數使用1殺發動",
+  [":hqianh_cuat_toav"] = "裝僃牌·武器  <br /><b>目幖</b>：有武器欄者  <br /><b>目幖數</b>：伱       <br/><b>武器</b>：使用結算旹將此牌置于目幖脚色武器欄,持續生效    <br/><b>攻程</b>：3<br/><b>武器技能</b>：伱使用殺被閃抵消後,伱可无視距離次數使用1殺發動",
   ["#hqianh_cuat_toav_skill"] = "靑龍偃月刀",
   -- [":#hqianh_cuat_toav_skill"] = "伱使用殺被閃抵消後,伱可无視距離使用1殺",
   ["#hianh_cuat_toav_ssaet"]="无視距離使用殺",
 
   ["miu"] = "丈八鉈矛",
-  [":miu"] = "裝僃牌·武器  <br/><b>武器</b>：使用後將此牌置于目幖角色武器欄,持續生效    <br /><b>攻程</b>：３  <br /><b>武器技能</b>：伱可{使用/打出}殺旹,可將两張手牌轉化爲｢殺｣發動。視爲伱于元旹機{使用/打出}之",
+  [":miu"] = "裝僃牌·武器  <br /><b>目幖</b>：有武器欄者  <br /><b>目幖數</b>：伱       <br/><b>武器</b>：使用結算旹將此牌置于目幖脚色武器欄,持續生效    <br /><b>攻程</b>：３  <br /><b>武器技能</b>：伱可{使用/打出}殺旹,可將两張手牌轉化爲｢殺｣發動。視爲伱于元旹機{使用/打出}之",
   ["miu_skill&"] = "矛",
   [":miu_skill&"] = "伱可將两張手牌轉化｢殺｣使用或打出。",
   ["#miu_skill&"] = "伱可將两張手牌轉爲｢殺｣使用或打出",
 
   ["puoh"] = "金蘸斧",
-  [":puoh"] = "裝僃牌·武器  <br/><b>武器</b>：使用後將此牌置于目幖角色武器欄,持續生效    <br /><b>攻程</b>：３  <br /><b>武器技能</b>：伱使用的｢殺｣被｢閃｣抵消後，伱可打出2牌發動，反抵消。",
+  [":puoh"] = "裝僃牌·武器  <br /><b>目幖</b>：有武器欄者  <br /><b>目幖數</b>：伱       <br/><b>武器</b>：使用結算旹將此牌置于目幖脚色武器欄,持續生效    <br /><b>攻程</b>：３  <br /><b>武器技能</b>：伱使用的｢殺｣被｢閃｣抵消後，伱可打出2牌發動，反抵消。",
   ["#puoh_skill"] = "金蘸斧",
   ["#puoh-invoke"] = "金蘸斧：伱可打出两張牌，令伱對 %dest 使用｢殺｣生效",
 
 
   ["ddiach"] = "水磨禪杖",  --改于此
-  [":ddiach"] = "裝僃牌·武器  <br/><b>武器</b>：使用後將此牌置于目幖角色武器欄,持續生效    <br/><b>攻程</b>：4<br/><b>武器技能</b>：鎖定｡伱使用殺指定目幖後,若目幖手牌數大于體力值,必發,此殺不可被響應",
+  [":ddiach"] = "裝僃牌·武器  <br /><b>目幖</b>：有武器欄者  <br /><b>目幖數</b>：伱       <br/><b>武器</b>：使用結算旹將此牌置于目幖脚色武器欄,持續生效    <br/><b>攻程</b>：4<br/><b>武器技能</b>：鎖定｡伱使用殺指定目幖後,若目幖手牌數大于體力值,必發,此殺不可被響應",
   ["#ddiach_skill"] = "水磨禪杖",
 
   ["krak"] = "方天畫戟",
-  [":krak"] = "裝僃牌·武器  <br/><b>武器</b>：使用後將此牌置于目幖角色武器欄,持續生效    <br /><b>攻程</b>：４  <br /><b>武器技能</b>：鎖定｡恆續,伱預使用殺選目幖旹,若伱體力值不大于1或除此殺外无手牌,此殺目幖上限+2。",
+  [":krak"] = "裝僃牌·武器  <br /><b>目幖</b>：有武器欄者  <br /><b>目幖數</b>：伱       <br/><b>武器</b>：使用結算旹將此牌置于目幖脚色武器欄,持續生效    <br /><b>攻程</b>：４  <br /><b>武器技能</b>：鎖定｡恆續,伱預使用殺選目幖旹,若伱體力值不大于1或除此殺外无手牌,此殺目幖上限+2。",
   ["#krak_skill"] = "方天畫戟",
 
   ["ssaok"] = "槊",
-  [":ssaok"] = "裝僃牌·武器  <br/><b>武器</b>：使用後將此牌置于目幖角色武器欄,持續生效    <br /><b>攻程</b>：４  <br /><b>武器技能</b>：伱使用｢殺｣對目幖角色致傷旹，伱可弃置其1坐騎發動",
+  [":ssaok"] = "裝僃牌·武器  <br /><b>目幖</b>：有武器欄者  <br /><b>目幖數</b>：伱       <br/><b>武器</b>：使用結算旹將此牌置于目幖脚色武器欄,持續生效    <br /><b>攻程</b>：４  <br /><b>武器技能</b>：伱使用｢殺｣對目幖脚色致傷旹，伱可弃置其1坐騎發動",
   ["#ssaok_skill"] = "槊",
 
   ["boos_nzjin_kaap"] = "步人甲",
-  [":boos_nzjin_kaap"] = "裝僃牌·防具  <br/><b>防具</b>：使用後將此牌置于目幖角色防具欄,持續生效    <br /><b>防具技能</b>：殺指定伱爲目幖旹,伱可發動,伱判定,若結果爲紅,伱自目幖迻除。", --<font color='red'>♥</font>
+  [":boos_nzjin_kaap"] = "裝僃牌·防具  <br /><b>目幖</b>：有防具欄者  <br /><b>目幖數</b>：伱       <br/><b>防具</b>：使用結算旹將此牌置于目幖脚色防具欄,持續生效    <br /><b>防具技能</b>：殺指定伱爲目幖旹,伱可發動,伱判定,若結果爲紅,伱自目幖迻除。", --<font color='red'>♥</font>
   ["#boos_nzjin_kaap_skill"] = "步人甲",
 
   ["soam_ddioc_khoeojh"] = "三緟鎧",
-  [":soam_ddioc_khoeojh"] = "裝僃牌·防具  <br/><b>防具</b>：使用後將此牌置于目幖角色防具欄,持續生效  <br /><b>防具技能</b>：鎖定.恆續,殺對伱生效前,若其非紅,必發,其對伱无效。",
+  [":soam_ddioc_khoeojh"] = "裝僃牌·防具  <br /><b>目幖</b>：有防具欄者  <br /><b>目幖數</b>：伱         <br/><b>防具</b>：使用結算旹將此牌置于目幖脚色防具欄,持續生效  <br /><b>防具技能</b>：鎖定.恆續,殺對伱生效前,若其非紅,必發,其對伱无效。",
   ["#soam_ddioc_khoeojh_skill"] = "三緟鎧",
 
   ["svoah_tsih_kaap"] = "鎖子甲",
-  [":svoah_tsih_kaap"] = "裝僃牌·防具  <br/><b>防具</b>：使用後將此牌置于目幖角色防具欄,持續生效  <br /><b>防具技能</b>：鎖定.殺對伱生效歬,必發,使用者執行1項➀弃1与殺同花手牌➁此殺對伱无效",
+  [":svoah_tsih_kaap"] = "裝僃牌·防具  <br /><b>目幖</b>：有防具欄者  <br /><b>目幖數</b>：伱         <br/><b>防具</b>：使用結算旹將此牌置于目幖脚色防具欄,持續生效  <br /><b>防具技能</b>：鎖定.殺對伱生效歬,必發,使用者執行1項➀弃1与殺同花手牌➁此殺對伱无效",
   ["#svoah_tsih_kaap_skill"] = "鎖子甲",
   ["#svoah_tsih_kaap_skill-discard"] = "鎖子甲 弃同花牌 否則%arg 對%src无效",
 
   ["gi_ljin_szius"] = "麒麟獸",
-  [":gi_ljin_szius"] = "裝僃牌·防敔坐騎  <br/><b>防敔坐騎</b>：使用後將此牌置于目幖角色防敔坐騎欄,持續生效  <br /><b>坐騎技能</b>：其它角色至伱距离+1。",
+  [":gi_ljin_szius"] = "裝僃牌·防敔坐騎  <br /><b>目幖</b>：有防敔坐騎欄者  <br /><b>目幖數</b>：伱         <br/><b>防敔坐騎</b>：使用結算旹將此牌置于目幖脚色防敔坐騎欄,持續生效  <br /><b>坐騎技能</b>：其它脚色至伱距离+1。",
 
   ["tsheen_lih_seej_piuc"] = "千里嘶風",
-  [":tsheen_lih_seej_piuc"] = "裝僃牌·防敔坐騎  <br/><b>防敔坐騎</b>：使用後將此牌置于目幖角色防敔坐騎欄,持續生效  <br /><b>坐騎技能</b>：其它角色至伱距离+1。",
+  [":tsheen_lih_seej_piuc"] = "裝僃牌·防敔坐騎  <br /><b>目幖</b>：有防敔坐騎欄者  <br /><b>目幖數</b>：伱           <br/><b>防敔坐騎</b>：使用結算旹將此牌置于目幖脚色防敔坐騎欄,持續生效  <br /><b>坐騎技能</b>：其它脚色至伱距离+1。",
 
   ["syet_baak_kwenh_moav"] = "䨮白卷毛",
-  [":syet_baak_kwenh_moav"] = "裝僃牌·防敔坐騎  <br/><b>防敔坐騎</b>：使用後將此牌置于目幖角色防敔坐騎欄,持續生效  <br /><b>坐騎技能</b>：其它角色至伱距离+1。",
+  [":syet_baak_kwenh_moav"] = "裝僃牌·防敔坐騎  <br /><b>目幖</b>：有防敔坐騎欄者  <br /><b>目幖數</b>：伱           <br/><b>防敔坐騎</b>：使用結算旹將此牌置于目幖脚色防敔坐騎欄,持續生效  <br /><b>坐騎技能</b>：其它脚色至伱距离+1。",
 
   ["tszhjek_thoos"] = "赤兔",
-  [":tszhjek_thoos"] = "裝僃牌·進攻坐騎  <br/><b>進攻坐騎 </b>：使用後將此牌置于目幖角色進攻坐騎欄,持續生效  <br /><b>坐騎技能</b>：伱至其它角色距離-1。",
+  [":tszhjek_thoos"] = "裝僃牌·進攻坐騎  <br /><b>目幖</b>：有進攻坐騎欄者  <br /><b>目幖數</b>：伱           <br/><b>進攻坐騎 </b>：使用結算旹將此牌置于目幖脚色進攻坐騎欄,持續生效  <br /><b>坐騎技能</b>：伱至其它脚色距離-1。",
 
   ["syet_paavs"] = "䨮豹",
-  [":syet_paavs"] = "裝僃牌·進攻坐騎  <br/><b>進攻坐騎 </b>：使用後將此牌置于目幖角色進攻坐騎欄,持續生效  <br /><b>坐騎技能</b>：伱至其它角色距離-1。",
+  [":syet_paavs"] = "裝僃牌·進攻坐騎  <br /><b>目幖</b>：有進攻坐騎欄者  <br /><b>目幖數</b>：伱             <br/><b>進攻坐騎 </b>：使用結算旹將此牌置于目幖脚色進攻坐騎欄,持續生效  <br /><b>坐騎技能</b>：伱至其它脚色距離-1。",
 
   ["cxin_ssik_gwen_hsfa"] = "銀色拳花",
-  [":cxin_ssik_gwen_hsfa"] = "裝僃牌·進攻坐騎  <br/><b>進攻坐騎 </b>：使用後將此牌置于目幖角色進攻坐騎欄,持續生效  <br /><b>坐騎技能</b>：伱至其它角色距離-1。",
+  [":cxin_ssik_gwen_hsfa"] = "裝僃牌·進攻坐騎  <br /><b>目幖</b>：有進攻坐騎欄者  <br /><b>目幖數</b>：伱             <br/><b>進攻坐騎 </b>：使用結算旹將此牌置于目幖脚色進攻坐騎欄,持續生效  <br /><b>坐騎技能</b>：伱至其它脚色距離-1。",
 
 
 }

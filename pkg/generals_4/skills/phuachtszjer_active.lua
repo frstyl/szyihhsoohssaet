@@ -4,7 +4,7 @@ local phuachtszjer_active = fk.CreateSkill({
 
 Fk:loadTranslationTable{
   ["phuachtszjer_active&"] = "仿製",
-  [":phuachtszjer_active&"] = "段限1.交与仿製角色3手牌A B C,B視爲A,其獲得C",
+  [":phuachtszjer_active&"] = "段限1.交与仿製脚色3手牌A B C,B視爲A,其獲得C",
 
   ["phuachtszjer-ask"] = "仿製 %src 允許",
   ["@@phuachtszjer"] = "仿製",

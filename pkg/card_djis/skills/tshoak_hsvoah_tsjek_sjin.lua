@@ -18,10 +18,8 @@ cardSkill:addEffect("cardskill", {
     room:addSkill("tshoak_hsvoah_tsjek_sjin_check")
   end,
   on_effect = function(self, room, effect)
-    if  effect.responseToEvent then 
-      -- room:sendLog{ type = "#changeDamageBySkill", from = effect.to.id, arg = "tshoak_hsvoah_tsjek_sjin" ,arg2=1}
-      -- effect.responseToEvent:changeDamage(1)
-      S.changeDamage({damageData=effect.responseToEvent,skillName="tshoak_hsvoah_tsjek_sjin",num=1})
+    if  effect.extra_data and effect.extra_data.tshoak_hsvoah_tsjek_sjin then 
+      S.changeDamage({damageData=effect.extra_data.tshoak_hsvoah_tsjek_sjin, skillName="tshoak_hsvoah_tsjek_sjin", num=1})
       self:onNullified(room, effect)
     else
       room:moveCards{
@@ -30,10 +28,6 @@ cardSkill:addEffect("cardskill", {
         moveReason = fk.ReasonPut,
       }
     end
-
-
-    
-
   end,
   on_nullified = function(self, room, effect)
     -- room:moveCards{

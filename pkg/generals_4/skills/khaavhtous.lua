@@ -4,9 +4,9 @@ local khaavhtous = fk.CreateSkill({
 
 Fk:loadTranslationTable{
   ["khaavhtous"] = "巧鬥",
-  [":khaavhtous"] = "主旹,伱可預与1其它角色A拼點發動.若伱贏,伱可迻動1牢,若未贏A予伱1傷",
+  [":khaavhtous"] = "主旹,伱可預与1其它脚色A拼點發動.若伱贏,伱可迻動1牢,若未贏A予伱1傷",
 
-  ["#khaavhtous"] = "巧鬥：1其它角色A拼點發動.若伱贏伱迻動1牢,若未贏A予伱1傷",
+  ["#khaavhtous"] = "巧鬥：1其它脚色A拼點發動.若伱贏伱迻動1牢,若未贏A予伱1傷",
   ["#khaavhtous-choose"] = "巧鬥：迻動1牢",
 
   ["$khaavhtous1"] = "此乃巧鬥吞狼之计。",

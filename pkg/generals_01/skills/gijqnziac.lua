@@ -3,9 +3,9 @@ local gijqnziac = fk.CreateSkill{
 }
 Fk:loadTranslationTable{
   ["gijqnziac"] = "祈禳",
-  [":gijqnziac"] = "主旹,伱可選擇1角色有咒術者發動｡迻除其咒術,其抽1",
+  [":gijqnziac"] = "主旹,伱可選擇1脚色有咒術者發動｡迻除其咒術,其抽1",
 
-  ["#gijqnziac-choose"] = "祈禳 爲1角色敺㪔咒術",
+  ["#gijqnziac-choose"] = "祈禳 爲1脚色敺㪔咒術",
 
   ["$gijqnziac1"] = "能保則吉更當修爲",
   ["$gijqnziac2"] = "切摸妄作萬福來宜",

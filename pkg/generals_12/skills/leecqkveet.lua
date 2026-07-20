@@ -4,9 +4,9 @@ local leecqkveet = fk.CreateSkill({
 
 Fk:loadTranslationTable{
   ["leecqkveet"] = "靈訣",
-  [":leecqkveet"] = "當伱受到傷害非雷電屬旹,伱可選擇1其他角色發動,其判定,若花色爲非♥️,伱与其1雷電傷害,否則其受到相同傷害",
+  [":leecqkveet"] = "當伱受到傷害非雷電屬旹,伱可選擇1其他脚色發動,其判定,若花色爲非♥️,伱与其1雷電傷害,否則其受到相同傷害",
 
-  ["#leecqkveet-choose"] = "靈訣：你可以令一名角色进行判定",
+  ["#leecqkveet-choose"] = "靈訣：你可以令一名脚色进行判定",
 
   ["$leecqkveet1"] = "金甲天神,現",
   ["$leecqkveet2"] = "飛沙走石,播土揚塵",

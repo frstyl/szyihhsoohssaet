@@ -4,7 +4,7 @@ local hqoomstsjens = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["hqoomstsjens"] = "暗箭",
-  [":hqoomstsjens"] = "➀恆續效果,主旹,伱可葢伏1手牌➁當伱對其它角色或其它角色對伱所使用殺被閃抵消旹,伱可將1葢伏牌轉化爲殺使用,此殺无視距離不可響應",
+  [":hqoomstsjens"] = "➀恆續效果,主旹,伱可葢伏1手牌➁當伱對其它脚色或其它脚色對伱所使用殺被閃抵消旹,伱可將1葢伏牌轉化爲殺使用,此殺无視距離不可響應",
 
   ["#hqoomstsjens"] = "暗箭 選擇一牌 將其視爲葢伏牌",
   ["#hqoomstsjens-invoke"] = "暗箭 將葢伏牌轉化爲殺對 %src 殺",

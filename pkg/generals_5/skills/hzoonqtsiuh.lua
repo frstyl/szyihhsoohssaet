@@ -6,7 +6,7 @@ local hzoonqtsiuh = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["hzoonqtsiuh"] = "渾酒",
-  [":hzoonqtsiuh"] = "當伱可使用{酒/肉/迷}旹,伱可將1酒肉迷轉化爲其使用發動,此牌執行效果後伱執行元牌效果.渾酒迷可選擇其它角色",
+  [":hzoonqtsiuh"] = "當伱可使用{酒/肉/迷}旹,伱可將1酒肉迷轉化爲其使用發動,此牌執行效果後伱執行元牌效果.渾酒迷可選擇其它脚色",
 
   ["#hzoonqtsiuh"] = "渾酒：酒肉迷轉化爲酒肉迷",
   -- ["#hzoonqtsiuh-choose"] = "渾酒：爲 %arg 選擇額外目幖",

@@ -19,7 +19,7 @@ local S = require "packages/szyihhsoohssaet/szyih_guos"
 -- })
 
 cardSkill:addEffect(fk.PreCardEffect, { --以可用之牌分
-  global = true,
+  --global = true,
   mute = true,
   priority = 0,  --同旹自選 用牌?
   can_trigger = function(self, event, target, player, data)  --禁使用(牌名)/抵消/響應

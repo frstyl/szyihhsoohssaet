@@ -18,7 +18,7 @@ tsziukzzyit_hsoonslvoans:addEffect(fk.CardUsing, {
   -- globle=true,
   can_trigger = function(self, event, target, player, data)
     return target == player 
-    -- and table.contains({"ssaet","tous_tsiacs","hzaac_tshjes",data.card.trueName})
+    -- and table.contains({"ssaet","tous_tsiacs","mae_biuk",data.card.trueName})
     and #data.tos==1
     and data.tos[1]~=player
     and S.tsziukzzyitTrigger(player,"hsoonslvoans")

@@ -49,7 +49,7 @@ dzjipkun:addEffect(fk.DrawNCards, {
         player.room:addCardMark(Fk:getCardById(id), "@@dzjipkun-turn",1)
     end
     room:setPlayerMark(player,"@@dzjipkun")
-    room:moveCardTo(cards, Card.PlayerHand, player, fk.ReasonJustMove, dzjipkun.name, nil, true, player)
+    room:moveCardTo(cards, Card.PlayerHand, player, fk.ReasonPrey, dzjipkun.name, nil, true, player)
   end,
 })
 

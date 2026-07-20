@@ -5,7 +5,7 @@ local tszuoqhqaec = fk.CreateSkill{
 
 Fk:loadTranslationTable {
   ["tszuoqhqaec"] = "朱櫻",
-  [":tszuoqhqaec"] = "鎖.伱使用酒後,至伱下轉始,伱不是其它角色牌合理目幖",  --使用旹改爲?
+  [":tszuoqhqaec"] = "鎖.伱使用酒後,至伱下轉始,伱不是其它脚色牌合理目幖",  --使用旹改爲?
 
   ["@@tszuoqhqaec"] = "朱櫻",
 

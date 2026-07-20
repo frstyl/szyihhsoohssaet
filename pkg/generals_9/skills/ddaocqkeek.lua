@@ -4,9 +4,9 @@ local ddaocqkeek = fk.CreateSkill {
 
 Fk:loadTranslationTable{
 ["ddaocqkeek"] = "撞擊",
-[":ddaocqkeek"] = "主旹,伱可選擇1攻程內其它角色發動.伱予其1傷,予己1傷",
+[":ddaocqkeek"] = "主旹,伱可選擇1攻程內其它脚色發動.伱予其1傷,予己1傷",
 
-["#ddaocqkeek"]="撞擊 選擇一角色 擊之",--肘
+["#ddaocqkeek"]="撞擊 選擇一脚色 擊之",--肘
 }
 
 

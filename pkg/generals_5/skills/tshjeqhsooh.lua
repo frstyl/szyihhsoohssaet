@@ -5,9 +5,9 @@ local tshjeqhsooh = fk.CreateSkill{
 
 Fk:loadTranslationTable{
 ["tshjeqhsooh"] = "雌虎",
-[":tshjeqhsooh"] = "一女角色A受到傷害後,若有傷源且不爲伱或A,伱可預打出x牌發動.伱与傷源1傷,令A回1｡x爲體力一半,下整",
+[":tshjeqhsooh"] = "一女脚色A受到傷害後,若有傷源且不爲伱或A,伱可預打出x牌發動.伱与傷源1傷,令A回1｡x爲體力一半,下整",
 
-["#tshjeqhsooh-choose"] = "雌虎 選擇一角色 視爲對其使用殺",
+["#tshjeqhsooh-choose"] = "雌虎 選擇一脚色 視爲對其使用殺",
 }
 
 local S = require "packages/szyihhsoohssaet/szyih_guos" 

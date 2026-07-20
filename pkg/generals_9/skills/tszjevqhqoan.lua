@@ -4,7 +4,7 @@ local tszjevqhqoan = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["tszjevqhqoan"] = "招安",
-  [":tszjevqhqoan"] = "主動.選擇1其它角色A与1項發動➀對1角色(除伱与A)使用1殺➁交与伱1殺或武器牌.若A執行,其抽2,否則其本轉不可使用打出基本牌",
+  [":tszjevqhqoan"] = "主旹.選擇1其它脚色A与1項發動➀對1脚色(由伱指定,除伱与A)使用1殺➁交与伱1殺或武器牌.若A執行,其抽2,否則其當轉不可使用打出基本牌",
 
   ["#tszjevqhqoan-active"] = "招安.選擇1項發動",
   ["#tszjevqhqoan-ssaet"] = "用殺",

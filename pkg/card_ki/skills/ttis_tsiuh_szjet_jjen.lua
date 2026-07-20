@@ -1,9 +1,9 @@
 local cardSkill = fk.CreateSkill {
-  name = "ttxis_tsiuh_szjet_jjen_skill",
+  name = "ttis_tsiuh_szjet_jjen_skill",
 }
 
 cardSkill:addEffect("cardskill", {
-  prompt = "#ttxis_tsiuh_szjet_jjen_skill",
+  prompt = "#ttis_tsiuh_szjet_jjen_skill",
   can_use = Util.GlobalCanUse,
   on_use = function (self, room, cardUseEvent)
     return Util.AoeCardOnUse(self, cardUseEvent.from, cardUseEvent, true)

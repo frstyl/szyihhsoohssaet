@@ -4,7 +4,7 @@ local poavskvoeok = fk.CreateSkill {
 
 Fk:loadTranslationTable{
 ["poavskvoeok"] = "報國",
-[":poavskvoeok"] = "➀當一其他角色受到傷害旹伱預打出x(x爲當轉伱發動此項次數)手牌發動,將此傷害轉与伱.➁當伱受到傷害後伱可發動,伱抽x(x爲伱已損體力值)",
+[":poavskvoeok"] = "➀當一其他脚色受到傷害旹伱預打出x(x爲當轉伱發動此項次數)手牌發動,將此傷害轉与伱.➁當伱受到傷害後伱可發動,伱抽x(x爲伱已損體力值)",
 
 ["#poavskvoeok-invoke"]="報國  %src 傷害轉予伱",
 ["#poavskvoeok-choose"]="報國 打出 %arg 手牌將  %src 傷害轉予伱",

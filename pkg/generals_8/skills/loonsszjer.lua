@@ -4,10 +4,10 @@ local loonsszjer = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["loonsszjer"] = "論策",
-  [":loonsszjer"] = "主旹,預打出任意牌發動.伱抽所打出牌數,然後伱可展示3手牌選擇1角色.其選1項➀使用其中1牌,伱与其各抽1{+1}➁使用全部可用牌,无視距離次數{且不可響應}➂執行1{+1}主旹.伱于其選擇旹同旹選擇,若所選相同,增改效果",
+  [":loonsszjer"] = "主旹,預打出任意牌發動.伱抽所打出牌數,然後伱可展示3手牌選擇1脚色.其選1項➀使用其中1牌,伱与其各抽1{+1}➁使用全部可用牌,无視距離次數{且不可響應}➂執行1{+1}主旹.伱于其選擇旹同旹選擇,若所選相同,增改效果",
 
   ["#loonsszjer"] = "論策：預打出任意牌發動",
-  ["#loonsszjer-choose"] = "論策：展示三牌選一角色",
+  ["#loonsszjer-choose"] = "論策：展示三牌選一脚色",
   ["#loonsszjer-choice"] = "論策：選擇",
   ["loonsszjer-useOne"] = "用一",
   ["loonsszjer-useAll"] = "用全",

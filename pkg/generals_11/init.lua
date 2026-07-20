@@ -20,7 +20,7 @@ Fk:loadTranslationTable{
 ["designer:quackhracs"] = "設計",
 ["cv:quackhracs"] = "配音",
 ["illustrator:quackhracs"] = "畫師",
-["~quackhracs"] = "來世,再不渡清江",
+["~quackhracs"] = "來世,再不渡淸江",
 }
 
 --廖立
@@ -81,10 +81,10 @@ Fk:loadTranslationTable{
 -- 104. 第一百零三回　張管營因妾弟喪身　範節級為表兄醫臉
 -- 105. 第一百零四回　段家莊重招新女婿　房山寨雙並舊強人
 
--- 106. 第一百零五回　宋公明避暑療軍兵　喬道清回風燒賊寇
+-- 106. 第一百零五回　宋公明避暑療軍兵　喬道淸回風燒賊寇
 -- 107. 第一百零六回　書生談笑卻強敵　水軍汨沒破堅城
 -- 108. 第一百零七回　宋江大勝紀山軍　朱武打破六花陣
--- 109. 第一百零八回　喬道清興霧取城　小旋風藏炮擊賊
+-- 109. 第一百零八回　喬道淸興霧取城　小旋風藏炮擊賊
 General:new(extension, "seevqkaaqsyer", "pujh", 5):addSkills{"liuksyer","ddwenqszio"}
 Fk:loadTranslationTable{
 ["seevqkaaqsyer"] = "蕭嘉繐",

@@ -4,7 +4,7 @@ local kiamsmuoh = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["kiamsmuoh"] = "劍舞",
-  [":kiamsmuoh"] = "當伱使用牌對目幖角色A致傷後,伱可發動(每次使用牌限1次).伱亮出牌堆頂5牌,伱對A使用其中殺(无視距離次數且傷害改爲流失體力),若亮出牌中无殺,伱流失1體力.",
+  [":kiamsmuoh"] = "當伱使用牌對目幖脚色A致傷後,伱可發動(每次使用牌限1次).伱亮出牌堆頂5牌,伱對A使用其中殺(无視距離次數且傷害改爲流失體力),若亮出牌中无殺,伱流失1體力.",
 
   ["kiamsmuoh-choose"] = "劍舞 選擇目幖",
 }
@@ -35,7 +35,7 @@ local kiamsmuoh_spec = {
     room:moveCards({
       ids = cards,
       toArea = Card.Processing,
-      moveReason = fk.ReasonJustMove,
+      moveReason = fk.ReasonPrey,
       skillName = kiamsmuoh.name,
       proposer = player.id,
     })

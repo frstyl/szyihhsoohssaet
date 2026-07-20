@@ -4,7 +4,7 @@ local cardSkill = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["lje_kaens_skill"] = "離閒",
-  ["#lje_kaens_skill"] = "選擇1其它角色A与A与A拼點目幖B,對A使用. AB拼點 未贏者受對方1傷",
+  ["#lje_kaens_skill"] = "選擇1其它脚色A与A与A拼點目幖B,對A使用. AB拼點 未贏者受對方1傷",
 
 }
 

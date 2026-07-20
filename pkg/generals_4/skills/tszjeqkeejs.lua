@@ -4,7 +4,7 @@ local tszjeqkeejs = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["tszjeqkeejs"] = "支計",
-  [":tszjeqkeejs"] = "任一角色額定抽牌歬,伱可選擇1項令其執行發動.➀本次抽牌數+1,當轉存牌數數-1➁本次抽牌數-1,當轉存牌數數+1(抽牌數已爲0則不可選)",  --額定手牌數改名
+  [":tszjeqkeejs"] = "任一脚色額定抽牌歬,伱可選擇1項令其執行發動.➀本次抽牌數+1,當轉存牌數數-1➁本次抽牌數-1,當轉存牌數數+1(抽牌數已爲0則不可選)",  --額定手牌數改名
 
   ["#tszjeqkeejs-invoke"] = "%src 將抽牌 伱可選擇1項",
   ["#tszjeqkeejs_add"] = "令其多抽1 本輪額定手牌數-1",

@@ -4,20 +4,22 @@ local guacqdzzjen = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["guacqdzzjen"] = "狂禪",
-  [":guacqdzzjen"] = "當伱使用卽旹錦囊牌結算終旹,伱可指定距離2以內角色發動.視爲伱對其使用虛殺",
+  [":guacqdzzjen"] = "當伱使用卽旹錦囊牌結算終旹,伱可指定距離2以內脚色發動.視爲伱對其使用虛殺",
 
 
   ["#guacqdzzjen-choose"] = "狂禪 選擇殺目幖",
   ["$guacqdzzjen1"] = "不破不立破而後立",
 
 }
+local S = require "packages/szyihhsoohssaet/szyih_guos" 
 
 
 guacqdzzjen:addEffect(fk.CardUseFinished, { --??
   can_trigger = function(self, event, target, player, data)
     return 
     target == player and player:hasSkill(guacqdzzjen.name)
-    and data.card.type==Card.TypeTrick
+    -- and data.card.type==Card.TypeTrick
+    and S.isCommonTrick(data.card)
   end,
   on_cost = function(self, event, target, player, data)
     local room=player.room

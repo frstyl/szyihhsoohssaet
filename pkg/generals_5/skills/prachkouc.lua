@@ -1,9 +1,9 @@
 Fk:loadTranslationTable{
   ["prachkouc"] = "秉公",
-  [":prachkouc"] = "預段始旹,伱選擇1x>0角色發動,其將x手牌交与除其外一角色,若x>2,伱可令其回1(x=該角色手牌數-其體力值)",
+  [":prachkouc"] = "預段始旹,伱選擇1x>0脚色發動,其將x手牌交与除其外一脚色,若x>2,伱可令其回1(x=該脚色手牌數-其體力值)",
 
   ["#prachkouc-choose"] = "秉公 選擇發動目幖",
-  ["#prachkouc-give-choose"] = "秉公 選擇 %arg 牌交与1其它角色",
+  ["#prachkouc-give-choose"] = "秉公 選擇 %arg 牌交与1其它脚色",
   ["#prachkouc-recover"] = "秉公 令 %srec 回1",
 
   ["$prachkouc1"] = "可知寨中規矩",

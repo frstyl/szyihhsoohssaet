@@ -6,7 +6,7 @@ Fk:loadTranslationTable{
   ["gracqgi"] = "擎旗",
   [":gracqgi"] = "游戲始旹,將<a href=':gracqgi__gi'>杏黄旗</a>置入伱裝僃區.伱轉始旹，若伱裝僃區无杏黄旗,伱可流失1體力,將旗置入伱裝僃區",
 
-  ["#gracqgi-choose"] = "擎旗：你可以弃置一名其他角色至多两张牌",
+  ["#gracqgi-choose"] = "擎旗：你可以弃置一名其他脚色至多两张牌",
   ["#gracqgi-invoke"] = "擎旗：裝僃杏黄旗",
   ["#gracqgi-invoke-turun"] = "擎旗：流失1體力 裝僃杏黄旗",
 

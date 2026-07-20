@@ -5,7 +5,7 @@ local tszhiocqphioc_active = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["tszhiocqphioc_active"] = "䡴鋒",
-  -- [":tszhiocqphioc_active"] = "每段限1.主動,弃3異花牌或2裝僃牌發動.伱令1至2角色各抽2,其中1角色執行1額外轉",
+  -- [":tszhiocqphioc_active"] = "每段限1.主動,弃3異花牌或2裝僃牌發動.伱令1至2脚色各抽2,其中1脚色執行1額外轉",
 
   ["#tszhiocqphioc-active"] = "䡴鋒  打出牌",
 

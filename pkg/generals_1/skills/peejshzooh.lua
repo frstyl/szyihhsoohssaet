@@ -6,7 +6,7 @@ local peejshzooh = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["peejshzooh"] = "閉戶",
-  [":peejshzooh"] = "當伱成爲其他角色所用進攻牌目標旹,若伱手牌數體力值不等,必發.迻除目幖.伱受傷後,若伱有手牌,必發.伱弃1手牌.",
+  [":peejshzooh"] = "當伱成爲其他脚色所用進攻牌目標旹,若伱手牌數體力值不等,必發.迻除目幖.伱受傷後,若伱有手牌,必發.伱弃1手牌.",
 
   ["#peejshzooh-ask"] = "是否发动 閉戶，打出一张牌代替 %dest 的 %arg 判定",
 

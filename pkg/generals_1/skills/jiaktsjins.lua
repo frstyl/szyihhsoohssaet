@@ -4,7 +4,7 @@ local jiaktsjins = fk.CreateSkill{
 
 Fk:loadTranslationTable{
 ["jiaktsjins"] = "躍進",
-[":jiaktsjins"] = "一角色轉始歬,若其手牌等于伱手牌數,伱可發動.伱執行1額外主段,此段內伱至其它角色距離爲1.拔籌:當伱致傷後,若若受傷角色當輪首次受傷,伱可發動.伱抽1",
+[":jiaktsjins"] = "一脚色轉始歬,若其手牌等于伱手牌數,伱可發動.伱執行1額外主段,此段內伱至其它脚色距離爲1.拔籌:當伱致傷後,若若受傷脚色當輪首次受傷,伱可發動.伱抽1",
 
 ["#jiaktsjins-invoke"] = "躍進 %src 轉始 是否發動",
 ["@@jiaktsjins"] = "躍進",

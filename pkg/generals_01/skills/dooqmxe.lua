@@ -7,7 +7,7 @@ local S = require "packages/szyihhsoohssaet/szyih_guos"
 
 Fk:loadTranslationTable{
   ["dooqmxe"] = "荼蘼",
-  [":dooqmxe"] = "伱始段始旹,伱可選1其它有手牌角色發動:伱獲取其全部手牌;當段內伱對其致傷旹,防止之;段終,伱交予其x手牌(x爲其體力值).",
+  [":dooqmxe"] = "伱始段始旹,伱可選1其它有手牌脚色發動:伱取得其全部手牌;當段內伱對其致傷旹,防止之;段終,伱交予其x手牌(x爲其體力值).",
   
   ["#dooqmxe-choose"] = "荼蘼 選擇目幖",
 

@@ -4,9 +4,9 @@ local hzaepdoos = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["hzaepdoos"] = "狹度",
-  [":hzaepdoos"] = "伱致傷後,伱可預打出1裝僃牌選擇其它角色距離1以內且非本次受傷者發動,伱与其1傷",
+  [":hzaepdoos"] = "伱致傷後,伱可預打出1裝僃牌選擇其它脚色距離1以內且非本次受傷者發動,伱与其1傷",
 
-  ["#hzaepdoos-invoke"] = "狹度 弃1裝僃對除%src外距離1角色1傷",
+  ["#hzaepdoos-invoke"] = "狹度 弃1裝僃對除%src外距離1脚色1傷",
   ["$hzaepdoos1"] = "小可王倫且喜光臨草寨",
 }
 

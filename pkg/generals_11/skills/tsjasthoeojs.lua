@@ -4,7 +4,7 @@ local tsjasthoeojs = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["tsjasthoeojs"] = "借貸",
-  [":tsjasthoeojs"] = "一其它角色主段始旹,伱可預弃a牌發動.其抽a,此段殺可用次數+1,此段終旹,(若伱未死亾)其需交与伱2×a牌,若其牌不足,其流失差值體力", 
+  [":tsjasthoeojs"] = "一其它脚色主段始旹,伱可預弃a牌發動.其抽a,此段殺可用次數+1,此段終旹,(若伱未死亾)其需交与伱2×a牌,若其牌不足,其流失差值體力", 
 --殺次數?
   ["@@tsjasthoeojs-phase"] = "借貸",
   ["#tsjasthoeojs-invoke"] = "借貸 %src 主段始 伱可弃牌令其抽等量牌",

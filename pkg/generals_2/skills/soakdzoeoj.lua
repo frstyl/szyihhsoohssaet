@@ -4,9 +4,9 @@ local soakdzoeoj = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["soakdzoeoj"] = "索財",
-  [":soakdzoeoj"] = "主旹,与1其它角色拼點發動.若伱:贏,伱獲得拼點牌;未贏,其伱與1傷,伱與其1傷",
+  [":soakdzoeoj"] = "主旹,与1其它脚色拼點發動.若伱:贏,伱獲得拼點牌;未贏,其伱與1傷,伱與其1傷",
 
-  ["#soakdzoeoj"] = "索財：与一名角色拼點，若赢，伱獲得拼點牌",
+  ["#soakdzoeoj"] = "索財：与一名脚色拼點，若赢，伱獲得拼點牌",
 
   ["$soakdzoeoj1"] = "今日撞在我手裏",
 }
@@ -40,7 +40,7 @@ soakdzoeoj:addEffect("active", {
         table.insertIfNeed(to_get, cid)
       end
       if #to_get > 0  then
-        room:obtainCard(player, to_get, true, fk.ReasonJustMove, player, soakdzoeoj.name)
+        room:obtainCard(player, to_get, true, fk.ReasonPrey, player, soakdzoeoj.name)
       end
     else
       room:damage{

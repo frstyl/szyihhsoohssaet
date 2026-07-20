@@ -4,7 +4,7 @@ local kvoanqddxins = fk.CreateSkill({
 
 Fk:loadTranslationTable{
   ["kvoanqddxins"] = "觀陣",
-  [":kvoanqddxins"] = "當其它角色使用<a href='AttackCard'>進攻牌</a>旹,伱可預打出1同花色牌發動,伱令此牌使用无效.",
+  [":kvoanqddxins"] = "當其它脚色使用<a href='AttackCard'>進攻牌</a>旹,伱可預打出1同花色牌發動,伱令此牌使用无效.",
 
 
   ["#kvoanqddxins-card"] = "觀陣:%dest 使用 %arg 伱可打出1同花色牌發令其无效",

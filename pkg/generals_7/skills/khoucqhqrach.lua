@@ -4,7 +4,7 @@ local khoucqhqrach = fk.CreateSkill({
 
 Fk:loadTranslationTable{
   ["khoucqhqrach"] = "空影",
-  [":khoucqhqrach"] = "當伱使用或打出{「閃」/「殺」}旹，你可指定1其他角色發動,其須打出1{「閃」/「殺」},否則伱与其1雷傷。",
+  [":khoucqhqrach"] = "當伱使用或打出{「閃」/「殺」}旹，你可指定1其他脚色發動,其須打出1{「閃」/「殺」},否則伱与其1雷傷。",
 
   ["#khoucqhqrach-choose"] = "空影： 選擇雷劈目幖",
   ["#khoucqhqrach-ask"] = "空影： 來自%src 打出 %arg",

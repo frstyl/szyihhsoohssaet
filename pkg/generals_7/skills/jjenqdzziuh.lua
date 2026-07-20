@@ -5,7 +5,7 @@ local jjenqdzziuh = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["jjenqdzziuh"] = "延壽",
-  [":jjenqdzziuh"] = "局限1.主動,伱弃2紅桃牌發動,令1角色加1體力上限",
+  [":jjenqdzziuh"] = "局限1.主旹,伱弃2紅桃牌發動,令1脚色加1體力上限",
 
 
   ["$jjenqdzziuh1"] = "助伱延壽十秊",

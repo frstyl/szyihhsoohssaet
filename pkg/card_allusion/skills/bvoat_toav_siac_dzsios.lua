@@ -4,7 +4,7 @@ local cardSkill = fk.CreateSkill{
 }
 
 Fk:loadTranslationTable{
-  ["#bvoat_toav_siac_dzsios"] = "拔刀相助 打出此牌与1其它角色伏區1延旹牌",
+  ["#bvoat_toav_siac_dzsios"] = "拔刀相助 打出此牌与1其它脚色伏區1延旹牌",
   ["#bvoat_toav_siac_dzsios-choose"] = "拔刀相助 選擇目幖",
   ["#bvoat_toav_siac_dzsios"] = "拔刀相助 打出牌",
 }

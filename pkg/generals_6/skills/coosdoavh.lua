@@ -1,11 +1,12 @@
 local coosdoavh = fk.CreateSkill {
   name = "coosdoavh",
   tags = { Skill.Wake,Skill.Compulsory,Skill.Limited },
+  related_skills={"khoucqmoon","gxeqmoon","sziacqtsoeoc"},
 }
 
 Fk:loadTranslationTable{
   ["coosdoavh"] = "悟道",
-  [":coosdoavh"] = "自限,擁有技能溷元.鎖定.輪終旹,若伱熵大于本局游戲角色數,必發.",
+  [":coosdoavh"] = "自限:擁有技能｢溷元｣.鎖定｡局限1,輪終旹,若伱熵大于當局游戲脚色數,必發.伱自下選擇獲得2个技能｢空門｣｢奇門｣｢熵增｣",
 
   ["$coosdoavh1"] = "时机已到，今日起兵！",
   ["$coosdoavh2"] = "欲取天下，当在此时！"

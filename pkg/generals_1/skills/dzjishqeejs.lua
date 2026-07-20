@@ -5,9 +5,9 @@ local dzjishqeejs = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["dzjishqeejs"] = "自縊",
-  [":dzjishqeejs"] = "主旹,伱可選擇至多1其它角色發動.伱死亾,所選角色體力回復至體力上限",  
+  [":dzjishqeejs"] = "主旹,伱可選擇至多1其它脚色發動.伱死亾,所選脚色體力回復至體力上限",  
 
-  ["#dzjishqeejs-active"] = "自縊 將半數手牌交与1角色,其執行額外主段",
+  ["#dzjishqeejs-active"] = "自縊 將半數手牌交与1脚色,其執行額外主段",
 
   ["$dzjishqeejs1"] = "以吾萬串家財,助伱一臂之力",
 

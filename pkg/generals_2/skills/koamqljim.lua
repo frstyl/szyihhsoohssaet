@@ -4,9 +4,9 @@ local koamqljim = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["koamqljim"] = "甘霖",
-  [":koamqljim"] = "主動.主旹選擇至少1手牌与1其它角色A發動.將所選牌交与A,肰後伱選擇1項➀令A一轉內｢殺｣次數上限+1➁伱抽x,此技能當輪失效.(x爲當輪伱發動此技能次數)",
+  [":koamqljim"] = "主旹.主旹選擇至少1手牌与1其它脚色A發動.將所選牌交与A,肰後伱選擇1項➀令A一轉內｢殺｣次數上限+1➁伱抽x,此技能當輪失效.(x爲當輪伱發動此技能次數)",
 
-  ["#koamqljim-active"] = "甘霖 將任意手牌交予其他角色",
+  ["#koamqljim-active"] = "甘霖 將任意手牌交予其他脚色",
 
   ["#koamqljim-choose"] = "甘霖 將任意手交予 %src",
   ["koamqljim-draw"] = "抽 %arg 本輪內甘霖失效",

@@ -25,12 +25,16 @@ sk:addEffect('invalidity', {
             Fk:cloneCard(skill:getSkeleton().attached_equip).sub_type == Card.SubtypeArmor 
           )
     then return end 
-      if player:hasMark("@@MarkArmorNullified") then return true end  --防具无效 不等于 被任意角色无視, 无視防具 等于 无視任意角色防具
+      if player:hasMark("@@MarkArmorNullified") then return true end  --防具无效 不等于 被任意脚色无視, 无視防具 等于 无視任意脚色防具
 
         --player == to
       local from=nil
       local card=nil  --无視防書于card 選擇目幖旹不能生效
-      -- if not RoomInstance then goto request end
+      local current_UseCard_event=nil
+      local current_CardEffect_event=nil
+        -- if not RoomInstance then goto request end
+
+      --此期間?此次使用/生效?   此爲某事件 期間用mark isIgnoreArmorFromAToB
       if  RoomInstance and RoomInstance.logic:getCurrentEvent() then
 
         local logic = RoomInstance.logic
@@ -39,15 +43,18 @@ sk:addEffect('invalidity', {
         -- if not event then 
         --   -- return 
         --   goto request
+
         if event.event == GameEvent.UseCard then  --onAim?
           -- ---@cast data UseCardData
           -- if not table.contains(data.tos, player) then return false end
           from = data.from
           card=data.card
+          current_UseCard_event=event
          --   goto check
         elseif event.event == GameEvent.CardEffect then
             card =data.card
             from =data.from
+            current_CardEffect_event=event
         elseif event.event == GameEvent.SkillEffect then   --from to  ---skill.trueName
           -- if not data.skill.cardSkill then
             from = data.who
@@ -84,6 +91,7 @@ sk:addEffect('invalidity', {
         end
       else
       -- ::request::
+      --多人詢問?
         if ClientInstance and ClientInstance.current_request_handler   --request不屬于event中
         and ClientInstance.current_request_handler.player  then
           from = ClientInstance.current_request_handler.player
@@ -92,28 +100,18 @@ sk:addEffect('invalidity', {
       end
 
       -- ::check::  --from to card
-      if S.isIgnoreArmorFromAToB(from,player,card) then return true end
+
+      --card實體 player 不依賴事件? 止寫一次?
+
+      if S.isIgnoreArmorFromAToB(from,player,card,current_UseCard_event,current_CardEffect_event) then 
+        return true 
+      end
+
       if card then
-        if card:hasMark("@@ignoreArmor")  then 
+
+        if card:hasMark("@@ignoreArmor")  then --應止用于狀態技 此外寫于事件中
           return true--qinggang?
-        else
-          local e=player.room.logic:getCurrentEvent():findParent(GameEvent.UseCard, true)
-          while true do
-            if e==nil then return end
-            if e.data and e.data.card ==card then  --上次使用 卽止當次使用有效
-              -- player:drawCards(5)
-              return e.data.extra_data and e.data.extra_data.qinggang_tag 
-            end
-            e=e:findParent(GameEvent.UseCard)
-          end
         end
-
-
-        -- for _, suffix in ipairs(suffixes) do
-        --   if table.contains(card:getTableMark(MarkEnum.MarkArmorInvalidTo .. suffix), player.id)  then
-        --     return true
-        --   end
-        -- end
 
       end
 

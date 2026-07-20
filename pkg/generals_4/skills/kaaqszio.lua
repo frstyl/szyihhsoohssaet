@@ -4,10 +4,10 @@ local kaaqszio = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["kaaqszio"] = "家書",
-  [":kaaqszio"] = "主旹,伱選擇1手牌A 1其它角色B 聲名1花色C發動.伱將A交予B,B選擇➀交予伱全部C花手牌(至少1),抽x➁展示全部手牌,弃置与A同花者,流失x體力.(x爲其當次所失牌數)",
+  [":kaaqszio"] = "主旹,伱選擇1手牌A 1其它脚色B 聲名1花色C發動.伱將A交予B,B選擇➀交予伱全部C花手牌(至少1),抽x➁展示全部手牌,弃置与A同花者,流失x體力.(x爲其當次所失牌數)",
 
   ["#kaaqszio"] = "家書 隨機獲得1此花色坐騎牌",
-  ["#kaaqszio-choose"] = "家書 選擇1角色 發動荐馬",
+  ["#kaaqszio-choose"] = "家書 選擇1脚色 發動荐馬",
 
   ["$kaaqszio1"] = "好一匹棗紅馬",
 }

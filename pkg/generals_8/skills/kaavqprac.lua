@@ -6,7 +6,7 @@ local kaavqprac = fk.CreateSkill {
 Fk:loadTranslationTable{ --拆解
   ["kaavqprac"] = "交兵",
   [":kaavqprac"] = "伱使用殺或鬥將指定目幖後旹可發動.伱与目幖同旹選擇于生效後抽1或弃1,若所選相同,此{殺/鬥將}不可被{閃/防患未肰}抵消.",
-  ["#kaavqprac"] = "交兵 失去體力加傷",
+  ["#kaavqprac"] = "交兵 流失體力加傷",
 
 
   ["$kaavqprac1"] = "賊子伱往若里去",

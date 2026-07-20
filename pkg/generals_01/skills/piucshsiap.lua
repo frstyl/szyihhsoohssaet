@@ -5,7 +5,7 @@ local piucshsiap = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["piucshsiap"] = "諷脅",
-  [":piucshsiap"] = "其它角色額度抽牌後,若其{手牌數}不小于{伱与其體力值之和},伱可發動,其選擇➀交予伱1殺1閃➁牢+1",
+  [":piucshsiap"] = "其它脚色額度抽牌後,若其{手牌數}不小于{伱与其體力值之和},伱可發動,其選擇➀交予伱1殺1閃➁牢+1",
 
   ["#piucshsiap-invoke"] = "諷脅 是否對 %src發動",
   ["#piucshsiap_active"] = "諷脅 選擇一殺一閃交予%src 或牢+1",

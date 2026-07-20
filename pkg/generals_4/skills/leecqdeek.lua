@@ -4,7 +4,7 @@ local leecqdeek = fk.CreateSkill {
 
 Fk:loadTranslationTable{
 ["leecqdeek"] = "靈笛",
-[":leecqdeek"] = "當伱受傷後伱可發動x次｡選擇1角色,其增或減1牢,抽1.x爲傷害值.",
+[":leecqdeek"] = "當伱受傷後伱可發動x次｡選擇1脚色,其增或減1牢,抽1.x爲傷害值.",
 ["#leecqdeek-choose"] = "靈笛: 選擇目幖 其增減牢抽1",
 ["#leecqdeek-choose2"] = "靈笛:  增減牢",
 

@@ -1,6 +1,6 @@
 Fk:loadTranslationTable{
   ["hzoavhkhis"] = "浩气",
-  [":hzoavhkhis"] = "伱使用殺對其它角色致傷後,伱可發動:伱抽x,其弃x",
+  [":hzoavhkhis"] = "伱使用殺對其它脚色致傷後,伱可發動:伱抽x,其弃x",
 
 
 

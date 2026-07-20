@@ -4,9 +4,9 @@ local ddwenqtsjens = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["ddwenqtsjens"] = "傳箭",
-  [":ddwenqtsjens"] = "額定抽牌旹,若伱抽牌數大于0,伱可發動.抽牌數-1,視爲伱對1其它角色使用探聽.末段,伱抽2,將1手牌幖記交予1角色.(幖記:此牌視爲殺且因花色具有效果.)", 
+  [":ddwenqtsjens"] = "額定抽牌旹,若伱抽牌數大于0,伱可發動.抽牌數-1,視爲伱對1其它脚色使用探聽.末段,伱抽2,將1手牌幖記交予1脚色.(幖記:此牌視爲殺且因花色具有效果.)", 
 
-  ["#ddwenqtsjens-invoke"] = "傳箭 視爲對1角色使用探聽",
+  ["#ddwenqtsjens-invoke"] = "傳箭 視爲對1脚色使用探聽",
   ["#ddwenqtsjens-choose"] = "傳箭",
   ["@@ddwenqtsjens-inhand"] = "傳箭",
 

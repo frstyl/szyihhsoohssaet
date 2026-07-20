@@ -3,9 +3,9 @@ local khuoqmoa_active = fk.CreateSkill{
 }
 -- Fk:loadTranslationTable{
 --   ["khuoqmoa_active"] = "祈禳",
---   [":khuoqmoa_active"] = "主旹,伱可選擇1角色有咒術者發動｡迻除其咒術,其抽1",
+--   [":khuoqmoa_active"] = "主旹,伱可選擇1脚色有咒術者發動｡迻除其咒術,其抽1",
 
---   ["#khuoqmoa_active-choose"] = "祈禳 爲1角色敺㪔咒術",
+--   ["#khuoqmoa_active-choose"] = "祈禳 爲1脚色敺㪔咒術",
 
 --   ["$khuoqmoa_active1"] = "能保則吉更當修爲",
 --   ["$khuoqmoa_active2"] = "切摸妄作萬福來宜",

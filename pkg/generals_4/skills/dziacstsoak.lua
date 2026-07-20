@@ -4,12 +4,12 @@ local dziacstsoak = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["dziacstsoak"] = "匠作",
-  [":dziacstsoak"] = "當伱可使用打出{殺/閃},伱可將1{黑/紅}非基本牌轉化之發動｡使用後,若牌名与上次發動牌名同,伱抽1;不同,伱可弃置其它角色1牌",
+  [":dziacstsoak"] = "當伱可使用打出{殺/閃},伱可將1{黑/紅}非基本牌轉化之發動｡使用後,若牌名与上次發動牌名同,伱抽1;不同,伱可弃置其它脚色1牌",
 
   ["#dziacstsoak"] = "匠作 將1{黑/紅}非基本牌轉化爲{殺/閃}",
   ["@dziacstsoak"] = "匠作",
 
-  ["#dziacstsoak-choose"] = "匠作 弃其它角色牌",
+  ["#dziacstsoak-choose"] = "匠作 弃其它脚色牌",
 
   ["$dziacstsoak1"] = "以靜制動以動制靜",
   ["$dziacstsoak1"] = "全力以赴一舉拿下",

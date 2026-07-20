@@ -3,7 +3,7 @@ local koav_doac_tous_puap = fk.CreateSkill {
 }
 Fk:loadTranslationTable{
   ["koav_doac_tous_puap"] = "高唐鬥法",
-  ["#koav_doac_tous_puap"] = "选择一其他角色，伱予其1雷傷",
+  ["#koav_doac_tous_puap"] = "选择一其他脚色，伱予其1雷傷",
 
 
 }
@@ -29,7 +29,7 @@ koav_doac_tous_puap:addEffect("cardskill", {
 })
 
 koav_doac_tous_puap:addEffect(fk.FinishJudge, {
-  global = true,
+  -- global = true,
   can_trigger = function(self, event, target, player, data)
     return data.card and data.card.suit==Card.Spade
     and #table.filter(player:getCardIds("h"), 

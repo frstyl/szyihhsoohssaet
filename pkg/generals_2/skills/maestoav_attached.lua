@@ -5,7 +5,7 @@ local maestoav_attached = fk.CreateSkill({
 
 Fk:loadTranslationTable{
   ["maestoav_attached&"] = "買刀",
-  [":maestoav_attached"] = "主旹,伱可交予賣刀者1~3牌獲取其1刀.其可拒絕",
+  [":maestoav_attached"] = "主旹,伱可交予賣刀者1~3牌獲得其1刀.其可拒絕",
 
   ["#maestoav_attached"] = "買刀",
 

@@ -4,9 +4,9 @@ local hzfenszzyit = fk.CreateSkill({
 
 Fk:loadTranslationTable{
   ["hzfenszzyit"] = "幻術",
-  [":hzfenszzyit"] = "當伱受到傷害後,伱可發動x(傷害值)次,選擇1角色發動,其判定2次,若判定牌色:黑黑,伱与其2雷傷;紅紅,伱与其2火傷", --;黑紅,伱与其各抽1
+  [":hzfenszzyit"] = "當伱受到傷害後,伱可發動x(傷害值)次,選擇1脚色發動,其判定2次,若判定牌色:黑黑,伱与其2雷傷;紅紅,伱与其2火傷", --;黑紅,伱与其各抽1
 
-  ["#hzfenszzyit-choose"] = "幻術：你可以令一名角色进行判定",
+  ["#hzfenszzyit-choose"] = "幻術：你可以令一名脚色进行判定",
 
   ["$hzfenszzyit1"] = "五雷天心緣何不驪",  --无色
   -- ["$hzfenszzyit2"] = "飛沙一起,眞假莫辨",

@@ -2,7 +2,7 @@ local hqrach = fk.CreateSkill {
   name = "hqrach_skill",
 }
 
-Fk:loadTranslationTable{  --對任意角色用牌 viewAs作旹機
+Fk:loadTranslationTable{  --對任意脚色用牌 viewAs作旹機
   ["#hqrach_skill"] = "影",
 }
 

@@ -87,7 +87,7 @@ jiacqmuoh:addEffect(fk.CardUseFinished, {
     if player.dead then return end
     local room=player.room
     if   data.extra_data.jiacqmuoh.get and player.room:getCardArea(data.card) == Card.Processing then
-    player.room:obtainCard(player, data.card, true, fk.ReasonJustMove, player, jiacqmuoh.name)
+    player.room:obtainCard(player, data.card, true, fk.ReasonPrey, player, jiacqmuoh.name)
     end
     if data.extra_data.jiacqmuoh.adjacent then
       room:loseHp(player,1,jiacqmuoh.name,player)

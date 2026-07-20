@@ -4,7 +4,7 @@ local tooshzeen = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["tooshzeen"] = "妬賢",
-  [":tooshzeen"] = "當伱攻程內其它角色不因額定抽牌抽牌旹,伱可与其拼點發動。若伱:贏,伱弃1手牌;沒贏,其須選1項.➀交与伱1♣牌手➁弃♠<font color='red'>♥♦</font>手牌各1➂流失1體力",
+  [":tooshzeen"] = "當伱攻程內其它脚色不因額定抽牌抽牌旹,伱可与其拼點發動。若伱:贏,伱弃1手牌;沒贏,其須選1項.➀交与伱1♣牌手➁弃♠<font color='red'>♥♦</font>手牌各1➂流失1體力",
 
 
   ["#tooshzeen-invoke"] = "妬賢 是否与%src拼點 記得用小點",

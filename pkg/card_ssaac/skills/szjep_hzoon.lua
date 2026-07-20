@@ -5,11 +5,11 @@ local szjep_hzoon = fk.CreateSkill {
 
 Fk:loadTranslationTable{
 -- ["szjep_hzoon"] = "攝䰟",
--- [":szjep_hzoon"] = "一名角色回合開始歬,選擇一其它角色A發動.A判定.判定後伱可弃一張与判定牌同色手牌,令A失去全部技能至其轉終後或此技能離場失效.",
+-- [":szjep_hzoon"] = "一名脚色回合開始歬,選擇一其它脚色A發動.A判定.判定後伱可弃一張与判定牌同色手牌,令A失去全部技能至其轉終後或此技能離場失效.",
 ["@@ssaac-turn"] = "攝䰟-生",
 ["@@sjih-turn"] = "攝䰟-死",
 
-["#szjep_hzoon"] = "攝䰟 先選擇生角色(實際牌目幖) 後選死 ",
+["#szjep_hzoon"] = "攝䰟 先選擇生脚色(實際牌目幖) 後選死 ",
 }
 
 local S = require "packages/szyihhsoohssaet/szyih_guos" 
@@ -34,33 +34,37 @@ szjep_hzoon:addEffect("cardskill", {
     return S.magicCanUse(player, card)
   end,  
   mod_target_filter = function(self, player, to_select, selected, card, extra_data)
-    if #selected == 0 then
       return true
-    elseif #selected == 1 then
-      return selected[1]~=(to_select)
-    end
   end,
   target_filter = function(self, player, to_select, selected, _, card, extra_data)
-    if #selected >= 2 then
-      return false
-    elseif #selected == 0 then
-      return Util.CardTargetFilter(self, player, to_select, selected, _, card, extra_data)
-    else
-      return selected[1]~=(to_select)
-    end
+    return Util.CardTargetFilter(self, player, to_select, selected, _, card, extra_data)
   end,
-  target_num = 2,  --算單體
+  target_num = 1,  --算單體
   on_use = function(self, room, cardUseEvent)
     S.magicOnUse(cardUseEvent.from, cardUseEvent)
-    local tos = table.simpleClone(cardUseEvent.tos)
-    cardUseEvent:removeAllTargets()
-    for i = 1, #tos, 2 do
-      cardUseEvent:addTarget(tos[i], { tos[i + 1] })
+
+    for i, p in ipairs(cardUseEvent.tos) do
+      local targets= table.filter(room.alive_players,function(sub)
+          return p~=sub
+        end
+        )
+      if #targets==0 then return end
+      
+      cardUseEvent.subTos =cardUseEvent.subTos or {}
+      local subTarget=room:askToChoosePlayers(cardUseEvent.from, {
+        targets = targets,
+        min_num = 1,
+        max_num = 1,
+        prompt = "#askToChooseSubTargets:::"..cardUseEvent.card:toLogString(),  --无用
+        skill_name = szjep_hzoon.name,
+        cancelable=false,
+      })
+      cardUseEvent.subTos[i]=subTarget
     end
   end,
   offset_func= Util.FalseFunc,
   on_effect = function(self, room, effect)  
-    clear(room)     --先清理 同旹止有一組
+    clear(room)     --先淸理 同旹止有一組
     if effect.to.dead or effect.subTargets.dead then return end
     room:setPlayerMark(effect.to,"@@ssaac-turn",effect.subTargets[1].id)
     room:setPlayerMark(effect.subTargets[1],"@@sjih-turn",effect.to.id)
@@ -68,7 +72,7 @@ szjep_hzoon:addEffect("cardskill", {
 })
 
 szjep_hzoon:addEffect(fk.DamageInflicted,{
-  global=true,
+  -- global=true,
   can_trigger = function(self, event, target, player, data)
     return player == target and target:getMark("@@sjih-turn") ~=0
   end,
@@ -83,7 +87,7 @@ szjep_hzoon:addEffect(fk.DamageInflicted,{
 })
 
 szjep_hzoon:addEffect(fk.Death,{
-  global=true,
+  -- global=true,
   can_trigger = function(self, event, target, player, data)
     return player==target and target:getMark("@@sjih-turn") ~=0 or target:getMark("@@ssaac-turn") ~=0
   end,

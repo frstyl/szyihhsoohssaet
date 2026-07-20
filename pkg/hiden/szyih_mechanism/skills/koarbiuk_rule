@@ -109,7 +109,7 @@ koarbiuk_rule:addEffect(fk.EventPhaseStart, {  --手牌可用之牌 葢牌何用
 
   on_trigger = function(self, event, target, player, data)
     local room=player.room
-    local cardNames={"ssaet","hzaac_tshjes","thou_liac_hzvoans_dduoh"}      --令牌技能註冊何旹可用??  --暗殺--"^(.)|.|.|.|ambush__ssaet",
+    local cardNames={"ssaet","mae_biuk","thou_liac_hzvoans_dduoh"}      --令牌技能註冊何旹可用??  --暗殺--"^(.)|.|.|.|ambush__ssaet",
     local pattern=""
     local setPattern =function()
           local t={}
@@ -130,7 +130,7 @@ koarbiuk_rule:addEffect(fk.EventPhaseStart, {  --手牌可用之牌 葢牌何用
       for _, p in ipairs(room.alive_players) do
         if #S.getPlayerKoarbiukCards(p)>0 and p~=target then 
           table.insert(players, p)
-          expand[p.id]=S.getPlayerKoarbiukCards({p},"hzaac_tshjes,thou_liac_hzvoans_dduoh;.|.|.|.|ambush__ssaet")
+          expand[p.id]=S.getPlayerKoarbiukCards({p},"mae_biuk,thou_liac_hzvoans_dduoh;.|.|.|.|ambush__ssaet")
           -- return true 
         end
       end
@@ -155,7 +155,7 @@ koarbiuk_rule:addEffect(fk.EventPhaseStart, {  --手牌可用之牌 葢牌何用
       }
 
         Fk.currentResponseReason = "koarbiuk_rule"
-        local use = S.askToUseKoarbiukCard(room, players,  params, nil, expand)  --不同角色不同
+        local use = S.askToUseKoarbiukCard(room, players,  params, nil, expand)  --不同脚色不同
         if use then
           -- room:addTableMark(use.from, "koarbiuk-phase", use.card.trueName)  --每个牌名1次?
 

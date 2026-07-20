@@ -5,13 +5,13 @@ local poosddxins = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["poosddxins"] = "布陣",
-  [":poosddxins"] = "每局限1.末段始旹,若伱有手牌,伱可選1項發動發動.➀連續任意次,伱可弃1手牌,交換2名角色座次➁弃全部緟排全部角色座次",
+  [":poosddxins"] = "每局限1.末段始旹,若伱有手牌,伱可選1項發動發動.➀連續任意次,伱可弃1手牌,交換2名脚色座次➁弃全部緟排全部脚色座次",
 
-  ["#poosddxins-invoke"] = "布陣：緟排角色座次",
+  ["#poosddxins-invoke"] = "布陣：緟排脚色座次",
   ["$TaMo"] = "布陣",
   ["click to exchange"] = "點擊交換",
 
-  ["#poosddxins-choose"] = "布陣 選擇1手牌与2角色 交換其座次",
+  ["#poosddxins-choose"] = "布陣 選擇1手牌与2脚色 交換其座次",
 
   ["$poosddxins1"] = "天地爲盤,蒼生爲棋子,此舉,孤註一擲",
 

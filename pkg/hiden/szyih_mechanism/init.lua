@@ -116,60 +116,60 @@ Fk:loadTranslationTable{
   ["not_equip_filter_skill"] = "非裝僃",
   ["khouc_skill"] = "空",
 
-  ["weapon__not_equip"] = "武器",
-  [":weapon__not_equip"] = "空",
+  ["WeaponSlot__not_equip"] = "武器",
+  [":WeaponSlot__not_equip"] = "空",
 
-  ["armor__not_equip"] = "防具",
-  [":armor__not_equip"] = "空",
+  ["ArmorSlot__not_equip"] = "防具",
+  [":ArmorSlot__not_equip"] = "空",
 
-  ["offensive_horse__not_equip"] = "攻馬",
-  [":offensive_horse__not_equip"] = "空",
+  ["OffensiveRideSlot_horse__not_equip"] = "攻馬",
+  [":OffensiveRideSlot_horse__not_equip"] = "空",
 
-  ["defensive_horse__not_equip"] = "防馬",
-  [":defensive_horse__not_equip"] = "空",
+  ["DefensiveRideSlot_horse__not_equip"] = "防馬",
+  [":DefensiveRideSlot_horse__not_equip"] = "空",
 
-  ["treasure__not_equip"] = "寶物",
-  [":treasure__not_equip"] = "空",
+  ["TreasureSlot__not_equip"] = "寶物",
+  [":TreasureSlot__not_equip"] = "空",
 }
-local weapon__not_equip = fk.CreateCard{  --非裝僃置入裝僃區 --moveCardIntoEquip 應指定裝所入僃欄
-  name = "&weapon__not_equip",
+local WeaponSlot__not_equip = fk.CreateCard{  --非裝僃置入裝僃區 --moveCardIntoEquip 應指定裝所入僃欄
+  name = "&WeaponSlot__not_equip",
   type = Card.TypeEquip,
   sub_type = Card.SubtypeWeapon,
 }
-extension:loadCardSkels{weapon__not_equip}
-extension:addCardSpec("weapon__not_equip")
+extension:loadCardSkels{WeaponSlot__not_equip}
+extension:addCardSpec("WeaponSlot__not_equip")
 
-local armor__not_equip = fk.CreateCard{
-  name = "&armor__not_equip",
+local ArmorSlot__not_equip = fk.CreateCard{
+  name = "&ArmorSlot__not_equip",
   type = Card.TypeEquip,
   sub_type = Card.SubtypeArmor,
 }
-extension:loadCardSkels{armor__not_equip}
-extension:addCardSpec("armor__not_equip")
+extension:loadCardSkels{ArmorSlot__not_equip}
+extension:addCardSpec("ArmorSlot__not_equip")
 
-local offensive_horse__not_equip = fk.CreateCard{
-  name = "&offensive_horse__not_equip",
+local OffensiveRideSlot__not_equip = fk.CreateCard{
+  name = "&OffensiveRideSlot__not_equip",
   type = Card.TypeEquip,
   sub_type = Card.SubtypeOffensiveRide,
 }
-extension:loadCardSkels{offensive_horse__not_equip}
-extension:addCardSpec("offensive_horse__not_equip")
+extension:loadCardSkels{OffensiveRideSlot__not_equip}
+extension:addCardSpec("OffensiveRideSlot__not_equip")
 
-local defensive_horse__not_equip = fk.CreateCard{
-  name = "&defensive_horse__not_equip",
+local DefensiveRideSlot__not_equip = fk.CreateCard{
+  name = "&DefensiveRideSlot__not_equip",
   type = Card.TypeEquip,
   sub_type = Card.SubtypeDefensiveRide,
 }
-extension:loadCardSkels{defensive_horse__not_equip}
-extension:addCardSpec("defensive_horse__not_equip")
+extension:loadCardSkels{DefensiveRideSlot__not_equip}
+extension:addCardSpec("DefensiveRideSlot__not_equip")
 
-local treasure__not_equip = fk.CreateCard{
-  name = "&treasure__not_equip",
+local TreasureSlot__not_equip = fk.CreateCard{
+  name = "&TreasureSlot__not_equip",
   type = Card.TypeEquip,
   sub_type = Card.SubtypeTreasure,
 }
-extension:loadCardSkels{treasure__not_equip}
-extension:addCardSpec("treasure__not_equip")
+extension:loadCardSkels{TreasureSlot__not_equip}
+extension:addCardSpec("TreasureSlot__not_equip")
 
 
 

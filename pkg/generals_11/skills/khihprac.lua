@@ -36,7 +36,7 @@ khihprac:addEffect(fk.DrawNCards, {
   else
     data.n = data.n + player:getLostHp()
     -- room:setPlayerMark(player,"@@khihprac-losthp-turn",1)
-      room:addSkill("dzjissziuh")
+    room:addSkill("dzjissziuh")
     room:addPlayerMark(player,"@@dzjissziuh-turn",1)
     room:addPlayerMark(player, MarkEnum.AddMaxCardsInTurn, player:getLostHp())  --可合併
 

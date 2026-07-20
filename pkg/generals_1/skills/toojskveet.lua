@@ -4,7 +4,7 @@ local toojskveet = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["toojskveet"] = "對決",
-  [":toojskveet"] = "殺效果結算後,若伱爲其使用者或目幖,伱可選1其他角色發動,其判定,視爲伱對其使用鬥將,无視距離且止被与判定牌同色牌響應｡",
+  [":toojskveet"] = "殺效果結算後,若伱爲其使用者或目幖,伱可選1其他脚色發動,其判定,視爲伱對其使用鬥將,无視距離且止被与判定牌同色牌響應｡",
   ["#toojskveet-choose"] = "對決 選擇鬥將目幖",
 }
 

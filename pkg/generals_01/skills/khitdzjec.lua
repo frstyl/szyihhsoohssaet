@@ -5,7 +5,7 @@ local khitdzjec = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["khitdzjec"] = "乞情",
-  [":khitdzjec"] = "其它角色受傷後,伱可發動:伱爲其附加 𡴘運",
+  [":khitdzjec"] = "其它脚色受傷後,伱可發動:伱爲其附加 𡴘運",
 
   ["#khitdzjec-invoke"] = "乞情 是否對 %src發動",
 

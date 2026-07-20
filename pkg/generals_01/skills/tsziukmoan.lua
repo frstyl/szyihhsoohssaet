@@ -7,7 +7,7 @@ local S = require "packages/szyihhsoohssaet/szyih_guos"
 
 Fk:loadTranslationTable{
   ["tsziukmoan"] = "咒謾",
-  [":tsziukmoan"] = "其它角色挩離瀕死被救回後,伱可發動,伱爲其附加詛咒",
+  [":tsziukmoan"] = "其它脚色挩離瀕死被救回後,伱可發動,伱爲其附加詛咒",
 
   ["#tsziukmoan-invoke"] = "咒謾 是否對 %src發動",
 

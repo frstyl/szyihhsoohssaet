@@ -1,11 +1,11 @@
 local hzoonscuan = fk.CreateSkill {
   name = "hzoonscuan",
-  -- tags={Skill.Compulsory}
+  tags={Skill.Compulsory}
 }
 
 Fk:loadTranslationTable{
   ["hzoonscuan"] = "溷元",
-  [":hzoonscuan"] = "自限:全場唯一.鎖定.任一角色體力變化後,必發.伱將牌堆頂x牌置于伱武將牌上,稱爲熵",  --規則技?
+  [":hzoonscuan"] = "自限:全場唯一.鎖定.➀任一脚色體力變化後,必發.伱將牌堆頂x牌置于伱武將牌上,稱爲熵｡➁一判定牌生效前,伱選擇1熵發動,以所選交換判定牌",  --規則技?
 
 
   ["#hzoonscuan-invoke"] = "溷元 以熵 交換 %dest %arg 判定",

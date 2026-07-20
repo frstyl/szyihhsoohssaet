@@ -6,7 +6,7 @@ local seenqtoeoc= fk.CreateSkill({
 
 Fk:loadTranslationTable{
 ["seenqtoeoc"] = "先登",
-[":seenqtoeoc"] = "➀一其它角色A轉始旹,伱可發動,伱可使用1手牌(无視距離),目幖須含A.此牌結算後,若對A致傷,伱抽2,此技能當輪內失效.",
+[":seenqtoeoc"] = "➀一其它脚色A轉始旹,伱可發動,伱可使用1手牌(无視距離),目幖須含A.此牌結算後,若對A致傷,伱抽2,此技能當輪內失效.",
 ["#seenqtoeoc-choose"] = "先登 對 %src 使用牌",
 
 ["#seenqtoeoc-choose"] = "先登 對 %src 使用牌",

@@ -18,7 +18,7 @@ cardSkill:addEffect("cardskill", {
       ids = ids,
       to = effect.to,
       toArea = Card.PlayerHand,
-      moveReason = fk.ReasonJustMove,
+      moveReason = fk.ReasonPrey,
       proposer = effect.from,
       skillName = cardSkill.name,
       moveVisible = true,

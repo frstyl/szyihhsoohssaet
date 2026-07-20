@@ -4,10 +4,12 @@ local cardSkill = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["tsjas_toav_ssaet_nzjin_skill"] = "借刀殺人",
-  ["#tsjas_toav_ssaet_nzjin_skill"] = "選擇1其它角色A与A殺合理目幖B,對A使用. A可選1項➀對B使用1殺不計入次數,➁將此牌轉化爲殺對B使用",
+  ["#tsjas_toav_ssaet_nzjin_skill"] = "選擇1其它脚色A与子目幖B,對A使用. A可選1項➀對B使用1殺无視距離次數,➁將此牌轉化爲殺對B使用",
 
   ["#tsjas_toav_ssaet_nzjin-UseVirtualCard"] = "轉化此牌 %arg 爲殺使用",
   ["#tsjas_toav_ssaet_nzjin-UseCard"] = "使用殺 不計入次數",
+
+  ["#askToChooseSubTargets"] = "爲 %arg 選擇子目幖",
 
   ["#tsjas_toav_ssaet_nzjin-ssaet"] ="%src 對伱使用 借刀殺人, 伱可對 %src 使用殺",
 }
@@ -15,29 +17,30 @@ cardSkill:addEffect("cardskill", {
   prompt = "#tsjas_toav_ssaet_nzjin_skill",
   offset_func= Util.FalseFunc,
   mod_target_filter = function(self, player, to_select, selected, card, extra_data)
-    if #selected == 0 then  --多目幖?
-      return to_select ~= player 
-      -- return true
-    elseif #selected == 1 then
-      return selected[1]:canUseTo(Fk:cloneCard("ssaet"), to_select, {bypass_distances = false, bypass_times = true})
-
-    end
+    return to_select ~= player  --額外目幖不能爲子目幖
   end,
   target_filter = function(self, player, to_select, selected, _, card, extra_data)
-    if #selected >= 2 then
-      return false
-    elseif #selected == 0 then
-      return Util.CardTargetFilter(self, player, to_select, selected, _, card, extra_data)
-    else
-      return selected[1]:inMyAttackRange(to_select)
-    end
+    return Util.CardTargetFilter(self, player, to_select, selected, _, card, extra_data)
   end,
-  target_num = 2, 
+  target_num = 1, 
   on_use = function(self, room, cardUseEvent)
-    local tos = table.simpleClone(cardUseEvent.tos)
-    cardUseEvent:removeAllTargets()
-    for i = 1, #tos, 2 do
-      cardUseEvent:addTarget(tos[i], { tos[i + 1] })
+    local targets= table.filter(room.alive_players,function(p)
+        return  not table.contains(cardUseEvent.tos,p)  --p~=cardUseEvent.from and
+      end
+      )
+    if #targets==0 then return end
+
+    local subTarget=room:askToChoosePlayers(cardUseEvent.from, {
+      targets = targets,
+      min_num = 1,
+      max_num = 1,
+      prompt = "#askToChooseSubTargets:::"..cardUseEvent.card:toLogString(),
+      skill_name = cardSkill.name,
+      cancelable=false,
+    })
+    cardUseEvent.subTos=cardUseEvent.subTos or {}
+    for i, p in ipairs(cardUseEvent.tos) do
+      cardUseEvent.subTos[i]=subTarget
     end
   end,
   on_effect = function(self, room, effect)
@@ -66,14 +69,13 @@ cardSkill:addEffect("cardskill", {
       })
       if choice=="Cancel" then return end
 
-      local extra_data = {
-        must_targets = table.map(effect.subTargets, Util.IdMapper),
-        -- bypass_times = true,
-        -- extraUse=true,
-        bypass_times = false,
-        extraUse=false,
-      }
-      local extraUse=false
+      -- local extra_data = {
+      --   must_targets = table.map(effect.subTargets, Util.IdMapper),
+      --   bypass_distances = true,
+      --   extraUse=true,
+      --   bypass_times = false,
+      -- }
+      local extraUse
       local use ={}
 
       if choice=="#tsjas_toav_ssaet_nzjin-UseVirtualCard:::"..effect.card:toLogString() then
@@ -82,7 +84,12 @@ cardSkill:addEffect("cardskill", {
           skill_name = cardSkill.name,
           prompt = prompt,
           cancelable = true,
-          extra_data = extra_data,
+          extra_data = {
+            must_targets = table.map(effect.subTargets, Util.IdMapper),
+            bypass_distances = false,
+            extraUse=false,
+            bypass_times = false,
+          },
           event_data = effect,
           expand_pile = cards,
           subcards =  cards,
@@ -95,7 +102,12 @@ cardSkill:addEffect("cardskill", {
           pattern = "ssaet", 
           prompt = prompt, 
           cancelable = true, 
-          extra_data = extra_data, 
+          extra_data = {
+            must_targets = table.map(effect.subTargets, Util.IdMapper),
+            bypass_distances = true,
+            extraUse=true,
+            bypass_times = false,
+          }, 
           event_data = effect,
           skip=true, 
         })

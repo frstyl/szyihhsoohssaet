@@ -3,7 +3,7 @@ local tszhiocqhzaems = fk.CreateSkill {
 }
 Fk:loadTranslationTable{
   ["tszhiocqhzaems"] = "䡴陷",
-  [":tszhiocqhzaems"] = "當伱可使用殺,伱可將1+x張牌轉化爲殺使用發動.䡴陷殺攻程+x,需額外x^x閃抵消(x=其子牌數-1).",
+  [":tszhiocqhzaems"] = "當伱可使用殺,伱可將1+x張牌轉化爲殺使用發動.䡴陷殺攻程+x,需(x!)次抵消.",  --額外x^x閃抵消(x=其子牌數-1)
 
   ["#tszhiocqhzaems"] = "䡴陷：將x張牌轉化爲殺使用,此殺需x張閃抵消",
 }
@@ -39,10 +39,16 @@ tszhiocqhzaems:addEffect(fk.TargetSpecified, {
     and  table.contains(data.card.skillNames,tszhiocqhzaems.name)
   end,
   on_refresh = function(self, event, target, player, data)
-    local n=  #data.card.subcards-1
-    if n== 0 then return end
-    
-    data:setResponseTimes(data:getResponseTimes(to)+math.floor(n^n), data.to)
+    -- local n=  #data.card.subcards-1
+    -- if n== 0 then return end
+    -- data:setResponseTimes(data:getResponseTimes(to)+math.floor(n^n), data.to)
+    local n=  #data.card.subcards
+    local function factorial(num)
+      if num<0 then return end
+      if num==0 then return 1 end
+      return num * factorial(num-1) 
+    end
+    data:setResponseTimes(factorial(n), data.to)
   end,
   })
 

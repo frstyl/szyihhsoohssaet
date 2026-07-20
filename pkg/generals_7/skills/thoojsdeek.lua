@@ -5,7 +5,7 @@ local thoojsdeek = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["thoojsdeek"] = "退敵",
-  [":thoojsdeek"] = "其它角色伏段終旹,伱可預打出1武器牌或流失1體力發動.其選擇打出1紅桃閃令伱回1或令伱選擇1項➀伱予其1傷➁伱弃其裝僃區全部牌➂伱令其本局攻程-1",
+  [":thoojsdeek"] = "其它脚色伏段終旹,伱可預打出1武器牌或流失1體力發動.其選擇打出1紅桃閃令伱回1或令伱選擇1項➀伱予其1傷➁伱弃其裝僃區全部牌➂伱令其本局攻程-1",
 
   ["#thoojsdeek-invoke"] = "退敵 1武器牌或流失1體力 對%src 發動",
   ["#thoojsdeek-discard"] = "退敵 打出紅桃閃",
@@ -41,7 +41,7 @@ thoojsdeek:addEffect(fk.EventPhaseEnd, {
         include_equip = false,
         skillName = thoojsdeek.name,
         pattern = tostring(Exppattern{ id = table.filter(player:getCardIds("he"), function (id)
-      return not player:prohibitResponse(Fk:getCardById(id)) and Fk:getCardById(id).sub_type = Card.SubtypeWeapon
+      return not player:prohibitResponse(Fk:getCardById(id)) and Fk:getCardById(id).sub_type == Card.SubtypeWeapon
      end)}),
       }, 
       no_indicate = false,

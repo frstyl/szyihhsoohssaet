@@ -4,7 +4,7 @@ local paasdoavh = fk.CreateSkill {
 
 Fk:loadTranslationTable{
 ["paasdoavh"] = "霸道",
-[":paasdoavh"] = "當其它角色主段始旹,伱預打出1基本牌發動,該角色本轉不可使用牌与伱所弃牌同色者(含子牌)",
+[":paasdoavh"] = "當其它脚色主段始旹,伱預打出1基本牌發動,該脚色本轉不可使用牌与伱所弃牌同色者(含子牌)",
 ["#paasdoavh-ask"]="霸道 弃牌 令 %src 不能使用打出同色牌",
 ["@paasdoavh-turn"] = "霸道",
 }

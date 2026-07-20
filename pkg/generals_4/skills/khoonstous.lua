@@ -4,9 +4,9 @@ local khoonstous = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["khoonstous"] = "困鬥",
-  [":khoonstous"] = "伱受傷後至多傷害值次,伱可預弃1牌指定傷源A攻程內1除伱与A外角色B發動.視爲A對B使用鬥將(目幖不合理則迻除)",
+  [":khoonstous"] = "伱受傷後至多傷害值次,伱可預弃1牌指定傷源A攻程內1除伱与A外脚色B發動.視爲A對B使用鬥將(目幖不合理則迻除)",
 
-  ["#khoonstous-discard"] = "困鬥：伱受到殺伤害，你可以弃置一牌令 %src 鬥將 一角色",
+  ["#khoonstous-discard"] = "困鬥：伱受到殺伤害，你可以弃置一牌令 %src 鬥將 一脚色",
 
   ["$khoonstous1"] = "今兩虎而鬥小者必死大者必傷",
   ["$khoonstous2"] = "縱使身処險境也要鬥上一鬥",

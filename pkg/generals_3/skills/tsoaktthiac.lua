@@ -4,7 +4,7 @@ local tsoaktthiac = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["tsoaktthiac"] = "作倀",
-  [":tsoaktthiac"] = "主旹,選擇1其他角色A(須其手牌數或裝僃數爲全場至多)發動,A抽1,當轉內,伱下次致傷旹傷害值+1,若A滿足2項,伱抽1",
+  [":tsoaktthiac"] = "主旹,選擇1其他脚色A(須其手牌數或裝僃數爲全場至多)發動,A抽1,當轉內,伱下次致傷旹傷害值+1,若A滿足2項,伱抽1",
 
   ["#tsoaktthiac"] = "作倀 選擇",
 

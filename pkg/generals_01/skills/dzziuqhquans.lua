@@ -7,7 +7,7 @@ local S = require "packages/szyihhsoohssaet/szyih_guos"
 
 Fk:loadTranslationTable{
   ["dzziuqhquans"] = "讎怨",
-  [":dzziuqhquans"] = "伱死亾旹,伱可發動:伱爲全體存活角色附加咒術詛咒",
+  [":dzziuqhquans"] = "伱死亾旹,伱可發動:伱爲全體存活脚色附加咒術詛咒",
 
   ["#dzziuqhquans-invoke:"] = "咒謾 是否對 %src發動",
 

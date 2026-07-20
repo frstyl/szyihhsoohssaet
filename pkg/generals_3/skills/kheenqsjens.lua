@@ -5,7 +5,7 @@ local kheenqsjens = fk.CreateSkill {
 
 Fk:loadTranslationTable {
   ["kheenqsjens"] = "牽線",
-  [":kheenqsjens"] = "階段限1.其它角色A于其主旹可預將1梅花手牌交予与伱併選1角色B除伱与其己者發動.B可交予伱1梅花手牌",
+  [":kheenqsjens"] = "階段限1.其它脚色A于其主旹可預將1梅花手牌交予与伱併選1脚色B除伱与其己者發動.B可交予伱1梅花手牌",
 
   ["#kheenqsjens-failed"] = "%from 与 %to 牽手失敗",
   ["#kheenqsjens-successed"] = "%from 与 %to 牽手成功",

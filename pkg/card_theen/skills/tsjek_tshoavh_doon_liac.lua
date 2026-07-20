@@ -23,7 +23,7 @@ skill:addEffect("cardskill", {
     }
     room:judge(judge)
     if  judge.card then
-        room:obtainCard(to, judge.card , true, fk.ReasonJustMove, player, self.name)
+        room:obtainCard(to, judge.card , true, fk.ReasonPrey, player, self.name)
         if judge.card.getSuitString ~= Card.Diamond then
         -- to:skip(Player.Discard)
          S.skipPhase(to.id , Player.Discard)

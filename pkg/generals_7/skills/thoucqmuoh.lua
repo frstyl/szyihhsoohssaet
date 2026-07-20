@@ -4,11 +4,11 @@ local thoucqmuoh = fk.CreateSkill {
 
 Fk:loadTranslationTable{
 ["thoucqmuoh"] = "通武",
-[":thoucqmuoh"] = "伱使用殺指定目幖後,伱隱祕選1項發動.此殺{➀被｢閃｣抵消旹/➁對目幖致傷旹},伱抽1,肰後伱可{令一角色獲得此閃/弃置目幖1牌}",
+[":thoucqmuoh"] = "伱使用殺指定目幖後,伱隱祕選1項發動.此殺{➀被｢閃｣抵消旹/➁對目幖致傷旹},伱抽1,肰後伱可{令一脚色獲得此閃/弃置目幖1牌}",
 
 ["#thoucqmuoh-choose"] = "通武 選擇",
 ["#thoucqmuoh-szjemh"] = "獲得閃",
-["#thoucqmuoh-szjemh-choose"] = "通武 選擇一角色獲得此閃",
+["#thoucqmuoh-szjemh-choose"] = "通武 選擇一脚色獲得此閃",
 ["#thoucqmuoh-damage"] = "弃牌",
 ["#thoucqmuoh-damage-ask"] = "通武 是否弃 %src 牌",
 }
@@ -61,7 +61,7 @@ thoucqmuoh:addEffect(fk.CardEffectCancelledOut, {  --不算發動技能
       cancelable = true,
     })
     if #to~=0 and (not to[1].dead ) and  player.room:getCardArea(data.cardsResponded) == Card.DiscardPile then
-      player.room:obtainCard(to[1], data.cardsResponded, true, fk.ReasonJustMove, player, thoucqmuoh.name)
+      player.room:obtainCard(to[1], data.cardsResponded, true, fk.ReasonPrey, player, thoucqmuoh.name)
     end
 
   end,

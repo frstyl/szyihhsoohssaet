@@ -13,6 +13,7 @@ skill:addEffect("cardskill", {
   end,
   offset_func= Util.FalseFunc,
   on_effect = function(self, room, effect)
+    if effect.to.dead then return end
     local loopTimes = effect:getResponseTimes()
     local respond
     for i = 1, loopTimes do
@@ -25,6 +26,7 @@ skill:addEffect("cardskill", {
       respond = room:askToResponse(effect.to, params)
       if respond then
         room:responseCard(respond)
+        if effect.to.dead then return end
       else
         room:damage({
           from = effect.from,
@@ -35,9 +37,8 @@ skill:addEffect("cardskill", {
           skillName = skill.name,
           event_data= effect,
         })
-        break
+        return
       end
-      if effect.to.dead then break end
     end
   end,
 })

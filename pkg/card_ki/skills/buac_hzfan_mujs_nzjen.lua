@@ -22,6 +22,7 @@ cardSkill:addEffect("cardskill", {
   end,
 })
 
+--BeforeCardUseEffect
 cardSkill:addEffect(fk.PreCardEffect, { --以可用之牌分  ---HandleAskForPlayCard
   -- global = true,
   mute = true,
@@ -52,8 +53,6 @@ cardSkill:addEffect(fk.PreCardEffect, { --以可用之牌分  ---HandleAskForPla
       end)
     if #players==0 then return end
 
-
-
     event:setCostData(self,{players=players,cardNames=cardNames})
     return true    
   end,
@@ -62,7 +61,7 @@ cardSkill:addEffect(fk.PreCardEffect, { --以可用之牌分  ---HandleAskForPla
     local players=event:getCostData(self).players
     local cardNames=event:getCostData(self).cardNames
     local holders={} --不等于players
-    -- local loopTimes = data:getResponseTimes()
+    -- local loopTimes = data:getResponseTimes(data.to)
 
     -- for i = 1, loopTimes do
     local pattern=""
@@ -163,7 +162,9 @@ cardSkill:addEffect(fk.PreCardEffect, { --以可用之牌分  ---HandleAskForPla
 
     end
 
-    local setPrompt = function(loopTimes,i)
+    local setPrompt = function()
+      local loopTimes= data:getResponseTimes(data.to) or 1
+      local order = (data.offsetTimes or 0 ) + 1
       if not data.from then return end
       if loopTimes == 1 then
         if data.from and data.to then
@@ -175,21 +176,20 @@ cardSkill:addEffect(fk.PreCardEffect, { --以可用之牌分  ---HandleAskForPla
         end
       else
         if data.from  and data.to then
-          prompt = "#AskForbuac_hzfan_mujs_nzjen-multi:" .. data.from.id ..":" .. data.to.id .. ":" .. data.card:toLogString() .. ":" .. cardNames[1] .. "::" .. i .. ":" .. loopTimes
+          prompt = "#AskForbuac_hzfan_mujs_nzjen-multi:" .. data.from.id ..":" .. data.to.id .. ":" .. data.card:toLogString() .. ":" .. cardNames[1] .. ":" .. order .. ":" .. loopTimes
         end
       end
     end
 
-
-    local loopTimes = data:getResponseTimes() or 1--暫止有閃
-    local i=1
+    local used_times={}
     while true do
       setPattern()
       -- if #holders==0 then return end  --能響應无牌 發旹機
       if  table.contains({ "buac_hzfan_mujs_nzjen" ,"tsiac_keejs_dzius_keejs"}, data.card.trueName) then
         player.room:animDelay(2)
       end
-      setPrompt(loopTimes,i)
+
+      setPrompt()
 
       local extra_data = { effectCardId = data.card.id  }
       if #data.tos > 1 then
@@ -214,29 +214,30 @@ cardSkill:addEffect(fk.PreCardEffect, { --以可用之牌分  ---HandleAskForPla
       use.responseToEvent = data
       room:useCard(use)
 
-    if use.card.trueName=="szjemh" and data.isCancellOut == true then
-        data.isCancellOut = i == loopTimes 
-        if  data.isCancellOut then
-          return
+        data.isCancellOut = (data.offsetTimes or 0) >= data:getResponseTimes(data.to)--需多張 有1被无效仍詢問
+
+        used_times[use.card.trueName]=(used_times[use.card.trueName] or 0)+1
+
+      if use.card.trueName=="szjemh" then --暫時
+        if used_times["szjemh"] >= data:getResponseTimes(data.to) then  --已響應牌記錄 cardsResponded 不可用 
+          table.removeOne(cardNames,use.card.trueName)
         end
-        i=i+1
-        cardNames={"szjemh"}
       else
-        return
+          table.removeOne(cardNames,use.card.trueName)
       end
 
-    if data.isCancellOut or data.nullified then return end  --copy
-    for _, name in ipairs(data.prohibitedCardNames or {}) do
-      table.removeOne(cardNames,name)
-    end
-    if #cardNames==0 then return end
+      if data.isCancellOut or data.nullified then return end  --copy
 
-    players=table.filter(players,function(p)
-        return not data:isUnoffsetable(p)  and not data:isDisresponsive(p) 
-      end)
-    if #players==0 then return end
+      --需要?
+      for _, name in ipairs(data.prohibitedCardNames or {}) do
+        table.removeOne(cardNames,name)
+      end
+      if #cardNames==0 then return end
 
-
+      players=table.filter(players,function(p)
+          return not data:isUnoffsetable(p)  and not data:isDisresponsive(p) 
+        end)
+      if #players==0 then return end
 
 
     end

@@ -5,7 +5,7 @@ local giacqpaas = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["giacqpaas"] = "彊霸",
-  [":giacqpaas"] = "伱末段終旹,伱可預弃1牌選擇1其它男角色發動.伱予其1傷,伱伱未損,改爲2傷",
+  [":giacqpaas"] = "伱末段終旹,伱可預弃1牌選擇1其它男脚色發動.伱予其1傷,伱伱未損,改爲2傷",
 
   ["#giacqpaas-choose"] = "彊霸 選擇牌与目幖 予其%arg傷",
 

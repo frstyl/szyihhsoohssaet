@@ -28,7 +28,7 @@ cardSkill:addEffect("cardskill", {
         return self:withinTimesLimit(player, Player.HistoryPhase, card, "ssaet", p)
       end)
   end,
-  mod_target_filter = function(self, player, to_select, selected, card, extra_data)--攻程內其它角色
+  mod_target_filter = function(self, player, to_select, selected, card, extra_data)--攻程內其它脚色
     return to_select ~= player --殺自己??
     and
        ( (extra_data and extra_data.bypass_distances) or self:withinDistanceLimit(player, true, card, to_select))

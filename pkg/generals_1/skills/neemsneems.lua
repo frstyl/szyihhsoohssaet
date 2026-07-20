@@ -74,7 +74,7 @@ neemsneems:addEffect(fk.TurnEnd, {
     local room=player.room
     local cards = table.simpleClone(event:getCostData(self).cards)
     -- player.room:moveCardTo(event:getCostData(self).ids, Card.PlayerHand, player, fk.ReasonPrey, neemsneems.name, nil, true, player)
-    room:obtainCard(player, cards, true, fk.ReasonPrey, player, neemsneems.name)  --置入PutInt?? ReasonJustMove? 
+    room:obtainCard(player, cards, true, fk.ReasonPrey, player, neemsneems.name)  --置入PutInt?? ttis_tsiuh_szjet_jjen? 
 
 
   end,

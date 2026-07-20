@@ -5,7 +5,7 @@ local cardSkill = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["#doar_nnaavs_kaoc_tsziu"] = "大鬧江州 是否解救%src", 
-  -- ["#bvoat_toav_siac_dzsios"] = "拔刀相助 弃此牌与1其它角色伏區1延旹牌",
+  -- ["#bvoat_toav_siac_dzsios"] = "拔刀相助 弃此牌与1其它脚色伏區1延旹牌",
 }
 
 local S = require "packages/szyihhsoohssaet/szyih_guos" 

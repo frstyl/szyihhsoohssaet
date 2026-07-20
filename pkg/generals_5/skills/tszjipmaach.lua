@@ -4,7 +4,7 @@ local tszjipmaach = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["tszjipmaach"] = "執猛",
-  [":tszjipmaach"] = "當伱對其它角色致傷旹,或伱受到其它角色傷旹,至多傷害值次,伱可選1項發動.➀伱抽1➁弃對方1.",
+  [":tszjipmaach"] = "當伱對其它脚色致傷旹,或伱受到其它脚色傷旹,至多傷害值次,伱可選1項發動.➀伱抽1➁弃對方1.",
 
   ["tszjipmaach-choose"] = "執猛",
   ["draw1"] = "抽1",

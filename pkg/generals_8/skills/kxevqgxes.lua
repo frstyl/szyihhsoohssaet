@@ -5,7 +5,7 @@ local kxevqgxes = fk.CreateSkill{
 
 Fk:loadTranslationTable{
 ["kxevqgxes"] = "驕騎",
-[":kxevqgxes"] = "伱使用殺旹可發動.伱抽1,此殺結算期閒,其它角色手牌視爲閃,非鎖定技失效.此殺結算終旹,若其曾致傷伱抽x,否則抽y(x爲此殺傷害基數,y爲子牌數)",  --全部牌當閃
+[":kxevqgxes"] = "伱使用殺旹可發動.伱抽1,此殺結算期閒,其它脚色手牌視爲閃,非鎖定技失效.此殺結算終旹,若其曾致傷伱抽x,否則抽y(x爲此殺傷害基數,y爲子牌數)",  --全部牌當閃
 
 ["@@kxevqgxes-phase"] = "驕騎",
 }

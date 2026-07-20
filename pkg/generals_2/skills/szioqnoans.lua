@@ -4,7 +4,7 @@ local szioqnoans = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["szioqnoans"] = "紓難",
-  [":szioqnoans"] = "一進攻牌對目幖角色生效前,若使用者不爲伱且目幖數等于1,伱可預打出1牌發動.伱選擇1項➀將目幖轉爲伱(目幖爲伱不可選)➁此牌對目幖无效,若此牌不爲轉化牌將將其迻除遊戲.轉終,使用者得之 ",
+  [":szioqnoans"] = "一進攻牌對目幖脚色生效前,若使用者不爲伱且目幖數等于1,伱可預打出1牌發動.伱選擇1項➀將目幖轉爲伱(目幖爲伱不可選)➁此牌對目幖无效,若此牌不爲轉化牌將將其迻除遊戲.轉終,使用者得之 ",
 
   ["#szioqnoans-invoke"] = "紓難 %src 對 %dest 使用 %arg，伱可打出1牌發動",
 
@@ -95,7 +95,7 @@ szioqnoans:addEffect(fk.TurnEnd, {
   end,
   on_cost = Util.TrueFunc,
   on_use = function(self, event, target, player, data)
-    player.room:moveCardTo(player:getPile(szioqnoans.name), Card.PlayerHand, player, fk.ReasonJustMove)
+    player.room:moveCardTo(player:getPile(szioqnoans.name), Card.PlayerHand, player, fk.ReasonPrey)
   end,
 })
 

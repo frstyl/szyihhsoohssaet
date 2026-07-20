@@ -4,7 +4,7 @@ local liocqdzjem = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["liocqdzjem"] = "龍濳",
-  [":liocqdzjem"] = "一角色成爲錦囊目幖旹,若伱至其距離不大于1,伱可發動.其与伱各抽1,肰後其選1手牌置于牌堆頂",
+  [":liocqdzjem"] = "一脚色成爲錦囊目幖旹,若伱至其距離不大于1,伱可發動.其与伱各抽1,肰後其選1手牌置于牌堆頂",
 
   ["#liocqdzjem-ask"] = "龍濳 是否對 %src 發動",
   ["#liocqdzjem-choose"] = "龍濳 選擇1手牌",

@@ -26,7 +26,7 @@ skill:addEffect("active", {
 	  -- effect.from:addVirtualEquip(c)
 	  -- --function MoveEventWrappers:moveCardTo(card, to_place, target, reason, skill_name, special_name, visible, proposer, moveMark, visiblePlayers)
 
-	  -- room:moveCardTo(c, Player.Judge, effect.from, fk.ReasonJustMove, skill.name, nil, false, effect.from, {"koarbiuk-inarea", c.name}, {effect.from.id})
+	  -- room:moveCardTo(c, Player.Judge, effect.from, fk.ReasonPrey, skill.name, nil, false, effect.from, {"koarbiuk-inarea", c.name}, {effect.from.id})
 	S.koarbiuk(effect.from, effect.cards[1], skill.name, effect.from)  --止1
 -- U.premeditate(effect.from, effect.cards, skill.name, effect.from)
   end,

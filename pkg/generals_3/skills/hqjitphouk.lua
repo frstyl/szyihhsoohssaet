@@ -3,7 +3,7 @@ local hqjitphouk = fk.CreateSkill {
 }
 Fk:loadTranslationTable{
   ["hqjitphouk"] = "一撲",
-  [":hqjitphouk"] = "伱可將2手牌轉化爲殺使用發動.此殺致傷旹,若伱不在受傷角色攻程內,傷害值+1",
+  [":hqjitphouk"] = "伱可將2手牌轉化爲殺使用發動.此殺致傷旹,若伱不在受傷脚色攻程內,傷害值+1",
 
 }
 

@@ -3,9 +3,9 @@ local ddxevhhsioc = fk.CreateSkill{
 }
 Fk:loadTranslationTable{
   ["ddxevhhsioc"] = "兆凶",
-  [":ddxevhhsioc"] = "末段始旹,選擇1其它有負咒術角色發動.其流失1體力",
+  [":ddxevhhsioc"] = "末段始旹,選擇1其它有負咒術脚色發動.其流失1體力",
 
-  ["#ddxevhhsioc-choose"] = "兆凶 令1角色流失1體力",
+  ["#ddxevhhsioc-choose"] = "兆凶 令1脚色流失1體力",
 
   ["$ddxevhhsioc1"] = "太歲䡴刻必有血灮之災",
   ["$ddxevhhsioc2"] = "昰劫數貧道料汝是躲不闓已",

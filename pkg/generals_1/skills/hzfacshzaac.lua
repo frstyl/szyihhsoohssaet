@@ -1,6 +1,6 @@
 Fk:loadTranslationTable{
   ["hzfacshzaac"] = "橫行",
-  [":hzfacshzaac"] = "額定抽牌旹,伱可發動,牌數+x(x爲已死角色)",
+  [":hzfacshzaac"] = "額定抽牌旹,伱可發動,牌數+x(x爲已死脚色)",
 
   ["$hzfacshzaac1"] = "不認得我",
   ["$hzfacshzaac2"] = "安敢輒入白虎節堂 可知法度否",

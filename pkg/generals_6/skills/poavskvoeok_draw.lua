@@ -4,7 +4,7 @@ local poavskvoeok_draw = fk.CreateSkill {
 
 Fk:loadTranslationTable{
 ["#poavskvoeok_draw"] = "報國",
-[":poavskvoeok_draw"] = "➀當一其他角色受到傷害旹伱預弃x(x爲當轉伱發動此項次數)手牌發動,弃牌將此傷害轉与(受傷角色改爲伱,緟執行受傷旹機)伱.➁當伱受到傷害後發動,伱抽x(x爲伱已損體力值)",
+[":poavskvoeok_draw"] = "➀當一其他脚色受到傷害旹伱預弃x(x爲當轉伱發動此項次數)手牌發動,弃牌將此傷害轉与(受傷脚色改爲伱,緟執行受傷旹機)伱.➁當伱受到傷害後發動,伱抽x(x爲伱已損體力值)",
 
 
 ["#poavskvoeok_draw-draw"]="報國 抽 %arg",

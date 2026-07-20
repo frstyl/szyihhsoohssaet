@@ -4,7 +4,7 @@ local gxeqprac = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["gxeqprac"] = "奇兵",
-  [":gxeqprac"] = "一角色A成爲B所用進攻牌C唯一目幖後,若伱至A距離不大于1且B不爲伱,伱可將1牌轉化爲C對B使用發動.",
+  [":gxeqprac"] = "一脚色A成爲B所用進攻牌C唯一目幖後,若伱至A距離不大于1且B不爲伱,伱可將1牌轉化爲C對B使用發動.",
 
   ["#gxeqprac-ask"] = "奇兵 是否對 %src 發動",
   ["#gxeqprac-choose"] = "奇兵 選擇1手牌",

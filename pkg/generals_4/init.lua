@@ -32,7 +32,7 @@ Fk:loadTranslationTable{
 ["~khouchliacs"] = "我不識水嗚",
 }
 
---清風寨
+--淸風寨
 General:new(extension, "hqeenqzzyins", "pujh", 5):addSkills { "hsoohseevs" }
 Fk:loadTranslationTable{
 ["hqeenqzzyins"] = "燕順",
@@ -52,7 +52,7 @@ Fk:loadTranslationTable{
 ["illustrator:quacqhqrac"] = "畫師",
 ["~quacqhqrac"] = "有已娘子值此一生",
 }
---33. 第三十二回　宋江夜看小鰲山　花榮大鬧清風寨
+--33. 第三十二回　宋江夜看小鰲山　花榮大鬧淸風寨
 
 --劉知寨
 General:new(extension, "hsfaqqvrac", "kvoan", 4):addSkills { "jjinhkiuc","hqximhquoh" }
@@ -229,7 +229,7 @@ Fk:loadTranslationTable{
 ["~lihgwi"] = "生旹伏侍哥哥,死了,也是哥哥部下一个小鬼",
 }
 
-General:new(extension, "ttiacqzzyins", "mjin", 4):addSkills {"zzyinsszyih", "ljeqhzoon",}
+General:new(extension, "ttiacqzzyins", "mjin", 3):addSkills {"zzyinsszyih", "ljeqhzoon","dzoakhzaamh"}
 Fk:loadTranslationTable{
 ["ttiacqzzyins"] = "張順",
 ["#ttiacqzzyins"] = "浪裏白條",
@@ -259,7 +259,7 @@ Fk:loadTranslationTable{
 ["illustrator:kximqdoarkeen"] = "畫師",
 ["~kximqdoarkeen"] = "愧",
 }
---黃文
+--黃文燁
 General:new(extension, "hvoacqmunqprach", "kvoan", 3):addSkills {"tooshzeen", "kaavssvoa" }
 Fk:loadTranslationTable{
 ["hvoacqmunqprach"] = "黃文炳",
@@ -352,5 +352,15 @@ Fk:loadTranslationTable{
 ["cv:hzouqgians"] = "配音",
 ["illustrator:hzouqgians"] = "畫師",
 ["~hzouqgians"] = "戰袍雖新",
+}
+
+General:new(extension, "hvoacqmunqqxep", "mjin", 3):addSkills {"siuqdzjecs","dzoeonqsyit","loavqtszih"}
+Fk:loadTranslationTable{
+["hvoacqmunqqxep"] = "黃文燁",
+["#hvoacqmunqqxep"] = "黃佛子",
+["designer:hvoacqmunqqxep"] = "設計",
+["cv:hvoacqmunqqxep"] = "配音",
+["illustrator:hvoacqmunqqxep"] = "畫師",
+["~hvoacqmunqqxep"] = "~",
 }
 return extension

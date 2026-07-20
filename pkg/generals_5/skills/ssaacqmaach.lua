@@ -5,7 +5,7 @@ local ssaacqmaach = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["ssaacqmaach"] = "生猛",
-  [":ssaacqmaach"] = "當伱手牌數或體力值變化後,若其相等,伱可選1項發動.➀自攻程含有伱其它角色選1至多个,視爲伱對其使用猛虎下山➁伱抽1➂執行➀➁,此技能當轉失效",
+  [":ssaacqmaach"] = "當伱手牌數或體力值變化後,若其相等,伱可選1項發動.➀自攻程含有伱其它脚色選1至多个,視爲伱對其使用猛虎下山➁伱抽1➂執行➀➁,此技能當轉失效",
 
   ["#ssaacqmaach-choose"] = "生猛 選擇目幖",
   ["ssaacqmaach-use"] = "生猛 視爲使用猛虎下山",

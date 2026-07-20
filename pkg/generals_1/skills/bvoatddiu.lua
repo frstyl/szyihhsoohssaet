@@ -4,7 +4,7 @@ local bvoatddiu = fk.CreateSkill{
 
 Fk:loadTranslationTable{
 ["bvoatddiu"] = "拔籌",
-[":bvoatddiu"] = "當伱致傷後,若爲受傷角色當輪首次受傷,伱可發動.伱抽2",
+[":bvoatddiu"] = "當伱致傷後,若爲受傷脚色當輪首次受傷,伱可發動.伱抽2",
 
 
 ["$bvoatddiu1"] = "等吾拿矣頭功再作打算",

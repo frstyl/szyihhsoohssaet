@@ -82,7 +82,7 @@ cardSkill:addEffect(fk.CardUseFinished, {
 })
 
 cardSkill:addEffect(fk.Damaged, {
-  global = true,
+  -- global = true,
   mute = true,
   priority = 0,  --同旹自選 用牌?
   can_trigger = function(self, event, target, player, data)

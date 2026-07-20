@@ -4,7 +4,7 @@ local doeojsbaav = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["doeojsbaav"] = "代庖",
-  [":doeojsbaav"] = "一其它角色額定抽牌歬,伱可弃a{紅/黑}牌發動.其抽牌數{+/-}a,若伱弃1紅,伱抽1.(a至多爲其抽牌數)", 
+  [":doeojsbaav"] = "一其它脚色額定抽牌歬,伱可弃a{紅/黑}牌發動.其抽牌數{+/-}a,若伱弃1紅,伱抽1.(a至多爲其抽牌數)", 
 
   ["#doeojsbaav-invoke"] = "%src 將抽%arg牌 伱可弃紅令其多出 或弃黑令其少抽",
 

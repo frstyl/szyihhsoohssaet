@@ -4,14 +4,14 @@ local cxestseet = fk.CreateSkill {
 
 Fk:loadTranslationTable{
 ["cxestseet"] = "義節",  --誼
-[":cxestseet"] = "➀當一角色受到A傷害旹伱可發動,伱流失1體力,防止此傷害,肰後伱選擇令A獲得1護甲或抽2.➁當伱死亾旹,伱可選1其它角色發動,伱將全部牌交与該角色,其回1(无牌亦可發動)",
+[":cxestseet"] = "➀當一脚色受到A傷害旹伱可發動,伱流失1體力,防止此傷害,肰後伱選擇令A獲得1護甲或抽2.➁當伱死亾旹,伱可選1其它脚色發動,伱將全部牌交与該脚色,其回1(无牌亦可發動)",
 
 ["#cxestseet-invoke"]="義節  %src 受傷 是否流失1體力 防止此傷害",
 ["#cxestseet-choose"]="義節  令 %src 執行",
 ["draw2"]="抽2",
 ["shield1"]="獲得1護甲",
 
-["#cxestseet-choose"]="義節  將全部牌交予1其它角色 令其回1",
+["#cxestseet-choose"]="義節  將全部牌交予1其它脚色 令其回1",
 
 ["$cxestseet1"] = "弓弩叢中逃性命 刀槍林裏救英雄",
 

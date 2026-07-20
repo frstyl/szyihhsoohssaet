@@ -22,18 +22,23 @@ skill:addEffect("cardskill", {
     }
     room:judge(judge)
     if judge:matchPattern() then
-      --
-      local discardNum = #table.filter(
-        to:getCardIds(Player.Hand), function(id)
-          local card = Fk:getCardById(id)
-          return table.every(room.status_skills[MaxCardsSkill] or Util.DummyTable, function(skill)
-            return not skill:excludeFrom(to, card)
-          end)
-        end
-      ) - to:getMaxCards()
-      room:broadcastProperty(to, "MaxCards")
-      if discardNum > 0 then
-        room:askToDiscard(to, {min_num = discardNum, max_num = discardNum, include_equip = false, skill_name = "phase_discard", cancelable = false})
+      -- --
+      -- local discardNum = #table.filter(
+      --   to:getCardIds(Player.Hand), function(id)
+      --     local card = Fk:getCardById(id)
+      --     return table.every(room.status_skills[MaxCardsSkill] or Util.DummyTable, function(skill)
+      --       return not skill:excludeFrom(to, card)
+      --     end)
+      --   end
+      -- ) - to:getMaxCards()
+      -- room:broadcastProperty(to, "MaxCards")
+      -- if discardNum > 0 then
+      --   room:askToDiscard(to, {min_num = discardNum, max_num = discardNum, include_equip = false, skill_name = "phase_discard", cancelable = false})
+      -- end
+      -- --
+      local discardNum = to:getCardIds("e") - to.hp
+      if discardNum>0 then
+            room:askToDiscard(to, {min_num = discardNum, max_num = discardNum, include_equip = false, skill_name = "tvoans_liac_dzyet_quan_skill", cancelable = false})
       end
       to:skip(Player.Draw)
       -- S.skipPhase(to.id , Player.Draw)

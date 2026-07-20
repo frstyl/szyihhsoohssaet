@@ -4,7 +4,7 @@ local zzikkoot = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["zzikkoot"] = "蝕骨",
-  [":zzikkoot"] = "伱對其他角色致傷後,或伱受其他角色傷後,伱可聲明1牌名(裝僃除外)發動.伱与其不能使用打出同名牌至各自轉終",
+  [":zzikkoot"] = "伱對其他脚色致傷後,或伱受其他脚色傷後,伱可聲明1牌名(裝僃除外)發動.伱与其不能使用打出同名牌至各自轉終",
 
   ["#zzikkoot-invoke"] = "蝕骨 是否對 %dest 發動",
   ["#zzikkoot-choice"] = "蝕骨：選1",

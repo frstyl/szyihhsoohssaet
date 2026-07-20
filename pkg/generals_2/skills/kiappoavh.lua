@@ -5,7 +5,7 @@ local kiappoavh = fk.CreateSkill{
 
 Fk:loadTranslationTable{
 ["kiappoavh"] = "劫寶",
-[":kiappoavh"] = "其它角色不因額定抽牌抽牌前,若抽牌數大于2,伱可發動.改爲伱執行",
+[":kiappoavh"] = "其它脚色不因額定抽牌抽牌前,若抽牌數大于2,伱可發動.改爲伱執行",
 
 ["#kiappoavh-invoke"] = "劫寶 %src 將抽%arg牌,是否劫取",
 }

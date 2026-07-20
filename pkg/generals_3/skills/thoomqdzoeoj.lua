@@ -6,7 +6,7 @@ local thoomqdzoeoj = fk.CreateSkill({
 Fk:loadTranslationTable{
   ["thoomqdzoeoj"] = "貪財",
   [":thoomqdzoeoj"] = "鎖定｡伱撤段始旹,必動,伱抽x+1,肰後伱可流失1體力且本局畱牌數+1",
-  ["#thoomqdzoeoj-loseHp"] = "貪財：是否失去體力",
+  ["#thoomqdzoeoj-loseHp"] = "貪財：是否流失體力",
 
   -- ["$thoomqdzoeoj1"] = "皓月如晝共椉歡爭忍歸來",
   -- ["$thoomqdzoeoj2"] = "瓊林玉殿朝喧弦管暮列笙琶",

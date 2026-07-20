@@ -33,6 +33,7 @@ local thunder__ssaet = fk.CreateCard{
   name = "thunder__ssaet",
   type = Card.TypeBasic,
   is_damage_card = true,
+  damage_type = fk.ThunderDamage,
   skill = "thunder__ssaet_skill",
 }
 
@@ -40,6 +41,7 @@ local fire__ssaet = fk.CreateCard{
   name = "fire__ssaet",
   type = Card.TypeBasic,
   is_damage_card = true,
+  damage_type = fk.FireDamage,
   skill = "fire__ssaet_skill",
 }
 
@@ -61,20 +63,24 @@ extension:loadCardSkels {
 hsio_hzvoach_hqjit_tshiac,
 }
 
-local hqjin_szjer_ljis_doavs = fk.CreateCard{
-  name = "hqjin_szjer_ljis_doavs",
-  type = Card.TypeBasic,
-  skill = "hqjin_szjer_ljis_doavs_skill",
-  special_skills = { "recast" },  --?
-  -- is_damage_card=true,  --?
-  is_passive=true,
-}
+
 
 local hsvoah_kouc = fk.CreateCard{
   name = "hsvoah_kouc",
   type = Card.TypeBasic,
   skill = "hsvoah_kouc_skill",
   is_damage_card = true,
+  damage_type = fk.FireDamage,
+}
+
+local hqjin_szjer_ljis_doavs = fk.CreateCard{
+  name = "hqjin_szjer_ljis_doavs",
+  type = Card.TypeTrick,
+  sub_type=Card.SubtypeDelayedTrick,
+  skill = "hqjin_szjer_ljis_doavs_skill",
+  special_skills = { "recast" },  --?
+  -- is_damage_card=true,  --?
+  is_passive=true,
 }
 
 local tvoans_liac_dzyet_quan = fk.CreateCard{
@@ -248,7 +254,7 @@ extension:addCardSpec("tvoans_liac_dzyet_quan", Card.Club, 4)
 -- extension:addCardSpec("ssaac_dzzjin_koac",Card.Diamond, 8)
 
 
-extension:addCardSpec("hsoeojh_seevs", Card.Spade, 2)  --v0藤甲 v1鐵索 v2天罡海嘯 v1海嘯爲行刺
+extension:addCardSpec("hsoeojh_seevs", Card.Spade, 2)  --v0藤甲 v1鐵索 v2天罡海嘯 v1海嘯爲埋伏
 extension:addCardSpec("tshoak_hsvoah_tsjek_sjin", Card.Club, 3)  --v0boav
 
 extension:addCardSpec("pheek_piuc_toav", Card.Spade, 1)  --古錠刀
@@ -265,55 +271,56 @@ Fk:loadTranslationTable{
   ["card_djis"] = "水滸牌-天罡",
 
   ["fire__ssaet"] = "火殺",
-  [":fire__ssaet"] = "基本牌-行動<br /><b>旹機</b>：主旹<br /><b>目幖</b>：1其它角色<br /><b>距離</b>：伱攻程内<br /><b>次數</b>：每段限1次<br /><b>效果</b>：對目幖角色造成1火傷。",
+  [":fire__ssaet"] = "基本牌-行動  <br /><b>旹機</b>：主段執行旹  <br /><b>目幖</b>：其它脚色  <br /><b>目幖數</b>：1 <br /><b>距離</b>：伱攻程内  <br /><b>次數</b>：同名牌每段限1次  <br /><b>效果</b>：對目幖脚色造成1火傷。",
   ["fire__ssaet_skill"] = "火殺",
   ["#fire__ssaet_skill"] = "火殺",
-  ["#fire__ssaet_skill_multi"] = "選擇攻程內至多 %arg 名角色，各予其1火傷",
+  ["#fire__ssaet_skill_multi"] = "選擇攻程內至多 %arg 名脚色，各予其1火傷",
 
   ["thunder__ssaet"] = "雷殺",
-  [":thunder__ssaet"] = "基本牌-行動<br /><b>旹機</b>：主旹<br /><b>目幖</b>：1其它角色<br /><b>距離</b>：伱攻程内<br /><b>次數</b>：每段限1次<br /><b>效果</b>：對目幖角色造成1火傷。",
+  [":thunder__ssaet"] = "基本牌-行動  <br /><b>旹機</b>：主段執行旹  <br /><b>目幖</b>：其它脚色  <br /><b>目幖數</b>：1 <br /><b>距離</b>：伱攻程内  <br /><b>次數</b>：同名牌每段限1次  <br /><b>效果</b>：對目幖脚色造成1火傷。",
   ["thunder__ssaet_skill"] = "雷殺",
   ["#thunder__ssaet"] = "雷殺",
-  ["#thunder__ssaet_skill_multi"] = "選擇攻程內至多 %arg 名角色，各予其1雷傷",
+  ["#thunder__ssaet_skill_multi"] = "選擇攻程內至多 %arg 名脚色，各予其1雷傷",
 
 
   ["meej"] = "迷",
-  [":meej"] = "基本牌-物資<br /><b>旹機</b>：主動<br /><b>目幖</b>：1攻程內其它角色<br /><b>效果</b>：目幖角色附加昏迷,不能使用打出殺閃。",
+  [":meej"] = "基本牌-物資<br /><b>旹機</b>：主段執行旹  <br /><b>目幖</b>：其它脚色  <br /><b>目幖數</b>：1  <br /><b>距離</b>：伱攻程内<br /><b>效果</b>：目幖脚色附加昏迷,不能使用打出殺閃。",
   ["free__meej"] = "迷",
   ["meej_skill"] = "迷",
   ["#meej_skill"] = "迷",
 
   ["sjevs_lih_dzoac_toav"] = "笑裏藏刀",
-  [":sjevs_lih_dzoac_toav"] = "锦囊牌<br /><b>旹機</b>:主旹<br /><b>目幖</b>:1其它角色<br /><b>效果</b>：其視爲使用酒,效果改爲迷",
+  [":sjevs_lih_dzoac_toav"] = "锦囊牌<br /><b>旹機</b>:主段執行旹<br /><b>目幖</b>:其它脚色  <br /><b>目幖數</b>：1    <br /><b>效果</b>：其視爲使用酒,效果改爲迷",
   ["sjevs_lih_dzoac_toav_skill"] = "笑裏藏刀",
-  ["#sjevs_lih_dzoac_toav_skill"] = "笑裏藏刀 選擇攻程內1角色 其不能使用打出殺閃",
+  ["#sjevs_lih_dzoac_toav_skill"] = "笑裏藏刀 選擇攻程內1脚色 其不能使用打出殺閃",
 
   ["hsvoah_kouc"] = "火攻",
-  [":hsvoah_kouc"] = "錦囊-延旹<br/><b>旹機</b>:主旹<br/><b>目幖</b>：1有有牌角色<br/><b>效果</b>：其展示1手牌,伱可打出1牌与展示牌同花者予目幖1火傷",
+  [":hsvoah_kouc"] = "錦囊-延旹<br/><b>旹機</b>:主段執行旹  <br/><b>目幖</b>：有手牌脚色    <br /><b>目幖數</b>：1    <br/><b>效果</b>：目幖展示1手牌,伱可打出1牌与展示牌同花者予目幖1火傷",
   ["hsvoah_kouc_skill"] = "火攻",
-  ["#hsvoah_kouc_skill"] = "選擇有手牌角色，令其展示1手牌，<br />伱可以打出1同花色手牌 予其1火傷",
+  ["#hsvoah_kouc_skill"] = "選擇有手牌脚色，令其展示1手牌，<br />伱可以打出1同花色手牌 予其1火傷",
   ["#hsvoah_kouc-show"] = "%src 對伱使用火攻，伱需展示1手牌",
   ["#hsvoah_kouc-discard"] = "打出一张 %arg 手牌，予 %src 1火傷",
 
+
+  ["hsio_hzvoach_hqjit_tshiac"] = "虛晃一槍",
+  [":hsio_hzvoach_hqjit_tshiac"] = "錦囊牌  <br/><b>旹機</b>:主段執行旹  <br/><b>目幖</b>：其它脚色  <br /><b>目幖數</b>：1   <br/><b>效果</b>：伱展示1殺,目幖脚色選擇1項,➀令伱回1(若伱未損則不可選)➁視爲伱對其使用此殺",
+  ["hsio_hzvoach_hqjit_tshiac_skill"] = "虛晃一槍",
+  ["#hsio_hzvoach_hqjit_tshiac_skill"] = "虛晃一槍 伱展示1殺,選擇1目幖脚色",
+
   ["hqjin_szjer_ljis_doavs"] = "因勢利導",
-  [":hqjin_szjer_ljis_doavs"] = "錦囊牌<br /><b>旹機</b>：一角色受到屬性傷害後<br /><b>目幖</b>：受傷角色上家或下家(已有方向則止能依之)<br /><b>效果</b>：与目幖相同傷害",
+  [":hqjin_szjer_ljis_doavs"] = "錦囊牌<br /><b>旹機</b>：主段執行旹  <br /><b>目幖</b>：：其它脚色  <br /><b>目幖數</b>：1  <br /><b>延旹</b>：將此牌置于目幖脚色伏區,目幖上下家受到屬性傷後生效。   <br /><b>效果</b>：与目幖相同傷害",
   ["hqjin_szjer_ljis_doavs_skill"] = "因勢利導",
   ["#hqjin_szjer_ljis_doavs_skill"] = "因勢利導 對 ",
 
-  ["hsio_hzvoach_hqjit_tshiac"] = "虛晃一槍",
-  [":hsio_hzvoach_hqjit_tshiac"] = "錦囊牌<br/><b>旹機</b>:主旹<br/><b>目幖</b>：1其它角色<br/><b>效果</b>：伱展示1殺,目幖角色選擇1項,➀令伱回1(若伱未損則不可選)➁視爲伱對其使用此殺",
-  ["hsio_hzvoach_hqjit_tshiac_skill"] = "虛晃一槍",
-  ["#hsio_hzvoach_hqjit_tshiac_skill"] = "虛晃一槍 伱展示1殺,選擇1目幖角色",
-
   ["tshoak_hsvoah_tsjek_sjin"] = "厝火積薪",
-  [":tshoak_hsvoah_tsjek_sjin"] = "錦囊牌<br/><b>旹機</b>:主旹<br/><b>目幖</b>：1其它角色<br /><b>延旹</b>：將此牌置于目幖角色伏區,目幖受到火傷旹生效。<br/><b>效果</b>：傷害值+1,結算後將此牌置入目幖伏區.",
+  [":tshoak_hsvoah_tsjek_sjin"] = "錦囊牌<br/><b>旹機</b>:主段執行旹<br/><b>目幖</b>：其它脚色  <br /><b>目幖數</b>：1  <br /><b>延旹</b>：將此牌置于目幖脚色伏區,目幖受到火傷旹生效。<br/><b>效果</b>：傷害值+1,結算後將此牌置入目幖伏區.",
   ["tshoak_hsvoah_tsjek_sjin_skill"] = "厝火積薪",
   ["#tshoak_hsvoah_tsjek_sjin_skill"] = "厝火積薪 延旹",
 
   ["tvoans_liac_dzyet_quan"] = "斷糧絕援",
-  [":tvoans_liac_dzyet_quan"] = "锦囊牌<br /><b>旹機</b>：主動<br /><b>目幖</b>：1其它角色<br /><b>距離</b>：伱至其距離等于1<br /><b>延旹</b>：將此牌置于目幖角色伏區,目幖伏段生效<br /><b>生效</b>：目幖A判定阶段判定生效,A判定,若結果爲非♣️,A越過補段",
+  [":tvoans_liac_dzyet_quan"] = "锦囊牌<br /><b>旹機</b>：主段執行旹<br /><b>目幖</b>：其它脚色  <br /><b>目幖數</b>：1   <br /><b>距離</b>：伱至目幖距離等于1  <br /><b>延旹</b>：將此牌置于目幖脚色伏區,目幖伏段生效<br /><b>生效</b>：目幖A伏段執行旹生效,A判定,若結果爲非♣️,A越過補段",
   ["tvoans_liac_dzyet_quan_skill"] = "斷糧絕援",
-  ["#tvoans_liac_dzyet_quan_skill"] = "斷糧絕援 延旹,選擇距離1角色使用",
+  ["#tvoans_liac_dzyet_quan_skill"] = "斷糧絕援 延旹,選擇距離1脚色使用",
 
 
 
@@ -335,7 +342,7 @@ Fk:loadTranslationTable{
   ["tou_miu_skill"] = "兜鍪",
 
   ["hqeen_tszji"] = "胭脂",
-  [":hqeen_tszji"] = "装备牌·坐骑<br/><b>坐骑技能</b>：其它角色至伱距离+1。",
+  [":hqeen_tszji"] = "装备牌·坐骑<br/><b>坐骑技能</b>：其它脚色至伱距离+1。",
   ["hqeen_tszji_skill"] = "胭脂",
 }
 

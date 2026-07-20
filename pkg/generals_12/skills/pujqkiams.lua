@@ -36,7 +36,7 @@ pujqkiams:addEffect(fk.AfterCardsMove, {
 
     if  event:getCostData(self)==nil --or  event:getCostData(self).ids==nil 
     
-    then  --skill在牌局 多角色共用訊?
+    then  --skill在牌局 多脚色共用訊?
 
       local ids = {}
       local t=table.map(player.room.alive_players,Util.IdMapper)

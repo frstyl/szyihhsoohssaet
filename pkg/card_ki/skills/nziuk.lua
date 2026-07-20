@@ -88,7 +88,8 @@ cardSkill:addEffect(fk.AskForPeaches, {  --按 當 體力變化後若小于0瀕�
       if  not nziuk_use then  
         return true
       end
-      if  nziuk_use.card.trueName == "analeptic" then
+      nziuk_use.tos = { dyingPlayer }  --屰天 需再寫一遍
+      if  nziuk_use.card.trueName == "tsiuh" then
         nziuk_use.extra_data=nziuk_use.extra_data or {}
         nziuk_use.extra_data.tsiuhRecover=true
       end
@@ -96,7 +97,7 @@ cardSkill:addEffect(fk.AskForPeaches, {  --按 當 體力變化後若小于0瀕�
       room:useCard(nziuk_use)
     end
 
-    return true  --中止旹機
+    return true  --中止旹機  AskForPeaches會對每个人發1次
   end,
 })
 

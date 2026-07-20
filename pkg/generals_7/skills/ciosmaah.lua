@@ -5,7 +5,7 @@ local ciosmaah = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["ciosmaah"] = "御馬",
-  [":ciosmaah"] = "鎖定.伱至其他角色距離-1.若伱至角色A距離等于1,伱視爲擁有其全部坐騎效果", --視爲有其它角色坐騎技能
+  [":ciosmaah"] = "鎖定.伱至其他脚色距離-1.若伱至脚色A距離等于1,伱視爲擁有其全部坐騎效果", --視爲有其它脚色坐騎技能
 }
 
 local S = require "packages/szyihhsoohssaet/szyih_guos" 

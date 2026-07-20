@@ -1,13 +1,14 @@
 local ljeqhzoon = fk.CreateSkill {
   name = "ljeqhzoon",
+  tags={Skill.Concealed},
 }
 
 Fk:loadTranslationTable{
   ["ljeqhzoon"] = "離䰟",
-  [":ljeqhzoon"] = "➀伱受傷後,若傷源有牌,伱可發動,伱獲得傷源1牌➁當伱進入瀕死旹,伱可選1其它角色發動,伱觀看其全部牌,獲取其2,肰後伱可分配2牌", --挩離
+  [":ljeqhzoon"] = "隱匿➀伱受傷後,若傷源有牌,伱可發動,伱獲得傷源1牌,分配之➁當伱進入瀕死旹,伱可選1其它脚色發動,伱觀看其全部牌,取得其2,伱可分配2牌", --挩離
 
-  ["#ljeqhzoon-choose"] = "離䰟 選擇角色",
-  ["#ljeqhzoon-discard"] = "離䰟 選擇弃牌",
+  ["#ljeqhzoon-choose"] = "離䰟 選擇脚色",
+  ["#ljeqhzoon-give"] = "離䰟 選擇牌分配",
 
   ["$ljeqhzoon1"] = "涌金門外水滔滔一點離䰟何処漂",
 }
@@ -33,6 +34,14 @@ ljeqhzoon:addEffect(fk.Damaged, {
       skill_name = ljeqhzoon.name,
     })
     room:obtainCard(player, card, false, fk.ReasonPrey, player, ljeqhzoon.name)
+    if player.dead then return end
+    player.room:askToYiji(player,{
+      -- targets=room.alive_players,
+      cards={card},
+      -- expand_pile=event:getCostData(self).ids,
+      skip=false,
+    skill_name = ljeqhzoon.name,
+    })
   end
 })
 
@@ -66,16 +75,22 @@ ljeqhzoon:addEffect(fk.EnterDying, {
         -- flag = "he",
         flag = { card_data = {{ "$Hand", target:getCardIds("h") },{"$Equip", target:getCardIds("e")}} },  --可見
         skill_name = ljeqhzoon.name,
-        prompt = "#ljeqhzoon-discard",
+        -- prompt = "#ljeqhzoon-get",
       })
     room:moveCardTo(cards, Player.Hand, player, fk.ReasonPre, ljeqhzoon.name, nil, true, player)
     if player.dead then return end
+
     player.room:askToYiji(player,{
-      targets=room.players,
-      cards=player:getCardIds("he"),
+      -- targets=room.players,
+      -- cards=player:getCardIds("he"),
       -- expand_pile=event:getCostData(self).ids,
+      skill_name = ljeqhzoon.name,
       skip=false,
+      min_num = 0,
+      max_num = 2,
+      cancelable=true,
     })
+   
     -- player.room:doYiji(event:getCostData(self).t, player, dzzjenqhqyen.name)
 
 end,

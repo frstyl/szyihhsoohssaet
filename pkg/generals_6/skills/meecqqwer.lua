@@ -4,9 +4,9 @@ local meecqqwer = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["meecqqwer"] = "冥䘙",
-  [":meecqqwer"] = "伱輪始旹,伱可預打出2x手牌指定至多x角色發動:爲所選角色附加冥䘙幖記,輪終清除,伱印取得2x空.冥䘙幖記效果:角色受到非雷傷旹,迻除幖記,防止傷害",
+  [":meecqqwer"] = "伱輪始旹,伱可預打出2x手牌指定至多x脚色發動:爲所選脚色附加冥䘙幖記,輪終淸除,伱印取得2x空.冥䘙幖記效果:脚色受到非雷傷旹,迻除幖記,防止傷害",
 
-  ["#meecqqwer_active"] = "冥䘙 打出2x手牌指定x角色發動",
+  ["#meecqqwer_active"] = "冥䘙 打出2x手牌指定x脚色發動",
   ["@@meecqqwer-round"] = "冥䘙",
 
   ["$meecqqwer1"] = "侌司鬼神 護附吾身",
@@ -47,7 +47,7 @@ meecqqwer:addEffect(fk.RoundStart, {
       ids = S.getKhouc(room, #cards),
       to = player,
       toArea = Card.PlayerHand,
-      moveReason = fk.ReasonJustMove,
+      moveReason = fk.ReasonPrey,
       proposer = player,
       skill_name = meecqqwer.name,
       moveVisible = true,

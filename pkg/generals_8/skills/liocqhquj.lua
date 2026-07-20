@@ -4,7 +4,7 @@ local liocqhquj = fk.CreateSkill({
 
 Fk:loadTranslationTable{
   ["liocqhquj"] = "龍威",
-  [":liocqhquj"] = "伱對一角色傷後,若爲雷傷,伱可發動.伱回1",
+  [":liocqhquj"] = "伱對一脚色傷後,若爲雷傷,伱可發動.伱回1",
 
   -- ["$liocqhquj1"] = "冥冥之中自有注定",
 }

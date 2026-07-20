@@ -12,7 +12,7 @@ Fk:loadTranslationTable{
 
   ["$boacqthouc1"] = "天乃高且远，安可事事自下。",
   ["$boacqthouc2"] = "吾等当上体天心，下济黎民。",
-  ["$boacqthouc3"] = "若除贪官恶吏，天下自为之一清。",
+  ["$boacqthouc3"] = "若除贪官恶吏，天下自为之一淸。",
 }
 local S = require "packages/szyihhsoohssaet/szyih_guos" 
 
@@ -67,7 +67,7 @@ boacqthouc:addEffect(fk.CardUsing, {
         ids = cards,
         to = player,
         toArea = Card.PlayerHand,
-        moveReason = fk.ReasonJustMove,  --Prey?
+        moveReason = fk.ReasonPrey,  --Prey?
         proposer = player,
         skillName = boacqthouc.name,
       })

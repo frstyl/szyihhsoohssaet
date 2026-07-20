@@ -4,7 +4,7 @@ local hsoeokmuos = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["hsoeokmuos"] = "黑霧",
-  [":hsoeokmuos"] = "主動.選擇任意數量手牌發動.將所選牌已任意序置于牌堆頂",
+  [":hsoeokmuos"] = "主旹.選擇任意數量手牌發動.將所選牌已任意序置于牌堆頂",
 
   ["#hsoeokmuos"] = "黑霧 選擇手牌",
   ["#hsoeokmuos-choose"] = "黑霧 排列牌 左側在上",

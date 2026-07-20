@@ -4,9 +4,9 @@ local lvoansqun = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["lvoansqun"] = "亂雲",
-  [":lvoansqun"] = "每輪始旹,至多體力上限次.伱可預弃1牌,預弃1角色區域1牌發動.不可連續選擇同1角色",
+  [":lvoansqun"] = "每輪始旹,至多體力上限次.伱可預弃1牌,預弃1脚色區域1牌發動.不可連續選擇同1脚色",
 
-  ["#lvoansqun-choose"] = "亂雲： 選牌与角色",
+  ["#lvoansqun-choose"] = "亂雲： 選牌与脚色",
   ["#lvoansqun-discard"] = "亂雲： 弃牌",
 
   ["$lvoansqun1"] = "奇人當有異術",

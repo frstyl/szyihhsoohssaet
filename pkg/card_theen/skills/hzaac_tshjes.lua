@@ -1,13 +1,13 @@
 local skill = fk.CreateSkill {
-  name = "hzaac_tshjes_skill",
+  name = "mae_biuk_skill",
 }
 
 Fk:loadTranslationTable{ 
-  ["#hzaac_tshjes_skill"] = "行刺" ,
+  ["#mae_biuk_skill"] = "埋伏" ,
 }
 skill:addEffect("cardskill", {
 
-  prompt = "#hzaac_tshjes_skill",  --多目幖?
+  prompt = "#mae_biuk_skill",  --多目幖?
   target_num = 1,
   -- can_use = Util.FalseFunc,
   can_use = function(self, player, card, extra_data)
@@ -31,7 +31,7 @@ skill:addEffect("cardskill", {
         pattern = 'szjemh',
         cancelable = true,
         event_data = effect,
-        prompt="#hzaac_tshjes_response:" .. effect.from.id .. "::" .. szjemhTimes+1 .. ":" .. loopTimes,
+        prompt="#mae_biuk_response:" .. effect.from.id .. "::" .. szjemhTimes+1 .. ":" .. loopTimes,
       }
       respond = room:askToResponse(effect.to, params)
         if respond then

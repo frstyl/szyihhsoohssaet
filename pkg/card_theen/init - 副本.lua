@@ -77,12 +77,12 @@ local  tszjevs_jjas_ciok_ssxi_tsih= fk.CreateCard{  --照夜玉獅子
   equip_skill = "#tszjevs_jjas_ciok_ssxi_tsih_skill",
 }
 
-local hzaac_tshjes = fk.CreateCard{
-  name = "hzaac_tshjes",
+local mae_biuk = fk.CreateCard{
+  name = "mae_biuk",
   type = Card.TypeTrick,
 
   is_damage_card = true,
-  skill = "hzaac_tshjes_skill",
+  skill = "mae_biuk_skill",
 --   is_passive = false,
 }
 
@@ -130,7 +130,7 @@ extension:loadCardSkels {
     szyih_kouc,
 
     thooms_theec,
-    hzaac_tshjes,
+    mae_biuk,
     pik_dzziag_liac_ssaen,
     tsjek_tshoavh_doon_liac,
     tsiac_keejs_dzius_keejs,
@@ -199,10 +199,10 @@ extension:addCardSpec("tsjek_tshoavh_doon_liac", Card.Heart, 5)
 
 -- extension:addCardSpec("ssaac_dzzjin_koac",Card.Diamond, 8) --v1生辰綱 v2水攻
 
-extension:addCardSpec("hzaac_tshjes",Card.Spade,1)
-extension:addCardSpec("hzaac_tshjes",Card.Diamond,12)
--- extension:addCardSpec("hzaac_tshjes",Card.Spade, 2)  --v1生死之戰
-extension:addCardSpec("hzaac_tshjes",Card.Diamond, 1)
+extension:addCardSpec("mae_biuk",Card.Spade,1)
+extension:addCardSpec("mae_biuk",Card.Diamond,12)
+-- extension:addCardSpec("mae_biuk",Card.Spade, 2)  --v1生死之戰
+extension:addCardSpec("mae_biuk",Card.Diamond, 1)
 
 extension:addCardSpec("thooms_theec", Card.Spade, 12)
 extension:addCardSpec("thooms_theec", Card.Club, 11)
@@ -228,28 +228,28 @@ extension:addCardSpec("thoeop_syet_hqoo_tszyi", Card.Club, 8)  --踏䨮烏騅
 extension:addCardSpec("tszjevs_jjas_ciok_ssxi_tsih", Card.Heart, 12)
 --
 
--- extension:addCardSpec("hsoeojh_seevs", Card.Spade, 2)  --改爲寒仌劍? 行刺?
+-- extension:addCardSpec("hsoeojh_seevs", Card.Spade, 2)  --改爲寒仌劍? 埋伏?
 
 Fk:loadTranslationTable{
 
   ["card_theen"] = "水滸牌-天罡",
 
   ["meej"] = "迷",
-  [":meej"] = "基本牌<br /><b>时机</b>：主動<br /><b>目标</b>：一名其他角色<br /><b>效果</b>：目幖角色附加昏迷,不能使用打出牌。",
+  [":meej"] = "基本牌<br /><b>时机</b>：主動<br /><b>目标</b>：一名其他脚色<br /><b>效果</b>：目幖脚色附加昏迷,不能使用打出牌。",
 
-  ["hzaac_tshjes"] = "行刺",
-  [":hzaac_tshjes"] = "锦囊牌<br /><b>旹機</b>：出牌阶段<br /><b>目标</b>：一名其他角色<br /><b>效果</b>：目幖角色需打出2閃,否則伱予其1傷。",
-  ["#hzaac_tshjes_skill"] = "选择一其他角色，其需打出2閃,否則伱予其1傷",
-  ["hzaac_tshjes_skill"] = "行刺",
+  ["mae_biuk"] = "埋伏",
+  [":mae_biuk"] = "锦囊牌<br /><b>旹機</b>：出牌阶段<br /><b>目标</b>：一名其他脚色<br /><b>效果</b>：目幖脚色需打出2閃,否則伱予其1傷。",
+  ["#mae_biuk_skill"] = "选择一其他脚色，其需打出2閃,否則伱予其1傷",
+  ["mae_biuk_skill"] = "埋伏",
 
   ["pik_dzziag_liac_ssaen"] = "逼上梁山",
-  [":pik_dzziag_liac_ssaen"] = "锦囊牌<br /><b>旹機</b>：出牌阶段<br /><b>目标</b>：一名其他角色<br /><b>效果</b>：目幖角色流失1體力,弃2牌,抽3。",
-  ["#pik_dzziag_liac_ssaen_skill"] = "选择一其他角色，其流失1體力,弃2牌,抽3",
+  [":pik_dzziag_liac_ssaen"] = "锦囊牌<br /><b>旹機</b>：出牌阶段<br /><b>目标</b>：一名其他脚色<br /><b>效果</b>：目幖脚色流失1體力,弃2牌,抽3。",
+  ["#pik_dzziag_liac_ssaen_skill"] = "选择一其他脚色，其流失1體力,弃2牌,抽3",
   ["pik_dzziag_liac_ssaen_skill"] = "逼上梁山",
   ["pik_dzziag_liac_ssaen_ask"] = "逼上梁山 弃2",
 
   ["szyih_kouc"] = "水攻",
-  [":szyih_kouc"] = "锦囊牌<br /><b>时机</b>：其他角色對伱使用殺後<br /><b>目标</b>：一名其他角色<br /><b>效果</b>：目幖角色需弃全部裝僃,否則伱予其1傷。",
+  [":szyih_kouc"] = "锦囊牌<br /><b>时机</b>：其他脚色對伱使用殺後<br /><b>目标</b>：一名其他脚色<br /><b>效果</b>：目幖脚色需弃全部裝僃,否則伱予其1傷。",
 
  
   ["ssaac_dzzjin_koac"] = "生辰綱",
@@ -257,7 +257,7 @@ Fk:loadTranslationTable{
 
 
   ["tsjek_tshoavh_doon_liac"] = "積艸屯糧",
-  [":tsjek_tshoavh_doon_liac"] = "延时锦囊牌<br/><b>旹機</b>：出牌阶段<br/><b>目标</b>：任一角色A<br/><b>效果</b>：将【积艸屯粮】横置于A伏區。A判定阶段，判定：若判定牌非虛,A獲得判定牌.除非若判定牌存在且爲♦️，否则跳过A的弃牌阶段。",
+  [":tsjek_tshoavh_doon_liac"] = "延时锦囊牌<br/><b>旹機</b>：出牌阶段<br/><b>目标</b>：任一脚色A<br/><b>效果</b>：将【积艸屯粮】横置于A伏區。A判定阶段，判定：若判定牌非虛,A獲得判定牌.除非若判定牌存在且爲♦️，否则跳过A的弃牌阶段。",
   ["#tsjek_tshoavh_doon_liac"] = "積艸屯糧 将此牌置于其判定区内。其判定阶段生效判定：<br/>若结果不为♦️，其跳过弃牌阶段",
 
   ["soeojs_doac_ceej"] = "賽唐猊",

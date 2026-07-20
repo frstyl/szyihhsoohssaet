@@ -4,9 +4,9 @@ local hzaacqhsioc_active = fk.CreateSkill({
 
 Fk:loadTranslationTable{
   ["hzaacqhsioc_active&"] = "買凶",
-  [":hzaacqhsioc_active&"] = "段限1.交与行凶角色2黑手牌,其視爲使用行刺",
+  [":hzaacqhsioc_active&"] = "段限1.交与行凶脚色2黑手牌,其視爲使用埋伏",
 
-  ["#hzaacqhsioc_active"] = "買凶：選擇2手牌与行凶角色与行刺目幖",
+  ["#hzaacqhsioc_active"] = "買凶：選擇2手牌与行凶脚色与埋伏目幖",
 }
 
 hzaacqhsioc_active:addEffect("active", {
@@ -39,7 +39,7 @@ hzaacqhsioc_active:addEffect("active", {
     target:broadcastSkillInvoke("hzaacqhsioc")
     room:doIndicate(player.id, { target.id })
     room:moveCardTo(effect.cards, Player.Hand, target, fk.ReasonGive, "hzaacqhsioc", nil, true, player)
-    room:useVirtualCard("hzaac_tshjes", nil, target, {effect.tos[2]}, "hzaacqhsioc", true)
+    room:useVirtualCard("mae_biuk", nil, target, {effect.tos[2]}, "hzaacqhsioc", true)
   end,
 })
 

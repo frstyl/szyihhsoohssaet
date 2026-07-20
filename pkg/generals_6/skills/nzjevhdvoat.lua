@@ -4,10 +4,10 @@ local nzjevhdvoat = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["nzjevhdvoat"] = "擾奪",
-  -- [":nzjevhdvoat"] = "補段終旹,,伱可預弃1牌選擇其它角色區內1牌發動.伱獲得所選牌", 
-  [":nzjevhdvoat"] = "補段終旹,,伱可選其它角色區內1牌發動.伱將其置入伱對應區域", 
+  -- [":nzjevhdvoat"] = "補段終旹,,伱可預弃1牌選擇其它脚色區內1牌發動.伱獲得所選牌", 
+  [":nzjevhdvoat"] = "補段終旹,,伱可選其它脚色區內1牌發動.伱將其置入伱對應區域", 
 
-  ["#nzjevhdvoat-choose"] = "弃1 獲得其它角色1牌",
+  ["#nzjevhdvoat-choose"] = "弃1 獲得其它脚色1牌",
 
   ["$nzjevhdvoat1"] = "羊毛出在羊身上喚作无厶",  --
 }

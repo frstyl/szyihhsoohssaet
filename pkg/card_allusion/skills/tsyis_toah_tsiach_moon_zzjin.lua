@@ -45,7 +45,7 @@ cardSkill:addEffect(fk.PreCardUse, {
 })
 
 cardSkill:addEffect(fk.CardEffectFinished, {
-  global = true,
+  -- global = true,
   can_trigger = function(self, event, target, player, data)
     return target == player
     and data.card
@@ -77,7 +77,7 @@ cardSkill:addEffect(fk.CardEffectFinished, {
 
 
 cardSkill:addEffect(fk.AfterCardsMove, {
-  global = true,
+  -- global = true,
   can_trigger = function(self, event, target, player, data)
     local room=player.room
     if player~=player.room.alive_players[1] then return end --能否問死

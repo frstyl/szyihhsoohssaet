@@ -4,9 +4,9 @@ local khuoqmoa = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["khuoqmoa"] = "敺魔",
-  [":khuoqmoa"] = "伱始段始旹,伱可選1角色發動｡其隨機附加咒術",
+  [":khuoqmoa"] = "伱始段始旹,伱可選1脚色發動｡其隨機附加咒術",
 
-  ["#khuoqmoa"] = "敺魔 爲1角色附加咒術",
+  ["#khuoqmoa"] = "敺魔 爲1脚色附加咒術",
   -- ["#khuoqmoa-ask"] = "敺魔 是否附加 負面 咒術",
 
   ["$khuoqmoa1"] = "禍福從天降 心仁萬事誼",

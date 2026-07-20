@@ -68,7 +68,7 @@ ttaekseec:addEffect(fk.AskForRetrial,{
           room:moveCards{
             ids = { oldId },
             toArea =  Card.PlayerHand,
-            moveReason =  fk.ReasonJustMove,
+            moveReason =  fk.ReasonPrey,
             to =  player ,
             skillName = ttaekseec.name,
             }

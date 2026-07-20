@@ -1,12 +1,18 @@
+local biukkeek = fk.CreateSkill{
+  name = "biukkeek",
+  tags={Skill.Concealed},
+  -- tags={Skill.Hidden},
+}
+
 Fk:loadTranslationTable{
   ["biukkeek"] = "伏擊",
-  [":biukkeek"] = "每輪限1.其它角色伏段始旹,伱可預打出1牌發動.視爲伱對其使用行刺,若其伏區有延時牌,伱選擇1項➀伱流失1體力,此牌傷害基數+1➁此牌不可被抵消且此技能當輪可發動次數+1",
+  [":biukkeek"] = "隱匿｡每輪限1.其它脚色伏段始旹,伱可預打出1牌發動.視爲伱對其使用埋伏,若其伏區有延時牌,伱選擇1項➀伱流失1體力,此牌傷害基數+1➁此牌不可被抵消且此技能當輪可發動次數+1",
 --加彊?
 
-  ["#biukkeek-invoke"] = "伏擊 昰否打出1牌行刺 %src",
+  ["#biukkeek-invoke"] = "伏擊 昰否打出1牌𠫓擊 %src",
 
   ["#biukkeek-choose"] = "伏擊 選擇",
-  ["biukkeek-damage"] = "行刺傷害基數+1",
+  ["biukkeek-damage"] = "埋伏傷害基數+1",
   ["biukkeek-times"] = "伏擊 可發動次數+1",
 
   ["$biukkeek1"] = "太歲頭上也敢動土",
@@ -14,18 +20,20 @@ Fk:loadTranslationTable{
   ["$biukkeek3"] = "進了昰蘆葦港伱還跑的掉",
 }
 
-local biukkeek = fk.CreateSkill{
-  name = "biukkeek",
-}
 
 local S = require "packages/szyihhsoohssaet/szyih_guos"
+-- local H = require "packages/hegemony/util"
+
 
 biukkeek:addEffect(fk.EventPhaseStart, {
   anim_type = "offensive",
   can_trigger = function(self, event, target, player, data)
     return target~=player and player:hasSkill(biukkeek.name) and target.phase == Player.Judge
-    and player:usedSkillTimes(biukkeek.name, Player.HistoryRound)<player:getMark("_biukkeek-round")+1
+    and player:usedEffectTimes(self.name, Player.HistoryRound)<player:getMark("_biukkeek-round")+1
     and not player:isNude()
+  end,
+  times = function(self, player)
+    return -player:usedEffectTimes(self.name, Player.HistoryRound)+player:getMark("_biukkeek-round")+1
   end,
   on_cost = function(self, event, target, player, data)
     local room = player.room
@@ -40,14 +48,14 @@ biukkeek:addEffect(fk.EventPhaseStart, {
 		  skip = true,
 		})
     if #cards ~= 0 then
-      event:setCostData(self, {cards = cards})
+      event:setCostData(self, {cards = cards,tos={target}})
       return true
     end
   end,
   on_use = function(self, event, target, player, data)
     local room=player.room
     S.playCard(player,event:getCostData(self).cards, biukkeek.name)
-    local card = Fk:cloneCard("hzaac_tshjes")
+    local card = Fk:cloneCard("mae_biuk")
     card.skillName = biukkeek.name
     local use={
       from = player,

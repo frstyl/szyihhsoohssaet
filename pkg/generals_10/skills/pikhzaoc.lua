@@ -1,10 +1,11 @@
 local pikhzaoc = fk.CreateSkill{
   name = "pikhzaoc",
+  related_skills={"toavqprac", "kiamsquoh",},
 }
 --kiamsquoh  
 Fk:loadTranslationTable{
   ["pikhzaoc"] = "逼降",  --還是白板
-  [":pikhzaoc"] = "➀伱使用殺結算終伱對目幖角色A可發動.若此殺對A➀致傷,A需交与伱1牌,自守;➁未致傷,伱選擇獲得技能｢刀兵｣或｢劍雨｣.伱轉始旹,清除此技能效果",--死旹清
+  [":pikhzaoc"] = "➀伱使用殺結算終伱對目幖脚色A可發動.若此殺對A➀致傷,A需交与伱1牌,自守;➁未致傷,伱選擇獲得技能｢刀兵｣或｢劍雨｣.伱轉始旹,淸除此技能效果",--死旹淸
 
   ["#pikhzaoc-invoke"] = "逼降 對 %src 致傷,是否發動",
   ["#pikhzaoc-no-invoke"] = "逼降 未對 %src 致傷,是否發動",

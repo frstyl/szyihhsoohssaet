@@ -4,9 +4,9 @@ local mxishzvoeok = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["mxishzvoeok"] = "魅惑",
-  [":mxishzvoeok"] = "主旹,預打出1紅桃手牌指定1其它角色發動.若其已損回1,否則抽2,肰後伱執行相同效果",
+  [":mxishzvoeok"] = "主旹,預打出1紅桃手牌指定1其它脚色發動.若其已損回1,否則抽2,肰後伱執行相同效果",
 
-  ["#mxishzvoeok-active"] = "魅惑 選擇1紅桃手牌与1其它角色",
+  ["#mxishzvoeok-active"] = "魅惑 選擇1紅桃手牌与1其它脚色",
 
   ["$mxishzvoeok1"] = "伱若有心,喫了我昰半盞㱚酒",
 

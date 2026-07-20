@@ -3,7 +3,7 @@ local cardSkill = fk.CreateSkill {
 }
 
 Fk:loadTranslationTable{
-  ["#thou_liac_hzvoans_dduoh_skill"] = "偸樑換柱 對距離0內角色使用,觀看其手牌,且伱可以己1手牌与其1手牌交換",  --偷樑換柱
+  ["#thou_liac_hzvoans_dduoh_skill"] = "偸樑換柱 對距離0內脚色使用,觀看其手牌,且伱可以己1手牌与其1手牌交換",  --偷樑換柱
   ["#szyih_kouc_skill-choose"] = "偸樑換柱 選擇1張与手牌交換",
 }
 
@@ -64,7 +64,7 @@ cardSkill:addEffect("cardskill", {
       ids = S.getKhouc(room,1),
       to = effect.from,
       toArea = Card.PlayerHand,
-      moveReason = fk.ReasonJustMove,
+      moveReason = fk.ReasonPrey,
       proposer = effect.from,
       skillName = cardSkill.name,
       moveVisible = true,

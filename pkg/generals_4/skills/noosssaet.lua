@@ -12,13 +12,12 @@ local noosssaet = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["noosssaet"] = "怒殺",
-  [":noosssaet"] = "主旹,伱可預打出1殺，選擇1角色體力值或手牌數至大者(皆不計伱)發動.伱与其1傷.執行歬,若其手牌數體力值皆至大,伱可弃1手牌令傷害值+1",
+  [":noosssaet"] = "➀主旹,伱可預打出1殺,選擇1脚色除伱外體力值至大者發動.伱与其1傷.➁主旹,伱可預打出1牌非殺,選擇1脚色除伱外手牌數至大者發動.伱弃置其2牌.",
 
-  ["#noosssaet"] = "怒殺：打出一殺，与1角色1傷 ",
+  ["#noosssaet"] = "怒殺：打出一殺，与1脚色1傷 ",
   ["#noosssaet-discard"] = "怒殺：打出一牌 對 %src 傷害+1",
 
   ["$noosssaet1"] = "伱昰廝是喫已熊心豹子膽。",
-  ["$noosssaet2"] = "丞相勿忧，司马懿不足为患。",
 }
 local S = require "packages/szyihhsoohssaet/szyih_guos" 
 
@@ -40,7 +39,12 @@ noosssaet:addEffect("active", {
   end,
 
   card_filter = function(self, player, to_select, selected)
-    return #selected == 0 and not player:prohibitResponse(to_select) and Fk:getCardById(to_select).trueName=="ssaet"
+    return #selected == 0 and not player:prohibitResponse(to_select) 
+    and (
+      ( self.interaction.data == "noosssaet_hp" and   Fk:getCardById(to_select).trueName=="ssaet")
+      or self.interaction.data == "noosssaet_hand" and   Fk:getCardById(to_select).trueName~="ssaet"
+    )
+
   end,
   target_filter = function(self, player, to_select, selected, cards)
     if #selected > 0 or not self.interaction.data or #cards ~= 1 then return end

@@ -6,9 +6,9 @@ local S = require "packages/szyihhsoohssaet/szyih_guos"
 
 Fk:loadTranslationTable{
   ["hseekdziac"] = "鬩牆",
-  [":hseekdziac"] = "主旹,伱預打出1紅牌指定2其它角色發動:所選角色拼點,贏者交予伱1牌,未贏者流失1體力",
+  [":hseekdziac"] = "主旹,伱預打出1紅牌指定2其它脚色發動:所選脚色拼點,贏者交予伱1牌,未贏者流失1體力",
   
-  ["#hseekdziac-active"] = "鬩牆 弃1紅牌指定2其它角色",
+  ["#hseekdziac-active"] = "鬩牆 弃1紅牌指定2其它脚色",
   ["#hseekdziac-give"] = "鬩牆 選擇牌交予%src",
 
   ["$hseekdziac1"] = "我欲行夏禹旧事，为天下人。",

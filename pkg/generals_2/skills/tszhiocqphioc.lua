@@ -4,7 +4,7 @@ local tszhiocqphioc = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["tszhiocqphioc"] = "䡴鋒",
-  [":tszhiocqphioc"] = "主段始旹,伱可預弃x牌(至少1,至多爲伱已損體力值,點數等差)發動.伱抽x,此轉伱至其它角色距離-x",
+  [":tszhiocqphioc"] = "主段始旹,伱可預弃x牌(至少1,至多爲伱已損體力值,點數等差)發動.伱抽x,此轉伱至其它脚色距離-x",
 
   ["#tszhiocqphioc-invoke"] = "䡴鋒  弃牌 至多%arg",
   ["tszhiocqphioc-turn"] = "䡴鋒",

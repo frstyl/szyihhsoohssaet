@@ -4,12 +4,12 @@ local ssaocqlioc = fk.CreateSkill {
 }
 Fk:loadTranslationTable{
   ["ssaocqlioc"] = "雙龍",
-  [":ssaocqlioc"] = "伱所使用｢殺｣旹,伱隱祕選擇其中1目幖發動.此殺目幖｢閃｣視爲護｢閃｣,此殺首輪生效終迻除上述效果,且若其此｢殺｣伱所選角色效果未被｢閃｣抵消,此｢殺｣額外生效1次.",
+  [":ssaocqlioc"] = "伱所使用｢殺｣旹,伱隱祕選擇其中1目幖發動.此殺目幖｢閃｣視爲護｢閃｣,此殺首輪生效終迻除上述效果,且若其此｢殺｣伱所選脚色效果未被｢閃｣抵消,此｢殺｣額外生效1次.",
 --隱祕
   ["#ssaocqlioc-choose"] = "雙龍 選擇目幖 或不發動",
   -- ["#ssaocqlioc-invoke2"] = "雙龍 選擇額外目幖 不選目幖确定額外結算 或不發動",
 
-  ["#ssaocqlioc-invoke"] = "雙龍：是否令其他目标角色选择代替你使用【闪】？",
+  ["#ssaocqlioc-invoke"] = "雙龍：是否令其他目标脚色选择代替你使用【闪】？",
   ["#ssaocqlioc-ask"] = "雙龍：你可以替 %src 使用【闪】",
 
   ["#ssaocqlioc-target"] = "%from 雙龍生效, 目幖爲 %tos",

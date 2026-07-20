@@ -4,7 +4,7 @@ local zzicqloacs = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["zzicqloacs"] = "椉浪",
-  [":zzicqloacs"] = "當牌進入任意角色伏區後,伱可發動至多x次(x爲牌數),伱抽1",  --任意角色?
+  [":zzicqloacs"] = "當牌進入任意脚色伏區後,伱可發動至多x次(x爲牌數),伱抽1",  --任意脚色?
 
 
   -- ["$zzicqloacs1"] = "椉",

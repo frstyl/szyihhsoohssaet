@@ -4,7 +4,7 @@ local doavsmaah = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["doavsmaah"] = "盜馬",
-  [":doavsmaah"] = "主旹,伱可預打出1牌選其它裝僃區同花坐騎牌發動.伱將其置入除其所屬角色裝僃區",
+  [":doavsmaah"] = "主旹,伱可預打出1牌選其它裝僃區同花坐騎牌發動.伱將其置入除其所屬脚色裝僃區",
 }
 local S = require "packages/szyihhsoohssaet/szyih_guos" 
 

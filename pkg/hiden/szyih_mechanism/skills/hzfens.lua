@@ -2,7 +2,7 @@ local hzfens = fk.CreateSkill {
   name = "hzfens_skill",
 }
 
-Fk:loadTranslationTable{  --對任意角色用牌 viewAs作旹機
+Fk:loadTranslationTable{  --對任意脚色用牌 viewAs作旹機
   ["#hzfens_skill"] = "㕕",
 }
 

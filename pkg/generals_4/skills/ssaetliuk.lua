@@ -5,7 +5,7 @@ local ssaetliuk = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["ssaetliuk"] = "殺戮",
-  [":ssaetliuk"] = "➀恆續效果伱使用殺旹能且必選擇全部合理目幖.➁伱使用殺結算完畢旹,若此牌于此次使用中致傷,必發.伱判定,伱獲得判定牌且若其爲黑,此階段伱殺使用上限+1",
+  [":ssaetliuk"] = "➀恆續效果伱使用殺旹能且必選擇全部合理目幖.➁伱使用殺結算完畢旹,若此牌于此次使用中致傷,必發.伱判定,伱獲得判定牌且若其爲黑,當段伱殺使用上限+1",
 
   ["@ssaet_times-phase"] = "殺數",
 
@@ -56,11 +56,13 @@ ssaetliuk:addEffect(fk.FinishJudge, {
   mute = true,
   is_delay_effect = true,
   can_trigger = function(self, event, target, player, data)
-    return target == player and not player.dead 
+    return target == player
+     and not player.dead 
+     and data.reason==ssaetliuk.name
      and  player.room:getCardArea(data.card) == Card.Processing
   end,
   on_use = function(self, event, target, player, data)
-    player.room:obtainCard(player, data.card, true, fk.ReasonJustMove, nil, ssaetliuk.name)
+    player.room:obtainCard(player, data.card, true, fk.ReasonPrey, nil, ssaetliuk.name)
   end,
 })
 

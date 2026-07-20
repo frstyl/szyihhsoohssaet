@@ -5,7 +5,7 @@ local nziokcoavs = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["nziokcoavs"] = "辱傲",
-  [":nziokcoavs"] = "其它角色A主段始旹,伱可發動.其選1項➀對伱使用殺(无視距離有次數限制計入次數),若此殺致傷,此技能當輪失效➁視爲伱對其使用殺.",
+  [":nziokcoavs"] = "其它脚色A主段始旹,伱可發動.其選1項➀對伱使用殺(无視距離有次數限制計入次數),若此殺致傷,此技能當輪失效➁視爲伱對其使用殺.",
 
 
   ["#nziokcoavs-invoke"] = "辱傲 %src主段始 是否討打",

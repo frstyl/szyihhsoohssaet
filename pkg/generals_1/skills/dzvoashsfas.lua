@@ -5,7 +5,7 @@ local dzvoahhsfas = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["dzvoahhsfas"] = "坐化",
-  [":dzvoahhsfas"] = "鎖定.其它角色殺死伱不執行獎懲。",
+  [":dzvoahhsfas"] = "鎖定.其它脚色殺死伱不執行獎懲。",
 
   ["$dzvoahhsfas1"] = "錢塘江上潮信來今日方知我是我",
 }

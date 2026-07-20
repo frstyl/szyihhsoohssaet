@@ -4,7 +4,7 @@ local soamqtsjenh = fk.CreateSkill {
 }
 Fk:loadTranslationTable{
   ["soamqtsjenh"] = "三剪",
-  [":soamqtsjenh"] = "局限1.伱對其它角色致傷後,伱可發動.伱減1體力上限,對全體角色至受傷角色距離後1者相同傷害.",
+  [":soamqtsjenh"] = "局限1.伱對其它脚色致傷後,伱可發動.伱減1體力上限,對全體脚色至受傷脚色距離後1者相同傷害.",
 
 }
 

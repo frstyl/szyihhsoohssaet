@@ -4,7 +4,7 @@ local tszjinshzaek = fk.CreateSkill {
 
 Fk:loadTranslationTable{
 ["tszjinshzaek"] = "振翮",
-[":tszjinshzaek"] = "當伱可使用打出(无色无點虛)閃,伱可預打出1非基本牌發動,視爲伱使用打出之",
+[":tszjinshzaek"] = "印牌:打出1非基本牌虛擬使用打出｢閃｣",
 ["#tszjinshzaek"] = "振翮: 代替 打出1非基本牌 視爲使用打出閃",
 }
 
@@ -30,11 +30,12 @@ tszjinshzaek:addEffect("viewas", {--視爲使用? 使用虛牌?
   end,
   before_use = function (self, player, use)
     local room = player.room
-    room:responseCard({
-      card=Fk:getCardById(use.card.fake_subcards[1]),
-      from=player,
-      attachedSkillAndUser={muteCard=true},
-    })
+    -- room:responseCard({
+    --   card=Fk:getCardById(use.card.fake_subcards[1]),
+    --   from=player,
+    --   attachedSkillAndUser={muteCard=true},
+    -- })
+    S.playCard(player,use.card.fake_subcards,tszjinshzaek.name) 
     -- room:throwCard(use.card.fake_subcards, tszjinshzaek.name, player, player)
   end,
 })

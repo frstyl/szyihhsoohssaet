@@ -31,10 +31,25 @@ local szyih_guos = require 'packages/szyihhsoohssaet/_base'
 
 -- local S = require "packages/szyihhsoohssaet/szyih_guos" 
 
-szyih_guos.setLoav = function (playerid, num)
+szyih_guos.setLoav = function (playerid, num,skillName)
   local player = type(playerid)=="number" and Fk:currentRoom():getPlayerById(playerid) or playerid
   local room=player.room
-  room:setPlayerMark(player,"@loav",num)
+    local   data = {
+      who = player,
+      reason = skillName or room.logic:getCurrentSkillName() or "game_rule",
+    }
+    room.logic:trigger(fk.BeforeTurnOver, player, data)
+    if data.prevented then
+    return false
+    end
+    room:setPlayerMark(player,"@loav",num)
+    room.logic:trigger(fk.TurnedOver, self, data)
+end
+
+szyih_guos.addLoav = function (playerid, num,skillName)
+  local player = type(playerid)=="number" and Fk:currentRoom():getPlayerById(playerid) or playerid
+
+  szyih_guos.setLoav(player,player:getMark("@loav")+num,skillName)
 end
 
 szyih_guos.changeLoav = function (playerid, num)  --skipNextTurn
@@ -752,7 +767,7 @@ szyih_guos.askToUseKoarbiukCard = function(room, players, params,special_params,
   room.logic:trigger(fk.HandleAskForPlayCard, target, askForUseCardData, true)
 
 
-  room.logic:trigger(fk.AskForCardUse, target, askForUseCardData)  --插入中還被封?
+  room.logic:trigger(fk.AskForCardUse, target, askForUseCardData)  --插入中還被封?--止用于refresh
 
 
   askForUseCardData.afterRequest = true
@@ -1517,18 +1532,29 @@ end
 
 
 
--- ---@param from player @  使用者
--- ---@param to player @  目幖 ??角色?裝僃?技能?
--- ---@param card Card @  牌 止有幖記,无使用旹效果
--- ---@param useData CardUseData @ 使用data,預使用旹无
--- ---@param effectData bool @牌效data
+---@param from player @  使用者
+---@param to player @  目幖 ??角色?裝僃?技能?
+---@param card Card @  牌 止有幖記,无使用旹效果
+---@param useData CardUseData @ 使用data,預使用旹无
+---@param effectData CardEffectData @牌效data
 szyih_guos.isIgnoreArmorFromAToB = function(from,to,card,useData,effectData)
   if not to then return end
         if card and card:hasMark("@@ignoreArmor")  then return true end
         if useData and useData.extra_data and useData.extra_data.ignoreArmorTo and table.contains(useData.extra_data.ignoreArmorTo,to) then  --use不會中途迻去效果,不計數
           return true
         end
-        if effectData and effectData.extra_data and effectData.extra_data.ignoreArmorTo and table.contains(effectData.extra_data.ignoreArmorTo,to)  then
+        if effectData 
+        and 
+        (
+            (effectData.extra_data and effectData.extra_data.ignoreArmor_skill)
+          or ( 
+            effectData.use 
+            and effectData.use.extra_data 
+            and effectData.use.extra_data.ignoreArmorTo 
+            and table.contains(effectData.use.extra_data.ignoreArmorToo,to)  
+          )
+          )
+        then
           return true
         end
         if not from then return end
@@ -1573,8 +1599,6 @@ szyih_guos.isIgnoreArmorFromAToB = function(from,to,card,useData,effectData)
       --       return true
       --     end
       --   end
-
-      
 
 end
 

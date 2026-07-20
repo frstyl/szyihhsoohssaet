@@ -51,7 +51,7 @@ szjetloojs_active:addEffect("active", {
         table.insertIfNeed(to_get, cid)
       end
       if #to_get > 0 then
-        room:obtainCard(target, to_get, true, fk.ReasonJustMove, target, "szjetloojs")
+        room:obtainCard(target, to_get, true, fk.ReasonPrey, target, "szjetloojs")
       end
     end
 

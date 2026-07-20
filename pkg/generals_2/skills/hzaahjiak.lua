@@ -3,7 +3,7 @@ local hzaahjiak = fk.CreateSkill {
 }
 Fk:loadTranslationTable{
 ["hzaahjiak"] = "下藥",
-[":hzaahjiak"] = "主動.伱可將黑桃手牌轉化爲瞞天過海使用發動.本轉內,伱對迷狀態角色致傷歬,伱可發動,流失等傷害值量體力,伱獲取其1牌.伱使用瞞天過海可額外指定1目幖",
+[":hzaahjiak"] = "主旹.伱可將黑桃手牌轉化爲瞞天過海使用發動.本轉內,伱對迷狀態脚色致傷歬,伱可發動,流失等傷害值量體力,伱取得其1牌.伱使用瞞天過海可額外指定1目幖",
 ["#hzaahjiak"]="下藥 將黑桃手牌轉化爲瞞天過海使用",
 
 ["#hzaahjiak-invoke"] = "下藥 防止對 %src 傷害",

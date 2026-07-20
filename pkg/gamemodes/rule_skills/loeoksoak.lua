@@ -4,9 +4,9 @@ local loeoksoak = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["loeoksoak"] = "勒索",
-  [":loeoksoak"] = "主旹,与1其它角色拼點發動.若伱贏,伱獲取其1牌,否則其弃1手牌",
+  [":loeoksoak"] = "主旹,与1其它脚色拼點發動.若伱贏,伱取得其1牌,否則其弃1手牌",
 
-  ["#loeoksoak"] = "勒索：与一名角色拼點，若赢，伱獲取其1牌",
+  ["#loeoksoak"] = "勒索：与一名脚色拼點，若赢，伱取得其1牌",
 
   ["$loeoksoak1"] = "不給也得給",
 }

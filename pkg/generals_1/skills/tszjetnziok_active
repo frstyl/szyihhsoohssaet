@@ -3,9 +3,9 @@ local tszjetnziok_active = fk.CreateSkill {
 }
 Fk:loadTranslationTable{
   ["tszjetnziok_active"] = "折辱",
-  [":tszjetnziok_active"] = "主旹,伱可預弃1{黑/紅}牌,与1其它已損角色(不可与伱次發動所選相同)發動.{其回1,失1/其抽x,弃x+1手牌(x爲其已損體力值)},本輪其體力改變旹,{數值翻倍/正負反轉}.執行後,若目幖半損,伱可對其執行別一項.",
+  [":tszjetnziok_active"] = "主旹,伱可預弃1{黑/紅}牌,与1其它已損脚色(不可与伱次發動所選相同)發動.{其回1,失1/其抽x,弃x+1手牌(x爲其已損體力值)},本輪其體力改變旹,{數值翻倍/正負反轉}.執行後,若目幖半損,伱可對其執行別一項.",
 
-  ["#tszjetnziok_active"] = "折辱： 弃1{黑/紅}牌与1其它已損角色 其體力變化{翻倍/反轉}",
+  ["#tszjetnziok_active"] = "折辱： 弃1{黑/紅}牌与1其它已損脚色 其體力變化{翻倍/反轉}",
   -- ["@@tszjetnziok_active-inarea"] = "折辱",
   ["#tszjetnziok_active-discard"] = "折辱： 執行別一項 ",
 

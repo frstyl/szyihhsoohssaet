@@ -4,7 +4,7 @@ local puanhmuo = fk.CreateSkill {
 
 Fk:loadTranslationTable {
   ["puanhmuo"] = "反誣",
-  [":puanhmuo"] = "伱對一其它角色A所用牌被抵消旹,伱可預弃1牌發動.視爲A弃置伱此牌,肰後伱對A使虛擬用｢无中生有｣",
+  [":puanhmuo"] = "伱對一其它脚色A所用牌被抵消旹,伱可預弃1牌發動.視爲A弃置伱此牌,肰後伱對A使虛擬用｢无中生有｣",
 
   ["#puanhmuo-invoke"] = "反誣 預弃1牌 視爲對%src使用无中生有",
 

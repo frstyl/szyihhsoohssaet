@@ -6,7 +6,7 @@ local hzoojqtszhyin= fk.CreateSkill({
 
 Fk:loadTranslationTable{
 ["hzoojqtszhyin"] = "回萅",
-[":hzoojqtszhyin"] = "一名角色回合開始旹若其已損伱可預打出1非裝僃牌發動,其回1.",
+[":hzoojqtszhyin"] = "一名脚色回合開始旹若其已損伱可預打出1非裝僃牌發動,其回1.",
 
 ["#hzoojqtszhyin-invoke"] = "回萅 是否打出1非裝僃牌 令%src回1",
 

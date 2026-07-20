@@ -5,7 +5,7 @@ local deevhloucs = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["deevhloucs"] = "誂弄",
-  [":deevhloucs"] = "其它角色主段終旹,若其當段未因使用殺而致傷,伱可發動:伱爲其附加溷亂",
+  [":deevhloucs"] = "其它脚色主段終旹,若其當段未因使用殺而致傷,伱可發動:伱爲其附加溷亂",
 
   ["#deevhloucs-invoke"] = "誂弄 是否對 %src發動",
 

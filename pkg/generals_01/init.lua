@@ -129,7 +129,7 @@ Fk:loadTranslationTable{
 }
 
 local hqxim__hzoohsoamnniac = General:new(extension, "hqxim__hzoohsoamnniac", "mjin", 3,3, General.Female)
-hqxim__hzoohsoamnniac:addSkills { "tthiuqtoav","doucqsjim","hzaocqdzioc"}
+hqxim__hzoohsoamnniac:addSkills { "tthiuqtoav","deecstshjin","hzaocqdzioc"}
 hqxim__hzoohsoamnniac:addRelatedSkill("tsziukzzyit_guacqboavs")
 Fk:loadTranslationTable{
 ["hqxim__hzoohsoamnniac"] = "扈三娘",
@@ -164,12 +164,12 @@ Fk:loadTranslationTable{
 ["~hqxim__lihkhaavhnoo"] = "苦乎",
 }
 
-local jiac__touchbrac = General:new(extension, "jiac__touchbrac", "mjin", 4/5)
+local jiac__touchbrac = General:new(extension, "jiac__touchbrac", "mjin", 5,4)
 jiac__touchbrac:addSkills { "puanhmiuk","giacqpaas","jiokhsoak"}
 jiac__touchbrac:addRelatedSkill("tsziukzzyit_puanhdoan")
 Fk:loadTranslationTable{
 ["jiac__touchbrac"] = "董平",
-["#jiac__touchbrac"] = "濁流清源",--東平都監
+["#jiac__touchbrac"] = "濁流淸源",--東平都監
 ["designer:jiac__touchbrac"] = "設計",
 ["cv:jiac__touchbrac"] = "配音",
 ["illustrator:jiac__touchbrac"] = "畫師",
@@ -368,7 +368,7 @@ Fk:loadTranslationTable{
 
 -- General:new(extension, "ttiacqtshjec", "kvoan", 4):addSkills{"hqximhquoh"}
 -- Fk:loadTranslationTable{
--- ["ttiacqtshjec"] = "張清",
+-- ["ttiacqtshjec"] = "張淸",
 -- ["#ttiacqtshjec"] = "沒羽箭",
 -- ["designer:ttiacqtshjec"] = "設計",
 -- ["cv:ttiacqtshjec"] = "配音",
@@ -737,7 +737,7 @@ Fk:loadTranslationTable{
 -- 30. 第二十九回　施恩三入死囚牢　武松大鬧飛雲浦
 -- 31. 第三十回　張都監血濺鴛鴦樓　武行者夜走蜈蚣嶺
 -- 32. 第三十一回　武行者醉打孔亮　錦毛虎義釋宋江
--- 33. 第三十二回　宋江夜看小鰲山　花榮大鬧清風寨
+-- 33. 第三十二回　宋江夜看小鰲山　花榮大鬧淸風寨
 -- 34. 第三十三回　鎮三山大鬧青州道　霹靂火夜走瓦礫場
 -- 35. 第三十四回　石將軍村店寄書　小李廣梁山射雁
 -- 36. 第三十五回　梁山泊吳用舉戴宗　揭陽嶺宋江逢李俊
@@ -800,20 +800,20 @@ Fk:loadTranslationTable{
 -- 93. 第九十二回　振軍威小李廣神箭　打蓋郡智多星密籌
 -- 94. 第九十三回　李逵夢鬧天池　宋江兵分兩路
 -- 95. 第九十四回　關勝義降三將　李逵莽陷眾人
--- 96. 第九十五回　宋公明忠感后土　喬道清術敗宋兵
+-- 96. 第九十五回　宋公明忠感后土　喬道淸術敗宋兵
 -- 97. 第九十六回　幻魔君術窘五龍山　入雲龍兵圍百谷嶺
 -- 98. 第九十七回　陳　諫官升安撫　瓊英處女做先鋒
--- 99. 第九十八回　張清緣配瓊英　吳用計鴆鄔梨
+-- 99. 第九十八回　張淸緣配瓊英　吳用計鴆鄔梨
 -- 100. 第九十九回　花和尚解脫緣纏井　混江龍水灌太原城
--- 101. 第一百回　張清瓊英雙建功　陳　宋江同奏捷
+-- 101. 第一百回　張淸瓊英雙建功　陳　宋江同奏捷
 -- 102. 第一百零一回　謀墳地陰險產逆　蹈春陽妖　生奸
 -- 103. 第一百零二回　王慶因奸　官司　龔端被打師軍犯
 -- 104. 第一百零三回　張管營因妾弟喪身　範節級為表兄醫臉
 -- 105. 第一百零四回　段家莊重招新女婿　房山寨雙並舊強人
--- 106. 第一百零五回　宋公明避暑療軍兵　喬道清回風燒賊寇
+-- 106. 第一百零五回　宋公明避暑療軍兵　喬道淸回風燒賊寇
 -- 107. 第一百零六回　書生談笑卻強敵　水軍汨沒破堅城
 -- 108. 第一百零七回　宋江大勝紀山軍　朱武打破六花陣
--- 109. 第一百零八回　喬道清興霧取城　小旋風藏炮擊賊
+-- 109. 第一百零八回　喬道淸興霧取城　小旋風藏炮擊賊
 -- 110. 第一百零九回　王慶渡江被捉　宋江剿寇成功
 -- 111. 第一百一十回　燕青秋林渡射　宋江東京城獻俘
 -- 112. 第一百一十一回　張順夜伏金山寺　宋江智取潤州城
@@ -823,7 +823,7 @@ Fk:loadTranslationTable{
 -- 116. 第一百一十五回　張順魂捉方天定　宋江智取寧海軍
 -- 117. 第一百一十六回　盧俊義分兵歙州道　宋公明大戰烏龍嶺
 -- 118. 第一百一十七回　睦州城箭射鄧元覺　烏龍嶺神助宋公明
--- 119. 第一百一十八回　盧俊義大戰昱嶺關　宋公明智取清溪洞
+-- 119. 第一百一十八回　盧俊義大戰昱嶺關　宋公明智取淸溪洞
 -- 120. 第一百一十九回　魯智深浙江坐化　宋公明衣錦還鄉
 -- 121. 第一百二十回　宋公明神聚蓼兒　徽宗帝夢游梁山泊
 --

@@ -136,7 +136,7 @@ Fk:loadTranslationTable{
 
 --60 公孫勝芒碭山降魔　晁天王曾頭市中箭
 
-General:new(extension, "buanqdzzyes", "pujh", 5):addSkills{"hzoonscuan"}
+General:new(extension, "buanqdzzyes", "pujh", 5):addSkills{"hzoonscuan","coosdoavh"}
 Fk:loadTranslationTable{
 ["buanqdzzyes"] = "樊瑞",
 ["#buanqdzzyes"] = "混世魔王",

@@ -4,7 +4,7 @@ local jjenhmuoh = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["jjenhmuoh"] = "演武",
-  [":jjenhmuoh"] = "➀當伱可使用打出{殺/閃},伱可視爲于元旹機虛擬執行之,發動,伱迻除{殺/閃}項直至伱使用打出{閃/殺}。➁恆續｡伱至其它角色距離-1｡若伱➀无｢閃｣項,其它角色至伱距離+1",
+  [":jjenhmuoh"] = "➀當伱可使用打出{殺/閃},伱可視爲于元旹機虛擬執行之,發動,伱迻除{殺/閃}項直至伱使用打出{閃/殺}。➁恆續｡伱至其它脚色距離-1｡若伱➀无｢閃｣項,其它脚色至伱距離+1",
 
   ["@jjenhmuoh_cards"] = "演武",
   -- ["$jjenhmuoh1"] = "",
@@ -63,7 +63,7 @@ jjenhmuoh:addEffect(fk.PreCardUse, { --PreCardUse
 
 jjenhmuoh:addEffect("distance", {
   correct_func = function(self, from, to)
-    if to:hasSkill(jjenhmuoh.name) and  table.contains(player:getTableMark("@jjenhmuoh_cards"), "szjemh") then
+    if to:hasSkill(jjenhmuoh.name) and  table.contains(from:getTableMark("@jjenhmuoh_cards"), "szjemh") then
       return 1
     end
     if from:hasSkill(jjenhmuoh.name) then

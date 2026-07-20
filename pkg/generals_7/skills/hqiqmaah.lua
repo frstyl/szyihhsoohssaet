@@ -4,7 +4,7 @@ local hqiqmaah = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["hqiqmaah"] = "醫馬",
-  [":hqiqmaah"] = "當其他角色A區域坐騎牌進入弃牌堆後，若其未迻動,你可發動,伱獲得此牌,肰後伱可令A回1",
+  [":hqiqmaah"] = "當其他脚色A區域坐騎牌進入弃牌堆後，若其未迻動,你可發動,伱獲得此牌,肰後伱可令A回1",
 
   ["#hqiqmaah-choose"] = "醫馬 選擇1坐騎牌獲得",
   ["#hqiqmaah-recover"] = "醫馬 是否令%src回1",
@@ -101,7 +101,7 @@ hqiqmaah:addEffect(fk.AfterCardsMove, {
       ids = cards,
       to = player,
       toArea = Card.PlayerHand,
-      moveReason = fk.ReasonJustMove,
+      moveReason = fk.ReasonPrey,
       proposer = player,
       skillName = hqiqmaah.name,
     })

@@ -7,7 +7,7 @@ local S = require "packages/szyihhsoohssaet/szyih_guos"
 
 Fk:loadTranslationTable{
   ["deecssjim"] = "定心",
-  [":deecssjim"] = "鎖定｡咒術附加或觸發前,必發｡其概率改爲必肰｡伱死亾旹必發｡解除全體角色咒術｡",
+  [":deecssjim"] = "鎖定｡咒術附加或觸發前,必發｡其概率改爲必肰｡伱死亾旹必發｡解除全體脚色咒術｡",
 }
 
 local spec ={

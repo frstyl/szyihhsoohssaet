@@ -4,7 +4,7 @@ local khiakdeek = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["khiakdeek"] = "卻敵",
-  [":khiakdeek"] = "一其它角色A使用殺旹,若伱在A攻程內,伱可打出1牌无色或与殺異色者發動,此次使用无效,A選擇弃1武器(武器欄中武器牌)或令伱選擇➀視爲伱對A使用殺➁伱獲得此殺(子牌)",
+  [":khiakdeek"] = "一其它脚色A使用殺旹,若伱在A攻程內,伱可打出1牌无色或与殺異色者發動,此次使用无效,A選擇弃1武器(武器欄中武器牌)或令伱選擇➀視爲伱對A使用殺➁伱獲得此殺(子牌)",
 
   ["#khiakdeek-invoke"] = "卻敵  %src使用 %arg, 伱可打出1異色牌令其无效",
   ["#khiakdeek-discard"] = "卻敵 弃武器",
@@ -78,7 +78,7 @@ khiakdeek:addEffect(fk.CardUsing, {
     if choice=="khiakdeek-cards"  then
       local cards = room:getSubcardsByRule(data.card, { Card.Processing })
       if #cards==0 then return end
-      room:obtainCard(player, cards, false, fk.ReasonJustMove, player, khiakdeek.name)
+      room:obtainCard(player, cards, false, fk.ReasonPrey, player, khiakdeek.name)
     else
       room:useVirtualCard("ssaet", nil, player, data.from, khiakdeek.name, true)  --zzin souk
     end

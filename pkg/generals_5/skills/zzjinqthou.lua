@@ -1,6 +1,6 @@
 Fk:loadTranslationTable{
   ["zzjinqthou"] = "神偸",
-  [":zzjinqthou"] = "當轉角色獲得牌後,伱可將1牌轉化爲｢因敵爲資｣對其使用發動.",
+  [":zzjinqthou"] = "當轉脚色獲得牌後,伱可將1牌轉化爲｢因敵爲資｣對其使用發動.",
 
   ["#zzjinqthou-use"] = "神偸 昰否將黑牌轉化爲因敵爲資對 %src 使用",
 

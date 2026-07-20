@@ -7,7 +7,7 @@ Fk:loadTranslationTable{
   ["moaqtsziacs"] = "魔障",
   [":moaqtsziacs"] = "鎖定.伱末段始旹,必發:伱判定,若爲♦️♥️伱令伱弃1手牌,回1;若爲♠️♣️伱抽1,予己1傷",
 
-  ["#moaqtsziacs-choose"] = "魔障：你可以令一名角色进行判定",
+  ["#moaqtsziacs-choose"] = "魔障：你可以令一名脚色进行判定",
 
   ["$moaqtsziacs1"] = "五雷天心緣何不驪",  --无色
   -- ["$moaqtsziacs2"] = "飛沙一起,眞假莫辨",

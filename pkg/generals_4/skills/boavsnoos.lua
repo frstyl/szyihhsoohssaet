@@ -7,7 +7,7 @@ local S = require "packages/szyihhsoohssaet/szyih_guos"
 Fk:loadTranslationTable{
   ["boavsnoos"] = "虣怒",
   [":boavsnoos"] = "伱使用殺旹可發動:伱流失1體力,此牌結算期閒,此牌致傷旹傷害值加x,x爲伱已損體力(變量)",
-  ["#boavsnoos"] = "虣怒 失去體力加傷",
+  ["#boavsnoos"] = "虣怒 流失體力加傷",
 
 
   ["$boavsnoos1"] = "紅頭賊將竟敢如此无禮",

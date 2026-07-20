@@ -14,11 +14,11 @@ zzyinsszyih_active:addEffect("active", {  --飛劍選牌
     or  ( 
       #selected == 1 
     and not player:prohibitResponse(Fk:getCardById(to_select)) 
-    -- and not Fk:getCardById(to_select):compareSuitWith(Fk:getCardById(selected[1]))
-    and (
-      Fk:getCardById(to_select).color==Card.NoColor 
-      or  Fk:getCardById(to_select).color==Fk:getCardById(selected[1]).color
-  )
+    and not Fk:getCardById(to_select):compareSuitWith(Fk:getCardById(selected[1]))
+  --   and (
+  --     Fk:getCardById(to_select).color==Card.NoColor 
+  --     or  Fk:getCardById(to_select).color==Fk:getCardById(selected[1]).color
+  -- )
   )
   end,
   feasible = function (self, player, selected, selected_cards, card)

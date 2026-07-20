@@ -37,7 +37,7 @@ dvoansdzoavh:addEffect("active", {
     room:addTableMark(player,"_dvoansdzoavh-phase",effect.cards[2])  --
     -- local ex_card = room:printCard("ex_" .. card.name, card.suit, card.number)
     -- local area=getArea
-    -- room:moveCardTo(card, Card.Void, nil, fk.ReasonJustMove, dvoansdzoavh.name, nil, true, player)
+    -- room:moveCardTo(card, Card.Void, nil, fk.ReasonPrey, dvoansdzoavh.name, nil, true, player)
     -- if not player.dead then
     --   room:obtainCard(player, ex_card.id, true)
     -- end

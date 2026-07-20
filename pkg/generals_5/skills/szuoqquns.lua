@@ -4,7 +4,7 @@ local szuoqquns = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["szuoqquns"] = "輸運",
-  [":szuoqquns"] = "➀補段終旹,若伱无資,伱可發動.伱改爲亮出牌堆頂x牌,伱選其中任意數量類花不全同者各1置于伱武將牌上,稱爲資,餘者置入弃牌堆➁一角色A主段始旹,若伱有資伱可發動.當段內,該A使用打出牌旹,若其類或花与第一張資相同,A獲取該資.",  --清理?
+  [":szuoqquns"] = "➀補段終旹,若伱无資,伱可發動.伱改爲亮出牌堆頂x牌,伱選其中任意數量類花不全同者各1置于伱武將牌上,稱爲資,餘者置入弃牌堆➁一脚色A主段始旹,若伱有資伱可發動.當段內,該A使用打出牌旹,若其類或花与第一張資相同,A取得該資.",  --淸理?
 
   ["#szuoqquns-choose"] = "輸運 選任意數量類花不全同者 自由排序",
   ["#szuoqquns-give"] = "輸運 %src主段始,是否輸糧",
@@ -44,7 +44,7 @@ szuoqquns:addEffect(fk.EventPhaseEnd, {
     room:moveCards({
       ids = cards,
       toArea = Card.Processing,
-      moveReason = fk.ReasonJustMove,
+      moveReason = fk.ReasonPrey,
       skillName = szuoqquns.name,
       proposer = player.id,
     })

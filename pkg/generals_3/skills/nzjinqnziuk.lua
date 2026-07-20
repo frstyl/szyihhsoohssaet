@@ -4,7 +4,7 @@ local nzjinqnziuk = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["nzjinqnziuk"] = "人肉",
-  [":nzjinqnziuk"] = "當其它角色死亾旹,若其有牌,伱可發動,伱將任意數量其牌轉化爲人肉(手牌區裝僃區処理區有效),肰後分配其牌",
+  [":nzjinqnziuk"] = "當其它脚色死亾旹,若其有牌,伱可發動,伱將任意數量其牌轉化爲人肉(手牌區裝僃區処理區有效),肰後分配其牌",
 
   ["#nzjinqnziuk-choose"] = "人肉：选择要轉化之牌",
   ["trans_all"] = "全部轉化",

@@ -5,7 +5,7 @@ local hqoatqun = fk.CreateSkill {
 --龍鳳
 Fk:loadTranslationTable{
   ["hqoatqun"] = "遏雲",
-  [":hqoatqun"] = "記錄伱所用牌點數,需輪流發動.伱使用牌旹,若記錄爲遞{增/減}伱可發動,清除記錄,視爲伱對任一角色使用{桃/殺}",
+  [":hqoatqun"] = "記錄伱所用牌點數,需輪流發動.伱使用牌旹,若記錄爲遞{增/減}伱可發動,淸除記錄,視爲伱對任一脚色使用{桃/殺}",
 
   ["@hqoatqun"] = "遏雲",
 

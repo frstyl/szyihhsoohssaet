@@ -1,6 +1,6 @@
 Fk:loadTranslationTable{
   ["ssiuqkfat"] = "搜𠜜",
-  [":ssiuqkfat"] = "補段始旹,伱可選1~4其它有手牌角色發動.伱獲取其各1手牌,牢+1",
+  [":ssiuqkfat"] = "補段始旹,伱可選1~4其它有手牌脚色發動.伱取得其各1手牌,牢+1",
 
   -- ["ssiuqkfat-invoke"] = "搜𠜜 昰否",
 

@@ -4,8 +4,8 @@ local cardSkill = fk.CreateSkill {
 
 Fk:loadTranslationTable{
 -- ["sjevs_lih_dzoac_toav_skill"] = "笑裏藏刀",  --下藥
--- [":sjevs_lih_dzoac_toav_skill"] = "笑裏藏刀 選擇攻程內1角色 其不可使用打出殺閃",
-["#sjevs_lih_dzoac_toav_skill"] = "笑裏藏刀 選擇攻程內1角色 其不能使用打出殺閃",
+-- [":sjevs_lih_dzoac_toav_skill"] = "笑裏藏刀 選擇攻程內1脚色 其不可使用打出殺閃",
+["#sjevs_lih_dzoac_toav_skill"] = "笑裏藏刀 選擇攻程內1脚色 其不能使用打出殺閃",
 }
 
 cardSkill:addEffect("cardskill", {

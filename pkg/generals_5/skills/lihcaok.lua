@@ -3,9 +3,9 @@ local lihcaok = fk.CreateSkill {
 }
 Fk:loadTranslationTable{
 ["lihcaok"] = "理樂",
-[":lihcaok"] = "伱判定牌生效後,若其在處理區,伱可發動,伱獲取之",
+[":lihcaok"] = "伱判定牌生效後,若其在處理區,伱可發動,伱取得之",
 
-["#lihcaok-choose"] = "理樂 選擇一角色 視爲對其使用殺",
+["#lihcaok-choose"] = "理樂 選擇一脚色 視爲對其使用殺",
 }
 lihcaok:addEffect(fk.FinishJudge, {
   can_trigger = function(self, event, target, player, data)
@@ -13,7 +13,7 @@ lihcaok:addEffect(fk.FinishJudge, {
       data.card and player.room:getCardArea(data.card) == Card.Processing
   end,
   on_use = function(self, event, target, player, data)
-    player.room:obtainCard(player, data.card, true, fk.ReasonPrey, player, lihcaok.name)  --ReasonJustMove
+    player.room:obtainCard(player, data.card, true, fk.ReasonPrey, player, lihcaok.name)  --ttis_tsiuh_szjet_jjen
   end,
 })
 

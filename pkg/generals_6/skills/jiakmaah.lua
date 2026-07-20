@@ -55,11 +55,11 @@ jiakmaah:addEffect("viewas", {
     --  and player:canMoveCardInBoardTo(player, cid)
             and player:hasEmptyEquipSlot(Fk:getCardById(cid).sub_type)
     then
-      player.room:moveCardTo({cid}, Card.PlayerEquip, player, fk.ReasonJustMove, jiakmaah.name, nil, true, player)  --置入?
+      player.room:moveCardTo({cid}, Card.PlayerEquip, player, fk.ReasonPrey, jiakmaah.name, nil, true, player)  --置入?
       return
     end
     if use.card.trueName=="szjemh" and   table.contains(player:getCardIds("e"), cid) then
-      player.room:moveCardTo({cid}, Card.PlayerHand, player, fk.ReasonJustMove, jiakmaah.name, nil, true, player)  --置入?
+      player.room:moveCardTo({cid}, Card.PlayerHand, player, fk.ReasonPrey, jiakmaah.name, nil, true, player)  --置入?
       return
     end
     

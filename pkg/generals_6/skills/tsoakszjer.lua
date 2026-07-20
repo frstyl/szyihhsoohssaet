@@ -5,7 +5,7 @@ local tsoakszjer = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["tsoakszjer"] = "作勢",
-  [":tsoakszjer"] = "鎖➀當其它角色使用牌指定伱爲目幖旹,必發.其交与伱1牌(明置),若不爲基本,此牌對伱无效,爲基本伱抽1➁當伱受傷旹,若伱伏區有牌,必發,防止此傷害",
+  [":tsoakszjer"] = "鎖➀當其它脚色使用牌指定伱爲目幖旹,必發.其交与伱1牌(明置),若不爲基本,此牌對伱无效,爲基本伱抽1➁當伱受傷旹,若伱伏區有牌,必發,防止此傷害",
 
   ["#tsoakszjer-choose"] = "作勢 交与%src 1牌 若不爲基本所用牌對其无效",
 

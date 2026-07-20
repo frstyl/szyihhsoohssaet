@@ -52,7 +52,7 @@ end,
 
 skill:addEffect(fk.EventPhaseChanging, {
   -- name = "#loav",
-  global = true,  --武將技不需 卡牌需要
+  -- global = true,  --武將技不需 卡牌需要
   -- events = {fk.PreTurnStart},
   mute = true,
   priority = 0, -- game rule?

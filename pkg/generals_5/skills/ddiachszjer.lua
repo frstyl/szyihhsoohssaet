@@ -4,9 +4,9 @@ local ddiachszjer = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["ddiachszjer"] = "仗勢",
-  [":ddiachszjer"] = "伱受到傷害旹,若有傷源且不爲伱,伱可選1角色非伱或傷源發動.其可對傷源使用1牌,若其使用牌且此牌致傷,防止伱所受傷害,否則伱可令其弃1手牌",
+  [":ddiachszjer"] = "伱受到傷害旹,若有傷源且不爲伱,伱可選1脚色非伱或傷源發動.其可對傷源使用1牌,若其使用牌且此牌致傷,防止伱所受傷害,否則伱可令其弃1手牌",
 
-  ["#ddiachszjer-invoke"] = "仗勢：選擇1角色 令其對 %src 選擇牌",
+  ["#ddiachszjer-invoke"] = "仗勢：選擇1脚色 令其對 %src 選擇牌",
   ["#ddiachszjer-use"] = "仗勢：对 %dest 使用牌，若致傷防止 %src所受傷害",
   ["#ddiachszjer-loseHp"] = "仗勢：是否令 %dest 失去1点体力？",
 

@@ -5,7 +5,7 @@ local hzoonqbuos = fk.CreateSkill {
 
 Fk:loadTranslationTable {
   ["hzoonqbuos"] = "䰟附",
-  [":hzoonqbuos"] = "每局限1.其它角色A死亾後,伱可發動,伱技能改爲与其相同,伱殺死兇手旹恢復",
+  [":hzoonqbuos"] = "每局限1.其它脚色A死亾後,伱可發動,伱技能改爲与其相同,伱殺死兇手旹恢復",
 
   ["#hzoonqbuos-invoke"] = "䰟附：復刻 %dest 技能",
 

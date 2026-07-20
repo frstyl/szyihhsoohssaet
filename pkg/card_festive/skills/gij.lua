@@ -53,7 +53,7 @@ cardSkill:addEffect("cardskill", {
 
 cardSkill:addEffect(fk.AskForRetrial, {
   priority = 2,  --与技能同旹?
-  global = true,
+  -- global = true,
   can_trigger = function(self, event, target, player, data)
     if player~=target then return end
     local players=S.getHolders({"gij"})

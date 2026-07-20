@@ -4,9 +4,9 @@ local doeocqjioch = fk.CreateSkill {
 
 Fk:loadTranslationTable{
 ["doeocqjioch"] = "騰涌",  --騰涌
-[":doeocqjioch"] = "當一角色受到火傷旹,伱可預打出1牌,防止之.當一角色受到非傳導雷傷後,伱可打出1牌發動.除該角色与伱全體角色受到1无源雷傷",
+[":doeocqjioch"] = "當一脚色受到火傷旹,伱可預打出1牌,防止之.當一脚色受到非傳導雷傷後,伱可打出1牌發動.除該脚色与伱全體脚色受到1无源雷傷",
 ["#doeocqjioch-fire"]="騰涌 打出1牌  防止 %src 所受傷害",
-["#doeocqjioch-thunder"]="騰涌 %src 受到雷傷 伱可打出1基本牌  連鎖其它角色",
+["#doeocqjioch-thunder"]="騰涌 %src 受到雷傷 伱可打出1基本牌  連鎖其它脚色",
 }
 
 

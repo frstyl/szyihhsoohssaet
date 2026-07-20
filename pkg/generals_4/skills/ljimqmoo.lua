@@ -27,7 +27,7 @@ ljimqmoo:addEffect(fk.CardUseFinished, {
   end,
   on_use = function(self, event, target, player, data)
       player:addToPile("ljimqmoo_dzis", data.card, true, ljimqmoo.name) 
---迻動fk.ReasonJustMove = 1
+--迻動fk.ReasonPrey = 1
 -- fk.ReasonDraw = 2
 -- fk.ReasonDiscard = 3
 -- fk.ReasonGive = 4
@@ -116,7 +116,7 @@ ljimqmoo:addEffect(fk.TurnEnd, {
       ids = ids,
       to = player,
       toArea = Card.PlayerHand,
-      moveReason = fk.ReasonJustMove,
+      moveReason = fk.ReasonPrey,
       proposer = player,
       skillName = ljimqmoo.name,
       moveVisible = true,

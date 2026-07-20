@@ -3,7 +3,7 @@ local cardSkill = fk.CreateSkill {
 }
 -- Fk:loadTranslationTable{
 --   ["#touh_ttwenh_seec_jje"] = "斗轉星迻 以鬥法破高廉 交換%dest 之%arg判定牌",
---   ["#koav_doac_tous_puap"] = "选择一其他角色，伱予其1雷傷",
+--   ["#koav_doac_tous_puap"] = "选择一其他脚色，伱予其1雷傷",
 -- }
 
 local S = require "packages/szyihhsoohssaet/szyih_guos" 
@@ -89,7 +89,7 @@ cardSkill:addEffect(fk.FinishJudge, {
 
 
 cardSkill:addEffect(fk.AskForRetrial, {  --与技能同旹?--不屬使用 單純迻動
-  global = true,
+  -- global = true,
   can_trigger = function(self, event, target, player, data)
     if player.seat~=1 then return end
     local players=S.getHolders({"tous_puap_phoas_koav_ljem"}, nil,fk.ReasonExchange )

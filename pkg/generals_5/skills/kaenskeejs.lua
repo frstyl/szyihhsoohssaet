@@ -4,7 +4,7 @@ local kaenskeejs = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["kaenskeejs"] = "閒計",
-  [":kaenskeejs"] = "➀輪始旹,伱可選1至多手牌發動,置之于伱武將牌上➁伱可使用護—將計就計抵消牌A旹,伱可將1閒計牌交予1角色B發動,伱虛擬使用｢將計就計｣,若B不爲A使用者,此技能當轉失效。",
+  [":kaenskeejs"] = "➀輪始旹,伱可選1至多手牌發動,置之于伱武將牌上➁伱可使用護—將計就計抵消牌A旹,伱可將1閒計牌交予1脚色B發動,伱虛擬使用｢將計就計｣,若B不爲A使用者,此技能當轉失效。",
 
   ["#kaenskeejs-invoke"] = "閒計 可選多在牌置于武將牌上",
   ["kaenskeejs_card"] = "閒計",
@@ -101,7 +101,7 @@ kaenskeejs:addEffect(fk.HandleAskForPlayCard, {
   end,
   on_refresh = function(self, event, target, player, data)
     local room = player.room
-    if not data.afterRequest then  --不需清理
+    if not data.afterRequest then  --不需淸理
       -- player:drawCards(1,kaenskeejs.name)
       room:setPlayerMark(player,"kaenskeejs-phase", data.eventData.from)  --可能空
 

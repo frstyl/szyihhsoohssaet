@@ -4,9 +4,9 @@ local tshjechkeens = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["tshjechkeens"] = "請見",
-  [":tshjechkeens"] = "主旹,預選2手牌与1其他角色發動.伱將所選牌交予該角色,其抽2展示之,若同色,伱令其回1,若同花,其令伱回1",
+  [":tshjechkeens"] = "主旹,預選2手牌与1其他脚色發動.伱將所選牌交予該脚色,其抽2展示之,若同色,伱令其回1,若同花,其令伱回1",
 
-  ["#tshjechkeens"] = "請見 選擇角色錦囊",
+  ["#tshjechkeens"] = "請見 選擇脚色錦囊",
 
   ["$tshjechkeens1"] = "昰般禮物此封家書需与我送至",
   ["$tshjechkeens2"] = "星夜走去一遭不可沿途耽擱",

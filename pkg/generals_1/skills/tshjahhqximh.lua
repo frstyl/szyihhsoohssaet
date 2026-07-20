@@ -4,9 +4,9 @@ local tshjahhqximh = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["tshjahhqximh"] = "且飲",
-  [":tshjahhqximh"] = "伱越過階段後伱可發動,伱選一角色,伱与其各抽1",
+  [":tshjahhqximh"] = "伱越過階段後伱可發動,伱選一脚色,伱与其各抽1",
 
-  ["#tshjahhqximh-choose"] = "且飲  選一角色,伱与其各抽1",
+  ["#tshjahhqximh-choose"] = "且飲  選一脚色,伱与其各抽1",
 
   ["$tshjahhqximh1"] = "兄弟若不嫌弃上吾山寨盤桓數日如何",
   ["$tshjahhqximh2"] = "杜某願把昰把交倚讓与兄弟",

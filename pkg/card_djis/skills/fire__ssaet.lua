@@ -34,7 +34,7 @@ skill:addEffect("cardskill", {
     return to_select ~= player and
        ( (extra_data and extra_data.bypass_distances) or self:withinDistanceLimit(player, true, card, to_select))
   end,
-  target_filter = function(self, player, to_select, selected, _, card, extra_data)  --對某角色次數距離
+  target_filter = function(self, player, to_select, selected, _, card, extra_data)  --對某脚色次數距離
     if not Util.CardTargetFilter(self, player, to_select, selected, _, card, extra_data) then return end  --must_targets  include_targets  exclusive_targets
     return self:modTargetFilter(player, to_select, selected, card, extra_data) and
       (

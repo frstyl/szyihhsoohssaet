@@ -3,7 +3,7 @@ local jiak = fk.CreateSkill {
 }
 
 Fk:loadTranslationTable{
-  ["#jiak_skill"] = "藥 令1已損角色回1",
+  ["#jiak_skill"] = "藥 令1已損脚色回1",
 }
 
 local S = require "packages/szyihhsoohssaet/szyih_guos" 

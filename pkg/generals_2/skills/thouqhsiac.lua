@@ -4,14 +4,14 @@ local thouqhsiac = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["thouqhsiac"] = "偸香",
-  [":thouqhsiac"] = "任一角色使用牌被抵消或无效後旹,伱可選一項發動.➀回1➁抽1.執行後,,伱可選擇1其它存活女角色令其執行別一項",
+  [":thouqhsiac"] = "任一脚色使用牌被抵消或无效後旹,伱可選一項發動.➀回1➁抽1.執行後,,伱可選擇1其它存活女脚色令其執行別一項",
 
   ["#thouqhsiac-choose"] = "偸香 選擇",
   ["thouqhsiac-draw"] = "抽1",
   ["thouqhsiac-recover"] = "回1",
-  ["#thouqhsiac-choose-femal"] = "偸香 選擇1其它存活女角色,其%arg",
-  ["#thouqhsiac-choose-femalthouqhsiac-draw"] = "偸香 選擇1其它存活女角色,其抽1",
-  ["#thouqhsiac-choose-femalthouqhsiac-draw"] = "偸香 選擇1其它存活女角色,其回1",
+  ["#thouqhsiac-choose-femal"] = "偸香 選擇1其它存活女脚色,其%arg",
+  ["#thouqhsiac-choose-femalthouqhsiac-draw"] = "偸香 選擇1其它存活女脚色,其抽1",
+  ["#thouqhsiac-choose-femalthouqhsiac-draw"] = "偸香 選擇1其它存活女脚色,其回1",
 }
 local S = require "packages/szyihhsoohssaet/szyih_guos" 
 

@@ -16,10 +16,10 @@ equipSKill:addEffect("atkrange", {
     end
   end,
 })
---同一角色裝僃同名裝僃 止生效1?
+--同一脚色裝僃同名裝僃 止生效1?
 Fk:loadTranslationTable{
   ["gracqgi__gi_skill"] = "杏黃旗",
-  [":gracqgi__gi_skill"] = "鎖，与伱同陣營(隊列)角色攻程+1。",
+  [":gracqgi__gi_skill"] = "鎖，与伱同陣營(隊列)脚色攻程+1。",
 }
 
 equipSKill:addEffect("active", {

@@ -4,13 +4,13 @@ local hsfaqdeen = fk.CreateSkill {
 
 Fk:loadTranslationTable{  --分爲4?
 ["hsfaqdeen"] = "花田",--1/4花田
-[":hsfaqdeen"] = "當伱{受傷/回復體力}後,至多{傷害值/回復值}次,伱可指定1其他角色發動,伱{令其回1,未損則与伱各抽2/予其1傷}.",
+[":hsfaqdeen"] = "當伱{受傷/回復體力}後,至多{傷害值/回復值}次,伱可指定1其他脚色發動,伱{令其回1,未損則与伱各抽2/予其1傷}.",
 
-["#hsfaqdeen-choose"]="花田 選擇1角色",
-["#hsfaqdeen-recover"]="花田 選擇1角色回1",
-["#hsfaqdeen-damage"]="花田 選擇1角色傷其1",
--- ["#hsfaqdeen-drawcard"]="花田 選擇1角色 其抽1",
--- ["#hsfaqdeen-discard"]="花田 選擇1角色 其弃1",
+["#hsfaqdeen-choose"]="花田 選擇1脚色",
+["#hsfaqdeen-recover"]="花田 選擇1脚色回1",
+["#hsfaqdeen-damage"]="花田 選擇1脚色傷其1",
+-- ["#hsfaqdeen-drawcard"]="花田 選擇1脚色 其抽1",
+-- ["#hsfaqdeen-discard"]="花田 選擇1脚色 其弃1",
 }
 
 hsfaqdeen:addEffect(fk.HpRecover, {

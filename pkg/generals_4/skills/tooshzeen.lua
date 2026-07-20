@@ -4,7 +4,7 @@ local tooshzeen = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["tooshzeen"] = "妬賢",
-  [":tooshzeen"] = "當伱攻程內其它角色不因額定抽牌獲得牌後,伱可預打出1手牌發動.其選擇1項➀交予伱1梅花牌,流失1體力➁展示全部手牌,弃置其中點數不小于x者(x爲伱所打出牌之點數)",
+  [":tooshzeen"] = "其它脚色A于其補段外得牌後,若其在伱攻程內伱,伱可預打出1手牌發動.A選擇1項➀交予伱1♣️牌,流失1體力,取得伱所打出牌➁展示全部手牌,弃置其中點數不小于x者(x爲伱所打出牌之點數),若无伱弃1",
 
 
   ["#tooshzeen-invoke"] = "妬賢 %src抽牌 是否打打出♣牌發動",
@@ -30,35 +30,49 @@ tooshzeen:addEffect(fk.AfterCardsMove, {
   end,
   can_trigger = function(self, event, target, player, data)
     if not player:hasSkill(tooshzeen.name)  then return end
+    if event:getCostData(self) and event:getCostData(self).ps then
+      return true
+    end
       local tos={}
       for _, move in ipairs(data) do
-        if  move.to ~=player and move.toArea == Card.PlayerHand 
-        and move.moveReason==fk.ReasonDraw 
-        and move.skillName~= "phase_draw" then
-            if player:inMyAttackRange(move.to) and player:canPindian(move.to) and not table.contains(tos, move.to) then
-              table.insert(tos, move.to)
-            end 
-          -- for _, info in ipairs(move.moveInfo) do
+        if  move.to
+            and move.to.phase ~= Player.Draw
+        -- and move.skillName~= "phase_draw" 
+        -- and move.to ~=player and move.toArea == Card.PlayerHand 
+        -- and move.moveReason==fk.ReasonDraw 
+          and table.contains({Card.PlayerEquip,Card.PlayerHand }, move.toArea) 
+        then
 
-          --   end
-          -- end
+          for _, info in ipairs(move.moveInfo) do
+            if not (move.from==move.to and table.contains({Card.PlayerEquip,Card.PlayerHand }, info.fromArea) ) then
+                table.insertIfNeed(tos, move.to)
+            end
+          end
+
         end
       end
 
     if #tos==0 then return end --同旹抽牌?
-    event:setCostData(self,{ps=tos})
-    -- player.room:sortByAction(tos)
-    -- for _, p in ipairs(tos) do
-    --   if not player:hasSkill(tooshzeen.name) then break end
-    --   if not p.dead then
-    --     event:setCostData(self, {tos = {p}})
-    --     self:doCost(event, target, player, data)
-    --   end
-    -- end
+    event:setCostData(self,{ps=tos,choosed={}})
+    return true
   end,
   on_cost = function(self, event, target, player, data)
     local ps = event:getCostData(self).ps or {}
-    if #ps >1 then
+    local choosed=event:getCostData(self).choosed or {}
+    local targets=table.filter(ps,function(p)
+        return  
+        -- player~=p
+        -- and 
+        player:inMyAttackRange(p) 
+        and not table.contains(choosed,p)
+        -- and player:canPindian(p)
+        end)
+    if #targets==0 then
+      event:setCostData(self, {ps=ps,choosed={}})
+       return 
+    end
+
+    if #targets >1 then
       local tos, cards = player.room:askToChooseCardsAndPlayers(player, {
         min_card_num = 1,
         max_card_num = 1,
@@ -66,7 +80,7 @@ tooshzeen:addEffect(fk.AfterCardsMove, {
         -- will_throw=true,
         min_num = 1,
         max_num = 1,
-        targets = tos,  --
+        targets = targets,  --
         -- targets=player.room.alive_players,
         pattern = tostring(Exppattern{ id = table.filter(player:getHandlyIds(), function (id)
         return not player:prohibitResponse(Fk:getCardById(id))
@@ -76,30 +90,36 @@ tooshzeen:addEffect(fk.AfterCardsMove, {
         cancelable = true,
       })
       if #tos > 0 and #cards > 0 then
-        event:setCostData(self, {ps=ps,tos = tos, cards = cards})
+        table.insertIfNeed(choosed,tos[1])
+        event:setCostData(self, {ps=ps,choosed=choosed,tos = tos, cards = cards,})
         return true
       end
-    elseif tos[1] then
-      local c = S.askToResponseReal(player,{
+    else
+      local cards = S.askToPlayCard(player,{
         min_num=1,
         max_num=1,
         pattern=".",
-        include_area="h",
-        prompt="#tooshzeen-invoke:"..to.id
+        include_equip=false,
+        prompt="#tooshzeen-invoke:"..targets[1].id,
+        skill_name = tooshzeen.name,
+        cancelable = true,
+        skip = true,
       })
-      if #c>0 then
-          event:setCostData(self, {tos = event:getCostData(self).tos,cards=c})
+      if #cards>0 then
+        event:setCostData(self, {ps=ps,choosed=ps, tos = targets,cards=cards})
         return true
       end
     end
+
+    event:setCostData(self, {ps=ps,choosed={}})
 
   end,
   on_use = function(self, event, target, player, data)
     local room = player.room    
     local to=event:getCostData(self).tos[1]
-    local response= event:getCostData(self).response
-    local card =Fk:getCardById(response[1])
-    S.responseCards(player,response)
+    local card=Fk:getCardById(event:getCostData(self).cards[1])
+    S.playCard(player,{card.id},tooshzeen.name)
+    if to.dead then return end
 
     local yes, dat = room:askToUseActiveSkill(to, {
     skill_name = "tooshzeen_active",
@@ -108,13 +128,15 @@ tooshzeen:addEffect(fk.AfterCardsMove, {
     skip = true,  --不執行
     extra_data=
     {from=player.id,
-    number=card.number},
+    number=card.number
+    },
   })
 
-    if #dat.cards ==1 then
+    if yes and #dat.cards == 1 then
       room:obtainCard(player, dat.cards, true, fk.ReasonGive, to, tooshzeen.name)
       room:loseHp(to, 1, tooshzeen.name,player)
       if to.dead  then return end
+
       local ids ={card.id}
       ids= table.filter(ids, function (id)
         return table.contains(player.room.discard_pile, id)
@@ -126,6 +148,7 @@ tooshzeen:addEffect(fk.AfterCardsMove, {
       local cards=to:getCardIds("h")
       to:showCards(cards)
       if to.dead then return end
+
       local n =card.number
       cards=table.filter(cards,function(id)
       return Fk:getCardById(id).number>=n
@@ -134,15 +157,15 @@ tooshzeen:addEffect(fk.AfterCardsMove, {
         room:throwCard(cards, tooshzeen.name, to,to)
       else
         if  player.dead then return end
-          room:askToDiscard(player, {
-            min_num = 1,
-            max_num = 1,
-            include_equip = false,
-            skill_name = tooshzeen.name,
-            cancelable = true,
-            prompt = "#tooshzeen-discard",
-            skip = false
-          })
+        room:askToDiscard(player, {
+          min_num = 1,
+          max_num = 1,
+          include_equip = false,
+          skill_name = tooshzeen.name,
+          cancelable = true,
+          prompt = "#tooshzeen-discard",
+          skip = false
+        })
         
       end
     end

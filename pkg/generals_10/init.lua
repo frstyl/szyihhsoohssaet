@@ -53,10 +53,10 @@ Fk:loadTranslationTable{
 ["illustrator:soonqhqoan"] = "畫師",
 ["~soonqhqoan"] = "吾 愿降",
 }
---96. 第九十五回　宋公明忠感后土　喬道清術敗宋兵
+--96. 第九十五回　宋公明忠感后土　喬道淸術敗宋兵
 General:new(extension, "gxevqdoavhtshjec", "tsjins__kvoan", 4):addSkills{"hzfenszzyit","moaqtsziacs"}
 Fk:loadTranslationTable{
-["gxevqdoavhtshjec"] = "喬道清",
+["gxevqdoavhtshjec"] = "喬道淸",
 ["#gxevqdoavhtshjec"] = "幻魔君",
 ["designer:gxevqdoavhtshjec"] = "設計",
 ["cv:gxevqdoavhtshjec"] = "配音",
@@ -65,7 +65,7 @@ Fk:loadTranslationTable{
 }
 --97. 第九十六回　幻魔君術窘五龍山　入雲龍兵圍百谷嶺
 --98. 第九十七回　陳　諫官升安撫　瓊英處女做先鋒
-General:new(extension, "khyecqhqrac", "tsjins__kvoan", 4):addSkills{"jyenqphoojs"}
+General:new(extension, "khyecqhqrac", "tsjins__kvoan", 4):addSkills{"keetjyen"}--jyenqphoojs
 Fk:loadTranslationTable{
 ["khyecqhqrac"] = "瓊英",
 ["#khyecqhqrac"] = "瓊矢鉃",
@@ -74,9 +74,9 @@ Fk:loadTranslationTable{
 ["illustrator:khyecqhqrac"] = "畫師",
 ["~khyecqhqrac"] = "結兒保重",
 }
---99. 第九十八回　張清緣配瓊英　吳用計鴆鄔梨
+--99. 第九十八回　張淸緣配瓊英　吳用計鴆鄔梨
 --100. 第九十九回　花和尚解脫緣纏井　混江龍水灌太原城
---101. 第一百回　張清瓊英雙建功　陳　宋江同奏捷
+--101. 第一百回　張淸瓊英雙建功　陳　宋江同奏捷
 --102. 第一百零一回　謀墳地陰險產逆　蹈春陽妖　生奸
 
 return extension

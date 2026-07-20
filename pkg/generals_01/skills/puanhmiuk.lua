@@ -5,7 +5,7 @@ local puanhmiuk = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["puanhmiuk"] = "反目",
-  [":puanhmiuk"] = "➀伱回復體力後,伱可發動:伱爲伱或1其它女角色附加反彈.➁伱失去反彈後,伱可發動:伱體力上限-1,爲己附加反彈",
+  [":puanhmiuk"] = "➀伱回復體力後,伱可發動:伱爲伱或1其它女脚色附加反彈.➁伱失去反彈後,伱可發動:伱體力上限-1,爲己附加反彈",
 
   ["#puanhmiuk-choose"] = "反目 選擇目幖",
 

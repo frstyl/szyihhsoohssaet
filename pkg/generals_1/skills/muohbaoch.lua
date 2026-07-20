@@ -96,7 +96,7 @@ muohbaoch:addEffect(fk.AfterCardsMove, {
   on_use = function(self, event, target, player, data)
     local room = player.room
     local cards = table.simpleClone(event:getCostData(self).cards)
-    room:moveCardTo(cards, Card.PlayerHand, player, fk.ReasonJustMove, muohbaoch.name, nil, true, player)
+    room:moveCardTo(cards, Card.PlayerHand, player, fk.ReasonPrey, muohbaoch.name, nil, true, player)
   end,
 })
 

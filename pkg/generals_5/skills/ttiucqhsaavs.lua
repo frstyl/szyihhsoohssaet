@@ -5,10 +5,10 @@ local ttiucqhsaavs = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["ttiucqhsaavs"] = "忠孝",
-  [":ttiucqhsaavs"] = "伱回復體力後,伱可選1其它角色發動.其回1.伱不因此技能獲得牌後,伱可選x手牌与1其它角色發動.將牌交予其,伱抽x.(x至多爲伱所得牌數,至少爲1)",  --
+  [":ttiucqhsaavs"] = "伱回復體力後,伱可選1其它脚色發動.其回1.伱不因此技能得到牌後,伱可選x手牌与1其它脚色發動.將牌交予其,伱抽x.(x至多爲伱所得牌數,至少爲1)",  --
 
   ["#ttiucqhsaavs-recover"] = "忠孝：選擇目幖,令其回1",
-  ["#ttiucqhsaavs-card"] = "忠孝：選擇至多 %arg 牌交予其它角色",
+  ["#ttiucqhsaavs-card"] = "忠孝：選擇至多 %arg 牌交予其它脚色",
 }
 
 

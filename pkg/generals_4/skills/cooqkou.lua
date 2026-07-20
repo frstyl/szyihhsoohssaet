@@ -4,9 +4,9 @@ local cooqkou = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["cooqkou"] = "吳鉤",
-  [":cooqkou"] = "其它角色A使用牌B後,若目幖不含伱,伱可預將1基本牌与A同色者轉化爲行刺對A使用發動.",  --攻程
+  [":cooqkou"] = "其它脚色A使用牌B後,若目幖不含伱,伱可預將1基本牌与A同色者轉化爲埋伏對A使用發動.",  --攻程
 
-  ["#cooqkou-use"] = "吳鉤 對%src使用行刺",
+  ["#cooqkou-use"] = "吳鉤 對%src使用埋伏",
 }
 local S = require "packages/szyihhsoohssaet/szyih_guos" 
 
@@ -22,7 +22,7 @@ cooqkou:addEffect(fk.CardUseFinished, {
   on_cost = function(self, event, target, player, data)
     local color =data.card.color
     local use = player.room:askToUseVirtualCard(player, {
-      name = "hzaac_tshjes",
+      name = "mae_biuk",
       skill_name = cooqkou.name,
       prompt = "#cooqkou-use:"..target.id,
       cancelable = true,

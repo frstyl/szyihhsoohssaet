@@ -5,9 +5,9 @@ local mvoanqkoa = fk.CreateSkill{
 
 Fk:loadTranslationTable{
 ["mvoanqkoa"] = "曼歌",
-[":mvoanqkoa"] = "末段始旹,伱可發動.伱判定,若与此流程內上次判定牌類別不同,伱可再次判定.流程終止旹,伱選擇令1角色抽x或回x/2",
+[":mvoanqkoa"] = "末段始旹,伱可發動.伱判定,若与此流程內上次判定牌類別不同,伱可再次判定.流程終止旹,伱選擇令1脚色抽x或回x/2",
 
-["#mvoanqkoa-choose"] = "曼歌 選擇一角色 視爲對其使用殺",
+["#mvoanqkoa-choose"] = "曼歌 選擇一脚色 視爲對其使用殺",
 }
 
 local S = require "packages/szyihhsoohssaet/szyih_guos" 

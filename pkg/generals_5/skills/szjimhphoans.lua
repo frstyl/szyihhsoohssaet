@@ -8,7 +8,7 @@ local szjimhphoans= fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["szjimhphoans"] = "宷判",
-  [":szjimhphoans"] = "當一角色判斷牌生效歬,伱可發動,伱獲得元判定牌,該角色再次判定,以此次判定牌代替元判定牌,終止元旹機",
+  [":szjimhphoans"] = "當一脚色判斷牌生效歬,伱可發動,伱獲得元判定牌,該脚色再次判定,以此次判定牌代替元判定牌,終止元旹機",
   ["#szjimhphoans-reJudge"] = "%from 发动了〖%arg〗 %to 新判定牌爲 %arg2",
 }
 
@@ -27,7 +27,7 @@ szjimhphoans:addEffect(fk.AskForRetrial,{
         room:moveCards{
           ids = { oldId},
           toArea = Card.PlayerHand ,
-          moveReason =  fk.ReasonJustMove,
+          moveReason =  fk.ReasonPrey,
           to =  player ,
           skillName = szjimhphoans.name,
           }

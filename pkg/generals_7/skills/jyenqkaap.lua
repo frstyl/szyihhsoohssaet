@@ -4,9 +4,9 @@ local jyenqkaap = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["jyenqkaap"] = "捐甲",
-  [":jyenqkaap"] = "主旹,指定1其他角色發動,伱与其各己將僃區內牌置入手牌,本轉視爲殺。",
+  [":jyenqkaap"] = "主旹,指定1其他脚色發動,伱与其各己將僃區內牌置入手牌,本轉視爲殺。",
 
-  ["#jyenqkaap"] = "選擇1其他角色 收回裝僃",
+  ["#jyenqkaap"] = "選擇1其他脚色 收回裝僃",
 
   ["@@jyenqkaap-turn"] = "捐甲",
 
@@ -26,8 +26,8 @@ jyenqkaap:addEffect("active", {
   end,
   on_use = function(self, room, effect)
     local target = effect.tos[1]
-    room:moveCardTo(target:getCardIds("e"), Card.PlayerHand, target, fk.ReasonJustMove, jyenqkaap.name, nil, true, target, "@@jyenqkaap-turn")
-    room:moveCardTo(effect.from:getCardIds("e"), Card.PlayerHand, effect.from, fk.ReasonJustMove, jyenqkaap.name, nil, true, effect.from, "@@jyenqkaap-turn")
+    room:moveCardTo(target:getCardIds("e"), Card.PlayerHand, target, fk.ReasonPrey, jyenqkaap.name, nil, true, target, "@@jyenqkaap-turn")
+    room:moveCardTo(effect.from:getCardIds("e"), Card.PlayerHand, effect.from, fk.ReasonPrey, jyenqkaap.name, nil, true, effect.from, "@@jyenqkaap-turn")
 
   end,
 })

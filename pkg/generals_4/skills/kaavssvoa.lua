@@ -4,7 +4,7 @@ local kaavssvoa = fk.CreateSkill {
 
 Fk:loadTranslationTable{
 ["kaavssvoa"] = "敎唆",
-[":kaavssvoa"] = "主動.伱可將1♣手牌轉化爲借刀殺人使用,發動",
+[":kaavssvoa"] = "主旹.伱可將1♣手牌轉化爲借刀殺人使用,發動",
 
 }
 

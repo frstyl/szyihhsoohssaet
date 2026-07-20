@@ -6,7 +6,7 @@ local szjetloojs = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["szjetloojs"] = "設擂",
-  [":szjetloojs"] = "➀始段末段始旹選擇1其它可拼點角色發動.拼點.➁其他角色主旹,其可与伱拼點發動.此次拼點若其未贏,伱獲得雙方拼點牌➂伱得失此技能旹伱得失技能爭利",
+  [":szjetloojs"] = "➀始段末段始旹選擇1其它可拼點脚色發動.拼點.➁其他脚色主旹,其可与伱拼點發動.此次拼點若其未贏,伱獲得雙方拼點牌➂伱得失此技能旹伱得失技能爭利",
 
   ["#szjetloojs-choose"] = "設擂 選擇拼點目幖",
 

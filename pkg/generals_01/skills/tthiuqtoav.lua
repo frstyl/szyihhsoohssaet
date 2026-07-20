@@ -5,7 +5,7 @@ local tthiuqtoav = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["tthiuqtoav"] = "抽刀",
-  [":tthiuqtoav"] = "伱受傷後x次,伱爲任一角色附加狂虣",
+  [":tthiuqtoav"] = "伱受傷後x次,伱爲任一脚色附加狂虣",
 
   ["#tthiuqtoav-choose"] = "抽刀 選擇目幖",
 

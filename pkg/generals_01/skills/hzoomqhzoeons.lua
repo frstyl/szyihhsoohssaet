@@ -1,6 +1,6 @@
 Fk:loadTranslationTable{
   ["hzoomqhzoeons"] = "含恨",
-  [":hzoomqhzoeons"] = "法則.自限:此將牌嫥屬.伱死亾旹,若當轉角色不爲伱,伱与其交換武將牌",
+  [":hzoomqhzoeons"] = "法則.自限:此將牌.伱死亾旹,若當轉脚色不爲伱,伱与其交換武將牌",
 
   ["$hzoomqhzoeons1"] = "我死自不妨 和伱軰爭不得了",
   ["$hzoomqhzoeons2"] = "𠀀 大嫂 苦吁苦吁",
@@ -19,7 +19,7 @@ hzoomqhzoeons:addAcquireEffect(function (self, player)
    or (Fk.generals[player.deputyGeneral] and table.contains(Fk.generals[player.deputyGeneral]:getSkillNameList(), hzoomqhzoeons.name))
 )
   then
-  player.room:handleAddLoseSkills(player, "-"..hzoomqhzoeons.name, nil, false, true)
+  player.room:handleAddLoseSkills(player, "-"..hzoomqhzoeons.name, nil, false, true)  --不檢測?
   end
 end)
 

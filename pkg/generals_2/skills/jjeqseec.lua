@@ -6,8 +6,8 @@ local jjeqseec= fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["jjeqseec"] = "迻曐",
-  [":jjeqseec"] = "一判定牌A生效歬，你可選擇一名角色裝僃區內一張牌B發動.交換A B(B作爲新判定牌,該角色得A)。",
-  ["#jjeqseec-invoke"] = "迻星：選擇一角色一裝備區一牌替換 %dest %arg 判定牌",
+  [":jjeqseec"] = "一判定牌A生效歬，你可選擇一名脚色裝僃區內一張牌B發動.交換A B(B作爲新判定牌,該脚色得A)。",
+  ["#jjeqseec-invoke"] = "迻星：選擇一脚色一裝備區一牌替換 %dest %arg 判定牌",
   ["#jjeqseec-prey"] = "迻星：選擇 %dest 场上一张装备牌",
 }
 

@@ -4,7 +4,7 @@ local noeojshqics = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["noeojshqics"] = "內噟",
-  [":noeojshqics"] = "主段始旹,選擇2角色A,B發動.視爲A對B,B對A使用偸樑換柱",
+  [":noeojshqics"] = "主段始旹,選擇2脚色A,B發動.視爲A對B,B對A使用偸樑換柱",
 
   ["#noeojshqics-choose"] = "內噟 選擇目幖 視爲對對方使用偸樑換柱",
 }

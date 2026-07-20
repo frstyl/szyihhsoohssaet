@@ -7,7 +7,7 @@ Fk:loadTranslationTable{
   [":siacqmaah"] = "主旹,伱聲名1花色發動,伱自弃牌堆牌堆隨機獲得1所聲明花色之坐騎牌,肰後伱可發動1次荐馬.",
 
   ["#siacqmaah"] = "相馬 隨機獲得1此花色坐騎牌",
-  ["#siacqmaah-choose"] = "相馬 選擇1角色 發動荐馬",
+  ["#siacqmaah-choose"] = "相馬 選擇1脚色 發動荐馬",
 
   ["$siacqmaah1"] = "好一匹棗紅馬",
 }
@@ -34,7 +34,7 @@ siacqmaah:addEffect("active", {
         ids = cards,
         to = effect.from,
         toArea = Card.PlayerHand,
-        moveReason = fk.ReasonJustMove,
+        moveReason = fk.ReasonPrey,
         proposer = effect.from,
         skillName = siacqmaah.name,
       })

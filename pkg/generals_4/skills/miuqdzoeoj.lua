@@ -4,9 +4,9 @@ local miuqdzoeoj = fk.CreateSkill {
 
 Fk:loadTranslationTable{
 ["miuqdzoeoj"] = "謀財",
-[":miuqdzoeoj"] = "當其它角色受傷旹,若其手牌數不小于伱體力值,伱可發動｡伱獲取其1手牌.",
+[":miuqdzoeoj"] = "當其它脚色受傷旹,若其手牌數不小于伱體力值,伱可發動｡伱取得其1手牌.",
 
-["#miuqdzoeoj-invoke"] = "謀財 獲取 %src 手牌",
+["#miuqdzoeoj-invoke"] = "謀財 取得 %src 手牌",
 }
 
 miuqdzoeoj:addEffect(fk.DamageInflicted, {

@@ -6,7 +6,7 @@ local S = require "packages/szyihhsoohssaet/szyih_guos"
 --getAllCardNames
 --Fk:currentRoom().disabled_packs,
 addCardSkill:addEffect(fk.GamePrepared, {
-  global = true,
+  global = true,  --止畱此
   mute = true,
   priority = 0,
   can_trigger = function(self, event, target, player, data)

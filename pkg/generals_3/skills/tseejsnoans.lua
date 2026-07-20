@@ -4,7 +4,7 @@ local tseejsnoans = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["tseejsnoans"] = "濟難",
-  [":tseejsnoans"] = "距伱距離不大于1之角色A受傷後，若存在在傷源B,伱可預對B使用殺發動.若此殺對B致傷,伱終止當前段(中止結算)",
+  [":tseejsnoans"] = "距伱距離不大于1之脚色A受傷後，若存在在傷源B,伱可預對B使用殺發動.若此殺對B致傷,伱終止當前段(中止結算)",
 
   ["#tseejsnoans-ask"] = "伱可对 %src 使用【杀】。若致傷則中止此段",
 

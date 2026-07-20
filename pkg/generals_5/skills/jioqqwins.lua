@@ -5,7 +5,7 @@ local jioqqwins = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["jioqqwins"] = "餘韻",
-  [":jioqqwins"] = "記彔伱所使用牌花色.伱使用牌旹,若記錄爲有3,伱可發動,清除記錄,伱自牌堆獲得記錄法含花色之牌各1",
+  [":jioqqwins"] = "記彔伱所使用牌花色.伱使用牌旹,若記錄爲有3,伱可發動,淸除記錄,伱自牌堆獲得記錄法含花色之牌各1",
 
   ["@jioqqwins"] = "餘韻",
 
@@ -48,7 +48,7 @@ jioqqwins:addEffect(fk.CardUsing, {
         ids = cards,
         to = player,
         toArea = Card.PlayerHand,
-        moveReason = fk.ReasonJustMove,
+        moveReason = fk.ReasonPrey,
         proposer = player,
         skillName = jioqqwins.name,
       })

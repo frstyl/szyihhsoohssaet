@@ -5,7 +5,7 @@ local tszjecqbuat = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["tszjecqbuat"] = "征伐",
-  [":tszjecqbuat"] = "末段始旹選擇1其它可拼點角色發動.拼點,若伱贏,視爲伱使用殺,无視距離可指定x目幖,x爲勢力(陣營)數;沒贏,伱抽1,牢+1",
+  [":tszjecqbuat"] = "末段始旹選擇1其它可拼點脚色發動.拼點,若伱贏,視爲伱使用殺,无視距離可指定x目幖,x爲勢力(陣營)數;沒贏,伱抽1,牢+1",
 
   ["#tszjecqbuat-choose"] = "征伐 選擇拼點目幖",
   ["#tszjecqbuat-win"] = "征伐 選擇殺目幖",

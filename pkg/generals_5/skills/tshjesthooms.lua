@@ -4,7 +4,7 @@ local tshjesthooms = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["tshjesthooms"] = "刺探",
-  [":tshjesthooms"] = "其它角色失去牌後,若失牌數不少于2或元因爲額定弃牌,伱可發動,視爲對其使用偸樑換柱.",--弃牌後
+  [":tshjesthooms"] = "其它脚色失去牌後,若失牌數不少于2或元因爲額定弃牌,伱可發動,視爲對其使用偸樑換柱.",--弃牌後
 
   ["#tshjesthooms-invoke"] = "刺探：是否對%src 虛擬使用｢偸樑換柱｣",
   ["#tshjesthooms-choose"] = "刺探：是否虛擬使用｢偸樑換柱｣",

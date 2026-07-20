@@ -5,7 +5,7 @@ local koostsiocs = fk.CreateSkill {
 
 Fk:loadTranslationTable{
 ["koostsiocs"] = "故縱",
-[":koostsiocs"] = "當其它角色A可使用打出閃旹,若其可因此使用/打出虛擬閃,伱可打出閃,若伱打出,發動.視爲A元旹機使用/打出虛閃.此閃結算後,伱可執行:伱弃置A區域1牌2次,伱抽1",
+[":koostsiocs"] = "當其它脚色A可使用打出閃旹,若其可因此使用/打出虛擬閃,伱可打出閃,若伱打出,發動.視爲A元旹機使用/打出虛閃.此閃結算後,伱可執行:伱弃置A區域1牌2次,伱抽1",
 
 ["#koostsiocs-invoke"] = "故縱: 代替 %src 使用打出閃",
 ["#koostsiocs-discard"] = "故縱: 是否弃 %src 牌",
@@ -158,7 +158,7 @@ koostsiocs:addEffect(fk.AskForCardResponse, {
 })
 
 --- AfterAskForCardUse CardRespondFinished CardResponding
-koostsiocs:addEffect(fk.CardRespondFinished, koostsiocs_delay_spec)  --不是清理
+koostsiocs:addEffect(fk.CardRespondFinished, koostsiocs_delay_spec)  --不是淸理
 koostsiocs:addEffect(fk.CardUseFinished, koostsiocs_delay_spec)
 -- koostsiocs:addEffect(fk.CardUsing, koostsiocs_delay_spec)
 -- koostsiocs:addEffect(fk.CardResponding, koostsiocs_delay_spec)

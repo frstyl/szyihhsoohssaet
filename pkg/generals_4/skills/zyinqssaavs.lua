@@ -4,9 +4,9 @@ local zyinqssaavs = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["zyinqssaavs"] = "巡哨",
-  [":zyinqssaavs"] = "伱攻程內其它角色使用殺結算終後,若此牌未致傷,伱可發動,伱將此牌交与1除其外一角色",
+  [":zyinqssaavs"] = "伱攻程內其它脚色使用殺結算終後,若此牌未致傷,伱可發動,伱將此牌交与1除其外一脚色",
 
-  ["#zyinqssaavs-invoke"] = "巡哨 將%arg 交与1角色",
+  ["#zyinqssaavs-invoke"] = "巡哨 將%arg 交与1脚色",
 
   ["$zyinqssaavs1"] = "尒等鼠輩舔貓鼻子膽子倒不小",
   ["$zyinqssaavs2"] = "敵軍已至速報与眾位哥哥",
@@ -38,7 +38,7 @@ zyinqssaavs:addEffect(fk.CardUseFinished, {
         end
   end,
   on_use = function(self, event, target, player, data)
-    player.room:moveCardTo(data.card,Player.Hand, event:getCostData(self).tos[1], fk.ReasonJustMove, zyinqssaavs.name,  nil, true, player)
+    player.room:moveCardTo(data.card,Player.Hand, event:getCostData(self).tos[1], fk.ReasonPrey, zyinqssaavs.name,  nil, true, player)
   end,
 })
 

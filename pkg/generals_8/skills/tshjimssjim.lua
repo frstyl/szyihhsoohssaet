@@ -9,7 +9,7 @@ Fk:loadTranslationTable{
   ["tshjimssjim_log"] = "%src 聲明沁心花色爲 %arg ",
 
   ["$tshjimssjim1"] = "白玉生香",
-  ["$tshjimssjim2"] = "清歌浩齒",
+  ["$tshjimssjim2"] = "淸歌浩齒",
 }
 
 local tshjimssjim_spec = {

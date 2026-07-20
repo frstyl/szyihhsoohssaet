@@ -1,6 +1,6 @@
 Fk:loadTranslationTable{
   ["hsoeokteems"] = "黑店",
-  [":hsoeokteems"] = "鎖➀當一其它角色失去冣後手牌旹,必發,其選1項➀交与伱1裝僃區牌➁流失1體力.➁當伱受到其它角色傷害後,傷害來源須弃x手牌(x爲傷害值)",
+  [":hsoeokteems"] = "鎖➀當一其它脚色失去冣後手牌旹,必發,其選1項➀交与伱1裝僃區牌➁流失1體力.➁當伱受到其它脚色傷害後,傷害來源須弃x手牌(x爲傷害值)",
 
   ["#hsoeokteems-choose"] = "%src 黑店 生效",
   ["#hsoeokteems-discard"] = "黑店：伱須弃%arg手牌",

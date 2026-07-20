@@ -5,7 +5,7 @@ local tszjevqseejs = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["tszjevqseejs"] = "招𱙝",
-  [":tszjevqseejs"] = "伱預段始旹,可選1其它角色A發動.伱判定,判定牌生效後,若其爲{紅/黑},{伱/A}獲得之,若此次流程未有3張連續同色且A未死亾,伱可再次執行｡",--平均7 但可能離譜
+  [":tszjevqseejs"] = "伱預段始旹,可選1其它脚色A發動.伱判定,判定牌生效後,若其爲{紅/黑},{伱/A}獲得之,若此次流程未有3張連續同色且A未死亾,伱可再次執行｡",--平均7 但可能離譜
 
   ["#tszjevqseejs-invoke"] = "招𱙝 選擇目幖",
 
@@ -78,7 +78,7 @@ tszjevqseejs:addEffect(fk.FinishJudge, {
   end,
   on_use = function(self, event, target, player, data)
     local to =event:getCostData(self).tos[1]
-    player.room:obtainCard(to, data.card, true, fk.ReasonJustMove, nil, tszjevqseejs.name)
+    player.room:obtainCard(to, data.card, true, fk.ReasonPrey, nil, tszjevqseejs.name)
   end,
 })
 
@@ -140,7 +140,7 @@ tszjevqseejs:addEffect(fk.FinishJudge, {
 --     if player.dead then 
 --       room:moveCardTo(cardsJudged, Card.DiscardPile, nil, fk.ReasonPutIntoDiscardPile, tszjevqseejs.name, nil, true, nil)  --非判定
 --     else
---       room:obtainCard(player, cardsJudged, true, fk.ReasonJustMove)
+--       room:obtainCard(player, cardsJudged, true, fk.ReasonPrey)
 --     end
 --   end,
 -- })

@@ -4,8 +4,8 @@ local tszuohtszjens = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["tszuohtszjens"] = "主戰",
-  [":tszuohtszjens"] = "任意角色A轉終,伱可發動｡若x>0,,伱令A抽x,否則伱視爲使用殺,止能選A攻程內角色｡(x爲A當轉使用殺次數)",  --將1牌轉化爲殺對A攻程內角色使用發動
-  -- [":tszuohtszjens"] = "➀角色A轉終旹,若A于本轉內未使用殺,伱可預將1牌轉化爲殺,對A或A攻程內角色B使用發動.若A不爲伱,此殺結算畢旹,若其:{曾/未曾}致傷,伱可令A{弃1/交与B 1牌,A抽2}➁每轉終旹,若當前轉角色A本轉內使用過殺,伱可發動,令A抽1",
+  [":tszuohtszjens"] = "任意脚色A轉終,伱可發動｡若x>0,,伱令A抽x,否則伱視爲使用殺,止能選A攻程內脚色｡(x爲A當轉使用殺次數)",  --將1牌轉化爲殺對A攻程內脚色使用發動
+  -- [":tszuohtszjens"] = "➀脚色A轉終旹,若A于本轉內未使用殺,伱可預將1牌轉化爲殺,對A或A攻程內脚色B使用發動.若A不爲伱,此殺結算畢旹,若其:{曾/未曾}致傷,伱可令A{弃1/交与B 1牌,A抽2}➁每轉終旹,若當前轉脚色A本轉內使用過殺,伱可發動,令A抽1",
 
   ["#tszuohtszjens-ssaet"] = "主戰 %src轉終 是否使用殺",
   ["#tszuohtszjens-draw"] = "主戰 %src轉終 是否令其抽 %arg",

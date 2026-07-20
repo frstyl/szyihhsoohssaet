@@ -4,12 +4,13 @@ local ljetkrak = fk.CreateSkill{
 }
 Fk:loadTranslationTable{
 ["ljetkrak"] = "烈戟",
-[":ljetkrak"] = "補段終旹,預弃1牌發動,伱越過主段弃段,視爲使用1殺,此殺无視次數距離,目標上限+1,結算期閒伱无視防具,此殺致傷旹,伱可使用1非轉化手牌",
+[":ljetkrak"] = "補段終旹,預打出1牌發動,伱越過主段打出段,視爲使用1殺,此殺无視次數距離,目標上限+1,結算期閒伱无視防具,此殺致傷旹,伱可使用1非轉化手牌",
 
-["#ljetkrak-choose"] = "烈戟 選擇所弃牌 与殺目幖 自動迻除不合理目幖",
+["#ljetkrak-choose"] = "烈戟 選擇所打出牌 与殺目幖 自動迻除不合理目幖",
 ["#ljetkrak-use"] = "烈戟 伱可使用1牌",
 }
 
+local S = require "packages/szyihhsoohssaet/szyih_guos"
 
 ljetkrak:addEffect(fk.EventPhaseEnd, {
   anim_type = "offensive",
@@ -27,11 +28,14 @@ ljetkrak:addEffect(fk.EventPhaseEnd, {
         min_card_num = 1,
         max_card_num = 1,
         targets = room:getOtherPlayers(player, false),
-        pattern = ".|.|.",
+        pattern=tostring(Exppattern{ id = table.filter(player:getCardIds("he"),function(id)
+          return  not player:prohibitResponse(Fk:getCardById(id))
+        end
+        ) }),
         skill_name = ljetkrak.name,
         prompt = "#ljetkrak-choose",
         cancelable = true,
-        will_throw = true,
+        -- will_throw = true,
       })
     if #tos>0 and #cards>0 then
         event:setCostData(self, {targets = tos, cards = cards})  --not tos
@@ -44,10 +48,9 @@ ljetkrak:addEffect(fk.EventPhaseEnd, {
     player:skip(Player.Discard)
     local targets = event:getCostData(self).targets
     -- room:sortByAction(targets)
-
-    room:throwCard(event:getCostData(self).cards, ljetkrak.name, player, player)
+    S.playCard(player,event:getCostData(self).card,ljetkrak.name)
     player.room:addPlayerMark(player, "@@ignoreArmor",1)
-    player.room.logic:getCurrentEvent():findParent(GameEvent.SkillEffect, true):addCleaner(function()
+    player.room.logic:getCurrentEvent():findParent(GameEvent.SkillEffect, true):addCleaner(function()  --防kill --應該是useCard refresh
         player.room:removePlayerMark(player, "@@ignoreArmor",1)
     end)
     room:useVirtualCard("ssaet", nil, player, targets, ljetkrak.name, true)  --zzin souk

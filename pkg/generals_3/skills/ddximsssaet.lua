@@ -5,7 +5,7 @@ local ddximsssaet = fk.CreateSkill {
 
 Fk:loadTranslationTable {
   ["ddximsssaet"] = "鴆酒",
-  [":ddximsssaet"] = "局限1. 其它角色聲明使用｢酒｣旹,伱可發動｡此酒效果改爲｢鴆｣",
+  [":ddximsssaet"] = "局限1. 其它脚色聲明使用｢酒｣旹,伱可發動｡此酒效果改爲｢鴆｣",
 
   ["#ddximsssaet-invoke"] = "焚心：投毒%dest",
 

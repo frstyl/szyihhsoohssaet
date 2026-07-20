@@ -4,8 +4,8 @@ local hqoomszjip = fk.CreateSkill {
 
 Fk:loadTranslationTable{
 ["hqoomszjip"] = "暗襲",
-[":hqoomszjip"] = "當一其他角色受到錦囊傷害後,伱預打出1紅色牌選擇1其它角色體力值不小于伱者發動,伱予其1傷",
-["#hqoomszjip-invoke"]="暗襲 弃1紅色牌与1角色1傷",
+[":hqoomszjip"] = "當一其他脚色受到錦囊傷害後,伱預打出1紅色牌選擇1其它脚色體力值不小于伱者發動,伱予其1傷",
+["#hqoomszjip-invoke"]="暗襲 弃1紅色牌与1脚色1傷",
 }
 
 -- local S = require "packages/szyihhsoohssaet/szyih_guos"

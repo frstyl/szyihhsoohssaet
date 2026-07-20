@@ -5,9 +5,9 @@ local sjisziach = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["sjisziach"] = "四像",
-  [":sjisziach"] = "預段始旹,伱可預褈鑄不同色a(至少1)牌選擇1至多a名角色發動｡所選角色將手牌抽或弃至a",
+  [":sjisziach"] = "預段始旹,伱可預褈鑄不同色a(至少1)牌選擇1至多a名脚色發動｡所選脚色將手牌抽或弃至a",
 
-  ["#sjisziach_active"] = "四像 褈鑄不同花牌指定至多等量角色",
+  ["#sjisziach_active"] = "四像 褈鑄不同花牌指定至多等量脚色",
   ["#sjisziach-discard"] = "四像 弃 %arg",
   ["$sjisziach1"] = "朱雀神鳥爲我先導",
   ["$sjisziach2"] = "",

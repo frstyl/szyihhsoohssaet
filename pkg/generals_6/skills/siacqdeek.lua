@@ -6,7 +6,7 @@ local siacqdeek= fk.CreateSkill({
 
 Fk:loadTranslationTable{
 ["siacqdeek"] = "相敵",
-[":siacqdeek"] = "每局限x次,x初始爲1,伱受傷後或伱轉始旹x加1(失去此技能x清零).一名角色回合開始旹伱可發動動,伱觀看牌堆頂3牌,獲得其1.",
+[":siacqdeek"] = "每局限x次,x初始爲1,伱受傷後或伱轉始旹x加1(失去此技能x淸零).一名脚色回合開始旹伱可發動動,伱觀看牌堆頂3牌,獲得其1.",
 ["@siacqdeek"] = "相敵 ",
 ["#siacqdeek-choose"] = "相敵 ",
 
@@ -45,7 +45,7 @@ siacqdeek:addEffect(fk.TurnStart,{
       -- pattern = ".|.|.",
     })[2]
     -- if #get > 0 then  --必拿 默認第3??
-    room:moveCardTo(get, Player.Hand, player, fk.ReasonJustMove, siacqdeek.name, nil, true, player)
+    room:moveCardTo(get, Player.Hand, player, fk.ReasonPrey, siacqdeek.name, nil, true, player)
 
     -- end
     end,

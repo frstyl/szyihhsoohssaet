@@ -29,7 +29,7 @@ hzoavqhqximh:addEffect(fk.DrawNCards, {
       ids = ids,
       to = player,
       toArea = Card.PlayerHand,
-      moveReason = fk.ReasonJustMove,
+      moveReason = fk.ReasonPrey,
       proposer = player,
       skillName = hzoavqhqximh.name,
       moveVisible = true,

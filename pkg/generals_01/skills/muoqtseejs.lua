@@ -5,7 +5,7 @@ local muoqtseejs = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["muoqtseejs"] = "无濟",
-  [":muoqtseejs"] = "伱使用殺指定目幖後,若其有牌,伱可發動:目幖角色選擇一項➀交予伱2牌➁伱將其1牌轉化爲斷糧絕援置于其伏區",
+  [":muoqtseejs"] = "伱使用殺指定目幖後,若其有牌,伱可發動:目幖脚色選擇一項➀交予伱2牌➁伱將其1牌轉化爲斷糧絕援置于其伏區",
 
   ["#muoqtseejs-invoke"] = "无濟 是否對 %src發動",
 

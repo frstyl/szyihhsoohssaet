@@ -4,7 +4,7 @@ local phuohsyit = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["phuohsyit"] = "抚恤",
-  [":phuohsyit"] = "任一角色受殺所致傷後，若其未陣亡,你可發動至多x次(x爲傷害值).令其判定，判定牌生效後,若其爲{紅,伱可選➀打出1紅手牌令其回1➁打出1黑手牌終止當前段(不中止結算)/黑,伱令其得判定牌,伱抽1}",
+  [":phuohsyit"] = "任一脚色受殺所致傷後，若其未陣亡,你可發動至多x次(x爲傷害值).令其判定，判定牌生效後,若其爲{紅,伱可選➀打出1紅手牌令其回1➁打出1黑手牌終止當前段(不中止結算)/黑,伱令其得判定牌,伱抽1}",
 
   ["#phuohsyit-discard"] = "抚恤：%src  受到 %arg 伤害，你可以弃置一张 紅手牌 令其回復1",
 
@@ -34,7 +34,7 @@ phuohsyit:addEffect(fk.Damaged, {
     if judge.card.color == Card.NoColor then return end
     if judge.card.color == Card.Black then
       -- if not target.dead and room:getCardArea(judge.card) == Card.Processing then --DiscardPile
-      --   room:obtainCard(target, judge.card, true, fk.ReasonJustMove, player, phuohsyit.name)
+      --   room:obtainCard(target, judge.card, true, fk.ReasonPrey, player, phuohsyit.name)
       -- end
       player:drawCards(1, phuohsyit.name)
       return  --加速
@@ -89,7 +89,7 @@ phuohsyit:addEffect(fk.FinishJudge, {  --旹機
       and not data.who.dead
   end,
   on_use = function(self, event, target, player, data)
-    player.room:obtainCard(data.who, data.card, true, fk.ReasonJustMove, nil, phuohsyit.name)
+    player.room:obtainCard(data.who, data.card, true, fk.ReasonPrey, nil, phuohsyit.name)
   end,
 })
 

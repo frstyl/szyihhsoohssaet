@@ -6,7 +6,7 @@ local S = require "packages/szyihhsoohssaet/szyih_guos"
 
 Fk:loadTranslationTable{
 ["tsjas_szji_hzfan_hzoon"] = "借屍還䰟",
-[":tsjas_szji_hzfan_hzoon"] = "一名角色A進入瀕死旹,,指定1死亾角色B使用,A死B復活.",
+[":tsjas_szji_hzfan_hzoon"] = "一名脚色A進入瀕死旹,,指定1死亾脚色B使用,A死B復活.",
 
 ["#tsjas_szji_hzfan_hzoon_use"] = "借屍還䰟 %src",
 }

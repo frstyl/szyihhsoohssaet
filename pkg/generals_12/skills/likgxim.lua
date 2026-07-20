@@ -3,9 +3,9 @@ local likgxim = fk.CreateSkill{
 }
 Fk:loadTranslationTable{
   ["likgxim"] = "力擒",
-  [":likgxim"] = "主旹,伱可預選擇1牌交予其它角色發動｡視爲伱對該角色使用鬥將(不可抵消),其隨機弃2牌且若其體力值小于伱,此技能失效",
+  [":likgxim"] = "主旹,伱可預選擇1牌交予其它脚色發動｡視爲伱對該脚色使用鬥將(不可抵消),其隨機弃2牌且若其體力值小于伱,此技能失效",
 
-  ["#likgxim-choose"] = "力擒 爲1角色敺㪔咒術",
+  ["#likgxim-choose"] = "力擒 爲1脚色敺㪔咒術",
 
   ["$likgxim1"] = "能保則吉更當修爲",
   ["$likgxim2"] = "切摸妄作萬福來宜",

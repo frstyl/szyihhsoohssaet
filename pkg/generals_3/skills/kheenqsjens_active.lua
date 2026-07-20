@@ -4,9 +4,9 @@ local kheenqsjens_active = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["kheenqsjens_active&"] = "牽線",
-  [":kheenqsjens_active&"] = "1梅花手牌交予与伱併選1角色B除伱与其己者發動。",
+  [":kheenqsjens_active&"] = "1梅花手牌交予与伱併選1脚色B除伱与其己者發動。",
 
-  ["#kheenqsjens_active&"] = "1梅花手牌交予与伱併選1角色B除伱与其己者發動",
+  ["#kheenqsjens_active&"] = "1梅花手牌交予与伱併選1脚色B除伱与其己者發動",
 }
 
 -- local S = require "packages/szyihhsoohssaet/szyih_guos" 

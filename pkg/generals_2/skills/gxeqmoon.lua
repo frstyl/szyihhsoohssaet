@@ -6,8 +6,8 @@ local gxeqmoon= fk.CreateSkill({
 
 Fk:loadTranslationTable{
 ["gxeqmoon"] = "奇門",
-[":gxeqmoon"] = "任一角色回合開始歬,選擇一其它角色A發動(不能已被奇門).A判定.判定後伱可打出一張与判定牌同色手牌,令A失去當旹全部技能,轉終旹或此技能離場旹A褈獲得因此所失去技能.",
-["#gxeqmoon-choose"] = "奇門 選擇一名角色，令其判定",
+[":gxeqmoon"] = "任一脚色回合開始歬,選擇一其它脚色A發動(不能已被奇門).A判定.判定後伱可打出一張与判定牌同色手牌,令A失去當旹全部技能,轉終旹或此技能離場旹A褈獲得因此所失去技能.",
+["#gxeqmoon-choose"] = "奇門 選擇一名脚色，令其判定",
 ["#gxeqmoon-discard"] = "奇門 弃1 %arg 手牌令 %src  失去技能至回合終",
 ["@[:]gxeqmoon"] = "奇門 ",
 -- ["_gxeqmoon_list"] = "奇門 ",

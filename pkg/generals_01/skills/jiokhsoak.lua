@@ -1,6 +1,6 @@
 Fk:loadTranslationTable{
   ["jiokhsoak"] = "欲壑",
-  [":jiokhsoak"] = "伱死亾旹,伱可選1其它女角色非主公發動.令其卽死",
+  [":jiokhsoak"] = "伱死亾旹,伱可選1其它女脚色非主公發動.令其卽死",
 
   ["$jiokhsoak1"] = "哈哈哈哈哈哈哈哈！",
   ["$jiokhsoak2"] = "伯符，且看我这一手！",

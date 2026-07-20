@@ -5,10 +5,10 @@ local hzfacsdzoeoj = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["hzfacsdzoeoj"] = "橫財",
-  [":hzfacsdzoeoj"] = "非伱所有之牌被弃置進入弃牌堆後,伱可選其中至多x牌發動.伱獲取之",--,若弃牌數不小于2
+  [":hzfacsdzoeoj"] = "非伱所有之牌被弃置進入弃牌堆後,伱可選其中至多x牌發動.伱取得之",--,若弃牌數不小于2
 
   ["#hzfacsdzoeoj-invoke"] = "橫財 是否發動",
-  ["#hzfacsdzoeoj-choose"] = "橫財 選擇所得牌 所弃牌 得牌角色",
+  ["#hzfacsdzoeoj-choose"] = "橫財 選擇所得牌 所弃牌 得牌脚色",
 
   ["$hzfacsdzoeoj1"] = "天上掉餡餅不要白不要",
   ["$hzfacsdzoeoj2"] = "還有人嫌錢多嗚",
@@ -49,11 +49,12 @@ hzfacsdzoeoj:addEffect(fk.AfterCardsMove, {
         cancel_choices = {"Cancel"}
       })
       if choice=="Cancel" or #ids==0 then return end
-      event:setCostData(self, { ids = ids})
+      event:setCostData(self, { cards = ids})
       return true
   end,
   on_use = function(self, event, target, player, data)
-    player.room:moveCardTo(event:getCostData(self).ids, Card.PlayerHand, player, fk.ReasonPrey, hzfacsdzoeoj.name, nil, true, player)
+    -- player.room:moveCardTo(event:getCostData(self).cards, Card.PlayerHand, player, fk.ReasonPrey, hzfacsdzoeoj.name, nil, true, player)
+    room:obtainCard(player, event:getCostData(self).cards, true, fk.ReasonPrey, player, hzfacsdzoeoj.name)
   end,
 })
 

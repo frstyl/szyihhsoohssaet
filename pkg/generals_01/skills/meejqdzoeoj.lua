@@ -5,7 +5,7 @@ local meejqdzoeoj = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["meejqdzoeoj"] = "迷財",
-  [":meejqdzoeoj"] = "鎖定.轉終,若伱手牌數全場冣小,伱選一角色手牌數全場至多且大于1者發動.其予伱1傷,伱獲取其2牌",
+  [":meejqdzoeoj"] = "鎖定.轉終,若伱手牌數全場冣小,伱選一脚色手牌數全場至多且大于1者發動.其予伱1傷,伱取得其2牌",
 
   ["#meejqdzoeoj-choose"] = "迷財 選擇目幖",
 

@@ -4,7 +4,7 @@ local pujqnzjins = fk.CreateSkill {
 
 Fk:loadTranslationTable{
 ["pujqnzjins"] = "飛刃",
-[":pujqnzjins"] = "當伱使用一實殺旹,伱可發動,視爲對伱對1其它角色使用殺,此殺致傷旹目幖流失1體力上限",
+[":pujqnzjins"] = "當伱使用一實殺旹,伱可發動,視爲對伱對1其它脚色使用殺,此殺致傷旹目幖流失1體力上限",
 
 ["#pujqnzjins-invoke"] = "飛刃 選擇目幖",
 }

@@ -4,9 +4,9 @@ local sjiqkius = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["sjiqkius"] = "私救",
-  [":sjiqkius"] = "主旹,預打出1肉選擇1其它角色發動,其回2抽1,獲得報幖記(伱可發動1次私救)。",
+  [":sjiqkius"] = "主旹,預打出1肉選擇1其它脚色發動,其回2抽1,獲得報幖記(伱可發動1次私救)。",
 
-  ["#sjiqkius"] = "弃1肉 令1角色回2抽1",
+  ["#sjiqkius"] = "弃1肉 令1脚色回2抽1",
 
   ["@@poavs"] = "報",
 

@@ -6,8 +6,8 @@ Fk:loadTranslationTable{
   ["kaasssik_active"] = "稼穡",
   [":kaasssik_active"] = "主旹,伱聲名1花色發動,伱自弃牌堆牌堆隨機獲得1所聲明花色之坐騎牌,肰後伱可發動1次荐馬.",
 
-  ["#kaasssik-one"] = "將葢伏牌轉化爲 糧艸先行 對 任一角色 使用",
-  ["#kaasssik-all"] = "對一角色褈復執行",
+  ["#kaasssik-one"] = "將葢伏牌轉化爲 糧艸先行 對 任一脚色 使用",
+  ["#kaasssik-all"] = "對一脚色褈復執行",
 
   ["$kaasssik_active1"] = "好一匹棗紅馬",
 }

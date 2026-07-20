@@ -4,8 +4,8 @@ local puacsteev = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["puacsteev"] = "放刁",  --撒野
-  -- [":puacsteev"] = "主段,選1伱攻程內其他角色發動.伱与其交換手牌",
-  [":puacsteev"] = "輪限1｡其它角色補段終旹,若其有手牌,伱可發動｡伱獲取其全部手牌,交予其x牌｡(x爲伱發動歬手牌數)",
+  -- [":puacsteev"] = "主段,選1伱攻程內其他脚色發動.伱与其交換手牌",
+  [":puacsteev"] = "輪限1｡其它脚色補段終旹,若其有手牌,伱可發動｡伱取得其全部手牌,交予其x牌｡(x爲伱發動歬手牌數)",
 
   ["#puacsteev-invoke"] = "放刁 %src 補段終, 是否發動",
   ["#puacsteev-choose"] = "放刁 交予 %src %arg 牌",
@@ -64,7 +64,7 @@ puacsteev:addEffect(fk.EventPhaseEnd, {
 --   end,
 --   on_use = function(self, room, effect)
 --     local player = effect.from
---     room:swapAllCards(player, {player, effect.to[1],}, puacsteev.name)  --2角色用table
+--     room:swapAllCards(player, {player, effect.to[1],}, puacsteev.name)  --2脚色用table
 --   end,
 -- })
 

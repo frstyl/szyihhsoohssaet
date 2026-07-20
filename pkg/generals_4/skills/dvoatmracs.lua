@@ -4,7 +4,7 @@ local dvoatmracs = fk.CreateSkill {
 
 Fk:loadTranslationTable{
 ["dvoatmracs"] = "奪命",
-[":dvoatmracs"] = "當其它角色于其轉內回復體力後,伱選擇2黑色牌發動,伱將所選牌幖記交予該角色,予其1傷.奪命牌于當歬轉內:明置且不可被使用打出棄置",
+[":dvoatmracs"] = "當其它脚色于其轉內回復體力後,伱選擇2黑色牌發動,伱將所選牌幖記交予該脚色,予其1傷.奪命牌于1轉內:明置且不可被使用打出棄置",
 ["#dvoatmracs-give"]="奪命 將2手牌交予  %src ",
 ["@@dvoatmracs-turn"] = "奪命",
 }
@@ -40,9 +40,9 @@ dvoatmracs:addEffect(fk.HpRecover, {
     if target.dead then return end
     local room=player.room
 
-
-    -- room:setCardMark(Fk:getCardById(cards.cardId), "@@dvoatmracs-turn", 1)
-    room:moveCardTo(cards, Card.PlayerHand, target, fk.ReasonGive, dvoatmracs.name, nil, true, player, "@@dvoatmracs-turn")
+    room:addSkill("openCards")  --作禁使用打出弃置技能
+  
+    room:moveCardTo(cards, Card.PlayerHand, target, fk.ReasonGive, dvoatmracs.name, nil, true, player, {"@@dvoatmracs-turn",1,"@@open-hand-turn",1})
     room:damage({ --新旹機
         from = player,
         to = target,

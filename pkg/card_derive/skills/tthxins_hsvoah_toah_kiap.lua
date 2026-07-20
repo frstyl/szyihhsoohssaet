@@ -4,9 +4,9 @@ local cardSkill = fk.CreateSkill {
 
 Fk:loadTranslationTable{
 ["tthxins_hsvoah_toah_kiap_skill"] = "趁火打劫",
-[":tthxins_hsvoah_toah_kiap_skill"] = "當其它角色受傷後,若其有牌,伱可對其使用｡伱獲取其1牌.",
+[":tthxins_hsvoah_toah_kiap_skill"] = "當其它脚色受傷後,若其有牌,伱可對其使用｡伱取得其1牌.",
 
-["#tthxins_hsvoah_toah_kiap_skill-invoke"] = "謀財 獲取 %src 手牌",
+["#tthxins_hsvoah_toah_kiap_skill-invoke"] = "謀財 取得 %src 手牌",
 }
 cardSkill:addEffect("cardskill", {
   prompt = "#tthxins_hsvoah_toah_kiap_skill",

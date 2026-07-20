@@ -4,11 +4,11 @@ local siacqphouk = fk.CreateSkill {
 
 Fk:loadTranslationTable{
 ["siacqphouk"] = "相撲",
-[":siacqphouk"] = "主動(段限1)与1其它各色拼點發動.若伱贏,本轉內,伱至其距離爲1,伱每對其致旹1可令1角色回1;若伱未贏,其与伱1傷",
+[":siacqphouk"] = "主旹,与1其它各色拼點發動.若伱贏,本轉內,伱至其距離爲1,伱每對其致旹1可令1脚色回1;若伱未贏,其与伱1傷",
 
 ["@@siacqphouk_win-turn"]="相撲",
-["#siacqphouk"]="相撲 選擇一角色拼點",
-["#siacqphouk-recover"]="相撲 令1角色回1",
+["#siacqphouk"]="相撲 選擇一脚色拼點",
+["#siacqphouk-recover"]="相撲 令1脚色回1",
 }
 
 

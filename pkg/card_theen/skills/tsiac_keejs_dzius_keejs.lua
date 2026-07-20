@@ -24,7 +24,7 @@ cardSkill:addEffect("cardskill", {
 })
 
 cardSkill:addEffect(fk.CardEffectCancelledOut, {--CardUseFinished
-  global = true,
+  -- global = true,
   mute = true,
   is_delay_effect = true,
   can_trigger = function (self, event, target, player, data)
@@ -41,7 +41,7 @@ cardSkill:addEffect(fk.CardEffectCancelledOut, {--CardUseFinished
   end,
   on_trigger= function (self, event, target, player, data)
     -- player:drawCards(10,cardSkill.name)
-     player.room:moveCardTo(data.card, Card.PlayerHand, player, fk.ReasonJustMove, cardSkill.name, nil, true, player)
+     player.room:moveCardTo(data.card, Card.PlayerHand, player, fk.ReasonPrey, cardSkill.name, nil, true, player)
   end,
 })
 

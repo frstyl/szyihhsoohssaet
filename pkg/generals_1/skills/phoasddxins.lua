@@ -8,7 +8,7 @@ local S = require "packages/szyihhsoohssaet/szyih_guos"
 
 Fk:loadTranslationTable{
   ["phoasddxins"] = "破陣",
-  [":phoasddxins"] = "伱使用錦囊牌无視距離.伱使用卽旹錦囊牌A旹必發.其它角色不可使用打出牌響應A,若A与上一被使用牌同花,A額外生效1次",
+  [":phoasddxins"] = "伱使用錦囊牌无視距離.伱使用卽旹錦囊牌A旹必發.其它脚色不可使用打出牌響應A,若A与上一被使用牌同花,A額外生效1次",
 --加彊?
 
   ["@phoasddxins"] = "破陣",

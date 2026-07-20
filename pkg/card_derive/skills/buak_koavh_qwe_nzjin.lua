@@ -36,7 +36,7 @@ cardSkill:addEffect("cardskill", {
         local ids = room:getSubcardsByRule(respond.card, { Card.DiscardPile })
         -- ids = room.logic:moveCardsHoldingAreaCheck(ids)
         if #ids>0 then
-            room:moveCardTo(ids, Player.Hand, from, fk.ReasonJustMove, cardSkill.name, nil, false, from.id)
+            room:moveCardTo(ids, Player.Hand, from, fk.ReasonPrey, cardSkill.name, nil, false, from.id)
         end
       end
     else
@@ -62,7 +62,7 @@ cardSkill:addEffect("cardskill", {
 })
 
 cardSkill:addEffect(fk.PreCardUse, {
-  global = true,
+  -- global = true,
   priority = 9, -- 聲明後使用
   mute = true,
   can_trigger = function(self, event, target, player, data)

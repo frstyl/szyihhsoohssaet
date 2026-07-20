@@ -13,18 +13,22 @@ skill:addEffect(fk.DamageInflicted, {
   late_refresh = true,
   can_trigger = function(self, event, target, player, data)
     return target==player
-    and data.damageType == fk.FireDamage and  player:hasDelayedTrick("tshoak_hsvoah_tsjek_sjin")
+    and data.damageType == fk.FireDamage 
+    and  player:hasDelayedTrick("tshoak_hsvoah_tsjek_sjin")
   end,
   on_trigger = function(self, event, target, player, data)
     local room=player.room
     local exe=function(card)
-          room:moveCardTo(card, Card.Processing, nil, fk.ReasonPut, "phase_judge")
+          room:moveCardTo(card, Card.Processing, nil, fk.ReasonPut, "tshoak_hsvoah_tsjek_sjin_skill")
 
           local effect_data = CardEffectData:new {
             card = card,
             to = player,
             tos = { player },
-            responseToEvent = data
+            responseToEvent = nil,
+            extar_data={
+              tshoak_hsvoah_tsjek_sjin=data
+            }
           }
           room:sendLog{
             type = "#CardEffect",
@@ -36,7 +40,7 @@ skill:addEffect(fk.DamageInflicted, {
     for _, id in ipairs(player:getCardIds(Player.Judge)) do
       local c = player:getVirualEquip(id)
       if not c then c = Fk:getCardById(id) end
-      if c.name == "tshoak_hsvoah_tsjek_sjin" then
+      if c.trueName == "tshoak_hsvoah_tsjek_sjin" then
         exe(c)
       end
     end

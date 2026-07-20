@@ -5,7 +5,7 @@ local sooshseec = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["sooshseec"] = "𦃃馨",
-  [":sooshseec"] = "伱主段終旹,伱可預弃1牌選擇1角色發動.伱爲所選角色附加免敔,且至伱下次發動此技能,其致傷後,伱抽1",
+  [":sooshseec"] = "伱主段終旹,伱可預弃1牌選擇1脚色發動.伱爲所選脚色附加免敔,且至伱下次發動此技能,其致傷後,伱抽1",
 
   ["#sooshseec-choose"] = "𦃃馨 選擇目幖",
 

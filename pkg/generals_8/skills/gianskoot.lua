@@ -5,7 +5,7 @@ local gianskoot = fk.CreateSkill({
 
 Fk:loadTranslationTable{
   ["gianskoot"] = "健骨",
-  [":gianskoot"] = "鎖定.伱對一角色傷後,必發.若傷害結算歬,其體力值:不大于伱,伱回x,不小于伱,伱抽x.(x爲傷害值至少爲1)",
+  [":gianskoot"] = "鎖定.伱對一脚色傷後,必發.若傷害結算歬,其體力值:不大于伱,伱回x,不小于伱,伱抽x.(x爲傷害值至少爲1)",
 
   ["$gianskoot1"] = "寶刀未老 壯气猶存",
 }

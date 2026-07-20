@@ -1,9 +1,13 @@
 local skill = fk.CreateSkill {
-  name = "tsiocsmoa__savage_assault_skill",
+  name = "tsiocsmoa__maach_hsooh_hzaah_ssaen_skill",
 }
 
+Fk:loadTranslationTable{
+  ["tsiocsmoa__maach_hsooh_hzaah_ssaen_skill"] = "縱魔__猛虎下山",
+  -- [":tsiocsmoa"] = "應動｡伱使用｢殺｣指定目幖旹,伱可發動｡伱抽2,迻除此目幖,虛擬使用｢猛虎下山｣,此牌效果:目幖可打出屬性｢殺｣若打出伱抽1,否則伱予目幖1傷,目幖隨機自弃1牌",
+}
 skill:addEffect("cardskill", {
-  prompt = "#tsiocsmoa__savage_assault_skill",
+  prompt = "#tsiocsmoa__maach_hsooh_hzaah_ssaen_skill",
   can_use = Util.AoeCanUse,
   on_use = function (self, room, cardUseEvent)
     ---@cast cardUseEvent -SkillUseData
@@ -13,18 +17,21 @@ skill:addEffect("cardskill", {
     return to_select ~= player
   end,
   on_effect = function(self, room, effect)
+    if effect.to.dead then return end
     local loopTimes = effect:getResponseTimes()
     local respond
     for i = 1, loopTimes do
       local params = { ---@type AskToUseCardParams
-        skill_name = '.|.|.|.|thunder__ssaet;.|.|.|.|fire__ssaet',
-        pattern = 'ssaet',
+        skill_name = 'ssaet',
+        pattern = '.|.|.|.|thunder__ssaet,fire__ssaet',
         cancelable = true,
         event_data = effect
       }
       respond = room:askToResponse(effect.to, params)
       if respond then
         room:responseCard(respond)
+        if not effect.from.dead then effect.from:drawCards(1,skill.name) end
+        if effect.to.dead then return end
       else
         room:damage({
           from = effect.from,
@@ -35,35 +42,12 @@ skill:addEffect("cardskill", {
           skillName = skill.name,
           event_data= effect,
         })
-        break
+        if effect.to.dead then return end
+        room:throwCard(table.random(effect.to:getCardIds("he")), skill.name, effect.to, effect.to)
+        return
       end
-      if effect.to.dead then break end
     end
   end,
 })
-
-skill:addAI(nil, "__card_skill")
-skill:addAI(nil, "default_card_skill")
-
-skill:addTest(function(room, me)
-  local comp2 = room.players[2]
-  local card = room:printCard("ssaet")
-  FkTest.setNextReplies(comp2, {json.encode {
-    card = card.id,
-    targets = { }
-  }})
-  FkTest.runInRoom(function()
-    room:obtainCard(comp2, card, true)
-    room:useCard {
-      from = me,
-      card = Fk:cloneCard("tsiocsmoa__savage_assault"),
-      tos = {}
-    }
-  end)
-  lu.assertEquals(me.hp, 4)
-  lu.assertEquals(comp2.hp, 4)
-  lu.assertEquals(room.players[3].hp, 3)
-  lu.assertEquals(room.players[4].hp, 3)
-end)
 
 return skill

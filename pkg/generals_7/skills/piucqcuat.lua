@@ -1,9 +1,9 @@
 Fk:loadTranslationTable{
   ["piucqcuat"] = "風月",
-  [":piucqcuat"] = "末段發動.伱抽1,若有其它存活女角色,改爲抽2,伱選1牌交与1女角色",
+  [":piucqcuat"] = "末段發動.伱抽1,若有其它存活女脚色,改爲抽2,伱選1牌交与1女脚色",
 
   ["$piucqcuat1"] = "惹得煙花三兩支",
-  ["#piucqcuat-give-choose"] = "風月 選擇 1 牌交与1其它女角色",
+  ["#piucqcuat-give-choose"] = "風月 選擇 1 牌交与1其它女脚色",
 
 }
 

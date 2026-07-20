@@ -4,7 +4,7 @@ local dzzjek__ssaet = fk.CreateSkill {
 }
 
 dzzjek__ssaet:addEffect("targetmod", {
-  global=true,
+  -- global=true,
   bypass_distances =  function(self, player, skill, card, to)
     return  card and card.name=="dzzjek__ssaet" and card.suit==Card.Heart
   end,
@@ -15,7 +15,7 @@ dzzjek__ssaet:addEffect("targetmod", {
 
 
 dzzjek__ssaet:addEffect(fk.PreCardUse, {  --PreCardUse moveCardTo
-  global=true,
+  -- global=true,
   can_refresh = function (self, event, target, player, data)
     return target == player  and data.card
       and data.card.name=="dzzjek__ssaet" 

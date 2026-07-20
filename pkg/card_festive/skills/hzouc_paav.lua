@@ -37,7 +37,7 @@ cardSkill:addEffect("cardskill", {
         ids = cards,
         to = player,
         toArea = Card.PlayerHand,
-        moveReason = fk.ReasonJustMove,  --Prey?
+        moveReason = fk.ReasonPrey,  --Prey?
         proposer = player,
         skillName = cardSkill.name,
       })

@@ -1,48 +1,48 @@
-local doucqsjim = fk.CreateSkill{
-  name = "doucqsjim",
+local deecstshjin = fk.CreateSkill{
+  name = "deecstshjin",
   -- tags = { Skill.Compulsory },
 }
 
 Fk:loadTranslationTable{
-  ["doucqsjim"] = "同心",
-  [":doucqsjim"] = "輪始旹,伱可指定一其它角色發動:當輪內,伱或其受致傷後,對方回1",
-  ["#doucqsjim-choose"] = "同心 選擇目幖",
+  ["deecstshjin"] = "定親",
+  [":deecstshjin"] = "輪始旹,伱可指定一其它脚色發動:當輪內,伱或其受致傷後,對方回1",
+  ["#deecstshjin-choose"] = "定親 選擇目幖",
 
-  ["$doucqsjim1"] = "我欲行夏禹旧事，为天下人。",
+  ["$deecstshjin1"] = "我欲行夏禹旧事，为天下人。",
 
 }
 -- local S = require "packages/szyihhsoohssaet/szyih_guos" 
 
 local spec={
   can_trigger = function (self, event, target, player, data)
-    return target==player and  player:getMark("@doucqsjim-round")~=0 --and not player.room:getPlayerById(player:getMark("@doucqsjim-round")).dead
+    return target==player and  player:getMark("@deecstshjin-round")~=0 --and not player.room:getPlayerById(player:getMark("@deecstshjin-round")).dead
   end,
   on_trigger = function (self, event, target, player, data)
     local room=player.room
-    for _,id in ipairs( player:getTableMark("@doucqsjim-round")) do
+    for _,id in ipairs( player:getTableMark("@deecstshjin-round")) do
       player.room:recover{
         who = player.room:getPlayerById(id),
         num = 1,
         recoverBy = player,
-        skillName = doucqsjim.name,
+        skillName = deecstshjin.name,
       }
     end
   end,
 }
 
 
-doucqsjim:addEffect(fk.RoundStart, {
+deecstshjin:addEffect(fk.RoundStart, {
   anim_type = "support",
   can_trigger = function (self, event, target, player, data)
-    return  player:hasSkill(doucqsjim.name) 
+    return  player:hasSkill(deecstshjin.name) 
   end,
   on_cost= function(self, event, target, player, data)
     local tos = player.room:askToChoosePlayers(player, {
       min_num = 1,
       max_num = 1,
       targets = player.room:getOtherPlayers(player),  --
-      skill_name = doucqsjim.name,
-      prompt = "#doucqsjim-choose",
+      skill_name = deecstshjin.name,
+      prompt = "#deecstshjin-choose",
       cancelable = true,
     })
     if #tos > 0 then
@@ -53,11 +53,11 @@ doucqsjim:addEffect(fk.RoundStart, {
   on_use = function (self, event, target, player, data)
     local to =event:getCostData(self).tos[1]
     local room=player.room
-    room:addTableMarkIfNeed(to, "@doucqsjim-round", player.id)
-    room:addTableMarkIfNeed(player, "@doucqsjim-round", to.id)
+    room:addTableMarkIfNeed(to, "@deecstshjin-round", player.id)
+    room:addTableMarkIfNeed(player, "@deecstshjin-round", to.id)
   end,
 })
 
-doucqsjim:addEffect(fk.Damage, spec)
-doucqsjim:addEffect(fk.Damaged, spec)
-return doucqsjim
+deecstshjin:addEffect(fk.Damage, spec)
+deecstshjin:addEffect(fk.Damaged, spec)
+return deecstshjin

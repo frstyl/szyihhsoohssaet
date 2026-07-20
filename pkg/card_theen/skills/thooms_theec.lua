@@ -2,7 +2,7 @@ local skill = fk.CreateSkill {
   name = "thooms_theec_skill",
 }
 Fk:loadTranslationTable{
-  ["#thooms_theec_skill"] = "探聽 選擇一其他角色，觀看其手牌",
+  ["#thooms_theec_skill"] = "探聽 選擇一其他脚色，觀看其手牌",
 }
 
 local S = require "packages/szyihhsoohssaet/szyih_guos" 

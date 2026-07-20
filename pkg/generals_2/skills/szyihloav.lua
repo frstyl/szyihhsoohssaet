@@ -3,7 +3,7 @@ local szyihloav = fk.CreateSkill {
 }
 Fk:loadTranslationTable{
   ["szyihloav"] = "水牢",
-  [":szyihloav"] = "主動任意次.選擇1裝僃牌与1其它角色發動.將此裝僃牌轉化爲掎挈伺詐(離開伏區失效)置于目幖角色伏區",
+  [":szyihloav"] = "主旹任意次.選擇1裝僃牌与1其它脚色發動.將此裝僃牌轉化爲掎挈伺詐(離開伏區失效)置于目幖脚色伏區",
 
   ["#szyihloav"] = "水牢：選擇裝僃牌与裝僃牌与目幖",
   ["@@szyihloav-inarea"] = "水牢",

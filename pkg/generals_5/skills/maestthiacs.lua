@@ -4,7 +4,7 @@ local maestthiacs = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["maestthiacs"] = "賣唱",
-  [":maestthiacs"] = "主旹,伱可預展示3{黑/紅}手牌發動.其它存活角色各{弃1手牌/抽1},肰後各選一項1➀交与伱1手牌➁視爲伱對其使用无中生有",
+  [":maestthiacs"] = "主旹,伱可預展示3{黑/紅}手牌發動.其它存活脚色各{弃1手牌/抽1},肰後各選一項1➀交与伱1手牌➁視爲伱對其使用无中生有",
 
   ["#maestthiacs-discard"] = "賣唱：弃1手牌",
   ["#maestthiacs-give"] = "賣唱：是否交与 %src 1手牌",

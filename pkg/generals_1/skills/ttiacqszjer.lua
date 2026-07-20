@@ -4,9 +4,9 @@ local ttiacqszjer = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["ttiacqszjer"] = "張勢",
-  [":ttiacqszjer"] = "➀當一其它角色死亾旹,伱可預展示一黑桃手牌發動.伱體力上限+1➁預段始旹,伱可發動.伱減1體力上限,抽x(x爲體力上限)",
+  [":ttiacqszjer"] = "➀當一其它脚色死亾旹,伱可預展示一黑桃手牌發動.伱體力上限+1➁預段始旹,伱可發動.伱減1體力上限,抽x(x爲體力上限)",
 
-  ["#ttiacqszjer-give"] = "运柩：将 %dest 的一张牌交给一名其他角色",
+  ["#ttiacqszjer-give"] = "运柩：将 %dest 的一张牌交给一名其他脚色",
 
   ["$ttiacqszjer1"] = "此吾主之柩，请诸君勿扰。",
   ["$ttiacqszjer2"] = "故者为大，尔等欲欺大者乎？"

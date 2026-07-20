@@ -5,7 +5,7 @@ local sziohtoamh = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["sziohtoamh"] = "鼠膽",
-  [":sziohtoamh"] = "鎖定.伱回合外受傷後,必發.其它角色所用牌對伱无效,防止伱所受傷害,直至伱下轉始",
+  [":sziohtoamh"] = "鎖定.伱回合外受傷後,必發.其它脚色所用牌對伱无效,防止伱所受傷害,直至伱下轉始",
 
   ["@@sziohtoamh"] = "鼠膽",
   -- ["#PreventDamageBySkill"] = "由于 %arg 效果，%from 所受傷害被防止",

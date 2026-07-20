@@ -5,9 +5,9 @@ local khaenqljins = fk.CreateSkill {
 
 Fk:loadTranslationTable{
 ["khaenqljins"] = "慳悋",
--- [":khaenqljins"] = "鎖定技｡➀狀態.伱的基礎額定手牌數等于體力上限｡➁當其它角色棄置獲取伱的牌歬旹必發,伱令此迻動牌數-1",
--- [":khaenqljins"] = "鎖定技｡➀狀態.伱的基礎額定手牌數等于體力上限｡➁當其它角色棄置獲取伱的牌歬旹,必發,防止之",
-[":khaenqljins"] = "鎖定.屬于伱之牌被任意弃置或獲取前,必發.防止之.伱越過段或轉歬,必發.防止之.",
+-- [":khaenqljins"] = "鎖定技｡➀狀態.伱的基礎額定手牌數等于體力上限｡➁當其它脚色棄置取得伱的牌歬旹必發,伱令此迻動牌數-1",
+-- [":khaenqljins"] = "鎖定技｡➀狀態.伱的基礎額定手牌數等于體力上限｡➁當其它脚色棄置取得伱的牌歬旹,必發,防止之",
+[":khaenqljins"] = "鎖定.屬于伱之牌被任意弃置或取得前,必發.防止之.伱越過段或轉歬,必發.防止之.",
 }
 -- CardUseFinished
 khaenqljins:addEffect(fk.BeforeCardsMove, {
@@ -17,7 +17,7 @@ khaenqljins:addEffect(fk.BeforeCardsMove, {
       local cards={}
       for _, move in ipairs(data) do
         if  move.from==player
-          -- and  table.contains(player.room:getOtherPlayers(player,true,true), move.proposer)  --其他角色
+          -- and  table.contains(player.room:getOtherPlayers(player,true,true), move.proposer)  --其他脚色
           
           and (
             move.moveReason==fk.ReasonDiscard 

@@ -5,9 +5,9 @@ local hsoohgxes = fk.CreateSkill{
 }
 Fk:loadTranslationTable{
 ["hsoohgxes"] = "虎騎",
-[":hsoohgxes"] = "鎖定.➀伱至其他角色距離-1.➁主段始旹觸發,伱可視爲使用1殺",
+[":hsoohgxes"] = "鎖定.➀伱至其他脚色距離-1.➁主段始旹觸發,伱可視爲使用1殺",
 
-["#hsoohgxes-choose"] = "虎騎 選擇一角色 視爲對其使用殺",
+["#hsoohgxes-choose"] = "虎騎 選擇一脚色 視爲對其使用殺",
 }
 
 hsoohgxes:addEffect("distance", {

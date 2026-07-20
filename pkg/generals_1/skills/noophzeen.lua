@@ -4,7 +4,7 @@ local noophzeen = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["noophzeen"] = "納賢",
-  [":noophzeen"] = "輪限max(1,伱已損體力值)｡其它角色轉始旹,伱可聲明一階段名發動,伱越過伱下个同名段,該角色此段執行同名段",
+  [":noophzeen"] = "輪限max(1,伱已損體力值)｡其它脚色轉始旹,伱可聲明一階段名發動,伱越過伱下个同名段,該脚色此段執行同名段",
 
   ["#noophzeen-invoke"] = "納賢  %src轉 是否令其額外執行1次階段",
   ["@toSkipPhases"] = "越",

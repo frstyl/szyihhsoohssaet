@@ -11,10 +11,10 @@ Fk:loadTranslationTable{
 }
 --22 閻婆大鬧鄆城縣　朱仝義釋宋公明
 
---翼庇宋清
+--翼庇宋淸
 General:new(extension, "soocstshjec", "mjin", 4):addSkills { "szjethqeens", "phximhmujs"}
 Fk:loadTranslationTable{
-["soocstshjec"] = "宋清",
+["soocstshjec"] = "宋淸",
 ["#soocstshjec"] = "鐵扇子",
 ["designer:soocstshjec"] = "設計",
 ["cv:soocstshjec"] = "配音",

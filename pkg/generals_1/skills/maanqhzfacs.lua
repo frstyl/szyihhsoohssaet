@@ -117,7 +117,7 @@ maanqhzfacs:addEffect(fk.CardUsing, {  --PreCardUse 无旹機
     
 --   end,
 --   on_trigger = function (self, event, target, player, data)
---     player.room:setPlayerMark(data.to, "@@MarkArmorNullified-round",1)  --同旹清理
+--     player.room:setPlayerMark(data.to, "@@MarkArmorNullified-round",1)  --同旹淸理
 --   end
 -- })
 

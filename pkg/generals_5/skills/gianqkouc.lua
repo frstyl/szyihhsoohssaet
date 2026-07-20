@@ -4,7 +4,7 @@ local gianqkouc = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["gianqkouc"] = "赶工",
-  [":gianqkouc"] = "任意角色越過段或轉後,額外段或轉始旹,伱可選1項發動.➀其抽1➁伱弃其1(需其有牌)➂其使用1牌(可虛擬可轉化有距離次數限制計次數),若不使用則展示全部牌",
+  [":gianqkouc"] = "任意脚色越過段或轉後,額外段或轉始旹,伱可選1項發動.➀其抽1➁伱弃其1(需其有牌)➂其使用1牌(可虛擬可轉化有距離次數限制計次數),若不使用則展示全部牌",
 
   ["#gianqkouc-choose"] = "赶工 選擇目幖",
   -- ["#gianqkouc-use"] = "赶工 使用一牌",

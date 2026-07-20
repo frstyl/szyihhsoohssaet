@@ -5,7 +5,7 @@ local muoqtssioh = fk.CreateSkill{
 
 Fk:loadTranslationTable{
 ["muoqtssioh"] = "无阻",
-[":muoqtssioh"] = "鎖定.➀恆續.伱至其他角色距離-x.伱无視其他角色防具技能.➁每段限x.伱使用卽旹牌旹必發,令此牌反抵消反失效. (x爲伱已損體力值加1)",
+[":muoqtssioh"] = "鎖定.➀恆續.伱至其他脚色距離-x.伱无視其他脚色防具技能.➁每段限x.伱使用卽旹牌旹必發,令此牌反抵消反失效. (x爲伱已損體力值加1)",
 
 -- ["@muoqtssioh-phase"] = "无阻",
 -- ["@@muoqtssioh"] = "无阻",

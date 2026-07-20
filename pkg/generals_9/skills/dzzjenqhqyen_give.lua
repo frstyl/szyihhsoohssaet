@@ -5,10 +5,10 @@ local dzzjenqhqyen_give = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["dzzjenqhqyen_give&"] = "嬋娟",
-  [":dzzjenqhqyen_give&"] = "➀其它角色1<font color='red'>♥</font>牌A因弃置置入判定進入弃牌堆旹,伱可發動,伱抽1,選擇是否弃1牌將A交与一角色.➁伱<font color='red'>♥</font>牌A因弃置置入判定進入弃牌堆旹伱可選1其它角色發動.將此牌交予該角色",
+  [":dzzjenqhqyen_give&"] = "➀其它脚色1<font color='red'>♥</font>牌A因弃置置入判定進入弃牌堆旹,伱可發動,伱抽1,選擇是否弃1牌將A交与一脚色.➁伱<font color='red'>♥</font>牌A因弃置置入判定進入弃牌堆旹伱可選1其它脚色發動.將此牌交予該脚色",
 
   ["#dzzjenqhqyen_give-invoke&"] = "嬋娟 是否發動",
-  ["#dzzjenqhqyen_give-choose&"] = "嬋娟 選擇所得牌 所弃牌 得牌角色",
+  ["#dzzjenqhqyen_give-choose&"] = "嬋娟 選擇所得牌 所弃牌 得牌脚色",
 
   -- ["$dzzjenqhqyen_give1"] = "旅人多西望， 客雁難南歬",
   -- ["$dzzjenqhqyen_give2"] = "霜露結瑤華， 煙波勞玉指",

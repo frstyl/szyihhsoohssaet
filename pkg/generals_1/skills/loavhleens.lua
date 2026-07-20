@@ -5,9 +5,9 @@ local loavhleens = fk.CreateSkill{
 
 Fk:loadTranslationTable{
 ["loavhleens"] = "老練",  --下藥
-[":loavhleens"] = "任意角色使用酒肉旹伱可選擇1其它角色發動.視爲伱對其使用迷",  --任意角色使用旹?
+[":loavhleens"] = "任意脚色使用酒肉旹伱可選擇1其它脚色發動.視爲伱對其使用迷",  --任意脚色使用旹?
 
-["#loavhleens-choose"] = "老練 選擇攻程內其他角色 其不能使用打出殺閃",
+["#loavhleens-choose"] = "老練 選擇攻程內其他脚色 其不能使用打出殺閃",
 }
 loavhleens:addEffect(fk.CardUsing, {
   anim_type = "offensive",

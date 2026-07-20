@@ -7,8 +7,8 @@ local S = require "packages/szyihhsoohssaet/szyih_guos"
 
 Fk:loadTranslationTable{
   ["hsoonqhsoojs"] = "昏晦",
-  -- [":hsoonqhsoojs"] = "其它角色轉始旹記錄伱手牌數,當轉終,若伱手牌与記錄不同,伱可發動,爲當轉角色附加盲目",
-  [":hsoonqhsoojs"] = "其它它角色轉終,若伱手牌數于當轉變化,伱可發動,爲當轉角色附加盲目", --𪑒䵪
+  -- [":hsoonqhsoojs"] = "其它脚色轉始旹記錄伱手牌數,當轉終,若伱手牌与記錄不同,伱可發動,爲當轉脚色附加盲目",
+  [":hsoonqhsoojs"] = "其它它脚色轉終,若伱手牌數于當轉變化,伱可發動,爲當轉脚色附加盲目", --𪑒䵪
 
   ["hsoonqhsoojs_mjens"] = "无濟",
 

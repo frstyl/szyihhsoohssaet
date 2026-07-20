@@ -4,9 +4,9 @@ local hqeenqmjet = fk.CreateSkill {
 
 Fk:loadTranslationTable{
 ["hqeenqmjet"] = "湮滅",  --湮滅
-[":hqeenqmjet"] = "當伱受傷後,伱可指定1其它角色發動,視爲伱對其使用水攻(不合理則中止).恆續,伱使用水攻改爲由伱選擇",
+[":hqeenqmjet"] = "當伱受傷後,伱可指定1其它脚色發動,視爲伱對其使用水攻(不合理則中止).恆續,伱使用水攻改爲由伱選擇",
 
-["#hqeenqmjet-choose"]="湮滅 視爲對1其它角色使用水攻",
+["#hqeenqmjet-choose"]="湮滅 視爲對1其它脚色使用水攻",
 }
 
 

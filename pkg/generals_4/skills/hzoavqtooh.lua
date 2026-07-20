@@ -4,7 +4,7 @@ local hzoavqtooh = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["hzoavqtooh"] = "𠢕賭",
-  [":hzoavqtooh"] = "預段末段始旹,伱可預打1黑桃牌發動.伱預測牌堆頂5牌點數分布爲大(8~13點至多)或小(1~6點至多),亮出牌堆頂5牌.若伱測對,伱獲得對應點數之牌.冣後將餘牌廢置.其它角色可于聲明旹參与,伱執行檢譣後,對者抽1,錯者弃1",
+  [":hzoavqtooh"] = "預段末段始旹,伱可預打1黑桃牌發動.伱預測牌堆頂5牌點數分布爲大(8~13點至多)或小(1~6點至多),亮出牌堆頂5牌.若伱測對,伱獲得對應點數之牌.冣後將餘牌廢置.其它脚色可于聲明旹參与,伱執行檢譣後,對者抽1,錯者弃1",
 
   ["#hzoavqtooh-invoke"] = "𠢕賭 打出1黑桃牌發動",
   ["#hzoavqtooh-choose"] = "𠢕賭 選擇大(8~13點多)小(1~6點多)",
@@ -69,7 +69,7 @@ hzoavqtooh:addEffect(fk.EventPhaseStart, {
     room:moveCards({
       ids = cards,
       toArea = Card.Processing,
-      moveReason = fk.ReasonJustMove,
+      moveReason = fk.ReasonPrey,
       skillName = hzoavqtooh.name,
       proposer = player.id,
     })    

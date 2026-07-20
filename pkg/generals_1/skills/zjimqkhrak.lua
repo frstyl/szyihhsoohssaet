@@ -6,7 +6,7 @@ local S = require "packages/szyihhsoohssaet/szyih_guos"
 
 Fk:loadTranslationTable{
   ["zjimqkhrak"] = "尋隙",
-  [":zjimqkhrak"] = "其它角色A主段始旹,(若其未被此發動技能)伱可發動.伱弃其1牌,本段內其至伱距離爲1,使用牌需指定伱爲目幖.當段終旹,若其未對伱致傷,伱可打出1手牌予其1傷",
+  [":zjimqkhrak"] = "其它脚色A主段始旹,(若其未被此發動技能)伱可發動.伱弃其1牌,本段內其至伱距離爲1,使用牌需指定伱爲目幖.當段終旹,若其未對伱致傷,伱可打出1手牌予其1傷",
 
 --无距離次數限制
   ["@@zjimqkhrak-phase"] = "尋隙",
@@ -80,7 +80,7 @@ zjimqkhrak:addEffect(fk.EventPhaseEnd, {  --應該記錄phase id,防段中段
     local room=player.room
     -- room:loseHp(player,1,zjimqkhrak.name,player)
     local from = room:getPlayerById(target:getMark("@@zjimqkhrak-phase"))
-    -- local re=S.askToResponseReal(from,{
+    -- local re=S.askToPlayCard(from,{
       -- skillName= zjimqkhrak.name,
       -- prompt= "#zjimqkhrak-damage:"..target.id,
       -- skip=true,

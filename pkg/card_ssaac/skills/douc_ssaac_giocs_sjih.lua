@@ -33,7 +33,7 @@ cardSkill:addEffect("cardskill", {
 })
 
 cardSkill:addEffect(fk.HpChanged, {
-  global=true,
+  -- global=true,
   priority=0,
 	can_trigger = function(self, event, target, player, data)
     return target==player 

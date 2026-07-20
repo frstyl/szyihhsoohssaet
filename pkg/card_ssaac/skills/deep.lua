@@ -81,7 +81,7 @@ local cardSkill = fk.CreateSkill {
 
 cardSkill:addEffect(fk.AfterCardsMove, {
   priority=0,
-  global = true,
+  -- global = true,
   can_trigger = function(self, event, target, player, data)
       local ids = {}
       for _, move in ipairs(data) do  --data move info
@@ -178,7 +178,7 @@ end,
 
 cardSkill:addEffect(fk.CardShown, {
   priority=0,
-  global = true,
+  -- global = true,
   can_trigger = function(self, event, target, player, data)
     if player.seat~=1 then return end
     local cards = {}

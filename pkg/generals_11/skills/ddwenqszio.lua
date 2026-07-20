@@ -3,7 +3,7 @@ local ddwenqszio = fk.CreateSkill {
 }
 Fk:loadTranslationTable{
   ["ddwenqszio"] = "傳書",
-  [":ddwenqszio"] = "主旹,預打出1牌發動。全體角色得1空｡輪終,全體角色可將空轉化爲殺使用",
+  [":ddwenqszio"] = "主旹,預打出1牌發動。全體脚色得1空｡輪終,全體脚色可將空轉化爲殺使用",
 
   ["#ddwenqszio-use"] = "傳書 將空牌轉化爲殺",
 }
@@ -30,7 +30,7 @@ ddwenqszio:addEffect("active", {
         ids = S.getKhouc(room,1),
         to = to,
         toArea = Card.PlayerHand,
-        moveReason = fk.ReasonJustMove,
+        moveReason = fk.ReasonPrey,
         proposer = effect.from,
         skillName = ddwenqszio.name,
         moveVisible = true,

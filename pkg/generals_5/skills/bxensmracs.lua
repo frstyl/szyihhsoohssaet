@@ -4,7 +4,7 @@ local bxensmracs = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["bxensmracs"] = "拚命",
-  [":bxensmracs"] = "當一其他角色致傷後，(若其未陣亾)伱可發動，伱減1體上限,与其相同傷害.當其他角色受伱傷害進入瀕死,伱可發動,其死,肰後伱死(凶手爲該角色)",
+  [":bxensmracs"] = "當一其他脚色致傷後，(若其未陣亾)伱可發動，伱減1體上限,与其相同傷害.當其他脚色受伱傷害進入瀕死,伱可發動,其死,肰後伱死(凶手爲該脚色)",
 
   ["#bxensmracs-discard"] = "拚命 %src  你可以反擊",
 

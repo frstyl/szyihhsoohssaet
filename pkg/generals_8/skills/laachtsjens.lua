@@ -33,7 +33,7 @@ laachtsjens:addEffect("viewas", {
 
     --data.isCancellOut=true  --抵消 反抵消 生效
     --nullified notos --usercard 448
-    --對某角色无效 同預越過階段 于眞越過皆段旹生成旹機
+    --對某脚色无效 同預越過階段 于眞越過皆段旹生成旹機
     --PreCardEffect BeforeCardEffect
 laachtsjens:addEffect(fk.PreCardEffect, {
   anim_type = "offensive",

@@ -5,11 +5,11 @@ local kaanqteev = fk.CreateSkill({
 
 Fk:loadTranslationTable{
 ["kaanqteev"] = "姦刁",
-[":kaanqteev"] = "伱受其它角色傷後,可選1項執行發動.➀抽x(x爲伱与其體力值大者)➁獲取其y牌(y爲伱与其體力值之差,至少爲1)",
+[":kaanqteev"] = "伱受其它脚色傷後,可選1項執行發動.➀抽x(x爲伱与其體力值大者)➁取得其y牌(y爲伱与其體力值之差,至少爲1)",
 
 ["#kaanqteev-choice"] = "姦刁",
 ["kaanqteev-draw"] = "抽%arg",
-["kaanqteev-prey"] = "獲取%src %arg 牌",
+["kaanqteev-prey"] = "取得%src %arg 牌",
 }
 
 kaanqteev:addEffect(fk.Damaged, {

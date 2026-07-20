@@ -6,9 +6,9 @@ local dzoeojqgiu = fk.CreateSkill{
 
 Fk:loadTranslationTable{
 ["dzoeojqgiu"] = "財賕",
-[":dzoeojqgiu"] = "伱主段始旹,其它角色同時交予伱任意數量牌｡冣多者令伱視爲對其所選目幖使用殺",
+[":dzoeojqgiu"] = "伱主段始旹,其它脚色同時交予伱任意數量牌｡冣多者令伱視爲對其所選目幖使用殺",
 
-["#dzoeojqgiu-choose"] = "財賕 選擇一角色 視爲對其使用殺",
+["#dzoeojqgiu-choose"] = "財賕 選擇一脚色 視爲對其使用殺",
 }
 
 -- local S = require "packages/szyihhsoohssaet/szyih_guos" 

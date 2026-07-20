@@ -5,9 +5,9 @@ local buamshqxim = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["buamshqxim"] = "梵音",
-  [":buamshqxim"] = "主旹,伱可預弃x不同類牌指定x角色發動.爲所所角色附加昏睡",
+  [":buamshqxim"] = "主旹,伱可預弃x不同類牌指定x脚色發動.爲所所脚色附加昏睡",
 
-  ["#buamshqxim"] = "梵音：x不同類牌指定x角色",
+  ["#buamshqxim"] = "梵音：x不同類牌指定x脚色",
 
   ["$buamshqxim1"] = "昰細巧手段如何。",
   ["$buamshqxim2"] = "粗中有細",

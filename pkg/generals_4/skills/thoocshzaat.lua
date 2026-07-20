@@ -5,7 +5,7 @@ local thoocshzaat = fk.CreateSkill {
 
 Fk:loadTranslationTable{
 ["thoocshzaat"] = "統轄",
-[":thoocshzaat"] = "抽牌階段始旹伱可發動,伱亮出牌堆頂6牌,連續3次,伱選擇其中1牌交予1角色,若爲裝僃牌則置入裝僃區且其抽1,剩餘牌元序置于牌堆頂",
+[":thoocshzaat"] = "抽牌階段始旹伱可發動,伱亮出牌堆頂6牌,連續3次,伱選擇其中1牌交予1脚色,若爲裝僃牌則置入裝僃區且其抽1,剩餘牌元序置于牌堆頂",
 ["thoocshzaat-choose"] = "統轄",
 }
 
@@ -39,7 +39,7 @@ thoocshzaat:addEffect(fk.EventPhaseStart, {
 
 
       local to, chosen = room:askToChooseCardsAndPlayers(player, {
-        min_num = 0,  --不選角色則爲自己
+        min_num = 0,  --不選脚色則爲自己
         max_num = 1,
         min_card_num = 1,
         max_card_num = 1,
@@ -51,7 +51,7 @@ thoocshzaat:addEffect(fk.EventPhaseStart, {
         expand_pile = cards,  --額外牌 遺計所觀看牌
       })
 
-      if  #to==0 then table.insert(to,player) end --不選角色則爲自己
+      if  #to==0 then table.insert(to,player) end --不選脚色則爲自己
       -- room:takeAG(to, chosen, room.players)
       -- table.insert(AGResult, {to.id, chosen})
       if Fk:getCardById(chosen[1]).type == Card.TypeEquip then

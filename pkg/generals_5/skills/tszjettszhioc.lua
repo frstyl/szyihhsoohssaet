@@ -4,7 +4,7 @@ local tszjettszhioc = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["tszjettszhioc"] = "折䡴",
-  [":tszjettszhioc"] = "當1角色受到傷害,若伱可与傷源角色拼點,伱可發動發動.伱与之拼點,若伱贏,伱獲得對方拼點牌,防止此傷.若伱沒贏,伱獲得伱拼點牌,此技能本轉失效.",
+  [":tszjettszhioc"] = "當1脚色受到傷害,若伱可与傷源脚色拼點,伱可發動發動.伱与之拼點,若伱贏,伱獲得對方拼點牌,防止此傷.若伱沒贏,伱獲得伱拼點牌,此技能本轉失效.",
 
   ["#tszjettszhioc-choose"] = "折䡴：伱可与 %dest 拼點 防止 %src 所受傷",
 
@@ -28,13 +28,13 @@ tszjettszhioc:addEffect(fk.DamageInflicted, {
     local pindian = player:pindian({to}, tszjettszhioc.name)
     if pindian.results[to].winner == player then
       if room:getCardArea(pindian.results[to].toCard) == Card.DiscardPile then
-        room:moveCardTo(pindian.results[to].toCard, Card.PlayerHand, player, fk.ReasonJustMove, tszjettszhioc.name, nil, true, player)
+        room:moveCardTo(pindian.results[to].toCard, Card.PlayerHand, player, fk.ReasonPrey, tszjettszhioc.name, nil, true, player)
       end
       S.preventDamage({damageData=data,skillName=tszjettszhioc.name})
       room:sendLog{ type = "#PreventDamageBySkill", from = data.to.id, arg = tszjettszhioc.name }
     else
       if  room:getCardArea(pindian.fromCard) == Card.DiscardPile then
-        room:moveCardTo(pindian.fromCard, Card.PlayerHand, player, fk.ReasonJustMove, tszjettszhioc.name, nil, true, player)
+        room:moveCardTo(pindian.fromCard, Card.PlayerHand, player, fk.ReasonPrey, tszjettszhioc.name, nil, true, player)
       end
       room:invalidateSkill(player, tszjettszhioc.name,"-turn")  --待改
     end

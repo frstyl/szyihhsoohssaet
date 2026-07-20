@@ -7,7 +7,7 @@ Fk:loadTranslationTable{
   ["dzziacqszics"] = "常勝",
   [":dzziacqszics"] = "鎖定.拼點旹伱黑桃牌視爲k點",
 
-  ["#dzziacqszics"] = "常勝：你可以与至多两名角色同时拼点",
+  ["#dzziacqszics"] = "常勝：你可以与至多两名脚色同时拼点",
   ["#dzziacqszics-choice"] = "常勝：你可以将拼点牌更改为任意点数",
 }
 

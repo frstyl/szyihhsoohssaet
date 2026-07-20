@@ -36,6 +36,9 @@ Fk:loadTranslationTable{
 --   how_to_show = function() return " " end,
 -- }
 
+local S = require "packages/szyihhsoohssaet/szyih_guos"
+
+
 tsjecqmuoh:addEffect("active", {
   anim_type = "control",
   card_num = 1,
@@ -73,11 +76,7 @@ tsjecqmuoh:addEffect("active", {
     return not player:prohibitResponse(to_select)  
   end,
   on_use = function(self, room, effect)
-    room:responseCard({
-				card=Fk:getCardById(effect.cards[1]),
-				from=effect.from,
-				attachedSkillAndUser={muteCard=true},
-			})
+    S.playCard(player,effect.cards,tsjecqmuoh.name)
     room:addTableMark(effect.from,"@[:]tsjecqmuoh-phase",self.interaction.data)
     if self.interaction.data== "@@tsjecqmuoh_ignoreArmor-phase" then
       room:addTableMark(effect.from,"ssaetIgnoreArmor-phase",1)

@@ -4,7 +4,7 @@ local sziuhmuacs = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["sziuhmuacs"] = "守望",
-  [":sziuhmuacs"] = "階段限1,主動,選擇1殺与1其它角色發動.伱將此殺幖記交与該角色,伱与其各抽x(x爲至對方距離).守望幖記:不計入使用次數",
+  [":sziuhmuacs"] = "主旹,選擇1｢殺｣与1其它脚色發動.,伱与其各抽x(x爲至對方距離).此｢殺｣无次數距離限制",  --
 
   ["#sziuhmuacs"] = "守望 選擇殺与目幖",
 
@@ -29,7 +29,9 @@ sziuhmuacs:addEffect("active", {
   on_use = function(self, room, effect)
     local from =effect.from
     local to=effect.tos[1]
-    room:moveCardTo(effect.cards, Player.Hand, effect.tos[1], fk.ReasonGive, sziuhmuacs.name, nil, false, effect.from.id,"@@sziuhmuacs-inhand")
+    room:addSkill("bypass_times")
+    room:addSkill("bypass_distances")
+    room:moveCardTo(effect.cards, Player.Hand, effect.tos[1], fk.ReasonGive, sziuhmuacs.name, nil, false, effect.from.id,{"@@sziuhmuacs-inhand",1,"bypass_times-inhand",1,"bypass_distances-inhand",1})
     if not from.dead then
     from:drawCards(from:distanceTo(to),sziuhmuacs.name)
     end
@@ -40,17 +42,5 @@ sziuhmuacs:addEffect("active", {
 })
 
 
-sziuhmuacs:addEffect(fk.PreCardUse, {
-  can_refresh = function (self, event, target, player, data)
-    local subCards = Card:getIdList(data.card)
-    return #subCards > 0 and
-      table.every(subCards, function (id)
-        return Fk:getCardById(id):getMark("@@sziuhmuacs-inhand") > 0
-      end)
-  end,
-  on_refresh = function (self, event, target, player, data)
-    data.extraUse = true
-  end
-})
 
 return sziuhmuacs

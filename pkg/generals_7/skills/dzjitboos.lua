@@ -5,7 +5,7 @@ local dzjitboos = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["dzjitboos"] = "疾步",
-  [":dzjitboos"] = "鎖定.恆續,其他角色至你距離+1,伱至其他角色距離-1。",
+  [":dzjitboos"] = "鎖定.恆續,其他脚色至你距離+1,伱至其他脚色距離-1。",
 }
 
 dzjitboos:addEffect("distance", {

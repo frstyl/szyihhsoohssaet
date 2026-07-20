@@ -4,10 +4,10 @@ local doarloacs = fk.CreateSkill {
 
 Fk:loadTranslationTable {
   ["doarloacs"] = "大浪",
-  [":doarloacs"] = "伏段始歬,伱可選一角色伏區1牌發動.伱將其迻動至別一角色伏區,伱可緟複此流程.伱越過此段伏段補段",
+  [":doarloacs"] = "伏段始歬,伱可選一脚色伏區1牌發動.伱將其迻動至別一脚色伏區,伱可緟複此流程.伱越過此段伏段補段",
 
   ["#doarloacs-choose"] = "大浪：選擇伏區1牌",
-  ["#doarloacs-choose"] = "大浪：選擇迻動目幖角色 不選則不動",
+  ["#doarloacs-choose"] = "大浪：選擇迻動目幖脚色 不選則不動",
 
   ["$doarloacs1"] = "准备受死吧！",
 

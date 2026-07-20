@@ -4,7 +4,7 @@ local kaamqkouc = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["kaamqkouc"] = "監工",
-  [":kaamqkouc"] = "任意角色越過段或轉後,額外段或轉始旹,伱可選1項發動.➀其抽1➁伱弃其1(需其有牌)➂其使用1牌(可虛擬可轉化有距離次數限制計次數),若不使用則展示全部牌",
+  [":kaamqkouc"] = "任意脚色越過段或轉後,額外段或轉始旹,伱可選1項發動.➀其抽1➁伱弃其1(需其有牌)➂其使用1牌(可虛擬可轉化有距離次數限制計次數),若不使用則展示全部牌",
 
   ["#kaamqkouc_invoke"] = "監工 對 %src 發動",
 

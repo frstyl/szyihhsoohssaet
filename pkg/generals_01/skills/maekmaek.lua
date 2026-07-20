@@ -5,7 +5,7 @@ local maekmaek = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["maekmaek"] = "脈脈",
-  [":maekmaek"] = "末段始旹,伱可選1其它已損角色發動,伱令伱与其各回1,翻面牢+1",
+  [":maekmaek"] = "末段始旹,伱可選1其它已損脚色發動,伱令伱与其各回1,翻面牢+1",
 
   ["#maekmaek-invoke:"] = "无濟 是否對 %src發動",
 

@@ -4,11 +4,10 @@ local zzyinsszyih = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["zzyinsszyih"] = "順水",
-  [":zzyinsszyih"] = "每1牌離開其它角色A伏區後,伱可預打出1同色牌發動,伱予A 1傷",
+  [":zzyinsszyih"] = "每1牌離開其它脚色A伏區後,伱可預打出1同花色牌發動,伱予A 1傷",
 
-  ["#zzyinsszyih-choose"] = "順水 選擇發動目幖牌与所弃牌",
+  ["#zzyinsszyih-choose"] = "順水 選擇發動因与所打出牌",
 
-  ["@zzyinsszyih"] = "",
 
   ["$zzyinsszyih1"] = "也就作个順水推船",
   ["$zzyinsszyih2"] = "兄使版刀我作魚",

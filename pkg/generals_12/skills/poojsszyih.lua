@@ -5,7 +5,7 @@ local poojsszyih = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["poojsszyih"] = "背水",
-  [":poojsszyih"] = "伱失去伱冣後{手牌/體力}後,伱可選1項發動.➀伱抽2x➁視爲伱對1其它角色使用x殺.(x爲伱已損體力值)",  --有距離限制
+  [":poojsszyih"] = "伱失去伱冣後{手牌/體力}後,伱可選1項發動.➀伱抽2x➁視爲伱對1其它脚色使用x殺.(x爲伱已損體力值)",  --有距離限制
 
   ["#poojsszyih-invoke"] = "背水 是否發動 不選目幖則抽牌",
 

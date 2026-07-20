@@ -5,7 +5,7 @@ local lvoanskun = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["lvoanskun"] = "亂軍",
-  [":lvoanskun"] = "輪流發動.當一角色受傷後,伱可➀發動,令其抽1;➁選擇其勢力(羣類)1牌發動,伱弃之",  --類 勢力 陣營--應國戰專用
+  [":lvoanskun"] = "輪流發動.當一脚色受傷後,伱可➀發動,令其抽1;➁選擇其勢力(羣類)1牌發動,伱弃之",  --類 勢力 陣營--應國戰專用
 
   ["#lvoanskun-draw"] = "亂軍：你可令%src抽1",
   ["#lvoanskun-discard"] = "亂軍：弃 %src 勢力1牌",

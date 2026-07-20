@@ -4,11 +4,11 @@ local jinhkeens = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["jinhkeens"] = "引見",
-  [":jinhkeens"] = "主段限1.主旹,伱可選1至多手牌与1其它角色發動,將牌交予該角色.得牌者可再次執行引見,不可選當次流程已選目幖,所選牌數至多爲得牌數-1",  --規則技?
+  [":jinhkeens"] = "主段限1.主旹,伱可選1至多手牌与1其它脚色發動,將牌交予該脚色.得牌者可再次執行引見,不可選當次流程已選目幖,所選牌數至多爲得牌數-1",  --規則技?
 
 
-  ["#jinhkeens-invoke"] = "引見 交予其它角色1至x手牌,其可再傳遞x-1牌",
-  ["#jinhkeens-choose"] = "引見 交予其它角色至多 %arg 牌",
+  ["#jinhkeens-invoke"] = "引見 交予其它脚色1至x手牌,其可再傳遞x-1牌",
+  ["#jinhkeens-choose"] = "引見 交予其它脚色至多 %arg 牌",
 
 
   ["$jinhkeens1"] = "今进退两难，势若引見，魏王必当罢兵而还。",

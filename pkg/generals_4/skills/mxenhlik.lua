@@ -1,6 +1,6 @@
 Fk:loadTranslationTable{
   ["mxenhlik"] = "勉力",
-  [":mxenhlik"] = "任一轉終旹伱可發動,伱抽1+x(x爲伱本轉伱發動角色技能次數)",  --技能發動數? 飛針?
+  [":mxenhlik"] = "任一轉終旹伱可發動,伱抽1+x(x爲伱本轉伱發動脚色技能次數)",  --技能發動數? 飛針?
 
 
   ["@mxenhlik-turn"] = "勉力",

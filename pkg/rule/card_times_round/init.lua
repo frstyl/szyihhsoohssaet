@@ -8,7 +8,7 @@ Fk:loadTranslationTable{
 
 ["card_times_skill"] = "每輪牌使用次數",
 ["card_times"] = "每輪牌使用次數",
-[":card_times"] = "每角色每牌名每輪限使用5次.到达次數後禁止使用.同名牌共用次數",
+[":card_times"] = "每脚色每牌名每輪限使用5次.到达次數後禁止使用.同名牌共用次數",
 }
 
 local card_times = fk.CreateCard{

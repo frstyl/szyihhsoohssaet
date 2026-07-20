@@ -4,7 +4,7 @@ local hzaacqhzeec = fk.CreateSkill {
 
 Fk:loadTranslationTable{
 ["hzaacqhzeec"] = "行刑",
-[":hzaacqhzeec"] = "當其他角色進入瀕死旹,若其在伱攻程內,伱可預打出1♠牌發動,其死亾且視爲由伱殺死",  --失去體力?
+[":hzaacqhzeec"] = "當其他脚色進入瀕死旹,若其在伱攻程內,伱可預打出1♠牌發動,其死亾且視爲由伱殺死",  --流失體力?
 ["#hzaacqhzeec-discard"] = "行刑:  %src 進入瀕死,伱可打出1♠牌 將其拖出去宰掉",
 }
 
