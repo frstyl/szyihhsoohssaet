@@ -1,12 +1,12 @@
 local paoksiak = fk.CreateSkill {
-  name = "m_paoksiak",
+  name = "paoksiak",
   tags = { Skill.Compulsory },
   mode_skill = true,
 }
 
 Fk:loadTranslationTable{
-  ["m_paoksiak"] = "剝削",
-  [":m_paoksiak"] = "鎖，預段末段始旹必發.伱抽1",
+  ["paoksiak"] = "剝削",
+  [":paoksiak"] = "伱預段/末段始旹必發.伱抽1",
 }
 
 paoksiak:addEffect(fk.EventPhaseStart, {

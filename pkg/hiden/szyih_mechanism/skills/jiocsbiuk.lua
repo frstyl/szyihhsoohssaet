@@ -4,9 +4,9 @@ local jiocsbiuk = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["jiocsbiuk&"] = "用伏",
-  [":jiocsbiuk&"] = "使用葢伏牌",
+  [":jiocsbiuk&"] = "起動葢伏牌",
 
-  ["#jiocsbiuk"] = "使用葢伏牌",
+  ["#jiocsbiuk"] = "起動葢伏牌",
 
 }
 local S = require "packages/szyihhsoohssaet/szyih_guos" 

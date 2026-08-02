@@ -1,0 +1,51 @@
+local dzuohcxes = fk.CreateSkill {
+  name = "dzuohcxes",
+  attached_skill_name = "dzuohcxes&",
+}
+
+Fk:loadTranslationTable{
+  ["dzuohcxes"] = "聚義",  --聚蟻
+  [":dzuohcxes"] = "每名角色的出牌阶段限一次，其可以交给你一张手牌，然后你可以从五个随机非装备牌名中选择一个并交给其一张手牌，"..
+  "此牌视为你选择的牌名且无距离次数限制。（若为你则跳过交给手牌）",
+
+  ["#dzuohcxes"] = "聚義：从五个随机牌名中选择，令一张手牌视为你声明的牌",
+  ["#dzuohcxes-declare"] = "聚義：将一张手牌交给 %dest 并令此牌视为声明的牌名",
+  ["@@dzuohcxes-inhand"] = "聚義",
+
+  ["$dzuohcxes1"] = "秉赤面，观春秋，虓菟踏纛，汗青著峥嵘！",
+  ["$dzuohcxes2"] = "着青袍，饮温酒，五关已过，来将且通名！",
+}
+-- dzuohcxes:addEffect(fk.GameStart, {
+--     can_refresh = Util.FalseFunc,
+-- })
+
+
+dzuohcxes:addEffect("filter", {
+  mute = true,
+  card_filter = function(self, card, player, isJudgeEvent)
+    return card:getMark("@@dzuohcxes-inhand") ~= 0 and table.contains(player:getCardIds("h"), card.id)
+  end,
+  view_as = function(self, player, card)
+    return Fk:cloneCard("snatch", card.suit, card.number) 
+  end,
+})
+
+-- dzuohcxes:addEffect("targetmod", {
+--   bypass_times = function(self, player, skill, scope, card, to)
+--     return card and card:getMark("@@dzuohcxes-inhand") ~= 0
+--   end,
+--   bypass_distances =  function(self, player, skill, card, to)
+--     return card and card:getMark("@@dzuohcxes-inhand") ~= 0
+--   end,
+-- })
+
+-- dzuohcxes:addEffect(fk.PreCardUse, {
+--   can_refresh = function(self, event, target, player, data)
+--     return target == player and not data.card:isVirtual() and data.card:getMark("@@dzuohcxes-inhand") ~= 0
+--   end,
+--   on_refresh = function(self, event, target, player, data)
+--     data.extraUse = true
+--   end,
+-- })
+
+return dzuohcxes

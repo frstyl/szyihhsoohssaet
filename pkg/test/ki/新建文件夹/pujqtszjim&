@@ -1,0 +1,53 @@
+local pujqtszjim = fk.CreateSkill{
+  name = "pujqtszjim&",
+}
+
+Fk:loadTranslationTable{
+  ["pujqtszjim&"] = "飛針",
+  ["#pujqtszjim_choose"] = "飛針：選擇角色",
+  -- ["pujqtszjim_player"] = "飛針",
+  -- ["pujqtszjim_choose"] = "飛針",
+
+}
+
+pujqtszjim:addEffect("viewas", {
+  pattern = "ssaet,szjemh",  --
+  anim_type = "defensive",
+  prompt = "#pujqtszjim",
+  view_as = function(self, player, cards)
+    -- (Fk.currentResponsePattern == nil and c.skill:canUse(player, c)) or
+    if  Fk.currentResponsePattern and Exppattern:Parse(Fk.currentResponsePattern):match(Fk:cloneCard("szjemh")) then
+      return Fk:cloneCard("khouc__szjemh")  --trueName
+    else 
+      return Fk:cloneCard("khouc__ssaet")
+    end
+    -- return Fk:cloneCard("khouc__ssaet") ---虛牌可選目幖
+  end,
+  before_use = function (self, player, use)
+    if #use.tos~=1 then return "" end
+    player.room:setPlayerMark(player, "pujqtszjim_player", use.tos[1].id)
+    player.room:setPlayerMark(player, "pujqtszjim_unused-phase", 1)
+    return ""
+  end,
+  enabled_at_play = function(self, player, response)
+    return player:getMark("pujqtszjim_unused-phase")==0
+  end,
+  enabled_at_response = function(self, player, response)  --无限激將
+    return   player:getMark("pujqtszjim_unused-phase")==0
+  end,
+})
+
+local pujqtszjim_resfresh={
+    can_refresh = function(self, event, target, player, data)
+        return player:getMark("pujqtszjim_unused-phase")>0
+    end,
+    on_refresh = function(self, event, target, player, data)
+       player.room:setPlayerMark(player, "pujqtszjim_unused-phase", 0)
+       player.room:setPlayerMark(player, "pujqtszjim_player", player.id)
+    end,
+}
+pujqtszjim:addEffect(fk.AfterAskForCardResponse, pujqtszjim_resfresh)  --流程
+pujqtszjim:addEffect(fk.AfterAskForCardUse, pujqtszjim_resfresh)
+pujqtszjim:addEffect(fk.PreCardUse, pujqtszjim_resfresh)  --主段流程段末乃止
+
+return pujqtszjim

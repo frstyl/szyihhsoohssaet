@@ -1,0 +1,60 @@
+local hqoeomszjip = fk.CreateSkill {
+  name = "hqoeomszjip",
+}
+
+Fk:loadTranslationTable{
+["hqoeomszjip"] = "暗襲",
+[":hqoeomszjip"] = "一其他脚色受到錦囊傷害後,伱預打出1紅色牌選擇1其它脚色體力值不小于伱者發動,伱予其1傷",
+["#hqoeomszjip-invoke"]="暗襲 弃1紅色牌与1脚色1傷",
+}
+
+-- local S = require "packages/szyihhsoohssaet/szyih_guos"
+local S = require "packages/szyihhsoohssaet/szyih_guos"
+
+
+hqoeomszjip:addEffect(fk.Damaged, {
+  anim_type = "defensive",
+  can_trigger = function(self, event, target, player, data)
+    return player:hasSkill(hqoeomszjip.name) 
+    and data.card and S.getCardTypeByName(data.card.trueName)==2
+    and not player:isNude() 
+  end,
+  on_cost = function(self, event, target, player, data)
+    local room = player.room
+    local tos, cards = room:askToChooseCardsAndPlayers(player, {
+      min_card_num = 1,
+      max_card_num = 1,
+      min_num = 1,
+      max_num = 1,
+      targets = room:getOtherPlayers(player, false),
+      pattern =tostring(Exppattern{ id = table.filter(player:getCardIds("he"),function(id)
+				return Fk:getCardById(id).Color == Card.Red and not player:prohibitResponse(Fk:getCardById(id))
+			end
+			) }),
+      include_equip=true,
+      prompt = "#hqoeomszjip-invoke",
+      skill_name = hqoeomszjip.name,
+      cancelable = true,
+      -- will_throw =true,
+    })
+    if #tos == 1 and #cards==1 then
+      event:setCostData(self, {tos = tos, cards = cards})
+      return true
+    end
+  end,
+  on_use = function(self, event, target, player, data)
+    local room = player.room
+    S.playCard(player,event:getCostData(self).cards,hqoeomszjip.name)
+    local to =event:getCostData(self).tos[1]
+    if to.dead then return end
+    room:damage{
+      from = player,
+      to = to,
+      damage = 1,
+      damageType = fk.NormalDamage,
+      skillName = hqoeomszjip.name,
+    }
+  end,
+})
+
+return hqoeomszjip

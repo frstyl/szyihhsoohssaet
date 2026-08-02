@@ -4,14 +4,14 @@ local szjaqmxeh = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["szjaqmxeh"] = "奢靡",
-  [":szjaqmxeh"] = "伱使用基本牌旹,預弃1手牌發動,此牌數值+1",  --限1次
+  [":szjaqmxeh"] = "伱起動｢殺｣｢肉｣｢酒｣旹,預打出1手牌發動,此牌數值+1",  --限1次
 }
 
 local S = require "packages/szyihhsoohssaet/szyih_guos" 
 
 szjaqmxeh:addEffect(fk.CardUsing, {
   can_trigger = function(self, event, target, player, data)
-    return target == player and player:hasSkill(szjaqmxeh.name) and data.card.type == Card.TypeBasic
+    return target == player and player:hasSkill(szjaqmxeh.name) and S.getCardTypeByName(data.card)==2
     and not player:isKongcheng()
     and player:usedEffectTimes(szjaqmxeh.name, Player.HistoryPhase)<1
   end,

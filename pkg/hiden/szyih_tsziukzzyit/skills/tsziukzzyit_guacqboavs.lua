@@ -13,7 +13,7 @@ local S = require "packages/szyihhsoohssaet/szyih_guos"
 tsziukzzyit_hzaechquns:addEffect(fk.DamageCaused, {
   -- globle=true,
   can_trigger= function(self, event, target, player, data)
-    return target==player and S.hasTsziukzzyit(player,"guacqboavs")
+    return player.seat==1 and S.hasTsziukzzyit(data.from ,"guacqboavs")
   end,
   on_trigger = function(self, event, target, player, data)
     player.room:sendLog{ type = "#guacqboavs-effected", from = player.id}

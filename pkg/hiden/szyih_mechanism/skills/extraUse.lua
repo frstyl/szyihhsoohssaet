@@ -10,8 +10,9 @@ extraUse:addEffect(fk.PreCardUse, {
     if   ( data.card:hasMark("extraUse")  )    --or data.card:hasMark("ignoreTimes")  --bypass extraUse分寫
     then return true end
 
-    return data.card:isConverted() and
-      table.every(data.card.subCards, function (id)
+    return data.card:isConverted() 
+    and  table.every(data.card.subcards, 
+    function (id)
         local c =  Fk:getCardById(id)
         return c:hasMark("extraUse") -- or c:hasMark("ignoreTimes") 
       end)

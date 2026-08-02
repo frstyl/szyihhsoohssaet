@@ -8,7 +8,7 @@ local S = require "packages/szyihhsoohssaet/szyih_guos"
 addCardSkill:addEffect(fk.GamePrepared, {
   global = true,  --止畱此
   mute = true,
-  priority = 0,
+  priority = 9,
   can_trigger = function(self, event, target, player, data)
     return (target == player) or (target == nil)
   end,

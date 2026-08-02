@@ -1,0 +1,99 @@
+local thoucqmuoh = fk.CreateSkill {
+  name = "thoucqmuoh",
+}
+
+Fk:loadTranslationTable{
+["thoucqmuoh"] = "通武",
+[":thoucqmuoh"] = "伱起動殺指定目幖後,伱隱祕選1項發動.此殺{➀被｢閃｣抵消旹/➁對目幖致傷旹},伱抽1,可{分配此｢閃｣/弃置目幖1牌}",
+
+["#thoucqmuoh-choose"] = "通武 選擇",
+["#thoucqmuoh-szjemh"] = "交与閃",
+["#thoucqmuoh-szjemh-choose"] = "通武 選擇一脚色交与此閃",
+["#thoucqmuoh-damage"] = "弃牌",
+["#thoucqmuoh-damage-ask"] = "通武 是否弃 %src 牌",
+}
+
+thoucqmuoh:addEffect(fk.TargetSpecified, {
+  can_trigger = function(self, event, target, player, data)
+    return data.from  == player and  player:hasSkill(thoucqmuoh.name) 
+    and data.card.trueName == "ssaet" 
+  end,
+  on_cost = function(self, event, target, player, data)
+    local choice = player.room:askToChoice(player, {
+      choices = {"#thoucqmuoh-szjemh","#thoucqmuoh-damage","Cancel"},
+      skill_name = thoucqmuoh.name,
+      prompt = "#thoucqmuoh-choose",
+    })
+    if choice~="Cancel" then  
+    event:setCostData(self,{choose=choice,tos={data.to}})
+    return true
+    end
+  end,
+  on_use = function(self, event, target, player, data)
+    -- data.extra_data=data.extra_data or {}
+    data.currentExtraData = data.currentExtraData or {}
+    data.currentExtraData.thoucqmuoh={
+      from=player.id,
+      choose=event:getCostData(self).choose,
+      -- tos=data.tos,
+  }
+  end,
+})
+
+thoucqmuoh:addEffect(fk.CardEffectCancelledOut, {  --不算發動技能
+  is_delay_effect = true,
+  anim_type = "drawcard",
+  can_trigger = function(self, event, target, player, data)
+    return  data.cardsResponded[#data.cardsResponded].trueName=="szjemh" 
+    and data.currentExtraData and data.currentExtraData.thoucqmuoh
+    and data.currentExtraData.thoucqmuoh.choose=="#thoucqmuoh-szjemh"
+    and data.currentExtraData.thoucqmuoh.from==player.id
+  end,
+  on_use = function(self, event, target, player, data)
+    player:drawCards(1, thoucqmuoh.name)
+    if   player.dead then return    end
+    local to = player.room:askToChoosePlayers(player,{
+      min_num = 1,
+      max_num = 1,
+      targets = player.room.alive_players,
+      skill_name = thoucqmuoh.name,
+      prompt = "#thoucqmuoh-szjemh-choose",
+      cancelable = true,
+    })
+    if #to~=0 and (not to[1].dead ) and  player.room:getCardArea(data.cardsResponded) == Card.DiscardPile then
+      player.room:obtainCard(to[1], data.cardsResponded, true, fk.ReasonGive, player, thoucqmuoh.name)
+    end
+
+  end,
+})
+
+thoucqmuoh:addEffect(fk.DamageCaused, {
+  is_delay_effect = true,
+  anim_type = "drawcard",
+  can_trigger = function(self, event, target, player, data)
+    -- if player.seat~=1 then return end  --效果是否有源 无源?
+    return data.event_data
+    and  data.event_data.currentExtraData
+    and data.event_data.currentExtraData.thoucqmuoh==player.id
+  end,
+
+  on_use = function(self, event, target, player, data)
+    local room=player.room
+    local from = room:getPlayerById(data.event_data.currentExtraData.thoucqmuoh.from)
+    from:drawCards(1, thoucqmuoh.name)
+    if  from.dead then return end
+
+    local cards=room:askToChooseCards(from,{
+        min = 0,
+          max = 1,
+        target=data.to,
+        flag="he",
+        skill_name=thoucqmuoh.name
+      })
+    if #cards >0 then
+      room:throwCard(cards, thoucqmuoh.name, data.to, from)
+    end
+  end,
+})
+
+return thoucqmuoh

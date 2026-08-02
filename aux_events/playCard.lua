@@ -65,10 +65,10 @@ function (self)
 
 
 
-  local skillName = playCardData.skillName or "unknown"
+  local skillName = playCardData.skillName
 
 
-  room:moveCardTo(card_ids, Card.Processing, nil, fk.ReasonResponse)
+  room:moveCardTo(card_ids, Card.Processing, nil, fk.ReasonResponse, skillName, nil, true, from )
 
       -- room:moveCards({
   --   ids = card_ids,
@@ -82,10 +82,11 @@ function (self)
     from = from.id,
   })
   room:sendLog{
-    type = skillName == skillName and  "#PlayBySkill" or "PlayCard",
+    type =  "$PlayBySkill" ,
     from = from.id,
     card = card_ids,
-    arg = skillName,
+    arg = #card_ids,
+    arg2 = skillName,
   }
   logic:trigger(fk.CardPlaying, from, playCardData)
   logic:trigger(fk.CardResponding, from, respondCardData)
@@ -126,17 +127,17 @@ end,
 
 
 Fk:loadTranslationTable{
-  ["#PlayBySkill"] = "%from  打出 %card  (%arg)",
-  ["#PlayCard"] = "%from  打出 %card",
+  ["$PlayBySkill"] = "%from  打出 %arg牌  %card  (%arg2)",
+  -- ["#PlayCard"] = "%from  打出 %card",
 
-  ["##PlayCard"] = "%from 打出",
+  -- ["##PlayCard"] = "%from 打出",
 }
 
 --弃牌後?因弃置失去牌後
 --抽牌?因抽得牌
 szyih_guos.playCard = function(from,card_ids,skillName,skipDrop)
 
-  if not from or not card_ids then return end
+  if not from or not card_ids then return end  --眞有用
   if type(card_ids) == "number" then
     card_ids = {card_ids}
   end
@@ -164,12 +165,14 @@ szyih_guos.playCardSimultaneously = function(tables)
       type = "##PlayCard",
       from = t.from.id,
     })
+
       room:sendLog{
-      type = skillName == skillName and  "#PlayBySkill" or "PlayCard",
-      from = t.from.id,
-      card = t.card_ids,
-      arg = skillName,
-    }
+        type =  "$PlayBySkill" ,
+        from = t.from.id,
+        card = t.card_ids,
+        arg = #t.card_ids,
+        arg2 = skillName,
+      }
   end
 
   local ids={}

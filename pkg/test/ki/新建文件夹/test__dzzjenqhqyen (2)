@@ -1,0 +1,177 @@
+
+local dzzjenqhqyen = fk.CreateSkill {
+  name = "dzzjenqhqyen",
+}
+
+Fk:loadTranslationTable{
+  ["dzzjenqhqyen"] = "嬋娟",
+  [":dzzjenqhqyen"] = "➀其它角色1<font color='red'>♥</font>牌A因弃置置入判定進入弃牌堆旹,伱可發動,伱抽1,選擇是否弃1牌將A交与一角色.➁伱<font color='red'>♥</font>牌A因弃置置入判定進入弃牌堆旹伱可選1其它角色發動.將此牌交予該角色",
+
+  ["#dzzjenqhqyen-invoke"] = "嬋娟 是否發動",
+  ["#dzzjenqhqyen-choose"] = "嬋娟 選擇所得牌 所弃牌 得牌角色",
+
+  ["$dzzjenqhqyen1"] = "旅人多西望， 客雁難南歬",
+  ["$dzzjenqhqyen2"] = "霜露結瑤華， 煙波勞玉指",
+}
+
+-- dzzjenqhqyen:addAcquireEffect(function (self, player)
+--     player.room:handleAddLoseSkills(player, "dzzjenqhqyen&", dzzjenqhqyen.name, false, true)
+-- end)
+-- dzzjenqhqyen:addLoseEffect(function (self, player)
+--     player.room:handleAddLoseSkills(player, "-dzzjenqhqyen&", dzzjenqhqyen.name, false, true)
+-- end)
+
+dzzjenqhqyen:addEffect(fk.AfterCardsMove, {
+  anim_type = "drawcard",
+  can_trigger = function(self, event, target, player, data)
+    return player:hasSkill(dzzjenqhqyen.name)
+  end,
+  trigger_times = function(self, event, target, player, data)
+    local ids={}
+
+    if event:getCostData(self)  and event:getCostData(self).ids then  
+      ids = event:getCostData(self).ids
+
+    else
+      for _, move in ipairs(data) do
+        if table.contains({fk.ReasonDiscard,fk.ReasonJudge,fk.ReasonPut,fk.ReasonPutIntoDiscardPile}, move.moveReason )  
+          and move.from ~= player 
+          and move.toArea == Card.DiscardPile
+        then
+          for _, info in ipairs(move.moveInfo) do
+            if  Fk:getCardById(info.cardId).suit == Card.Heart then
+            -- and  (info.fromArea == Card.PlayerHand or info.fromArea == Card.PlayerEquip) 
+              table.insertIfNeed(ids, info.cardId)
+            end
+          end
+        end
+      end
+    end
+      --  if #ids ==0 then return end
+    ids = table.filter(ids, function (id)
+      return table.contains(player.room.discard_pile, id)
+    end)
+    ids = player.room.logic:moveCardsHoldingAreaCheck(ids)
+    if  #ids > 0 then
+      event:setCostData(self, {ids = ids})
+      return #ids
+    else
+      event:setCostData(self, nil)
+      return 0
+    end
+
+  end,
+  on_cost = function(self, event, target, player, data)
+  --  if player.room:askToViewCardsAndChoice(player, {  --askToChooseCardsAndChoice askToCards
+  --       cards = event:getCostData(self).ids,
+  --       choices = { "OK", "Cancel" },
+  --       skill_name = skillName,
+  --       prompt = "#dzzjenqhqyen-invoke"
+  --     }) == "OK" then
+  --       return true
+  --     end
+      local costdata= event:getCostData(self)
+      local cards, choice = player.room:askToChooseCardsAndChoice(player, {
+        cards =costdata.ids,
+        min_num = 1,
+        max_num = 1,
+        skill_name = dzzjenqhqyen.name,
+        prompt = "#dzzjenqhqyen-choose",
+        cancel_choices = {"Cancel"}
+      })
+      if choice=="Cancel" or #cards==0 then return end
+
+    table.remove(costdata.ids, table.indexOf(costdata.ids, cards[1]))
+    event:setCostData(self, {n=costdata.n, ids=costdata.ids,cards=cards})
+      -- event:setCostData(self, { ids = event:getCostData(self).ids,cards=cards})
+      return true
+
+  end,
+  on_use = function(self, event, target, player, data)
+    -- local costdata=event:getCostData(self)
+    local room=player.room
+    player:drawCards(1, dzzjenqhqyen.name)
+
+    -- local yes, dat = room:askToUseActiveSkill(player, { 
+    --   skill_name = "dzzjenqhqyen_active",
+    --   prompt = "#dzzjenqhqyen-choose",
+    --   cancelable = true,
+    --   skip = true,  --不執行
+    --   extra_data = {
+    --     expand_pile = costdata.ids
+    --   },
+    --   --  = {ids=ids},
+    -- })
+    -- if not yes then 
+    --   table.remove(costdata.ids, 1)
+    --   event:setCostData(self, {n=costdata.n, ids=costdata.ids})
+    -- return 
+    -- end
+    -- if  #dat.targets~=1 or #dat.cards~=2
+    -- or room:getCardArea(dat.cards[1])~=Card.DiscardPile 
+    -- -- or room:getPlayerById(dat.tos[1]).dead
+    -- then return end
+
+    local to, card =  room:askToChooseCardsAndPlayers(player, {
+        min_card_num = 1,
+        max_card_num = 1,
+        min_num = 1,
+        max_num = 1,
+        targets = room.alive_players,
+        prompt = "#dzzjenqhqyen-choose",
+        skill_name = dzzjenqhqyen.name,
+        will_throw = true,
+        cancelable = true,
+      })
+      if #to==1 and #card==1 then
+        room:throwCard(card, dzzjenqhqyen.name, player, player)
+        room:moveCardTo(event:getCostData(self).cards, Card.PlayerHand, to[1], fk.ReasonGive, dzzjenqhqyen.name, nil, true, player)
+      end
+
+
+
+  end,
+})
+
+dzzjenqhqyen:addEffect(fk.AfterCardsMove, {
+  anim_type = "drawcard",
+  can_trigger = function(self, event, target, player, data)
+    -- if not player:hasSkill(dzzjenqhqyen.name) then return end
+
+    local ids={}
+
+
+      for _, move in ipairs(data) do
+        if table.contains({fk.ReasonDiscard,fk.ReasonJudge,fk.ReasonPut,fk.ReasonPutIntoDiscardPile}, move.moveReason )  
+          and move.from == player 
+          and move.toArea == Card.DiscardPile
+        then
+          for _, info in ipairs(move.moveInfo) do
+            if  Fk:getCardById(info.cardId).suit == Card.Heart then
+            -- and  (info.fromArea == Card.PlayerHand or info.fromArea == Card.PlayerEquip) 
+              table.insertIfNeed(ids, info.cardId)
+            end
+          end
+        end
+      end
+
+      --  if #ids ==0 then return end
+    ids = table.filter(ids, function (id)
+      return table.contains(player.room.discard_pile, id)
+    end)
+    ids = player.room.logic:moveCardsHoldingAreaCheck(ids)
+    if  #ids > 0 then
+      event:setCostData(self, {ids = ids})
+      return true
+    end
+  end,
+  on_use = function(self, event, target, player, data)
+    player.room:askToYiji(player,{
+      targets=player.room:getOtherPlayers(player),
+      cards=event:getCostData(self).ids,
+      expand_pile=event:getCostData(self).ids,
+      skip=false,
+    })
+  end,
+})
+return dzzjenqhqyen

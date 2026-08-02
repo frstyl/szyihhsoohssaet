@@ -1,0 +1,40 @@
+
+local ljenqdzziok = fk.CreateSkill{
+  name = "ljenqdzziok",
+  tags = { Skill.Compulsory },
+}
+
+local S = require "packages/szyihhsoohssaet/szyih_guos"
+
+Fk:loadTranslationTable{
+  ["ljenqdzziok"] = "連屬",
+  [":ljenqdzziok"] = "伱使用牌A旹.若A与上一被使用牌名{首字同聲/末字同韻},A額外生效1次/伱抽1",
+--加彊?
+
+  ["@ljenqdzziok"] = "連屬",
+
+  ["$ljenqdzziok1"] = "洞察機先 无有不破",
+  ["$ljenqdzziok2"] = "意志被摧毀了无",
+}
+
+ljenqdzziok:addEffect(fk.CardUsing, {
+  anim_type = "offensive",
+  can_trigger = function(self, event, target, player, data)
+      local use_event = player.room.logic:getEventsByRule(GameEvent.UseCard, 1, function (e)
+          return true
+      end, 1)
+      if #use_event==0 then return end
+
+    return target==player and  player:hasSkill(ljenqdzziok.name)
+  end,
+  on_use = function(self, event, target, player, data)
+      local use_event = player.room.logic:getEventsByRule(GameEvent.UseCard, 1, function (e)
+          return true
+      end, 1)[1].data
+
+      use_event
+  end,
+})
+
+
+return ljenqdzziok

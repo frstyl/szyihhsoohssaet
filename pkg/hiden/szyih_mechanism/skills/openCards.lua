@@ -9,10 +9,13 @@ Fk:loadTranslationTable{
 }
 openCards:addEffect("visibility", {
   card_visible = function(self, player, card)
-    if  Fk:currentRoom():getCardArea(card) == Card.PlayerHand and card:hasMark("@@open") then
+    if   card:hasMark("@@open") then
       return true
     end
-  end
+    if card:hasMark("concealed") then
+      return false
+    end
+  end,
 })
 
 return openCards

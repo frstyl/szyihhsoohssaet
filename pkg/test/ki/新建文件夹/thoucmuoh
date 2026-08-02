@@ -1,0 +1,43 @@
+local thoucmuoh = fk.CreateSkill {
+  name = "thoucmuoh",
+}
+
+Fk:loadTranslationTable{
+["thoucmuoh"] = "通武",
+[":thoucmuoh"] = "當伱使用殺被閃抵消後,伱可選擇1項發動",
+}
+
+
+thoucmuoh:addEffect(fk.CardUsing, {
+  anim_type = "drawcard",
+  can_trigger = function(self, event, target, player, data)
+  return player:hasSkill(thoucmuoh.name) and data.from == player.id and data.card.trueName == "ssaet" 
+  end,
+  on_cost = function(self, event, target, player, data)
+  
+    choice = player.room:askToChoice(from, {  --effect-from use-player
+    choices = { "drawCards", "gainCard","piuh"}, --\
+    skill_name = thoucmuoh.name,
+    prompt = "#thoucmuoh-choose::" .. data.to.id,
+    })
+    if choice=="piuh" then return end
+    event:setCostData(self,{choice=choice})
+  end,
+  on_use = function(self, event, target, player, data)
+      local room = player.room
+        if event:getCostData(self).choice == "drawCards" then
+        player:drawCards(1, thoucmuoh.name)
+        elseif event:getCostData(self).choice == "gainCard" then
+          local to = player.room:askForChoosePlayers(player,{
+          targets = table.map(room:getAlivePlayers(), Util.IdMapper), 
+          minNum = 1, minNum = 1,
+          prompt = "#thoucmuoh-choose:::", 
+          skillName = thoucmuoh.name, 
+          cancelable = true,
+          })
+          room:obtainCard(to, event.card, true, fk.ReasonPrey, player, thoucmuoh.name)
+        end
+  end,
+})
+
+return thoucmuoh

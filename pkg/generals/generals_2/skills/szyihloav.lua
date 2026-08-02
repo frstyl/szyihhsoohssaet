@@ -1,0 +1,55 @@
+local szyihloav = fk.CreateSkill {
+  name = "szyihloav",
+}
+Fk:loadTranslationTable{
+  ["szyihloav"] = "水牢",
+  [":szyihloav"] = "主旹无限次.選擇1裝僃牌与1其它脚色發動.將此裝僃牌轉化爲掎挈伺詐(離開伏區失效)置于目幖脚色伏區",
+
+  ["#szyihloav"] = "水牢：選擇裝僃牌与裝僃牌与目幖",
+  ["@@szyihloav-inarea"] = "水牢",
+
+  ["$szyihloav1"] = "浸伱个三天三夜",
+}
+
+-- local S = require "packages/szyihhsoohssaet/szyih_guos" 
+
+szyihloav:addEffect("active", {  --viewas 加彊req response
+  mute = true,
+  prompt = "#szyihloav",
+  card_num = 1,
+  target_num = 1,
+  handly_pile = true,
+  card_filter = function(self, player, to_select, selected)
+    return #selected == 0 and Fk:getCardById(to_select).type == Card.TypeEquip
+  end,
+  target_filter = function(self, player, to_select, selected)
+    return to_select~=player
+  end,
+  -- feasible = function (self, player, selected, selected_cards)
+  --   if #selected_cards == 1 then
+  --     if #selected == 0 then
+  --       return table.contains(player:getCardIds("h"), selected_cards[1])
+  --     else
+  --       local card = Fk:cloneCard("iron_chain")
+  --       card:addSubcard(selected_cards[1])
+  --       card.skillName = szyihloav.name
+  --       return card.skill:feasible(player, selected, {}, card)
+  --     end
+  --   end
+  -- end,
+  on_use = function(self, room, effect)
+    local player =effect.from
+    -- local card=Fk:getCardById(effect.cards[1])
+  -- room:setCardMark(card,"@@szyihloav-inarea",{Card.PlayerJudge})
+  -- player:filterHandcards()
+  -- room:moveCardTo(card, Player.Judge, effect.tos[1], fk.ReasonPut, szyihloav.name, nil, false)
+
+          local card = Fk:cloneCard("khxes_kheet_sis_tssaas")
+          card:addSubcard(effect.cards[1])
+          effect.tos[1]:addVirtualEquip(card)
+          room:moveCardTo(card, Player.Judge, effect.tos[1], fk.ReasonPut, szyihloav.name,nil,false,player)  --无视合法性检测
+  end,
+})
+
+
+return szyihloav

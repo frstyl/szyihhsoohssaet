@@ -138,6 +138,14 @@ Fk:loadTranslationTable{
   [":tsziukzzyit_mxishqrach"] = "恆續,伱視爲女｡附加概率100%,觸發概100%,持續3轉",
 }
 
+Fk:loadTranslationTable{
+  ["#StartTsziukzzyitAddFrom"] = "%to 將被 %from 附加咒術 %arg",
+  ["#StartTsziukzzyitAdd"] = "%to 將被附加咒術 %arg",
+  ["#TsziukzzyitAdded"] = "%to 被附加咒術 %arg",
+  ["#TsziukzzyitFailed"] = "%to 被附加咒術 %arg 失敗",
+
+}
+
 --
 
 szyih_guos.setTsziukzzyit = function(to,name)  --player id --咒名
@@ -277,18 +285,6 @@ end,
 
 
 
-Fk:loadTranslationTable{
-  ["#StartTsziukzzyitAddFrom"] = "%to 將被 %from 附加咒術 %arg",
-  ["#StartTsziukzzyitAdd"] = "%to 將被附加咒術 %arg",
-  ["#TsziukzzyitAdded"] = "%to 被附加咒術 %arg",
-  ["#TsziukzzyitFailed"] = "%to 被附加咒術 %arg 失敗",
-
-  -- ["#askForTsziukzzyitAdd"] = "请展示一张手牌进行附加咒術",
-  -- ["AskForTsziukzzyitAdd"] = "附加咒術",
-  -- ["#SendTsziukzzyitAddOpinion"] = "%from 的意见为 %arg",
-  -- ["noresult"] = "无结果",
-  -- ["#ShowTsziukzzyitAddResult"] = "%from 的附加咒術结果为 %arg",
-}
 
 --- 进行附加咒術
 ---@param to ServerPlayer @ 

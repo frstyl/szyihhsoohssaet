@@ -1,0 +1,115 @@
+local pujqtszjim = fk.CreateSkill{
+  name = "pujqtszjim",
+}
+
+Fk:loadTranslationTable{
+  ["pujqtszjim"] = "飛針",
+  [":pujqtszjim"] = "當伱可使用打出{閃/殺},伱可選擇一角色裝僃區內1{武器/非武器}轉化{閃/殺}發動,伱使用打出之",
+
+
+  ["#pujqtszjim"] = "飛針：裝僃僃區武器轉化爲殺」 非武器轉化爲「閃」",
+
+  ["$pujqtszjim1"] = "飛針走線,小事一樁",
+  ["$pujqtszjim2"] = "針銀閃動,戰袍已新",
+}
+-- viewas peo khoah
+pujqtszjim:addEffect("viewas", {
+  pattern = "ssaet,szjemh",
+  anim_type = "defensive",
+  prompt = "#pujqtszjim",
+  -- interaction = function(self, player)
+  --   local all_names = Fk:getAllCardNames("ssaet","szjemh")
+  --   local names = player:getViewAsCardNames(pujqtszjim.name, all_names)
+  --   if #names > 0 then
+  --     return UI.CardNameBox { choices = names, all_choices = all_names }
+  --   end
+  -- end,
+  -- include_equip=false,  --必肰展開自己裝僃
+
+  expand_pile = function(self, player)
+    -- local ids={}
+    -- local e=player:getCardIds("e")
+    -- local c=player:getMark("pujqtszjim_player")
+    -- for _, id in pairs(c) do
+    --   if not table.contains(e,id) then 
+    --     table.insert(ids,c)
+    --   end
+    -- end
+    -- return ids
+
+    if player:getMark("pujqtszjim_player") ==nil  or player:getMark("pujqtszjim_player") ==player.id then return {} end
+
+    -- if #player:getMark("pujqtszjim_player")>0 then
+    -- return player:getMark("pujqtszjim_player")
+    -- end
+
+    -- if player:getMark("pujqtszjim_player") then 
+    --   if p==player.id then return end
+      local p=Fk:currentRoom():getPlayerById(player:getMark("pujqtszjim_player"))
+      if #p:getCardIds("e")>0  then
+        return p:getCardIds("e")
+      else 
+        return {}
+      end
+    -- end
+
+    end,
+  card_filter = function(self, player, to_select, selected)  --可選 後有可用判定
+    if #selected == 0 
+    and (player:getMark("pujqtszjim_player")==player.id and table.contains(player:getCardIds("e"), to_select) 
+    or table.contains(Fk:currentRoom():getPlayerById(player:getMark("pujqtszjim_player")):getCardIds("e"), to_select) )
+    --and not player:getCardIds(),
+    then
+      local _c = Fk:getCardById(to_select)
+      local c
+      if _c.sub_type == Card.SubtypeWeapon then
+        c = Fk:cloneCard("ssaet")
+      elseif _c.sub_type == Card.SubtypeDefensiveRide 
+      or _c.sub_type == Card.SubtypeOffensiveRide
+      or _c.sub_type == Card.SubtypeArmor
+      or _c.sub_type == Card.SubtypeTreasure then
+        c = Fk:cloneCard("szjemh")
+      else
+        return false
+      end
+      return  (Fk.currentResponsePattern == nil and c.skill:canUse(player, c)) or
+      Fk.currentResponsePattern and Exppattern:Parse(Fk.currentResponsePattern):match(c)
+    end
+  end,
+  view_as = function(self, player, cards)
+    if #cards ~= 1 then return end
+    local card
+    if Fk:getCardById(cards[1]).sub_type == Card.SubtypeWeapon then
+      card = Fk:cloneCard("ssaet")
+    elseif Fk:getCardById(cards[1])then
+      card = Fk:cloneCard("szjemh")
+    end
+    card.skillName = pujqtszjim.name
+    card:addSubcard(cards[1]) --s?
+    return card
+  end,
+  before_use = function (self, player, use)
+    player.room:setPlayerMark(player, "pujqtszjim_player", player.id)  --nil?
+    player.room:setPlayerMark(player, "pujqtszjim_unused-phase", 1)    --防无限激將
+      -- end,
+  -- enabled_at_play = function(self, player, response)
+  --   return player:getMark("pujqtszjim_player") and #player:getMark("pujqtszjim_player")>0
+  -- end,
+  -- enabled_at_response = function(self, player, response)
+  --   return player:getMark("pujqtszjim_player") and #player:getMark("pujqtszjim_player")>0
+  end,
+})
+
+
+
+pujqtszjim:addAcquireEffect(function (self, player)
+	  player.room:handleAddLoseSkills(player, "pujqtszjim&", pujqtszjim.name, false, true)
+    player.room:setPlayerMark(player,"pujqtszjim_player",player.id) 
+end)
+
+pujqtszjim:addLoseEffect(function (self, player)
+	  player.room:handleAddLoseSkills(player, "-pujqtszjim_active&", nil, false, true)
+    player.room:setPlayerMark(player,"pujqtszjim_player",nil) 
+  end)
+
+return pujqtszjim

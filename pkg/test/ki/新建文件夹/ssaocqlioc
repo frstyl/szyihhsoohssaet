@@ -1,0 +1,75 @@
+local ssaocqlioc = fk.CreateSkill {
+  name = "ssaocqlioc",
+  tags = { Skill.Compulsory },
+}
+Fk:loadTranslationTable{
+  ["ssaocqlioc"] = "雙龍",
+  [":ssaocqlioc"] = "鎖.其它角色需額外使用x閃抵消伱所用殺.伱使用殺旹,伱可選擇1項:若伱攻程內已損角色數不少于{2/3},伱可{爲此牌額外指定1目幖/令此牌額外結算1次}",
+--隱祕
+  ["#ssaocqlioc-invoke"] = "雙龍 選擇額外目幖 或不發動",
+  ["#ssaocqlioc-invoke2"] = "雙龍 選擇額外目幖 不選目幖确定額外結算 或不發動",
+
+  ["$ssaocqlioc1"] = "匹夫受死",
+  ["$ssaocqlioc2"] = "董一撞在此",
+}
+
+ssaocqlioc:addEffect(fk.TargetSpecified, {
+  anim_type = "offensive",
+  can_trigger = function(self, event, target, player, data)
+    return target == player and player:hasSkill(ssaocqlioc.name) and
+      table.contains({ "ssaet"}, data.card.trueName)
+  end,
+  on_use = function(self, event, target, player, data)
+    local to =  data.to
+    data:setResponseTimes(data:getResponseTimes(to)+player:getLostHp(), to)  --1?
+  end,
+})
+
+ssaocqlioc:addEffect(fk.CardUsing, {
+  anim_type = "offensive",
+  can_trigger = function(self, event, target, player, data)
+    return target == player and player:hasSkill(ssaocqlioc.name) 
+    and  data.card.trueName=="ssaet"
+    and       #table.filter(player.room.alive_players, function (p)
+        return (player:inMyAttackRange(p) or p==player) and p:isWounded()
+      end) > 1
+  end,
+  on_cost = function(self, event, target, player, data)
+    local n=1
+    local prompt="#ssaocqlioc-invoke"
+    if #table.filter(player.room.alive_players, function (p)
+        return (player:inMyAttackRange(p) or p==player) and p:isWounded()
+      end) > 2 then 
+        n=0
+        prompt="#ssaocqlioc-invoke2"
+    end
+    local activeParams = { ---@type AskToUseActiveSkillParams
+      skill_name = "choose_players_skill",
+      prompt = prompt,
+      cancelable = true,
+      extra_data = {
+        targets =         table.map(data:getExtraTargets({bypass_distances = false}), Util.IdMapper),
+        num = 1,
+        min_num = n,
+        pattern = "",
+        skillName = ssaocqlioc.name,
+        -- targetTipName = ssaocqlioc.name,
+        extra_data = {},
+  },
+      no_indicate = false,
+    }
+    local yes,dat=player.room:askToUseActiveSkill(player, activeParams)
+    if not yes then return end
+    event:setCostData(self,{tos=dat.targets})
+    return true
+  end,
+  on_use = function(self, event, target, player, data)
+    if #event:getCostData(self).tos==0 then
+      data.additionalEffect = (data.additionalEffect or 0) + 1
+    else 
+      data:addTarget(event:getCostData(self).tos[1])
+    end
+  end,
+})
+
+return ssaocqlioc

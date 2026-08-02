@@ -1,0 +1,30 @@
+local gxeqprac = fk.CreateSkill {
+  name = "gxeqprac",
+}
+
+local S = require "packages/szyihhsoohssaet/szyih_guos" 
+
+gxeqprac:addEffect("viewas", {
+  anim_type = "offensive",
+  pattern = "ssaet",
+  prompt = "#gxeqprac",
+  mute_card = true,
+  expand_pile=function(self,palyer)
+    return S.getPlayerKoarbiukCards(palyer)
+  end,
+  handly_pile = true,
+  card_filter = function(self, player, to_select, selected)
+    return #selected == 0 
+  end,
+  view_as = function(self, player, cards)
+    if #cards ~= 1 then return end
+    local c = Fk:cloneCard("ssaet")
+    c.skillName = gxeqprac.name
+    c:addSubcard(cards[1])
+    return c
+  end,
+  enabled_at_play = Util.TrueFunc,
+  enabled_at_response = Util.TrueFunc,
+})
+
+return gxeqprac

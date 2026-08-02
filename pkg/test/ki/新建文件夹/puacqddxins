@@ -1,0 +1,20 @@
+local puacqddxins = fk.CreateSkill {
+  name = "puacqddxins",
+}
+
+      
+Fk:loadTranslationTable{
+["puacqddxins"] = "方陣",
+[":puacqddxins"] = "无效",
+}
+
+phoasddxiz:addEffect(fk.beforeDamage,{
+  can_trigger = function(self, event, target, player, data)
+    if target != player and player:hasSkill(self)
+    return data.card.trueName == "ssaet" or data.card:isdamageTrick()
+  on_cost function(self, event, target, player, data)
+  on_use= function(self, event, target, player, data)
+      room:notifySkillInvoked(player, self.name, "offensive")
+      data.disresponsiveList = table.map(room.alive_players, Util.IdMapper)  --无效
+   end,
+})

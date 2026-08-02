@@ -11,7 +11,7 @@ Fk:loadTranslationTable{
 }
 
 dook:addEffect(fk.TurnStart, {
-  globle=true,
+  --globle=true,
   can_trigger = function(self, event, target, player, data)
     return target==player and player:getMark("@@dook")>0
   end,
@@ -23,7 +23,7 @@ dook:addEffect(fk.TurnStart, {
 })
 
 dook:addEffect(fk.PreHpRecover, {
-  globle=true,
+  --globle=true,
   can_trigger = function(self, event, target, player, data)
     return target==player and player:getMark("@@antirecover-turn")>0
   end,

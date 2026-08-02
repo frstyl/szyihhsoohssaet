@@ -1,0 +1,86 @@
+-- local dzjemszjer = fk.CreateSkill {
+--   name = "dzjemszjer",
+-- }
+
+-- Fk:loadTranslationTable{
+--   ["dzjemszjer"] = "潛勢",
+--   [":dzjemszjer"] = "當1非葢伏牌進入離開其它角色A伏區,伱可預弃1同花牌發動,伱予A傷1",  --任意角色?
+
+--   ["#dzjemszjer-choose"] = "潛勢 選擇所用殺与所弃牌",
+
+--   ["$dzjemszjer1"] = "也就作个潛勢推船",
+--   ["$dzjemszjer2"] = "兄使版刀我作魚",
+-- }
+
+-- -- local U = require "packages/utility/utility"
+
+-- dzjemszjer:addEffect(fk.AfterCardsMove, {
+--   anim_type = "offensive",
+--   can_trigger = function(self, event, target, player, data)
+--     return  player:hasSkill(dzjemszjer.name) 
+--     and not player:isKongcheng()
+--   end,
+--   trigger_times = function(self, event, target, player, data)
+--     if event:getCostData(self) and event:getCostData(self).n then  
+--       return  event:getCostData(self).n 
+--     end
+
+--       local ids = {}
+--       for _, move in ipairs(data) do  --data move info
+--         if   move.toArea == Card.PlayerJudge and move.to~=player
+--         then  
+--           for _, info in ipairs(move.moveInfo) do
+--             if  Fk:getCardById(info.cardId).suit ~= Card.NoSuit then
+--               table.insertIfNeed(ids, info.cardId)
+--             end
+--           end
+--         end
+--       end
+
+
+--     event:setCostData(self, {n=#ids, ids = ids})
+--     return #ids
+--   end,
+--   on_cost = function(self, event, target, player, data)
+
+--       local room = player.room
+--       local costdata=event:getCostData(self)
+--       -- ids = table.filter(ids, function (id)
+--       --   return table.contains(player.room.discard_pile, id)
+--       -- end)
+--       -- ids = player.room.logic:moveCardsHoldingAreaCheck(ids)
+
+--       if #costdata.ids~=0 then
+--       end
+--       local yes, dat = room:askToUseActiveSkill(player, {  --askToChooseCardsAndPlayers 等實調用此 askToUseActiveSkill
+--       skill_name = "dzjemszjer_active",
+--       prompt = "#dzjemszjer-choose",
+--       cancelable = true,
+--       skip = true,  --不執行
+--       extra_data = {
+--         expand_pile = costdata.ids
+--       },
+--       --  = {ids=ids},
+--     })
+--     if yes and dat then
+--       table.remove(costdata.ids, table.indexOf(costdata.ids, dat.cards[1]))
+--       event:setCostData(self, {n=costdata.n, cards = dat.cards, tos = dat.targets})
+--         return true
+--     end
+
+--     	self.cancel_cost = true
+--   end,
+--   on_use = function(self, event, target, player, data)
+--     local room = player.room
+--     room:throwCard(event:getCostData(self).cards[2], pujqkiams.name, player, player)
+--     room:damage{
+--       from = player,
+--       to = event:getCostData(self).tos[1],
+--       damage = 1,
+--       damageType = 1,
+--       skillName = thoucqdoat.name,
+--     }
+-- end,
+-- })
+
+-- return dzjemszjer

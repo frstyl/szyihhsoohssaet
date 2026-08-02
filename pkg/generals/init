@@ -1,0 +1,29 @@
+local generals_01 = require "packages/szyihhsoohssaet/pkg/generals/generals_01"
+local generals_1 = require "packages/szyihhsoohssaet/pkg/generals/generals_1"
+local generals_2 = require "packages/szyihhsoohssaet/pkg/generals/generals_2"
+local generals_3 = require "packages/szyihhsoohssaet/pkg/generals/generals_3"
+local generals_4 = require "packages/szyihhsoohssaet/pkg/generals/generals_4"
+local generals_5 = require "packages/szyihhsoohssaet/pkg/generals/generals_5"
+local generals_6 = require "packages/szyihhsoohssaet/pkg/generals/generals_6"
+local generals_7 = require "packages/szyihhsoohssaet/pkg/generals/generals_7"
+local generals_8 = require "packages/szyihhsoohssaet/pkg/generals/generals_8"
+local generals_9 = require "packages/szyihhsoohssaet/pkg/generals/generals_9"
+local generals_10 = require "packages/szyihhsoohssaet/pkg/generals/generals_10"
+local generals_11 = require "packages/szyihhsoohssaet/pkg/generals/generals_11"
+local generals_12 = require "packages/szyihhsoohssaet/pkg/generals/generals_12"
+
+return {
+  generals_01,
+  generals_1,
+  generals_2,
+  generals_3,
+  generals_4,
+  generals_5,
+  generals_6,
+  generals_7,
+  generals_8,
+  generals_9,
+  generals_10,
+  generals_11,
+  generals_12,
+}

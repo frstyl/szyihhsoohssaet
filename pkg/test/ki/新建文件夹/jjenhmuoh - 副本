@@ -1,0 +1,55 @@
+local jjenhmuoh = fk.CreateSkill{
+  name = "jjenhmuoh",
+}
+
+Fk:loadTranslationTable{
+  ["jjenhmuoh"] = "演武",
+  [":jjenhmuoh"] = "當伱可使用打出{閃/殺}且伱処于{攻式/守式},伱可發動,伱轉爲{守式/攻式},視爲伱使用打出{閃/殺},。",
+
+  ["@@hzfac"] = "橫置",
+
+  ["#jjenhmuoh-ssaet"] = "演武：你可尌置，視爲使用打出「殺」",
+  ["#jjenhmuoh-szjemh"] = "演武：你可橫置，視爲使用打出「閃」",
+
+  -- ["$jjenhmuoh1"] = "婉而从物，不竞不争。",
+  -- ["$jjenhmuoh2"] = "演武恭谨，重贤加礼。",
+}
+
+jjenhmuoh:addEffect("viewas", {
+  pattern = "ssaet,szjemh",
+  anim_type = "defensive",
+  prompt = function(self, player)
+    if player:getMark("@@hzfac")>0 then
+      return "#jjenhmuoh-ssaet"
+    else
+      return "#jjenhmuoh-szjemh"
+    end
+  end,
+  card_filter = Util.FalseFunc,
+  view_as = function(self, player, cards)
+    local card
+    if player:getMark("@@hzfac")>0 then
+      card = Fk:cloneCard("ssaet")
+    else
+      card = Fk:cloneCard("szjemh")
+    end
+    card.skillName = jjenhmuoh.name
+    return card
+  end,
+  before_use = function(self, player, use)
+    if  player:getMark("@@hzfac")>0 then 
+        player.room:setPlayerMark(player,"@@hzfac",0)
+    else
+       player.room:setPlayerMark(player,"@@hzfac",1)
+    end
+  end,
+  enabled_at_response = function(self, player, response)
+    if player:getMark("@@hzfac")>0 then
+      return #player:getViewAsCardNames(jjenhmuoh.name, {"ssaet"}) > 0
+    else
+      return #player:getViewAsCardNames(jjenhmuoh.name, {"szjemh"}) > 0
+    end
+  end,
+})
+
+return jjenhmuoh

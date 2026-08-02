@@ -122,11 +122,11 @@ Fk:loadTranslationTable{
   ["ArmorSlot__not_equip"] = "防具",
   [":ArmorSlot__not_equip"] = "空",
 
-  ["OffensiveRideSlot_horse__not_equip"] = "攻馬",
-  [":OffensiveRideSlot_horse__not_equip"] = "空",
+  ["OffensiveRideSlot_not_equip"] = "攻馬",
+  [":OffensiveRideSlot_not_equip"] = "空",
 
-  ["DefensiveRideSlot_horse__not_equip"] = "防馬",
-  [":DefensiveRideSlot_horse__not_equip"] = "空",
+  ["DefensiveRideSlot_not_equip"] = "防馬",
+  [":DefensiveRideSlot_not_equip"] = "空",
 
   ["TreasureSlot__not_equip"] = "寶物",
   [":TreasureSlot__not_equip"] = "空",

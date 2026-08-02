@@ -1,0 +1,75 @@
+local pujqtszjim = fk.CreateSkill{
+  name = "pujqtszjim_active&",
+}
+
+Fk:loadTranslationTable{
+  ["pujqtszjim_active&"] = "飛針",
+  ["#pujqtszjim_choose"] = "飛針：選擇角色",
+  -- ["pujqtszjim_player"] = "飛針",
+  -- ["pujqtszjim_choose"] = "飛針",
+
+}
+local pujqtszjim_choose = function (self, event, target, player, data)  --臨時設expand_pile
+    local room = player.room
+    local targets = table.filter(room.alive_players, --不選己 
+      function(p)
+      return #p:getCardIds("e") > 0 
+      end)
+    if #targets == 0 then return end
+    local to = room:askToChoosePlayers(player, {
+      min_num = 1,
+      max_num = 1,
+      targets = targets,
+      skill_name = pujqtszjim.name,
+      prompt = "#pujqtszjim_choose",
+      cancelable = true,
+    })[1]
+      if not to then 
+          room:setPlayerMark(player, "pujqtszjim_player", player.id)
+        return end
+    room:setPlayerMark(player, "pujqtszjim_player", to.id)
+  end
+  
+pujqtszjim:addEffect("active", {  --koaz 分爲2
+  mute = true,
+  target_num = 1,
+  card_num = 0,
+  -- include_equip=false,
+  prompt = "#pujqtszjim_choose",
+  can_use = function(self, player)
+    return   player:getMark("pujqtszjim_unused-phase")>0
+  end,
+  target_filter = function(self, player, to_select, selected, selected_cards)
+      return #selected == 0 
+      -- and to_select~=player
+      and to_select:getEquipment(Card.SubtypeWeapon)
+  end,
+  card_filter = FalseFunc,
+  on_use = function(self, room, effect)
+		-- room:setPlayerMark(effect.from, "pujqtszjim_choose", effect.tos[1]:getCardIds("e"))
+		room:setPlayerMark(effect.from, "pujqtszjim_player", effect.tos[1].id)
+  end,
+})
+
+pujqtszjim:addEffect(fk.AskForCardUse, {
+  can_trigger = function(self, event, target, player, data)
+    return target == player and player:hasSkill(pujqtszjim.name) 
+    -- and
+    --   Exppattern:Parse(data.pattern):matchExp("szjemh|0|nosuit|none") and
+    --   not player:prohibitUse(Fk:cloneCard("szjemh"))
+  end,
+  on_trigger = pujqtszjim_choose,
+})
+
+pujqtszjim:addEffect(fk.AskForCardResponse, {
+  can_trigger = function(self, event, target, player, data)
+    return target == player and player:hasSkill(pujqtszjim.name) 
+    
+    and  Exppattern:Parse(data.pattern):matchExp("ssaet,szjemh") 
+    --  and not player:prohibitUse(Fk:cloneCard("szjemh"))
+  end,
+  on_trigger = pujqtszjim_choose,
+})
+
+
+return pujqtszjim

@@ -1,11 +1,11 @@
-local Concealed = fk.CreateSkill {
-  name = "Concealed",
+local concealed = fk.CreateSkill {
+  name = "concealed",
 }
 
 Skill.Concealed="Concealed" --global
 
-Concealed:addEffect(fk.GamePrepared, {
-  global=true,  --旹機
+local  spec={
+  -- global=true,  --旹機
   mute=true,
   can_trigger = function(self, event, target, player, data)
       local room = player.room
@@ -25,11 +25,15 @@ Concealed:addEffect(fk.GamePrepared, {
     local room=player.room
     if player.deputyGeneral and player.deputyGeneral ~= "" and player.deputyGeneral ~= "anjiang"  then player:hideGeneral(true) end
     if player.general and player.general ~= ""  and  player.general ~= "anjiang" then player:hideGeneral() end
+    player.kingdom="unknown"
+    -- room:broadcastProperty(player, "kingdom")
   end,
-})
+}
+concealed:addEffect(fk.GamePrepared, spec)
 
+concealed:addEffect(fk.AfterPropertyChange, spec)
 
--- Concealed:addEffect(fk.BeforePropertyChange, {
+-- concealed:addEffect(fk.BeforePropertyChange, {
 --   mute=true,
 --   can_trigger = function(self, event, target, player, data)
 --     if not player~=target then return end
@@ -42,7 +46,7 @@ Concealed:addEffect(fk.GamePrepared, {
 --         table.insertTable(skills, Fk.generals[deputy]:getSkillNameList())
 --       end
 
---       if table.contains(skills, Concealed.name) then
+--       if table.contains(skills, concealed.name) then
 --         return true
 --       end
 
@@ -57,4 +61,4 @@ Concealed:addEffect(fk.GamePrepared, {
 
 
 
-return Concealed
+return concealed
