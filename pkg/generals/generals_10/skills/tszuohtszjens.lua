@@ -4,7 +4,7 @@ local tszuohtszjens = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["tszuohtszjens"] = "主戰",
-  [":tszuohtszjens"] = "一脚色A轉終,伱可發動｡若x>0,,伱令A抽x,否則伱視爲起動殺,止能選A攻程內脚色｡(x爲A當轉起動殺次數)",  --將1牌轉化爲殺對A攻程內脚色起動發動
+  [":tszuohtszjens"] = "一脚色A轉終,伱可發動｡若x>0,,伱令A抽x,否則伱虛擬起動殺,无視距離次數止能選A攻程內脚色｡(x爲A 1轉起動殺次數)",  --將1牌轉化爲殺對A攻程內脚色起動發動
   -- [":tszuohtszjens"] = "➀脚色A轉終旹,若A于本轉內未起動殺,伱可預將1牌轉化爲殺,對A或A攻程內脚色B起動發動.若A不爲伱,此殺結算畢旹,若其:{曾/未曾}致傷,伱可令A{弃1/交与B 1牌,A抽2}➁每轉終旹,若當前轉脚色A本轉內起動過殺,伱可發動,令A抽1",
 
   ["#tszuohtszjens-ssaet"] = "主戰 %src轉終 是否起動殺",

@@ -40,20 +40,21 @@ cardSkill:addEffect(fk.CardUseFinished, {
   mute = true,
   priority = 0,  --同旹自選 用牌?
   can_trigger = function(self, event, target, player, data)
-    if  target~=player 
+    if  player.seat~=1
       or data.card.trueName~="meej"
     then return end
 
-      local tos = table.filter(player.room.alive_players,
-          function(p)
-          return 
-            p:hasDelayedTrick("ssaac_dzzjin_koac")
-        end)
-      local players=S.getHolders("ttxes_tshuoh_ssaac_dzzjin_koac")
-      if #tos>0 and #players>0 then
-        event:setCostData(self,{players=players,tos=tos})
-        return true 
-      end
+    return true
+      -- local tos = table.filter(player.room.alive_players,
+      --     function(p)
+      --     return 
+      --       p:hasDelayedTrick("ssaac_dzzjin_koac")
+      --   end)
+      -- local players=S.getHolders("ttxes_tshuoh_ssaac_dzzjin_koac")
+      -- if #tos>0 and #players>0 then
+      --   event:setCostData(self,{players=players,tos=tos})
+      --   return true 
+      -- end
 
   end,
   on_trigger = function(self, event, target, player, data)
@@ -71,7 +72,7 @@ cardSkill:addEffect(fk.CardUseFinished, {
         tshjit_seec_dzuoh_cxes = true,
       }
     }
-      local use = room:askToNullification(event:getCostData(self).players, params) 
+    local use = S.askToUseKoarbiukCard(S.getHolders("ttxes_tshuoh_ssaac_dzzjin_koac"), params) 
       if use then
         use.extra_data = use.extra_data or {}
         use.extra_data.tshjit_seec_dzuoh_cxes = true   
@@ -125,7 +126,7 @@ cardSkill:addEffect(fk.Damaged, {
     local  cards = S.askToPlayCard(player, params)
     if #cards>0 then
         -- room:throwCard(cards,"giac_tshuoh_hzoav_dvoat",player,player)
-        S.playCard(player,cards,"giac_tshuoh_hzoav_dvoat")
+        S.playCard(cards,"giac_tshuoh_hzoav_dvoat",player)
         local ids = room:askToChooseCards(player, {
             target = data.from,
             min = n,

@@ -10,13 +10,14 @@ local ssaet = fk.CreateCard{
 }
 
 
-local normal__ssaet = fk.CreateCard{
-  name = "normal__ssaet",
-  type = Card.TypeBasic, --int
-  is_damage_card = true,
-  damage_type = fk.NormalDamage,
-  skill = "normal__ssaet_skill",
-}
+-- local normal__ssaet = fk.CreateCard{
+--   name = "normal__ssaet",
+--   type = Card.TypeBasic, --int
+--   is_damage_card = true,
+--   damage_type = fk.NormalDamage,
+--   skill = "normal__ssaet_skill",
+-- }
+-- extension:loadCardSkels {normal__ssaet,}
 
 local szjemh = fk.CreateCard{
   name = "szjemh",
@@ -312,7 +313,7 @@ local cxin_ssik_gwen_hsfa = fk.CreateCard{
 }
 
 extension:loadCardSkels {
-  ssaet, szjemh, normal__ssaet, nziuk,tsiuh,
+  ssaet, szjemh,  nziuk,tsiuh,
 
   buoh_teejh_tthiu_sjin, hqjin_deek_qwe_tsji, tous_tsiacs, hsiap_paak, liac_tshoavh_seen_hzaac,
   buac_hzfan_mujs_nzjen,
@@ -480,29 +481,30 @@ Fk:loadTranslationTable{
 
 
   ["ssaet"] = "殺",
-  [":ssaet"] = "基本牌-行動  <br /><b>旹機</b>：主段執行旹  <br /><b>目幖</b>：其它脚色  <br /><b>目幖數</b>：1 <br /><b>距離</b>：伱攻程内  <br /><b>次數</b>：同名牌每段限1次  <br /><b>效果</b>：對目幖脚色造成1点傷害。",
+  [":ssaet"] = "行動  <br /><b>旹機</b>：主段執行旹  <br /><b>目幖</b>：其它脚色  <br /><b>目幖數</b>：1 <br /><b>距離</b>：伱攻程内  <br /><b>次數</b>：同名牌每段限1次  <br /><b>效果</b>：對目幖脚色造成1点傷害。",
   ["ssaet_skill"] = "殺",
-  ["#ssaet-szjemh"] = "%src 對伱起動了｢殺｣，请起動1｢閃｣",
-  ["#ssaet-szjemh-multi"] = "%src 對伱起動了｢殺｣，请起動1｢閃｣（此为第 %arg 張，共需 %arg2 張）",
-  ["#ssaet_skill"] = "選擇攻程内的一脚色，對其造成1点傷害",
+  ["#ssaet_skill"] = "選擇攻程内的1脚色，与其1傷",
   ["#ssaet_skill_multi"] = "選擇攻程内的至多%arg名脚色，對这些脚色各造成1点傷害",
 
   
+  -- ["#ssaet-szjemh"] = "%src 對伱起動了｢殺｣，请起動1｢閃｣",
+  -- ["#ssaet-szjemh-multi"] = "%src 對伱起動了｢殺｣，请起動1｢閃｣（此为第 %arg 張，共需 %arg2 張）",
+
   ["szjemh"] = "閃",
-  [":szjemh"] = "基本牌-行動  <br /><b>旹機</b>：｢殺｣A對伱生效前  <br /><b>目幖</b>：A    <br /><b>目幖數</b>：0  <br /><b>效果</b>：抵消A對伱效果。  <br /><b>額外</b>：因動-抵消｡每旹機同名牌限1次｡",
+  [":szjemh"] = "行動  <br /><b>旹機</b>：｢殺｣A對伱生效前  <br /><b>目幖</b>：A    <br /><b>目幖數</b>：0  <br /><b>效果</b>：抵消A對伱效果。  <br /><b>額外</b>：因動-抵消｡每旹機同名牌限1次｡",
   ["szjemh_skill"] = "閃",
   ["szjemh_skill"] = "閃",
 
   ["nziuk"] = "肉",
-  [":nziuk"] = "基本牌-物資  <br /><b>旹機</b>：主段執行旹/一脚色瀕死結算旹  <br /><b>目幖</b>：已損脚色  <br /><b>目幖數</b>：1  <br /><b>預起動</b>：伱/瀕死脚色 <br /><b>效果</b>：目幖脚色回1。",
+  [":nziuk"] = "物資  <br /><b>旹機</b>：主段執行旹/一脚色瀕死結算旹  <br /><b>目幖</b>：已損脚色  <br /><b>目幖數</b>：1  <br /><b>預起動</b>：伱/瀕死脚色 <br /><b>效果</b>：目幖脚色回1。",
   ["nziuk_skill"] = "肉",
   ["#nziuk_skill"] = "目幖回1",
 
   ["tsiuh"] = "酒",
-  [":tsiuh"] = "基本牌-物資<br/><b>旹機</b>：主段執行旹/伱瀕死結算旹  <br/><b>目幖</b>：无限制  <br /><b>目幖數</b>：1  <br /><b>預起動</b>：伱 <br /><b>次數</b>：同名牌每轉限1次/无限制次<br/><b>效果</b>：目幖脚色當轉起動的下1｢殺｣傷害基數+1/目幖脚色回1。",
+  [":tsiuh"] = "物資<br/><b>旹機</b>：主段執行旹/伱瀕死結算旹  <br/><b>目幖</b>：无限制  <br /><b>目幖數</b>：1  <br /><b>預起動</b>：伱 <br /><b>次數</b>：同名牌每轉限1次/无限制次<br/><b>效果</b>：目幖脚色1轉起動的下1｢殺｣傷害基數+1/目幖脚色回1。",
   ["tsiuh_skill"] = "酒",
-  ["#tsiuh_skill"] = "伱于此轉内起動的下1｢殺｣的傷害值基数+1",
-  ["@tsyis-turn"] = "醉",
+  ["#tsiuh_skill"] = "伱于1轉内起動的下1｢殺｣的傷害值基数+1",
+  ["@tsyis-turn"] = "酒",
 
   ["buac_hzfan_mujs_nzjen"] = "防患未肰",
   [":buac_hzfan_mujs_nzjen"] = "锦囊牌  <br /><b>旹機</b>：锦囊牌A對伱生效前  <br /><b>目幖</b>：A    <br /><b>目幖數</b>：0   <br /><b>效果</b>：抵消A對伱效果    <br /><b>額外</b>：因動-抵消｡每旹機同名牌限1次",
@@ -525,9 +527,9 @@ Fk:loadTranslationTable{
   ["#tous_tsiacs_skill"] = "選擇一其它脚色，由其始，其与伱輪流演練1｢殺｣，直到其与伱中的一脚色未演練｢殺｣。<br />未演練｢殺｣的脚色受到其与伱中的另一脚色造成的1点傷害",
 
   ["hsiap_paak"] = "脅迫",
-  [":hsiap_paak"] = "錦囊牌<br/><b>旹機</b>：主段執行旹<br/><b>目幖</b>：其它脚色A与A殺合理目幖B  <br /><b>目幖數</b>：1  <br/><b>效果</b>：A需選擇➀對B起動殺,➁伱選擇取得A 1裝僃或令A流失1體力",
+  [":hsiap_paak"] = "計謀牌<br/><b>旹機</b>：主段執行旹<br/><b>目幖</b>：其它脚色A与A殺合理目幖B  <br /><b>目幖數</b>：1  <br/><b>效果</b>：A需選擇➀對B起動殺,➁伱選擇取得A 1裝僃或令A流失1",
   ["hsiap_paak_skill"] = "脅迫",
-  ["#hsiap_paak_skill"] = "選擇1其它脚色A體力小于伱者,A之殺合理目幖B,對A起動 A需對B起動殺,否則伱選擇其將裝僃區1牌,其交与伱或令其流失1體力",
+  ["#hsiap_paak_skill"] = "選擇1其它脚色A體力小于伱者,A之殺合理目幖B,對A起動 A需對B起動殺,否則伱選擇其將裝僃區1牌,其交与伱或令其流失1",
   ["#hsiap-subTarget"] = "脅迫 選擇 %src 殺目幖",
   ["#hsiap_paak-gainCard"] = "取得裝僃",
   ["#hsiap_paak-ssaet"] ="%src 對伱起動 脅迫, 伱需對 %src 起動殺",
@@ -537,6 +539,7 @@ Fk:loadTranslationTable{
   [":liac_tshoavh_seen_hzaac"] = "锦囊牌  <br /><b>旹機</b>：主段執行旹  <br /><b>目幖</b>：无限制  <br /><b>目幖數</b>：1  <br /><b>預起動</b>：伱  <br /><b>效果</b>：目幖脚色抽2。",
   ["liac_tshoavh_seen_hzaac_skill"] = "粮艸先行",
   ["#liac_tshoavh_seen_hzaac_skill"] = "伱抽2",
+  ["#liac_tshoavh_seen_hzaac_use"] = "粮艸先行 是否起動",
 
   
   ["maach_hsooh_hzaah_ssaen"] = "猛虎下山",
@@ -567,8 +570,8 @@ Fk:loadTranslationTable{
   ["#theen_looj_skill"] = "天雷",
 
   ["khxes_kheet_sis_tssaas"] = "掎挈伺詐",
-  [":khxes_kheet_sis_tssaas"] = "锦囊牌  <br /><b>旹機</b>：主段執行旹  <br /><b>目幖</b>：其它脚色伏區无同名牌者  <br /><b>目幖數</b>：1  <br /><b>延旹</b>：將此牌置于目幖脚色伏區,目幖伏段執行旹生效  <br /><b>效果</b>：目幖占卜｡若占卜結果:不爲<font color='#CC3131'>♥</font>，目幖越過當轉(全部)主段。",
-  ["#khxes_kheet_sis_tssaas_skill"] = "選擇一其它脚色，將此牌置于其伏區。其伏段執行旹占卜：<br />若結果不为<font color='#CC3131'>♥</font>，其越過當轉(全部)主段",
+  [":khxes_kheet_sis_tssaas"] = "锦囊牌  <br /><b>旹機</b>：主段執行旹  <br /><b>目幖</b>：其它脚色伏區无同名牌者  <br /><b>目幖數</b>：1  <br /><b>延旹</b>：將此牌置于目幖脚色伏區,目幖伏段執行旹生效  <br /><b>效果</b>：目幖占卜｡若占卜結果:不爲<font color='#CC3131'>♥</font>，目幖越過1轉(全部)主段。",
+  ["#khxes_kheet_sis_tssaas_skill"] = "選擇一其它脚色，將此牌置于其伏區。其伏段執行旹占卜：<br />若結果不为<font color='#CC3131'>♥</font>，其越過其轉(全部)主段",
 
   ["kaeh_hqvoans_toav"] = "解腕刀",
   [":kaeh_hqvoans_toav"] = "裝僃牌·武器  <br /><b>目幖</b>：有武器欄者  <br /><b>目幖數</b>：1     <br /><b>預起動</b>：伱   <br/><b>武器</b>：起動結算旹將此牌置于目幖脚色武器欄,持續生效  <br/><b>攻程</b>：1  <br/><b>武器技能</b>：每段伱起動殺次數上限+2",
@@ -606,11 +609,11 @@ Fk:loadTranslationTable{
 
 
   ["ddiach"] = "水磨禪杖",  --改于此
-  [":ddiach"] = "裝僃牌·武器  <br /><b>目幖</b>：有武器欄者  <br /><b>目幖數</b>：1     <br /><b>預起動</b>：伱        <br/><b>武器</b>：起動結算旹將此牌置于目幖脚色武器欄,持續生效    <br/><b>攻程</b>：4<br/><b>武器技能</b>：伱起動殺指定目幖後,若目幖手牌數大于體力值,必發,此殺不可被響應",
+  [":ddiach"] = "裝僃牌·武器  <br /><b>目幖</b>：有武器欄者  <br /><b>目幖數</b>：1     <br /><b>預起動</b>：伱        <br/><b>武器</b>：起動結算旹將此牌置于目幖脚色武器欄,持續生效    <br/><b>攻程</b>：4<br/><b>武器技能</b>：伱起動殺指定目幖後,若目幖手牌數大于體力數,必發,此殺不可響應",
   ["#ddiach_skill"] = "水磨禪杖",
 
   ["krak"] = "方天畫戟",
-  [":krak"] = "裝僃牌·武器  <br /><b>目幖</b>：有武器欄者  <br /><b>目幖數</b>：1     <br /><b>預起動</b>：伱        <br/><b>武器</b>：起動結算旹將此牌置于目幖脚色武器欄,持續生效    <br /><b>攻程</b>：４  <br /><b>武器技能</b>：恆續,伱預起動殺選目幖旹,若伱體力值不大于1或除此殺外无手牌,此殺目幖上限+2。",
+  [":krak"] = "裝僃牌·武器  <br /><b>目幖</b>：有武器欄者  <br /><b>目幖數</b>：1     <br /><b>預起動</b>：伱        <br/><b>武器</b>：起動結算旹將此牌置于目幖脚色武器欄,持續生效    <br /><b>攻程</b>：４  <br /><b>武器技能</b>：恆續,伱預起動殺選目幖旹,若伱體力數不大于1或除此殺外无手牌,此殺目幖上限+2。",
   ["#krak_skill"] = "方天畫戟",
 
   ["ssaok"] = "槊",

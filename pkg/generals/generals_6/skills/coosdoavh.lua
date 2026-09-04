@@ -6,7 +6,7 @@ local coosdoavh = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["coosdoavh"] = "悟道",
-  [":coosdoavh"] = "自限:擁有技能｢溷元｣.局限1,輪終旹,若伱熵大于當局游戲脚色數,必發.伱自下選擇獲得2个技能｢空門｣｢奇門｣｢熵增｣",
+  [":coosdoavh"] = "自限:擁有技能｢溷元｣.局限1,一輪終旹,若伱熵大于其局游戲脚色數,必發.伱自下選擇獲得2个技能｢空門｣｢奇門｣｢熵增｣",
 
   ["$coosdoavh1"] = "时机已到，今日起兵！",
   ["$coosdoavh2"] = "欲取天下，当在此时！"

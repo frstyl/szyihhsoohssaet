@@ -7,7 +7,8 @@ local maanqhzfacs= fk.CreateSkill({
 
 Fk:loadTranslationTable{
 ["maanqhzfacs"] = "蠻橫",
-[":maanqhzfacs"] = "恆續,伱錦囊牌視爲殺,此｢殺｣傷害基數+x,反无效｡(x=(殺子牌牌名字數之合)/2,下取整)",
+[":maanqhzfacs"] = "恆續,伱手牌區計謀牌視爲｢殺｣,此｢殺｣致傷旹傷害值+1,若起動結算終未致傷,伱起動其子牌",
+-- [":maanqhzfacs"] = "恆續,伱手牌區計謀牌視爲殺,此｢殺｣傷害基數+x,反无效｡(x=(殺子牌牌名字數之合)/2,下取整)",
 }
 
 
@@ -90,27 +91,57 @@ maanqhzfacs:addEffect("filter", {
 --   end,
 -- })
 
-maanqhzfacs:addEffect(fk.CardUsing, {  --PreCardUse 无旹機 不算發動技能
-  can_refresh = function(self, event, target, player, data)
-    return target==player and data.card and data.card.trueName=="ssaet" 
-    --and #data.card.subcards>0
+-- maanqhzfacs:addEffect(fk.CardUsing, {  --PreCardUse 无旹機 不算發動技能
+--   can_refresh = function(self, event, target, player, data)
+--     return target==player and data.card and data.card.trueName=="ssaet" 
+--     --and #data.card.subcards>0
+--   end,
+--   on_refresh= function(self, event, target, player, data)
+--     local n=0
+--     if data.card:isVirtual() then
+--       for _, id in ipairs(data.card.subcards or {}) do
+--         n = n + S.getCardNameLength(id)
+--       end
+--     elseif data.card.trueName~=Fk:getCardById(data.card.id,true).trueName then
+--         n = n + S.getCardNameLength(data.card)
+--     end
+--     data.additionalDamage = (data.additionalDamage or 0) + (n)//2
+--     data.extra_data=  data.extra_data or {}
+--     data.extra_data.antiNullify=true
+--   end,
+-- })
+
+maanqhzfacs:addEffect(fk.DamageInflicted, {  --不算發動技能
+  can_trigger = function(self, event, target, player, data)
+    return target==player and table.contains(data.card.skillNames, maanqhzfacs.name)
   end,
-  on_refresh= function(self, event, target, player, data)
-    local n=0
-    if data.card:isVirtual() then
-      for _, id in ipairs(data.card.subcards or {}) do
-        n = n + S.getCardNameLength(id)
-      end
-    elseif data.card.trueName~=Fk:getCardById(data.card.id,true).trueName then
-        n = n + S.getCardNameLength(data.card)
-    end
-    data.additionalDamage = (data.additionalDamage or 0) + (n)//2
-    data.extra_data=  data.extra_data or {}
-    data.extra_data.antiNullify=true
+  on_trigger= function(self, event, target, player, data)
+    S.changeDamage({damageData=data,
+     num=S.getCardNameLength(Fk:getCardById(data.card.id,true)) //2,
+    skillName=maanqhzfacs.name})
   end,
 })
 
--- maanqhzfacs:addEffect(fk.TargetSpecified, {  --不算發動技能
+maanqhzfacs:addEffect(fk.CardUseFinished, {  --不算發動技能
+  can_trigger = function(self, event, target, player, data)
+    return target==player and table.contains(data.card.skillNames, maanqhzfacs.name)
+    and (data.damageDealt==nil)
+  end,
+  on_trigger= function(self, event, target, player, data)
+    player.room:askToUseRealCard(player,{
+    pattern={data.card.id},
+    skill_name=maanqhzfacs.name,
+    cancelable=true,
+    skip=false,
+    expand_pile={data.card.id},
+    extra_data={
+      bypass_moment=true,
+    }
+  })
+  end,
+})
+
+-- maanqhzfacs:addEffect(fk.TargetConfirmed, {  --不算發動技能
 --   can_trigger = function (self, event, target, player, data)
 --     return  data.from==player --問一次
 --     -- and table.contains(data.card.skillNames, maanqhzfacs.name)

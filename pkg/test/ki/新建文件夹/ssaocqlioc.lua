@@ -9,7 +9,7 @@ Fk:loadTranslationTable{
   ["#ssaocqlioc-choose"] = "雙龍 選擇目幖 或不發動",
   -- ["#ssaocqlioc-invoke2"] = "雙龍 選擇額外目幖 不選目幖确定額外結算 或不發動",
 
-  ["#ssaocqlioc-invoke"] = "雙龍：是否令其他目标脚色选择代替你起動【闪】？",
+  ["#ssaocqlioc-invoke"] = "雙龍：是否令其它目标脚色选择代替你起動【闪】？",
   ["#ssaocqlioc-ask"] = "雙龍：你可以替 %src 起動【闪】",
 
   ["#ssaocqlioc-target"] = "%from 雙龍生效, 目幖爲 %tos",

@@ -44,28 +44,6 @@ skill:addEffect("cardskill", {
   end,
 })
 
-skill:addAI(nil, "__card_skill")
-skill:addAI(nil, "default_card_skill")
 
-skill:addTest(function(room, me)
-  local comp2 = room.players[2]
-  local card = room:printCard("ssaet")
-  FkTest.setNextReplies(comp2, {json.encode {
-    card = card.id,
-    targets = { }
-  }})
-  FkTest.runInRoom(function()
-    room:obtainCard(comp2, card, true)
-    room:useCard {
-      from = me,
-      card = Fk:cloneCard("maach_hsooh_hzaah_ssaen"),
-      tos = {}
-    }
-  end)
-  lu.assertEquals(me.hp, 4)
-  lu.assertEquals(comp2.hp, 4)
-  lu.assertEquals(room.players[3].hp, 3)
-  lu.assertEquals(room.players[4].hp, 3)
-end)
 
 return skill

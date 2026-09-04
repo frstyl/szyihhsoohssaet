@@ -4,7 +4,7 @@ local hzoavqhqximh = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["hzoavqhqximh"] = "𠢕飲",
-  [":hzoavqhqximh"] = "額度抽牌前發動.伱視爲起動烈酒(无視次數),印取1空",
+  [":hzoavqhqximh"] = "伱額定抽牌前發動.伱視爲起動烈酒(无視次數),印取1空",
 
   ["@jiudun_drank"] = "酒",
   ["#hzoavqhqximh-invoke"] = "𠢕飲：你可以摸一张牌，视为起動【酒】",
@@ -24,7 +24,7 @@ hzoavqhqximh:addEffect(fk.DrawNCards, {
   on_use = function(self, event, target, player, data)
     local room = player.room
     data.n=data.n-1
-      local ids= S.getKhouc(room,1)
+      local ids= S.getKhouc(1)
     room:moveCards({
       ids = ids,
       to = player,

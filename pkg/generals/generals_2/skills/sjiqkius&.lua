@@ -28,7 +28,7 @@ sjiqkius:addEffect("active", {
   on_use = function(self, room, effect)
     local from = effect.from
     local to = effect.tos[1]  --
-    S.playCard(effect.from,effect.cards,sjiqkius.name)
+    S.playCard(effect.cards,sjiqkius.name,effect.from)
     room:recover{
       who = to,
       num = 2,

@@ -14,7 +14,7 @@ skill:addEffect("cardskill", {
   mod_target_filter = Util.TrueFunc,
   can_use = function(self, player, card, extra_data)
     return not player:isProhibited(player, card) and
-      ((extra_data and (extra_data.bypass_times or extra_data.analepticRecover)) or
+      ((extra_data and (extra_data.bypass_times or extra_data.tsiuhRecover)) or
       self:withinTimesLimit(player, Player.HistoryTurn, card, "tsiuh", player))
   end,
   on_use = function(self, room, use)
@@ -22,14 +22,14 @@ skill:addEffect("cardskill", {
       use:addTarget(use.from)
     end
 
-    if use.extra_data and use.extra_data.analepticRecover then
+    if use.extra_data and use.extra_data.tsiuhRecover then
       use.extraUse = true
     end
   end,
   on_effect = function(self, room, effect)
     local to = effect.to
-    room:setEmotion(to, "./packages/maneuvering/image/anim/analeptic")
-    if effect.extra_data and effect.extra_data.analepticRecover then
+    room:setEmotion(to, "./packages/maneuvering/image/anim/tsiuh")
+    if effect.extra_data and effect.extra_data.tsiuhRecover then
       if to:isWounded() and not to.dead then
         room:recover({
           who = to,

@@ -4,12 +4,12 @@ local dvoatkhijs = fk.CreateSkill {
 
 Fk:loadTranslationTable{
 ["dvoatkhijs"] = "奪气",
-[":dvoatkhijs"] = "伱致傷後,若爲當轉內首次傷害事件,伱可發動,伱抽x｡x爲處理區牌數",
+[":dvoatkhijs"] = "伱致傷後,若爲1轉內首次傷害事件,伱可發動,伱抽x｡x爲處理區牌數",
 ["#dvoatkhijs-invoke"]="奪气 抽 %src ",
 
 }
 
-dvoatkhijs:addEffect(fk.Damage, {  --第一次 致傷後 ? 第一次傷害事件/
+dvoatkhijs:addEffect(fk.Damaged, {  --第一次 致傷後 ? 第一次傷害事件/
   anim_type = "drawcard",
   can_trigger = function(self, event, target, player, data)
     return data.from == player 

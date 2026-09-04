@@ -10,7 +10,6 @@ Fk:loadTranslationTable{
 
 skill:addEffect(fk.DamageInflicted, {
   -- global = true,
-  late_refresh = true,
   can_trigger = function(self, event, target, player, data)
     return target==player
     and data.damageType == fk.FireDamage 

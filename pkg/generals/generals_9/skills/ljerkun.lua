@@ -12,7 +12,7 @@ Fk:loadTranslationTable{
   ["$ljerkun2"] = "汝昰斯未聽過我李成聞達之威名无"
 }
 
-ljerkun:addEffect(fk.Damage, {
+ljerkun:addEffect(fk.Damaged, {
   anim_type = "drawcard",
   can_trigger = function(self, event, target, player, data)
     return data.from == player and player:hasSkill(ljerkun.name)

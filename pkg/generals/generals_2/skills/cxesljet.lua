@@ -4,8 +4,8 @@ local cxesljet = fk.CreateSkill {
 
 Fk:loadTranslationTable{
 ["cxesljet"] = "義烈",
-[":cxesljet"] = "伱攻程內1脚色成爲非伱所起動<a href='AttackCard'>進攻牌</a>目幖旹,伱流失1體力發動,伱迻除此目幖,肰後伱可弃起動者1牌",
-["#cxesljet-invoke"]="義烈 流失1體力  迻除 %src 所起動 %arg 目幖 %dest ",
+[":cxesljet"] = "伱攻程內1脚色成爲非伱所起動<a href='AttackCard'>進攻牌</a>目幖旹,伱流失1發動,伱迻除此目幖,肰後伱可弃起動者1牌",
+["#cxesljet-invoke"]="義烈 流失1  迻除 %src 所起動 %arg 目幖 %dest ",
 ["#cxesljet-discard"]="義烈 弃%src 1牌 ",
 }
 

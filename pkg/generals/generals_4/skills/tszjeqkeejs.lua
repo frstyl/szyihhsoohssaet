@@ -4,11 +4,11 @@ local tszjeqkeejs = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["tszjeqkeejs"] = "支計",
-  [":tszjeqkeejs"] = "一脚色額定抽牌歬,伱可選擇1項令其執行發動.➀本次抽牌數+1,當轉存牌數數-1➁本次抽牌數-1,當轉存牌數數+1(抽牌數已爲0則不可選)",  --額定手牌數改名
+  [":tszjeqkeejs"] = "一脚色額定抽牌歬,伱可選擇1項令其執行發動.➀本次抽牌數+1,1轉存牌數數-1➁本次抽牌數-1,1轉存牌數數+1(已爲0則不可減)",  --存牌數改名
 
   ["#tszjeqkeejs-invoke"] = "%src 將抽牌 伱可選擇1項",
-  ["#tszjeqkeejs_add"] = "令其多抽1 本輪額定手牌數-1",
-  ["#tszjeqkeejs_minus"] = "令其少抽1 本輪額定手牌數+1",
+  ["#tszjeqkeejs_add"] = "令其多抽1 本輪存牌數-1",
+  ["#tszjeqkeejs_minus"] = "令其少抽1 本輪存牌數+1",
 
   ["$tszjeqkeejs1"] = "餘糧甚厚",  --
 }
@@ -18,10 +18,13 @@ tszjeqkeejs:addEffect(fk.DrawNCards, {
     end,
   on_cost = function(self, event, target, player, data)
     local room=player.room
-    local choices={ "#tszjeqkeejs_add", "#tszjeqkeejs_minus","Cancel"}
-    if data.n<1 then choices={ "#tszjeqkeejs_add","Cancel"} end
+    local all_choices={ "#tszjeqkeejs_add", "#tszjeqkeejs_minus","Cancel"}
+    local choices={"Cancel"}
+    if data.n>0 then choices={ "#tszjeqkeejs_add","Cancel"} end
+    if S.getMaxCards(player)>0 then table.insert(choices, "tszjeqkeejs_minus") end
     local choice = room:askToChoice(player, {
       choices = choices,
+      all_choices=all_choices,
       skill_name = tszjeqkeejs.name,
       prompt="#tszjeqkeejs-invoke:"..target.id
     })

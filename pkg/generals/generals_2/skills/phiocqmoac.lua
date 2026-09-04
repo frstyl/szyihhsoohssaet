@@ -4,7 +4,7 @@ local phiocqmoac = fk.CreateSkill{
 }
 Fk:loadTranslationTable{
 ["phiocqmoac"] = "鋒芒",
-[":phiocqmoac"] = "游戲始旹,將刀置入伱裝僃區｡伱末段始旹无限次,伱可與迻除1刀或事件牌選擇1其他脚色發動.伱與其1傷",
+[":phiocqmoac"] = "游戲始旹,將刀置入伱裝僃區｡伱末段始旹无限次,伱可與迻除1刀或事件牌選擇1其它脚色發動.伱與其1傷",
 
 ["#phiocqmoac-choose"] = "鋒芒 選擇所弃牌 傷害目幖",
 }
@@ -46,7 +46,7 @@ phiocqmoac:addEffect(fk.EventPhaseStart, {
     local room=player.room
     local ids=player:getPile("maestoav_toav")
     for _, id in ipairs(player:getCardIds("h")) do
-      if S.getCardTypeByName(Fk:getCardById(id).name)==5  then
+      if S.getCardTypeByName(Fk:getCardById(id).name)==6  then
         table.insert(ids,id)
       end
     end

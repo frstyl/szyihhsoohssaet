@@ -4,7 +4,7 @@ local bunqzjins = fk.CreateSkill {
 
 Fk:loadTranslationTable{
 ["bunqzjins"] = "焚㶳",
-[":bunqzjins"] = "伱致傷旹若其➀无屬,伱可發動,改爲火傷➁火屬,伱可預打出1手牌發動｡伱印獲得1｢因勢利導｣",
+[":bunqzjins"] = "伱致傷旹若其➀无屬,伱可發動,改爲火傷➁火屬,伱可選擇1手牌發動｡褈鑄爲｢因勢利導｣",
 
 ["#bunqzjins-invoke"] = "焚㶳 伱對 %src 致傷 是否 轉爲火傷",
 ["#bunqzjins-choose"] = "焚㶳 打出1手牌 獲得 ｢因勢利導｣",
@@ -15,7 +15,7 @@ Fk:loadTranslationTable{
 
 local S = require "packages/szyihhsoohssaet/szyih_guos" 
 
-bunqzjins:addEffect(fk.DamageCaused, {
+bunqzjins:addEffect(fk.DamageInflicted, {
   anim_type = "offensive",
   can_trigger = function(self, event, target, player, data)
     return data.from==player and player:hasSkill(bunqzjins.name) 
@@ -33,7 +33,7 @@ bunqzjins:addEffect(fk.DamageCaused, {
         return true
       end
     else
-      local cards = S.askToPlayCard(player, {
+      local cards = room:askToCards(player, {
         min_num = 1,
         max_num = 1,
         include_equip = true,
@@ -54,19 +54,30 @@ bunqzjins:addEffect(fk.DamageCaused, {
     if event:getCostData(self).choice==fk.NormalDamage then
     data.damageType = fk.FireDamage 
     else
-      S.playCard(player,event:getCostData(self).cards, bunqzjins.name)
+      -- S.playCard(event:getCostData(self).cards, bunqzjins.name,player)
       if player.dead then return end
       local room=player.room
+      -- room:moveCards({
+      --   ids = S.getKhouc(1,"hqjin_szjer_ljis_doavs"),
+      --   to = player,
+      --   toArea = Card.PlayerHand,
+      --   moveReason = fk.ReasonJustMove,
+      --   proposer = player,
+      --   skillName = bunqzjins.name,
+      --   moveVisible = true,
+      -- })
       room:moveCards({
-        ids = S.getKhouc(room,1,"hqjin_szjer_ljis_doavs"),
-        to = player,
-        toArea = Card.PlayerHand,
-        moveReason = fk.ReasonJustMove,
+        ids = event:getCostData(self).cards,
+        to = nil,
+        toArea = Card.DiscardPile,
+        moveReason = fk.ReasonRecast,
         proposer = player,
         skillName = bunqzjins.name,
         moveVisible = true,
       })
-    end
+      if player.dead then return end
+      S.printKhouc(plyayer,1,bunqzjins.name,"hqjin_szjer_ljis_doavs")
+      end
 
   end,
 })
@@ -84,7 +95,7 @@ bunqzjins:addEffect(fk.DamageCaused, {
 -- })
 
 
--- bunqzjins:addEffect(fk.DamageCaused, {
+-- bunqzjins:addEffect(fk.DamageInflicted, {
 --   anim_type = "offensive",
 --   can_trigger = function(self, event, target, player, data)
 --     return target==player and player:hasSkill(bunqzjins.name) 

@@ -4,7 +4,7 @@ local ssaocqlioc = fk.CreateSkill {
 }
 Fk:loadTranslationTable{
   ["ssaocqlioc"] = "雙龍",
-  [":ssaocqlioc"] = "伱起動殺旹,可選擇目幖/額外目幖發動,對其生效次數+1/增加此目幖",
+  [":ssaocqlioc"] = "伱起動殺旹,可選擇目幖/1額外目幖發動,對其生效次數+1/增加此目幖",
 --隱祕
   ["#ssaocqlioc-choose"] = "雙龍 選擇目幖 ",
 
@@ -24,7 +24,7 @@ ssaocqlioc:addEffect(fk.CardUsing, {
     local targets = table.filter(data.tos, function(p)
       return not p.dead
     end)
-    local ex=data:getExtraTargets({bypass_distances=false})
+    local ex=data:getExtraTargets({bypass_distances=false, bypass_times=true})
     table.insertTableIfNeed(targets,ex)
     if #targets == 0 then return end
 

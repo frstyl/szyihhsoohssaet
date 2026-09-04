@@ -232,9 +232,10 @@ end
 ---@return Player
 szyih_guos.getNextOne = function (playerid, num, ignoreRemoved, ignoreRest)  --return playerid?
   local player = type(playerid)=="number" and Fk:currentRoom():getPlayerById(playerid) or playerid
+  if num==0 then return player end
+  if num==nil then num=1 end  --nextOne
   local t= szyih_guos.getSeats(player, ignoreRemoved, ignoreRest)
-  local n =(1+num)%(#t)
-  if n==0 then n=#t end
+  local n =(num)%(#t)+1
   return  t[n]
 ------
     -- local player = type(playerid)=="number" and Fk:currentRoom():getPlayerById(playerid) or playerid
@@ -257,12 +258,12 @@ szyih_guos.getNextOne = function (playerid, num, ignoreRemoved, ignoreRest)  --r
     --   table.insert(order,p)
     --   end
     -- end
-    -- local  n= (table.indexOf(order, player) + num  )%  #order 
-    --   if n==0 then
-    --     n= #order 
-    --   end
+    -- local  n= (table.indexOf(order, player) + num  -1)%  #order +1
+
     -- return  order[n]--進id 出class
 end
+
+---@return player[] table 
 szyih_guos.getNeighbor = function (playerid, num, ignoreRemoved, ignoreRest)  --return playerid?
   assert(playerid )
 
@@ -278,9 +279,12 @@ szyih_guos.getNeighbor = function (playerid, num, ignoreRemoved, ignoreRest)  --
     table.insertIfNeed(t, szyih_guos.getNextOne(player,num,ignoreRemoved, ignoreRest))
     table.insertIfNeed(t, szyih_guos.getNextOne(player,num,ignoreRemoved, ignoreRest))
   end
+  return t
 end
 
+--1爲順旹針 0爲對位
 szyih_guos.getDirectFromAToB= function (A, B,ignoreRemoved, ignoreRest)
+  if not A or not B then return 0 end
   if A==B then return 0 end
   local seat= szyih_guos.getSeats(A,ignoreRemoved, ignoreRest)
   local n = table.indexOf(seat,B) -1 - (#seat)//2  
@@ -348,58 +352,59 @@ szyih_guos.setSquad = function (room,playerids)  --ids {}
   end
 end
 
-szyih_guos.getSquad = function (playerid)  --ids {}
-  -- local player = type(playerid)=="number" and Fk:currentRoom():getPlayerById(playerid) or playerid
-  local player=playerid
-  local room = Fk:currentRoom()
-  local d=room:getBanner("squad")
-  if d==nil then return {player.id} end
-  local id =player.id
-  for _, t in pairs(room:getBanner("squad")) do
-    if table.contains(t,id) then
-      return t
-    end
-  end
-  return {player.id}
-end
+-- szyih_guos.getSquad = function (playerid)  --ids {}
+--   -- local player = type(playerid)=="number" and Fk:currentRoom():getPlayerById(playerid) or playerid
+--   local player=playerid
+--   local room = Fk:currentRoom()
+--   local d=room:getBanner("squad")
+--   if d==nil then return {player.id} end
+--   local id =player.id
+--   for _, t in pairs(room:getBanner("squad")) do
+--     if table.contains(t,id) then
+--       return t
+--     end
+--   end
+--   return {player.id}
+-- end
 
-szyih_guos.isSameSquad = function (playerid1,playerid2)  --ids {}
-  if playerid1==playerid2 then return true end
-  -- local id1= type(playerid1)=="number" and playerid1 or playerid1.id
-  local id2= type(playerid2)=="number" and playerid2 or playerid2.id
-  return table.contains(szyih_guos.getSquad(playerid1), id2)
-end
+-- szyih_guos.isSameSquad = function (playerid1,playerid2)  --ids {}
+--   if playerid1==playerid2 then return true end
+--   -- local id1= type(playerid1)=="number" and playerid1 or playerid1.id
+--   local id2= type(playerid2)=="number" and playerid2 or playerid2.id
+--   return table.contains(szyih_guos.getSquad(playerid1), id2)
+-- end
 
-szyih_guos.joinSquad = function (room,playerid1,joiners)
-  -- local t =type(joiners)==
-  local t =szyih_guos.getSquad(playerid1)
-  for _, i in ipairs(joiners) do
-    table.insert(t,i)
-  end
-  szyih_guos.setSquad(room,t)
-end
+-- szyih_guos.joinSquad = function (room,playerid1,joiners)
+--   -- local t =type(joiners)==
+--   local t =szyih_guos.getSquad(playerid1)
+--   for _, i in ipairs(joiners) do
+--     table.insert(t,i)
+--   end
+--   szyih_guos.setSquad(room,t)
+-- end
 
-szyih_guos.inviteToJoinSquad = function (room,player,players,sourceName,prompt)
-  local req = Request:new(player, "AskForSkillInvoke")
-  req.focus_text = sourceName
-  req.receive_decode = false -- 这个返回的都是"1" 不用decode
-  local prompt=prompt or "是否加入%src"
-  local sourceName=sourceName or ""
-  local data={sourceName,prompt}
-  for _, p in ipairs(players) do
-    req:setData(p, data)
-  end
-  req:ask()
-  local t={}
-  for _, p in ipairs(players) do
-    if  req:getResult(p) ~= "" then
-      talbe.insert(t,p)
-    end
-  end
-  return t
-end
---
-szyih_guos.getKhouc = function (room, n, toMark)
+-- szyih_guos.inviteToJoinSquad = function (room,player,players,sourceName,prompt)
+--   local req = Request:new(player, "AskForSkillInvoke")
+--   req.focus_text = sourceName
+--   req.receive_decode = false -- 这个返回的都是"1" 不用decode
+--   local prompt=prompt or "是否加入%src"
+--   local sourceName=sourceName or ""
+--   local data={sourceName,prompt}
+--   for _, p in ipairs(players) do
+--     req:setData(p, data)
+--   end
+--   req:ask()
+--   local t={}
+--   for _, p in ipairs(players) do
+--     if  req:getResult(p) ~= "" then
+--       talbe.insert(t,p)
+--     end
+--   end
+--   return t
+-- end
+-- --
+szyih_guos.getKhouc = function (n, toMark)
+  local room=Fk:currentRoom()
   local ids = {}
   for _, id in ipairs(room.void) do
     if n <= 0 then break end
@@ -408,6 +413,9 @@ szyih_guos.getKhouc = function (room, n, toMark)
       for mark, value in pairs(card.mark) do  --應該无需保畱者 ??
         card.mark[mark]=nil
       end
+      card.suit=Card.NoSuit
+      card.number=0
+      card.color=Card.NoColor
       room:setCardMark(Fk:getCardById(id), MarkEnum.DestructIntoDiscard, 1)
       table.insert(ids, id)
       n = n - 1
@@ -444,15 +452,10 @@ szyih_guos.getKhouc = function (room, n, toMark)
   return ids
 end
 
-szyih_guos.printKhouc = function (room, name, player, skill_name,  n)
-  local ids= szyih_guos.getKhouc(room,n or 1)
-  if name then 
-    for _, id in ipairs(ids) do
-      room:setCardMark(Fk:getCardById(id),"@@khouc_filter_view_as",name)
-    end
-  end
-  if player then
-  room:moveCards({
+szyih_guos.printKhoucTo = function (player, n, skill_name, toMark)
+  if not player then return end
+  local ids= szyih_guos.getKhouc(n or 1, toMark)
+  Fk:currentRoom():moveCards({
     ids = ids,
     to = player,
     toArea = Card.PlayerHand,
@@ -461,9 +464,50 @@ szyih_guos.printKhouc = function (room, name, player, skill_name,  n)
     skillName = skill_name,
     moveVisible = true,
   })
-  end
+  
   return ids
-  -- Fk:filterCard(ids[1], player)
+end
+
+--能否暗置
+szyih_guos.canSetVisible= function(cid,state)
+  local card = type(cid)=="number" and  Fk:getCardById(cid) or cid
+  -- local card=type(card)=="string" and   Fk:getCardById(cid) or cid
+  return state==1 and not card:hasMark("@@opend") or not card:hasMark("concealed")
+end
+
+szyih_guos.clearVisible= function(room,card)
+  -- local room=Fk:currentRoom()
+  for k,v in ipairs(card.mark) do
+    if k:startsWith("@@open-") or k=="@@opend" or k:startsWith("concealed-") or k=="concealed" then 
+      v=nil 
+      room:doBroadcastNotify("SetCardMark", {
+      card.id,
+      k,
+      v,
+    })
+    end
+  end
+end
+
+---@param state? number @ 1亮 
+
+szyih_guos.setCardsVisible= function(cards,state, temp,area)
+  local room=Fk:currentRoom()
+  if not cards then return end
+  if temp==nil then temp="" end
+  if area==nil then area={Card.PlayerHand, Card.PlayerEquip, Card.PlayerJudge,} end
+  local mark_name= state== 1 and "@@opend" or "concealed"
+  if not cards[1] and cards.name then 
+    szyih_guos.clearVisible(room,cards)
+    room:setCardMark(cards,mark_name..temp.."-inarea", area)
+    return
+  end
+  for _, id in ipairs(cards) do
+    local card = Fk:getCardById(id)
+    szyih_guos.clearVisible(room,card)
+    room:setCardMark(card,mark_name..temp.."-inarea", area)
+    -- room:setCardMark(card,"view_as"..temp.."-inarea", {}) 
+  end
 end
 
 ---@param player @目幖
@@ -792,17 +836,26 @@ end
 ---@param special_params {playerid,reqData} reqData{skillName, pattern, prompt, cancelable, use_extra_data, disabledSkillNames}
 ---@param expand_cards {playerid,params} 默認展開葢牌?
 ---@param only_trigger bool 止觸發
-szyih_guos.askToUseKoarbiukCard = function(room, players, params,special_params,expand_cards, only_trigger)  --同旹  --room self 
+szyih_guos.askToUseKoarbiukCard = function(players, params, special_params, expand_cards, only_trigger, only_one)  --同旹  --room self 
   -- local room=players[1].room
+  local room=Fk:currentRoom()
 
-
-  local only_one =nil
   if players==nil  then return end
   -- if players==nil or (type(players)=="table" and  #players == 0 ) then --止不可響應无旹機 
   --   room.logic:trigger(fk.AfterAskForNullification, nil, { eventData =params.event_data})    --多人 无人可用則躍過  --詢問旹? 
   --   return 
   -- end
-  if not players[1] then assert(players:isInstanceOf(Player)) only_one=true players={players} end
+  local target=players
+  if not players[1] and not only_one then
+    if  not players.hp and only_trigger==nil then 
+      only_trigger=  true
+    else
+      assert(players:isInstanceOf(Player))
+      only_one=true
+      
+      players={players} 
+    end
+  end
 
 
   params.pattern = type(params.pattern) == "string" and params.pattern or tostring(Exppattern{ id = params.pattern })
@@ -857,11 +910,10 @@ szyih_guos.askToUseKoarbiukCard = function(room, players, params,special_params,
   --   room.logic:trigger(fk.AfterAskForNullification, nil, { askForUseCardData =params and params.event_data })
   --   return nil
   -- end 
-  local target = only_one and #players==1 and players[1] or nil
   local useResult
 
   room.logic:trigger(fk.HandleAskForPlayCard, target, askForUseCardData, true)
-  room.logic:trigger(fk.AskForCardUse, target, askForUseCardData)  --插入中還被封?--止用于refresh
+  room.logic:trigger(fk.AskForCardUse, target, askForUseCardData)  --插入中還被封?--止用于refresh 无法記錄次數
   askForUseCardData.afterRequest = true
   room.logic:trigger(fk.HandleAskForPlayCard, target, askForUseCardData, true)
   askForUseCardData.afterRequest = false
@@ -871,11 +923,14 @@ szyih_guos.askToUseKoarbiukCard = function(room, players, params,special_params,
   if askForUseCardData.result then
     if type(askForUseCardData.result) == 'table' then
       useResult = askForUseCardData.result
+      goto theEnd
     else
       askForUseCardData.result = nil
     end
-  elseif not only_trigger then  --req
+  end
+  if  only_trigger then goto theEnd end
 
+  if not only_one then
       local removeSkill= function() end
         removeSkill= function()
           for _, p in ipairs(players) do 
@@ -949,7 +1004,7 @@ szyih_guos.askToUseKoarbiukCard = function(room, players, params,special_params,
       Fk.currentResponsePattern = nil
     until type(useResult) ~= "string"
   else --單人
-    local disabledSkillNames = disabledSkillNamesForEachPlayer[target.id] or {}  --改disabledSkillNames同時改disabledSkillNamesForEachPlayer
+    local disabledSkillNames = target and disabledSkillNamesForEachPlayer[target.id] or {}  --改disabledSkillNames同時改disabledSkillNamesForEachPlayer
 
     repeat
       useResult = nil
@@ -958,7 +1013,7 @@ szyih_guos.askToUseKoarbiukCard = function(room, players, params,special_params,
       Fk.currentResponsePattern = pattern
       room.logic:trigger(fk.HandleAskForPlayCard, target, askForUseCardData, true)
 
-      local req = Request:new(target, command)
+      local req = Request:new(target, "AskForUseCard")
       req.focus_text = skillName or ""
       req.timeout = room:getBanner("Timeout") and room:getBanner("Timeout")[tostring(target.id)] or room.timeout
       req:setData(target, data)
@@ -989,6 +1044,7 @@ szyih_guos.askToUseKoarbiukCard = function(room, players, params,special_params,
         end
       end
     until type(useResult) ~= "string"
+
   end
 
   if #disabledSkillNamesForEachPlayer >0 then
@@ -1004,7 +1060,9 @@ szyih_guos.askToUseKoarbiukCard = function(room, players, params,special_params,
 
     room:setBanner("bannedSkillsForEachPlayer", disabledSkillNamesForEachPlayer)
   end
-  if target then --并入上?
+
+  ::theEnd::
+  if only_one and target then --并入上?
     askForUseCardData.result = useResult
     room.logic:trigger(fk.AfterAskForCardUse, target, askForUseCardData)
     return useResult
@@ -1124,7 +1182,7 @@ end
 -- end
 
 
-szyih_guos.getCardUsageType = function(cardid) --卽旹 延遲 持續 --錦囊止延旹錦囊 代表延旹,卽旹爲basic
+szyih_guos.getCardUsageType = function(cardid) --卽旹 延遲 持續 --計謀止延旹計謀牌 代表延旹,卽旹爲basic
   local card=cardid
   if type(card) == "number" then
     card = Fk:getCardById(cardid)
@@ -1142,7 +1200,7 @@ end
 
 --local cardNameAndType = {}
 szyih_guos.getCardSubtypeByName = function(card,is_verse,to_string)  --getNamesBySubtype
-  local cardNames = {  }--基 錦囊 裝僃 法術 事件   --en?
+  local cardNames = {  }--基 計謀 裝僃 法術 事件   --en?
     cardNames[1] = {"ssaet",            "fire__ssaet", "thunder__ssaet",  "chaos__ssaet",
           "szjemh",              "chaos__szjemh",
 
@@ -1175,7 +1233,7 @@ szyih_guos.getCardSubtypeByName = function(card,is_verse,to_string)  --getNamesB
           "buac_hzfan_mujs_nzjen","buac_muj_dooh_dzjemh", "tsiac_keejs_dzius_keejs","theem_prac_kaemh_tsoavs",
 
           "hqjin_deek_qwe_tsji", "buoh_teejh_tthiu_sjin", "hsiap_paak",
-          "tous_tsiacs", "hsvoah_kouc","szyih_kouc",  "pik_dzziach_liac_ssaen", "hzaac_tshjes","thou_liac_hzvoans_dduoh", "hsio_hzvoach_hqjit_tshiac", "hqjin_szjer_ljis_doavs", "moan_theen_kvas_hsoeojh","sjevs_lih_dzoac_toav","thooms_tsshaet",
+          "tous_tsiacs", "hsvoah_kouc","szyih_kouc",  "pik_dzziach_liac_ssaen", "hzaac_tshjes","mae_biuk","thou_liac_hzvoans_dduoh", "hsio_hzvoach_hqjit_tshiac", "hqjin_szjer_ljis_doavs", "moan_theen_kvas_hsoeojh","sjevs_lih_dzoac_toav","thooms_tsshaet",
           
           "theet_soak_ljen_hzfen",  --鐵索算何 ->因勢利導
           "maach_hsooh_hzaah_ssaen",  "kiuc_szjih_sje_ttiac",  --"muans_tsjens_dzeej_puat",
@@ -1186,7 +1244,7 @@ szyih_guos.getCardSubtypeByName = function(card,is_verse,to_string)  --getNamesB
           --延旹
           "khxes_kheet_sis_tssaas", "tvoans_liac_dzyet_quan", "tsjek_tshoavh_doon_liac",  "tshoak_hsvoah_tsjek_sjin",
           --derive
-          "buak_koavh_qwe_nzjin", "muo_ttiuc_ssaac_qiuh", "dzzuoh_dzziach_khoeoj_hsfa","tsjas_toav_ssaet_nzjin",
+          "buak_koavh_qwe_nzjin", "muo_ttiuc_ssaac_qiuh", "dzzuoh_dzziach_khoeoj_hsfa","tsjas_toav_ssaet_nzjin","ljeq_kaens", "tthxins_hsvoah_toah_kiap",
           
           "nullification", -- "counter", "deliberate",
           "snatch", "dismantlement", "collateral", --en nzjen
@@ -1196,6 +1254,7 @@ szyih_guos.getCardSubtypeByName = function(card,is_verse,to_string)  --getNamesB
           "amazing_grace", "god_salvation",
           "ex_nihilo",  
 
+          
           "indulgence", "supply_shortage", --"tsjek_tshoavh_doon_liac",
 
         }
@@ -1243,6 +1302,8 @@ szyih_guos.getCardSubtypeByName = function(card,is_verse,to_string)  --getNamesB
 
     cardNames[10]={
           "lih_doeojs_doav_kiac",
+          "refingency",
+
           "theen_djis_puanh_phius", --七死七生cvos jox 挩胎換骨? hzvah_piu禍福无門 ?--theen qiuh piu tsshik,gvoah piu toan hzaac
           "lioc_zzja_khih_liuk",--
 
@@ -1259,6 +1320,7 @@ szyih_guos.getCardSubtypeByName = function(card,is_verse,to_string)  --getNamesB
           "bioc_hsioc_hsfas_kjit", --Ex
           "tsoeojs_ssaac", --枯木逢萅
           "tsoeoj_hzvoah",--天災?
+
         }
     cardNames[11] = {"tous_puap_phoas_koav_ljem",
           "liac_ssaen_hsoavh_hsoans_kiap_puap_ddiac",
@@ -1271,7 +1333,7 @@ szyih_guos.getCardSubtypeByName = function(card,is_verse,to_string)  --getNamesB
           "dzzi_tshjen_doavs_kaap",
        }
 
-  cardNames[12]={"khouc"} --😓️
+  -- cardNames[12]={"khouc"} --😓️?
 
   if is_verse== true then
     return cardNames[card] or {}
@@ -1296,18 +1358,20 @@ szyih_guos.getCardSubtypeByName = function(card,is_verse,to_string)  --getNamesB
   --   return -1
   -- end
 
-  return 12 --nil?未知?无類?
+  return 0 --nil?未知?无類?
 end
 
 ---@field public is_verse bool @ 輸入類返回名列表
 szyih_guos.getCardTypeByName = function(card,is_verse,to_string) --寫一遍就行 Subtype --getNamesBytype
-  local cardTypes = {}--基 錦囊 裝僃 法術 事件   --en?
-  cardTypes[1]={1,2}  --基 物,作
-  cardTypes[2]={3}  --錦囊
+  local cardTypes = {}--基 計謀 裝僃 法術 事件   --en?
+  cardTypes[1]={1}  --基 物,作
+  cardTypes[2]={3}  --計謀
   cardTypes[3]={4,5,6,7,8} --5類裝僃
-  cardTypes[4]={9,10}  --天災 法術
-  cardTypes[5]={11}  --事件
-  cardTypes[6]={12}  --无
+  cardTypes[4]={2}  --物 實體牌--解釋不清 多數計謀亦行動
+
+  cardTypes[5]={9,10}  --天災 法術
+  cardTypes[6]={11}  --事件
+  -- cardTypes[7]={12}  --无
 
   if is_verse==true then
     if type(card)~="number" or cardTypes[card] ==nil then return {} end
@@ -1333,16 +1397,64 @@ szyih_guos.getCardTypeByName = function(card,is_verse,to_string) --寫一遍就�
     end
   end
 
-  return -2 --nil?
+  return 0
+end
+
+szyih_guos.getCardSuptypeByName = function(card,is_verse,to_string) --寫一遍就行 Subtype --getNamesBytype
+  local cardTypes = {}
+  cardTypes[1]={1}
+  cardTypes[2]={3,9,10,11}
+  cardTypes[3]={2,4,5,6,7,8} --裝僃 物資
+    
+  if is_verse==true then
+    if type(card)~="number" or cardTypes[card] ==nil then return {} end
+    local t=szyih_guos.getCardSubtypeByName(cardTypes[card][1],true)
+    for i=2, #cardTypes[card],1 do
+      table.insertTable(t,szyih_guos.getCardSubtypeByName(cardTypes[card][i],true))
+    end
+    return t
+  end
+  local cardName =""
+  if type(card) == "string"  then
+    cardName=card
+  elseif type(card) == "number" then
+    cardName = Fk:getCardById(card).name
+  elseif  type(card) == "table" then
+    cardName=card.name
+  end
+
+  local typ=szyih_guos.getCardSubtypeByName(cardName)
+  for i, typs in pairs(cardTypes) do
+    if table.contains(typs, typ) then
+      return to_string~=true and i or szyih_guos.convertType(i)
+    end
+  end
+
+  return 0
 end
 
 ---@field public notype boolean? @ 无類別不同類且不異類 默認爲總不同類
-szyih_guos.compareCardType = function(c1,c2, different, notype)  --name
-  local n =szyih_guos.getCardTypeByName(c1)
-  local m=szyih_guos.getCardTypeByName(c2)
-  if notype==true and (n==6 or m==6) then return false end
-  local same=n~=6 and n == m
+szyih_guos.compareCardType = function(c1,c2, level, different, notype )  --name
+  local n=-9
+  local m=-10
+  
+  if level==1 then
+     n =szyih_guos.getCardSubtypeByName(c1)
+     m=szyih_guos.getCardSubtypeByName(c2)
+
+  elseif   level==2 then
+     n =szyih_guos.getCardTypeByName(c1)
+     m=szyih_guos.getCardTypeByName(c2)
+
+  elseif level==nil or level==3 then
+     n =szyih_guos.getCardSuptypeByName(c1)
+     m=szyih_guos.getCardSuptypeByName(c2)
+  end
+
+  local same= n== m
   if  different==true then return not same else return same end
+  return nil
+
 end
 
 szyih_guos.compareCardSubType = function(c1,c2, different, notype)
@@ -1362,7 +1474,7 @@ szyih_guos.getCardNameLength = function(card)
   elseif  type(card) == "table" then
     cardName=card.trueName
   end
-  if table.contains({"khouc","hsio","hqrach"}, cardName) then return 0 end
+  if table.contains({"khouc","","hsio","hqrach"}, cardName) then return 0 end
   return Fk:translate(cardName, "zh_CN"):len()  
 end
 
@@ -1382,7 +1494,7 @@ szyih_guos.isAttackCard = function(card)
 
 end
 Fk:loadTranslationTable{
-  ["AttackCard"] = "\"<b>進攻牌</b>\" 殺 鬥將 釜底抽薪 因敵爲資 猛虎下山 弓矢 火攻 水攻 詐 斷",
+  ["AttackCard"] = "\"<b>進攻牌</b>\" 殺 鬥將 釜底抽薪 因敵爲資 猛虎下山 弓矢斯張 火攻 水攻 掎挈伺詐 斷糧絕援",
 }
 
 szyih_guos.isTargetedCard = function(cardid)
@@ -1421,15 +1533,16 @@ szyih_guos.getCardNamesBySubtype = function(typeN)  --number
 end
 
 szyih_guos.getCardNamesByType = function(typeN)  --number
+  local all=Fk:getAllCardNames() 
+  local t={}
   if type(typeN)=="number" then 
-    return szyih_guos.getCardTypeByName(typeN,true)
-  end
-  if type(typeN)=="table"  then
-    local t={}
+    t = szyih_guos.getCardTypeByName(typeN,true)
+  elseif type(typeN)=="table"  then
     for _, n in ipairs(typeN) do
       table.insertTableIfNeed(t,szyih_guos.getCardTypeByName(n,true))
     end
   end
+  return table.filter(t,function(name) return table.contains(all, name) end)
 end
 
 szyih_guos.moveNonEquipIntoEquipArea = function (target, cards, skillName, convert, proposer, slots)  --指定裝僃欄  暫假定1種欄止1 1裝僃子類止1
@@ -1694,18 +1807,18 @@ szyih_guos.isIgnoreArmorFromAToB = function(from,to,card,useData,effectData)
   if not to then return end
 
         if card and card:hasMark("@@ignore_Armor")  then return true end
-        if useData and useData.extra_data and useData.extra_data.ignoreArmorTo and table.contains(useData.extra_data.ignoreArmorTo,to) then  --use不會中途迻去效果,不計數
+        if useData and useData.extra_data and useData.extra_data.ignore_Armor_to and table.contains(useData.extra_data.ignore_Armor_to,to) then  --use不會中途迻去效果,不計數
           return true
         end
         if effectData 
         and 
         (
-            (effectData.extra_data and effectData.extra_data.ignoreArmor)
+            (effectData.currentExtraData and effectData.currentExtraData.ignore_Armor)
           or ( 
             effectData.use 
             and effectData.use.extra_data 
-            and effectData.use.extra_data.ignoreArmorTo 
-            and table.contains(effectData.use.extra_data.ignoreArmorTo,to)  
+            and effectData.use.extra_data.ignore_Armor_to 
+            and table.contains(effectData.use.extra_data.ignore_Armor_to,to)  
           )
           )
         then
@@ -1763,23 +1876,70 @@ szyih_guos.isIgnoreArmorFromAToB = function(from,to,card,useData,effectData)
 
 end
 
+szyih_guos.isIgnorePlayerSkillsFromAToB = function(from,to,card,useData,effectData)
+  if not to then return end
+
+        if card and card:hasMark("@@ignore_Armor")  then return true end
+        if useData and useData.extra_data and useData.extra_data.ignore_player_skills_to and table.contains(useData.extra_data.ignore_player_skills_to,to) then  --use不會中途迻去效果,不計數
+          return true
+        end
+        if effectData 
+        and 
+        (
+            (effectData.currentExtraData and effectData.currentExtraData.ignore_player_skills)
+          or ( 
+            effectData.use 
+            and effectData.use.extra_data 
+            and effectData.use.extra_data.ignore_player_skills_to 
+            and table.contains(effectData.use.extra_data.ignore_player_skills_to,to)  
+          )
+          )
+        then
+          return true
+        end
+        if not from then return end
+        if from:hasMark("@@ignore_player_skills")  then ----无視任意防具 不分來源 不失效｡ 可与MarkArmorInvalidTo合併
+          return true--qinggang?
+        end
+        if from:hasMark("ssaet_ignore_player_skills") and card.trueName=="ssaet"   then ----无視任意防具 不分來源 不失效｡ 可与MarkArmorInvalidTo合併
+          return true--qinggang?
+        end
+        for _, skillName in ipairs(from:getTableMark("ignore_player_skills_by_skills"))  do --狀態技 
+          if from:hasSkill(skillName) then return true end  --hasSkill已攷慮技能失效
+        end
+        for _, skillName in ipairs(from:getTableMark("ssaet_ignore_player_skills_by_skills"))  do
+          if card and card.trueName=="ssaet" and  from:hasSkill(skillName) then return true end  --靑鋼劍 与類似
+        end
+        local suffixes = {""}  --每局 
+        table.insertTable(suffixes, MarkEnum.TempMarkSuffix)--phase turn round
+        for _, suffix in ipairs(suffixes) do
+          if table.contains(from:getTableMark("ignore_player_skills_to" .. suffix), to.id) or  --table insert 允許緟 迻除旹刪1卽可
+            table.contains(to:getTableMark("ignore_player_skills_from" .. suffix), from.id) then
+            return true
+          end
+        end
+
+
+end
+
 --攷慮虛擬
-szyih_guos.hasEquip = function(player,cardSubtype)
+szyih_guos.hasEquip = function(player,cardSubtype, converted, virtual)
   for _, cardId in ipairs(player.player_cards[Player.Equip]) do
-    card = player:getVirtualEquip(cardId) or Fk:getCardById(cardId)
-    if (cardSubtype == nil or card.sub_type == cardSubtype) 
+    card = converted~=false and player:getVirtualEquip(cardId) or Fk:getCardById(cardId)
+    if (cardSubtype == nil or card.sub_type == cardSubtype or card.trueName == cardSubtype) 
     and not card.name:endsWith("not_equip") then
       return true
     end
   end
 
+  if virtual==false then return false end
   for _,id in ipairs(player:getTableMark("@$virtual_equip")) do
     local card =Fk:getCardById(id)
     local name = card.skillName
     if name and player:hasSkill(name) 
     --and Fk.skills[name] and table.contains(Fk.skills[name].skill_filter(self,player) or {}, card.equip_skill)
     then
-      if (cardSubtype == nil or card.sub_type == cardSubtype) then
+      if (cardSubtype == nil or card.sub_type == cardSubtype or card.trueName == cardSubtype) then
         return true
       end
     end
@@ -1788,6 +1948,35 @@ szyih_guos.hasEquip = function(player,cardSubtype)
   return  false
 end
 
+---@return card[]
+szyih_guos.getEquips = function(player,cardSubtype, converted, virtual)
+  local cards= {}
+  for _, cardId in ipairs(player.player_cards[Player.Equip]) do
+    card =  converted~=false  and player:getVirtualEquip(cardId) or Fk:getCardById(cardId)
+    if (cardSubtype == nil or card.sub_type == cardSubtype) 
+    and not card.name:endsWith("not_equip") then
+      table.insert(cards,card)
+    end
+  end
+
+  if virtual==false then return cards end
+
+  for _,id in ipairs(player:getTableMark("@$virtual_equip")) do
+    local card =Fk:getCardById(id)
+    local name = card.skillName
+    if name and player:hasSkill(name) 
+    --and Fk.skills[name] and table.contains(Fk.skills[name].skill_filter(self,player) or {}, card.equip_skill)
+    then
+      if (cardSubtype == nil or card.sub_type == cardSubtype) then
+        table.insert(cards,card)
+      end
+    end
+  end
+
+  return  cards
+end
+
+--存牌數顯于面版 不好改
 szyih_guos.getMaxCards = function(player)
   local baseValue = math.max(player.hp, 0)
 
@@ -1795,17 +1984,18 @@ szyih_guos.getMaxCards = function(player)
   -- local status_skills = 
   local baseValue={0,0}  --不負
   local correct=math.max(player.hp,0)  --rule skill?
-  local maxBaseLeve = 1
+  local maxBaseLevel = 1
   for _, skill in ipairs(Fk:currentRoom().status_skills[MaxCardsSkill] or Util.DummyTable) do
     local f = skill:getFixed(player)
     if f ~= nil then
       baseValue[2] = math.max(baseValue[2] , f)
-      maxBaseLeve=2
+      maxBaseLevel=2
     end
     local correct = correct + (skill:getCorrect(player) or 0)
   end
-  return math.max(math.max(baseValue[maxBaseLeve])+correct, 0)
+  return math.max(math.max(baseValue[maxBaseLevel])+correct, 0)
 end
+--doPhase
 
 szyih_guos.magicCanUse = function(player,card,extra_data)
   if  player:prohibitUse(card)  then return false end  --不在此判斷
@@ -1821,9 +2011,11 @@ end
 
 szyih_guos.koarbiukCanUse = function(player,card,extra_data)
   if  player:prohibitUse(card)  then return false end
-  if extra_data and extra_data.koarbiuk_rule then return true end
-  if table.contains({"hzfekdzis"}, card.skillName) then return true end
+  if extra_data and (extra_data.koarbiuk_rule or extra_data.bypass_moment) then return true end
+  -- if table.contains({"hzfekdzis"}, card.skillName) then return true end
 end
+
+
 
 szyih_guos.useToSelfFilter = function(self, player, to_select, selected, _, card, extra_data)
   if player:isProhibited(to_select, card) then return end

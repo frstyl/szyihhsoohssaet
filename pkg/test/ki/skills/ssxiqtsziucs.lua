@@ -235,7 +235,7 @@ ssxiqtsziucs:addEffect(fk.RoundEnd, spec)
 --           data.prevented=true
 --           return  true
 --         else
---           S.playCard(player,cards,ssxiqtsziucs.name)
+--           S.playCard(cards,ssxiqtsziucs.name,player)
 --         end
 
 --   end,

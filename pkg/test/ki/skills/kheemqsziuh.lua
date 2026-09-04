@@ -4,7 +4,7 @@ local kheemqsziuh = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["kheemqsziuh"] = "謙守",
-  [":kheemqsziuh"] = "轉限1｡當轉脚色A起動牌B旹,伱可發動｡A抽1,當轉內A不可{起動/打出/弃置}B牌類",
+  [":kheemqsziuh"] = "轉限1｡1轉脚色A起動牌B旹,伱可發動｡A抽1,1轉內A不可{起動/打出/弃置}B牌類",
 
   ["#kheemqsziuh-invoke"] = "謙守： %src 起動 %arg, 是否發動",
 

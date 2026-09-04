@@ -113,7 +113,7 @@ hsuohhsvah:addEffect("active", {
 --   end,
 -- }
 
-hsuohhsvah:addEffect(fk.Damage, {
+hsuohhsvah:addEffect(fk.Damaged, {
   anim_type = "masochism",
   can_refresh = function (self, event, target, player, data)
     return target == player and player:hasSkill(hsuohhsvah.name,true,true)

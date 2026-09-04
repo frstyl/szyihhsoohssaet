@@ -37,8 +37,8 @@ zhenggong:addEffect(fk.GameStart, {--RoundStart
     --   end
     -- end
 
-      -- player:gainAnExtraPhase(Player.Play, zhenggong.name, false)
-    player:gainAnExtraTurn(false, zhenggong.name, {Player.Play})
+      player:gainAnExtraPhase(Player.Play, zhenggong.name, false)
+    -- player:gainAnExtraTurn(false, zhenggong.name, {Player.Play})
 
   end,
 })

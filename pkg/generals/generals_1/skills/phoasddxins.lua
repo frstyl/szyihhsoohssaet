@@ -8,7 +8,7 @@ local S = require "packages/szyihhsoohssaet/szyih_guos"
 
 Fk:loadTranslationTable{
   ["phoasddxins"] = "破陣",
-  [":phoasddxins"] = "伱起動錦囊牌无視距離.伱起動卽旹錦囊牌A旹必發,其它脚色不可響應A,若A与上一被起動牌同花,A額外生效1次",
+  [":phoasddxins"] = "伱起動計謀牌无視距離.伱起動卽旹計謀牌A旹必發,其它脚色不可響應A,若A与上一被起動牌同花,A額外生效1次",
 --加彊?
 
   ["@phoasddxins"] = "破陣",
@@ -16,6 +16,10 @@ Fk:loadTranslationTable{
   ["$phoasddxins1"] = "洞察機先 无有不破",
   ["$phoasddxins2"] = "意志被摧毀了无",
 }
+
+phoasddxins:addLoseEffect (function (self, player)
+    player.room:setPlayerMark(player,"@phoasddxins",0) 
+end)
 
 phoasddxins:addEffect(fk.CardUsing, {
   anim_type = "offensive",

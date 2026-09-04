@@ -12,7 +12,7 @@ Fk:loadTranslationTable{
 sjisziach_active:addEffect("active", {
   anim_type = "drawCards",
   prompt = "#sjisziach_active",
-  min_target_num = 1,
+  -- min_target_num = 1,
   -- max_target_num = 3,
   min_card_num = 1,
   max_card_num = 4,
@@ -33,12 +33,12 @@ sjisziach_active:addEffect("active", {
       return Fk:getCardById(id).suit~=c.suit
       end)
   end,
-  target_filter = function(self, player, to_select, selected, selected_cards)
-      return #selected <#selected_cards
-  end,
-  -- feasible = function (self, player, selected, selected_cards)
-  --   return #selected==#selected_cards
+  -- target_filter = function(self, player, to_select, selected, selected_cards)
+  --     return #selected <#selected_cards
   -- end,
+  feasible = function (self, player, selected, selected_cards)
+    return #selected==4 - #selected_cards
+  end,
   -- on_use = function(self, room, effect)
   -- end,
 })

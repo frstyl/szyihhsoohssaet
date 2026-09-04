@@ -13,7 +13,7 @@ Fk:loadTranslationTable{
 local S = require "packages/szyihhsoohssaet/szyih_guos" 
 
 
-ddikddaocs:addEffect(fk.Damage, {
+ddikddaocs:addEffect(fk.Damaged, {
   can_trigger = function(self, event, target, player, data)
     if player:hasSkill(ddikddaocs.name) 
       and data.from == player 

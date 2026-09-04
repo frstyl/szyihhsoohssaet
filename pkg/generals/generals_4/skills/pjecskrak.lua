@@ -5,7 +5,7 @@ local pjecskrak = fk.CreateSkill {
 
 Fk:loadTranslationTable{
 ["pjecskrak"] = "并戟",
-[":pjecskrak"] = "主旹.預將2張A類牌轉化爲「殺」起動發動.此「殺」无視距離限制目幖上限+x(x爲伱已損體力値),且若A爲錦囊,此「殺」越過次數限制;裝備:此「殺」无效目幖防具至當段終",
+[":pjecskrak"] = "印牌:以伱2同大類牌轉化起動「殺」.此「殺」无視距離限制目幖上限+x(x爲伱已損體力値),且若子牌類爲:行動,此「殺」需抵消數+1;奇,越過次數限制;實體,此「殺」指定目幖後无效其防具技能1段",
 --區分伱已此法所起動 与 此牌?
 ["#pjecskrak"] = "2同類牌轉化爲殺",
 
@@ -23,12 +23,13 @@ pjecskrak:addEffect("viewas", {
     return  #selected == 0 or 
       (#selected == 1 
       and 
-		S.compareCardType(Fk:getCardById(to_select).name,Fk:getCardById(selected[1]).name)
+		S.compareCardType(Fk:getCardById(to_select).name,Fk:getCardById(selected[1]).name, 3)
 
     )
     -- if to_select.getTypeString() ==selected[1].getTypeString
 
   end,
+  include_equip=true,
   view_as = function(self, player, cards)
     if #cards ~= 2 then return  end
     local card = Fk:cloneCard("ssaet")
@@ -43,8 +44,8 @@ pjecskrak:addEffect("viewas", {
   --   use.extraUse =true
   --   end
   -- end,
-  enabled_at_response = function(self, player, response) --響應
-    return  not response  --此response为打出 不能用于打出 
+  enabled_at_response = function(self, player, response)
+    return  not response
   end,
 })
 
@@ -53,7 +54,7 @@ pjecskrak:addEffect("targetmod", {
     return card --and scope == Player.HistoryPhase 
     and table.contains(card.skillNames, pjecskrak.name)
     -- and Fk:getCardById().type==Card.TypeTrick
-    and S.getCardTypeByName(Fk:getCardById(card.subcards[1])) == 2
+    and (not card.subcards[1] or S.getCardSuptypeByName(Fk:getCardById(card.subcards[1])) == 2)  --bug
   end,
   bypass_distances = function(self, player, skill, card)
     return card and card.skillNames and table.contains(card.skillNames, pjecskrak.name)
@@ -65,77 +66,24 @@ pjecskrak:addEffect("targetmod", {
   end,
 })
 
-pjecskrak:addEffect(fk.TargetSpecified, {  --无視防具 --待改
-  can_refresh = function(self, event, target, player, data)
-    return data.from == player  and data.card  --問一次
-      and data.card.skillNames  and table.contains(data.card.skillNames, pjecskrak.name) 
-      and Fk:getCardById(data.card.subcards[1]).type==Card.TypeEquip
-      -- and S.getCardTypeByName(Fk:getCardById(card.subcards[1])) == 3
-      and not data.to.dead 
+pjecskrak:addEffect(fk.TargetConfirmed, {
+  can_trigger = function(self, event, target, player, data)
+    return data.from == player  
+    and data.card  --問一次
+    and data.card.skillNames  and table.contains(data.card.skillNames, pjecskrak.name) 
+    and S.getCardSuptypeByName(Fk:getCardById(data.card.subcards[1]).trueName) ~=2
+    -- and S.getCardTypeByName(Fk:getCardById(card.subcards[1])) == 3
+    and not data.to.dead 
   end,
-  on_refresh = function(self, event, target, player, data)
-    player.room:addPlayerMark(data.to, "@@MarkArmorNullified-phase",1)
+  on_trigger= function(self, event, target, player, data)
+    if S.getCardSuptypeByName(Fk:getCardById(data.card.subcards[1]).trueName) ==1 then
+      data:setResponseTimes(1+data:getResponseTimes(data.to), data.to) 
+    else
+      player.room:addPlayerMark(data.to, "@@MarkArmorNullified-phase",1)
+    end
   end,
 })
 
--- pjecskrak:addEffect("invalidity", {
---   invalidity_func = function(self, player, skill)
---     if not (
---       skill:getSkeleton() --被invalidity skill
---       and skill:getSkeleton().attached_equip and  Fk:cloneCard(skill:getSkeleton().attached_equip).sub_type == Card.SubtypeArmor
---    ) then
---         return
---     end
---         local card=nil
---         local ignore=false
---         local event =RoomInstance and RoomInstance.logic:getCurrentEvent()
---         if not event then 
---           goto request
---         end
---         if event.event==GameEvent.AimEvent then  
---       --     event.data.card.skillNames  and table.contains(event.data.card.skillNames, pjecskrak.name) 
---       -- and Fk:getCardById(event.data.card.subcards[1]).type==Card.TypeEquip theen
---           -- ignore=true 
---           card = event.data.card
---           goto OK
---         elseif event.event == GameEvent.Damage then
---           card = event.data.card
---           goto OK
---         elseif event.event == GameEvent.UseCard then
---          card = event.data.card
---             goto OK
---         elseif event.event == GameEvent.CardEffectEvent then
---             card = event.data.use.card
---             goto OK
---         end
-
-
---         ::request::
---         if ClientInstance and ClientInstance.current_request_handler   --request不屬于event中
---         and ClientInstance.current_request_handler.player  
---         and  ClientInstance.current_request_handler.skill_name==pjecskrak.name
---           then
---             card = Fk.skills[pjecskrak.name]:viewAs(player, ClientInstance.current_request_handler.pendings)
---         end
-
---         ::OK::
-        
---       if --ignore or  --可行
---       (
---       card  and card.skillNames  and table.contains(card.skillNames, pjecskrak.name) 
---       and Fk:getCardById(card.subcards[1]).type==Card.TypeEquip      
---       )
---       then  --from:hasSkill(muoqtssioh.name)  會封自己防具
---         for _, id in ipairs(player:getEquipments(Card.SubtypeArmor)) do
---           local card = Fk:getCardById(id)
---           if  skill:getSkeleton().attached_equip == card.name then
---             return true
---           end
---         end
---       end
-  
---   end,
--- })
 
 return pjecskrak
 

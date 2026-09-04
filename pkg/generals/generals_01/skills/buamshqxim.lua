@@ -5,7 +5,7 @@ local buamshqxim = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["buamshqxim"] = "梵音",
-  [":buamshqxim"] = "主旹,伱可預弃x不同類牌指定x脚色發動.爲所所脚色附加昏睡",
+  [":buamshqxim"] = "主旹,伱可預弃x不同大類牌指定x脚色發動.爲所所脚色附加昏睡",
 
   ["#buamshqxim"] = "梵音：x不同類牌指定x脚色",
 
@@ -34,7 +34,7 @@ buamshqxim:addEffect("active", {
       return    
       -- S.getCardTypeByName(to_select)~=S.getCardTypeByName(id)
       -- Fk:getCardById(to_select).name == Fk:getCardById(id).name
-      S.compareCardType(name,Fk:getCardById(id).name, true,true)
+      S.compareCardType(name,Fk:getCardById(id).name, 3)
     end)
   end,
   target_filter = function(self, player, to_select, selected, selected_cards)

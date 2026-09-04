@@ -15,11 +15,12 @@ General:new(extension, "086", "kvoan", 3):addSkills{"ljimqkij","kiamsquoh","kijq
 General:new(extension, "087", "kvoan", 3):addSkills{"pujqtoav","pujqddxek"}
 General:new(extension, "063", "kvoan", 3):addSkills{"noojskaens"}
 General:new(extension, "078", "kvoan", 3):addSkills{"biuhkiams"}--虛擬装僃
+General:new(extension, "112", "kvoan", 3):addSkills{"ljerprac"}--殺
 --------------------菜刀 增彊牌
 General:new(extension, "tshoeojstoav__000", "kvoan", 3):addSkills{"kracqhzoon"}
-General:new(extension, "tshoeojstoav__001", "kvoan", 3):addSkills{"tszyiqphioc"} --二選一 
-General:new(extension, "tshoeojstoav__003", "kvoan", 3):addSkills{"dzyettssaamh"}--謀黃忠烈弓
-General:new(extension, "tshoeojstoav__004", "kvoan", 3):addSkills{"hzeethzoac","hzeenqkrac"}  --轉馬超 韓存保
+General:new(extension, "tshoeojstoav__001", "kvoan", 3):addSkills{"tszyiqphioc", "hzeethzoac",} --二選一 秒
+General:new(extension, "tshoeojstoav__003", "kvoan", 3):addSkills{"tssaamhbuat"}--謀黃忠烈弓
+General:new(extension, "tshoeojstoav__004", "kvoan", 3):addSkills{"hzeenqkrac"}  --轉馬超 韓存保
 
 General:new(extension, "033", "kvoan", 3):addSkills{"kiaplooh",}  -- 搶一半
 General:new(extension, "023", "kvoan", 3):addSkills{"phunhtthxet","khuacqtseejs"} --任何旹可用 --對它用桃 未成
@@ -28,10 +29,12 @@ General:new(extension, "062", "kvoan", 3):addSkills{"doachddio"} --潒除
 General:new(extension, "064", "kvoan", 3):addSkills{"toavqprac","kiamsquoh"}  --衍生
 General:new(extension, "079", "kvoan", 3):addSkills{"tsziochprac"}
 General:new(extension, "074", "kvoan", 3):addSkills{"ex__bjevsgxes"}
-General:new(extension, "073", "kvoan", 3):addSkills{"kwehssih"}--詭使 未作
-General:new(extension, "097", "kvoan", 3):addSkills{"lunqkouc","dzjitkeek"}--不計入次數限制教學 无次數限制教學 相對于无視次數限制...區別 上限无窮大  迻除上限 繞過上限
----------------------
+General:new(extension, "097", "kvoan", 3):addSkills{"lyehkeek","dzjitkeek"}--不計入次數限制教學 无次數限制教學 相對于无視次數限制...區別 上限无窮大  迻除上限 繞過上限
+General:new(extension, "109", "kvoan", 3):addSkills{"phiuskun",}
 
+General:new(extension, "108", "kvoan", 3):addSkills{"khoeojqloos"}
+-- General:new(extension, "073", "kvoan", 3):addSkills{"kwehssih"}--詭使 未作
+General:new(extension, "111", "kvoan", 3):addSkills{"keekjyer",}  --技能甚至无牌
 --------------------控
 General:new(extension, "015", "kvoan", 3):addSkills{"jiacqcian","kijqcian"}  --預測 雞肋
 General:new(extension, "080", "kvoan", 3):addSkills{"deevhtszjens"}  --預測 雞肋
@@ -44,23 +47,30 @@ General:new(extension, "060", "kvoan", 3):addSkills{"muoqtoojs"}  --无雙无對
 General:new(extension, "026", "kvoan", 3):addSkills{"krachbuac"}  --視爲閃 刻摸弃 
 -- General:new(extension, "052", "kvoan", 3):addSkills{"nzjisdouch"}  --未作  --tousmuoh
 General:new(extension, "088", "kvoan", 3):addSkills{"tousmuoh"}  --單挑
+
+General:new(extension, "115", "kvoan", 3):addSkills{"tszihkvoa", "hzoojqbjes", "deephzoon"}  --止戈
 --------------------全場
 General:new(extension, "004", "kvoan", 3):addSkills{"hsuanqkooh","tssikkeek"}--hsuanqkooh 弃殺閃 --廢閃 封印皇甫 
 General:new(extension, "022", "kvoan", 3):addSkills{"kujsssaac","tsheejqtsheej", "tszjevqtsziac"}  --償罰  "kveetciok",
 General:new(extension, "065", "kvoan", 3):addSkills{"quandzsios",}  --援
 General:new(extension, "024", "kvoan", 3):addSkills{"kiapbxin","muohtshiac"}  --對神龐統
 General:new(extension, "031", "kvoan", 3):addSkills{"biushqoans",}  --改牌效
-General:new(extension, "038", "kvoan", 3):addSkills{"giattszjens"}  -- 牢大 --快過死亾
-General:new(extension, "051", "kvoan", 3):addSkills{"zjipdvoat"} --偷牌
+General:new(extension, "038", "kvoan", 3):addSkills{"touktszjens"}  -- 牢大 --快過死亾
+General:new(extension, "051", "kvoan", 3):addSkills{"kaaktszjer"} --偷牌
 General:new(extension, "067", "kvoan", 3):addSkills{"ex__zzjinqthou"} --偷牌
 General:new(extension, "054", "kvoan", 3):addSkills{"kaamqprac"} --殺次數
-General:new(extension, "085", "kvoan", 3):addSkills{"doonhmiu"} --盾矛 hsxestszjens
-General:new(extension, "059", "kvoan", 3):addSkills{"hsxestszjens"} --合趙云 
-General:new(extension, "061", "kvoan", 3):addSkills{"hzoanscioh"} --防殺 
+General:new(extension, "085", "kvoan", 3):addSkills{"hzoanskaak", "tszjipzzyinh", "hzoanscioh","tszjipkrak"} --盾矛 hsxestszjens
+General:new(extension, "059", "kvoan", 3):addSkills{"sziuhhaes"} --合趙云 
+-- General:new(extension, "061", "kvoan", 3):addSkills{""} --防殺 
 General:new(extension, "069", "kvoan", 3):addSkills{"lvoansddxins"} --潛龍
 General:new(extension, "091", "kvoan", 3):addSkills{"jiospouk","kaehkfes",} --算卦 不改判
+General:new(extension, "120", "kvoan", 3):addSkills{"dzoacqkij","tssaemqtssaem"}  --暗牌 改判 拼點
 General:new(extension, "095", "kvoan", 3):addSkills{"zzyinspiuc",}  --火攻
 General:new(extension, "096", "kvoan", 3):addSkills{"keejskwih","kxipkius"}  --周泰
+
+General:new(extension, "114", "kvoan", 3):addSkills{"teemhmoeok",}  --无效并抽牌
+General:new(extension, "116", "kvoan", 3):addSkills{"keenqsziuh", "tszjechljet" }  --无限閃 --整列節命
+General:new(extension, "119", "kvoan", 3):addSkills{"sziktsshaek",}  --退虜
 
 General:new(extension, "034", "kvoan", 3):addSkills{"hzoojsddxins",}  -- 潰陳 自殺  --攻輔
 
@@ -96,7 +106,7 @@ General:new(extension, "090", "kvoan", 3):addSkills{"quanhszuos"}  --武陸
 General:new(extension, "092", "kvoan", 3):addSkills{""}  --
 General:new(extension, "100", "kvoan", 3):addSkills{"jiuhpaar"}  --
 
-General:new(extension, "105", "kvoan", 3):addSkills{"tsoeojssi"}  --止牌名
+General:new(extension, "105", "kvoan", 3):addSkills{"tsoeojssi"}  --雙牌名
 --------------------庸
 General:new(extension, "001", "kvoan", 3):addSkills{"ttxisquanh","tszjinstoamh","muoqquanh"}  --攻程
 General:new(extension, "002", "kvoan", 3):addSkills{"khioktshuoh"}  --A抽偷A
@@ -112,7 +122,7 @@ General:new(extension, "049", "kvoan", 3):addSkills{"siacqsoos","ssuoszzyit","zz
 
 General:new(extension, "021", "kvoan", 3):addSkills{"tszjechbxis",}--段煨hzooj
 General:new(extension, "039", "kvoan", 3):addSkills{"ljimqcwe", "muacssjih","buoqcwe",}    --超越死亡
-General:new(extension, "057", "kvoan", 3):addSkills{"tszjeqttwit","tszjechljet"  ,"tthaakpooh"}  --存牌抽牌
+General:new(extension, "057", "kvoan", 3):addSkills{"tszjeqttwit" ,"tthaakpooh"}  --存牌抽牌
 General:new(extension, "058", "kvoan", 3):addSkills{"siqliak"}  --洗牌
 General:new(extension, "081", "kvoan", 3):addSkills{"gintszjecs"}  --駱統
 General:new(extension, "082", "kvoan", 3):addSkills{"peejskfan"}  --閉關 未作
@@ -136,59 +146,170 @@ General:new(extension, "094", "kvoan", 3):addSkills{"kwehhsvoah","qxemqddiach","
 General:new(extension, "101", "kvoan", 3):addSkills{"sziuhhqaes",}  --曹仁趙佶
 General:new(extension, "104", "kvoan", 3):addSkills{"kijqpuat",}  --肘 
 General:new(extension, "107", "kvoan", 3):addSkills{"hqoatqun","jioqqwins"}  --樂和 連招技轉換技
+
+General:new(extension, "110", "kvoan", 3):addSkills{"dzyetkeejs","jyecqhzooj"}  --奇策連營
+General:new(extension, "113", "kvoan", 3):addSkills{"szissik"}  --拼點 議事
+
+General:new(extension, "117", "kvoan", 3):addSkills{"kiamsmoac","ljerphioc","tsyiscuat"}  --噄殺 劍仙 酒劍仙
+General:new(extension, "118", "kvoan", 3):addSkills{"kximhkaap",}  --裝僃 
+General:new(extension, "122", "kvoan", 3):addSkills{"kujqdzeek",}  --褈置次數 
+
 --------------------自保 單保 賣血 不動白 負面  
 General:new(extension, "098", "kvoan", 3):addSkills{"cweqdoeojh"}  --褈鑄4
 General:new(extension, "099", "kvoan", 3):addSkills{"dzjiskik"}
 General:new(extension, "102", "kvoan", 3):addSkills{"jikpjis"}
 
 General:new(extension, "103", "kvoan", 3):addSkills{"jjeqhzvah","dzoacqhzeep","kwehssih"} --轉迻目幖 起動旹轉迻
+General:new(extension, "121", "kvoan", 3):addSkills{"kwiqsik"}
+
 --------------------
 
 General:new(extension, "999", "kvoan", 1):addSkills{"dzjitddxe"}
 
-General:new(extension, "caok__caokhzvoa", "tsiacs", 3):addSkills {"hzvoaqcaok" } --,
-Fk:loadTranslationTable{
-["caok__caokhzvoa"] = "樂和",
-["#caok__caokhzvoa"] = "鐵叫子",
-["designer:caok__caokhzvoa"] = "設計",
-["cv:caok__caokhzvoa"] = "配音",
-["illustrator:caok__caokhzvoa"] = "畫師",
-["~caok__caokhzvoa"] = "此曲終已",
-}
+General:new(extension, "4", "kunqkaavs", 1):addSkills{"hsxestszjens","thoaqtoav"}  --雙向發動 指定/成爲目幖 致/受傷  ?橫衝直撞
 
-General:new(extension, "caok__maahljin", "pujh", 3):addSkills {"hqikjiac" } --,
-Fk:loadTranslationTable{
-["caok__maahljin"] = "馬麟",
-["#caok__maahljin"] = "鐵笛仙",
-["designer:caok__maahljin"] = "設計",
-["cv:caok__maahljin"] = "配音",
-["illustrator:caok__maahljin"] = "畫師",
-["~caok__maahljin"] = "此曲終已",
-}
+  
 
 ------------------------------------------------------------------------------------------------
 --潘鴆殺 未作
---徐寧勾廉
---傳箭 朱富
 --宴戲 趙佶
 --衝鋒 索超
 --旗 
 --船
 --炮
 --牽線
---牌數冣多 zjipdvoat
+--阿里奇
+--牌數冣多 kaaktszjer
 --放貸蔡京
+-- 拏判定 拏拼點
+--演謀
+---------
+-- 酒下藥
+-- 暗將勢力
+
+-----------f..k
+-- 雙龍-橫掃
+-- 固縱 不難 受改動
+-- 暗謀
+-- NotAcitve
 -------------------------------------------------------------------------------------------------------------------------
 
 local test1 = General(extension, "bp", "pujh", 4)
 -- test1.shield = 1
 test1:addSkills {
-  -- "hqikjiac",
+  -- "gwisliac",
+  -- "kujqdzeek",
+
+  -- "kwiqsik",
+  -- "deephzoon",
+  -- "tsyiscuat",
+
+  -- "maanqhzfacs",
+  -- "dzeetliac",
+-- "ex__coohtsziu",
+
+-- "soansdzoejs",
+
+  -- "pjecskrak",
+  -- "khaavhkouc",
+  -- "szuoqquns",
+  -- "thoocshzaat",
+
+  -- "gxeqmoon",
+  -- "jiuqlioc",
+  -- "jiacqhqik",
+  -- "hzveoktsziacs",
+  -- "tssaemqtssaem",
+  -- "tooshzeen",
+  -- "sziktsshaek",
+  -- "kximhkaap",
+  -- "kiamsmoac",
+  -- "ljerphioc",
+
+  -- "thoocsprac",
+  -- "lyehkeek",  --tobe
+  -- "deepkeejs",
+  -- "cracqkeek",
+  -- "tsziuqzyen",
+  -- "keenqsziuh",
+
+  -- "pxemqkoot",
+  -- "hqximhquoh",
+
+  -- "kfaqbiuk",
+  -- "dzoeocsdoo",
+  -- "gwisliac",
+  -- "thoeomqdzoeoj",
+
+  -- "tszjipkrak",
+  -- "tszjipzzyinh",
+  -- "hzeepkoot",
+
+  -- "tszihkvoa",
+  -- "hzoojqbjes",
+  -- "teemhmoeok",
+
+  -- "likbvoat",
+  -- "muoqtoojs",
+  -- "boavsgwen",
+  -- "keetjyen",
+  -- "doucqsjim",
+  -- "ex__kaavqprac",
+  -- "bjevsgxes",
+  -- "szissik",
+  -- "hzaahszyih",
+  -- "hzeethzoac",
+  -- "ljerprac",
+  -- "keekjyer",
+
+  -- "cooqkou",
+  -- "jjeqdzius",
+  -- "kaaktszjer",
+  -- "hsicqloan",
+  -- "doavqthoav",
+  -- "ttiachloak",
+  -- "hzaeksvoans",
+
+  -- "khaenqljins",
+  -- "zjimqhsfa",
+  -- "hqujqtszjins",
+  -- "touktszjens",
+  -- "hzeethzoac",
+  -- "dzyetkeejs",
+  -- "tsoaktthiac",
+  -- "ljenqtsziuq",
+  -- "tszjipmaach",
+  -- "thoocsprac",
+  -- "likgxim",
+  -- "poavskvoeok",
+  -- "kiappoavh",
+  -- "hzaavscxes",
+  -- "khoeojqloos",  --樂 文
+  -- "phiuskun",  --tobe general
+  -- "liuqsziuh",
+  -- "ssiuqkfat",
+  -- "ljimqmoo",--可以禁單skill
+  -- "jiacqpoa", --bug
+  -- "zzjinqthou",
+  -- "ttiucqliu",
+  -- "paakmoach",
+  -- "thoucqdoat",
+  -- "tssaamhbuat",
+  -- "ttxinsphuoh",
+  -- "koucqbuat",  --tobe
+  -- "ljephzfak",
+  -- "thoojsdeek",
+  -- "dzoacqkij",
+  -- "kyinqszjer",
+  -- "jjenhmiu",  --tobe
+  -- "hsxestszjens",
+
+  -- "jiacqhqik",
   -- "hzvoanstssaenh",
   -- "thoavqliak",
   -- "hqoeomsmiu",
   -- "tsjecqmuoh",
-  -- "zjipdvoat",  --未畢
+  -- "kaaktszjer",  --未畢
   -- "szioqnoans",
   -- "lvoansddxins",
   -- "liocqdzjem",
@@ -198,11 +319,11 @@ test1:addSkills {
   -- "tszjinshzaek",
   -- "koostsiocs",
   -- "zyenqtoav",
-  -- "hzfacqsoavh",
+  -- "soavhdzjinh",
   -- "paakmoach",
   -- "zzikkoot",
   -- "cxesszjek",
-  -- "ssxiqtsziucs",
+  -- "ssxiqtsziucs",  --tobe
   -- "gxeqmoon",
   -- "noaqmjens",
   -- "khuacqtseejs",
@@ -269,7 +390,7 @@ test1:addSkills {
   -- "dzjiskik",
   -- "thoocsprac",
   -- "dzjitkeek",
-  -- "lunqkouc",
+  -- "lyehkeek",
   -- "khiochhsaak",
   -- "biukkeek",
   -- "keejskwih",
@@ -345,9 +466,9 @@ test1:addSkills {
   -- "ljimqmoo",
   -- "gyihdoos",
   -- "zyeqhzeec",
-  -- "zjipdvoat",
+  -- "kaaktszjer",
   -- "tsziuqzyen",
-  -- "doonhmiu",  --李袞
+  -- "hzoanskaak",  --李袞
   -- "kheemqsziuh",
   -- "craktszjens",
   -- "phoukkeek",
@@ -414,7 +535,7 @@ test1:addSkills {
   -- "ljeqhzoon",
   -- "hsipsyeh",
     -- "moanslouch",
-  -- "giattszjens",
+  -- "touktszjens",
   -- "kijqcian",
   -- "tsziochprac",
   -- "gintszjecs",
@@ -585,7 +706,7 @@ test1:addSkills {
   -- "hsuohhsvah",
   -- "pouktheen",
   -- "lvoansddxins",
-  -- "hsoeokmuos",
+  -- "pjertheen",
   -- "ljerkun",
   -- "hqjemstsiok",
   -- "hzoonqtsiuh",
@@ -674,7 +795,7 @@ test1:addSkills {
   -- "meecqqwer",
   -- "hzfenszzyit",
   -- "moaqtsziacs",
-  -- "kooqszjer",
+  -- "kooqtsjins",
   -- "seenqtoeoc",
   -- "dzoakhzaamh",
   -- "dzjemqszyih",
@@ -764,7 +885,6 @@ test1:addSkills {
   -- "gwisleejh",  
   -- "leecqdeek",
 
-
   -- "jinjing",
   -- "paoxiao",
   "seenhliak",
@@ -800,11 +920,11 @@ test2:addSkills {
   -- "soamqpuoh",
   -- "liuqhzveec",
   -- "doucqtsziu",
-  -- "dzyettssaamh",
+  -- "tssaamhbuat",
   -- "biuqdzsaa",
   -- "ljephzfak",
   "biussjins",
-  -- "bracqttiacs",
+  -- "hzaeksvoans",
   -- "tszhyeqpoa",
   -- "poattszuo",
   -- "hqoatqun",
@@ -1047,7 +1167,7 @@ test2:addSkills {
   -- "ssaocqlioc",
   -- "ddikddaocs",
   -- "kuujhprac",
-  -- "hsoeokmuos",
+  -- "pjertheen",
   -- "jjenhmuoh",
   -- "khoucqhqrach",  --??
   -- "dzjitboos",

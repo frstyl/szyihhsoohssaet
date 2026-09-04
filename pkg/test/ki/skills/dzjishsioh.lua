@@ -4,7 +4,7 @@ local dzjishsioh = fk.CreateSkill({
 
 Fk:loadTranslationTable{
   ["dzjishsioh"] = "自許",--驕矜
-  [":dzjishsioh"] = "任一轉始,伱聲明1數字a(1至伱體力值)發動｡抽a,轉終,若伱起動打出牌次數小于a,伱流失差值體力｡",  --當轉?
+  [":dzjishsioh"] = "任一轉始,伱聲明1數字a(不大于max(1,伱體力值)發動｡抽a,轉終,若伱起動打出牌次數小于a,伱流失差值體力｡",  --1轉?
 
   ["#dzjishsioh-ivnoek"] = "自許 選擇抽牌數",
 

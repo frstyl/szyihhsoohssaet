@@ -6,7 +6,7 @@ local S = require "packages/szyihhsoohssaet/szyih_guos"
 
 Fk:loadTranslationTable{
   ["zjimqkhrak"] = "尋隙",
-  [":zjimqkhrak"] = "其它脚色A主段始旹,(若其未被此發動技能)伱可發動.伱弃其1牌,本段內其至伱距離爲1,起動牌需指定伱爲目幖.當段終旹,若其未對伱致傷,伱可打出1手牌予其1傷",
+  [":zjimqkhrak"] = "其它脚色A主段始旹,(若其未被此發動技能)伱可發動.伱弃置其1牌,1段內其至伱距離爲1,无幖不含伱(或无目幖)則不可起動牌.段終旹,若其未對伱致傷,伱可打出1手牌予其1傷",
 
 --无距離次數限制
   ["@@zjimqkhrak-phase"] = "尋隙",
@@ -56,7 +56,7 @@ zjimqkhrak:addEffect("prohibit", {
   end,
 })
 
-zjimqkhrak:addEffect(fk.Damage, {
+zjimqkhrak:addEffect(fk.Damaged, {
   is_delay_effect=true,
   can_refresh = function(self, event, target, player, data)
     return player.seat==1 and data.from:getMark("@@zjimqkhrak-phase")==data.to.id

@@ -77,7 +77,7 @@ Fk:loadTranslationTable{
 --   return CardEffectData
 -- end
 
-szyih_guos.effectNullify = function(CardEffectData,player,skillName)
+szyih_guos.effectNullify = function(CardEffectData,player,skillName, useNullify,to)
   if CardEffectData==nil then return end
   local cardEffectData =CardEffectData ---@class cardEffectDataSpec
   if  cardEffectData.nullified then return end
@@ -101,7 +101,10 @@ szyih_guos.effectNullify = function(CardEffectData,player,skillName)
   end
   
   if cardEffectData.nullified == true then
-
+    if useNullify and CardEffectData.use then
+      cardEffectData.use.nullifiedTargets = cardEffectData.use.nullifiedTargets or {}
+      table.insertTableIfNeed(cardEffectData.use.nullifiedTargets, to or data.to)
+    end
   else
     room:sendLog { type = "#AntiEffectNullifyed", from = from.id ,arg=cardEffectData.card:toLogString()}
   end

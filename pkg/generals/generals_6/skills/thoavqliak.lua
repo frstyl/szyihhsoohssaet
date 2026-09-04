@@ -23,7 +23,8 @@ thoavqliak:addEffect("active", {
   anim_type = "offensive",
   prompt = "#thoavqliak",
   max_phase_use_time = 1,
-  card_num = 1,
+  min_card_num = 0,
+  max_card_num = 1,
   target_num = 1,
   can_use = function(self, player)
     return not player:isKongcheng() and player:usedSkillTimes(thoavqliak.name, Player.HistoryPhase) == 0
@@ -37,7 +38,7 @@ thoavqliak:addEffect("active", {
   on_use = function(self, room, effect)
     local player = effect.from
     local target = effect.tos[1]
-    local pindian = player:pindian({target}, thoavqliak.name,Fk:getCardById(effect.cards[1]))
+    local pindian = player:pindian({target}, thoavqliak.name,effect.cards[1] and Fk:getCardById(effect.cards[1]) or nil)
     if player.dead then return end
     if pindian.results[target].winner==nil then
         room:askToDiscard(player, {

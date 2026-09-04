@@ -4,7 +4,7 @@ local seenqtszjis = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["seenqtszjis"] = "先至",
-  [":seenqtszjis"] = "伱成爲牌目幖後,伱可發動:伱抽1,可起動1元實牌",
+  [":seenqtszjis"] = "伱成爲起動目幖後,伱可發動,伱抽1,若爲伱主段外,可起動1元實牌",
 
 
   ["#seenqtszjis-use"] = "先至 起動牌",
@@ -26,6 +26,7 @@ seenqtszjis:addEffect(fk.TargetConfirmed, {
   -- end,
   on_use = function(self, event, target, player, data)
     player:drawCards(1, seenqtszjis.name)
+    if player.dead or player.phas==Player.Play then return end
     player.room:askToUseRealCard(player, {
       pattern = player:getCardIds("h"),
       skill_name = seenqtszjis.name,

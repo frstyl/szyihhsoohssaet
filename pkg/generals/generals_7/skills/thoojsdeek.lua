@@ -5,9 +5,9 @@ local thoojsdeek = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["thoojsdeek"] = "退敵",
-  [":thoojsdeek"] = "其它脚色伏段終旹,伱可預打出1武器牌或流失1體力發動.其選擇打出1紅桃閃令伱回1或令伱選擇1項➀伱予其1傷➁伱弃其裝僃區全部牌➂伱令其本局攻程-1",
+  [":thoojsdeek"] = "其它脚色伏段終旹,伱可預打出1武器牌或流失1發動,其可演練1♥️閃,若執行其令伱回1,否則伱對其執行1項➀予其1傷➁弃置其裝僃區全部牌➂令其當局局攻程-1",
 
-  ["#thoojsdeek-invoke"] = "退敵 1武器牌或流失1體力 對%src 發動",
+  ["#thoojsdeek-invoke"] = "退敵 1武器牌或流失1 對%src 發動",
   ["#thoojsdeek-discard"] = "退敵 打出紅桃閃",
   ["#thoojsdeek-choose"] = "退敵 選擇1項",
 
@@ -16,7 +16,7 @@ Fk:loadTranslationTable{
   ["thoojsdeek-disequips"] = "弃其裝僃區全部牌",
   ["thoojsdeek-atkrange"] = "其攻程-1",
 
-  ["thoojsdeek-invoke"] = "退敵 %src主段始 是否發動",
+  ["thoojsdeek-invoke"] = "退敵 %src伏段 是否發動",
   ["$thoojsdeek1"] = "看吾退敵",
   ["$thoojsdeek2"] = "殺汝个措手不及",
 }
@@ -48,37 +48,60 @@ thoojsdeek:addEffect(fk.EventPhaseEnd, {
 
     })
     if yes then 
-      event:setCostData(self, {cards = ret.cards})
+      event:setCostData(self, {cards = ret.cards,tos={data.who}})
       return true
     end
   end,
   on_use = function(self, event, target, player, data)
-    local room = player.room
+  local room = player.room
    local cards=event:getCostData(self).cards
     if #cards==0 then
       room:loseHp(player,1,thoojsdeek.name,player)
     else
-      S.playCard(player,cards,thoojsdeek.name)
+      S.playCard(cards,thoojsdeek.name,player)
     end
-    if  #S.askToPlayCard(target, {
-      min_num = 1,
-      max_num = 1,
-      include_equip = true,
-      skill_name = thoojsdeek.name,
-      prompt = "#thoojsdeek-discard",
-      pattern = "szjemh|.|heart",
-      cancelable = true,
-      skip = false,
-    })==1 
-    then       
+
+
+    -- S.askToPlayCard(target, {
+    --   min_num = 1,
+    --   max_num = 1,
+    --   include_equip = true,
+    --   skill_name = thoojsdeek.name,
+    --   prompt = "#thoojsdeek-discard",
+    --   pattern = "szjemh|.|heart",
+    --   cancelable = true,
+    --   skip = false,
+    -- }) ==1
+    -- local effectData=CardEffectData:new {
+    --         card = Fk:cloneCard("khouc"),
+    --         from=player,
+    --         to = target,
+    --         tos = { target },
+    --       }
+    local respond= room:askToResponse(target, { ---@type AskToUseCardParams
+        skill_name = 'szjemh',
+        pattern = 'szjemh|.|heart',
+        cancelable = true,
+        -- event_data=effectData,
+        -- extra_data={
+        --   skill_effect_event=player.room.logic:getCurrentEvent().data
+        -- }
+      }) 
+    if respond  then
+      respond.extra_data=respond.extra_data or {}
+      respond.extra_data.skill_effect_event={who=player,skill_name=thoojsdeek.name}
+      room:responseCard(respond) 
+      if player.dead then return end
       room:recover{
         who = player,
         num = 1,
-        recoverBy = target,
+        recoverBy = player,
         skillName = thoojsdeek.name,
       }
       return 
-    end    
+    end
+
+    if player.dead then return end
     local choice = room:askToChoice(player, {
       choices = {"thoojsdeek-damage","thoojsdeek-disequips","thoojsdeek-atkrange"},
       skill_name = thoojsdeek.name,
@@ -95,7 +118,7 @@ thoojsdeek:addEffect(fk.EventPhaseEnd, {
     elseif choice == "thoojsdeek-disequips" then
       room:throwCard(target:getCardIds("e"), thoojsdeek.name, target,player)  --弃牌被𢧵?
     elseif choice == "thoojsdeek-atkrange"  then
-      room:setPlayerMark(target,"@add_attack_range",-1+target:getMark("@add_attack_range"))
+      room:setPlayerMark(target,"@attack_range",-1+target:getMark("@attack_range"))
     end
   end,
 })

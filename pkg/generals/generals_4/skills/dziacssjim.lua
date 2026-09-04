@@ -4,7 +4,7 @@ local dziacssjim = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["dziacssjim"] = "匠心",
-  [":dziacssjim"] = "一占卜牌生效後,若其爲基本牌,伱可發動,伱抽1,獲得1匠心值.伱可迻去1匠心值額外發動1次仿製2",
+  [":dziacssjim"] = "一占卜牌生效後,若其爲行動或物資牌,伱可發動,伱抽1,獲得1匠心值.伱可迻去1匠心值額外發動1次仿製2",
 
 
   ["$dziacssjim1"] = "鎚𣪲之閒,匠心獨釀,別具一格",

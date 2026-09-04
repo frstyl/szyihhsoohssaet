@@ -3,9 +3,9 @@ local skill = fk.CreateSkill {
 }
 local S = require "packages/szyihhsoohssaet/szyih_guos" 
 
-Fk:loadTranslationTable{ 
-  ["#tsjek_tshoavh_doon_liac_skill"] = "積艸屯糧 延旹類 越弃段" ,
-}
+-- Fk:loadTranslationTable{ 
+--   ["#tsjek_tshoavh_doon_liac_skill"] = "積艸屯糧 延旹 越過撤段" ,
+-- }
 
 skill:addEffect("cardskill", {
   prompt = "#tsjek_tshoavh_doon_liac_skill",
@@ -15,6 +15,7 @@ skill:addEffect("cardskill", {
   target_num = 1,
   offset_func= Util.FalseFunc,
   on_effect = function(self, room, effect)
+    if not (effect.extar_data and  effect.extar_data.phase_data) then return end
     local to = effect.to
     local judge = {
       who = to,
@@ -23,11 +24,14 @@ skill:addEffect("cardskill", {
     }
     room:judge(judge)
     if  judge.card then
+      if room:getCardArea(judge.card)==Card.DiscardPile and not to.dead then
         room:obtainCard(to, judge.card , true, fk.ReasonPrey, player, self.name)
-        if judge.card.getSuitString ~= Card.Diamond then
-        -- to:skip(Player.Discard)
-         S.skipPhase(to.id , Player.Discard)
-        end
+      end
+      if judge.card.getSuitString ~= Card.Diamond then
+      -- to:skip(Player.Discard)
+        -- S.skipPhase(to.id , Player.Discard)
+        effect.extar_data.phase_data.skipped=true
+      end
     else 
       to:skip(Player.Discard)  --占卜有果且爲♦️无效
     end

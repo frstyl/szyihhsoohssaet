@@ -34,6 +34,7 @@ cardSkill:addEffect("cardskill", {
     S.magicOnUse(cardUseEvent.from, cardUseEvent)
     cardUseEvent.toCard=cardUseEvent.card
   end,
+  target_num = 0,
   mod_target_filter = Util.FalseFunc,
   offset_func= Util.FalseFunc,
   on_effect = function(self, room, effect) --无目幖 直接執行effect --對全體效果 无目幖--復活自己

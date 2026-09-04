@@ -14,7 +14,7 @@ Fk:loadTranslationTable{
 }
 local S = require "packages/szyihhsoohssaet/szyih_guos" 
 
-dzjecqdook:addEffect(fk.Damage, {
+dzjecqdook:addEffect(fk.Damaged, {
   anim_type = "drawcard",
   can_trigger = function (self, event, target, player, data)
     return data.from==player and player:hasSkill(dzjecqdook.name) and not data.to.dead 

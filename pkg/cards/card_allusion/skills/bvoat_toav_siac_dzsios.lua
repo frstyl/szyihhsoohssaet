@@ -4,7 +4,7 @@ local cardSkill = fk.CreateSkill{
 }
 
 Fk:loadTranslationTable{
-  ["#bvoat_toav_siac_dzsios"] = "拔刀相助 打出此牌与1其它脚色伏區1延旹牌",
+  ["#bvoat_toav_siac_dzsios"] = "拔刀相助 打出此牌与1 弃置其它脚色伏區1延旹牌",
   ["#bvoat_toav_siac_dzsios-choose"] = "拔刀相助 選擇目幖",
   ["#bvoat_toav_siac_dzsios"] = "拔刀相助 打出牌",
 }
@@ -15,10 +15,12 @@ local S = require "packages/szyihhsoohssaet/szyih_guos"
 cardSkill:addEffect("active", {  --歬轉終
   prompt = "#bvoat_toav_siac_dzsios",
   target_num = 1,
+  can_use = function(self, player, card, extra_data)
+        return 
+     not player:prohibitResponse(card)
+  end,
   target_filter = function(self, player, to_select, selected)
-    return 
-     not player:prohibitResponse(Fk:getCardById(selected_cards[1]))
-    and
+    return
      p~=player 
     and
        table.find(to_select:getCardIds("j"), function(cid)
@@ -32,7 +34,7 @@ cardSkill:addEffect("active", {  --歬轉終
     local player=effect.from
     local to= effect.tos[1]
     -- room:throwCard(effect.cards, cardSkill.name, player, player)
-    S.playCard(player,effect.cards,cardSkill.name)
+    S.playCard(effect.cards,cardSkill.name,player)
      local cards = room:askToChooseCards( player, {
         target = to,
         min = 1,

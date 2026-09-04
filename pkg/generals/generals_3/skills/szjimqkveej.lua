@@ -5,7 +5,7 @@ local szjimqkveej = fk.CreateSkill {
 
 Fk:loadTranslationTable {
   ["szjimqkveej"] = "㴱閨",
-  [":szjimqkveej"] = "恆續,若伱未裝僃防具,伱不昰錦囊牌合理目幖",
+  [":szjimqkveej"] = "恆續,若伱未裝僃防具,伱不昰計謀牌合理目幖",
 
   ["$szjimqkveej1"] = "小女子從未踏出家門半步",
 }

@@ -5,7 +5,7 @@ local sjisziach = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["sjisziach"] = "四像",
-  [":sjisziach"] = "伱預段始旹,伱可預褈鑄不同色a(至少1)牌選擇1至多a名脚色發動｡所選脚色將手牌抽或弃至a",
+  [":sjisziach"] = "伱預段始旹,伱可褈鑄1至多不同色牌選擇a名脚色發動｡所選脚色將手牌抽或弃至a,a=4-伱選擇牌數",
 
   ["#sjisziach_active"] = "四像 褈鑄不同花牌指定至多等量脚色",
   ["#sjisziach-discard"] = "四像 弃 %arg",
@@ -39,7 +39,7 @@ sjisziach:addEffect(fk.EventPhaseStart, {
     local n=#cards
     local count=0
     local tos =event:getCostData(self).tos
-    -- S.playCard(player,cards,sjisziach.name)
+    -- S.playCard(cards,sjisziach.name,player)
     room:recastCard(cards,player,sjisziach.name)
     for _,p in ipairs(tos) do
       if not p.dead then

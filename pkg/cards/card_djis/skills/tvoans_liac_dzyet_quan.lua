@@ -14,6 +14,7 @@ skill:addEffect("cardskill", {
   target_num = 1,
   offset_func= Util.FalseFunc,
   on_effect = function(self, room, effect)
+    if not (effect.extar_data and  effect.extar_data.phase_data) then return end
     local to = effect.to
     local judge = {
       who = to,
@@ -40,7 +41,8 @@ skill:addEffect("cardskill", {
       if discardNum>0 then
           room:askToDiscard(to, {min_num = discardNum, max_num = discardNum, include_equip = false, skill_name = "tvoans_liac_dzyet_quan_skill", cancelable = false})
       end
-      to:skip(Player.Draw)
+      -- to:skip(Player.Draw)
+      effect.extar_data.phase_data.skipped=true
       -- S.skipPhase(to.id , Player.Draw)
     end
     self:onNullified(room, effect)
@@ -54,6 +56,5 @@ skill:addEffect("cardskill", {
   end,
 })
 
-skill:addAI(nil, "__card_skill")
 
 return skill

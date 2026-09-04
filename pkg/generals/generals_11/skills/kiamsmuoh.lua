@@ -4,7 +4,7 @@ local kiamsmuoh = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["kiamsmuoh"] = "劍舞",
-  [":kiamsmuoh"] = "伱起動牌對目幖脚色A致傷後,伱可發動(每次起動牌限1次).伱亮出牌堆頂5牌,伱對A起動其中殺(无視距離次數且傷害改爲流失體力),若亮出牌中无殺,伱流失1體力.",
+  [":kiamsmuoh"] = "伱起動牌對目幖脚色A致傷後,伱可發動(每次起動牌限1次).伱亮出牌堆頂5牌,伱對A起動其中殺(无視距離次數且傷害改爲流失體力),若亮出牌中无殺,伱流失1.",
 
   ["kiamsmuoh-choose"] = "劍舞 選擇目幖",
 }
@@ -63,7 +63,7 @@ local kiamsmuoh_spec = {
 }
 
 kiamsmuoh:addEffect(fk.PreDamage, {
-  is_delay_effect=true,
+  -- is_delay_effect=true,
   -- anim_type = "offensive",
   can_refresh= function(self, event, target, player, data)
     return player.seat==1
@@ -78,8 +78,7 @@ kiamsmuoh:addEffect(fk.PreDamage, {
   end,
 })
 
-kiamsmuoh:addEffect(fk.Damage, kiamsmuoh_spec) --
--- kiamsmuoh:addEffect(fk.Damaged, kiamsmuoh_spec)
+kiamsmuoh:addEffect(fk.Damaged, kiamsmuoh_spec) --
 
 
 -- kiamsmuoh:addEffect(fk.CardUseFinished, { --

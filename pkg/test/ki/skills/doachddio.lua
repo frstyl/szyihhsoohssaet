@@ -6,7 +6,7 @@ local doachddio = fk.CreateSkill {
 Fk:loadTranslationTable{
   ["doachddio"] = "潒除",
   [":doachddio"] = "伱起動｢｢殺｣｣旹伱可爲此｢殺｣選擇1至多額外目幖發動｡增加所選目幖,此｢殺｣結算終旹,若有目幖:響應,此｢殺｣不計入次數;未響應,伱取得此｢殺｣子牌",
-  -- [":doachddio"] = "伱起動｢｢殺｣｣旹伱可爲此｢殺｣指定1至多額外目幖(无視距離),發動｡伱流失1體力,｡若此｢殺｣未對目幖脚色A致傷,伱當段下1｢殺｣對A无視距離次數",
+  -- [":doachddio"] = "伱起動｢｢殺｣｣旹伱可爲此｢殺｣指定1至多額外目幖(无視距離),發動｡伱流失1,｡若此｢殺｣未對目幖脚色A致傷,伱1段下1｢殺｣對A无視距離次數",
 
 
   ["#doachddio-choose"] = "潒除 爲 %arg 指定額外目幖",
@@ -23,9 +23,9 @@ doachddio:addEffect(fk.CardUsing, {
   end,
   on_cost = function(self, event, target, player, data)
     local room=player.room
-    if #data:getExtraTargets({bypass_distances = true}) == 0 then  return end
+    if #data:getExtraTargets({bypass_distances = true, bypass_times=true}) == 0 then  return end
       local tos = room:askToChoosePlayers(player, {
-        targets = data:getExtraTargets({bypass_distances = false}),
+        targets = data:getExtraTargets({bypass_distances = false, bypass_times=true}),
         min_num = 1,
         max_num = 999,
         prompt = "#doachddio-choose:::"..data.card:toLogString(),

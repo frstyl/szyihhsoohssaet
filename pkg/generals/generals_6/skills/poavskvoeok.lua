@@ -4,11 +4,11 @@ local poavskvoeok = fk.CreateSkill {
 
 Fk:loadTranslationTable{
 ["poavskvoeok"] = "報國",
-[":poavskvoeok"] = "➀當一其他脚色受到傷害旹伱可發動,將此傷害轉与伱.",
+[":poavskvoeok"] = "一其它脚色受傷害旹,若其體力不大于(伱體力值或傷害值),伱可發動,將此傷害轉于伱",
 
-["#poavskvoeok-invoke"]="報國  %src 傷害轉予伱",
-["#poavskvoeok-choose"]="報國 打出 %arg 手牌將  %src 傷害轉予伱",
-["#poavskvoeok-draw"]="報國 抽 %arg",
+["#poavskvoeok-invoke"]="報國 將 %src 所受傷害轉于伱",
+-- ["#poavskvoeok-choose"]="報國 打出 %arg 手牌將  %src 傷害轉予伱",
+-- ["#poavskvoeok-draw"]="報國 抽 %arg",
 
 ["$poavskvoeok1"] = "大丈夫爲國䀆忠 死而无憾",
 }
@@ -24,37 +24,16 @@ Fk:loadTranslationTable{
 -- end)
 
 
--- poavskvoeok:addEffect(fk.Damaged, {
---   anim_type = "masochism",
---   can_trigger = function(self, event, target, player, data)
---     return target == player and player:hasSkill(poavskvoeok.name) 
---   end,
---   on_cost= function(self, event, target, player, data)
---      return 
---      player.room:askToSkillInvoke(player, {
---       skill_name = poavskvoeok.name,
---       prompt = "#poavskvoeok-draw:::"..player:getLostHp()
---     }) 
---   end,
---   on_use = function(self, event, target, player, data)
---         -- local n=player:usedEffectTimes(self.name, Player.HistoryTurn)
---     player:drawCards(player:getLostHp(), poavskvoeok.name)
 
---     -- if player:usedSkillTimes(poavskvoeok.name, Player.HistoryTurn) ==1 then --on_use 後
---     -- player:drawCards(1, poavskvoeok.name)--  --抽1
---     -- end
---   end,
--- })
 
 poavskvoeok:addEffect(fk.DamageInflicted, {
   anim_type = "defensive",
   can_trigger = function(self, event, target, player, data)
     return (data.to ~= player) 
     and player:hasSkill(poavskvoeok.name) 
+    and (data.to.hp <=player.hp or data.to.hp <=data.damage )
   end,
   on_cost = function(self, event, target, player, data)
-    local n=player:usedEffectTimes(self.name, Player.HistoryTurn)
-    -- if n==0 then 
       if 
           player.room:askToSkillInvoke(player, {
           skill_name = poavskvoeok.name,
@@ -64,86 +43,17 @@ poavskvoeok:addEffect(fk.DamageInflicted, {
         event:setCostData(self,{tos={data.to}})
         return true
       end
-    -- else
-    --   local cards=player.room:askToCards(player,{
-    --     min_num=n,
-    --     max_num=n,
-    --     include_equip=false,
-    --     pattern=tostring(Exppattern{ id = table.filter(player:getCardIds("h"),function(id)
-    --       return  not player:prohibitResponse(Fk:getCardById(id))
-    --     end
-    --     ) }),
-    --     prompt = "#poavskvoeok-choose:"..data.to.id.."::"..n, 
-    --     cancelable = true,
-    --   })
-    --   if #cards==n then
-    --   event:setCostData(self, {tos={data.to},cards = cards})
-    --   return true
-    --   end
-    -- end
   end,
   on_use = function(self, event, target, player, data)
     local room = player.room
-    -- -- room:addPlayerMark(player,"_poavskvoeok",1)
-    -- local cards = event:getCostData(self).cards
-    -- if cards then
-    --   -- local card=Fk:cloneCard("khouc")
-    --   -- card:addSubcards(event:getCostData(self).cards)
-    --   -- room:responseCard({
-		-- 	-- 	card=card,
-		-- 	-- 	from=player,
-		-- 	-- 	attachedSkillAndUser={muteCard=true},
-		-- 	-- })
-    --   S.playCard(player,cards,poavskvoeok.name)
-    -- end
-
-    -- data:preventDamage()  --轉傷算免傷?
-      -- room:damage{
-      --   from = data.from,
-      --   to = player,
-      --   damage = data.damage,
-      --   damageType = data.damageType,
-      --   skillName = data.skillName,
-      --   chain = data.chain,
-      --   card = data.card,
-      -- }
+    data.extra_data=data.extra_data or {}
+    -- data.extra_data.poavskvoeok==player.id
+    data.extra_data.origin_to=data.extra_data.origin_to or data.to
     data.to=player
-    target = player
-    -- room.logic:trigger(fk.DamageInflicted, player, data)
-    -- data.prevented=true
-
-    -- if player:usedSkillTimes(poavskvoeok.name, Player.HistoryTurn) ==1 then --on_use 後
-    -- player:drawCards(1, poavskvoeok.name)--  --抽1
-    -- end
-
-    return true
+    -- return true
 
   end,
 })
 
 
-  -- on_cost = function(self, event, target, player, data)
-  --   local room = player.room
-  --   local n=player:usedEffectTimes(self.name, Player.HistoryTurn)
-  --   -- local n=player:getMark("_poavskvoeok")
-  --   local yes, ret = room:askToUseActiveSkill(player, {
-  --     skill_name = "discard_skill", 
-  --     prompt = "#poavskvoeok-invoke:"..data.to.id.."::"..n, 
-  --     cancelable = true, 
-  --     extra_data = {
-  --       num = n,
-  --       min_num = n,
-  --       include_equip = false,
-  --       skillName = poavskvoeok.name,
-  --       pattern = ".",
-  --     }, 
-  --     no_indicate = false,
-  --     skip=true,
-
-  --   })
-  --   if yes then 
-  --     event:setCostData(self, {cards = ret.cards})
-  --     return true
-  --   end
-  -- end,
 return poavskvoeok

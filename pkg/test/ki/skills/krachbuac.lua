@@ -5,7 +5,7 @@ local krachbuac = fk.CreateSkill {
 Fk:loadTranslationTable{
   ["krachbuac"] = "警防",
   -- [":krachbuac"] = "伱受傷後x次,伱可選脚色1手牌發動.伱展示之,其視爲閃至其離開手牌區.",--不能弃
-  [":krachbuac"] = "伱距離1內脚色受傷後,伱可選1脚色發動｡當轉內,其紅黑牌視爲閃防",
+  [":krachbuac"] = "伱1脚色受傷後,伱可選1脚色(需伱至二者距離不大于1)發動｡1轉內,其每手牌視爲護｢防患未肰｣(若爲｢殺｣致傷則爲護｢閃｣)",
 
   -- ["#krachbuac-invoke"] = "警防：選擇任1手牌",
 
@@ -45,16 +45,18 @@ krachbuac:addEffect(fk.Damaged, {
     end
   end,
   on_use = function(self, event, target, player, data)
-    player.room:setPlayerMark(event:getCostData(self).tos[1],"@@krachbuac-turn",1)
+
+    player.room:setPlayerMark(event:getCostData(self).tos[1],"@@krachbuac_ssaet-turn", data.card and data.card.trueName=="ssaet" and 1 or 2)
+
   end,
 })
 
 krachbuac:addEffect("filter", {
   card_filter = function(self, to_select, player)
-    return player:getMark("@@krachbuac-turn")>0 and to_select.color~=Card.NoColor
+    return player:getMark("@@krachbuac_ssaet-turn")>0 
   end,
   view_as = function(self, player, to_select)
-    local card = Fk:cloneCard(to_select.color==Card.Red and "szjemh" or "buac_hzfan_mujs_nzjen", to_select.suit, to_select.number)
+    local card = Fk:cloneCard(player:getMark("@@krachbuac_ssaet-turn")==1 and  "hand__szjemh" or "hand__buac_hzfan_mujs_nzjen", to_select.suit, to_select.number)
     card.skillName = krachbuac.name
     return card
   end,

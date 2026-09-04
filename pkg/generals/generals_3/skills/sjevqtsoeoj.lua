@@ -7,7 +7,7 @@ local sjevqtsoeoj= fk.CreateSkill({
 
 Fk:loadTranslationTable{
 ["sjevqtsoeoj"] = "消災",
-[":sjevqtsoeoj"] = "伱受傷旹,若有傷害來源且不爲伱,伱可交与一其他脚色A2手牌,將傷害轉与A,若A爲傷源,改爲防止傷害",
+[":sjevqtsoeoj"] = "伱受傷旹,若有傷害來源且不爲伱,伱可交与一其它脚色A2手牌,將傷害轉与A,若A爲傷源,改爲防止傷害",
 
 ["#sjevqtsoeoj"] = "消災 交出2手牌 轉迻傷害",
 
@@ -55,7 +55,9 @@ sjevqtsoeoj:addEffect(fk.DamageInflicted, {
       return 
     end
     if not to.dead then
-      data.to=to
+    data.extra_data=data.extra_data or {}
+    data.extra_data.origin_to=data.extra_data.origin_to or data.to
+    data.to=to
       -- room:damage{
       --   from = data.from,
       --   to = to,

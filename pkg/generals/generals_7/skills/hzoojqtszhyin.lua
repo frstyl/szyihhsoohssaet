@@ -38,7 +38,7 @@ hzoojqtszhyin:addEffect(fk.TurnStart,{
   end,
 	on_use = function(self, event, target, player, data)
     local room=player.room
-    S.playCard(player,event:getCostData(self).cards,hzoojqtszhyin.name)
+    S.playCard(event:getCostData(self).cards,hzoojqtszhyin.name,player)
     if target:isWounded() and not target.dead then
       room:recover{
         who = target,

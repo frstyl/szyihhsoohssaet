@@ -4,7 +4,7 @@ local crakljin = fk.CreateSkill({
 
 Fk:loadTranslationTable{
   ["crakljin"] = "逆鱗",
-  [":crakljin"] = "伱受到傷害後,伱可發動,伱亮出牌堆底1牌,若其爲:♠️2~9,伱予1脚色3雷傷;黑{A/J/Q/K},伱弃1脚色全部牌;其它,伱取得此牌",  --damage skill 應有多个 --value1.85+1.23
+  [":crakljin"] = "伱受到傷害後,伱可發動,伱亮出牌堆底1牌,若其爲:♠️2~9,伱予1脚色3雷傷;黑{A/J/Q/K},伱弃置1脚色全部牌;其它,伱取得之",  --damage skill 應有多个 --value1.85+1.23
 
   ["#crakljin-damage"] = "逆鱗：予1脚色3雷傷",
   ["#crakljin-discard"] = "逆鱗：弃1脚色牌",

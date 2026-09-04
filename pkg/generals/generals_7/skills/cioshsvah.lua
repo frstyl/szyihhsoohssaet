@@ -6,7 +6,7 @@ local cioshsvah = fk.CreateSkill {
 Fk:loadTranslationTable{
 ["cioshsvah"] = "馭火",  --馭火
 [":cioshsvah"] = "伱受到火傷旹,伱可選1項➀預打出1牌,防止此傷➁將此傷轉迻于伱上家或下家(有向)",
-["#cioshsvah-fire"]="馭火 弃1牌  轉迻  所受傷害",
+["#cioshsvah-fire"]="馭火 打出1牌防止此傷  或選擇目幖轉迻傷害",
 }
 
 
@@ -15,7 +15,7 @@ local S = require "packages/szyihhsoohssaet/szyih_guos"
 cioshsvah:addEffect(fk.DamageInflicted, {
   anim_type = "defensive",
   can_trigger = function(self, event, target, player, data)
-    return target==player and player:hasSkill(cioshsvah.name) 
+    return data.to==player and player:hasSkill(cioshsvah.name) 
     and data.damageType == fk.FireDamage
     -- and not player:isNude() 
   end,
@@ -27,7 +27,13 @@ cioshsvah:addEffect(fk.DamageInflicted, {
 
       targets ={S.getNextOne(data.to,direction)}
     else
-      targets={S.getNextOne(data.to,1), S.getNextOne(data.to,-1)}
+
+      local n =S.getDirectFromAToB(data.from, player)
+      if n==0 or not data.from then
+        targets=S.getNeighbor(player)
+      else
+        targets={S.getNextOne(player, n)}
+      end
     end
       local tos, cards =  room:askToChooseCardsAndPlayers(player, {
       min_card_num = 0,
@@ -45,7 +51,8 @@ cioshsvah:addEffect(fk.DamageInflicted, {
       cancelable = true,
     })
     if  #tos==0 and #cards==0 then
-      tos={targets[1]}
+      -- tos={targets[1]}
+      return --不鎖
     end
       event:setCostData(self, {tos=tos,cards=cards})
       return true
@@ -53,8 +60,8 @@ cioshsvah:addEffect(fk.DamageInflicted, {
   on_use = function(self, event, target, player, data)
     local room = player.room
     if  #event:getCostData(self).cards>0 then
-    S.playCard(player,event:getCostData(self).cards,cioshsvah.name)
-    S.preventDamage({damageData=data,skillName=cioshsvah.name})
+      S.playCard(event:getCostData(self).cards,cioshsvah.name,player)
+      S.preventDamage({damageData=data,skillName=cioshsvah.name})
       return
     end
 
@@ -69,7 +76,7 @@ cioshsvah:addEffect(fk.DamageInflicted, {
 
     data.to=to
     target = to
-    room.logic:trigger(fk.DamageInflicted, to, data)
+    -- room.logic:trigger(fk.DamageInflicted, to, data)
     -- data.prevented=true
     return true
 

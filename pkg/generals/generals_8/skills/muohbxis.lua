@@ -1,10 +1,12 @@
 local muohbxis = fk.CreateSkill {
   name = "muohbxis",
+  related_skills={"tsjecqkaap"},
+
 }
 
 Fk:loadTranslationTable {
   ["muohbxis"] = "武僃",
-  [":muohbxis"] = "伱補段終旹,伱可預伱1手牌牌置入1脚色A裝僃欄(伱選)發動,A抽x(x爲A裝僃區牌數)",
+  [":muohbxis"] = "伱補段終旹,伱可將伱1手牌牌置入1脚色A裝僃欄(伱選)發動,A選擇➀抽x(x爲A裝僃區牌數)➁當輪擁有技能｢精甲｣",
 
   ["#muohbxis-invoke"] = "武僃：將伱1手牌置入1脚色裝僃區",
 
@@ -13,8 +15,6 @@ Fk:loadTranslationTable {
 }
 
 local S = require "packages/szyihhsoohssaet/szyih_guos" 
-
-
 
 
 muohbxis:addEffect(fk.EventPhaseEnd, {

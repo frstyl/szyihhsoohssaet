@@ -5,7 +5,7 @@ local khaavhkouc = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["khaavhkouc"] = "巧工",
-  [":khaavhkouc"] = "主旹,伱可選➀一脚色裝僃區1裝僃牌發動.伱復刻之(同名无花无點),將復刻牌置入一脚色裝僃區.復刻牌進入弃牌堆銷毀.➁2脚色裝僃區牌數差不大于伱已選體力值者發動,交換其裝僃區內牌",
+  [":khaavhkouc"] = "主旹,伱可選➀一脚色裝僃區1裝僃牌發動.伱復刻之(同名无花无點),將復刻牌置入一脚色裝僃區.復刻牌進入弃牌堆銷毀.➁2脚色,(其裝僃區牌數差不大于伱已損體力數)發動,交換其裝僃區內牌",
 
   ["#khaavhkouc"] = "巧工：選一名脚色裝僃區內一裝僃復刻之,或選2脚色,裝僃區牌數差不大于 %arg 者 交換其裝僃區牌",
   ["#khaavhkouc-choose_target"] = "巧工",
@@ -16,6 +16,9 @@ Fk:loadTranslationTable{
   ["$khaavhkouc1"] = "昰細巧手段如何。",
   ["$khaavhkouc2"] = "粗中有細",
 }
+
+local S = require "packages/szyihhsoohssaet/szyih_guos" 
+
 -- khaavhkouc:addEffect(fk.EventPhaseStart, {
 --   can_trigger = function(self, event, target, player, data)
 --     return target == player and player:hasSkill(khaavhkouc.name) and player.phase == Player.Start 
@@ -75,11 +78,13 @@ khaavhkouc:addEffect("active", {
         prompt = "#khaavhkouc-choose_card",
         }))
     -- local card = room:printCard(c.name, c.suit, c.number)
-    local card = room:printCard(c.name)
-    room:setCardMark(card, MarkEnum.DestructIntoDiscard, 1)
-    room:setCardMark(card, "@@khaavhkouc", 1)
+    -- local card = room:printCard(c.name)
+
+    -- room:setCardMark(card, MarkEnum.DestructIntoDiscard, 1)
+    -- room:setCardMark(card, "@@khaavhkouc", 1)
     -- card.extra_data=card.extra_data or {}
     -- card.extra_data.khaavhkouc=true
+    local card = S.getKhouc(1,c.name)
     local tos = room:askToChoosePlayers(player, {
       min_num = 1,
       max_num = 1,
@@ -90,7 +95,7 @@ khaavhkouc:addEffect("active", {
     })
     if #tos==0  then tos = {player} end
     -- room:moveCardTo(card, Card.PlayerHand, tos[1], fk.ReasonGive, khaavhkouc.name, nil, false, player)
-    room:moveCardIntoEquip(tos[1], {card.id}, khaavhkouc.name, true, player)
+    room:moveCardIntoEquip(tos[1], card, khaavhkouc.name, true, player)
     else 
     room:swapAllCards(effect.from, effect.tos, khaavhkouc.name, "e")
     end

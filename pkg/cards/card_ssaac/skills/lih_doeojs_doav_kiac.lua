@@ -11,9 +11,9 @@ cardSkill:addEffect("cardskill", {
   end,
   offset_func= Util.FalseFunc,
   on_effect = function(self, room, effect)
-    if effect.responseToEvent then
+    if effect.extra_data and effect.extra_data.lih_doeojs_doav_kiac then
       room:loseHp(effect.from,1,cardSkill.name,effect.from)
-      S.preventDamage({damageData=effect.responseToEvent,skillName=cardSkill.name})  --skill??
+      S.preventDamage({damageData=effect.extra_data.lih_doeojs_doav_kiac, skillName=cardSkill.name})  --skill??
       if not effect.from.dead then effect.from.drawCards(1,cardSkill.name) end
     end
   end,
@@ -22,25 +22,39 @@ cardSkill:addEffect("cardskill", {
 cardSkill:addEffect(fk.DamageInflicted, {  --合并諸牌
   -- global = true,
   -- mute = true,
-  priority = 0.001, 
+  priority = 0.001,   --??
   can_trigger = function(self, event, target, player, data)
     if  player.seat~=1  then return end
+    return true
+      -- local players=S.getHolders("lih_doeojs_doav_kiac")
+      -- local card=Fk:cloneCard("lih_doeojs_doav_kiac")
+      -- card:setVSPattern(nil,nil,".")
+      -- local ps={}
+      -- for _, p in pairs(players) do
+      --   if S.magicCanUse(p,card) then  --有旹機 不詢問 ?
+      --     table.insert(ps,p)
+      --   end
+      -- end
+      -- if #ps>0 then
+      --   event:setCostData(self,{players=ps})
+      --   return true
+      -- end
+  end,
+  on_trigger = function(self, event, target, player, data)
       local players=S.getHolders("lih_doeojs_doav_kiac")
       local card=Fk:cloneCard("lih_doeojs_doav_kiac")
       card:setVSPattern(nil,nil,".")
       local ps={}
       for _, p in pairs(players) do
-        if S.magicCanUse(p,card) then
+        if S.magicCanUse(p,card) then  --有旹機 不詢問 ?
           table.insert(ps,p)
         end
       end
-      if #ps>0 then
-        event:setCostData(self,{players=ps})
-        return true
-      end
-  end,
-  on_trigger = function(self, event, target, player, data)
-    local room=player.room
+      -- if #ps>0 then
+      --   event:setCostData(self,{players=ps})
+      --   return true
+      -- end
+      local room=player.room
       local params={
       skill_name = "lih_doeojs_doav_kiac",
       pattern="lih_doeojs_doav_kiac",
@@ -52,9 +66,10 @@ cardSkill:addEffect(fk.DamageInflicted, {  --合并諸牌
       }
       -- event_data = data,
     }
-    local use = S.askToUseKoarbiukCard(room,event:getCostData(self).players,params)
+    local use = S.askToUseKoarbiukCard(ps,params)
     if use then
-      use.responseToEvent = data
+      use.extra_data = use.extra_data or {}
+      use.extra_data.lih_doeojs_doav_kiac=data
       room:useCard(use)
     end
 

@@ -25,7 +25,7 @@ cardSkill:addEffect(fk.CardUsing, {
   end,
   on_cost = function(self, event, target, player, data)
     local tos = player.room:askToChoosePlayers(player, {
-      targets = table.filter(data:getExtraTargets({bypass_distances = false}), function(p)
+      targets = table.filter(data:getExtraTargets({bypass_distances = false, bypass_times=true}), function(p)
         return player:distanceTo(p) == player:distanceTo(data.tos[1])
       end),
       min_num = 1,

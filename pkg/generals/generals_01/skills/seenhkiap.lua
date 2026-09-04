@@ -1,6 +1,6 @@
 Fk:loadTranslationTable{
   ["seenhkiap"] = "洗劫",
-  [":seenhkiap"] = "伱死亾旹必可選1至2脚色發動,伱弃其裝僃區全部牌",
+  [":seenhkiap"] = "伱死亾旹可選1至2脚色發動,伱弃其裝僃區全部牌",
 
   ["#seenhkiap-choose"] = "洗劫 1至2脚色發動,伱弃其裝僃區全部牌",
 

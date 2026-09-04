@@ -4,7 +4,7 @@ local hqiqmaah = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["hqiqmaah"] = "醫馬",
-  [":hqiqmaah"] = "其他脚色A區域坐騎牌進入弃牌堆後，若其未迻動,你可發動,伱取得此牌,肰後伱可令A回1",
+  [":hqiqmaah"] = "其它脚色A區域坐騎牌進入弃牌堆後(若其未迻動)你可發動,伱取得之,可令A回1",
 
   ["#hqiqmaah-choose"] = "醫馬 選擇1坐騎牌取得",
   ["#hqiqmaah-recover"] = "醫馬 是否令%src回1",

@@ -4,7 +4,7 @@ local teejhlik = fk.CreateSkill({
 
 Fk:loadTranslationTable{
   ["teejhlik"] = "底力",--驕矜
-  [":teejhlik"] = "伱轉始,伱聲明數字a發動｡伱體力調整至a,轉終,反調整伱因此變化體力值｡a取值爲1至伱體力上限且不爲伱體力值",  --當轉?
+  [":teejhlik"] = "伱轉始,伱聲明數字a發動｡伱體力值調整至a,其轉終伱再發動,反調整伱因此變化體力｡a取值爲1至伱體力上限且不爲伱體力值",  --1轉?
 
   ["#teejhlik-ivnoek"] = "底力 選擇數",
 
@@ -47,7 +47,11 @@ teejhlik:addEffect(fk.TurnStart, {
     local room=player.room
     local m=  event:getCostData(self).n -player.hp 
     room:changeHp(player,m, nil, teejhlik.name)
-    room:setPlayerMark(player,"@teejhlik-turn",m)
+    -- room:setPlayerMark(player,"@teejhlik-turn",m)
+
+    local turn=  room.logic:getCurrentEvent():findParent(GameEvent.Turn)
+	turn.data.extra_data=turn.data.extra_data or {}
+	turn.data.extra_data.teejhlik=m
   end,
 })
 
@@ -56,10 +60,10 @@ teejhlik:addEffect(fk.TurnEnd, {
   anim_type = "negative",
   is_delay_effect=true,
   can_trigger = function(self, event, target, player, data)
-    if  player.dead then return end
-    local n= player:getMark("@teejhlik-turn")
-
-    if n~=0 then 
+	
+    if  player.dead or not player:hasSkill(teejhlik.name)  then return end  --再發動 需有技能
+    -- local n= player:getMark("@teejhlik-turn")
+	if data.extra_data and data.extra_data.teejhlik then  --應記錄from
       event:setCostData(self,{n=n})
       return true
     end

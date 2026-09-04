@@ -3,7 +3,7 @@ local tsiuhSkill = fk.CreateSkill {
 }
 
 Fk:loadTranslationTable{
-["@tsyis-turn"] = "酒",
+-- ["@tsyis-turn"] = "酒",
 }
 local S = require "packages/szyihhsoohssaet/szyih_guos" 
 
@@ -15,14 +15,13 @@ tsiuhSkill:addEffect("cardskill", {
     return true
   end,  
 
-  -- mod_target_filter = function(self, player, to_select, selected, card, extra_data)
-  --   local  must_targets = extra_data and extra_data.fix_targets   or {player.id}
-  --   if not table.contains(must_targets, to_select.id) or #selected>=#must_targets then return end 
-  --   return #selected~=0 
-  --    or
-  --     (extra_data and (extra_data.bypass_times or extra_data.tsiuhRecover)) 
-  --       or self:withinTimesLimit(player, Player.HistoryTurn, card, to_select)
-  -- end,
+  mod_target_filter = function(self, player, to_select, selected, card, extra_data)
+        return #selected~=0 
+     or(
+      (extra_data and (extra_data.bypass_times or extra_data.tsiuhRecover)) 
+        or self:withinTimesLimit(player, Player.HistoryTurn, card, "tsiuh", to_select)
+        )
+  end,
  
   max_turn_use_time = 1,
   -- can_use = function(self, player, card, extra_data)
@@ -39,10 +38,7 @@ tsiuhSkill:addEffect("cardskill", {
   target_num=1,
   target_filter = function(self, player, to_select, selected, _, card, extra_data)
     if  not  S.useToSelfFilter(self, player, to_select, selected, _, card, extra_data) then return end
-    return #selected~=0 
-     or
-      (extra_data and (extra_data.bypass_times or extra_data.tsiuhRecover)) 
-        or self:withinTimesLimit(player, Player.HistoryTurn, card, "tsiuh", to_select)
+    return true
   end,
   on_use = function(self, room, use)
     if use.extra_data and use.extra_data.tsiuhRecover then

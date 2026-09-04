@@ -4,7 +4,7 @@ local giucqdoo = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["giucqdoo"] = "窮途",
-  [":giucqdoo"] = "其它脚色轉終旹,若其體力值或手牌數不大于1,伱可選擇其1牌發動,伱取得此牌",  --彊度
+  [":giucqdoo"] = "其它脚色轉終旹,若其體力數或手牌數不大于1,伱可選擇其1牌發動,伱取得之",  --彊度
 
   ["#giucqdoo-invoke"] = "窮途 %src轉終 是否取得其牌",
 

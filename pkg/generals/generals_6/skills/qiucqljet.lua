@@ -10,7 +10,7 @@ Fk:loadTranslationTable{
 -- ["#qiucqljetResult"] = "雄烈: %from 于 %to 手牌數 %arg",
 }
 
-qiucqljet:addEffect(fk.TargetSpecified, {
+qiucqljet:addEffect(fk.TargetConfirmed, {
   anim_type = "offensive",
   can_trigger = function(self, event, target, player, data)
     return data.from ==player and player:hasSkill(qiucqljet.name) and data.card.trueName == "ssaet" 
@@ -72,7 +72,7 @@ qiucqljet:addEffect(fk.TargetSpecified, {
           return card.trueName == "szjemh" and not to:prohibitUse(card)
       end)
       if #cards==0 then return end
-        room:throwCard(tableRandomPick(cards,1), qiucqljet.name, to, to)
+        room:throwCard(room:tableRandomPick(cards,1), qiucqljet.name, to, to)
     end
 
   end,

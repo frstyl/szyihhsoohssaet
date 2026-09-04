@@ -26,7 +26,7 @@ equipSkill:addEffect(fk.CardEffectCancelledOut, {
     end
   end,
   on_use = function(self, event, target, player, data)
-    S.playCard(player,event:getCostData(self).cards,equipSkill.name)
+    S.playCard(event:getCostData(self).cards,equipSkill.name,player)
     data.isCancellOut = false
   end,
 })

@@ -4,9 +4,9 @@ local sjihcxes = fk.CreateSkill {
 
 Fk:loadTranslationTable{
 ["sjihcxes"] = "義節",  --誼
-[":sjihcxes"] = "伱進入賓死旹,可選1其它脚色發動,伱將全部牌交与該脚色,其回1,抽1｡伱死亾旹,伱可發動,伱中止結算至當轉,令1腳色執行1額外轉",
+[":sjihcxes"] = "伱進入賓死旹,可選1其它脚色發動,伱將全部牌交与該脚色,其回1,抽1｡伱死亾旹,伱可發動,伱中止結算至1轉,令1腳色執行1額外轉",
 
-["#sjihcxes-invoke"]="義節  %src 受傷 是否流失1體力 防止此傷害",
+["#sjihcxes-invoke"]="義節  %src 受傷 是否流失1 防止此傷害",
 ["#sjihcxes-choose"]="義節  令 %src 執行",
 ["draw2"]="抽2",
 ["shield1"]="獲得1護甲",

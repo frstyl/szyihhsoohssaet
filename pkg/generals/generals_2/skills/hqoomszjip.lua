@@ -4,7 +4,7 @@ local hqoeomszjip = fk.CreateSkill {
 
 Fk:loadTranslationTable{
 ["hqoeomszjip"] = "暗襲",
-[":hqoeomszjip"] = "一其他脚色受到錦囊傷害後,伱預打出1紅色牌選擇1其它脚色體力值不小于伱者發動,伱予其1傷",
+[":hqoeomszjip"] = "一其它脚色受到計謀傷害後,伱預打出1紅色牌選擇1其它脚色體力值不小于伱者發動,伱予其1傷",
 ["#hqoeomszjip-invoke"]="暗襲 弃1紅色牌与1脚色1傷",
 }
 
@@ -44,7 +44,7 @@ hqoeomszjip:addEffect(fk.Damaged, {
   end,
   on_use = function(self, event, target, player, data)
     local room = player.room
-    S.playCard(player,event:getCostData(self).cards,hqoeomszjip.name)
+    S.playCard(event:getCostData(self).cards,hqoeomszjip.name,player)
     local to =event:getCostData(self).tos[1]
     if to.dead then return end
     room:damage{

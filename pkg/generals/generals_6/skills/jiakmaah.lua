@@ -4,7 +4,7 @@ local jiakmaah = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["jiakmaah"] = "躍馬",
-  [":jiakmaah"] = "印牌:將伱1坐騎牌自伱{手牌區/裝僃區}迻至{裝僃區/手牌區},虛擬起動演練{殺/閃}",
+  [":jiakmaah"] = "印牌:將伱1坐騎牌自伱{手牌區/裝僃區}迻至{裝僃區/手牌區},虛擬起動或演練｢{殺/閃}｣",
 
   ["@jiakmaah_cards"] = "演武",
   -- ["$jiakmaah1"] = "",
@@ -12,7 +12,7 @@ Fk:loadTranslationTable{
 }
 
 jiakmaah:addEffect("viewas", {
-  pattern = "ssaet,szjemh|0|nosuit|none",
+  pattern = ".|0|nosuit|none|ssaet,szjemh",
   anim_type = "defensive",
   prompt = "jiakmaah",
   card_filter = Util.FalseFunc,

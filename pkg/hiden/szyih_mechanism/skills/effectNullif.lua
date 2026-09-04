@@ -1,4 +1,4 @@
-local effectNullify = fk.CreateSkill {  --usecard 旹對目幖无效 之 後續, effect事件中无效當時卽處理
+local effectNullify = fk.CreateSkill {  --usecard 旹對目幖无效 之 後續, effect事件中无效當時卽處理  --閃多次生效應在此
   name = "effectNullify",
 }
 local S = require "packages/szyihhsoohssaet/szyih_guos" 

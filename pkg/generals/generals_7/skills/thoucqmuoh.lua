@@ -13,7 +13,7 @@ Fk:loadTranslationTable{
 ["#thoucqmuoh-damage-ask"] = "通武 是否弃 %src 牌",
 }
 
-thoucqmuoh:addEffect(fk.TargetSpecified, {
+thoucqmuoh:addEffect(fk.TargetConfirmed, {
   can_trigger = function(self, event, target, player, data)
     return data.from  == player and  player:hasSkill(thoucqmuoh.name) 
     and data.card.trueName == "ssaet" 
@@ -67,7 +67,7 @@ thoucqmuoh:addEffect(fk.CardEffectCancelledOut, {  --不算發動技能
   end,
 })
 
-thoucqmuoh:addEffect(fk.DamageCaused, {
+thoucqmuoh:addEffect(fk.DamageInflicted, {
   is_delay_effect = true,
   anim_type = "drawcard",
   can_trigger = function(self, event, target, player, data)

@@ -4,7 +4,7 @@ local szioqnoans = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["szioqnoans"] = "紓難",
-  [":szioqnoans"] = "其它腳色起動進攻牌對目幖脚色生效前,伱可發➀發動,抽1,將目幖轉爲伱(目幖爲伱不可選)➁(需目幖唯一)打出1牌發動,此牌對目幖无效,若此牌不爲轉化/虛擬牌將將其迻除遊戲.轉終,起動者獲得之｡",
+  [":szioqnoans"] = "其它腳色起動進攻牌對目幖脚色生效前,伱可發➀發動,抽1,將目幖轉爲伱(目幖爲伱不可選)➁(需爲僅存目幖)打出1牌發動,此牌對目幖无效,若此牌不爲轉化/虛擬牌將將其迻除遊戲.轉終,起動者獲得之｡",
 
   ["#szioqnoans-invoke"] = "紓難 %src 對 %dest 起動 %arg，伱可發動",
 
@@ -72,7 +72,7 @@ szioqnoans:addEffect(fk.PreCardEffect, {  --PreCardEffect --TargetSpecifying Tar
         -- data:addTarget(player)
       -- end
     else
-	    S.playCard(player,event:getCostData(self).cards, szioqnoans.name)
+	    S.playCard(event:getCostData(self).cards, szioqnoans.name,player)
       -- data.nullifiedTargets = table.simpleClone(room.players)
       S.effectNullify(data)
       if not data.from.dead and not data.card:isVirtual() and room:getCardArea(data.card) == Card.Processing then

@@ -1,7 +1,7 @@
 Fk:loadTranslationTable{
   ["ddiuqmiuk"] = "綢繆",
   [":ddiuqmiuk"] = "主旹.選擇至多x脚色發動,各緟鑄1.若所緟鑄牌同花,伱抽1",
-  -- [":ddiuqmiuk"] = "主旹.選擇至多x脚色發動,各緟鑄至多y.若所緟鑄牌同花,伱獲得技能浮槎(x爲伱體力值至少爲1,y爲輪數至少爲1)",
+  -- [":ddiuqmiuk"] = "主旹.選擇至多x脚色發動,各緟鑄至多y.若所緟鑄牌同花,伱獲得技能浮槎(x爲伱體力數至少爲1,y爲輪數至少爲1)",
 
   ["#ddiuqmiuk-active"] = "綢繆： 令至多 %arg 脚色各緟鑄1",
   ["#ddiuqmiuk-choose"] = "綢繆：緟鑄1",

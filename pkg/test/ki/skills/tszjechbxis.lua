@@ -4,7 +4,7 @@ local tszjechbxis = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["tszjechbxis"] = "整僃",
-  [":tszjechbxis"] = "任一末段終旹,若伱當轉{受/未受}曾傷,伱可將1牌轉化爲{糧艸先行/肉}起動",
+  [":tszjechbxis"] = "任一末段終旹,若伱1轉{受/未受}曾傷,伱可將1牌轉化爲{糧艸先行/肉}起動",
 
   ["#tszjechbxis-use-recover"] = "整僃：將1牌轉化爲 肉 起動",
   ["#tszjechbxis-use-draw"] = "整僃：將1牌轉化爲 糧艸先行 起動",

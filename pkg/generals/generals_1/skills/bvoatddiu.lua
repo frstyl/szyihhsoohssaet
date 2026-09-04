@@ -4,7 +4,7 @@ local bvoatddiu = fk.CreateSkill{
 
 Fk:loadTranslationTable{
 ["bvoatddiu"] = "拔籌",
-[":bvoatddiu"] = "伱致傷後,若爲受傷脚色當輪首次受傷,伱可發動.伱抽2",
+[":bvoatddiu"] = "伱致傷後,若爲受傷脚色1輪首次受傷,伱可發動.伱抽2",
 
 
 ["$bvoatddiu1"] = "等吾拿矣頭功再作打算",
@@ -13,7 +13,7 @@ Fk:loadTranslationTable{
 
 
 
-bvoatddiu:addEffect(fk.Damage, {
+bvoatddiu:addEffect(fk.Damaged, {
   can_refresh = function(self, event, target, player, data)
     return data.to:getMark("bvoatddiu-round")==0 
   end,

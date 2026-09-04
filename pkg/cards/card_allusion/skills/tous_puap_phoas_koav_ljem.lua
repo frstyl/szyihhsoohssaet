@@ -3,7 +3,7 @@ local cardSkill = fk.CreateSkill {
 }
 -- Fk:loadTranslationTable{
 --   ["#touh_ttwenh_seec_jje"] = "斗轉星迻 以鬥法破高廉 交換%dest 之%arg占卜牌",
---   ["#koav_doac_tous_puap"] = "选择一其他脚色，伱予其1雷傷",
+--   ["#koav_doac_tous_puap"] = "选择一其它脚色，伱予其1雷傷",
 -- }
 
 local S = require "packages/szyihhsoohssaet/szyih_guos" 
@@ -51,16 +51,17 @@ cardSkill:addEffect("cardskill", {
 
 
 
-cardSkill:addEffect(fk.FinishJudge, {
+cardSkill:addEffect(fk.FinishJudge, { --StartJudge
   -- global = true,
   can_trigger = function(self, event, target, player, data)
-    if player.seat~=1 then return end
+    if player.seat~=1 then return end  --每人單獨?
     if data.card and data.card.suit==Card.Spade then
-      local players=S.getHolders("tous_puap_phoas_koav_ljem")  --如有多張止能用1?
-      if  #players > 0  then
-        event:setCostData(self,{players=players})
-        return  true
-      end
+      return true
+      -- local players=S.getHolders("tous_puap_phoas_koav_ljem")  --如有多張止能用1?
+      -- if  #players > 0  then
+      --   event:setCostData(self,{players=players})
+      --   return  true
+      -- end
 
     end
   end,
@@ -76,7 +77,7 @@ cardSkill:addEffect(fk.FinishJudge, {
         koav_doac_tous_puap = true,
       }
     }
-  local use = room:askToNullification(event:getCostData(self).players, params)  --選上家再選下家?
+    local use = S.askToUseKoarbiukCard(S.getHolders("tous_puap_phoas_koav_ljem"), params) 
 
     if use then
       

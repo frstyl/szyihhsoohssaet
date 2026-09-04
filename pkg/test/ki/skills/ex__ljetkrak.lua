@@ -4,7 +4,7 @@ local ex__ljetkrak = fk.CreateSkill{
 }
 Fk:loadTranslationTable{
 ["ex__ljetkrak"] = "烈戟",
-[":ex__ljetkrak"] = "轉限x.伱段始旹,預弃1牌發動,伱越過當段,起動虛擬殺,此殺无視次數距離,目標上限+1,結算期閒伱无視防具",
+[":ex__ljetkrak"] = "轉限x.伱段始旹,預弃1牌發動,伱越過其段,起動虛擬殺,此殺无視次數距離,目標上限+1,結算期閒伱无視防具",
 
 ["#ex__ljetkrak-invoke"] = "烈戟 %arg 選擇所弃牌 与殺目幖 自動迻除不合理目幖",
 ["#ex__ljetkrak-use"] = "烈戟 伱可起動1牌",

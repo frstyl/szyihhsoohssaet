@@ -54,7 +54,8 @@ extension:loadCardSkels{hsio}
 extension:addCardSpec("hsio")
 
 Fk:loadTranslationTable{
-  ["khouc"] = "空",
+  ["khouc"] = "",
+  [":khouc"] = "空牌 无名 名字數爲0",
   ["hsio"] = "虛",
   ["hzfens"] = "㕕",
 }
@@ -122,11 +123,11 @@ Fk:loadTranslationTable{
   ["ArmorSlot__not_equip"] = "防具",
   [":ArmorSlot__not_equip"] = "空",
 
-  ["OffensiveRideSlot_not_equip"] = "攻馬",
-  [":OffensiveRideSlot_not_equip"] = "空",
+  ["OffensiveRideSlot__not_equip"] = "攻馬",
+  [":OffensiveRideSlot__not_equip"] = "空",
 
-  ["DefensiveRideSlot_not_equip"] = "防馬",
-  [":DefensiveRideSlot_not_equip"] = "空",
+  ["DefensiveRideSlot__not_equip"] = "防馬",
+  [":DefensiveRideSlot__not_equip"] = "空",
 
   ["TreasureSlot__not_equip"] = "寶物",
   [":TreasureSlot__not_equip"] = "空",

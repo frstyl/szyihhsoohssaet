@@ -10,9 +10,8 @@ Fk:loadTranslationTable{
   ["@boacqthouc"] = "㫄通",
   ["#boacqthouc-remove"] = "㫄通：请移除两种“㫄通”标记",
 
-  ["$boacqthouc1"] = "天乃高且远，安可事事自下。",
-  ["$boacqthouc2"] = "吾等当上体天心，下济黎民。",
-  ["$boacqthouc3"] = "若除贪官恶吏，天下自为之一淸。",
+  ["$boacqthouc1"] = "",
+
 }
 local S = require "packages/szyihhsoohssaet/szyih_guos" 
 
@@ -36,7 +35,7 @@ boacqthouc:addEffect(fk.CardUsing, {
   end,
   on_use = function(self, event, target, player, data)
     local room = player.room
-    local choices={"basic","trick","equip","magic","allusion"}   --紅包
+    local choices={"acttion","trick","equip","goods" ,"magic","allusion"}
     local t=player:getTableMark("@boacqthouc")
     local removed=room:askToChoices(player, {
           min_num=2,

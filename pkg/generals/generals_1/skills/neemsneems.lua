@@ -5,7 +5,7 @@ local neemsneems = fk.CreateSkill {
 Fk:loadTranslationTable{
 
 ["neemsneems"] = "念念",
-[":neemsneems"] = "一轉終旹,若弃牌堆有牌于當轉內因伱起動打出進入,且當次起動未致傷療,伱可選其1牌發動｡伱取得之.",--<br/>"..
+[":neemsneems"] = "一轉終旹,若弃牌堆有牌于1轉內因伱起動或演練進入,且當次未致傷療,伱可選其1牌發動｡伱取得之.",--<br/>"..
 
 ["#neemsneems-ask"] = "念念 選擇1取得",
 }

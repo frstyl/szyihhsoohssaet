@@ -1,5 +1,5 @@
 local cardSkill = fk.CreateSkill {
-  name = "thoac_qwen_skill",
+  name = "biu_qwen_tsih_skill",
 }
 
 Fk:loadTranslationTable{
@@ -8,7 +8,7 @@ Fk:loadTranslationTable{
   ["TheNext"] = "下家",
 }
 cardSkill:addEffect("cardskill", {
-  prompt = "#thoac_qwen_skill",
+  prompt = "#biu_qwen_tsih_skill",
   max_round_use_time=1,
   -- can_use = function(self, player, card, extra_data)  --无視次數?
   --   if player:prohibitUse(card) then return end
@@ -18,7 +18,7 @@ cardSkill:addEffect("cardskill", {
   --     table.find(Fk:currentRoom().alive_players,
   --       -- extra_data and extra_data.fix_targets and   table.map(extra_data.fix_targets,Util.Id2PlayerMapper ) or {player},
   --      function(p)
-  --       return  self:withinTimesLimit(player, Player.HistoryRound, card, "thoac_qwen", p)
+  --       return  self:withinTimesLimit(player, Player.HistoryRound, card, "biu_qwen_tsih", p)
   --     end)
   -- end,
   mod_target_filter = function(self, player, to_select)
@@ -30,7 +30,7 @@ cardSkill:addEffect("cardskill", {
     return #selected~=0 
      or
       (extra_data and extra_data.bypass_times ) 
-        or self:withinTimesLimit(player, Player.HistoryRound, card, "thoac_qwen",to_select)
+        or self:withinTimesLimit(player, Player.HistoryRound, card, "biu_qwen_tsih",to_select)
   end,
   offset_func= Util.FalseFunc,
   on_effect = function(self, room, effect)

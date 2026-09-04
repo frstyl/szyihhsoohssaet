@@ -35,7 +35,7 @@ doeojsbaav:addEffect(fk.DrawNCards, {
     local room=player.room
     local color=Fk:getCardById(event:getCostData(self).cards[1]).color
     local n=#event:getCostData(self).cards
-       S.playCard(player,event:getCostData(self).cards,doeojsbaav.name)
+       S.playCard(event:getCostData(self).cards,doeojsbaav.name,player)
     if color == Card.Black then
       data.n = data.n -n
     else

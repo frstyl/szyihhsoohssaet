@@ -7,7 +7,7 @@ Fk:loadTranslationTable{
 ["loavhleens"] = "老練",  --下藥
 [":loavhleens"] = "一脚色起動酒肉旹伱可選擇1其它脚色發動.伱對其起動虛擬迷",  --任意脚色起動旹?
 
-["#loavhleens-choose"] = "老練 選擇攻程內其他脚色 其不可起動打出殺閃",
+["#loavhleens-choose"] = "老練 選擇攻程內其它脚色 其不可起動打出殺閃",
 }
 loavhleens:addEffect(fk.CardUsing, {
   anim_type = "offensive",

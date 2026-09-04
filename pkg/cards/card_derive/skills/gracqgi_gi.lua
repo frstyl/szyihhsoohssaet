@@ -11,15 +11,15 @@ Fk:loadTranslationTable{
 local S = require "packages/szyihhsoohssaet/szyih_guos" 
 
 equipSKill:addAcquireEffect(function (self, player)
-    player.room:addPlayerMark(player, "@add_attack_range",1) 
+    player.room:addPlayerMark(player, "@attack_range",1) 
     player.room:addPlayerMark(player, MarkEnum.AddMaxCards,1) 
-    player.room:addPlayerMark(player, "@add_phase_draw",1) 
+    player.room:addPlayerMark(player, "@phase_draw",1) 
 end)
 
 equipSKill:addLoseEffect (function (self, player)
-    player.room:removePlayerMark(player, "@add_attack_range",1) 
+    player.room:removePlayerMark(player, "@attack_range",1) 
     player.room:removePlayerMark(player, MarkEnum.AddMaxCards,1) 
-    player.room:removePlayerMark(player, "@add_phase_draw",1) 
+    player.room:removePlayerMark(player, "@phase_draw",1) 
 end)
 
 equipSKill:addEffect(fk.AskForPeaches, {
@@ -83,7 +83,7 @@ equipSKill:addEffect(fk.AskForPeaches, {
 -- --同一脚色裝僃同名裝僃 止生效1?
 -- Fk:loadTranslationTable{
 --   ["gracqgi_gi_skill"] = "杏黃旗",
---   [":gracqgi_gi_skill"] = "鎖，与伱同陣營(隊列)脚色攻程+1。",
+--   [":gracqgi_gi_skill"] = "与伱同陣營(隊列)脚色攻程+1。",
 -- }
 
 -- equipSKill:addEffect("active", {

@@ -4,9 +4,9 @@ local tszjettszhioc = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["tszjettszhioc"] = "折䡴",
-  [":tszjettszhioc"] = "1脚色受到傷害,若伱可与傷源脚色賭鬥,伱可發動發動.伱与之賭鬥,若伱贏,伱取得對方賭鬥牌,防止此傷.若伱沒贏,伱取得伱賭鬥牌,此技能本轉失效.",
+  [":tszjettszhioc"] = "應動｡1脚色受傷旹,伱可与傷源脚色賭鬥發動,若伱:贏,伱取得對方賭鬥牌,防止此傷;輸,伱取得伱賭鬥牌;平,此技能失效1轉",
 
-  ["#tszjettszhioc-choose"] = "折䡴：伱可与 %dest 賭鬥 防止 %src 所受傷",
+  ["#tszjettszhioc-invoke"] = "折䡴：伱可与 %dest 賭鬥 防止 %src 所受傷",
 
   ["$tszjettszhioc1"] = "兄弟先走,我來擋駐來人",
 }
@@ -20,7 +20,10 @@ tszjettszhioc:addEffect(fk.DamageInflicted, {
     and player:canPindian(data.from)
   end,
   on_cost = function(self, event, target, player, data)
-    return player.room:askToSkillInvoke(player,{skill_name="tszjettszhioc",prompt="#tszjettszhioc-choose:"..data.to.id..":"..data.from.id})
+    if player.room:askToSkillInvoke(player,{skill_name="tszjettszhioc",prompt="#tszjettszhioc-invoke:"..data.to.id..":"..data.from.id}) then
+      event:setCostData(self,{tos={data.to}})
+      return true
+    end
   end,
   on_use = function(self, event, target, player, data)
     local room = player.room
@@ -32,10 +35,11 @@ tszjettszhioc:addEffect(fk.DamageInflicted, {
       end
       S.preventDamage({damageData=data,skillName=tszjettszhioc.name})
       room:sendLog{ type = "#PreventDamageBySkill", from = data.to.id, arg = tszjettszhioc.name }
-    else
+    elseif pindian.results[to].winner == to then
       if  room:getCardArea(pindian.fromCard) == Card.DiscardPile then
         room:moveCardTo(pindian.fromCard, Card.PlayerHand, player, fk.ReasonPrey, tszjettszhioc.name, nil, true, player)
       end
+    else
       room:invalidateSkill(player, tszjettszhioc.name,"-turn")  --待改
     end
   end,

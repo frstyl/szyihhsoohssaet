@@ -5,7 +5,7 @@ local theetgxes = fk.CreateSkill{
 }
 Fk:loadTranslationTable{
 ["theetgxes"] = "鐵騎",
-[":theetgxes"] = "➀伱至其他脚色距離-x.➁伱手牌上限+x",  --同隊不计入距离 均傷
+[":theetgxes"] = "➀伱至其它脚色距離-x.➁伱手牌上限+x",  --同隊不计入距离 均傷
 
 ["#theetgxes-choose"] = "鐵騎 選擇一脚色 視爲對其起動殺",
 }

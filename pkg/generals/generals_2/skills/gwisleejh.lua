@@ -6,7 +6,7 @@ Fk:loadTranslationTable{
   ["gwisleejh"] = "饋禮",
   [":gwisleejh"] = "輪限1.➀其它脚色A轉始旹,選1手牌發動.將所選牌交与A,A抽3,交予伱2牌,伱褈鑄之.➁輪終,伱可發動,伱抽3,褈鑄2",
 
-  ["#gwisleejh-active"] = "饋禮 將1手牌交予其他脚色",
+  ["#gwisleejh-active"] = "饋禮 將1手牌交予其它脚色",
   ["#gwisleejh-choose"] = "饋禮 將1手牌交予 %src",
 
   ["#gwisleejh-card"] = "饋禮 交予 %arg 3牌",

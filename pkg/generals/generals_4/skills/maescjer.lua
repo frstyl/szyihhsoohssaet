@@ -56,7 +56,7 @@ maescjer:addEffect("active", {
   -- end,
   on_use = function(self, room, effect)
     local player = effect.from
-    S.playCard(effect.from,effect.cards,maescjer.name)
+    S.playCard(effect.cards,maescjer.name,effect.from)
 
     local targets = room:getOtherPlayers(player)
     for _,p in ipairs(targets) do

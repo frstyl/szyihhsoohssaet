@@ -38,7 +38,7 @@ equipSkill:addEffect(fk.CardUsing, {
 
 
 
--- equipSkill:addEffect(fk.TargetSpecified, {
+-- equipSkill:addEffect(fk.TargetConfirmed, {
 --   can_trigger = function(self, event, target, player, data)
 --     return data.from == player and player:hasSkill(equipSkill.name) and data.card and data.card.trueName == "ssaet" and not data.to.dead
 --   end,

@@ -14,7 +14,7 @@ cardSkill:addEffect("cardskill", {
   end,
   on_effect = function(self, room, effect)
     room:setPlayerMark(effect.to,"@@mxevs_svoans_quo_seen-turn",1)
-    local ids= S.getKhouc(room,1)
+    local ids= S.getKhouc(1)
     local names={"dzzuoh_dzziach_khoeoj_hsfa","tsjas_toav_ssaet_nzjin","buak_koavh_qwe_nzjin","muo_ttiuc_ssaac_qiuh"}
     local name=room:askToChoice(effect.to, { choices = names, skill_name = "mxevs_svoans_quo_seen_skill", prompt = "#mxevs_svoans_quo_seen_skill-choose" })
     room:setCardMark(Fk:getCardById(ids[1]),"view_as",name)

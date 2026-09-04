@@ -5,7 +5,7 @@ local craktszjens = fk.CreateSkill {
 
 Fk:loadTranslationTable {
   ["craktszjens"] = "逆戰",
-  [":craktszjens"] = "➀恆續.伱轉內,手牌區黑{錦囊/事件/法術}牌視爲无視距離｢鬥將｣｡➁伱起動鬥將指定目幖後旹必發,伱取得目幖1手牌｡➂其它脚色起動鬥將旹,若目幖包含伱,必發,視爲伱對其起動(迻除其它目幖)",
+  [":craktszjens"] = "➀恆續.伱轉內,手牌區黑{計謀/事件/法術}牌視爲无視距離｢鬥將｣｡➁伱起動鬥將指定目幖後旹必發,伱取得目幖1手牌｡➂其它脚色起動｢鬥將｣對伱生效旹,必發,目幖轉迻爲使用者",
 
   ["#craktszjens"] = "逆戰：將1手牌置入伱裝僃區",
 
@@ -31,7 +31,7 @@ craktszjens:addEffect("filter", {
 })
 
 
-craktszjens:addEffect(fk.TargetSpecified, {
+craktszjens:addEffect(fk.TargetConfirmed, {
   anim_type = "offensive",
   can_trigger = function(self, event, target, player, data)  --按序 名不重要
     return data.from==player and player:hasSkill(craktszjens.name) 
@@ -56,24 +56,38 @@ craktszjens:addEffect(fk.TargetSpecified, {
   end,
 })
 
-craktszjens:addEffect(fk.CardUsing, {
+-- craktszjens:addEffect(fk.CardUsing, {
+--   anim_type = "defensive",
+--   can_trigger = function(self, event, target, player, data)
+--     return data.from~=player 
+--     and player:hasSkill(craktszjens.name) 
+--     and data.card.trueName=="tous_tsiacs"
+--     and table.contains(data.tos,player)
+--   end,
+--   on_use = function(self, event, target, player, data)
+--     local room=player.room
+
+--     local p=target
+--     data.tos={p}
+--     data.from=player
+--     target=player
+
+--     data.extra_data=data.extra_data or {}
+--     data.extra_data.craktszjens=true
+--   end,
+-- })
+
+craktszjens:addEffect(fk.PreCardEffect, {
   anim_type = "defensive",
   can_trigger = function(self, event, target, player, data)
-    return data.from~=player 
+    return data.from and data.from~=player 
+    and data.to==player
     and player:hasSkill(craktszjens.name) 
     and data.card.trueName=="tous_tsiacs"
-    and table.contains(data.tos,player)
   end,
   on_use = function(self, event, target, player, data)
-    local room=player.room
-
-    local p=target
-    data.tos={p}
-    data.from=player
-    target=player
-
-    data.extra_data=data.extra_data or {}
-    data.extra_data.craktszjens=true
+    -- local room=player.room
+    data.to=data.from
   end,
 })
 

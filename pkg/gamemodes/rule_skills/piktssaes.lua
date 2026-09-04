@@ -1,10 +1,11 @@
 local piktssaes = fk.CreateSkill {
   name = "piktssaes",
+  mode_skill = true,
 }
 
 Fk:loadTranslationTable{
   ["piktssaes"] = "逼債",
-  [":piktssaes"] = "伱主段始旹,伱可選1項發動｡當段內伱｢殺｣{➀次數➁目幖}上限+1",  --限1次
+  [":piktssaes"] = "伱主段始旹,伱可選1項發動｡1段內伱｢殺｣{➀次數➁目幖}上限+1",  --限1次
 
   ["#piktssaes-choose"] = "逼債 選擇",
 }
@@ -21,7 +22,7 @@ piktssaes:addEffect(fk.EventPhaseStart, {
     local choice=room:askToChoice(player,{
       cancelable=true,
       skill_name=self.name,
-      choices={"ssaet_target","@ssaet_times"},
+      choices={"ssaet_target_number","ssaet_times"},
     })
       if choice~="Cancel" then
         event:setCostData(self, {choice=choice})

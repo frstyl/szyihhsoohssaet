@@ -4,7 +4,7 @@ local kxesssaac = fk.CreateSkill({
 
 Fk:loadTranslationTable{
   ["kxesssaac"] = "寄生",
-  [":kxesssaac"] = "其它脚色A轉始旹,伱可預打出1手牌發動,當轉內,A起動牌旹,伱抽1",
+  [":kxesssaac"] = "其它脚色A轉始旹,伱可預打出1手牌發動,1轉內,A起動牌旹,伱抽1",
 
 
   ["#kxesssaac-invoke"] = "寄生:%dest 轉始,發動",
@@ -47,7 +47,7 @@ kxesssaac:addEffect(fk.TurnStart, {
 
     local cards=event:getCostData(self).cards
     room:addTableMarkIfNeed(player,"kxesssaac",target.id)
-    S.playCard(player,cards,kxesssaac.name)
+    S.playCard(cards,kxesssaac.name,player)
     
     room.logic:getCurrentEvent():findParent(GameEvent.Turn, true):addCleaner(function()
       local t= player:getTableMark("kxesssaac")

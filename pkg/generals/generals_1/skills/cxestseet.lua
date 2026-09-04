@@ -4,12 +4,12 @@ local cijsljet = fk.CreateSkill {
 
 Fk:loadTranslationTable{
 ["cijsljet"] = "毅烈",  --誼
-[":cijsljet"] = "一脚色受到傷害旹伱可發動,伱流失1體力,防止此傷害,肰後伱選擇令A獲得1護甲或抽1.",
+[":cijsljet"] = "應動｡一脚色受到傷害旹伱可發動,伱流失1,防止此傷害,伱選擇令A+1護甲或抽1.",
 
-["#cijsljet-invoke"]="毅烈  %src 受傷 是否流失1體力 防止此傷害",
+["#cijsljet-invoke"]="毅烈  %src 受傷 是否流失1 防止此傷害",
 ["#cijsljet-choose"]="毅烈  令 %src 執行",
-["draw2"]="抽2",
-["shield1"]="獲得1護甲",
+["draw2"]="抽1",
+["shield1"]="+1護甲",
 
 ["#cijsljet-choose"]="毅烈  將全部牌交予1其它脚色 令其回1",
 

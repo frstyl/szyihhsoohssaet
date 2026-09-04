@@ -5,7 +5,7 @@ local kujqhqinh = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["kujqhqinh"] = "歸𠃊",  --星列
-  [":kujqhqinh"] = "鎖，其它脚色死亾旹,伱獲勝",
+  [":kujqhqinh"] = "其它脚色死亾旹,伱獲勝",
 }
 
 local spec={

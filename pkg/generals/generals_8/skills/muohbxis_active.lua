@@ -76,8 +76,19 @@ muohbxis_active:addEffect("active", {  --段始旹
     })
 
   if to.dead then return end
-  to:drawCards(#to:getCardIds("e"), "muohbxis")
-
+  local n = #to:getCardIds("e")
+    local choice = room:askToChoice(to, {
+       choices = {"muohbxis_draw"..n, "muohbxis_skill"},
+        skill_name = "muohbxis"
+       })
+  if choice=="muohbxis_skill" then
+      room.logic:getCurrentEvent():findParent(GameEvent.Round):addCleaner(function()
+        room:handleAddLoseSkills(player, "tsjecqkaap")
+      end)
+      room:handleAddLoseSkills(player, "tsjecqkaap")
+  else
+    to:drawCards(n, "muohbxis")
+  end
   end,
 })
 

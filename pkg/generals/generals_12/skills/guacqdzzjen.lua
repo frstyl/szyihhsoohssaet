@@ -4,7 +4,7 @@ local guacqdzzjen = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["guacqdzzjen"] = "狂禪",
-  [":guacqdzzjen"] = "伱起動卽旹錦囊牌結算終旹,伱可指定距離2以內脚色發動.伱對其起動虛擬殺",
+  [":guacqdzzjen"] = "伱起動計謀/法術牌結算終旹,伱可指定距離2以內脚色發動.伱對其起動虛擬殺(不計次數)",
 
 
   ["#guacqdzzjen-choose"] = "狂禪 選擇殺目幖",
@@ -18,7 +18,8 @@ guacqdzzjen:addEffect(fk.CardUseFinished, { --??
   can_trigger = function(self, event, target, player, data)
     return 
     target == player and player:hasSkill(guacqdzzjen.name)
-    and S.isInstantTrick(data.card)
+    -- and S.isInstantTrick(data.card)
+    and (S.getCardTypeByName(data.card)==2 or S.getCardTypeByName(data.card)==5)
   end,
   on_cost = function(self, event, target, player, data)
     local room=player.room

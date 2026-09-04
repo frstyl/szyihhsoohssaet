@@ -1,6 +1,6 @@
 Fk:loadTranslationTable{
   ["ljeqddxin"] = "離塵",
-  [":ljeqddxin"] = "額度抽牌旹,若x大于0,伱可發動,此次抽牌數+x,若x>2,伱令一其它脚色予伱1傷(x爲全場有附有昏睡者)",
+  [":ljeqddxin"] = "伱額定抽牌前,若x大于0,伱可發動,此次抽牌數+x,若x>2,伱令一其它脚色予伱1傷(x爲全場有附有昏睡者)",
 
 
   ["#ljeqddxin-invoke"] = "離塵 額外抽 %arg",

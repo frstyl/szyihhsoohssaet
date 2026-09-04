@@ -53,7 +53,7 @@ khoonstous:addEffect(fk.Damaged, {
   end,
   on_use = function(self, event, target, player, data)
     local room = player.room
-    S.playCard(player,event:getCostData(self).cards,khoonstous.name)
+    S.playCard(event:getCostData(self).cards,khoonstous.name,player)
     local tous_tsiacs = Fk:cloneCard("tous_tsiacs")
     tous_tsiacs.skillName = khoonstous.name
     local new_use = { ---@type UseCardDataSpec

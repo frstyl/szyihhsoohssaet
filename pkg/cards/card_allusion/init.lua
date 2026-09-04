@@ -15,6 +15,7 @@ local liac_ssaen_hsoavh_hsoans_kiap_puap_ddiac = fk.CreateCard{
   skill = "liac_ssaen_hsoavh_hsoans_kiap_puap_ddiac_skill",
   is_passive = true,
   special_skills ={"bvoat_toav_siac_dzsios"},
+  extra_data = {type="card_allusion"}
 }
 extension:loadCardSkels {
 liac_ssaen_hsoavh_hsoans_kiap_puap_ddiac,
@@ -22,7 +23,8 @@ liac_ssaen_hsoavh_hsoans_kiap_puap_ddiac,
 extension:addCardSpec("liac_ssaen_hsoavh_hsoans_kiap_puap_ddiac",Card.Diamond, 13)
 Fk:loadTranslationTable{
   ["liac_ssaen_hsoavh_hsoans_kiap_puap_ddiac"] = "梁山好漢劫法場",
-  [":liac_ssaen_hsoavh_hsoans_kiap_puap_ddiac"] = "事件牌  <br /><b>大鬧江州</b>: 一脚色轉終旹,若其下家牢,對其起動迻除牢。  <br /><b>拔刀相助</b>: 主段執行旹,弃1名脚色伏區1延旹錦囊。",
+  [":liac_ssaen_hsoavh_hsoans_kiap_puap_ddiac"] = "事件牌  <br /><b>大鬧江州</b>: 一脚色轉終旹,若其下家牢,對其起動迻除牢。  <br /><b>拔刀相助</b>: 主段執行旹,弃1名脚色伏區1延旹計謀牌。",
+
   ["liac_ssaen_hsoavh_hsoans_kiap_puap_ddiac_skill"] = "梁山好漢劫法場",
 
   ["doar_nnaavs_kaoc_tsziu"] = "大鬧江州",
@@ -38,14 +40,13 @@ local zjim_jiac_lou_deej_puad_szi = fk.CreateCard{
   skill = "zjim_jiac_lou_deej_puad_szi_skill",--笑黃巢
   is_passive = true,
   special_skills ={"kiat_koan_nzi_khih"},
+  extra_data = {type="card_allusion"}
 }
-extension:loadCardSkels {
-zjim_jiac_lou_deej_puad_szi,
-}
+extension:loadCardSkels {zjim_jiac_lou_deej_puad_szi,}
 extension:addCardSpec("zjim_jiac_lou_deej_puad_szi",Card.Spade, 7)
 Fk:loadTranslationTable{
   ["zjim_jiac_lou_deej_puad_szi"] = "潯陽樓提反䛐",
-  [":zjim_jiac_lou_deej_puad_szi"] = "事件牌  <br /><b>笑黃巢</b>: 伱起動酒後對伱起動,伱抽x(x爲存活反賊數)  <br /><b>揭竿而起</b>: 主段執行旹,伱可選1其它有手牌脚色,伱弃此牌,令其弃1手牌",
+  [":zjim_jiac_lou_deej_puad_szi"] = "事件牌  <br /><b>笑黃巢</b>: 伱起動酒結算終旹,對伱起動,伱抽x(x爲存活反賊數)  <br /><b>揭竿而起</b>: 主段執行旹,伱可選1其它有手牌脚色,伱弃此牌,令其弃1手牌",
 
 
   ["sjevs_hzvoac_dzaav"] = "笑黃巢",
@@ -63,7 +64,8 @@ local dzzi_tshjen_doavs_kaap = fk.CreateCard{
   type = Card.TypeTrick,
   skill = "dzzi_tshjen_doavs_kaap_skill",
   special_skills ={"thou_theen_hzvoans_nzjit"},
-  is_passive = true,
+  -- is_passive = true,
+  extra_data = {type="card_allusion"}
   }
 extension:loadCardSkels {
 dzzi_tshjen_doavs_kaap,
@@ -90,6 +92,7 @@ local soocs_kouc_mrac_cuos_kiuh_theen_gveen_nnioh = fk.CreateCard{
   skill = "soocs_kouc_mrac_cuos_kiuh_theen_gveen_nnioh_skill",
   is_passive = true,
   special_skills ={"sjen_nzjin_tszjih_loos"},
+  extra_data = {type="card_allusion"}
 }
 extension:loadCardSkels {
 soocs_kouc_mrac_cuos_kiuh_theen_gveen_nnioh,
@@ -114,7 +117,8 @@ local tous_puap_phoas_koav_ljem = fk.CreateCard{
   type = Card.TypeTrick,
   is_damage_card = true,
   skill = "tous_puap_phoas_koav_ljem_skill",
-  is_passive = true,
+  -- is_passive = true,
+  extra_data = {type="card_allusion"}
 }
 extension:loadCardSkels {
 tous_puap_phoas_koav_ljem,
@@ -126,7 +130,7 @@ Fk:loadTranslationTable{
   ["tous_puap_phoas_koav_ljem_skill"] = "鬥法破高廉",
 
   ["koav_doac_tous_puap"] = "高唐鬥法：",
-  ["#koav_doac_tous_puap"] = "高唐鬥法： 起動鬥法破高廉 選擇一其他脚色，伱予其1雷傷",
+  ["#koav_doac_tous_puap"] = "高唐鬥法： 起動鬥法破高廉 選擇一其它脚色，伱予其1雷傷",
 
   ["touh_ttwenh_seec_jje"] = "斗轉星迻",
   ["#touh_ttwenh_seec_jje"] = "斗轉星迻 以鬥法破高廉 交換%dest 之%arg占卜牌",
@@ -137,6 +141,7 @@ local tsyis_toah_tsiach_moon_zzjin = fk.CreateCard{
   type = Card.TypeTrick,
   skill = "tsyis_toah_tsiach_moon_zzjin_skill",
   is_passive = true,
+  extra_data = {type="card_allusion"}
 }
 extension:loadCardSkels {
 tsyis_toah_tsiach_moon_zzjin,
@@ -144,7 +149,7 @@ tsyis_toah_tsiach_moon_zzjin,
 extension:addCardSpec("tsyis_toah_tsiach_moon_zzjin",Card.Club, 9)
 Fk:loadTranslationTable{
   ["tsyis_toah_tsiach_moon_zzjin"] = "醉打蔣門神",
-  [":tsyis_toah_tsiach_moon_zzjin"] = "事件牌  <br /><b>快活林</b>: 伱起動酒後，對伱起動,伱下次起動殺傷害基數+1  <br /><b>无酒不歡</b>: 伱轉外,1酒進入弃牌堆,你可以此牌替換之。",
+  [":tsyis_toah_tsiach_moon_zzjin"] = "事件牌  <br /><b>快活林</b>: 酒➀對伱效果結算終旹，對伱起動,伱下次起動殺傷害基數+1  <br /><b>无酒不歡</b>: 伱轉外,1酒進入弃牌堆,你可以此牌替換之。",
 
   ["khfar_hzvoat_ljim"] = "快活林",
   ["#khfar_hzvoat_ljim"] = "快活林 令伱下1殺傷害基數+1",
@@ -155,12 +160,23 @@ Fk:loadTranslationTable{
   ["#muo_tsiuh_piu_hsvoan-choose"] = "无酒不歡 選擇1酒",
 }
 
+local ssaac_dzzjin_koac = fk.CreateCard{
+  name = "ssaac_dzzjin_koac",
+  type = Card.TypeTrick,  --基本-物資
+  sub_type = Card.SubtypeDelayedTrick,
+  skill = "ssaac_dzzjin_koac_skill",
+}
+extension:loadCardSkels {ssaac_dzzjin_koac,}
+
+extension:addCardSpec("ssaac_dzzjin_koac",Card.Diamond, 8)
+
 local ttxes_tshuoh_ssaac_dzzjin_koac = fk.CreateCard{
   name = "ttxes_tshuoh_ssaac_dzzjin_koac",
   type = Card.TypeTrick,
   skill = "ttxes_tshuoh_ssaac_dzzjin_koac_skill",
-  is_passive = true,
+  -- is_passive = true,
   -- special_skills ={"giac_tshuoh_hzoav_dvoat"},
+  extra_data = {type="card_allusion"}
 }
 extension:loadCardSkels {
 ttxes_tshuoh_ssaac_dzzjin_koac,
@@ -183,7 +199,8 @@ local hsfa_hzova_ddiacs_thoucs_toah_sjevh_paas_quac = fk.CreateCard{
   name = "hsfa_hzova_ddiacs_thoucs_toah_sjevh_paas_quac",
   type = Card.TypeTrick,
   skill = "hsfa_hzova_ddiacs_thoucs_toah_sjevh_paas_quac_skill",
-  is_passive = true,
+  -- is_passive = true,
+  extra_data = {type="card_allusion"}
 }
 extension:loadCardSkels {
 hsfa_hzova_ddiacs_thoucs_toah_sjevh_paas_quac,
@@ -206,8 +223,9 @@ Fk:loadTranslationTable{
 local quac_boa_thoeom_hsoojh_szyet_piuc_dzjec = fk.CreateCard{
   name = "quac_boa_thoeom_hsoojh_szyet_piuc_dzjec",
   type = Card.TypeTrick,
-  -- skill = "quac_boa_thoeom_hsoojh_szyet_piuc_dzjec",
-  is_passive = true,
+  skill = "quac_boa_szyet_mooj",
+  -- is_passive = true,
+  -- extra_data = {type="card_allusion"}
 }
 extension:loadCardSkels {
 quac_boa_thoeom_hsoojh_szyet_piuc_dzjec,
@@ -215,7 +233,7 @@ quac_boa_thoeom_hsoojh_szyet_piuc_dzjec,
 extension:addCardSpec("quac_boa_thoeom_hsoojh_szyet_piuc_dzjec",Card.Club, 1)
 Fk:loadTranslationTable{
   ["quac_boa_thoeom_hsoojh_szyet_piuc_dzjec"] = "王婆貪賄說風情",
-  [":quac_boa_thoeom_hsoojh_szyet_piuc_dzjec"] = "事件牌  <br /><b>王婆說媒</b>: A殺死B後,對A与C起動,交換A与C全部手牌裝僃,伱取得A之1牌.A/B/C皆不爲伱.  <br /><b>魚水之歡</b>: 一脚色A防具進入弃牌堆後,伱可弃此牌,令A回1",
+  [":quac_boa_thoeom_hsoojh_szyet_piuc_dzjec"] = "事件牌  <br /><b>王婆說媒</b>:  <br /><b>旹機</b>:  A殺死B後  <br /><b>目幖</b>: 對A与子目幖C <br /><b>效果</b>: 交換A与C全部手牌裝僃,伱取得A之1牌.  <br /><b>額外</b>:A/B/C皆不爲伱.  <br /><b>魚水之歡</b>: 一脚色A防具進入弃牌堆後,伱可弃此牌,令A回1",
 
   ["cio_szyih_tszi_hsvoan"] = "魚水之歡",
 
@@ -224,9 +242,41 @@ Fk:loadTranslationTable{
 
 
 
+--
+Fk:addDamageNature("szyih_hsooh__frost", "frost_damage", true)
+Fk:loadTranslationTable{
+  ["frost_damage"] = "霜凍",
+}
+local deep = fk.CreateCard{
+  name = "&deep",
+  type = Card.TypeBasic,
+  skill = "deep_skill",
+  -- multiple_targets = true,
+}
+extension:loadCardSkels {deep,}
+extension:addCardSpec("deep", Card.Spade, 10)  --作爲衍生牌
+extension:addCardSpec("deep", Card.Club, 10)
+extension:addCardSpec("deep", Card.Heart, 10)
+extension:addCardSpec("deep", Card.Diamond, 10)
 
+Fk:loadTranslationTable{
+  ["deep"] = "僞信",
+  [":deep"] = "物資  <br /><b>旹機</b>：主段執行旹/展示旹  <br /><b>目幖</b>：无  <br />  <b>效果</b>：此牌本身无效果,可起動.  <b>額外</b>：當伱手牌中僞信被展示,伱弃置之｡當僞信明置離開伱手牌區,因花執行效果{♥️火傷/♦️无屬傷/♠️/♣️雷傷}。",
+  ["#deep_skill"] = "僞信 自曝",
 
+  ["ddwen_kaah_sjins"] = "傳假信",
+  [":ddwen_kaah_sjins"] = "事件牌  <br /><b>憐香惜玉</b>: <br /><b>旹機</b>: 主旹  <br /><b>目幖</b>: 无 <br /><b>目幖數</b>: 0  <br /><b>效果</b>: 將1｢僞信｣加入牌堆頂",
+  ["ddwen_kaah_sjins_skill"] = "傳假信",
+}
 
+local ddwen_kaah_sjins = fk.CreateCard{
+  name = "ddwen_kaah_sjins",
+  type = Card.TypeTrick,
+  skill = "ddwen_kaah_sjins_skill",
+  -- multiple_targets = true,
+}
+extension:loadCardSkels {ddwen_kaah_sjins,}
+extension:addCardSpec("ddwen_kaah_sjins", Card.Spade, 4)
 
 return extension
 

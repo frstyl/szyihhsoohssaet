@@ -6,8 +6,8 @@ Fk:loadTranslationTable{
 
   ["#tszjevqloeoj-discard"] = "招徠 ",
 
-  ["tszjevqloeoj_liak"] = "略",
-  ["damage"] = "致傷 ",
+  -- ["tszjevqloeoj_liak"] = "略",
+  -- ["damage"] = "致傷 ",
 }
 
 local tszjevqloeoj = fk.CreateSkill{

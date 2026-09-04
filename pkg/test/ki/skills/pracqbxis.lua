@@ -2,7 +2,7 @@ Fk:loadTranslationTable{
   ["pracqbxis"] = "兵僃",
   [":pracqbxis"] = "輪始旹,伱可發動.伱抽4,連續4次:選擇手牌中1{裝備/延旹}牌置入1脚色{對應裝備欄/伏區},或1主動卽旹牌葢伏于1脚色伏區",
 
-  ["#pracqbxis-give"] = "兵僃：将至多%arg张手牌分配给其他脚色",
+  ["#pracqbxis-give"] = "兵僃：将至多%arg张手牌分配给其它脚色",
 
   ["$pracqbxis1"] = "锦囊妙策，终定社稷。",
   ["$pracqbxis2"] = "依此计行，辽东可定。",

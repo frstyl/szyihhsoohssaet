@@ -4,7 +4,7 @@ local thoohsjins = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["thoohsjins"] = "吐信",
-  [":thoohsjins"] = "印牌:伱可將1類爲A之牌轉化爲殺起動.吐信殺无視距離且致傷旹,伱可發動.展示受傷者全部牌,弃全部A類,若弃牌數大于2,伱流失1體力",
+  [":thoohsjins"] = "印牌:伱可將1類爲A之牌轉化爲｢殺｣起動.吐信殺无視距離且生效前旹,伱可發動.目幖展示全部牌,弃置全部A類,若弃牌數大于2,伱流失1",
 
   ["#thoohsjins-invoke"] = "吐信 是否對 %src 發動 0牌确定則其弃牌",
 }
@@ -41,7 +41,7 @@ thoohsjins:addEffect("targetmod", {
 })
 
 
-thoohsjins:addEffect(fk.DamageCaused, {
+thoohsjins:addEffect(fk.PreCardEffect, {  --DamageInflicted
   anim_type = "offensive",
   can_trigger = function(self, event, target, player, data)
     return  data.from==player and player:hasSkill(thoohsjins.name)
@@ -77,16 +77,18 @@ thoohsjins:addEffect(fk.DamageCaused, {
     -- if  #event:getCostData(self).cards ==0 then
       local cards=data.to:getCardIds("he")
       data.to:showCards(cards)
+
+      cards=data.to:getCardIds("he")
       local throw={}
-      local typ=S.getCardTypeByName(Fk:getCardById(data.card.subcards[1]).name)
+      local typ=S.getCardTypeByName(Fk:getCardById(data.card.subcards[1]).trueName)  --同色同類?
       for _,cid in ipairs(cards) do
-        card=Fk:getCardById(cid)
-        if card.type==typ then 
+
+        if table.contains(cards,cid) and S.getCardTypeByName(Fk:getCardById(cid))==typ then 
           table.insert(throw,cid)
         end
       end
       local n=#throw
-      room:throwCard(throw, thoohsjins.name, data.to, player)  --新來者不計?
+      room:throwCard(throw, thoohsjins.name, data.to, data.to)  --新來者不計?
       if n>2 and not player.dead then
         room:loseHp(player,1,thoohsjins.name,player)
       end

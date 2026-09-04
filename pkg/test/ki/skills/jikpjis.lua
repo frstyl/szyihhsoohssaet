@@ -4,7 +4,7 @@ local jikpjis = fk.CreateSkill{
 }
 Fk:loadTranslationTable{
 ["jikpjis"] = "翼庇",
-[":jikpjis"] = "輪始旹,伱選擇1腳色A發動｡當輪內,一｢殺｣若目幖不含伱則不能選擇A",
+[":jikpjis"] = "輪始旹,伱選擇1腳色A發動｡1輪內,一｢殺｣若目幖不含伱則不能選擇A",
 
 ["#jikpjis-invoke"] = "翼庇 打出1牌發動",
 }

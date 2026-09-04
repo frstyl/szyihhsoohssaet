@@ -4,17 +4,17 @@ local koamqljim = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["koamqljim"] = "甘霖",
-  [":koamqljim"] = "主旹.主旹選擇1至多手牌与1其它脚色A發動.將所選牌交与A,肰後伱選擇1項➀令A一轉內｢殺｣次數上限+1➁伱抽x,此技能當輪失效.(x爲當輪伱發動此技能次數)",
+  [":koamqljim"] = "主旹.主旹選擇1至多手牌与1其它脚色A發動.將所選牌交与A,肰後伱選擇1項➀令A一轉內｢殺｣次數上限+1➁伱抽x,此技能1輪失效.(x爲1輪伱發動此技能次數)",
 
-  ["#koamqljim-active"] = "甘霖 將1至多手牌交予其他脚色",
+  ["#koamqljim-active"] = "甘霖 將1至多手牌交予其它脚色",
 
   ["#koamqljim-choose"] = "甘霖 將1至多手交予 %src",
   ["koamqljim-draw"] = "抽 %arg 本輪內甘霖失效",
 
   -- ["koamqljim-ssaet"] = "其起動殺次數上限+1",
-  -- ["koamqljim-draw"] = "補牌至已損體力值",
+  -- ["koamqljim-draw"] = "補牌至已損體力數",
 
-  ["@ssaet_times-turn"] = "殺數",
+  -- ["ssaet_times-turn"] = "殺數",
 
   ["@@koamqljim-inhand-turn"] = "甘霖",
 }
@@ -88,7 +88,7 @@ koamqljim:addEffect(fk.TurnStart, {
 
       room:moveCardTo(ids, Player.Hand, target, fk.ReasonGive, koamqljim.name, nil, false, player.id)
 
-      room:addPlayerMark(target,"@ssaet_times-turn",1)
+      room:addPlayerMark(target,"ssaet_times-turn",1)
       room:addSkill("ssaet_times")
       if player.dead then return end
       local x=player:usedSkillTimes(koamqljim.name, Player.HistoryRound)
@@ -116,8 +116,8 @@ koamqljim:addEffect(fk.TurnStart, {
 
 -- koamqljim:addEffect("targetmod", {
 --   residue_func = function(self, player, skill, scope)
---     if player:getMark("@ssaet_times-turn") > 0 and skill.trueName == "ssaet_skill" and scope == Player.HistoryPhase then
---       return player:getMark("@ssaet_times-turn")
+--     if player:getMark("ssaet_times-turn") > 0 and skill.trueName == "ssaet_skill" and scope == Player.HistoryPhase then
+--       return player:getMark("ssaet_times-turn")
 --     end
 --   end,
 -- })

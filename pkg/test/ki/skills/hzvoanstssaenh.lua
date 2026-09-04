@@ -7,7 +7,7 @@ Fk:loadTranslationTable{  --分爲4?
 ["hzvoanstssaenh"] = "換盞",--1/4換盞  --抑揚
 [":hzvoanstssaenh"] = "輪流發動｡伱失去牌後,伱可發動.伱占卜,占卜牌生效後,若其爲{➀紅/➁黑},伱起動之,否則取得之｡",
 
-["#hzvoanstssaenh-invoke"] = "換盞 使用牌",
+["#hzvoanstssaenh-invoke"] = "換盞 起動牌",
 
 }
 

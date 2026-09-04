@@ -4,9 +4,9 @@ local hsoanstszhis = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["hsoanstszhis"] = "熯熾",
-  [":hsoanstszhis"] = "➀伱可將紅色非基本轉化爲火攻起動發動.起動前,伱抽2", --➁伱起動火攻旹可發動,伱抽2
+  [":hsoanstszhis"] = "➀伱可將紅色非行動牌轉化爲火攻起動發動.起動前,伱抽2", --➁伱起動火攻旹可發動,伱抽2
 
-  ["#hsoanstszhis"] = "熯熾：將紅色非基本轉化爲火攻起動",
+  ["#hsoanstszhis"] = "熯熾：將紅色非行動牌轉化爲火攻起動",
 
   ["$hsoanstszhis1"] = "東風起大火生。",
   ["$hsoanstszhis2"] = "以火噟敵 賊人何處逃竄",

@@ -4,7 +4,7 @@ local phuohgxim = fk.CreateSkill {
 
 Fk:loadTranslationTable{
 ["phuohgxim"] = "抚琴",
-[":phuohgxim"] = "主旹或當伱受到傷害後,伱可選擇1脚色与1項對其發動,➀伱令其抽x➁伱弃其x(x爲伱已損體力值+1)",
+[":phuohgxim"] = "主旹或當伱受到傷害後,伱可選擇1脚色与1項對其發動,➀伱令其抽x➁伱弃其x(x爲伱已損體力數+1)",
 
 ["#phuohgxim"]="抚琴 選擇一脚色 令其抽弃 %arg",
 ["phuohgxim-discard"] = "抚琴 選擇弃牌",

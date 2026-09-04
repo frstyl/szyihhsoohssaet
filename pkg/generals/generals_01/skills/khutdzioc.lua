@@ -1,6 +1,6 @@
 Fk:loadTranslationTable{
   ["khutdzioc"] = "屈從",
-  [":khutdzioc"] = "伱主段始旹,若伱未有黴運,伱可發動.伱爲伱附加黴運,中止當轉",
+  [":khutdzioc"] = "伱主段始旹,若伱未有咒術｢黴運｣,伱可發動.伱爲伱附加｢黴運｣,中止轉事件",
 
 
   ["#khutdzioc-invoke"] = "屈從",

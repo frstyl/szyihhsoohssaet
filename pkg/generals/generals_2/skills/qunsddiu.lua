@@ -4,7 +4,7 @@ local qunsddiu = fk.CreateSkill {
 
 Fk:loadTranslationTable{
 ["qunsddiu"] = "運籌",
-[":qunsddiu"] = "伱起動一錦囊牌旹,伱可發動,伱抽1｡",
+[":qunsddiu"] = "伱起動一計謀牌旹,伱可發動,伱抽1｡",
 }
 
 local S = require "packages/szyihhsoohssaet/szyih_guos" 

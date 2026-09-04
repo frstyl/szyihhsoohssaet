@@ -4,9 +4,9 @@ local dziacstsoak = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["dziacstsoak"] = "匠作",
-  [":dziacstsoak"] = "印牌:以伱1{黑/紅}非基本牌轉化爲｢殺/閃｣起動演練｡起動後,若牌名与上次發動牌名:同,伱抽1;不同,伱可弃置其它脚色1牌",
+  [":dziacstsoak"] = "印牌:以伱1{黑/紅}非行动牌轉化爲｢{殺/閃}｣起動或演練｡起動後,若牌名与上次發動牌名:同,伱抽1;不同,伱可弃置其它脚色1牌",
 
-  ["#dziacstsoak"] = "匠作 將1{黑/紅}非基本牌轉化爲{殺/閃}",
+  ["#dziacstsoak"] = "匠作 將1{黑/紅}非行动牌轉化爲{殺/閃}",
   ["@dziacstsoak"] = "匠作",
 
   ["#dziacstsoak-choose"] = "匠作 弃其它脚色牌",

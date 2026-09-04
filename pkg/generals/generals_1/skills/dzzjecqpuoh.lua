@@ -1,11 +1,11 @@
 local dzzjecqpuoh = fk.CreateSkill{
   name = "dzzjecqpuoh",
-  tags = { Skill.Compulsory },
+  tags = { Skill.Compulsory, Skill.Composite },
 }
 
 Fk:loadTranslationTable{
   ["dzzjecqpuoh"] = "城府",
-  [":dzzjecqpuoh"] = "伱轉外失去牌後,必發,伱抽等量牌;伱轉{內/外}受傷旹必發,{防止之伱抽1/伱弃1};伱手牌中{殺于轉內/閃于轉外}視爲{閃/殺}",
+  [":dzzjecqpuoh"] = "➀伱轉外失去牌後,必發,伱抽等量牌｡➁伱轉{內/外}受傷旹必發,{防止之伱抽1/伱弃1}｡➂恆續,伱手牌中{殺于轉內/閃于轉外}視爲{閃/殺}",
 
   ["#dzzjecqpuoh-discard"] = "城府 弃1牌",
 

@@ -5,7 +5,7 @@ local test__keektszjens = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["test__keektszjens"] = "擊戰",
-  [":test__keektszjens"] = "伱起動殺或鬥將旹可發動.此牌擁有擊戰效果至結算終.伱与目幖同旹選擇抽1或弃1,若所選相同,此{殺/鬥將}不可被{閃/防患未肰}抵消.效果:此牌致傷旹傷害值加1,此牌被抵消旹,伱弃2手牌或流失1體力",
+  [":test__keektszjens"] = "伱起動殺或鬥將旹可發動.此牌擁有擊戰效果至結算終.伱与目幖同旹選擇抽1或弃1,若所選相同,此{殺/鬥將}不可被{閃/防患未肰}抵消.效果:此牌致傷旹傷害值加1,此牌被抵消旹,伱弃2手牌或流失1",
   ["#test__keektszjens"] = "擊戰 失去體力加傷",
 
   ["#changeDamageBySkill"] = "由于 %arg 的效果，對 %from 傷害 + %arg2",
@@ -19,7 +19,7 @@ test__keektszjens:addEffect(fk.CardUsing, {  --
   prompt = "#test__keektszjens",
 	can_trigger = function(self, event, target, player, data)
 		return target==player and player:hasSkill(test__keektszjens.name)
-    and (data.card.trueName=="ssaet" or data.card.trueName=="duel")
+    and (data.card.trueName=="ssaet" or data.card.trueName=="tous_tsiacs")
 	end,
 	on_use = function(self, event, target, player, data)
     local room=player.room
@@ -74,7 +74,7 @@ test__keektszjens:addEffect(fk.CardUsing, {  --
   end,
 })
 
-test__keektszjens:addEffect(fk.DamageCaused, {
+test__keektszjens:addEffect(fk.DamageInflicted, {
   can_refresh = function(self, event, target, player, data)
     return data.card  and table.contains(data.card:getTableMark("test__keektszjens-phase"),player.id)  --多次?
   end,
@@ -133,7 +133,7 @@ test__keektszjens:addEffect(fk.CardEffectCancelledOut, {
     return data.card  and table.contains(data.card:getTableMark("test__keektszjens-phase"),player.id)
     -- and (not data.damageDealt or not data.damageDealt[data.tos[1]])
     -- and (data.card.trueName=="ssaet" and data.cardsResponded[1].trueName=="szjemh"
-    --     or(data.card.trueName=="duel" and data.cardsResponded[1].trueName=="tsiac_keejs_dzius_keejs"  --nullification
+    --     or(data.card.trueName=="tous_tsiacs" and data.cardsResponded[1].trueName=="tsiac_keejs_dzius_keejs"  --nullification
           
     --     ))
   end,

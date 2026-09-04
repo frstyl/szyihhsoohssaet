@@ -22,7 +22,7 @@ Fk:loadTranslationTable{
 ["~hqinqtheenqseek"] = "黑爺爺饒命 黑爺爺饒命",
 }
 
-General:new(extension, "koavqljem", "kvoan", 3):addSkills { "kujhprac", "hsoeokmuos","meecqqwer"}
+General:new(extension, "koavqljem", "kvoan", 3):addSkills { "kujhprac", "pjertheen","muoshqinh"}
 Fk:loadTranslationTable{
 ["koavqljem"] = "高廉",
 ["#koavqljem"] = "高唐魔君",
@@ -121,7 +121,7 @@ Fk:loadTranslationTable{
 --魯智深
 
 --58. 第五十七回　三山聚義打青州　眾虎同心歸水泊
-General:new(extension, "moosjioccxensdoat", "kvoan", 4):addSkills { "nzjevhdvoat", "tsoakszjer"}
+General:new(extension, "moosjioccxensdoat", "kvoan", 3):addSkills { "nzjevhdvoat", "tsoakszjer"}
 Fk:loadTranslationTable{
 ["moosjioccxensdoat"] = "慕容彥達",
 ["#moosjioccxensdoat"] = "靑州知府",
@@ -146,7 +146,7 @@ Fk:loadTranslationTable{
 ["~buanqdzzyes"] = "吉凶自有天數",
 }
 
-General:new(extension, "lihkood", "tsiacs", 5):addSkills{"hzoanscioh","pujqddxek"}
+General:new(extension, "lihkood", "tsiacs", 4):addSkills{"hzoanskaak"}  --"hzoanscioh","pujqddxek"
 Fk:loadTranslationTable{
 ["lihkood"] = "李袞",
 ["#lihkood"] = "飛天大聖",
@@ -166,6 +166,8 @@ Fk:loadTranslationTable{
 ["~gaochtszhiuc"] = "命絕睦州城",
 }
 
+--曾家 曾弄 曾涂、曾密、曾索、曾魁、曾升
+--蘇定
 General:new(extension, "ssihmunqkioc", "tsiacs", 4):addSkills{"hqoeomstsjens","dookszjih"}
 Fk:loadTranslationTable{
 ["ssihmunqkioc"] = "史文恭",
@@ -179,14 +181,24 @@ Fk:loadTranslationTable{
 --61 吳用智賺玉麒麟　張順夜鬧金沙渡  ,變版本
 --賈氏 李固
 
-General:new(extension, "looqtsyinscxes", "tsiacs", 4):addSkills{"poavskvoeok"}
+General:new(extension, "looqtsyinscxes", "tsiacs", 4):addSkills{"poavskvoeok","hzaavscxes"}
 Fk:loadTranslationTable{
 ["looqtsyinscxes"] = "盧俊義",
 ["#looqtsyinscxes"] = "玉麒麟",
 ["designer:looqtsyinscxes"] = "設計",
 ["cv:looqtsyinscxes"] = "配音",
 ["illustrator:looqtsyinscxes"] = "畫師",
-["~looqtsyinscxes"] = "生爲大宋人死爲大宋鬼",
+["~looqtsyinscxes"] = "生爲大宋人 死爲大宋鬼",
+}
+
+General:new(extension, "muoh__looqtsyinscxes", "tsiacs", 5):addSkills{"muoqtoojs"}
+Fk:loadTranslationTable{
+["muoh__looqtsyinscxes"] = "盧俊義",
+["#muoh__looqtsyinscxes"] = "槍棒无敵",
+["designer:muoh__looqtsyinscxes"] = "設計",
+["cv:muoh__looqtsyinscxes"] = "配音",
+["illustrator:muoh__looqtsyinscxes"] = "畫師",
+["~muoh__looqtsyinscxes"] = "生爲大宋人 死爲大宋鬼",
 }
 
 General:new(extension, "kaahdzzjeh", "mjin", 3,3, General.Female):addSkills{"hzoaqnoar","tszuoqhqaec"}
@@ -199,7 +211,7 @@ Fk:loadTranslationTable{
 ["~kaahdzzjeh"] = "員外 饒了奴家",
 }
 
-General:new(extension, "hqeenqtsheec", "tsiacs", 3):addSkills{"phuohgxim","siacqphouk"}
+General:new(extension, "hqeenqtsheec", "tsiacs", 3):addSkills{"phuohgxim","siacqphouk"}  --角觝
 Fk:loadTranslationTable{
 ["hqeenqtsheec"] = "燕靑",
 ["#hqeenqtsheec"] = "浪子",

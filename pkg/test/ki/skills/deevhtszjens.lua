@@ -4,7 +4,7 @@ local deevhtszjens = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["deevhtszjens"] = "誂戰",  --搦戰
-  [":deevhtszjens"] = "轉脚色A起動牌後,伱可發動.伱聲明{傷害/非傷害}牌｡A下次起動牌旹,若与伱所聲明同:,{伱抽1/中止當轉(不中止結算)};不同,其不可起動打出{傷害/非傷害}牌至其下轉始",
+  [":deevhtszjens"] = "轉脚色A起動牌後,伱可發動.伱聲明{傷害/非傷害}牌｡A下次起動牌旹,若与伱所聲明同:,{伱抽1/中止1轉(不中止結算)};不同,其不可起動打出{傷害/非傷害}牌至其下轉始",
 
   ["#deevhtszjens-invoke"] = "誂戰： 是否對 %src 發動  ",
   ["@deevhtszjens-showed-turn"] = "誂戰",

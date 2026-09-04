@@ -3,10 +3,10 @@ local ddiacqszics = fk.CreateSkill{
 }
 
 Fk:loadTranslationTable{
-  ["ddiacqszics"] = "常勝",
+  ["ddiacqszics"] = "長勝",
   [":ddiacqszics"] = "伱賭鬥牌亮出前,若其爲{♠️/♥️}伱可發動,伱令其點數{加/減}1至多點",
 
-  ["#ddiacqszics-invoke"] = "常勝 %arg 點數",
+  ["#ddiacqszics-invoke"] = "長勝 %arg 點數",
 
   ["$ddiacqszics1"] = "应天合人，岂非天心人意乎？",
   ["$ddiacqszics2"] = "非以权势取之，实天命所归也！",

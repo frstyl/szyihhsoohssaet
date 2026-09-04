@@ -51,7 +51,7 @@ lvoansqun:addEffect(fk.RoundStart, {
   end,
   on_use = function(self, event, target, player, data)
     local room=player.room
-    S.playCard(player,event:getCostData(self).cards,lvoansqun.name)
+    S.playCard(event:getCostData(self).cards,lvoansqun.name,player)
 	if player.dead then return end
     local to = event:getCostData(self).tos[1]
     local    cards = room:askToChooseCards(player, {

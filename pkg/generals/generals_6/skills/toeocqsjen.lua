@@ -40,7 +40,7 @@ toeocqsjen:addEffect(fk.AfterDying, {
     elseif  choice == "MaxHp"  then
       room:changeMaxHp(target,1)
     elseif   choice == "toeocqsjen-drawN"  then
-      room:addPlayerMark(target,"@add_phase_draw",1)
+      room:addPlayerMark(target,"@phase_draw",1)
 
     end
   end,
@@ -49,10 +49,10 @@ toeocqsjen:addEffect(fk.AfterDying, {
 
 -- toeocqsjen:addEffect(fk.DrawNCards, {
 --   can_refresh = function(self, event, target, player, data)
---     return target==player and player:getMark("@add_phase_draw")~=0
+--     return target==player and player:getMark("@phase_draw")~=0
 --   end,
 --   on_refresh = function(self, event, target, player, data)
---     data.n=data.n+player:getMark("@add_phase_draw")
+--     data.n=data.n+player:getMark("@phase_draw")
 --   end
 -- })
 

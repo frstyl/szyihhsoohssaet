@@ -5,7 +5,7 @@ local dzzjerdzziu = fk.CreateSkill{
 
 Fk:loadTranslationTable{
 ["dzzjerdzziu"] = "誓讎",
-[":dzzjerdzziu"] = "伱進入瀕死旹,若當轉脚色A不爲伱,伱可選B發動.B展示全部手牌,予A x傷(x爲其手牌黑牌數)",
+[":dzzjerdzziu"] = "伱進入瀕死旹,若1轉脚色A不爲伱,伱可選B發動.B展示全部手牌,予A x傷(x爲其手牌黑牌數)",
 
 ["#dzzjerdzziu-choose"] = "誓讎 選擇一脚色其展示手牌 予%src傷害",
 }

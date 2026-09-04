@@ -5,10 +5,10 @@ local doucqtsziu = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["doucqtsziu"] = "同舟",
-  [":doucqtsziu"] = "恆續一脚色A受傷旹,若A同隊列脚色有此技能,其它A同隊脚色各選擇是否流失1體力,令傷害值-1",
+  [":doucqtsziu"] = "恆續一脚色A受傷旹,若A同隊列脚色有此技能,其它A同隊脚色各選擇是否流失1,令傷害值-1",
 
   ["#doucqtsziu-invoke"] = "同舟效果",
-  ["#doucqtsziu-ask"] = "同舟 流失1體力,令 %src 所受傷-1",
+  ["#doucqtsziu-ask"] = "同舟 流失1,令 %src 所受傷-1",
 
   ["$doucqtsziu1"] = "帥其卽軍心",--大旗在此軍心不亂
   ["$doucqtsziu2"] = "大其飄揚軍威雄壯",

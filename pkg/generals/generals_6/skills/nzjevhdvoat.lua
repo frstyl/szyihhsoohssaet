@@ -14,7 +14,7 @@ Fk:loadTranslationTable{
 nzjevhdvoat:addEffect(fk.EventPhaseEnd, {
   can_trigger = function(self, event, target, player, data)
     return target==player and player:hasSkill(nzjevhdvoat.name) and player.phase==Player.Draw 
-    and not player:isNude()
+    -- and not player:isNude()
     end,
   on_cost = function(self, event, target, player, data)
     local room = player.room

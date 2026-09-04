@@ -4,7 +4,7 @@ local kracqhzoon = fk.CreateSkill {
 
 Fk:loadTranslationTable{
 ["kracqhzoon"] = "驚䰟",
-[":kracqhzoon"] = "全場轉限1｡其他脚色A需因響應傷害牌B起動演練閃旹,伱可對其起動殺發動(有距離次數限制).此殺結算後B對A致傷旹,A視爲體力爲0瀕死,若其瀕死存活,體力調整爲此效果前",
+[":kracqhzoon"] = "全場轉限1｡其他脚色A需因響應傷害牌B起動或演練閃旹,伱可對其起動殺發動(有距離次數限制).此殺結算後B對A致傷旹,A視爲體力爲0瀕死,若其瀕死存活,體力調整爲此效果前",
 
 ["#kracqhzoon-ask"] = "驚䰟: 對 %src 起動殺",
 
@@ -100,7 +100,7 @@ kracqhzoon:addEffect(fk.AskForCardResponse, {
 --   end,
 -- })
 
-kracqhzoon:addEffect(fk.DamageCaused, {
+kracqhzoon:addEffect(fk.DamageInflicted, {
   -- can_trigger = function(self, event, target, player, data)
   --   if not (data.to==player  and  data.to.hp>0) then return end
   --     local use_event = player.room.logic:getCurrentEvent():findParent(GameEvent.UseCard, true)

@@ -8,7 +8,7 @@ Fk:loadTranslationTable{
   ["#AskForbuac_hzfan_mujs_nzjenWithoutTo"] = " %src 起動｢%arg｣ 將生效, 是否起動 ｢%arg2｣ %arg3 ",
   ["#AskForbuac_hzfan_mujs_nzjenWithoutFrom"] = "目幖爲 %dest 之 ｢%arg｣ 將生效, 是否起動 ｢%arg2｣ %arg3",
 
-  ["#AskForbuac_hzfan_mujs_nzjen-multi"] = " %src 對 %dest 起動｢%arg｣ 將生效, 是否起動 ｢%arg2｣ ？（第 %arg3 张，共需 %arg4）",
+  -- ["#AskForbuac_hzfan_mujs_nzjen-multi"] = " %src 對 %dest 起動｢%arg｣ 將生效, 是否起動 ｢%arg2｣ ？（第 %arg3 张，共需 %arg4）",
 }
 local S = require "packages/szyihhsoohssaet/szyih_guos" 
 
@@ -36,7 +36,7 @@ cardSkill:addEffect(fk.PreCardEffect, { --以可用之牌分  ---HandleAskForPla
     local cardNames={}
     if S.getCardTypeByName(data.card.trueName) ==2    then 
       cardNames={"buac_hzfan_mujs_nzjen"}
-      if  data.tos==nil or #data.tos==0 or (data.to and data:isOnlyTarget(data.to) )then 
+      if  data.tos==nil or #data.tos==0 or (data.to and data:isOnlyTarget(data.to) ) then --isOnlyTarget可能是冣後目幖
         table.insert(cardNames,"tsiac_keejs_dzius_keejs")  
       end
     elseif data.card.trueName == "ssaet" then
@@ -60,12 +60,12 @@ cardSkill:addEffect(fk.PreCardEffect, { --以可用之牌分  ---HandleAskForPla
     local room=player.room
     local players=event:getCostData(self).players
     local cardNames=event:getCostData(self).cardNames
-    local holders={} --不等于players
+    local holders={} --不等于players  --改名toBeAsk
     -- local loopTimes = data:getResponseTimes(data.to)
 
     -- for i = 1, loopTimes do
     local pattern=""
-    local expand={}  --展開 koarbiuk
+    local expand={}  --展開 koarbiuk  与s_params分開寫
     local s_params={}  --單獨設 params
 
     local prompt = ""
@@ -108,7 +108,8 @@ cardSkill:addEffect(fk.PreCardEffect, { --以可用之牌分  ---HandleAskForPla
     end
 
     local setPattern=function()
-      local t={}
+      -- local t={} --pattern
+      -- local tempPattern
       local trueNames={}  --眞名
       local names={}  --名, 如hand 无需葢
       local koarNames={}  --葢
@@ -131,70 +132,56 @@ cardSkill:addEffect(fk.PreCardEffect, { --以可用之牌分  ---HandleAskForPla
       end
 
 
-      if #trueNames>0 then  --未禁展開牌, 葢牌不應展開不合旹者
-        local tp=tostring(Exppattern{ trueName = trueNames })
-        table.insert(t,tp)
-        holders=S.getHolders(tp,players,fk.ReasonUse,nil, data) 
-      end
+      if  S.getCardTypeByName(data.card.trueName) ==2  and (data.to==nil or data.to==data.from )then --葢張nulli就可无to from
+        -- local tp = tostring(Exppattern{ trueName = cardNames })
+        local tp= table.concat(cardNames,",") 
+          holders= S.getHolders(tp,players,fk.ReasonUse,nil, data)
+          Fk.currentResponsePattern = tp --?有用?
+          pattern = tp
+      else
+            if #names>0 then
+              local tp=tostring(Exppattern{ name = names })
 
-      if #names>0 then
-        local tp=tostring(Exppattern{ name = names })
-        table.insert(t,tp)
-        table.insertTableIfNeed(holders, S.getHolders(tp,players,fk.ReasonUse,nil,data) )
+              pattern = tp
+              Fk.currentResponsePattern = tempPattern --?有用?
+              table.insertTableIfNeed(holders, S.getHolders(tp,players,fk.ReasonUse,nil,data) )
+            end
+
+            if #targetNames>0 and data.to and table.contains(players, data.to) then
+                local tp= table.concat(targetNames,";") --tostring(Exppattern{ trueName = ms })
+
+                -- if #S.getHolders(tp,{data.to},fk.ReasonUse,nil,data)~=1 then return end
+
+                table.insertIfNeed(holders,data.to)
+                s_params[data.to.id]=s_params[data.to.id] or {}
+                -- s_params[data.to.id].pattern =table.concat({tp,t[1]},";")
+                s_params[data.to.id].pattern = tostring(Exppattern{ trueName = cardNames })
+                -- s_params[data.to.id].prompt = "#ssaet-szjemh:" .. data.from.id
+            end
       end
+      
 
       if  #koarNames>0  then
-          local tp=tostring(Exppattern{ trueName = koarNames })
-          ids = {}
+          local tp=tostring(Exppattern{ trueName = koarNames })  --trueName?
+          -- ids = {}
           for _, p in ipairs(players) do
             local cs= S.getPlayerKoarbiukCards({p},tp)  
             if #cs>0 then
               expand[p.id]= cs --askToUseKoarbiukCard  中搜索展開?
               table.insertIfNeed(holders,p)
-              table.insertTableIfNeed(ids, cs)
+              -- s_params[p.to.id]=s_params[p.to.id] or {}
+              -- s_params[data.to.id][pattern] = "."
+              -- s_params[p.to.id].pattern =table.concat({Fk.currentResponsePattern or "", tostring(Exppattern{ id = ids })} , ";")
             end
           end
-          if #ids >0 then
-            table.insert(t,tostring(Exppattern{ id = ids }))
-          end
-
-          -- local ids,ps =S.getPlayerKoarbiukCards(players,tp)
-          -- if #ids>0 then
-          --           table.insert(t,tp)
-          --           -- table.insert(t,tostring(Exppattern{ id = ids }))
-            
-          --   -- local ps=S.getHolders("tsiac_keejs_dzius_keejs",players,fk.ReasonUse,"k") 
-          --   for _, p in ipairs(ps) do
-          --     expand[p.id]=S.getPlayerKoarbiukCards({p},tp)  --askToUseKoarbiukCard  中搜索展開?
-          --     table.insertIfNeed(holders,p)
-          --   end
+          -- if #ids >0 then
+          --   table.insert(t,tostring(Exppattern{ id = ids }))
           -- end
-      end
-
-      local tempPattern = table.concat(t,";")
-
-      pattern = tempPattern
-      Fk.currentResponsePattern = tempPattern --?有用?
-
-      if  #targetNames>0 and data.to then  --hand__
-        local tp= table.concat(targetNames,";") --tostring(Exppattern{ trueName = ms })
-
-        -- if #S.getHolders(tp,{data.to},fk.ReasonUse,nil,data)~=1 then return end
-
-        table.insertIfNeed(holders,data.to)
-        s_params[data.to.id]=s_params[data.to.id] or {}
-        -- s_params[data.to.id][pattern] = "."
-        s_params[data.to.id].pattern =table.concat({tp,t[1]},";")
-        -- s_params[data.to.id][prompt] = "#ssaet-szjemh:" .. data.from.id
       end
 
     end
 
-      if #data.tos>0 then --prompt
-        data.extra_data=data.extra_data or {}
-        data.extra_data.useEventId = data.use and data.use.id or nil
-        data.extra_data.effectTo = data.to and data.to.id or nil
-      end
+
 
     while true do
       setPattern()
@@ -215,13 +202,13 @@ cardSkill:addEffect(fk.PreCardEffect, { --以可用之牌分  ---HandleAskForPla
       local params = { ---@type AskToUseCardParams
         pattern = pattern,
         skill_name = cardNames[1],
-        prompt =       setPrompt(data, cardNames, used_times[cardNames[1]] or 1, data:getResponseTimes(data.to) or 1),
+        prompt = setPrompt(data, cardNames, (data.offsetTimes or 0)+1, data:getResponseTimes(data.to) or 1),
         cancelable = true,
         extra_data = extra_data,
         event_data = data
       }
 
-      local use = S.askToUseKoarbiukCard(room,holders, params,s_params,expand)
+      local use = S.askToUseKoarbiukCard(holders, params,s_params,expand)
       if not use then clear() return end 
 
       use.toCard = data.card  --皆有

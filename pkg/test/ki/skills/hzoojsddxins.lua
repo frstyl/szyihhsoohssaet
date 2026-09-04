@@ -7,7 +7,7 @@ local hzoojsddxins = fk.CreateSkill {
 
 Fk:loadTranslationTable {
   ["hzoojsddxins"] = "潰陳",
-  [":hzoojsddxins"] = "一｢殺｣A被起動旹,若伱在起動者攻程內且A目幖不含伱,伱可發動｡伱抽1,選擇伱攻程至多x其它脚色,伱与所選脚色加入A目幖(无視合理)",
+  [":hzoojsddxins"] = "一腳色A起動｢殺｣被旹,若伱在A攻程內且起動目幖不含伱,伱可發動｡伱抽1,選擇伱攻程至多x其它脚色,伱与所選脚色加入起動目幖(无視合理)",
 
   ["#hzoojsddxins-invoke"] = "潰陳 %src 起動 %arg",
   ["#hzoojsddxins-choose"] = "潰陳 選擇目幖",

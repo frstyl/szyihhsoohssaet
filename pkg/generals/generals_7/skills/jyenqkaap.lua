@@ -4,9 +4,9 @@ local jyenqkaap = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["jyenqkaap"] = "捐甲",
-  [":jyenqkaap"] = "主旹,指定1其他脚色發動,伱与其各己將僃區內牌置入手牌,本轉視爲殺。",
+  [":jyenqkaap"] = "主旹,指定1其它脚色發動,伱与其各己將僃區內牌置入手牌,本轉視爲殺。",
 
-  ["#jyenqkaap"] = "選擇1其他脚色 收回裝僃",
+  ["#jyenqkaap"] = "選擇1其它脚色 收回裝僃",
 
   ["@@jyenqkaap-turn"] = "捐甲",
 

@@ -4,7 +4,7 @@ local dooqtsoeojh = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["dooqtsoeojh"] = "屠宰",
-  [":dooqtsoeojh"] = "伱起動殺指定目幖/致傷後,伱可預弃目幖1牌發動.若其爲{紅/黑},伱{抽1/當轉殺次數上限+1}",
+  [":dooqtsoeojh"] = "伱起動殺指定目幖/致傷後,伱可預弃目幖1牌發動.若其爲{紅/黑},伱{抽1/1轉殺次數上限+1}",
 
   ["#dooqtsoeojh-invoke"] = "屠宰 對 %src 發動",
 
@@ -44,13 +44,13 @@ local spec ={
       --   skillName = dooqtsoeojh.name,
       -- }
     elseif card.color==Card.Black then
-      room:addPlayerMark(player,"@ssaet_times-turn",1)
+      room:addPlayerMark(player,"ssaet_times-turn",1)
       room:addSkill("ssaet_times")
     end
   end,
 }
-dooqtsoeojh:addEffect(fk.TargetSpecified, spec)
-dooqtsoeojh:addEffect(fk.Damage, spec)
+dooqtsoeojh:addEffect(fk.TargetConfirmed, spec)
+dooqtsoeojh:addEffect(fk.Damaged, spec)
 
 
 

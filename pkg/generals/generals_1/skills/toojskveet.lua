@@ -4,7 +4,7 @@ local toojskveet = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["toojskveet"] = "對決",
-  [":toojskveet"] = "殺效果結算後,若伱爲其起動者或目幖,伱可選1其他脚色發動,其占卜,視爲伱對其起動鬥將,无視距離且止被与占卜牌同色牌響應｡",
+  [":toojskveet"] = "殺效果結算終旹,若伱爲其起動者或目幖,伱可選1其它脚色發動,其占卜,伱對其虛擬起動｢鬥將｣(止能被与占卜牌同色牌響應｡)",
   ["#toojskveet-choose"] = "對決 選擇鬥將目幖",
 }
 --若伱爲其起動者或目幖 ≠ 伱爲目幖/伱爲起動者
@@ -59,7 +59,7 @@ local toojskveet_spec = {
 }
 
 
--- toojskveet:addEffect(fk.TargetSpecified, {
+-- toojskveet:addEffect(fk.TargetConfirmed, {
 --   can_trigger = function(self, event, target, player, data)
 --     return data.from == player --and player:hasSkill(toojskveet.name) 
 --       and data.card and data.card.skillName == toojskveet.name
@@ -99,7 +99,10 @@ toojskveet:addEffect(fk.HandleAskForPlayCard, {  --眞止問ask AskForCardData e
 
 toojskveet:addEffect(fk.AskForCardUse, {--trigger技用牌 會封其它結算
   can_refresh = function(self, event, target, player, data)  --雙向?
-    return  data.eventData and  data.eventData.card
+    return  
+    player.seat==1
+    and 
+    data.eventData and  data.eventData.card
         and data.eventData.card.exral_data
         and  data.eventData.card.exral_data.toojskveet_color
   end,
@@ -131,9 +134,7 @@ toojskveet:addEffect("prohibit", {
   end,
 })
 
--- toojskveet:addEffect(fk.Damaged, toojskveet_spec)
--- toojskveet:addEffect(fk.Damage, toojskveet_spec)
+
 toojskveet:addEffect(fk.CardEffectFinished, toojskveet_spec)
--- toojskveet:addEffect(fk.TargetConfirmed, toojskveet_spec)
 
 return toojskveet

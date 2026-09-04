@@ -6,12 +6,11 @@ local butjyen = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["butjyen"] = "佛緣",
-  [":butjyen"] = "➀伱成为卽旹元牌唯一目幖後必發｡此牌起動无效,伱將之置于伱將牌上｡➁伱轉終,若伱有佛緣牌必發,伱依序廢置一佛緣牌并令其對伱執行效果",
+  [":butjyen"] = "➀伱成为卽旹元牌目幖後必發｡此牌起動无效,若伱爲唯一目幖,伱將之置于伱將牌上｡➁伱轉終,若伱有佛緣牌必發,伱依序廢置一佛緣牌并令其對伱執行效果",
 
   ["butjyen_piles"] = "佛緣",
 
-  ["$butjyen1"] = "佛緣鐵卷在此,誰敢不敬。",
-  ["$butjyen2"] = "御賜佛緣鐵卷,可保祖孫三代",
+  ["$butjyen1"] = "",
 }
 local S = require "packages/szyihhsoohssaet/szyih_guos" 
 
@@ -25,7 +24,7 @@ butjyen:addEffect(fk.TargetConfirmed, {
   on_use = function(self, event, target, player, data)
     local room = player.room
     S.useNullify(data.use,player,butjyen.name)
-    if player.room:getCardArea(data.card) == Card.Processing  and not player.dead then
+    if #data:getAllTargets()==1 and player.room:getCardArea(data.card) == Card.Processing  and not player.dead then
       player:addToPile("butjyen_piles", data.card, true, butjyen.name) 
     end
   end,

@@ -79,7 +79,7 @@ Fk:loadTranslationTable{
 ["designer:loohdoat__loohttxesszjin"] = "設計",
 ["cv:loohdoat__loohttxesszjin"] = "配音",
 ["illustrator:loohdoat__loohttxesszjin"] = "畫師",
-["~loohdoat__loohttxesszjin"] = "洒家需喫官司不如給早撒開",
+["~loohdoat__loohttxesszjin"] = "洒家需喫官司 不如及早撒開",
 }
 
 General:new(extension, "lihttiuc", "mjin", 5):addSkills{"khaenqljins","tsheejqtsheej"}  --86

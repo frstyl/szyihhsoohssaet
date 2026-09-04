@@ -17,29 +17,5 @@ skill:addEffect("cardskill", {
   end,
 })
 
-skill:addAI({
-  on_effect = function(self, logic, effect)
-    local from = effect.from
-    local to = effect.to
-    if from.dead or to.dead or to:isAllNude() then return end
-    local _, val = self:thinkForCardChosen(from.ai, to, "hej")
-    logic.benefit = logic.benefit + val
-  end,
-
-  think_card_chosen = function(self, ai, target, flag, prompt)
-    local ret, benefit = ai:askToChooseCards({
-      cards = target:getCardIds("hej"),
-      skill_name = self.skill.name,
-      min = 1,
-      max = 1,
-      data = {
-        to_place = Card.DiscardPile,
-        reason = fk.ReasonDiscard,
-        proposer = ai.player,
-      },
-    })
-    return ret[1], benefit
-  end,
-}, "__card_skill")
 
 return skill

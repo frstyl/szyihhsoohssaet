@@ -8,8 +8,7 @@ Fk:loadTranslationTable{
 
   ["#thoavqdoav-invoke"] = "滔濤：選擇目幖 弃置其牌 ",
 
-  ["$thoavqdoav1"] = "以此天穹之水，涤瑕荡秽！",
-  ["$thoavqdoav2"] = "心怀浊恶之徒，岂能承神雨之淸？",
+  ["$thoavqdoav1"] = "",
 }
 
 local spec={

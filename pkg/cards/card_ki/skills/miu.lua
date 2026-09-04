@@ -33,6 +33,6 @@ skill:addEffect("viewas", {
 --     if #Card:getIdList(card)==0 and card.skillName==nil then return true end--bug
 --   end,
 -- })
-skill:addAI(nil, "vs_skill", "miu_skill")
+
 
 return skill

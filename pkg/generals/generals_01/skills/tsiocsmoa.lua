@@ -13,7 +13,7 @@ Fk:loadTranslationTable{
 
 }
 
-tsiocsmoa:addEffect(fk.TargetSpecifying, {
+tsiocsmoa:addEffect(fk.TargetConfirming, {
   anim_type = "offensive",
   can_trigger = function (self, event, target, player, data)
     return data.from==player and player:hasSkill(tsiocsmoa.name) and data.to~=data.from and data.card.trueName=="ssaet" 

@@ -140,11 +140,11 @@ Fk:loadTranslationTable{
 
 --31. 第三十回　張都監血濺鴛鴦樓　武行者夜走蜈蚣嶺
 --张團練、张都監
-  
-General:new(extension, "ttiacqmoucqpuac", "kvoan", 5):addSkills{"thoeomqdzoeoj"}
+--王道人
+General:new(extension, "ttiacqmoucqpuac", "kvoan", 5):addSkills{"thoeomqliak"}
 Fk:loadTranslationTable{
 ["ttiacqmoucqpuac"] = "張蒙方",
-["#ttiacqmoucqpuac"] = "都監",
+["#ttiacqmoucqpuac"] = "张都監",
 ["designer:ttiacqmoucqpuac"] = "設計",
 ["cv:ttiacqmoucqpuac"] = "配音",
 ["illustrator:ttiacqmoucqpuac"] = "畫師",

@@ -19,7 +19,7 @@ Fk:loadTranslationTable{
 ["$kiaplooh2"] = "絳霞影裏,卷一道凍地仌霜",
 }
 
-kiaplooh:addEffect(fk.TargetSpecified, {
+kiaplooh:addEffect(fk.TargetConfirmed, {
   can_trigger = function(self, event, target, player, data)
     return  data.from == player and player:hasSkill(kiaplooh.name) and data.card.trueName=="ssaet"
   end,

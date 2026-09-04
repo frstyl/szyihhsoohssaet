@@ -3,7 +3,7 @@ local skill = fk.CreateSkill {
   attached_equip = "ssaoc_toav",
 }
 
-skill:addEffect(fk.TargetSpecified, {
+skill:addEffect(fk.TargetConfirmed, {
   can_trigger = function(self, event, target, player, data)
     return data.from == player and player:hasSkill(skill.name) and
       data.card and data.card.trueName == "ssaet" 

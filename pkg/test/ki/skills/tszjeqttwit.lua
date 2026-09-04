@@ -25,7 +25,7 @@ tszjeqttwit:addEffect(fk.CardUsing, {
       cancelable = true, 
       extra_data = {
         num = 1,
-        min_num =player:getMaxCards()>0 and 0 or 1 ,
+        min_num =S.getMaxCards(player)>0 and 0 or 1 ,
         include_equip = true,
         skillName = tszjeqttwit.name,
         pattern = tostring(Exppattern{ id = table.filter(player:getCardIds("he"), function (id)
@@ -48,7 +48,7 @@ tszjeqttwit:addEffect(fk.CardUsing, {
       player:drawCards(1,tszjeqttwit.name)
       player.room:addPlayerMark(target, MarkEnum.MinusMaxCards, 1)
     else
-      S.playCard(player,cards,tszjeqttwit.name)
+      S.playCard(cards,tszjeqttwit.name,player)
       player.room:addPlayerMark(target, MarkEnum.AddMaxCards, 1)
     end
   end,

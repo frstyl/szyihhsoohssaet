@@ -100,15 +100,24 @@ Fk:loadTranslationTable{
 General:new(extension, "puacqgxet", "qwachloak__kvoan", 4):addSkills{"poojsszyih"}
 Fk:loadTranslationTable{
 ["puacqgxet"] = "方傑",
-["#puacqgxet"] = "南國皇蛭",
+["#puacqgxet"] = "南國皇姪",
 ["designer:puacqgxet"] = "設計",
 ["cv:puacqgxet"] = "配音",
 ["illustrator:puacqgxet"] = "畫師",
 ["~puacqgxet"] = "珂駙馬伱",
 }
 
+General:new(extension, "puacqmaavs", "qwachloak__kvoan", 4):addSkills{"tszjipkrak"}
+Fk:loadTranslationTable{
+["puacqmaavs"] = "方貌",
+["#puacqmaavs"] = "",
+["designer:puacqmaavs"] = "設計",
+["cv:puacqmaavs"] = "配音",
+["illustrator:puacqmaavs"] = "畫師",
+["~puacqmaavs"] = "珂駙馬伱",
+}
 --杜微
-General:new(extension, "doohmuj", "qwachloak__kvoan", 3):addSkills{"pujqnzjins"}
+General:new(extension, "doohmuj", "qwachloak__kvoan", 3):addSkills{"pujqtoav","keekhsio"}  --, "pujqnzjins" hqrachliak
 Fk:loadTranslationTable{
 ["doohmuj"] = "杜微",
 ["#doohmuj"] = "",
@@ -130,14 +139,24 @@ Fk:loadTranslationTable{
 }
 
 
-General:new(extension, "khoaqjjinh", "qwachloak__kvoan", 3):addSkills{"lvoanskun","jyenqmjet"}
+General:new(extension, "khoaqjjinh__dzsaeqtsjins", "qwachloak__kvoan", 3):addSkills{"lvoanskun","jyenqmjet"}
 Fk:loadTranslationTable{
-["khoaqjjinh"] = "珂引",
-["#khoaqjjinh"] = "南國駙馬",
-["designer:khoaqjjinh"] = "設計",
-["cv:khoaqjjinh"] = "配音",
-["illustrator:khoaqjjinh"] = "畫師",
-["~khoaqjjinh"] = "總算是結束已",
+["khoaqjjinh__dzsaeqtsjins"] = "柯引",
+["#khoaqjjinh__dzsaeqtsjins"] = "南國駙馬",
+["designer:khoaqjjinh__dzsaeqtsjins"] = "設計",
+["cv:khoaqjjinh__dzsaeqtsjins"] = "配音",
+["illustrator:khoaqjjinh__dzsaeqtsjins"] = "畫師",
+["~khoaqjjinh__dzsaeqtsjins"] = "總算是結束已",
+}
+
+General:new(extension, "qunqprak__hqeenqtsheec", "qwachloak__kvoan", 3):addSkills{"sziktsshaek"}
+Fk:loadTranslationTable{
+["qunqprak__hqeenqtsheec"] = "雲碧",
+["#qunqprak__hqeenqtsheec"] = "南國駙馬",
+["designer:qunqprak__hqeenqtsheec"] = "設計",
+["cv:qunqprak__hqeenqtsheec"] = "配音",
+["illustrator:qunqprak__hqeenqtsheec"] = "畫師",
+["~qunqprak__hqeenqtsheec"] = "總算是結束已",
 }
 -- --
 --113. 第一百一十二回　盧俊義分兵宣州道　宋公明大戰毗陵郡

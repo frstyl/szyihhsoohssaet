@@ -43,7 +43,7 @@ khiakdeek:addEffect(fk.CardUsing, {
   end,
   on_use = function(self, event, target, player, data)
     local room=player.room
-    S.playCard(player,event:getCostData(self).cards,khiakdeek.name)
+    S.playCard(event:getCostData(self).cards,khiakdeek.name,player)
     -- data.nullified=true
     S.useNullify(data,player,khiakdeek.name)  --殺進程?
     -- data:removeAllTargets()
@@ -54,7 +54,7 @@ khiakdeek:addEffect(fk.CardUsing, {
     -- end)
     local discard=false
     if #weapons~=0 then 
-      local cards= S.askToPlayCard(data.from,{
+      local cards= room:askToDiscard(data.from,{
           min_num=1,
           max_num=1,
           include_equip=true,

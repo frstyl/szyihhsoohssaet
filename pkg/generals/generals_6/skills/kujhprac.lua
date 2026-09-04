@@ -4,8 +4,8 @@ local kujhprac = fk.CreateSkill {
 
 Fk:loadTranslationTable{
 ["kujhprac"] = "鬼兵",
-[":kujhprac"] = "印牌:虛擬起動演練｢殺｣｡發動後伱占卜,若占卜牌爲♥️,中止且此技能當段失效",
-["#kujhprac"] = "鬼兵:  占卜 若占卜牌不爲♥️ 伱起動演練虛擬殺",
+[":kujhprac"] = "印牌:虛擬起動或演練｢殺｣｡發動後伱占卜,若占卜牌爲♥️,中止且此技能1段失效",
+["#kujhprac"] = "鬼兵:  占卜 若占卜牌不爲♥️ 伱起動或演練虛擬殺",
 }
 
 kujhprac:addEffect("viewas", {

@@ -1,10 +1,11 @@
 local laachtsjens = fk.CreateSkill {
   name = "laachtsjens",
+  tags = {Skill.Composite},
 }
 
 Fk:loadTranslationTable{
   ["laachtsjens"] = "冷箭",
-  [":laachtsjens"] = "印牌:以伱裝僃區內1牌轉化起動｢殺｣｡冷箭｢殺｣生效歬伱可發動,弃目幖x牌,此牌對其无效(x爲伱裝僃區牌數至少爲1)",
+  [":laachtsjens"] = "印牌:以伱裝僃區內1牌轉化起動｢殺｣｡伱指定｢殺｣目幖旹伱可發動,伱弃置目幖至多x牌,此牌對其无效(x爲伱裝僃區牌數+1)",
 
   ["#laachtsjens-invoke"] = "冷箭 是否對 %src 發動",
 }
@@ -35,18 +36,20 @@ laachtsjens:addEffect("viewas", {
     --nullified notos --usercard 448
     --對某脚色无效 同預越過階段 于眞越過皆段旹生成旹機
     --PreCardEffect BeforeCardEffect
-laachtsjens:addEffect(fk.PreCardEffect, {
+laachtsjens:addEffect(fk.TargetConfirming, {  --PreCardEffect
   anim_type = "offensive",
   can_trigger = function(self, event, target, player, data)
     return  data.from==player and player:hasSkill(laachtsjens.name)
-    and table.contains(data.card.skillNames, laachtsjens.name) 
+    -- and table.contains(data.card.skillNames, laachtsjens.name) 
+    and data.card.trueName=="ssaet"
   end,
   on_cost = function(self, event, target, player, data)
     return player.room:askToSkillInvoke(player,{skill_name=laachtsjens.name,prompt="#laachtsjens-invoke:"..data.to.id})
   end,
   on_use = function(self, event, target, player, data)
     local room=player.room
-    local n =math.max(#player:getCardIds("e"),1)
+    -- local n =math.max(#player:getCardIds("e"),1)
+    n =#player:getCardIds("e")+1
     local cards = room:askToChooseCards(player, {
       skill_name = laachtsjens.name,
       target = data.to,
@@ -55,7 +58,7 @@ laachtsjens:addEffect(fk.PreCardEffect, {
       max = n,
     })
     room:throwCard(cards, laachtsjens.name, data.to, player)
-    data.nullified = true
+    data:setNullified(data.to)
   end,
 })
 return laachtsjens

@@ -89,7 +89,7 @@ punsmuoh:addEffect(fk.CardUsing, {  --不算發動技能  --加傷幖記
   end,
 })
 
-punsmuoh:addEffect(fk.DamageCaused, {  --不算發動技能
+punsmuoh:addEffect(fk.DamageInflicted, {  --不算發動技能
   is_delay_effect = true,
   anim_type = "drawcard",
   can_trigger = function(self, event, target, player, data)
@@ -100,7 +100,7 @@ punsmuoh:addEffect(fk.DamageCaused, {  --不算發動技能
   end,
 })
 
--- punsmuoh:addEffect(fk.TargetSpecified, {  --不算發動技能
+-- punsmuoh:addEffect(fk.TargetConfirmed, {  --不算發動技能
 --   can_trigger = function (self, event, target, player, data)
 --     return data.card:getMark("@@punsmuoh-switch-yin")==player.id
 --     -- and data.from==player --問一次

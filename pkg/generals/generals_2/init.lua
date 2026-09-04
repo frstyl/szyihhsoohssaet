@@ -74,7 +74,7 @@ Fk:loadTranslationTable{
 ["~loojqhzfac"] = "終究其不如人",
 }
 --14 赤發鬼醉臥靈官殿　晁天王認義東溪村
-General:new(extension, "liuqdoac", "tsiacs", 5):addSkills { "seenqtoeoc","kooqszjer" }
+General:new(extension, "liuqdoac", "tsiacs", 5):addSkills { "seenqtoeoc","kooqtsjins" }
 Fk:loadTranslationTable{
 ["liuqdoac"] = "劉唐",
 ["#liuqdoac"] = "赤髮鬼",
@@ -239,14 +239,14 @@ Fk:loadTranslationTable{
 ["~jjemqboasjek"] = "宋三郎伱",
 }
 
-General:new(extension, "ttiacqmunqquanh", "kvoan", 3):addSkills { "thouqhsiac", "biuksjins"}
+General:new(extension, "ttiacqmunqquanh", "kvoan", 3):addSkills { "tshjeqhzvoac", "thouqhsiac"}
 Fk:loadTranslationTable{
 ["ttiacqmunqquanh"] = "張文遠",
 ["#ttiacqmunqquanh"] = "小張三",
 ["designer:ttiacqmunqquanh"] = "設計",
 ["cv:ttiacqmunqquanh"] = "配音",
 ["illustrator:ttiacqmunqquanh"] = "畫師",
-["~ttiacqmunqquanh"] = "歡愉嫌夜短寂寞限更長",
+["~ttiacqmunqquanh"] = "歡愉嫌夜短 寂寞恨更長",
 }
 
 

@@ -5,10 +5,10 @@ local hzfenshsfas = fk.CreateSkill {
 
 Fk:loadTranslationTable{
 ["hzfenshsfas"] = "㕕化",
-[":hzfenshsfas"] = "伱可因A起動演練(虛无色无點无屬){肉/閃/殺/酒}旹B,伱可發動.伱占卜,若占卜牌爲{<font color='red'>♥</font>/<font color='red'>♦</font>/♣/♠},視爲伱于B旹機起動之｡",
--- [":hzfenshsfas"] = "印牌:起動演練虛擬{肉/閃/殺/酒}｡起動前伱占卜,若占卜牌不爲{<font color='red'>♥</font>/<font color='red'>♦</font>/♣/♠},防止起動｡每問牌事件每牌名限1次",
+[":hzfenshsfas"] = "伱可因A起動或演練(虛无色无點无屬){肉/閃/殺/酒}旹B,伱可發動.伱占卜,若占卜牌爲{<font color='red'>♥</font>/<font color='red'>♦</font>/♣/♠},視爲伱于B旹機起動之｡",
+-- [":hzfenshsfas"] = "印牌:起動或演練虛擬{肉/閃/殺/酒}｡起動前伱占卜,若占卜牌不爲{<font color='red'>♥</font>/<font color='red'>♦</font>/♣/♠},防止起動｡每問牌事件每牌名限1次",
 
-["#hzfenshsfas"] = "㕕化:  占卜 若占卜牌无花色或花色非紅桃 視若伱起動演練殺",
+["#hzfenshsfas"] = "㕕化:  占卜 若占卜牌无花色或花色非紅桃 視若伱起動或演練殺",
 }
 
 hzfenshsfas:addEffect("viewas", {
@@ -61,8 +61,8 @@ hzfenshsfas:addEffect("viewas", {
 
   -- end,
   enabled_at_play = function(self, player)
-    -- return true
-    return player:usedEffectTimes(hzfenshsfas.name, Player.HistoryPhase) == 0
+    return 
+     not table.contains(player:getTableMark("bannedSkills"),self.name)
   end,
   enabled_at_response = function(self, player, response)  --終止旹機/流程條件 爲  --每旹機(用牌元因如瀕死)限1次
     return true --not response

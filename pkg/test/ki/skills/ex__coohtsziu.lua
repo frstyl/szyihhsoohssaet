@@ -1,10 +1,15 @@
 local ex__coohtsziu = fk.CreateSkill {
   name = "ex__coohtsziu",
+  max_turn_use_time=1,
+  max_round_use_time= function(self, player)
+    return math.min(4, math.max(#player:getCardIds("e"),1))
+  end
 }
 
 Fk:loadTranslationTable{
   ["ex__coohtsziu"] = "五州",
-  [":ex__coohtsziu"] = "段限max{1,x}.主段始旹,或主段內伱失去牌後,若伱手牌數小于等于max{1,(5-x)},伱可發動,伱抽max{1,(5-x)}.(x爲伱裝僃區牌數)",
+  [":ex__coohtsziu"] = "段限1,輪限x｡伱失去牌後,若伱手牌數小于等于x,伱可發動,伱抽5-x.(x爲伱裝僃區牌數,至少1,至多4)",
+  -- [":ex__coohtsziu"] = "段限max{1,x}.主段始旹,或主段內伱失去牌後,若伱手牌數小于等于max{1,(5-x)},伱可發動,伱抽max{1,(5-x)}.(x爲伱裝僃區牌數)",
 
   ["#ex__coohtsziu-invoke"] = "五州 抽 %arg",
 
@@ -36,32 +41,40 @@ Fk:loadTranslationTable{
 --   end,
 -- })
 local canUse =function(player)
-    local n =#player:getCardIds("e") 
-    if #player:getCardIds("h")<= math.max(1, 5-n) and player:usedSkillTimes(ex__coohtsziu.name, Player.phase) < math.max(1, n) then
+  if not  player:hasSkill(ex__coohtsziu.name)  then return end
+    local n =math.min(4, math.max(#player:getCardIds("e"),1))
+    if #player:getCardIds("h")<= n 
+     and ex__coohtsziu:withinTimesLimit(player) 
+    and ex__coohtsziu:withinTimesLimit(player,Player.HistoryRound) 
+     then
       return true
     end
 end
 
 local spec={
   on_cost = function(self, event, target, player, data)
-    return player.room:askToSkillInvoke(player, {
+    local n =5- math.min(4, math.max(#player:getCardIds("e"),1))
+    if player.room:askToSkillInvoke(player, {
           skill_name = ex__coohtsziu.name,
-          prompt = "#ex__coohtsziu-invoke:::"..(math.max(1, 5-#player:getCardIds("e"))),
-        })
+          prompt = "#ex__coohtsziu-invoke:::"..n,
+        }) then
+          event:setCostData(self,{n=n})
+          return true
+        end
   end,
   on_use = function(self, event, target, player, data)
-    player:drawCards(math.max(1, 5-#player:getCardIds("e")), ex__coohtsziu.name)
+    player:drawCards(event:getCostData(self).n, ex__coohtsziu.name)
   end,
 }
 
 
 ex__coohtsziu:addEffect(fk.AfterCardsMove, {
   anim_type = "drawcard",
-  times = function(self, player)  --顯示
-    return math.max(1, #player:getCardIds("e"))- player:usedSkillTimes(ex__coohtsziu.name, Player.HistoryPhase)
-  end,
+  -- times = function(self, player)  --顯示
+  --   return math.max(1, #player:getCardIds("e"))- player:usedSkillTimes(ex__coohtsziu.name, Player.HistoryPhase)
+  -- end,
   can_trigger = function(self, event, target, player, data)
-    if not ( player:hasSkill(ex__coohtsziu.name) and player.room.current == player and player.phase == Player.Play) then return end
+    -- if not ( player:hasSkill(ex__coohtsziu.name) and player.room.current == player and player.phase == Player.Play) then return end
     if not  canUse(player) then return end 
       
     for _, move in ipairs(data) do
@@ -81,13 +94,13 @@ ex__coohtsziu:addEffect(fk.AfterCardsMove, {
 })
 
 
-ex__coohtsziu:addEffect(fk.EventPhaseStart, {
-  anim_type = "drawcard",
-  can_trigger = function (self, event, target, player, data)
-    return target == player and player:hasSkill(ex__coohtsziu.name) and data.phase==Player.Play and canUse(player)
-  end,
-  on_cost = spec.on_cost,
-  on_use = spec.on_use,
-})
+-- ex__coohtsziu:addEffect(fk.EventPhaseStart, {
+--   anim_type = "drawcard",
+--   can_trigger = function (self, event, target, player, data)
+--     return target == player and player:hasSkill(ex__coohtsziu.name) and data.phase==Player.Play and canUse(player)
+--   end,
+--   on_cost = spec.on_cost,
+--   on_use = spec.on_use,
+-- })
 
 return ex__coohtsziu

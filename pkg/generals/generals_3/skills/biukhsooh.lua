@@ -72,7 +72,7 @@ local spec ={
     end
   end,
 }
-biukhsooh:addEffect(fk.Damage, {
+biukhsooh:addEffect(fk.Damaged, {
   can_trigger = spec.can_trigger,
   on_cost = spec.on_cost,
   on_use = spec.on_use,

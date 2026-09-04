@@ -28,6 +28,7 @@ dzzjenqhqyen:addEffect(fk.AfterCardsMove, {
   end,
   trigger_times = function(self, event, target, player, data)  --單人單旹次數 未指定player 多次觸發
     if not player:hasSkill(dzzjenqhqyen.name) then return 0 end
+    if event:getCostData(self) and  event:getCostData(self).ids then return #event:getCostData(self).ids end
       local ids = {}
       local check =function(id)
         if Fk:getCardById(id).suit == Card.Heart  then
@@ -114,7 +115,7 @@ dzzjenqhqyen:addEffect(fk.AfterCardsMove, {
     -- or room:getPlayerById(dat.tos[1]).dead
     then return end
 
-    S.playCard(player,{dat.cards[2]},dzzjenqhqyen.name)
+    S.playCard({dat.cards[2]},dzzjenqhqyen.name,player)
 
     if  dat.targets[1].dead then return end
     room:moveCardTo({dat.cards[1]}, Card.PlayerHand, dat.targets[1], fk.ReasonGive, dzzjenqhqyen.name, nil, true, player)

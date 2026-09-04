@@ -1,20 +1,20 @@
-local jiacqtshjes = fk.CreateSkill {
-  name = "jiacqtshjes",
+local hzoojqssaok = fk.CreateSkill {
+  name = "hzoojqssaok",
   -- tags = { Skill.Compulsory },
 }
 
 Fk:loadTranslationTable{
-["jiacqtshjes"] = "揚刺",
-[":jiacqtshjes"] = "一腳色轉終,伱可預起動弃牌堆當轉因打出進入者發動｡",
+["hzoojqssaok"] = "回搠",
+[":hzoojqssaok"] = "一腳色轉終旹无限次,伱可起動弃牌堆1轉內因打出進入者發動｡",
 
 
 }
 
 local S = require "packages/szyihhsoohssaet/szyih_guos" 
 
-jiacqtshjes:addEffect(fk.TurnEnd, {
+hzoojqssaok:addEffect(fk.TurnEnd, {
   can_trigger = function(self, event, target, player, data)
-    if player:hasSkill(jiacqtshjes.name) then
+    if player:hasSkill(hzoojqssaok.name) then
       local room=player.room
       local ids={}
       room.logic:getEventsOfScope(GameEvent.MoveCards, 1, function (e)  --順序
@@ -46,24 +46,25 @@ jiacqtshjes:addEffect(fk.TurnEnd, {
   on_cost = function(self, event, target, player, data)
     local cards=event:getCostData(self).ids
       local use = player.room:askToUseRealCard(player, {
-        skill_name = jiacqtshjes.name,
-        prompt = "#jiacqtshjes-invoke",
+        skill_name = hzoojqssaok.name,
+        prompt = "#hzoojqssaok-invoke",
         pattern = tostring(Exppattern{ id = cards }),
         cancelable = true,
         extra_data = {
           expand_pile = cards,
           extraUse=false,
           bypass_times=false,
+          bypass_distances=false,
         },
         skip = true,
       })
       if use then
-      event:setCostData(self, {use=use,cards={use.card}})
+      event:setCostData(self, {extra_data=use,cards={use.card}})
       return true
     end
   end,
   on_use = function(self, event, target, player, data)  --可以不給?
-    player.room:useCard(event:getCostData(self).use)
+    player.room:useCard(event:getCostData(self).extra_data)
   end,
   })
-return jiacqtshjes
+return hzoojqssaok

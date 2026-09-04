@@ -23,11 +23,11 @@ ddwenqszio:addEffect("active", {
     and  not player:prohibitResponse(to_select)
   end,
   on_use = function(self, room, effect)
-    S.playCard(effect.from,effect.cards,ddwenqszio.name)
+    S.playCard(effect.cards,ddwenqszio.name,effect.from)
 
     for _, to in ipairs(room:getAlivePlayers()) do
       room:moveCards({
-        ids = S.getKhouc(room,1),
+        ids = S.getKhouc(1),
         to = to,
         toArea = Card.PlayerHand,
         moveReason = fk.ReasonJustMove,

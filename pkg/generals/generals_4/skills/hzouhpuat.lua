@@ -1,10 +1,11 @@
 local hzouhpuat = fk.CreateSkill {
   name = "hzouhpuat",
+  tags = {Skill.Composite},
 }
 
 Fk:loadTranslationTable{
   ["hzouhpuat"] = "後發",
-  [":hzouhpuat"] = "其它脚色殺不因起動打出進入弃牌堆後,伱可發動.取得其中1至多.伱可將1+a殺轉化爲殺起動發動.伱爲此殺選a項➀不可抵消➁反无效➂无視防具➃目幖非必發技當轉失效(a爲1至4整數)",
+  [":hzouhpuat"] = "其它脚色殺不因起動打出進入弃牌堆後,伱可發動.取得其中1至多.伱可將1+a殺轉化爲殺起動發動.伱爲此殺選a項➀不可抵消➁反无效➂无視防具➃目幖非必發技1轉失效(a爲1至4整數)",
 
   ["#hzouhpuat-choose"] = "後發 選擇所起動殺与所弃牌",
   ["@@hzouhpuat-inhand"] = "後發",

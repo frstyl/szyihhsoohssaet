@@ -5,7 +5,7 @@ local poojsszyih = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["poojsszyih"] = "背水",
-  [":poojsszyih"] = "伱失去伱冣後{手牌/體力}後,伱可選1項發動.➀伱抽2x➁伱對1其它脚色起動虛擬｢殺｣x張.(x爲伱已損體力值)",  --有距離限制
+  [":poojsszyih"] = "伱失去伱冣後{手牌/體力}後,伱可選1項發動.➀伱抽2x➁伱對1其它脚色起動虛擬｢殺｣x張.(x爲伱已損體力數)",  --有距離限制
 
   ["#poojsszyih-invoke"] = "背水 是否發動 不選目幖則抽牌",
 
@@ -46,21 +46,28 @@ local spec={
 }
 poojsszyih:addEffect(fk.AfterCardsMove, {
   anim_type = "drawcard",
-  can_trigger = function(self, event, target, player, data)
-    if not player:hasSkill(poojsszyih.name) or not player:isKongcheng() then return end
-
-      for _, move in ipairs(data) do
-        if 
-           move.from == player 
-        then
-          for _, info in ipairs(move.moveInfo) do
-            if table.contains({Player.Hand},info.fromArea) then
-            -- if table.contains({Player.Hand, Player.Judge, Player.Equip  },info.fromArea) then
-              return true
+  can_refresh = function(self, event, target, player, data)
+    if   player:hasSkill(poojsszyih.name,true) and player:isKongcheng() then
+        for _, move in ipairs(data) do
+          if 
+            move.from == player 
+          then
+            for _, info in ipairs(move.moveInfo) do
+              if info.fromArea==Card.PlayerHand then
+                return true
+              end
             end
           end
         end
-      end
+    end
+  end,
+  on_refresh = function(self, event, target, player, data)
+    local triggers=event:getCostData(self) and event:getCostData(self).triggers or {}
+    triggers[player.id]=true
+    event:setCostData(self,{triggers=triggers})
+  end,
+  can_trigger = function(self, event, target, player, data)
+    return  player:hasSkill(poojsszyih.name) and event:getCostData(self) and event:getCostData(player.id)
 
   end,
   on_cost=spec.on_cost,

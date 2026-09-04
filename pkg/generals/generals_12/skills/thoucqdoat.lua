@@ -1,13 +1,13 @@
 Fk:loadTranslationTable{
   ["thoucqdoat"] = "通达",
-  [":thoucqdoat"] = "伱失去牌後發動,伱將牌堆頂x牌置于伱武將牌上,稱爲略(x爲伱所失牌數).主旹,伱選1項与1其它脚色A,預弃3同花或3異花略發動➀予A2傷➁觀看A區域全部牌,弃其中2牌",
+  [":thoucqdoat"] = "伱失去牌後可發動至多x次,伱將牌堆頂1牌置于伱武將牌上,稱爲略(x爲伱所失牌數).主旹,伱選1項与1其它脚色A,預弃3同花或3異花略發動➀予A2傷➁觀看A區域全部牌,弃其中2牌",
 
   ["#thoucqliak-active"] = "通达  默認傷害",
 
   ["#thoucqliak-discard"] = "通达 ",
 
   ["thoucqdoat_liak"] = "略",
-  ["damage"] = "致傷 ",
+  -- ["damage"] = "致傷 ",
 }
 
 local thoucqdoat = fk.CreateSkill{
@@ -20,6 +20,11 @@ thoucqdoat:addEffect(fk.AfterCardsMove, {
   anim_type = "drawcard",
   can_trigger = function(self, event, target, player, data)
     if not player:hasSkill(thoucqdoat.name)  then return false end
+    return true
+  end,
+  trigger_times = function(self, event, target, player, data)
+    local id =player.id
+    if event:getCostData(self) and event:getCostData(self)[id] then return event:getCostData(self)[id] end
     local n=0
     for _, move in ipairs(data) do
       if move.from ==player and (move.to~=player or not table.contains({Card.PlayerEquip,Card.PlayerHand }, move.toArea)) then
@@ -31,12 +36,12 @@ thoucqdoat:addEffect(fk.AfterCardsMove, {
       end
     end
     if n>0 then
-      event:setCostData(self, {n=n})
-      return true
+      event:setCostData(self, {id = n})
     end
+    return n
   end,
   on_use = function(self, event, target, player, data)
-      player:addToPile("thoucqdoat_liak", player.room:getNCards(event:getCostData(self).n), true, thoucqdoat.name, player)
+      player:addToPile("thoucqdoat_liak",  player.room:getNCards(1), true, thoucqdoat.name, player)
   end,
 })
 

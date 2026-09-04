@@ -47,7 +47,7 @@ hzoavqtooh:addEffect(fk.EventPhaseStart, {
   end,
   on_use = function(self, event, target, player, data)
     local room = player.room
-    S.playCard(player,event:getCostData(self).cards,hzoavqtooh.name)
+    S.playCard(event:getCostData(self).cards,hzoavqtooh.name,player)
 
     local playerchoice=room:askToChoice(player, {
       choices = {"hzoavqtooh-doar","hzoavqtooh-sjevh"},

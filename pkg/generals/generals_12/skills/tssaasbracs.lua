@@ -4,14 +4,14 @@ local tssaasbracs = fk.CreateSkill {
 
 Fk:loadTranslationTable{
 ["tssaasbracs"] = "詐病",
-[":tssaasbracs"] = "伱受傷旹,若伱已記錄其名(牌或技能),防止傷害,否則伱可發動,伱流失1體力,防止此傷害,(未死)記錄其名.",
--- [":tssaasbracs"] = "伱{受傷/成爲其它脚色牌目幖旹}伱可發動,伱流失1體力,{防止此傷害,伱獲得1護甲/伱迻除目幖.,本局額定手牌數+1},",
+[":tssaasbracs"] = "伱受傷旹,若伱已記錄其名(牌或技能),防止傷害,否則伱可發動,伱流失1,防止此傷害,(未死)記錄其名.",
+-- [":tssaasbracs"] = "伱{受傷/成爲其它脚色起動目幖旹}伱可發動,伱流失1,{防止此傷害,伱獲得1護甲/伱迻除目幖.,本局存牌數+1},",
 
 ["@[:]tssaasbracs"] = "詐病",
 
-["#tssaasbracs-invoke"]="詐病 流失1體力  防止 %arg傷害併記錄之",
+["#tssaasbracs-invoke"]="詐病 流失1  防止 %arg傷害併記錄之",
 
--- ["#tssaasbracs-invoke"]="詐病 流失1體力  迻除 %src 所起動 %arg 目幖 %dest ",
+-- ["#tssaasbracs-invoke"]="詐病 流失1  迻除 %src 所起動 %arg 目幖 %dest ",
 -- ["#tssaasbracs-discard"]="詐病 弃%src 1牌 ",
 }
 

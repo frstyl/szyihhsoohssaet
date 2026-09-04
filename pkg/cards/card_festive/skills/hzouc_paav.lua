@@ -6,6 +6,8 @@ Fk:loadTranslationTable{
   ["hzouc_paav_skill"] = "紅包",
   ["#hzouc_paav-choose:"] = "紅包 選擇牌類",
 
+  ["action"] = "行動",
+  ["goods"] = "物資",
 }
 
 
@@ -26,7 +28,7 @@ cardSkill:addEffect("cardskill", {
   on_effect = function(self, room, effect)
     local player=effect.to
     if effect.to.dead then return end
-    local choices={"basic","trick","equip","magic","allusion"}  --S.
+    local choices={"action","trick","equip","goods" ,"magic","allusion"}  --S.
     local choice = room:askToChoice(player, {
       choices = choices,
       skill_name = cardSkill.name,

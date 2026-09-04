@@ -44,7 +44,7 @@ hqjitphouk:addEffect("targetmod", {
   end,
 })
 
-hqjitphouk:addEffect(fk.DamageCaused, {
+hqjitphouk:addEffect(fk.DamageInflicted, {
   can_trigger = function(self, event, target, player, data)
     return player.seat==1 and data.card and table.contains(data.card.skillNames, hqjitphouk.name) 
     and not player:inMyAttackRange(player.room:getPlayerById(data.card:getMark("hqjitphouk")))

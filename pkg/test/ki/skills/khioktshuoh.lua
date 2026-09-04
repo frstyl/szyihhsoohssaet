@@ -29,7 +29,7 @@ local S = require "packages/szyihhsoohssaet/szyih_guos"
 --     return #selected == 1
 --   end,
 -- }
-khioktshuoh:addEffect(fk.TargetSpecified, {  --TargetSpecifying TargetConfirming
+khioktshuoh:addEffect(fk.TargetConfirmed, {  --TargetSpecifying TargetConfirming
   anim_type = "offensive",
   can_trigger = function(self, event, target, player, data)
     return data.from==player

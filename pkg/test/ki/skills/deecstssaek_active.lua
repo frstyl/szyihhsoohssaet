@@ -4,7 +4,7 @@ local deecstsshaek_active = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["deecstsshaek_active"] = "定策",
-  -- [":deecstsshaek_active"] = "主旹,預選1錦囊与1其他脚色發動.伱將此牌交予該脚色与其同旹選擇1項,若相同執行之,否則伱起動此牌(无視距離)抽1",
+  -- [":deecstsshaek_active"] = "主旹,預選1計謀与1其它脚色發動.伱將此牌交予該脚色与其同旹選擇1項,若相同執行之,否則伱起動此牌(无視距離)抽1",
   ["deecstsshaek-ssaet"] = "起動虛擬殺",
   ["deecstsshaek-draw"] = "抽2",
   ["deecstsshaek-recover"] = "令1已損脚色回1",

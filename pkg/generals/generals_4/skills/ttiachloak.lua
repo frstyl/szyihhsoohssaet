@@ -5,44 +5,36 @@ local ttiachloak = fk.CreateSkill{
 
 Fk:loadTranslationTable{
 ["ttiachloak"] = "漲落",
-[":ttiachloak"] = "①每輪始旹,(每輪全場限1)伱可發動:全體脚色各將x牌迻出,x由伱指定至小/大爲1/伱體力值.➁當牌自局外(武將牌上武將牌㫄除外區)進入弃牌堆後,伱可發動至多x次,伱抽1",
+[":ttiachloak"] = "輪限1｡游戲始旹/輪終旹/一腳色轉始旹,伱可發動:全體脚色各選擇其x牌迻出,伱獲得技能｢濤洮｣,下1觸發旹機,每腳色獲得其上家｢漲落｣牌,伱失去｢濤洮｣｡x由伱指定,不超過伱體力數｡",
 
 ["#ttiachloak-choose"] = "漲落 選擇牌迻出",
+["$ttiachloak_ddxev"] = "漲落",
 }
 
 local S = require "packages/szyihhsoohssaet/szyih_guos" 
 
-ttiachloak:addEffect(fk.AfterCardsMove, {
-  anim_type = "drawcard",
-  trigger_times = function (self, event, target, player, data)
-    if not player:hasSkill(ttiachloak.name)  then return 0  end
-    local n = event:getCostData(self)
-    if  n~=nil and n.n then return n.n else n = 0 end
-      for _, move in ipairs(data) do
-        if move.toArea == Card.DrawPile  then
-          for _, info in ipairs(move.moveInfo) do
-            if table.contains({Card.Void,  Card.PlayerSpecial}, info.fromArea) then
-              n=n+1
-            end
-          end
+
+local spec={
+  anim_type = "control",
+  can_trigger = function(self, event, target, player, data)
+    if player==Fk:currentRoom().current and player.room:getBanner("ttiachloak-round")==1 then
+      local room = player.room
+      room:setBanner("ttiachloak-round",0)
+      for _, p in ipairs(room.alive_players) do
+        local c=S.getNextOne(p,-1):getPile("$ttiachloak_ddxev")
+        if  c then
+          room:obtainCard(p, c, false, fk.ReasonJustMove, nil, ttiachloak.name)  --
         end
       end
-    if n>0 then
-      event:setCostData(self,{n=n})
+      for _, p in ipairs(room.players) do
+        if p:getMark("ttiachloak-noclear")~=0 then
+          room:handleAddLoseSkills(player, "-doavqthoav", nil, true, false)
+        end
+      end
     end
-      return n
-  end,
-  can_trigger = function(self, event, target, player, data)
-    return player:hasSkill(ttiachloak.name)
-  end,
-  on_use = function(self, event, target, player, data)
-    player:drawCards(1,ttiachloak.name)
-  end,
-})
-ttiachloak:addEffect(fk.RoundStart, {
-  anim_type = "drawcard",
-  can_trigger = function(self, event, target, player, data)
-    return player:hasSkill(ttiachloak.name) and     player.room:getBanner("ttiachloak-round")~=1
+
+    return player:hasSkill(ttiachloak.name) 
+    and   player:usedSkillTimes(ttiachloak.name, Player.HistoryRound)==0
   end,
   on_use = function(self, event, target, player, data)
     local room = player.room
@@ -65,29 +57,38 @@ ttiachloak:addEffect(fk.RoundStart, {
     local req=room:askToJointCards(player,param)
     for _, p in ipairs(room.alive_players) do
       if req[p] and  req[p][1] then
-        p:addToPile("ttiachloak_ddxev", req[p], true, ttiachloak.name)
+        p:addToPile("$ttiachloak_ddxev", req[p], false, ttiachloak.name)
       end
     end
+    room:handleAddLoseSkills(player, "doavqthoav", nil, true, false)
+    player.room:setPlayerMark(player,"ttiachloak-noclear", 1)
   end,
-})
+}
+ttiachloak:addEffect(fk.GameStart, spec)
+ttiachloak:addEffect(fk.RoundEnd, spec)
+ttiachloak:addEffect(fk.TurnStart, spec)
 
-ttiachloak:addEffect(fk.RoundEnd, {
-  is_delay_effect=true,
-  anim_type = "drawcard",
-  can_trigger = function(self, event, target, player, data)
-    return player.room:getBanner("ttiachloak-round")==1
-  end,
-  on_trigger = function(self, event, target, player, data)
-    local room = player.room
-    room:setBanner("ttiachloak-round",0)
-    player:drawCards(5)
-    for _, p in ipairs(room.alive_players) do
-      local c=S.getNextOne(p,-1):getPile("ttiachloak_ddxev")[1]
-      if  c then
-        room:obtainCard(p, c, true, fk.ReasonPut, nil, ttiachloak.name)
-      end
-    end
-  end,
-})
+-- local clear={
+--   is_delay_effect=true,
+--   anim_type = "drawcard",
+--   can_trigger = function(self, event, target, player, data)  --不應該refresh 
+--     return player.room:getBanner("ttiachloak-round")==1
+--   end,
+--   on_trigger = function(self, event, target, player, data)
+--     local room = player.room
+--     room:setBanner("ttiachloak-round",0)
+--     for _, p in ipairs(room.alive_players) do
+--       local c=S.getNextOne(p,-1):getPile("$ttiachloak_ddxev")[1]
+--       if  c then
+--         room:obtainCard(p, c, true, fk.ReasonJustMove, nil, ttiachloak.name)
+--       end
+--     end
+--     for _, p in ipairs(room.players) do
+--       if p:getMark("ttiachloak-noclear")~=0 then
+--         room:handleAddLoseSkills(player, "-doavqthoav", nil, true, false)
+--       end
+--     end
+--   end,
+-- }
 
 return ttiachloak

@@ -4,7 +4,7 @@ local pracqkaap = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["pracqkaap"] = "兵甲",
-  [":pracqkaap"] = "額定抽牌旹發動,抽牌數+ max(1,2*(6-伱冣大體力值))",
+  [":pracqkaap"] = "額定抽牌旹發動,抽牌數+ max(1,2*(6-伱冣大體力數))",
 
   ["#pracqkaap-invoke"] = "兵甲：多抽%arg",
 

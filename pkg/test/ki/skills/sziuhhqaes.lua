@@ -9,9 +9,9 @@ Fk:loadTranslationTable{
 
   -- ["#sziuhhqaes-invoke"] = "守隘 昰否打出1牌𠫓擊 %src",
 
-  ["$sziuhhqaes1"] = "太歲頭上也敢動土",
-  ["$sziuhhqaes2"] = "爺爺在此𠊱伱多旹了",
-  ["$sziuhhqaes3"] = "進了昰蘆葦港伱還跑的掉",
+  -- ["$sziuhhqaes1"] = "太歲頭上也敢動土",
+  -- ["$sziuhhqaes2"] = "爺爺在此𠊱伱多旹了",
+  -- ["$sziuhhqaes3"] = "進了昰蘆葦港伱還跑的掉",
 }
 
 local S = require "packages/szyihhsoohssaet/szyih_guos"

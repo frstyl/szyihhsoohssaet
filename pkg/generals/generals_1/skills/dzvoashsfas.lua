@@ -13,7 +13,7 @@ Fk:loadTranslationTable{
 
 dzvoahhsfas:addEffect(fk.BuryVictim, {
   can_trigger = function(self, event, target, player, data)
-    return target == player and player:hasSkill(dzvoahhsfas.name, false, true)
+    return target == player and player:hasSkill(dzvoahhsfas.name, true, true)
   end,
   on_use = function(self, event, target, player, data)
     data.extra_data = data.extra_data or {}

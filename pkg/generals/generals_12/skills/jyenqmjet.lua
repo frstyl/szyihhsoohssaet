@@ -4,7 +4,7 @@ local jyenqmjet = fk.CreateSkill {
 
 Fk:loadTranslationTable{
 ["jyenqmjet"] = "緣滅",--1/4花田
-[":jyenqmjet"] = "伱回復體力後,至多回復值次,伱可指定1其他脚色發動,伱与其各占卜,若同色,伱予其1傷,不同色,伱与其各抽1",
+[":jyenqmjet"] = "伱回復體力後,至多回復值次,伱可指定1其它脚色發動,伱与其各占卜,若同色,伱予其1傷,不同色,伱与其各抽1",
 ["#jyenqmjet-choose"]="緣滅 選擇1脚色占卜",
 }
 

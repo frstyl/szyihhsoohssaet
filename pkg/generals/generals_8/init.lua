@@ -51,6 +51,7 @@ Fk:loadTranslationTable{
 -- 77. 第七十六回　吳加亮布四斗五方旗　宋公明排九宮八卦陣
 
 -- 78. 第七十七回　梁山泊十面埋伏　宋公明兩贏童貫
+--段鹏舉、陈翥、吴秉彝、韩天麟、李明、王義、馬萬里、周信
 General:new(extension, "__doucqkvoans", "kvoan", 3):addSkills{"tszjecqbuat","hqoavhsiacs"}
 local hzfanskvoan = General:new(extension, "hzfanskvoan__doucqkvoans", "kvoan", 2,2, General.Agender)  --??
 hzfanskvoan:addSkills { "tszjecqbuat", "hqoavhsiacs","quacqhzfans" }-- "hqoavhsiacs","quacqhzfans" 
@@ -76,17 +77,30 @@ Fk:loadTranslationTable{
 }
 -- 79. 第七十八回　十節度議取梁山泊　宋公明一敗高太尉
 --十節度   梅展-三尖两刃刀  李从吉 徐京 楊溫-攔路虎 張開-獨行虎 王文德-搶?九環刀  荆忠-大杆刀
---聞煥章 黨世雄 牛邦喜
+-- 黨世英 黨世雄 牛邦喜
+--聞煥章
 
-General:new(extension, "munqhsvoanstsziac", "kvoan", 3):addSkills{"loonsszjer","ljemhthoojs"}
+General:new(extension, "toachszjerqiuc", "kvoan", 4):addSkills{"tszjechljet",}
 Fk:loadTranslationTable{
-["munqhsvoanstsziac"] = "聞煥章",
-["#munqhsvoanstsziac"] = "參謀",
-["designer:munqhsvoanstsziac"] = "設計",
-["cv:munqhsvoanstsziac"] = "配音",
-["illustrator:munqhsvoanstsziac"] = "畫師",
-["~munqhsvoanstsziac"] = "惜不用吾計",
+["toachszjerqiuc"] = "党世雄",
+["#toachszjerqiuc"] = "万夫不當",
+["designer:toachszjerqiuc"] = "設計",
+["cv:toachszjerqiuc"] = "配音",
+["illustrator:toachszjerqiuc"] = "畫師",
+["~toachszjerqiuc"] = "",
 }
+
+General:new(extension, "toachszjerhqrac", "kvoan", 4):addSkills{} --"hzfacqtszhioc" "ddikddaos"
+Fk:loadTranslationTable{
+["toachszjerhqrac"] = "党世英",
+["#toachszjerhqrac"] = "万夫不當",
+["designer:toachszjerhqrac"] = "設計",
+["cv:toachszjerhqrac"] = "配音",
+["illustrator:toachszjerhqrac"] = "畫師",
+["~toachszjerhqrac"] = "",
+}
+
+
 
 General:new(extension, "liuqmiucslioc", "kvoan", 4):addSkills{"crakljin","liocqhquj"}
 Fk:loadTranslationTable{
@@ -97,15 +111,7 @@ Fk:loadTranslationTable{
 ["illustrator:liuqmiucslioc"] = "畫師",
 ["~liuqmiucslioc"] = "火 好大之火",
 }
-General:new(extension, "hzoanqdzoonqpoavh", "kvoan", 5):addSkills{"keektszjens","kaavqprac"}
-Fk:loadTranslationTable{
-["hzoanqdzoonqpoavh"] = "韓存保",
-["#hzoanqdzoonqpoavh"] = "鐵戟銀鉤",
-["designer:hzoanqdzoonqpoavh"] = "設計",
-["cv:hzoanqdzoonqpoavh"] = "配音",
-["illustrator:hzoanqdzoonqpoavh"] = "畫師",
-["~hzoanqdzoonqpoavh"] = "昰一戰也算是䀆興",
-}
+
 
 General:new(extension, "quacqhsvans", "kvoan", 5):addSkills{"gianskoot"}
 Fk:loadTranslationTable{
@@ -117,6 +123,77 @@ Fk:loadTranslationTable{
 ["~quacqhsvans"] = "廉頗老矣尙能飯否",
 }
 
+General:new(extension, "zioqkrac", "kvoan", 4):addSkills{"kyinqszjer"}
+Fk:loadTranslationTable{
+["zioqkrac"] = "徐京",
+["#zioqkrac"] = "",
+["designer:zioqkrac"] = "設計",
+["cv:zioqkrac"] = "配音",
+["illustrator:zioqkrac"] = "畫師",
+["~zioqkrac"] = "｡",
+}
+
+--左
+General:new(extension, "ttiacqkhoeoj", "kvoan", 5):addSkills{"hzeethzoac"}
+Fk:loadTranslationTable{
+["ttiacqkhoeoj"] = "張開",
+["#ttiacqkhoeoj"] = "獨行虎",
+["designer:ttiacqkhoeoj"] = "設計",
+["cv:ttiacqkhoeoj"] = "配音",
+["illustrator:ttiacqkhoeoj"] = "畫師",
+["~ttiacqkhoeoj"] = "｡",
+}
+
+General:new(extension, "jiacqhqoon", "kvoan", 5):addSkills{ "khoacsljer"}
+Fk:loadTranslationTable{
+["jiacqhqoon"] = "楊溫",
+["#jiacqhqoon"] = "攔路虎",
+["designer:jiacqhqoon"] = "設計",
+["cv:jiacqhqoon"] = "配音",
+["illustrator:jiacqhqoon"] = "畫師",
+["~jiacqhqoon"] = "｡",
+}
+
+
+
+General:new(extension, "quacqmuntoeok", "kvoan", 5):addSkills{"ddiuktsjins" }
+Fk:loadTranslationTable{
+["quacqmuntoeok"] = "王文德",
+["#quacqmuntoeok"] = "九環刀",
+["designer:quacqmuntoeok"] = "設計",
+["cv:quacqmuntoeok"] = "配音",
+["illustrator:quacqmuntoeok"] = "畫師",
+["~quacqmuntoeok"] = "｡",
+}
+
+General:new(extension, "moojqttxenh", "kvoan", 5):addSkills{"tssaamhbuat"}
+Fk:loadTranslationTable{
+["moojqttxenh"] = "梅展",
+["#moojqttxenh"] = "三尖两刃刀",
+["designer:moojqttxenh"] = "設計",
+["cv:moojqttxenh"] = "配音",
+["illustrator:moojqttxenh"] = "畫師",
+["~moojqttxenh"] = "｡",
+}
+--又
+General:new(extension, "hzoanqdzoonqpoavh", "kvoan", 5):addSkills{"keektszjens","kaavqprac"}
+Fk:loadTranslationTable{
+["hzoanqdzoonqpoavh"] = "韓存保",
+["#hzoanqdzoonqpoavh"] = "鐵戟銀鉤",
+["designer:hzoanqdzoonqpoavh"] = "設計",
+["cv:hzoanqdzoonqpoavh"] = "配音",
+["illustrator:hzoanqdzoonqpoavh"] = "畫師",
+["~hzoanqdzoonqpoavh"] = "昰一戰也算是䀆興",
+}
+General:new(extension, "lihddiacqkjit", "kvoan", 5):addSkills{"lvoansddxins"}
+Fk:loadTranslationTable{
+["lihddiacqkjit"] = "李从吉",
+["#lihddiacqkjit"] = "",
+["designer:lihddiacqkjit"] = "設計",
+["cv:lihddiacqkjit"] = "配音",
+["illustrator:lihddiacqkjit"] = "畫師",
+["~lihddiacqkjit"] = "｡",
+}
 
 General:new(extension, "hzaochcuanqttxins", "kvoan", 5):addSkills{"muohbxis","laachtsjens"}
 Fk:loadTranslationTable{
@@ -128,28 +205,8 @@ Fk:loadTranslationTable{
 ["~hzaochcuanqttxins"] = "昰火賊寇竟也臥虎藏龍",
 }
 
-General:new(extension, "ttiacqkhoeoj", "kvoan", 5):addSkills{"ddiuktsjins"}
-Fk:loadTranslationTable{
-["ttiacqkhoeoj"] = "張開",
-["#ttiacqkhoeoj"] = "獨行虎",
-["designer:ttiacqkhoeoj"] = "設計",
-["cv:ttiacqkhoeoj"] = "配音",
-["illustrator:ttiacqkhoeoj"] = "畫師",
-["~ttiacqkhoeoj"] = "｡",
-}
 
-General:new(extension, "jiacqhqoon", "kvoan", 5):addSkills{"kxevqgxes","tszhiocqhzaems"}
-Fk:loadTranslationTable{
-["jiacqhqoon"] = "楊溫",
-["#jiacqhqoon"] = "攔路虎",
-["designer:jiacqhqoon"] = "設計",
-["cv:jiacqhqoon"] = "配音",
-["illustrator:jiacqhqoon"] = "畫師",
-["~jiacqhqoon"] = "｡",
-}
-
-
-General:new(extension, "kracqttiuc", "kvoan", 5):addSkills{"doachddio"}
+General:new(extension, "kracqttiuc", "kvoan", 5):addSkills{"kxevqgxes","tszhiocqhzaems"}
 Fk:loadTranslationTable{
 ["kracqttiuc"] = "荊忠",
 ["#kracqttiuc"] = "大杆刀",
@@ -159,45 +216,51 @@ Fk:loadTranslationTable{
 ["~kracqttiuc"] = "｡",
 }
 
-General:new(extension, "quacqmuntoeok", "kvoan", 5):addSkills{"dzyettssaamh"}
+General:new(extension, "munqhsvoanstsziac", "kvoan", 3):addSkills{"loonsszjer","ljemhthoojs"}
 Fk:loadTranslationTable{
-["quacqmuntoeok"] = "王文德",
-["#quacqmuntoeok"] = "九環刀",
-["designer:quacqmuntoeok"] = "設計",
-["cv:quacqmuntoeok"] = "配音",
-["illustrator:quacqmuntoeok"] = "畫師",
-["~quacqmuntoeok"] = "｡",
+["munqhsvoanstsziac"] = "聞煥章",
+["#munqhsvoanstsziac"] = "參謀",
+["designer:munqhsvoanstsziac"] = "設計",
+["cv:munqhsvoanstsziac"] = "配音",
+["illustrator:munqhsvoanstsziac"] = "畫師",
+["~munqhsvoanstsziac"] = "惜不用吾計",
 }
 
-General:new(extension, "moojqttxenh", "kvoan", 5):addSkills{"hzfacqsoavh"}
+
+General:new(extension, "ciu_paoc_hsih", "kvoan", 5):addSkills{"ljenqtsziuq"}
 Fk:loadTranslationTable{
-["moojqttxenh"] = "梅展",
-["#moojqttxenh"] = "三尖两刃刀",
-["designer:moojqttxenh"] = "設計",
-["cv:moojqttxenh"] = "配音",
-["illustrator:moojqttxenh"] = "畫師",
-["~moojqttxenh"] = "｡",
+["ciu_paoc_hsih"] = "牛邦喜",
+["#ciu_paoc_hsih"] = "統軍",
+["designer:ciu_paoc_hsih"] = "設計",
+["cv:ciu_paoc_hsih"] = "配音",
+["illustrator:ciu_paoc_hsih"] = "畫師",
+["~ciu_paoc_hsih"] = "",
 }
 
-General:new(extension, "lihddiacqkjit", "kvoan", 5):addSkills{"lvoansddxins"}
+--韓忠彥 鄭居忠 余深
+--剜心王瑾 张叔夜
+--丘嶽 周昂  三停刀 劈棱简
+General:new(extension, "khiu_caok", "kvoan", 4):addSkills{"doachddio"} 
 Fk:loadTranslationTable{
-["lihddiacqkjit"] = "李長吉",
-["#lihddiacqkjit"] = "",
-["designer:lihddiacqkjit"] = "設計",
-["cv:lihddiacqkjit"] = "配音",
-["illustrator:lihddiacqkjit"] = "畫師",
-["~lihddiacqkjit"] = "｡",
+["khiu_caok"] = "丘嶽",  --?岳
+["#khiu_caok"] = "統軍",
+["designer:khiu_caok"] = "設計",
+["cv:khiu_caok"] = "配音",
+["illustrator:khiu_caok"] = "畫師",
+["~khiu_caok"] = "",
 }
 
-General:new(extension, "zioqkrac", "kvoan", 4):addSkills{"pracqkaap"}
+General:new(extension, "tsziu_coac", "kvoan", 5):addSkills{"soavhdzjinh"} 
 Fk:loadTranslationTable{
-["zioqkrac"] = "徐京",
-["#zioqkrac"] = "",
-["designer:zioqkrac"] = "設計",
-["cv:zioqkrac"] = "配音",
-["illustrator:zioqkrac"] = "畫師",
-["~zioqkrac"] = "｡",
+["tsziu_coac"] = "周昂",  --?岳
+["#tsziu_coac"] = "統軍",
+["designer:tsziu_coac"] = "設計",
+["cv:tsziu_coac"] = "配音",
+["illustrator:tsziu_coac"] = "畫師",
+["~tsziu_coac"] = "",
 }
+--葉春 艁船
+
 -- 80. 第七十九回　劉唐放火燒戰船　宋江兩敗高太尉
 -- 81. 第八十回　張順鑿漏海鰍船　宋江三敗高太尉
 

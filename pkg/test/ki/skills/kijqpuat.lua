@@ -5,7 +5,7 @@ local kijqpuat = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["kijqpuat"] = "機發",
-  [":kijqpuat"] = "伱起動牌旹,伱可選1腳色与伱體力值相等者發動｡伱与其1傷",
+  [":kijqpuat"] = "伱起動牌旹,伱可選1腳色与伱手牌數相等者發動｡伱与其1傷",
 --加彊?
 
   ["#kijqpuat-ask"] = "機發 昰否發動",

@@ -30,10 +30,10 @@ hqximqqwer_active:addEffect(fk.DamageInflicted, {
   end,
   on_cost = Util.TrueFunc,
   on_use = function(self, event, target, player, data)
-    -- local card = Fk:cloneCard("duel")  --虛牌鎖无色?
+    -- local card = Fk:cloneCard("tous_tsiacs")  --虛牌鎖无色?
     -- card.skillName = hqximqqwer.name
     -- card:addFakeSubcard(cards)
-    local use = player.room:useVirtualCard("duel", nil, player, data.from, hqximqqwer_active.name, true)
+    local use = player.room:useVirtualCard("tous_tsiacs", nil, player, data.from, hqximqqwer_active.name, true)
     -- room:useCard(use)
     if not use or target.dead then return end      
     if use.damageDealt and use.damageDealt[data.from] then
@@ -44,7 +44,7 @@ hqximqqwer_active:addEffect(fk.DamageInflicted, {
 })
 
 hqximqqwer_active:addEffect(fk.DamageInflicted, {
-  priority=2, --duel失敗
+  priority=2, --tous_tsiacs失敗
   can_trigger = function(self, event, target, player, data)
     return target==player 
     and data.card and table.contains(data. card.skillName, hqximqqwer_active.name)

@@ -44,13 +44,13 @@ sooshseec:addEffect(fk.EventPhaseEnd, {
   end,
   on_use = function (self, event, target, player, data)
     local to =event:getCostData(self).tos[1]
-    S.playCard(player,event:getCostData(self).cards,sooshseec.name)
+    S.playCard(event:getCostData(self).cards,sooshseec.name,player)
     player.room:setPlayerMark(player, "sooshseec", to.id)
     S.addTsziukzzyitBuff(to,  "mxenhcioh",player)
   end,
 })
 
-sooshseec:addEffect(fk.Damage, {
+sooshseec:addEffect(fk.Damaged, {
   anim_type = "support",
   is_delay=true,
   can_trigger = function (self, event, target, player, data)

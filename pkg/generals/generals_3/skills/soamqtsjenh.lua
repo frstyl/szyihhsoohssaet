@@ -10,7 +10,7 @@ Fk:loadTranslationTable{
 
 local S = require "packages/szyihhsoohssaet/szyih_guos" 
 
-soamqtsjenh:addEffect(fk.Damage, {
+soamqtsjenh:addEffect(fk.Damaged, {
   can_trigger = function(self, event, target, player, data)
     return data.from == player and data.to~=data.from and player:hasSkill(soamqtsjenh.name)
     and player:usedSkillTimes(soamqtsjenh.name, Player.HistoryGame)==0

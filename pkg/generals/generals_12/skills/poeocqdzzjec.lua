@@ -5,7 +5,7 @@ local poeocqdzzjec = fk.CreateSkill({
 
 Fk:loadTranslationTable{
   ["poeocqdzzjec"] = "崩城",
-  [":poeocqdzzjec"] = "伱轉內,伱失去冣後手牌後,必發,伱流失1體力",
+  [":poeocqdzzjec"] = "伱轉內,伱失去冣後手牌後,必發,伱流失1",
 
   ["$poeocqdzzjec"] = "資之㴱則取之左逢其源",
 

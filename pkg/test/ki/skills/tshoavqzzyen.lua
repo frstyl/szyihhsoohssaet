@@ -3,8 +3,6 @@ Fk:loadTranslationTable{
   [":tshoavqzzyen"] = "補段始旹,伱可選擇1其它脚色發動,伱將手牌抽弃至其手牌數",
 
   ["#tshoavqzzyen-invoke"] = "操船 選擇脚色 伱將手牌抽弃至其手牌數",
-  -- ["$tshoavqzzyen1"] = "梦蝶幻月，如沫虚妄。",
-  -- ["$tshoavqzzyen2"] = "水映月明，芙蓉照倩影。",
 }
 
 local tshoavqzzyen = fk.CreateSkill{

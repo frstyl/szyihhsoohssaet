@@ -39,17 +39,17 @@ cardSkill:addEffect(fk.CardUseFinished, {
     if  target~=player 
       or data.card.trueName~="hqjin_deek_qwe_tsji"
     then return end
-
-      local tos = table.filter(player.room.alive_players,
-          function(p)
-          return 
-            p:getEquipment(Card.SubtypeArmor)
-        end)
-      local players=S.getHolders("dzzi_tshjen_doavs_kaap")
-      if #tos>0 and #players>0 then
-        event:setCostData(self,{players=players,tos=tos})
-        return true 
-      end
+    return true
+      -- local tos = table.filter(player.room.alive_players,
+      --     function(p)
+      --     return 
+      --       p:getEquipment(Card.SubtypeArmor)
+      --   end)
+      -- local players=S.getHolders("dzzi_tshjen_doavs_kaap")
+      -- if #tos>0 and #players>0 then
+      --   event:setCostData(self,{players=players,tos=tos})
+      --   return true 
+      -- end
 
   end,
   on_trigger = function(self, event, target, player, data)
@@ -67,7 +67,7 @@ cardSkill:addEffect(fk.CardUseFinished, {
         li_mxev_kiuh_pxens = true,
       }
     }
-      local use = room:askToNullification(event:getCostData(self).players, params) 
+      local use = S.askToUseKoarbiukCard(S.getHolders("dzzi_tshjen_doavs_kaap"), params) 
       if use then
         use.extra_data = use.extra_data or {}
         use.extra_data.li_mxev_kiuh_pxens = true   

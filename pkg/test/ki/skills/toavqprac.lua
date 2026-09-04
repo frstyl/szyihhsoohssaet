@@ -1,6 +1,6 @@
 Fk:loadTranslationTable{
   ["toavqprac"] = "刀兵",
-  [":toavqprac"] = "伱所起動｢殺｣越過次數限制,傷害傷害值+x(x爲當轉內伱已起動殺未致傷者)",
+  [":toavqprac"] = "伱所起動｢殺｣越過次數限制,傷害傷害值+x(x爲1轉內伱已起動殺未致傷者)",
 
   ["@toavqprac-turn"] = "刀兵",
 
@@ -54,7 +54,7 @@ toavqprac:addEffect(fk.CardUsing, {
 toavqprac:addEffect(fk.CardUseFinished, {
   -- mute = true,
   can_refresh = function(self, event, target, player, data)
-    return player == target and player:hasSkill(toavqprac.name,false,true)
+    return player == target and player:hasSkill(toavqprac.name,true)
     and data.card.trueName == "ssaet"
     and (data.damageDealt==nil )--or #data.damageDealt==0
   end,
@@ -63,7 +63,7 @@ toavqprac:addEffect(fk.CardUseFinished, {
   end,
 })
 
--- toavqprac:addEffect(fk.DamageCaused, {
+-- toavqprac:addEffect(fk.DamageInflicted, {
   -- -- mute = true,
   -- -- is_delay_effect = true,
   -- can_trigger = function(self, event, target, player, data)

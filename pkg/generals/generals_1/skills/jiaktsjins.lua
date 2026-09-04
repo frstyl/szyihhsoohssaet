@@ -52,7 +52,7 @@ jiaktsjins:addEffect("distance", {
 })
 
 
--- jiaktsjins:addEffect(fk.Damage, {
+-- jiaktsjins:addEffect(fk.Damaged, {
   -- can_refresh = function(self, event, target, player, data)
     -- return data.from == player  and data.to:getMark("jiaktsjins-round")==0 
   -- end,

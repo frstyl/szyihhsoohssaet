@@ -14,10 +14,12 @@ Fk:loadTranslationTable{
 
 quandzsios:addEffect(fk.AfterCardsMove, {  --褈復檢測受歬技能干擾
   anim_type = "drawcard",
-  can_trigger = function(self, event, target, player, data)  --同旹
-    if not   player:hasSkill(quandzsios.name)  then return end
-    if event:getCostData(self)==nil then
-      local ps={}
+  can_refresh= function(self, event, target, player, data)
+    if not   player:hasSkill(quandzsios.name,true)  then return end
+    if  event:getCostData(self) then return end
+  end,
+  on_refresh = function(self, event, target, player, data)
+          local ps={}
       for _, move in ipairs(data) do
         if move.from and  move.from:isKongcheng() then
           for _, info in ipairs(move.moveInfo) do
@@ -30,13 +32,12 @@ quandzsios:addEffect(fk.AfterCardsMove, {  --褈復檢測受歬技能干擾
       if #ps>0 then
         event:setCostData(self,{ps=ps})
       else
-        event:setCostData(self,{ps=nil})
+        event:setCostData(self,{})
       end
-    end
-  
+  end,
+  can_trigger = function(self, event, target, player, data)  --同旹
+    if not   player:hasSkill(quandzsios.name)  then return end
     return event:getCostData(self) and  event:getCostData(self).ps  
-
-
   end,
   trigger_times= function(self, event, target, player, data)
     return 999

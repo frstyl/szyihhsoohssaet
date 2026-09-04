@@ -35,7 +35,7 @@ tshiuqssaet:addEffect("active", {
   end,
   on_use = function(self, room, effect)
     local player = effect.from
-    S.playCard(effect.from,effect.cards,tshiuqssaet.name)
+    S.playCard(effect.cards,tshiuqssaet.name,effect.from)
     for _, p in ipairs(effect.tos) do
       if not p.dead then
         room:damage{

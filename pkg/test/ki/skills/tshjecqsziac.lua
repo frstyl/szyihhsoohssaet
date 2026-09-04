@@ -5,7 +5,7 @@ local tshjecqsziac = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["tshjecqsziac"] = "淸商",
-  [":tshjecqsziac"] = "伱抽牌後,伱可展示1手牌發動｡伱占卜,若色与伱所展示相同,伱令1脚色抽1｡因此所抽牌當轉无視存牌數",  --
+  [":tshjecqsziac"] = "伱抽牌後,伱可展示1手牌發動｡伱占卜,若色与伱所展示相同,伱令1脚色抽1｡因此所抽牌1轉无視存牌數",  --
 
   ["#tshjecqsziac-invoke"] = "淸商：  選擇手牌發動",
   ["#tshjecqsziac-choose"] = "淸商： 令1脚色抽1",

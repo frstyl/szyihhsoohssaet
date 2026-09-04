@@ -4,7 +4,7 @@ local sk = fk.CreateSkill {
   tags = { Skill.Compulsory },
 }
 
-sk:addEffect(fk.TargetSpecified, {
+sk:addEffect(fk.TargetConfirmed, {
   can_trigger = function(self, event, target, player, data)
     return data.from == player and player:hasSkill(sk.name) and data.card.trueName == "ssaet" 
     and data.to 

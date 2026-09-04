@@ -1,12 +1,13 @@
 local tsziuqzyen = fk.CreateSkill{
   name = "tsziuqzyen",
+  add_skills={"discardPileInCurrentTurn"}
 }
 
 Fk:loadTranslationTable{
   ["tsziuqzyen"] = "周旋",
-  [":tsziuqzyen"] = "印牌:起動演練弃牌堆中當轉進入者",
+  [":tsziuqzyen"] = "伱主段外,印牌:起動或演練弃牌堆中牌1轉內進入者",
 
-  ["#tsziuqzyen"] = "周旋：你可以起動或打出其中你需要的基本牌",
+  ["#tsziuqzyen"] = "周旋：起動或演練",
 
   ["$tsziuqzyen1"] = "哼，易如反掌。",
   ["$tsziuqzyen2"] = "吾主圣明，泽披臣属。",
@@ -25,7 +26,7 @@ tsziuqzyen:addEffect("viewas", {
     pattern = ".",
   },
   card_filter = function(self, player, to_select, selected)
-    if #selected == 0 and table.contains(Fk:currentRoom().draw_pile, to_select) then
+    if #selected == 0 and table.contains(Fk:currentRoom().discard_pile, to_select) then
       local card = Fk:getCardById(to_select)
         if Fk.currentResponsePattern == nil then
           return player:canUse(card) and not player:prohibitUse(card)
@@ -40,27 +41,36 @@ tsziuqzyen:addEffect("viewas", {
   end,
   enabled_at_play = Util.FalseFunc,
   enabled_at_response = function(self, player, response)
-    return Fk:currentRoom().current ~= player
+    return player.phase~=Player.Play 
+  end,
+  enabled_at_nullification = function (self, player, cardEffectData)
+    if Fk.currentResponsePattern==nil then return true end
+    local cards =Fk:currentRoom():getBanner("DiscardPile-turn") or {}
+    if not cards or #cards==0 then return end
+    for _, id in ipairs(player:getPile(cards)) do
+      if Exppattern:Parse(Fk.currentResponsePattern):match(Fk:getCardById(id))  then return true end
+    end
+    
   end,
 })
 
-tsziuqzyen:addAcquireEffect(function (self, player, is_start)
-  local room = player.room
-  room:addSkill("discardPileInCurrentTurn")
-  if room:getBanner("DiscardPile-turn")~=nil then return end
-  local ids = {}
-  room.logic:getEventsOfScope(GameEvent.MoveCards, 1, function(e)
-    for _, move in ipairs(e.data) do
-      if move.toArea == Card.DiscardPile then
-        for _, info in ipairs(move.moveInfo) do
-          if table.contains(room.discard_pile, info.cardId) then
-            table.insertIfNeed(ids, info.cardId)
-          end
-        end
-      end
-    end
-  end, Player.HistoryTurn)
-  room:setBanner("discardPileInCurrentTurn-turn", ids)
-end)
+-- tsziuqzyen:addAcquireEffect(function (self, player, is_start)
+--   local room = player.room
+--   room:addSkill("discardPileInCurrentTurn")
+--   if room:getBanner("DiscardPile-turn")~=nil then return end
+--   local ids = {}
+--   room.logic:getEventsOfScope(GameEvent.MoveCards, 1, function(e)
+--     for _, move in ipairs(e.data) do
+--       if move.toArea == Card.DiscardPile then
+--         for _, info in ipairs(move.moveInfo) do
+--           if table.contains(room.discard_pile, info.cardId) then
+--             table.insertIfNeed(ids, info.cardId)
+--           end
+--         end
+--       end
+--     end
+--   end, Player.HistoryTurn)
+--   room:setBanner("discardPileInCurrentTurn-turn", ids)
+-- end)
 
 return tsziuqzyen

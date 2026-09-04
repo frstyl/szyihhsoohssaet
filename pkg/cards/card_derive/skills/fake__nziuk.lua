@@ -4,7 +4,7 @@ local skill = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["fake__nziuk_skill"] = "肉",
-  [":fake__nziuk_skill"] = "回1,弃1手牌或流失1體力",
+  [":fake__nziuk_skill"] = "回1,弃1手牌或流失1",
 
   ["#fake__nziuk-discard"] = "人肉 弃1手牌",
 }

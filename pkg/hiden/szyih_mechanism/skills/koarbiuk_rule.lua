@@ -9,6 +9,9 @@ Fk:loadTranslationTable{
   ["koarbiuk"] = "葢伏",
 
   ["@@koarbiuk-inarea"] = "葢伏",
+
+
+  ["#phase_discard"] = "勶段 弃置 %arg 手牌",
 }
 
 local S = require "packages/szyihhsoohssaet/szyih_guos" 
@@ -19,12 +22,12 @@ koarbiuk_rule:addEffect(fk.EventPhaseProceeding, {  --手牌可用之牌 葢牌�
   priority = 0,
   can_trigger = function(self, event, target, player, data)
     return player==target
-    and table.contains({Player.Judge,Player.Discard, Player.Play}, target.phase )
+    and table.contains({Player.Judge,Player.Discard, Player.Play}, data.phase )
   end,
 
   on_trigger = function(self, event, target, player, data)
     local room=player.room
-    if target.phase ==Player.Judge then
+    if data.phase ==Player.Judge then
       local cardNames ={"mae_biuk","thou_liac_hzvoans_dduoh","szyih_kouc"} 
       while true do
         if data.phase_end then return end
@@ -107,28 +110,45 @@ koarbiuk_rule:addEffect(fk.EventPhaseProceeding, {  --手牌可用之牌 葢牌�
           end
         end
       end
-    elseif target.phase == Player.Discard then
-        local discardNum =target:getHandcardNum() - S.getMaxCards(target)
-        local extra=0
+      
+    elseif data.phase == Player.Discard then
+        local toBeDis =target:getCardIds(Player.Hand)
+        local discardNum=#target:getCardIds(Player.Hand) - S.getMaxCards(target)
         for _, id in ipairs(target:getCardIds(Player.Hand)) do
             local card = Fk:getCardById(id)
-            for _, skill in ipairs(room.status_skills[MaxCardsSkill] or Util.DummyTable) do
-              if  skill:excludeFrom(target, card) then discardNum=discardNum-1 end
+            for _, skill in ipairs(room.status_skills[MaxCardsSkill] or Util.DummyTable) do  --不應該是狀態
+              if   skill:excludeFrom(target, card) then table.removeOne(toBeDis, id) discardNum=discardNum-1 goto continue  end
               --不占用 
             end
-          
+            for _, skill in ipairs(Fk:currentRoom().status_skills[ProhibitSkill] or Util.DummyTable) do
+              if skill:prohibitDiscard(target, card) then
+                table.removeOne(toBeDis, id)
+              end
+            end
+            if card:hasMark("extra_retain") then discardNum=discardNum-1 end
+            ::continue::
         end
         room:broadcastProperty(target, "MaxCards")
+
         if discardNum > 0 then
-          room:askToDiscard(target, {
-            min_num = discardNum,
-            max_num = discardNum,
-            include_equip = false,
-            skill_name = "phase_discard",
+          local data={
+          num = discardNum,
+          -- include_equip = false,
+          skillName = "phase_discard",
+          toBeDis = toBeDis,
+        }
+          local _, ret = room:askToUseActiveSkill(target, {
+            skill_name = "phase_discard_skill",
+            prompt = "#phase_discard:::"..discardNum,
             cancelable = false,
+            extra_data = data,
           })
-        end
-    elseif target.phase ==Player.Play then
+          if ret and ret.cards and #ret.cards>0 then
+          room:throwCard(ret.cards, "phase_discard", target, target)
+          end
+      end
+
+    elseif data.phase ==Player.Play then
       local logic=room.logic
         local oldPattern
         local oldDisabledSkillNames
@@ -180,30 +200,32 @@ koarbiuk_rule:addEffect(fk.EventPhaseProceeding, {  --手牌可用之牌 葢牌�
   end,
 })
 
-koarbiuk_rule:addEffect("visibility", {
-  card_visible = function (self, player, card)
-    -- local owner = Fk:currentRoom():getCardOwner(card)
-    -- if owner and (#card:getTableMark("@@koarbiuk-inarea")>0
-    -- (or owner:getVirualEquip(card.id) and owner:getVirualEquip(card.id).name == "koarbiuk_card")) then
-    --   return player == owner
-    -- end
-    if table.contains(S.getPlayerKoarbiukCards(player),card.id ) then
-      return true
-    elseif table.contains(S.getAllKoarbiukCards(),card.id ) then
+
+--迻致open
+-- koarbiuk_rule:addEffect("visibility", {
+--   card_visible = function (self, player, card)
+--     -- local owner = Fk:currentRoom():getCardOwner(card)
+--     -- if owner and (#card:getTableMark("@@koarbiuk-inarea")>0
+--     -- (or owner:getVirualEquip(card.id) and owner:getVirualEquip(card.id).name == "koarbiuk_card")) then
+--     --   return player == owner
+--     -- end
+--     if table.contains(S.getPlayerKoarbiukCards(player),card.id ) then
+--       return true
+--     elseif table.contains(S.getAllKoarbiukCards(),card.id ) then
        
-        return false
-    end
-  end,
-  -- move_visible = function (self, player, info, move)
-  --   local cid = info.cardId
-  --   if move.from and move.toArea == Card.PlayerJudge then
-  --     local from = Fk:currentRoom():getPlayerById(move.from)
-  --     if #Fk:getCardById(cid):getTableMark("@@koarbiuk-inarea")>0 or (from:getVirualEquip(cid) and from:getVirualEquip(cid).name == "koarbiuk_card") then
-  --       return false
-  --     end
-  --   end
-  -- end,
-})
+--         return false
+--     end
+--   end,
+--   -- move_visible = function (self, player, info, move)
+--   --   local cid = info.cardId
+--   --   if move.from and move.toArea == Card.PlayerJudge then
+--   --     local from = Fk:currentRoom():getPlayerById(move.from)
+--   --     if #Fk:getCardById(cid):getTableMark("@@koarbiuk-inarea")>0 or (from:getVirualEquip(cid) and from:getVirualEquip(cid).name == "koarbiuk_card") then
+--   --       return false
+--   --     end
+--   --   end
+--   -- end,
+-- })
 
 
 return koarbiuk_rule

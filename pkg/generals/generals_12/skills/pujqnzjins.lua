@@ -1,20 +1,20 @@
-local pujqnzjins = fk.CreateSkill {
-  name = "pujqnzjins",
+local hqrachtoav = fk.CreateSkill {
+  name = "hqrachtoav",
 }
 
 Fk:loadTranslationTable{
-["pujqnzjins"] = "飛刃",
-[":pujqnzjins"] = "伱起動一實殺旹,伱可選1其它腳色發動,伱對其起動虛擬｢殺｣,此殺致傷旹目幖流失1體力上限",
+["hqrachtoav"] = "影刀",
+[":hqrachtoav"] = "伱起動一實殺旹,伱可選1其它腳色發動,伱對其起動虛擬｢殺｣,此殺致傷旹目幖減1體力上限",
 
-["#pujqnzjins-invoke"] = "飛刃 選擇目幖",
+["#hqrachtoav-invoke"] = "影刀 選擇目幖",
 }
 
 
-pujqnzjins:addEffect(fk.CardUsing, {
+hqrachtoav:addEffect(fk.CardUsing, {
 
   anim_type = "drawcard",
   can_trigger = function(self, event, target, player, data)
-    return target == player and player:hasSkill(pujqnzjins.name) 
+    return target == player and player:hasSkill(hqrachtoav.name) 
     and data.card.trueName=="ssaet"
     and #Card:getIdList(data.card)>0
   end,
@@ -30,8 +30,8 @@ pujqnzjins:addEffect(fk.CardUsing, {
           targets=room:getOtherPlayers(player, false),
           min_num = 1,
           max_num = 1,
-          prompt = "#pujqnzjins-invoke",
-          skill_name = pujqnzjins.name,
+          prompt = "#hqrachtoav-invoke",
+          skill_name = hqrachtoav.name,
           cancelable = true,
         })
     if #tos>0 then
@@ -41,39 +41,38 @@ pujqnzjins:addEffect(fk.CardUsing, {
     end,
   on_use = function(self, event, target, player, data)
     local room = player.room
-    room:useVirtualCard("ssaet", nil, player, event:getCostData(self).tos, pujqnzjins.name, true)  --zzin souk
+    room:useVirtualCard("ssaet", nil, player, event:getCostData(self).tos, hqrachtoav.name, true)  --zzin souk
   end,
 })
 
-pujqnzjins:addEffect(fk.DamageCaused, {
+hqrachtoav:addEffect(fk.DamageInflicted, {
   is_delay_effect=true,
   anim_type = "offensive",
   can_trigger = function(self, event, target, player, data)
-    return
-		player.seat==1 --一次
+    return player==data.to
     and
-      data.card and table.contains(data.card.skillNames, pujqnzjins.name)
+      data.card and table.contains(data.card.skillNames, hqrachtoav.name)
   end,
   on_trigger = function(self, event, target, player, data)
-    player.room:changeMaxHp(data.to, -1, pujqnzjins.name)
+    player.room:changeMaxHp(data.to, -1, hqrachtoav.name)
   end,
 })
 
--- pujqnzjins:addEffect(fk.PreDamage, {
+-- hqrachtoav:addEffect(fk.PreDamage, {
 --   is_delay_effect=true,
 --   anim_type = "offensive",
 --   can_trigger = function(self, event, target, player, data)
 --     return
 --     target=player  --一次
 --     and
---       data.card and table.contains(data.card.skillNames, pujqnzjins.name)
+--       data.card and table.contains(data.card.skillNames, hqrachtoav.name)
 --   end,
 --   on_use = function(self, event, target, player, data)
 --     local n = data.damage
 --     -- data:preventDamage()  --无旹機
 --     data.prevented=true  --无旹機
---     player.room:changeMaxHp(data.to, -n, pujqnzjins.name)
+--     player.room:changeMaxHp(data.to, -n, hqrachtoav.name)
 --   end,
 -- })
 
-return pujqnzjins
+return hqrachtoav

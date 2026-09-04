@@ -1,6 +1,6 @@
 Fk:loadTranslationTable{
   ["bjesphioc"] = "避鋒",
-  [":bjesphioc"] = "伱死亾旹必發.伱令全體有咒術{狂虣/命中}者流失1體力,抽2",
+  [":bjesphioc"] = "伱死亾旹必發.伱令全體有咒術{狂虣/命中}者流失1,抽2",
 
 
 

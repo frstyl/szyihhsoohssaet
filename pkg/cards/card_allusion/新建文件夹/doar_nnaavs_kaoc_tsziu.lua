@@ -1,6 +1,6 @@
 Fk:loadTranslationTable{
   ["doar_nnaavs_kaoc_tsziu"] = "大鬧江州",
-  [":doar_nnaavs_kaoc_tsziu"] = "一末段始旹,若其下家A有牢或伏區有延旹錦囊,伱可預弃1殺或武器牌發動.下家迻去全部牢与伏區延旹錦囊",
+  [":doar_nnaavs_kaoc_tsziu"] = "一末段始旹,若其下家A有牢或伏區有延旹計謀牌,伱可預弃1殺或武器牌發動.下家迻去全部牢与伏區延旹計謀牌",
 
   ["#doar_nnaavs_kaoc_tsziu"] = "大鬧江州 是否解救%src",
  

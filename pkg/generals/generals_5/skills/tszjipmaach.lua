@@ -12,7 +12,12 @@ Fk:loadTranslationTable{
   ["Cancel"] = "否",
 }
 
-local tszjipmaach_spec = {
+local spec = {
+  can_trigger = function(self, event, target, player, data)
+    return  (data.from == player or data.to==player)
+    and player:hasSkill(tszjipmaach.name) 
+    and data.to ~=data.from
+  end,
   trigger_times = function(self, event, target, player, data)
     return data.damage
   end,
@@ -43,30 +48,31 @@ local tszjipmaach_spec = {
 
 
 
-tszjipmaach:addEffect(fk.DamageCaused,{
+tszjipmaach:addEffect(fk.DamageInflicted, {
+  -- name="#tszjipmaach_main_skill",
   can_trigger = function(self, event, target, player, data)
-    if  data.from == player and player:hasSkill(tszjipmaach.name) and data.to and data.to~=player 
-	then
-            event:setCostData(self, { to=data.to})
+    if  data.from == player and player:hasSkill(tszjipmaach.name)  and self:isEffectable(player) and data.from ~=data.to
+	  then
+      event:setCostData(self, { to=data.to})
       return true
     end
   end,
-  trigger_times=tszjipmaach_spec.trigger_times,
-  on_cost=tszjipmaach_spec.on_cost,
-  on_use=tszjipmaach_spec.on_use,
+  trigger_times=spec.trigger_times,
+  on_cost=spec.on_cost,
+  on_use=spec.on_use,
   }   
 ) --
 
 tszjipmaach:addEffect(fk.DamageInflicted, {
   can_trigger = function(self, event, target, player, data)
-    if target == player and player:hasSkill(tszjipmaach.name) and data.from and data.from~=player then
-            event:setCostData(self, { to=data.from})
+    if data.to  == player and player:hasSkill(tszjipmaach.name) and   self:isEffectable(player) and data.from and data.from ~=data.to then
+      event:setCostData(self, { to=data.from})
       return true    
     end
   end,
-  trigger_times=tszjipmaach_spec.trigger_times,
-  on_cost=tszjipmaach_spec.on_cost,
-  on_use=tszjipmaach_spec.on_use,
+  trigger_times=spec.trigger_times,
+  on_cost=spec.on_cost,
+  on_use=spec.on_use,
 })
 
 

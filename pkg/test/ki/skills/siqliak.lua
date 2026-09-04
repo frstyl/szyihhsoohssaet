@@ -4,7 +4,7 @@ local siqliak = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["siqliak"] = "思略",
-  [":siqliak"] = "主旹无限次,伱選至手1殺或裝僃牌發動.緟鑄之.以此所獲牌當轉不計入手牌上限",
+  [":siqliak"] = "主旹无限次,伱選至手1殺或裝僃牌發動.緟鑄之.以此所獲牌1轉不計入手牌上限",
 
   ["#siqliak"] = "思略：緟鑄殺",
   ["@@siqliak-inhand-turn"] = "思略",

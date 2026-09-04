@@ -7,7 +7,7 @@ Fk:loadTranslationTable{
 ["@@ssaac-turn"] = "攝䰟-生",
 ["@@sjih-turn"] = "攝䰟-死",
 
-["#szjep_hzoon"] = "攝䰟 先選擇生脚色(實際牌目幖) 後選死 ",
+["#szjep_hzoon"] = "攝䰟 先選擇生脚色(實際目幖) 後選死 ",
 }
 
 local S = require "packages/szyihhsoohssaet/szyih_guos" 
@@ -41,28 +41,50 @@ szjep_hzoon:addEffect("cardskill", {
   on_use = function(self, room, cardUseEvent)
     S.magicOnUse(cardUseEvent.from, cardUseEvent)
 
-    for i, p in ipairs(cardUseEvent.tos) do
-      local targets= table.filter(room.alive_players,function(sub)
-          return p~=sub
-        end
-        )
-      if #targets==0 then return end
-      
-      cardUseEvent.subTos =cardUseEvent.subTos or {}
-      local subTarget=room:askToChoosePlayers(cardUseEvent.from, {
-        targets = targets,
-        min_num = 1,
-        max_num = 1,
-        prompt = "#askToChooseSubTargets:::"..cardUseEvent.card:toLogString(),  --无用
-        skill_name = szjep_hzoon.name,
-        cancelable=false,
-      })
-      cardUseEvent.subTos[i]=subTarget
-    end
+
   end,
   offset_func= Util.FalseFunc,
-  on_effect = function(self, room, effect)  
+  -- on_action = function(self, room, cardUseEvent, finished)
+  --   if finished then return end
+  --   for i, p in ipairs(cardUseEvent.tos) do
+  --     local targets= table.filter(room.alive_players,function(sub)
+  --         return p~=sub
+  --       end
+  --       )
+  --     if #targets==0 then return end
+      
+  --     cardUseEvent.subTos =cardUseEvent.subTos or {}
+  --     local subTarget=room:askToChoosePlayers(cardUseEvent.from, {
+  --       targets = targets,
+  --       min_num = 1,
+  --       max_num = 1,
+  --       prompt = "#askToChooseSubTargets:::"..cardUseEvent.card:toLogString(),  --无用
+  --       skill_name = szjep_hzoon.name,
+  --       cancelable=false,
+  --     })
+  --     cardUseEvent.subTos[i]=subTarget
+  --   end
+  -- end,
+  about_to_effect = function(self, room, effect)  
+    effect.subTargets = room:askToChoosePlayers(effect.from, {
+      targets = room:getOtherPlayers(effect.to),
+      min_num = 1,
+      max_num = 1,
+      prompt = "#askToChooseSubTargets:::"..effect.card:toLogString(),
+      skill_name = szjep_hzoon.name,
+      cancelable=false,
+    })
+    room:sendLog{
+        type = "#CardUseCollaborator",
+        from = effect.to.id,
+        to = table.map(effect.subTargets, Util.IdMapper),
+        arg = effect.card,
+      }
+  end,
+  on_effect = function(self, room, effect)
+    if #effect.subTargets <1  then return end
     clear(room)     --先淸理 同旹止有一組
+
     if effect.to.dead or effect.subTargets.dead then return end
     room:setPlayerMark(effect.to,"@@ssaac-turn",effect.subTargets[1].id)
     room:setPlayerMark(effect.subTargets[1],"@@sjih-turn",effect.to.id)

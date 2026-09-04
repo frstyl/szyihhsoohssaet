@@ -7,6 +7,7 @@ Fk:loadTranslationTable{
   [":tshjimssjim"] = "伱預段始旹/末段始旹/受傷後,伱可伱聲明一花色發動.伱占卜,占卜牌生效後,若其:在處理區伱取得之;花色与伱所聲明相同,伱回1",
 
   ["tshjimssjim_log"] = "%src 聲明沁心花色爲 %arg ",
+  ["#tshjimssjim-choice"] = "沁心 聲明花色",
 
   ["$tshjimssjim1"] = "白玉生香",
   ["$tshjimssjim2"] = "淸歌浩齒",
@@ -62,7 +63,7 @@ tshjimssjim:addEffect(fk.EventPhaseStart, {
   on_use = tshjimssjim_spec.on_use,
 })
 
-tshjimssjim:addEffect(fk.Damage, {
+tshjimssjim:addEffect(fk.Damaged, {
   anim_type = "drawcard",
   can_trigger = function(self, event, target, player, data)
     return data.to == player  and player:hasSkill(tshjimssjim.name)

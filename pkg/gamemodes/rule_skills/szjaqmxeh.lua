@@ -1,5 +1,6 @@
 local szjaqmxeh = fk.CreateSkill {
   name = "#szjaqmxeh",
+  mode_skill = true,
 }
 
 Fk:loadTranslationTable{
@@ -11,9 +12,10 @@ local S = require "packages/szyihhsoohssaet/szyih_guos"
 
 szjaqmxeh:addEffect(fk.CardUsing, {
   can_trigger = function(self, event, target, player, data)
-    return target == player and player:hasSkill(szjaqmxeh.name) and S.getCardTypeByName(data.card)==2
+    return target == player and player:hasSkill(szjaqmxeh.name) 
+	and table.contains({"ssaet","tsiuh","nziuk"}, data.card.trueName)
     and not player:isKongcheng()
-    and player:usedEffectTimes(szjaqmxeh.name, Player.HistoryPhase)<1
+    -- and player:usedEffectTimes(szjaqmxeh.name, Player.HistoryPhase)<1
   end,
   on_cost = function(self, event, target, player, data)
       local card =  S.askToPlayCard(target, {
@@ -32,13 +34,13 @@ szjaqmxeh:addEffect(fk.CardUsing, {
       end
   end,
   on_use = function(self, event, target, player, data)
-    S.playCard(player,event:getCostData(self).cards,szjaqmxeh.name)
+    S.playCard(event:getCostData(self).cards,szjaqmxeh.name,player)
       if data.card.is_damage_card then
         data.additionalDamage = (data.additionalDamage or 0) + 1
       elseif data.card.name == "nziuk" then
         data.additionalRecover = (data.additionalRecover or 0) + 1
       elseif data.card.name == "tsiuh" then
-        if data.extra_data and data.extra_data.analepticRecover then
+        if data.extra_data and data.extra_data.tsiuhRecover then
           data.additionalRecover = (data.additionalRecover or 0) + 1
         else
           data.extra_data = data.extra_data or {}

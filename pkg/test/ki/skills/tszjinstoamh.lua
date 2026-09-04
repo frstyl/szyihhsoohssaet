@@ -10,7 +10,7 @@ Fk:loadTranslationTable{
 
   ["$tszjinstoamh1"] = "愿逐長風破萬里浪",
 }
-tszjinstoamh:addEffect(fk.Damage, {
+tszjinstoamh:addEffect(fk.Damaged, {
   can_trigger = function(self, event, target, player, data)
     return data.from==player and player:hasSkill(tszjinstoamh.name) and data.to~=player and data.to:getAttackRange()>0
   end,
@@ -22,8 +22,8 @@ tszjinstoamh:addEffect(fk.Damage, {
   end,
   on_use = function(self, event, target, player, data)
     local room = player.room
-  room:setPlayerMark(data.to,"@add_attack_range",-1+data.to:getMark("@add_attack_range"))
-  room:addPlayerMark(player,"@add_attack_range",1)
+  room:setPlayerMark(data.to,"@attack_range",-1+data.to:getMark("@attack_range"))
+  room:addPlayerMark(player,"@attack_range",1)
 
     room:addTableMark(player,"tszjinstoamh",data.to.id)  -- -+?
     -- local t=player:getTableMark("tszjinstoamh")
@@ -32,7 +32,7 @@ tszjinstoamh:addEffect(fk.Damage, {
   end,
 })
 
-tszjinstoamh:addEffect(fk.Damage, {
+tszjinstoamh:addEffect(fk.Damaged, {
   is_delay_effect=true,
   can_trigger = function(self, event, target, player, data)
     return data.from==player 
@@ -45,8 +45,8 @@ tszjinstoamh:addEffect(fk.Damage, {
     -- local t=player:getTableMark("tszjinstoamh")
     -- t[data.to.id]=(t[data.to.id] or 0) -1
     room:removeTableMark(data.to,"tszjinstoamh",player.id)  --removeOne
-	  room:setPlayerMark(data.to,"@add_attack_range",-1+data.to:getMark("@add_attack_range"))
-	  room:addPlayerMark(player,"@add_attack_range",1)
+	  room:setPlayerMark(data.to,"@attack_range",-1+data.to:getMark("@attack_range"))
+	  room:addPlayerMark(player,"@attack_range",1)
 
   end,
 })

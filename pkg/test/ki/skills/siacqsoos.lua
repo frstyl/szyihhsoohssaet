@@ -23,6 +23,11 @@ local function gcd(x, y)
 		return gcd(y, x%y)
 	end
 end
+local isCoprime=function(x, y)
+  if x==1 or y==1 then return false end
+  if x==0 or y==0   then return true end
+  return gcd(x, y)==1
+end
 
 
 siacqsoos:addEffect(fk.CardUsing, {
@@ -32,7 +37,7 @@ siacqsoos:addEffect(fk.CardUsing, {
 
       local n = 0  --无爲0
       local m =data.card.number
-      if m==1  then   event:setCostData(self, {choice = "no"}) return true end
+      if m==1  then   event:setCostData(self, {choice = "coprime"}) return true end
     
       local use_event = player.room.logic:getEventsByRule(GameEvent.UseCard, 1, function (e)
           return e.id < player.room.logic:getCurrentEvent().id 
@@ -40,20 +45,21 @@ siacqsoos:addEffect(fk.CardUsing, {
 
       if #use_event == 1 then
         n = use_event[1].data.card.number
-      -- else
+      else
+        n=0
       end
       
-      if n==1  then   event:setCostData(self, {choice = "no"}) return true end
+      if n==1  then   event:setCostData(self, {choice = "coprime"}) return true end
 
       if n==0 or gcd(n,m)~=1 then
-        event:setCostData(self, {choice = "yes"}) return true 
+        event:setCostData(self, {choice = "not_coprime"}) return true 
       else
-        event:setCostData(self, {choice = "no"}) return true 
+        event:setCostData(self, {choice = "coprime"}) return true 
       end
 
   end,
   on_use = function(self, event, target, player, data)
-    if event:getCostData(self).choice=="yes" then
+    if event:getCostData(self).choice=="not_coprime" then
       data.additionalEffect = (data.additionalEffect or 0) + 1
     else
       if player.room:getCardArea(data.card) == Card.Processing then

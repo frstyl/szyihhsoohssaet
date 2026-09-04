@@ -9,7 +9,7 @@ Fk:loadTranslationTable{
 ["#dvoattoamh-invoke"] = "敓膽 是否對%src 發動",
 }
 
-dvoattoamh:addEffect(fk.TargetSpecified, {
+dvoattoamh:addEffect(fk.TargetConfirmed, {
   anim_type = "offensive",
   can_trigger = function(self, event, target, player, data)
     return data.from ==player and player:hasSkill(dvoattoamh.name) and data.card.trueName == "ssaet" 

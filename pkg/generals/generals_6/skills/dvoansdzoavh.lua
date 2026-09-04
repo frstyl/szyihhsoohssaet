@@ -31,7 +31,7 @@ dvoansdzoavh:addEffect("active", {
   end,
   on_use = function(self, room, effect)
     local player = effect.from
-    S.playCard(effect.from,effect.cards,dvoansdzoavh.name)
+    S.playCard(effect.cards,dvoansdzoavh.name,effect.from)
     local card = Fk:getCardById(effect.cards[2])
     room:addCardMark(card,"@dvoansdzoavh",1)  --
     room:addTableMark(player,"_dvoansdzoavh-phase",effect.cards[2])  --
@@ -44,7 +44,7 @@ dvoansdzoavh:addEffect("active", {
   end,
 })
 
-dvoansdzoavh:addEffect(fk.DamageCaused, {
+dvoansdzoavh:addEffect(fk.DamageInflicted, {
   priority=0.1,
   can_trigger = function(self, event, target, player, data)
     return player.seat==1

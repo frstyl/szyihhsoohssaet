@@ -4,7 +4,7 @@ local kijqcian = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["kijqcian"] = "譏言",
-  [":kijqcian"] = "轉脚色A起動牌後,伱可發動.伱聲明1牌類B｡A下次起動牌旹,若牌類与B:同,中止當轉(不中止結算);不同,其予伱1傷,當轉不可起動打出弃置B牌類",
+  [":kijqcian"] = "轉脚色A起動牌後,伱可發動.伱聲明1牌類B｡A下次起動牌旹,若牌類与B:同,中止1轉(不中止結算);不同,其予伱1傷,1轉不可起動打出弃置B牌類",
 
   ["#kijqcian-invoke"] = "譏言： %src 是否發動",
   ["@kijqcian-turn"] = "譏言",
@@ -34,7 +34,7 @@ kijqcian:addEffect(fk.CardUseFinished, {
   on_cost = function (self, event, target, player, data)
     local room = player.room
     local to = event:getCostData(self).tos[1]
-    local choices={"basic","trick","equip","magic","allusion","Cancel"}  --S.
+    local choices={"action","trick","equip","goods" ,"magic","allusion"}  --S.
     local choice = room:askToChoice(player, {
       choices = choices,
       skill_name = kijqcian.name,
@@ -74,7 +74,7 @@ kijqcian:addEffect(fk.CardUsing, {-- --AfterCardUseDeclared
       -- player.room.logic:breakTurn()
       room:endTurn()
     else
-      local t={"basic","trick","equip","magic","allusion","Cancel"}
+    local choices={"action","trick","equip","goods" ,"magic","allusion"}  --S.
       room:sendLog{
         type = "#kijqcian-different",
         from = player.id,

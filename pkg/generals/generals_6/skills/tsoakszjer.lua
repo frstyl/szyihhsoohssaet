@@ -5,9 +5,9 @@ local tsoakszjer = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["tsoakszjer"] = "作勢",
-  [":tsoakszjer"] = "伱成爲其它腳色A牌目幖旹,必發.A交与伱1牌(明置),若不爲基本,迻除目幖,爲基本伱抽1➁當伱受傷旹,若伱伏區有牌,必發,防止此傷害",
+  [":tsoakszjer"] = "伱成爲其它腳色A起動目幖旹,必發.A須交与伱1牌(明置),若伱因此得到｢{殺/閃/肉/酒}｣,伱抽1,否則此次起動對伱无效➁當伱受傷旹,若伱伏區有牌,必發,防止此傷害",
 
-  ["#tsoakszjer-choose"] = "作勢 交与%src 1牌 若不爲基本所起動牌對其无效",
+  ["#tsoakszjer-choose"] = "作勢 交与%src 1牌 若不爲 殺閃酒肉 迻除目幖",
 
   ["$tsoakszjer1"] = "在昰里本官說已算",
   ["$tsoakszjer2"] = "昰个卻正是反詩汝若里得來",
@@ -22,7 +22,7 @@ tsoakszjer:addEffect(fk.TargetConfirming, {
   end,
   on_use = function(self, event, target, player, data)
     local room = player.room
-    local cards=room:askToCards(target,{
+    local cards=room:askToCards(data.from,{
       min_num=1,  --askToCard
       max_num=1,
       include_equip=true,
@@ -31,12 +31,13 @@ tsoakszjer:addEffect(fk.TargetConfirming, {
       skill_name = tsoakszjer.name,
       cancelable = false,
     })
-    room:moveCardTo(cards, Player.Hand, player, fk.ReasonGive, tsoakszjer.name, nil, true, player.id)
-    if S.getCardTypeByName(Fk:getCardById(cards[1])) ==Card.TypeBasic then 
+    room:moveCardTo(cards, Player.Hand, data.from, fk.ReasonGive, tsoakszjer.name, nil, true, data.from.id)
+
+	if cards[1] and table.contains({"ssaet","szjemh","tsiuh","nziuk"}, Fk:getCardById(cards[1]).trueName) then 
       player:drawCards(1, tsoakszjer.name)
     else
-      -- data:setNullified(data.to)
-	      data:cancelTarget(data.to)
+      data:setNullified(data.to)
+	      -- data:cancelTarget(data.to)
     end
   end,
 })

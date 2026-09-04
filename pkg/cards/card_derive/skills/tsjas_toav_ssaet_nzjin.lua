@@ -6,8 +6,8 @@ Fk:loadTranslationTable{
   ["tsjas_toav_ssaet_nzjin_skill"] = "借刀殺人",
   ["#tsjas_toav_ssaet_nzjin_skill"] = "選擇1其它脚色A与子目幖B,對A起動. A可選1項➀對B起動1殺无視距離次數,➁將此牌轉化爲殺對B起動",
 
-  ["#tsjas_toav_ssaet_nzjin-UseVirtualCard"] = "轉化此牌 %arg 爲殺起動",
-  ["#tsjas_toav_ssaet_nzjin-UseCard"] = "起動殺 不計入次數",
+  ["#tsjas_toav_ssaet_nzjin-UseVirtualCard"] = "以此牌 %arg 轉化起動殺",
+  ["#tsjas_toav_ssaet_nzjin-UseCard"] = "起動殺 无視距離次數",
 
   ["#askToChooseSubTargets"] = "爲 %arg 選擇子目幖",
 
@@ -23,7 +23,8 @@ cardSkill:addEffect("cardskill", {
     return Util.CardTargetFilter(self, player, to_select, selected, _, card, extra_data)
   end,
   target_num = 1, 
-  on_use = function(self, room, cardUseEvent)
+  on_use = function(self, room, cardUseEvent) --多指繼承子目幖
+    if not cardUseEvent.from then return end
     local targets= table.filter(room.alive_players,function(p)
         return  not table.contains(cardUseEvent.tos,p)  --p~=cardUseEvent.from and
       end
@@ -44,6 +45,8 @@ cardSkill:addEffect("cardskill", {
     end
   end,
   on_effect = function(self, room, effect)
+    if effect:isDisresponsive(effect.to) then return end
+    if not (effect.subTargets and effect.subTargets[1]) then return end
     local from = effect.from
     local to = effect.to
     if to.dead then return end
@@ -61,7 +64,7 @@ cardSkill:addEffect("cardskill", {
     else
       choices={"#tsjas_toav_ssaet_nzjin-UseVirtualCard:::"..effect.card:toLogString(),"#tsjas_toav_ssaet_nzjin-UseCard","Cancel",}
     end
-    while true do  --誤觸反悔
+    -- while true do  --誤觸反悔
       local choice = room:askToChoice(to, {
         choices = choices,
         skill_name = cardSkill.name,
@@ -120,7 +123,7 @@ cardSkill:addEffect("cardskill", {
         return
       end
 
-    end
+    -- end
 
   end,
 })

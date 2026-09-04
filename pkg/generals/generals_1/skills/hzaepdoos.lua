@@ -12,7 +12,7 @@ Fk:loadTranslationTable{
 
 local S = require "packages/szyihhsoohssaet/szyih_guos"
 
-hzaepdoos:addEffect(fk.Damage, {
+hzaepdoos:addEffect(fk.Damaged, {
   anim_type = "offensive",
   can_trigger = function(self, event, target, player, data)
     return data.from == player and player:hasSkill(hzaepdoos.name) 
@@ -42,7 +42,7 @@ hzaepdoos:addEffect(fk.Damage, {
   end,
   on_use = function(self, event, target, player, data)
     local room = player.room
-    S.playCard(player,carevent:getCostData(self).cards,hzaepdoos.name)
+    S.playCard(carevent:getCostData(self).cards,hzaepdoos.name,player)
     room:damage{
       from = player,
       to = event:getCostData(self).tos[1],

@@ -1,6 +1,6 @@
 Fk:loadTranslationTable{
   ["hzoeomqhzoeons"] = "含恨",
-  [":hzoeomqhzoeons"] = "自限:此將牌｡伱死亾旹,若當轉脚色不爲伱,伱与其交換武將牌",
+  [":hzoeomqhzoeons"] = "自限:此將牌｡伱死亾旹,若1轉脚色不爲伱,伱与其交換武將牌",
 
   ["$hzoeomqhzoeons1"] = "我死自不妨 和伱軰爭不得了",
   ["$hzoeomqhzoeons2"] = "𠀀 大嫂 苦吁苦吁",

@@ -6,9 +6,9 @@ local koostsiocs = fk.CreateSkill {
 
 Fk:loadTranslationTable{
 ["koostsiocs"] = "故縱",
-[":koostsiocs"] = "其它脚色A可起動演練閃旹,若其可因此起動/打出虛擬閃,伱可打出閃(可轉化),若伱打出,發動.視爲A元旹機起動/打出虛閃.此閃結算後,伱可再發動,伱弃置A區域1牌2次,伱抽1",
+[":koostsiocs"] = "其它脚色A可起動或演練｢閃｣旹,伱可演練｢閃｣,若伱執行,發動｡視爲A元旹機起動/打出虛閃.此閃結算後,伱可再發動,伱弃置A區域1牌2次,伱抽1",
 
-["#koostsiocs-invoke"] = "故縱: 代替 %src 起動演練閃",
+["#koostsiocs-invoke"] = "故縱: 代替 %src 起動或演練閃",
 ["#koostsiocs-discard"] = "故縱: 是否弃 %src 牌",
 }
 

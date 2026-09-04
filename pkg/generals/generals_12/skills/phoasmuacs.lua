@@ -3,7 +3,7 @@ local phoasmuacs = fk.CreateSkill {
 }
 Fk:loadTranslationTable{
   ["phoasmuacs"] = "破妄",
-  [":phoasmuacs"] = "印牌:起動虛擬｢防患未肰抵消｣｡若伱手牌數不等于體力值伱可打出x手牌或流失x體力發動(x爲伱手牌數體力值之差)",
+  [":phoasmuacs"] = "印牌:起動虛擬｢防患未肰抵消｣｡若伱手牌數不等于體力數(不小于0)伱可打出x手牌或流失x發動(x爲伱手牌數體力數之差)",
 
   ["#phoasmuacs"] = "破妄 視爲起動防患未肰旹",
   ["#phoasmuacs-discard"] = "破妄 打出%arg手牌",
@@ -15,7 +15,7 @@ local S = require "packages/szyihhsoohssaet/szyih_guos"
 
 phoasmuacs:addEffect("viewas", {
   anim_type = "defensive",
-  pattern = "buac_hzfan_mujs_nzjen",
+  pattern = ".|0|nosuit|none||buac_hzfan_mujs_nzjen",
   prompt = "#phoasmuacs",
   mute_card = true,
   -- handly_pile = true,
@@ -29,7 +29,7 @@ phoasmuacs:addEffect("viewas", {
     return c
   end,
   before_use = function(self, player, use)
-    local n =player:getHandcardNum()-player.hp
+    local n =player:getHandcardNum()-math.max(0, player.hp)
     if n>0 then
        S.askToPlayCard(player, {
         min_num = n,
@@ -48,46 +48,20 @@ phoasmuacs:addEffect("viewas", {
   --   return player:getHandcardNum()~=player.hp
   -- end,
   enabled_at_response = function(self, player, response)
-    if  (not response and  player:getHandcardNum()~=player.hp )then
-      return player:getMark("phoasmuacs_activated") ~= 0
-    end
+    return  not response 
+    and  
+    player:getHandcardNum()~=player.hp
+	and player.hp>=0
 
   end,
-  enabled_at_nullification = function (self, player, data)  --data 加入holder
-    return data and data.to == player and
-      player:getHandcardNum()~=player.hp 
-      -- and data.card:isInstantTrick() 
-  end,
+  -- enabled_at_nullification = function (self, player, data)  --data 加入holder
+  --   return data and data.to == player
+  --    and
+  --     -- player:getHandcardNum()~=player.hp 
+  --     -- and data.card:isInstantTrick() 
+  -- end,
 })
 
-
-phoasmuacs:addEffect(fk.HandleAskForPlayCard, {--死鎖
-  can_refresh = function(self, event, target, player, data)
-    if data.afterRequest and (data.extra_data or {}).phoasmuacs_effected then
-      return player:getMark("phoasmuacs_activated") ~= 0
-    end
-
-    return
-      player:hasSkill(phoasmuacs.name) 
-      and
-      data.eventData 
-      and
-      data.eventData.to ==player
-
-      -- and Exppattern:Parse(data.pattern):match(Fk:cloneCard("buac_hzfan_mujs_nzjen"))
-  end,
-  on_refresh = function(self, event, target, player, data)
-    local room = player.room
-    if data.afterRequest then
-      room:setPlayerMark(player, "phoasmuacs_activated", 0)
-    else
-      room:setPlayerMark(player, "phoasmuacs_activated", 1)
-      -- player:drawCards(10)
-      data.extra_data = data.extra_data or {}
-      data.extra_data.phoasmuacs_effected = true
-    end
-  end,
-})
 
 
 return phoasmuacs

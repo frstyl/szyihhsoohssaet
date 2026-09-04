@@ -4,7 +4,7 @@ local quanhszuos = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["quanhszuos"] = "遠戍",
-  [":quanhszuos"] = "轉始旹,伱可選1暗置手牌發動｡明置之｡伱因起動打出失去手牌區明置牌後,伱可發動,伱抽x,x=max(1,伱明置手牌數)",
+  [":quanhszuos"] = "轉始旹,伱可1明置手牌發動｡伱因起動打出失去手牌區明置牌後,伱可發動,伱抽x,x=max(1,伱明置手牌數)",
 
   ["#quanhszuos-ask"] = "遠戍：明置1牌",
 
@@ -20,7 +20,7 @@ quanhszuos:addEffect(fk.TurnStart, {
   end,
   on_cost = function (self, event, target, player, data)
     local cards = table.filter(player:getCardIds("h"),function(id)
-				return not Fk:getCardById(id):hasMark("@@open")
+				return not Fk:getCardById(id):hasMark("@@opend")
 			end
 			)
     if #cards==0 then return end
@@ -59,7 +59,7 @@ quanhszuos:addEffect(fk.BeforeCardsMove, {
       then
 
         for _, info in ipairs(move.moveInfo) do
-          if  (info.fromArea == Card.PlayerHand ) and Fk:getCardById(info.cardId):hasMark("@@open")  then
+          if  (info.fromArea == Card.PlayerHand ) and Fk:getCardById(info.cardId):hasMark("@@opend")  then
             return true
           end
         end
@@ -83,7 +83,7 @@ quanhszuos:addEffect(fk.AfterCardsMove, {
   on_use = function (self, event, target, player, data)
     room=player.room
     local n = #table.filter(player:getCardIds("h"), function(id)
-      return Fk:getCardById(id):hasMark("@@open")
+      return Fk:getCardById(id):hasMark("@@opend")
     end)
     player:drawCards(math.max(1, n), quanhszuos.name)
   end,

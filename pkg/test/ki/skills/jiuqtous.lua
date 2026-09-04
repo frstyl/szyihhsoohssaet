@@ -5,7 +5,7 @@ local jiuqtous = fk.CreateSkill {
 
 Fk:loadTranslationTable{
 ["jiuqtous"] = "游鬥",
-[":jiuqtous"] = "伱可對脚色A起動殺旹,伱可發動.伱展示其1手牌,肰後伱与其同旹選是否弃1手牌与所示牌同色者,若伱弃而A未弃,伱當段對其所起動下一張殺不可被閃抵消致傷旹傷害+1;若伱未弃且A弃,伱獲得A所弃牌抽1,伱當段下一殺不可指定其爲目幖",
+[":jiuqtous"] = "伱可對脚色A起動殺旹,伱可發動.伱展示其1手牌,肰後伱与其同旹選是否弃1手牌与所示牌同色者,若伱弃而A未弃,伱1段對其所起動下一張殺不可被｢閃｣抵消致傷旹傷害+1;若伱未弃且A弃,伱獲得A所弃牌抽1,伱1段下一殺不可指定其爲目幖",
 --區分伱已此法所起動 与 此牌?
 ["#jiuqtous"] = "2同類牌轉化爲殺",
 
@@ -84,7 +84,7 @@ jiuqtous:addEffect(fk.CardUseFinished, {  --无視防具 --待改
   end,
 })
 
-jiuqtous:addEffect(fk.TargetSpecified, {
+jiuqtous:addEffect(fk.TargetConfirmed, {
   can_trigger = function(self, event, target, player, data)
     return  data.from == player and player:getMark("jiuqtous-damage-phase")==data.to.id
       and data.card.trueName == "ssaet"
@@ -97,7 +97,7 @@ jiuqtous:addEffect(fk.TargetSpecified, {
   end,
 })
 
-jiuqtous:addEffect(fk.DamageCaused, {
+jiuqtous:addEffect(fk.DamageInflicted, {
   can_trigger = function(self, event, target, player, data)
     return player.seat==1 and data.from :getMark("jiuqtous-damage-phase")==data.to.id
       and data.card.trueName == "ssaet"

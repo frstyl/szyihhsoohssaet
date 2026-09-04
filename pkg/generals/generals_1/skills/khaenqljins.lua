@@ -1,13 +1,13 @@
 local khaenqljins = fk.CreateSkill {
   name = "khaenqljins",
-  tags = { Skill.Compulsory },
+  tags = { Skill.Compulsory, Skill.Composite },
 }
 
 Fk:loadTranslationTable{
 ["khaenqljins"] = "慳悋",
--- [":khaenqljins"] = "｡➀狀態.伱的基礎額定手牌數等于體力上限｡➁當其它脚色棄置取得伱的牌歬旹必發,伱令此迻動牌數-1",
--- [":khaenqljins"] = "｡➀狀態.伱的基礎額定手牌數等于體力上限｡➁當其它脚色棄置取得伱的牌歬旹,必發,防止之",
-[":khaenqljins"] = "屬于伱之牌被弃置或取得前,必發.防止之.伱越過段或轉歬,必發.防止之.",
+-- [":khaenqljins"] = "｡➀狀態.伱的基礎存牌數等于體力上限｡➁當其它脚色棄置取得伱的牌歬旹必發,伱令此迻動牌數-1",
+-- [":khaenqljins"] = "｡➀狀態.伱的基礎存牌數等于體力上限｡➁當其它脚色棄置取得伱的牌歬旹,必發,防止之",
+[":khaenqljins"] = "應動｡屬于伱之牌被弃置或取得前,必發｡防止之｡伱越過段/轉歬,必發.防止之｡伱被拼點旹,防止之",
 }
 -- CardUseFinished
 khaenqljins:addEffect(fk.BeforeCardsMove, {
@@ -17,7 +17,7 @@ khaenqljins:addEffect(fk.BeforeCardsMove, {
       local cards={}
       for _, move in ipairs(data) do
         if  move.from==player
-          -- and  table.contains(player.room:getOtherPlayers(player,true,true), move.proposer)  --其他脚色
+          -- and  table.contains(player.room:getOtherPlayers(player,true,true), move.proposer)  --其它脚色
           
           and (
             move.moveReason==fk.ReasonDiscard 
@@ -54,6 +54,7 @@ khaenqljins:addEffect(fk.BeforeTurnOver, {--不能跳過?
     data.prevented = true
   end,
 })
+
 khaenqljins:addEffect(fk.EventPhaseSkipping, {
   anim_type = "defensive",
   can_trigger = function (self, event, target, player, data)
@@ -64,6 +65,32 @@ khaenqljins:addEffect(fk.EventPhaseSkipping, {
   end,
 })
 
+khaenqljins:addEffect(fk.StartPindian, {
+  anim_type = "defensive",
+  can_trigger = function (self, event, target, player, data)
+    return 
+    -- table.contains(data.tos,player)
+    -- and 
+    player:hasSkill(khaenqljins.name)
+  end,
+  on_use = function (self, event, target, player, data)
+    -- player.room.logic:breakEvent()
+    -- event:shutdown()
+    local event = player.room.logic:getCurrentEvent():findParent(GameEvent.Pindian)
+  if not event then return end
+  event:shutdown()
+    return true
+  end,
+})
+
+-- khaenqljins:addEffect("prohibit", {
+--   -- is_prohibited = function(self, from, to, card)
+--   --   return to:hasSkill(khaenqljins.name) and card and card.sub_type == Card.SubtypeDelayedTrick
+--   -- end,
+--   prohibit_pindian = function(self, from, to)
+--     return to:hasSkill(khaenqljins.name)
+--   end
+-- })
 -- khaenqljins:addEffect("maxcards", {
 --   fixed_func = function(self, player)
 --       return player.maxHp

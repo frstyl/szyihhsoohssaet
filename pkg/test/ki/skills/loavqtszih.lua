@@ -4,7 +4,7 @@ local loavqtszih = fk.CreateSkill {
 
 Fk:loadTranslationTable{
 ["loavqtszih"] = "勞止",
-[":loavqtszih"] = "輪終旹,若存活脚色當輪內受傷者不少于半(下整),伱可將1牌轉化爲｢修養生息｣起動發動",
+[":loavqtszih"] = "輪終旹,若存活脚色1輪內受傷者不少于半(下整),伱可將1牌轉化爲｢修養生息｣起動發動",
 ["#loavqtszih-invoke"]="勞止 選擇1牌轉化爲｢修養生息｣起動 ",
 
 }

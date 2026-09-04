@@ -5,9 +5,9 @@ local piktssaes = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["piktssaes"] = "逼債",
-  [":piktssaes"] = "锁定技，你始终处于横置状态；处于连环状态的脚色手牌上限+2；结束阶段开始时，你横置一名其他脚色。",
+  [":piktssaes"] = "锁定技，你始终处于横置状态；处于连环状态的脚色手牌上限+2；结束阶段开始时，你横置一名其它脚色。",
 
-  ["#piktssaes-choose"] = "逼債：选择一名其他脚色，令其横置",
+  ["#piktssaes-choose"] = "逼債：选择一名其它脚色，令其横置",
 
   ["$piktssaes1"] = "桃园结义，营一世之交。",
   ["$piktssaes2"] = "结草衔环，报兄弟大恩。",

@@ -36,7 +36,7 @@ punsjioch:addEffect(fk.Damaged, {
   end,
 })
 
-punsjioch:addEffect(fk.Damage, {
+punsjioch:addEffect(fk.Damaged, {
   can_trigger  = function(self, event, target, player, data)
     return data.from == player and player:hasSkill(punsjioch.name) 
   end,

@@ -6,7 +6,7 @@ local pujqjjem = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["pujqjjem"] = "飛檐",
-  [":pujqjjem"] = "恆續效果.若牌有距離限制(不含攻程限制),伱不是其合理目幖,伱使其无視距離",
+  [":pujqjjem"] = "恆續,若牌有距離限制(不含攻程限制),伱不是其合理目幖,伱使其无視距離",
 }
 --{因敵爲資/斷糧絕緣/埋伏/偸樑換柱}
 local cards={"hqjin_deek_qwe_tsji", "tvoans_liac_dzyet_quan", "mae_biuk","thou_liac_hzvoans_dduoh","szyih_kouc"}

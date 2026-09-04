@@ -69,7 +69,7 @@ khoucqhsiach:addEffect(fk.SkillEffect, {
       }
       data.prevent=true
     else
-      local ids = S.getKhouc(room,1)
+      local ids = S.getKhouc(1)
       room:setCardMark(Fk:getCardById(ids[1]),"@khoucqhsiach",data.skill:getSkeleton().name)
       room:moveCards({
         ids = ids,

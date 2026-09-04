@@ -4,7 +4,7 @@ local khiochhsaak = fk.CreateSkill {
 
 Fk:loadTranslationTable{
 ["khiochhsaak"] = "恐嚇",
-[":khiochhsaak"] = "➀當伱受傷後若伱武將牌明置,伱可發動,暗置此武將牌.➁一其他脚色A轉始旹,若伱武將牌暗置,伱可發動,伱明置武將牌,選擇一段令A越過",
+[":khiochhsaak"] = "➀當伱受傷後若伱武將牌明置,伱可發動,暗置此武將牌.➁一其它脚色A轉始旹,若伱武將牌暗置,伱可發動,伱明置武將牌,選擇一段令A越過",
 ["#khiochhsaak-invoke"] = "恐嚇: 選擇%src階段跳過",
 
 --思路1 自限 將牌限定  --多个將牌有發動多次

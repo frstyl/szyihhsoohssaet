@@ -5,8 +5,8 @@ local hzvoaqcaok = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["hzvoaqcaok"] = "龢樂",  --獨奏 合奏 閒奏
-  [":hzvoaqcaok"] = "伱起動演練牌旹必發,若此牌伱上一起動演練牌之點數絕對差(无牌視爲0點){極叶/較叶/較不叶/極不叶}伱{抽2/抽1/選擇褈鑄1手牌或得1空/全體腳色弃1手牌}<br/>(點數差屬于{0,12/5,7/3,4,8,9/1,2,6,10,11})",  --
---,此技能當轉失效
+  [":hzvoaqcaok"] = "伱起動或演練牌旹必發,若此牌伱上一起動或演練牌之點數絕對差(无牌視爲0點){極叶/較叶/較不叶/極不叶}伱{抽2/抽1/選擇褈鑄1手牌或得1空/全體腳色弃1手牌}<br/>(點數差屬于{0,12/5,7/3,4,8,9/1,2,6,10,11})",  --
+--,此技能1轉失效
   ["#hzvoaqcaok-recast"] = "龢樂：  褈鑄1手牌 或得1空",
   ["#hzvoaqcaok-discard"] = "龢樂： %src發出極不龢叶音 弃1",
 
@@ -42,7 +42,7 @@ local spec ={
         room:recastCard(cards, player, hzvoaqcaok.name)
       else
         room:moveCards({
-          ids = S.getKhouc(room, 1),
+          ids = S.getKhouc( 1),
           to = player,
           toArea = Card.PlayerHand,
           moveReason = fk.ReasonJustMove,
@@ -69,7 +69,7 @@ local spec ={
   end,
   late_refresh=true,
   can_refresh = function(self, event, target, player, data)
-    return target==player and player:hasSkill(hzvoaqcaok.name,false,true)
+    return target==player and player:hasSkill(hzvoaqcaok.name,true)
   end,
   on_refresh = function(self, event, target, player, data)
     player.room:setPlayerMark(player,"@hzvoaqcaok",data.card.number)

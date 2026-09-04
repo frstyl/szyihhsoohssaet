@@ -4,9 +4,8 @@ local dzoakhzaamh = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["dzoakhzaamh"] = "𣪲艦",
-  [":dzoakhzaamh"] = "伱對其它脚色致傷旹伱選一項可發動:➀其執行1弃段➁當局其存牌數-1",
+  [":dzoakhzaamh"] = "伱對其它脚色致傷旹伱選一項可發動:➀其執行1撤段➁當局其存牌數-1",
 
-  -- ["MaxCards"] = "額度牌限",
 
   ["$dzoakhzaamh1"] = "哈哈哈哈哈哈哈哈！",
   ["$dzoakhzaamh2"] = "伯符，且看我这一手！",
@@ -14,7 +13,7 @@ Fk:loadTranslationTable{
 
 local S = require "packages/szyihhsoohssaet/szyih_guos" 
 
-dzoakhzaamh:addEffect(fk.Damage, {
+dzoakhzaamh:addEffect(fk.Damaged, {
   mute = true,
   can_trigger = function(self, event, target, player, data)
     return data.from == player and data.to~=player and player:hasSkill(dzoakhzaamh.name) 

@@ -9,7 +9,9 @@ local S = require "packages/szyihhsoohssaet/szyih_guos"
 equipSkill:addEffect(fk.PreCardEffect, {
   mute = true,
   can_trigger = function(self, event, target, player, data)
-    return data.to == player and player:hasSkill(equipSkill.name) 
+    return data.to == player 
+    and player:hasSkill(equipSkill.name) 
+    -- and  S.hasEquip(player, attached_equip) and self:isEffectable(player) 
     and not data.nullified
     and  table.contains({"ssaet", "maach_hsooh_hzaah_ssaen", "ttis_tsiuh_szjet_jjen"}, data.card.name)
     and not S.isIgnoreArmorFromAToB(data.from, data.to, data.card, data.use, data)

@@ -41,7 +41,7 @@ jiospouk:addEffect(fk.TurnStart, {
   end,
   on_use = function(self, event, target, player, data)
     local room = player.room
-    S.playCard(player,event:getCostData(self).cards, jiospouk.name)
+    S.playCard(event:getCostData(self).cards, jiospouk.name,player)
     local judge = {
       who = target,
       reason = "jiospouk",

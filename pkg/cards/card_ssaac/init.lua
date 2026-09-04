@@ -27,15 +27,6 @@ extension:loadCardSkels {
 
 
 
-local deep = fk.CreateCard{
-  name = "&deep",
-  type = Card.TypeBasic,
-  skill = "deep_skill",
-  -- multiple_targets = true,
-}
-extension:loadCardSkels {
-deep,
-}
 --
 local mxevs_svoans_quo_seen = fk.CreateCard{
   name = "mxevs_svoans_quo_seen",
@@ -152,6 +143,16 @@ extension:loadCardSkels {
 lih_doeojs_doav_kiac,
 }
 
+local refingency = fk.CreateCard{  --名不同
+  name = "refingency",
+  type = Card.TypeTrick,
+--   sub_type = Card.SubtypeDelayedTrick,
+  skill = "refingency_skill",
+  is_passive=true,
+}
+extension:loadCardSkels {refingency}
+
+
 local lioc_zzja_khih_liuk = fk.CreateCard{
   name = "lioc_zzja_khih_liuk",
   type = Card.TypeTrick,
@@ -178,9 +179,15 @@ local hsoo_piuc_hsvoans_quoh = fk.CreateCard{
   sub_type = Card.SubtypeDelayedTrick,
   skill = "hsoo_piuc_hsvoans_quoh_skill",
 }
-extension:loadCardSkels {
-hsoo_piuc_hsvoans_quoh,
+extension:loadCardSkels {hsoo_piuc_hsvoans_quoh,}
+
+local tssaas_phaavs = fk.CreateCard{
+  name = "tssaas_phaavs",
+  type = Card.TypeTrick,
+  sub_type = Card.SubtypeDelayedTrick,
+  skill = "tssaas_phaavs_skill",
 }
+extension:loadCardSkels {tssaas_phaavs,}
 
 local hqoon_jyek = fk.CreateCard{
   name = "hqoon_jyek",
@@ -203,16 +210,15 @@ local ssaen_hsvoah = fk.CreateCard{
   is_damage_card=true,
   damage_type = fk.FireDamage,
 }
-extension:loadCardSkels {
-ssaen_hsvoah,
-}
+extension:loadCardSkels {ssaen_hsvoah,}
+
 
 --
 local phaavs = fk.CreateCard{
   name = "phaavs",
   type = Card.TypeEquip,
   sub_type = Card.SubtypeWeapon,
-  attack_range = 6,
+  attack_range = 12,
   equip_skill = "#phaavs_skill",
   skill = "self_equip_skill",
 }
@@ -307,10 +313,6 @@ extension:addCardSpec("chaos__ssaet", Card.Spade, 10)  --deep
 extension:addCardSpec("chaos__ssaet", Card.Club, 10)
 extension:addCardSpec("chaos__szjemh", Card.Heart, 10)
 extension:addCardSpec("chaos__szjemh", Card.Diamond, 10)
--- extension:addCardSpec("deep", Card.Spade, 10)  --作爲衍生牌
--- extension:addCardSpec("deep", Card.Club, 10)
--- extension:addCardSpec("deep", Card.Heart, 10)
--- extension:addCardSpec("deep", Card.Diamond, 10)
 
 extension:addCardSpec("jiak", Card.Heart, 6)
 extension:addCardSpec("jiak", Card.Heart, 7)
@@ -332,14 +334,14 @@ extension:addCardSpec("mxevs_svoans_quo_seen", Card.Spade, 3)
 extension:addCardSpec("mxevs_svoans_quo_seen", Card.Spade, 2)
 extension:addCardSpec("mxevs_svoans_quo_seen", Card.Heart, 8)
 
-
 extension:addCardSpec("tsiac_keejs_dzius_keejs", Card.Heart, 13)
 --
 extension:addCardSpec("khuo_kujh_dzziuk_zja", Card.Diamond, 5)
 extension:addCardSpec("khuo_kujh_dzziuk_zja", Card.Heart, 8)
 
 extension:addCardSpec("szjep_hzoon", Card.Spade, 4)
-extension:addCardSpec("szjep_hzoon", Card.Diamond, 9)
+-- extension:addCardSpec("szjep_hzoon", Card.Diamond, 9)
+extension:addCardSpec("refingency", Card.Diamond, 9)
 
 extension:addCardSpec("bioc_hsioc_hsfas_kjit",Card.Spade, 1) --v1 Ex Spade, 4
 
@@ -394,7 +396,8 @@ extension:addCardSpec("tsheec_tshouc_maah", Card.Spade, 6)
 
 ---
 
-extension:addCardSpec("hsoo_piuc_hsvoans_quoh", Card.Spade, 7)
+-- extension:addCardSpec("hsoo_piuc_hsvoans_quoh", Card.Spade, 7)
+extension:addCardSpec("tssaas_phaavs", Card.Spade, 7)
 --
 extension:addCardSpec("nzuo_biuk", Card.Club, 9)
 
@@ -404,38 +407,35 @@ Fk:loadTranslationTable{
   ["magic"] = "法術牌",
 
   -- ["lvoans_tszjens_ssaet"] = "亂戰殺",
-  -- [":lvoans_tszjens_ssaet"] = "基本牌  <br /><b>旹機</b>：主段執行旹  <br /><b>目幖</b>：攻程內其它脚色  <br /><b>效果</b>：此牌隨機轉爲3種殺之1。",
+  -- [":lvoans_tszjens_ssaet"] = "行動  <br /><b>旹機</b>：主段執行旹  <br /><b>目幖</b>：攻程內其它脚色  <br /><b>效果</b>：此牌隨機轉爲3種殺之1。",
 
   ["chaos__ssaet"] = "亂戰殺",
-  [":chaos__ssaet"] = "基本牌-行動  <br /><b>旹機</b>：主段執行旹  <br /><b>目幖</b>：其它脚色  <br /><b>目幖數</b>：1 <br /><b>距離</b>：伱攻程内  <br /><b>次數</b>：同名牌每段限1次  額外</b>:結算前隨機變爲{无屬/雷/火}殺",
+  [":chaos__ssaet"] = "行動  <br /><b>旹機</b>：主段執行旹  <br /><b>目幖</b>：其它脚色  <br /><b>目幖數</b>：1 <br /><b>距離</b>：伱攻程内  <br /><b>次數</b>：同名牌每段限1次  額外</b>:結算前隨機變爲{无屬/雷/火}殺",
   ["chaos__ssaet_skill"] = "亂戰殺",
   ["#chaos__ssaet_skill"] = "亂戰殺 選攻程內1其它脚色,對予其1傷",
   ["@@card_damage_nature-phase"] = "亂戰殺",
   ["#chaos__ssaet_nature"] = "%arg2 屬性爲 %arg",
 
   ["chaos__szjemh"] = "亂戰閃",
-  [":chaos__szjemh"] = "基本牌  <br /><b>旹機</b>：｢殺｣对你生效前  <br /><b>目幖</b>：此｢殺｣  <br /><b>效果</b>：抵消此｢殺｣效果,迻除伱咒術。 <br /><b>額外</b>：因動-抵消｡殺目幖需爲伱｡每旹機限1次｡",
+  [":chaos__szjemh"] = "行動  <br /><b>旹機</b>：｢殺｣对你生效前  <br /><b>目幖</b>：此｢殺｣  <br /><b>效果</b>：抵消此｢殺｣效果,迻除伱咒術。 <br /><b>額外</b>：因動-抵消｡殺目幖需爲伱｡每旹機限1次｡",
   ["chaos__szjemh_skill"] = "亂戰閃",
   ["#chaos__szjemh_skill"] = "亂戰閃",
 
   -- ["lvoans_tszjens_szjemh"] = "亂戰閃",
-  -- [":lvoans_tszjens_szjemh"] = "基本牌  <br /><b>旹機</b>：殺對伱生效歬  <br /><b>目幖</b>：此殺  <br /><b>效果</b>：抵消此殺。",
+  -- [":lvoans_tszjens_szjemh"] = "行動  <br /><b>旹機</b>：殺對伱生效歬  <br /><b>目幖</b>：此殺  <br /><b>效果</b>：抵消此殺。",
   -- ["lvoans_tszjens_szjemh"] = "亂戰閃 抵消此殺。",
 
   ["jiak"] = "藥",
-  [":jiak"] = "基本牌  <br /><b>旹機</b>：主段執行旹  <br /><b>目幖</b>：已損脚色      <br/><b>目幖數</b>:1  <br /><b>效果</b>：目幖回1,解除咒術。",
+  [":jiak"] = "物資  <br /><b>旹機</b>：主段執行旹  <br /><b>目幖</b>：已損脚色      <br/><b>目幖數</b>:1  <br /><b>效果</b>：目幖回1,解除咒術。",
   ["jiak_skill"] = "藥 目幖回1,解除咒術",
 
-  ["deep"] = "諜",
-  [":deep"] = "基本牌  <br /><b>旹機</b>：主段執行旹/展示旹  <br /><b>目幖</b>：无  <br />  <b>效果</b>：此牌本身无效果,可起動.  <b>額外</b>：當伱手牌中諜被展示,伱弃置之.當諜離開伱手牌區,因花執行效果{♥️火傷/♦️无屬傷/♠️流失/♣️雷傷}。",
-  ["#deep_skill"] = "諜 自暴",
 
 
 
   ["mxevs_svoans_quo_seen"] = "廟算于先",
-  [":mxevs_svoans_quo_seen"] = "錦囊  <br/><b>旹機</b>:主段執行旹  <br/><b>目幖</b>:无限制      <br/><b>目幖數</b>:伱  <br/><b>效果</b>:目幖自3个隨機錦囊名選1,錦囊无視距離不可抵消",
+  [":mxevs_svoans_quo_seen"] = "計謀  <br/><b>旹機</b>:主段執行旹  <br/><b>目幖</b>:无限制      <br/><b>目幖數</b>:伱  <br/><b>效果</b>:目幖自3个隨機計謀名選1,計謀无視距離不可抵消",
   ["mxevs_svoans_quo_seen_skill"] = "廟算于先",
-  ["#mxevs_svoans_quo_seen_skill"] = "廟算于先 對自己起動 自3个隨機錦囊名選1獲得",
+  ["#mxevs_svoans_quo_seen_skill"] = "廟算于先 對自己起動 自3个隨機計謀名選1獲得",
   ["#mxevs_svoans_quo_seen_skill-choose"] = "廟算于先 選擇牌名",
   ["@@mxevs_svoans_quo_seen-turn"] = "廟算于先",
 
@@ -457,8 +457,8 @@ Fk:loadTranslationTable{
   ["#szjep_hzoon_skill"] = "攝䰟 A生爲死B爲死",
 
   ["jje_seec_jjek_sius"] = "迻星易宿",
-  [":jje_seec_jjek_sius"] = "法術  <br /><b>旹機</b>：主段執行旹  <br /><b>目幖</b>：其它脚色  <br /><b>目幖數</b>：1  <br /><b>效果</b>：目幖體力-x,伱+x(x隨機,至少爲1,至多爲max{1,min{伱已損體力值,目幖體力值-1}})",
-  ["#jje_seec_jjek_sius_skill"] = "迻星易宿 選1其它脚色 目幖體力-x,伱+x(x隨機,至少爲1,至多爲max{1,min{伱已損體力值,目幖體力值-1}})",
+  [":jje_seec_jjek_sius"] = "法術  <br /><b>旹機</b>：主段執行旹  <br /><b>目幖</b>：其它脚色  <br /><b>目幖數</b>：1  <br /><b>效果</b>：目幖體力-x,伱+x(x隨機,至少爲1,至多爲max{1,min{伱已損體力數,目幖體力數-1}})",
+  ["#jje_seec_jjek_sius_skill"] = "迻星易宿 選1其它脚色 目幖體力-x,伱+x(x隨機,至少爲1,至多爲max{1,min{伱已損體力數,目幖體力數-1}})",
   ["douc_ssaac_giocx_sjih"] = "同生共死", --靈魂連
   [":douc_ssaac_giocx_sjih"] = "法術  <br/><b>旹機</b>:主段執行旹  <br/><b>目幖</b>:无限制    <br/><b>目幖數</b>:1至多  <br/><b>預起動</b>:全部脚色  <br/><b>效果</b>:一脚色體力變化後,其它脚色執行相同效果",
   ["douc_ssaac_giocx_sjih_skill"] = "同生共死",
@@ -470,9 +470,9 @@ Fk:loadTranslationTable{
   ["#khuo_kujh_dzziuk_zja_skill"] = "驅鬼逐邪 選1至2有咒術脚色 迻除目幖咒術",
 
   ["tsoeojs_ssaac"] = "枯木逢萅",--khoo_mouk_bioc_tszhyin
-  [":tsoeojs_ssaac"] = "法術  <br/><b>旹機</b>:主段執行旹  <br/><b>目幖</b>:无限制  <br /><b>目幖數</b>：1至多  <br /><b>預起動</b>：選擇全部合理目幖  <br/><b>效果</b>:目幖各回復體力至滿,弃x手牌(x爲所回體力值)",
+  [":tsoeojs_ssaac"] = "法術  <br/><b>旹機</b>:主段執行旹  <br/><b>目幖</b>:无限制  <br /><b>目幖數</b>：1至多  <br /><b>預起動</b>：選擇全部合理目幖  <br/><b>效果</b>:目幖各回復體力至滿,弃x手牌(x爲所回體力數)",
   ["tsoeojs_ssaac__skill"] = "枯木逢萅",
-  ["#tsoeojs_ssaac_skill"] = "枯木逢萅 全體各回復體力至滿,弃x手牌(x爲所回體力值)",
+  ["#tsoeojs_ssaac_skill"] = "枯木逢萅 全體各回復體力至滿,弃x手牌(x爲所回體力數)",
   ["#tsoeojs_ssaac-discard"] = "枯木逢萅 弃%arg手牌",
 
   ["tsoeoj_hzvoah"] = "災禍",
@@ -482,9 +482,9 @@ Fk:loadTranslationTable{
   ["#tsoeoj_hzvoah_skill-ask"] = "災禍 請演練紅色牌",
 
   ["bioc_hsioc_hsfas_kjit"] = "逢凶化吉",
-  [":bioc_hsioc_hsfas_kjit"] = "法術  <br /><b>旹機</b>：主段執行旹  <br /><b>目幖</b>：无限制  <br /><b>目幖數</b>：1至多  <br /><b>預起動</b>：選擇全部合理目幖   <br /><b>效果</b>：目幖抽x,x爲其已損體力值。",
+  [":bioc_hsioc_hsfas_kjit"] = "法術  <br /><b>旹機</b>：主段執行旹  <br /><b>目幖</b>：无限制  <br /><b>目幖數</b>：1至多  <br /><b>預起動</b>：選擇全部合理目幖   <br /><b>效果</b>：目幖抽x,x爲其已損體力數。",
   ["bioc_hsioc_hsfas_kjit_skill"] = "逢凶化吉",
-  ["#bioc_hsioc_hsfas_kjit_skill"] = "全脚色抽牌 數量爲其已損體力值",
+  ["#bioc_hsioc_hsfas_kjit_skill"] = "全脚色抽牌 數量爲其已損體力數",
 
 
   ["lioc_zzja_khih_liuk"] = "龍蛇起陸", --
@@ -493,13 +493,13 @@ Fk:loadTranslationTable{
   ["#lioc_zzja_khih_liuk_skill"] = "龍蛇起陸  伱下家執行:其失去1體力,若其未因此死亾,其下家執行", --
 
   ["theen_djis_puanh_phius"] = "天地反覆",
-  [":theen_djis_puanh_phius"] = "法術牌  <br /><b>旹機</b>：主段執行旹  <br /><b>目幖</b>：无  <br /><b>目幖數</b>：0  <br /><b>效果</b>：全體脚色依次執行,若其存𣴠其流失1體力,若其死亾,其復𣴠(若體力上限小于1改爲1)。",
-  ["#theen_djis_puanh_phius_skill"] = "天地反覆 全體脚色依次執行,若其存𣴠其流失1體力,若其死亾,其復𣴠",
+  [":theen_djis_puanh_phius"] = "法術牌  <br /><b>旹機</b>：主段執行旹  <br /><b>目幖</b>：无  <br /><b>目幖數</b>：0  <br /><b>效果</b>：全體脚色依次執行,若其存𣴠其流失1,若其死亾,其復𣴠(若體力上限小于1改爲1)。",
+  ["#theen_djis_puanh_phius_skill"] = "天地反覆 全體脚色依次執行,若其存𣴠其流失1,若其死亾,其復𣴠",
 
   ["lih_doeojs_doav_kiac"] = "李代桃僵",
-  [":lih_doeojs_doav_kiac"] = "法術  <br /><b>旹機</b>：一脚色受傷旹  <br /><b>目幖</b>：无  <br /><b>目幖數</b>：0   <br /><b>效果</b>：起動者流失1體力,防止傷害  <br /><b>額外</b>：因動｡每旹機限1次,全體脚色同旹選擇是否起動",
-  ["#lih_doeojs_doav_kiac_skill"] = "李代桃僵 流失1體力,防止傷害",
-  ["#lih_doeojs_doav_kiac-invoke"] = "李代桃僵 流失1體力,防止 %src 傷害",
+  [":lih_doeojs_doav_kiac"] = "法術  <br /><b>旹機</b>：一脚色受傷旹  <br /><b>目幖</b>：无  <br /><b>目幖數</b>：0   <br /><b>效果</b>：起動者流失1,防止傷害  <br /><b>額外</b>：因動｡每旹機限1次,全體脚色同旹選擇是否起動",
+  ["#lih_doeojs_doav_kiac_skill"] = "李代桃僵 流失1,防止傷害",
+  ["#lih_doeojs_doav_kiac-invoke"] = "李代桃僵 流失1,防止 %src 傷害",
  
   ["hsoo_piuc_hsvoans_quoh"] = "呼風喚雨",
   [":hsoo_piuc_hsvoans_quoh"] = "法術  <br/><b>旹機</b>：主段執行旹    <br /><b>目幖</b>：无限制   <br /><b>目幖數</b>：1     <br /><b>預起動</b>：伱    <br /><b>延旹</b>：將此牌置于目幖伏區,目幖伏段執行旹生效<br/><b>效果</b>：伱獲得1天災牌.",
@@ -517,20 +517,20 @@ Fk:loadTranslationTable{
   [":hqximh_quoh_dzziak"] = "裝僃牌-武器  <br/><b>攻程</b>：无限大  <br /><b>武器技能</b>：主段執行旹.將x張殺轉化爲殺起動發動.傷害基數x,x爲1至3,結算完後弃置此牌。",
 
   ["phaavs"] = "炮",
-  [":phaavs"] = "裝僃牌-武器  <br/><b>攻程</b>：6  <br/><b>武器技能</b>：當伱起動殺致屬性傷後,必發,伱對受傷脚色上下家附加咒術「眩暈」。",
+  [":phaavs"] = "裝僃牌-武器  <br/><b>攻程</b>：12  <br/><b>武器技能</b>：當伱起動殺致屬性傷後,必發,伱對受傷脚色上下家附加咒術「眩暈」。",
 
   ["tshiac"] = "點鋼槍",
   [":tshiac"] = "裝僃牌武器  <br/><b>攻程</b>：3  <br/><b>武器技能</b>：伱起動殺所致傷害視爲流失體力",
   ["#tshiac_skill"] = "點鋼槍",
 
   ["ljen_hzfan_maah"] = "連環馬",
-  [":ljen_hzfan_maah"] = "裝僃牌-防敔馬  <br/><b>技能</b>：伱額定手牌數+2",
+  [":ljen_hzfan_maah"] = "裝僃牌-防敔馬  <br/><b>技能</b>：伱存牌數+2",
   
   ["tsheec_tshouc_maah"] = "靑鬃馬",
   [":tsheec_tshouc_maah"] = "裝僃牌-進攻馬  <br /><b>目幖</b>：有進攻坐騎欄者  <br /><b>目幖數</b>：1     <br /><b>預起動</b>：伱            <br/><b>進攻坐騎</b>：起動結算旹將此牌置于目幖進攻坐騎欄,持續生效    <br/><b>技能</b>：伱至其它脚色距離-2",
 
   ["hsoeojh_tshiu"] = "海鰍",
-  [":hsoeojh_tshiu"] = "裝僃牌-寶物  <br /><b>目幖</b>：有寶物欄者  <br /><b>目幖數</b>：1     <br /><b>預起動</b>：伱   <br/><b>寶物</b>：起動結算旹將此牌置于目幖寶物欄,持續生效  <br/><b>寶物技能</b>：伱不是錦囊合理目幖",
+  [":hsoeojh_tshiu"] = "裝僃牌-寶物  <br /><b>目幖</b>：有寶物欄者  <br /><b>目幖數</b>：1     <br /><b>預起動</b>：伱   <br/><b>寶物</b>：起動結算旹將此牌置于目幖寶物欄,持續生效  <br/><b>寶物技能</b>：伱不是計謀合理目幖",
 
   ["soam_dzzjin_gi"] = "三辰旗",
   [":soam_dzzjin_gi"] = "裝僃牌-寶物  <br /><b>目幖</b>：有寶物欄者  <br /><b>目幖數</b>：1     <br /><b>預起動</b>：伱  <br/><b>寶物技能</b>：伱不越過轉.",
@@ -540,7 +540,7 @@ Fk:loadTranslationTable{
   ["kaap_maah_skill"] = "甲馬",
 
   ["nzuo_biuk"] = "鶴氅",--hzoak_tszhiach
-  [":kaap_maah"] = "裝僃牌-防具  <br /><b>目幖</b>：有防具欄者  <br /><b>目幖數</b>：1     <br /><b>預起動</b>：伱  <br/><b>防具技能</b>：恆續｡伱不是卽旹錦囊合理目幖",
+  [":kaap_maah"] = "裝僃牌-防具  <br /><b>目幖</b>：有防具欄者  <br /><b>目幖數</b>：1     <br /><b>預起動</b>：伱  <br/><b>防具技能</b>：恆續｡伱不是卽旹計謀合理目幖",
   ["kaap_maah_skill"] = "鶴氅",
 }
 return extension

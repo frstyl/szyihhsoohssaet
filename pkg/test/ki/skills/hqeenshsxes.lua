@@ -5,7 +5,7 @@ local hqeenshsxes = fk.CreateSkill({
 
 Fk:loadTranslationTable{
   ["hqeenshsxes"] = "宴戲",
-  [":hqeenshsxes"] = "弃牌階段歬,必發.全體脚色同時選1項肰後逐个執行➀抽1,當輪自守➁弃2手牌,起動虛擬｢酒｣.執行後,伱抽x(x爲選➁數).伱因此技能所抽牌无視額定手牌數",
+  [":hqeenshsxes"] = "伱撤段歬,必發.全體脚色同時選1項肰後逐个執行➀抽1,1輪自守➁弃2手牌,起動虛擬｢酒｣.執行後,伱抽x(x爲選➁數).伱因此技能所抽牌无視存牌數",
 
   ["hqeenshsxes-draw"] = "宴戲：抽1 自守",
   ["hqeenshsxes-discard"] = "宴戲：弃2 起動酒",

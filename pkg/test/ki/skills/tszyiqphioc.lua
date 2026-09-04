@@ -5,7 +5,7 @@ local tszyiqphioc = fk.CreateSkill {
 
 Fk:loadTranslationTable{ --拆解
   ["tszyiqphioc"] = "錐鋒",
-  [":tszyiqphioc"] = "伱起動殺指定目幖後伱可選1項發動.➀令其弃置全部閃,若其无閃,伱弃1➁對其傷害基數+x(x=下整(其此刻手牌數/2))",
+  [":tszyiqphioc"] = "伱起動殺指定目幖後伱可選1項發動.➀弃置其x牌➁對其傷害基數+y(x=其體力值,y=下整(其此刻手牌數/2))",
 
   ["#tszyiqphioc-invoke"] = "錐鋒 令 %src 執行1項",
   ["tszyiqphioc-discard"] = "展示全部牌 弃置全部閃",
@@ -16,12 +16,12 @@ Fk:loadTranslationTable{ --拆解
   ["$tszyiqphioc2"] = "",
 }
 
-tszyiqphioc:addEffect(fk.TargetSpecified, {  -- --PreCardEffect
+tszyiqphioc:addEffect(fk.TargetConfirmed, {  -- --PreCardEffect
   anim_type = "offensive",
   prompt = "#tszyiqphioc",
   can_trigger = function(self, event, target, player, data)
 		return  data.from==player and player:hasSkill(tszyiqphioc.name)
-    and (data.card.trueName=="ssaet" or data.card.trueName=="duel")
+    and (data.card.trueName=="ssaet" or data.card.trueName=="tous_tsiacs")
     -- and data:isOnlyTarget(data.to)
 	end,
 	on_cost = function(self, event, target, player, data)
@@ -40,23 +40,15 @@ tszyiqphioc:addEffect(fk.TargetSpecified, {  -- --PreCardEffect
     local room=player.room
     local choice=event:getCostData(self).choice
     if choice=="tszyiqphioc-discard" then
-      data.to:showCards(data.to:getCardIds("he"))
-      local cards=table.filter(data.to:getCardIds("he"),function(id)
-      return Fk:getCardById(id).trueName=="szjemh"
-      end)
-      if #cards>0 then
-        room:throwCard(cards,tszyiqphioc.name,data.to,data.to)
-      else
-        room:askToDiscard(player,{
-        min_num = 1,
-        max_num = 1,
-        include_equip = true,
-        skill_name = tszyiqphioc.name,
-        cancelable = false,
-        prompt = "#tszyiqphioc-discard",
-        skip = false
-      })
-      end
+		local cards=room:askToChooseCards(player,{
+		target = data.to,
+		min=data.hp,
+		max=data.hp,
+		cancelable=false,
+		flag="he",
+		skill_name=tszyiqphioc.name,
+		})
+		room:throwCards(cards, tszyiqphioc.name, data.to, player)
     else
 
       data.additionalDamage=(data.additionalDamage or 0) +data.to:getHandCardNum()//2

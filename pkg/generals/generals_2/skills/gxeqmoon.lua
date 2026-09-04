@@ -74,7 +74,7 @@ gxeqmoon:addEffect(fk.BeforeTurnStart,{  --未始
 		if #cards==0 then return end
 		--2
 
-		S.playCard(player,cards,gxeqmoon.name)
+		S.playCard(cards,gxeqmoon.name,player)
 		--3
 		if to.dead then return  end
 

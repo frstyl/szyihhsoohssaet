@@ -43,7 +43,7 @@ loonsszjer:addEffect("active", {
   -- end,
   on_use = function(self, room, effect)
     local player=effect.from
-    S.playCard(effect.from,effect.cards,loonsszjer.name)
+    S.playCard(effect.cards,loonsszjer.name,effect.from)
     if player:isAlive() and #effect.cards > 0 then
       player:drawCards(#effect.cards, loonsszjer.name)  --𢧵胡??
     end

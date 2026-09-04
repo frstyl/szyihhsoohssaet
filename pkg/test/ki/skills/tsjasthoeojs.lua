@@ -4,7 +4,7 @@ local tsjasthoeojs = fk.CreateSkill {
 }
 Fk:loadTranslationTable{
   ["tsjasthoeojs"] = "借貸",
-  [":tsjasthoeojs"] = "伱可起動演練｢殺｣｢閃｣｢肉｣｢酒｣旹,伱可選擇一其它腳色A(手牌數大于1)發動,伱取得其2手牌,記錄A｡伱補段終,對每个記錄,若記錄腳色存活,伱選擇交与其2牌或受其1傷不可對其發動取技能｡冣後淸除記錄",
+  [":tsjasthoeojs"] = "伱可起動或演練｢殺｣｢閃｣｢肉｣｢酒｣旹,伱可選擇一其它腳色A(手牌數大于1)發動,伱取得其2手牌,記錄A｡伱補段終,對每个記錄,若記錄腳色存活,伱選擇交与其2牌或受其1傷不可對其發動取技能｡冣後淸除記錄",
 
   ["#tsjasthoeojs-get"] = "借貸 取得 %dest 2手牌",
   ["#tsjasthoeojs-give"] = "借貸 交与 %dest 2手牌",

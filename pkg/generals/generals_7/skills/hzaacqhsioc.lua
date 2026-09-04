@@ -5,7 +5,7 @@ local hzaacqhsioc = fk.CreateSkill({
 
 Fk:loadTranslationTable{
   ["hzaacqhsioc"] = "行凶",
-  [":hzaacqhsioc"] = "➀恆續伱至體力值不大于1者距離爲1.➁每段限1.其它脚色可于其主旹預將2黑手牌交予伱,選擇伱攻程內1脚色A發動發動.視爲伱對A起動埋伏。",
+  [":hzaacqhsioc"] = "➀恆續,伱至體力值不大于1者距離爲1.➁每段限1.其它脚色可于其主旹預將2黑手牌交予伱,選擇伱攻程內1脚色A發動發動.視爲伱對A起動埋伏。",
 
   -- ["hzaacqhsioc_active&"] = "買凶",
   -- [":hzaacqhsioc_active&"] = "段限1.交与行凶脚色2黑手牌,其視爲起動埋伏",

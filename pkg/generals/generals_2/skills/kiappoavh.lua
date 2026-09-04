@@ -5,9 +5,9 @@ local kiappoavh = fk.CreateSkill{
 
 Fk:loadTranslationTable{
 ["kiappoavh"] = "劫寶",
-[":kiappoavh"] = "其它脚色不因額定抽牌抽牌前,若抽牌數大于2,伱可發動.改爲伱執行",
+[":kiappoavh"] = "其它脚色額外抽牌前,若其手牌全場冣多或抽牌數大于2,伱可發動.改爲伱執行,中止元旹機",
 
-["#kiappoavh-invoke"] = "劫寶 %src 將抽%arg牌,是否劫取",
+["#kiappoavh-invoke"] = "劫寶 %src 將抽%arg 是否劫取",
 }
 
 -- local S = require "packages/szyihhsoohssaet/szyih_guos" 
@@ -15,7 +15,16 @@ Fk:loadTranslationTable{
 kiappoavh:addEffect(fk.BeforeDrawCard, {
   anim_type = "drawcard",
   can_trigger = function (self, event, target, player, data)
-    return  player:hasSkill(kiappoavh.name) and data.who~=player and data.num>2 and data.skillName~="phase_draw"
+    if  player:hasSkill(kiappoavh.name)
+     and data.who~=player 
+      and data.skillName~="phase_draw"
+      then
+     if data.num>2 then return true end
+     local n =data.who:getHandcardNum()
+     return table.every(player.room:getOtherPlayers(data.who), function(p) return
+      p:getHandcardNum()<n
+     end)
+    end
   end,
   on_cost= function (self, event, target, player, data)
     return player.room:askToSkillInvoke(player, {

@@ -4,7 +4,7 @@ local siuqmuoh = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["siuqmuoh"] = "修武",
-  [":siuqmuoh"] = "主旹无限次,伱選至1至多牌(｢殺｣或裝僃牌或物資牌)發動.緟鑄之｡以此所獲牌當轉无視存牌數",
+  [":siuqmuoh"] = "主旹无限次,伱選至1至多牌(｢殺｣或裝僃牌或物資牌)發動.緟鑄之｡以此所獲牌1轉无視存牌數",
 
   ["#siuqmuoh"] = "修武：緟鑄殺",
   ["@@siuqmuoh-inhand-turn"] = "修武",
@@ -28,7 +28,7 @@ siuqmuoh:addEffect("active", {
     -- (n==1 and c.trueName ~= "szjemh")
   end,
   on_use = function(self, room, effect)
-    room:addSkill("exclude")
+    -- room:addSkill("exclude")
     room:recastCard(effect.cards, effect.from, siuqmuoh.name,{"@@siuqmuoh-inhand-turn",1 , "exclude-inhand-turn",1})
   end,
 })

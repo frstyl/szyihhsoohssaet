@@ -3,7 +3,7 @@ local punskeek = fk.CreateSkill {
 }
 Fk:loadTranslationTable{
   ["punskeek"] = "奮毄",
-  [":punskeek"] = "伱可將1牌轉化爲殺起動發動.若目幖脚色體力值不小于伱體力值,其不可起動閃響應此殺",
+  [":punskeek"] = "伱可將1牌轉化爲殺起動發動.若目幖脚色體力值不小于伱體力值,其不可起動｢閃｣響應此｢殺｣",
 
   ["$punskeek1"] = "天下兴亡，侠客当为之己任。",
   ["$punskeek2"] = "隐居江湖之远，敢争天下之先！",

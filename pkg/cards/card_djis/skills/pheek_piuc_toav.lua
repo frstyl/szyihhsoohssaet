@@ -6,7 +6,7 @@ local skill = fk.CreateSkill {
 
 local S = require "packages/szyihhsoohssaet/szyih_guos" 
 
-skill:addEffect(fk.DamageCaused, {
+skill:addEffect(fk.DamageInflicted, {
   can_trigger = function(self, event, target, player, data)
     return data.from == player and player:hasSkill(skill.name) and
       data.to:isKongcheng() and data.card and data.card.trueName == "ssaet" and data.by_user

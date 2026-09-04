@@ -3,7 +3,7 @@ local hzoonqtsiuh_active = fk.CreateSkill {
 }
 Fk:loadTranslationTable{
   ["hzoonqtsiuh_active"] = "酒",
-  [":hzoonqtsiuh_active"] = "伱可起動酒,伱可發動.當段內伱所起動下1酒改變目幖",
+  [":hzoonqtsiuh_active"] = "伱可起動酒,伱可發動.1段內伱所起動下1酒改變目幖",
 
   ["#hzoonqtsiuh_active"] = "酒 改變伱所起動下1酒目幖",
   ["@@hzoonqtsiuh_active-phase"] = "酒",

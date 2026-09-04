@@ -13,7 +13,7 @@ Fk:loadTranslationTable{ --拆解
   ["$kaavqprac2"] = "",
 }
 
-kaavqprac:addEffect(fk.TargetSpecified, {  -- --PreCardEffect
+kaavqprac:addEffect(fk.TargetConfirmed, {  -- --PreCardEffect
   anim_type = "offensive",
   prompt = "#kaavqprac",
 	can_trigger = function(self, event, target, player, data)

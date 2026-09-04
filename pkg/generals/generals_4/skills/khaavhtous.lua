@@ -4,7 +4,7 @@ local khaavhtous = fk.CreateSkill({
 
 Fk:loadTranslationTable{
   ["khaavhtous"] = "巧鬥",
-  [":khaavhtous"] = "主旹,伱可預与1其它脚色A賭鬥發動.若伱贏,伱可迻動1牢,若未贏A予伱1傷",
+  [":khaavhtous"] = "主旹,伱可与1其它脚色A賭鬥發動.若伱贏,伱可迻動1牢,若未贏A予伱1傷",
 
   ["#khaavhtous"] = "巧鬥：1其它脚色A賭鬥發動.若伱贏伱迻動1牢,若未贏A予伱1傷",
   ["#khaavhtous-choose"] = "巧鬥：迻動1牢",
@@ -17,7 +17,8 @@ khaavhtous:addEffect("active", {
   anim_type = "offensive",
   prompt = "#khaavhtous",
   max_phase_use_time = 1,
-  card_num = 1,
+  min_card_num = 0,
+  max_card_num = 1,
   target_num = 1,
   -- can_use = function(self, player)
   --   return 
@@ -34,7 +35,7 @@ khaavhtous:addEffect("active", {
   on_use = function(self, room, effect)
     local player = effect.from
     local target = effect.tos[1]
-    local pindian = player:pindian({target}, khaavhtous.name,Fk:getCardById(effect.cards[1]))
+    local pindian = player:pindian({target}, khaavhtous.name,effect.cards[1] and Fk:getCardById(effect.cards[1]) or nil)
     if player.dead or target.dead then return end
     if pindian.results[target].winner == player then
       local targets = table.filter(room.alive_players, function (p)

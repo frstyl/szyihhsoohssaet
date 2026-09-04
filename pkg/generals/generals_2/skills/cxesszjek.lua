@@ -12,7 +12,7 @@ Fk:loadTranslationTable{
   ["$cxesszjek1"] = "事不宐遲,兄弟快走",
 }
 
-cxesszjek:addEffect(fk.TargetSpecifying, {
+cxesszjek:addEffect(fk.TargetConfirming, {
   anim_type = "offensive",
   can_trigger = function(self, event, target, player, data)
     return data.from == player and player:hasSkill(cxesszjek.name) 

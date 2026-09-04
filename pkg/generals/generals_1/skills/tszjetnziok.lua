@@ -3,7 +3,7 @@ local tszjetnziok = fk.CreateSkill {
 }
 Fk:loadTranslationTable{
   ["tszjetnziok"] = "折辱",
-  [":tszjetnziok"] = "其它脚色A轉始旹,若其已損伱可選1項發動(半損可選2項).{➀/➁}打出1{黑/紅}牌,至A下轉始,其體力變化{翻倍/反轉}",
+  [":tszjetnziok"] = "其它脚色A轉始旹,若其已損伱可選1項發動(半損可選2項).}打出1{➀黑/➁紅}牌,至A下轉始,其體力變化{翻倍/反轉}",
 
   ["#tszjetnziok_invoke"] = "折辱： 打出1{黑/紅}牌令 %src 體力變化{翻倍/反轉}",
   ["#tszjetnziok_active"] = "折辱： 黑翻倍 紅反轉",
@@ -76,13 +76,13 @@ tszjetnziok:addEffect(fk.TurnStart, {
 
     if player.dead then return end
     if black  then
-	    S.playCard(player,{black.id},tszjetnziok.name)
+	    S.playCard({black.id},tszjetnziok.name,player)
       room:setPlayerMark(effect.tos[1],"@@tszjetnziok_double",1)
     end
 
     if player.dead then return end
     if red then
-	    S.playCard(player,{red.id},tszjetnziok.name)
+	    S.playCard({red.id},tszjetnziok.name,player)
 
       room:setPlayerMark(effect.tos[1],"@@tszjetnziok_reverse",1)
     end

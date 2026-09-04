@@ -5,7 +5,7 @@ local dzjemqhqveen = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["dzjemqhqveen"] = "潛淵",
-  [":dzjemqhqveen"] = "伱抽牌改爲自牌堆底。牌堆底x牌對伱可見且伱可如手牌起動演練之(x爲伱已損體力值至少爲1)",
+  [":dzjemqhqveen"] = "伱抽牌改爲自牌堆底。牌堆底x牌對伱可見且伱可如手牌起動或演練之(x爲伱已損體力數至少爲1)",
 
   ["$dzjemqhqveen_xuyou1"] = "哼！目光所及，短寸之间。",
   ["$dzjemqhqveen_xuyou2"] = "狭目之见，只能窥底。",

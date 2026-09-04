@@ -4,7 +4,7 @@ local jiacqcian = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["jiacqcian"] = "宣言",
-  [":jiacqcian"] = "其它脚色轉始旹,伱可發動.伱𠃊祕選擇一非裝僃牌名.當轉脚色當轉首次聲明起動非裝僃牌旹,若牌名与伱所選相同,伱可選1項➀此起動无效➁當轉脚色技能技能于當轉內失效",
+  [":jiacqcian"] = "其它脚色轉始旹,伱可發動.伱𠃊祕選擇一非裝僃牌名.1轉脚色1轉首次聲明起動非裝僃牌旹,若牌名与伱所選相同,伱可選1項➀此起動无效➁1轉脚色技能技能于1轉內失效",
 
   ["#jiacqcian-invoke"] = "宣言： %dest 轉始 是否發動",
   ["#jiacqcian-choice"] = "宣言： 選擇",

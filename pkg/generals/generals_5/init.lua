@@ -109,7 +109,7 @@ Fk:loadTranslationTable{
 ["~kiams__boojqsyen"] = "盡是暗箱操作",
 }
 
-General:new(extension, "maacskhoac", "pujh", 4):addSkills{"dzoavhzzyen","moucqtthioc"}
+General:new(extension, "maacskhoac", "pujh", 4):addSkills{"ttiucqliu"}--"dzoavhzzyen","moucqtthioc"
 Fk:loadTranslationTable{
 ["maacskhoac"] = "孟康",
 ["#maacskhoac"] = "玉幡竿",
@@ -176,6 +176,17 @@ Fk:loadTranslationTable{
 --林冲 小張飛
 ---祝氏三
 
+
+General:new(extension, "tsziukpru", "tsiacs", 4):addSkills {"ciqprac","soansdzoeojs" }
+Fk:loadTranslationTable{
+["tsziukpru"] = "祝彪",
+["#tsziukpru"] = "祝氏三",
+["designer:tsziukpru"] = "設計",
+["cv:tsziukpru"] = "配音",
+["illustrator:tsziukpru"] = "畫師",
+["~tsziukpru"] = "吾寍死絕不降",
+}
+
 General:new(extension, "luanqdeecqciok", "tsiacs", 5):addSkills {"jiacqmuoh" } -- punsmuoh
 Fk:loadTranslationTable{
 ["luanqdeecqciok"] = "欒廷玉",
@@ -185,8 +196,18 @@ Fk:loadTranslationTable{
 ["illustrator:luanqdeecqciok"] = "畫師",
 ["~luanqdeecqciok"] = "吾寍死絕不降",
 }
+
 --飛刀李應
-General:new(extension, "lihhqics", "tsiacs", 4):addSkills {"szuoqquns" }
+General:new(extension, "toav__lihhqics", "tsiacs", 4):addSkills {"pujqtoav" }
+Fk:loadTranslationTable{
+["toav__lihhqics"] = "李應",
+["#toav__lihhqics"] = "撲天雕",
+["designer:toav__lihhqics"] = "設計",
+["cv:toav__lihhqics"] = "配音",
+["illustrator:toav__lihhqics"] = "畫師",
+["~toav__lihhqics"] = "援盡糧絕已何取勝",
+}
+General:new(extension, "lihhqics", "pujh", 4):addSkills {"szuoqquns" }
 Fk:loadTranslationTable{
 ["lihhqics"] = "李應",
 ["#lihhqics"] = "撲天雕",
@@ -196,7 +217,7 @@ Fk:loadTranslationTable{
 ["~lihhqics"] = "援盡糧絕已何取勝",
 }
 
-General:new(extension, "doohhsic", "tsiacs", 4):addSkills {"kujhmjens","gwisliac" }
+General:new(extension, "doohhsic", "tsiacs", 3):addSkills {"kujhmjens","gwisliac" }
 Fk:loadTranslationTable{
 ["doohhsic"] = "杜興",
 ["#doohhsic"] = "鬼臉兒",

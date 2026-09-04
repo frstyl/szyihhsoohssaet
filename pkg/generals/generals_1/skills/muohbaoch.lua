@@ -4,7 +4,7 @@ local muohbaoch = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["muohbaoch"] = "舞棒",
-  [":muohbaoch"] = "武器牌A不經由伱進入弃牌堆後(多牌則每牌1次),伱可發動.伱取得A",--(多牌止發動1次,選擇其中多張)  --不屬于伱且不爲起動打出
+  [":muohbaoch"] = "武器牌不不屬于伱者伱進入弃牌堆後(多牌多次發動),伱可發動.伱取得其1",--(多牌止發動1次,選擇其中多張)  --不屬于伱且不爲起動打出
 
   ["#muohbaoch-choose"] = "舞棒：選牌",
   ["get_all"] = "全部取得",
@@ -26,21 +26,26 @@ muohbaoch:addEffect(fk.AfterCardsMove, {
 
       for _, move in ipairs(data) do
         if move.toArea == Card.DiscardPile then
-          if  move.moveReason~=fk.ReasonUse and move.moveReason~=fk.ReasonResponse then  --move.moveReason == fk.ReasonDiscard and
             for _, info in ipairs(move.moveInfo) do
-              if move.from==nil or move.from ~= player  or (info.fromArea ~= Card.PlayerHand and info.fromArea ~= Card.PlayerEquip) then
+              if not ( move.from == player  and (info.fromArea == Card.PlayerHand or info.fromArea == Card.PlayerEquip)) then
                 check(info.cardId)
               end
             end
-          else  --因起動打出自處理區進入弃牌堆
-            local e= player.room.logic:getCurrentEvent().parent
-            if not (e and (e.event == GameEvent.UseCard or e.event == GameEvent.RespondCard) and e.data and e.data.from==player) then
-              for _, info in ipairs(move.moveInfo) do
-                check(info.cardId)
-              end
-            end
+          -- if  move.moveReason~=fk.ReasonUse and move.moveReason~=fk.ReasonResponse then  --move.moveReason == fk.ReasonDiscard and
+          --   for _, info in ipairs(move.moveInfo) do
+          --     if move.from==nil or move.from ~= player  or (info.fromArea ~= Card.PlayerHand and info.fromArea ~= Card.PlayerEquip) then
+          --       check(info.cardId)
+          --     end
+          --   end
+          -- else  --因起動打出自處理區進入弃牌堆
+          --   local e= player.room.logic:getCurrentEvent().parent
+          --   if not (e and (e.event == GameEvent.UseCard or e.event == GameEvent.RespondCard) and e.data and e.data.from==player) then
+          --     for _, info in ipairs(move.moveInfo) do
+          --       check(info.cardId)
+          --     end
+          --   end
 
-          end
+          -- end
         end
       end
 

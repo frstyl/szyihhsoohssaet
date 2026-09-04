@@ -50,7 +50,7 @@ tshiukkiuk:addEffect(fk.DamageInflicted, {
         -- expand_pile = ids,
     })
     if #cards > 0 and #tos>0 then
-      S.playCard(player,cards,tshiukkiuk.name)
+      S.playCard(cards,tshiukkiuk.name,player)
       if not tos[1].dead then
         data.to=tos[1]
         target = tos[1]

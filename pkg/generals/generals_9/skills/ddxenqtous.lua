@@ -75,7 +75,7 @@ ddxenqtous:addEffect("targetmod", {
 
 
 -- CardUseFinished Damage
-ddxenqtous:addEffect(fk.Damage, { --DamageCaused
+ddxenqtous:addEffect(fk.Damaged, { --DamageCaused
   is_delay_effect = true,
   can_trigger = function(self, event, target, player, data)
     return 
@@ -114,7 +114,7 @@ ddxenqtous:addEffect(fk.Damage, { --DamageCaused
   end,
 })
 
-ddxenqtous:addEffect(fk.DamageCaused, { --砸自己
+ddxenqtous:addEffect(fk.DamageInflicted, { --砸自己
   is_delay_effect = true,
   can_refresh= function(self, event, target, player, data)
     return player.seat==1 and data.from and data.from:getMark("@ddxenqtous")>0

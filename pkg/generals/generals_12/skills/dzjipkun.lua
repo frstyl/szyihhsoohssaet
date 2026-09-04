@@ -8,6 +8,10 @@ Fk:loadTranslationTable{
   [":dzjipkun"] = "伱預段始旹/伱受傷後,,伱可發動.伱抽2,將1手牌置于將牌上,稱爲軍。伱額定抽牌旹,伱可減1抽牌數發動,伱取得全部軍,1轉內:所獲軍視爲殺,伱起動殺越過次數限制",--白板--无腦改爲受傷發
 
   ["dzjipkun-kun"] = "軍",
+  ["@@dzjipkun"] = "軍",
+  ["@@dzjipkun-turn"] = "亼軍",
+  ["#dzjipkun-ask"] = "亼軍 選擇1牌置爲 軍",
+  ["#dzjipkun-draw"] = "亼軍 少抽1牌 獲得全部 軍",
 
   ["$dzjipkun1"] = "資之㴱則取之左逢其源",
 }
@@ -37,7 +41,8 @@ dzjipkun:addEffect(fk.EventPhaseStart, {
   on_use = spec.on_use
 })
 
-dzjipkun:addEffect(fk.Damage, {
+
+dzjipkun:addEffect(fk.Damaged, {
   anim_type = "drawcard",
   can_trigger = function(self, event, target, player, data)
     return data.to == player and player:hasSkill(dzjipkun.name)
@@ -51,6 +56,9 @@ dzjipkun:addEffect(fk.DrawNCards, {
     return target == player and player:hasSkill(dzjipkun.name) and player.phase == Player.Draw
     and  #player:getPile("dzjipkun-kun") > 0
     and data.n>0
+  end,
+  on_use = function(self, event, target, player, data)
+    return player.room:askToSkillInvoke(player,{skill_name=dzjipkun.name,prompt="#dzjipkun-draw"})
   end,
   on_use = function(self, event, target, player, data)
     local room=player.room

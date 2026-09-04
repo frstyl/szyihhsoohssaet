@@ -7,7 +7,7 @@ Fk:loadTranslationTable{
   ["#thoucqliak-discard"] = "熵增 ",
 
   ["sziacqtsoeoc_liak"] = "程",
-  ["damage"] = "致傷 ",
+  -- ["damage"] = "致傷 ",
 }
 
 local sziacqtsoeoc = fk.CreateSkill{

@@ -4,10 +4,10 @@ local gracqgi = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["gracqgi"] = "擎旗",
-  [":gracqgi"] = "游戲始旹,伱可發動,將<a href=':gracqgi_gi'>杏黄旗</a>置入伱裝僃區｡伱轉始旹，若伱裝僃區无杏黄旗,伱可發動,伱流失1體力,將旗置入伱裝僃區",
+  [":gracqgi"] = "游戲始旹,伱可發動,將<a href=':gracqgi_gi'>杏黄旗</a>置入伱裝僃區｡伱轉始旹，若伱裝僃區无杏黄旗,伱可發動,伱流失1,將旗置入伱裝僃區",
 
   ["#gracqgi-invoke"] = "擎旗：裝僃杏黄旗",
-  ["#gracqgi-invoke-turun"] = "擎旗：流失1體力 裝僃杏黄旗",
+  ["#gracqgi-invoke-turun"] = "擎旗：流失1 裝僃杏黄旗",
 
   ["$gracqgi1"] = "帥旗卽軍心",--大旗在此軍心不亂
   ["$gracqgi2"] = "大其飄揚軍威雄壯",

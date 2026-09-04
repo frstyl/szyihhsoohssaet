@@ -5,7 +5,7 @@ local ssaacqmaach = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["ssaacqmaach"] = "生猛",
-  [":ssaacqmaach"] = "伱手牌數或體力值變化後,若其相等,伱可選1項發動.➀自攻程含有伱其它脚色選1至多个,伱對其起動虛擬｢猛虎下山｣➁伱抽1➂執行➀➁,此技能當轉失效",
+  [":ssaacqmaach"] = "伱手牌數或體力數變化後,若二者相等,伱可選1項發動.➀自攻程含有伱其它脚色選1至多个,伱對其起動虛擬｢猛虎下山｣➁伱抽1➂執行➀➁,此技能失效x轉(x爲執行➂次數)",
 
   ["#ssaacqmaach-choose"] = "生猛 選擇目幖",
   ["ssaacqmaach-use"] = "生猛 視爲起動猛虎下山",
@@ -52,10 +52,14 @@ local spec ={
     })
     if yes and dat and dat.interaction~="Cancel" then
       event:setCostData(self,{choice=dat.interaction, tos= dat.targets})
+      if event:getCostData(self).choice=="both" then
+        player.room:addPlayerMark(player,"ssaacqmaach_both",1)
+      end
       return true
     end
   end,
   on_use = function(self, event, target, player, data)
+    
     if event:getCostData(self).choice~="draw1" then --死不抽牌 但可用牌
       player.room:useVirtualCard("maach_hsooh_hzaah_ssaen", nil, player,event:getCostData(self).tos, ssaacqmaach.name, true)
     end
@@ -63,16 +67,20 @@ local spec ={
     if event:getCostData(self).choice~="ssaacqmaach-use" then
       player:drawCards(1,ssaacqmaach.name)
     end
+
     if event:getCostData(self).choice=="both" then
-      S.invalidateSkill(player,ssaacqmaach.name,"-turn")
+      player.room:invalidateSkill(player,ssaacqmaach.name)
+      player.room:setPlayerMark(player,"ssaacqmaach_invalidateSkill_turns", math.max(player:getPlayerMark("ssaacqmaach_both"), player:getPlayerMark("ssaacqmaach_invalidateSkill_turns"))) 
+	  -- player.room:loseHp(player,1,ssaacqmaach.name,player)
     end
+
   end,
 }
 
 ssaacqmaach:addEffect(fk.AfterCardsMove, {
   anim_type = "drawcard",
   can_trigger = function(self, event, target, player, data)
-    if not player:hasSkill(ssaacqmaach.name) or player:getHandcardNum()~=player.hp then return false end
+    if not player:hasSkill(ssaacqmaach.name) or player:getHandcardNum()~=math.max(0,player.hp) then return false end
     for _, move in ipairs(data) do
       if move.to  and  move.to ==player and move.toArea == Player.Hand then  --防止?
         return true
@@ -94,10 +102,24 @@ ssaacqmaach:addEffect(fk.HpChanged, {
   anim_type = "drawcard",
   can_trigger = function(self, event, target, player, data)
     return data.who==player and data.num~=0 and not data.prevented 
-    and player:hasSkill(ssaacqmaach.name) and player:getHandcardNum()==player.hp
+    and player:hasSkill(ssaacqmaach.name) and player:getHandcardNum()==math.max(0,player.hp)
+    and not(player.hp<=0 and player.hp-data.num<=0) 
   end,
   on_cost=spec.on_cost,
   on_use=spec.on_use,
+})
+
+ssaacqmaach:addEffect(fk.TurnEnd, {
+  anim_type = "drawcard",
+  can_refresh = function(self, event, target, player, data)
+    return player:getMark("ssaacqmaach_invalidateSkill_turns")>0
+  end,
+  on_refresh  = function(self, event, target, player, data)
+    player.room:removePlayerMark(player,"ssaacqmaach_invalidateSkill_turns",1)
+    if player:getMark("ssaacqmaach_invalidateSkill_turns")==0 then
+    player.room:validateSkill(player,ssaacqmaach.name)
+    end
+  end,
 })
 
 return ssaacqmaach

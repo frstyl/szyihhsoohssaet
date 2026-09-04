@@ -31,9 +31,9 @@ biuhkiams:addEffect("active", {
     if self.interaction.data=="suit" then
       pattern =".|.|"..card:getSuitString().."|.|.|weapon"
     elseif self.interaction.data=="dzis"  then
-      local n =Fk:translate(card.trueName, "zh_CN"):len()
-      t=table.filter(Fk:getAllCardNames("e",true), function(trueName)
-        return Fk:translate(trueName, "zh_CN"):len()==n and Fk:cloneCard(trueName).sub_type==Card.SubtypeWeapon
+      local n = S.getCardNameLength(card)
+      t=table.filter(Fk:getAllCardNames("e",true), function(trueName) 
+        return #trueName==n and Fk:cloneCard(trueName).sub_type==Card.SubtypeWeapon
       end)
       pattern =table.concat(t,",")
     else 

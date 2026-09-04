@@ -25,7 +25,7 @@ doavsmaah:addEffect("active", {
     end) >0
   end,
   on_use = function(self, room, effect)
-    S.playCard(effect.from,effect.cards,doavsmaah.name)
+    S.playCard(effect.cards,doavsmaah.name,effect.from)
     if effect.from.dead then return end
     local player =effect.from
     local target=effect.tos[1]

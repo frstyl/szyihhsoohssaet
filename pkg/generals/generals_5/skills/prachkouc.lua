@@ -1,6 +1,6 @@
 Fk:loadTranslationTable{
   ["prachkouc"] = "秉公",
-  [":prachkouc"] = "伱預段始旹,伱選擇1x>0脚色發動,其將x手牌交与除其外一脚色,若x>2,伱可令其回1(x=該脚色手牌數-其體力值)",
+  [":prachkouc"] = "伱預段始旹,伱選擇1x>0脚色發動,其將x手牌交与除其外一脚色,若x>2,伱可令其回1(x=該脚色手牌數-其體力數)",
 
   ["#prachkouc-choose"] = "秉公 選擇發動目幖",
   ["#prachkouc-give-choose"] = "秉公 選擇 %arg 牌交与1其它脚色",
@@ -23,7 +23,7 @@ prachkouc:addEffect(fk.EventPhaseStart, {
     local room=player.room
     local to = room:askToChoosePlayers(player, {
       targets = table.filter(room.alive_players, function(p)
-        return #p:getCardIds("h")>p.hp
+        return #p:getCardIds("h")> math.max(0,p.hp)
       end),
       min_num = 1,
       max_num = 1,

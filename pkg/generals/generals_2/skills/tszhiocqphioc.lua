@@ -4,13 +4,14 @@ local tszhiocqphioc = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["tszhiocqphioc"] = "䡴鋒",
-  [":tszhiocqphioc"] = "伱主段始旹,伱可預弃x牌(至少1,至多爲伱已損體力值,點數等差)發動.伱抽x,此轉伱至其它脚色距離-x",
+  [":tszhiocqphioc"] = "伱主段始旹,伱可預打出x牌(至少1,至多爲伱已損體力數,點數等差)發動.伱抽x,1轉內伱至其它脚色距離-x",
 
-  ["#tszhiocqphioc-invoke"] = "䡴鋒  弃牌 至多%arg",
+  ["#tszhiocqphioc-invoke"] = "䡴鋒  打出牌 至多%arg",
   ["tszhiocqphioc-turn"] = "䡴鋒",
 
 }
 
+local S = require "packages/szyihhsoohssaet/szyih_guos"
 
 tszhiocqphioc:addEffect(fk.EventPhaseStart, {
   anim_type = "drawcard",
@@ -33,7 +34,8 @@ tszhiocqphioc:addEffect(fk.EventPhaseStart, {
   end,
   on_use = function(self, event, target, player, data)
     local n =#event:getCostData(self).cards
-    player.room:throwCard(event:getCostData(self).cards, tszhiocqphioc.name, player, player)
+	S.playCard( event:getCostData(self).cards, tszhiocqphioc.name,player)
+    -- player.room:throwCard(event:getCostData(self).cards, tszhiocqphioc.name, player, player)
     player:drawCards(n, tszhiocqphioc.name)
     player.room:setPlayerMark(player,"tszhiocqphioc-turn",n)
 

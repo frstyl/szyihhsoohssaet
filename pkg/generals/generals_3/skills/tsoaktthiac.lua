@@ -4,9 +4,9 @@ local tsoaktthiac = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["tsoaktthiac"] = "作倀",
-  [":tsoaktthiac"] = "主旹,選擇1其他脚色A(須其手牌數或裝僃數爲全場至多)發動,A抽1,當轉內,伱下次致傷旹必發,傷害值+1,若A滿足2項,伱抽1",
+  [":tsoaktthiac"] = "主旹,選擇1其它脚色A(須其手牌數或裝僃數爲全場至多)發動,A抽1,1轉內,伱下次致傷旹必發,傷害值+1,若A滿足2項,伱抽1",
 
-  ["#tsoaktthiac"] = "作倀 選擇",
+  ["#tsoaktthiac-invoke"] = "作倀 選擇",
 
   ["@@tsoaktthiac-turn"] = "作倀",
   -- ["$tsoaktthiac1"] = "汝當修整,換其出戰",
@@ -18,7 +18,7 @@ local S = require "packages/szyihhsoohssaet/szyih_guos"
 tsoaktthiac:addEffect("active", {
   anim_type = "control",
   target_num = 1,
-  prompt = "#tsoaktthiac",
+  prompt = "#tsoaktthiac-invoke",
   can_use = function(self, player)
     return player:usedSkillTimes(tsoaktthiac.name, Player.HistoryPhase) == 0
   end,
@@ -34,36 +34,49 @@ tsoaktthiac:addEffect("active", {
         end)
     )
   end,
+  on_cost =function(self, player, data,extra_data)
+    local to = data.tos[1]
+    local n = to:getHandcardNum()
+    local m = #to:getCardIds("e")
+    for _, p in ipairs(player.room:getOtherPlayers(to)) do
+        if p:getHandcardNum()>n 
+        or #p:getCardIds("e")>m 
+      then
+        return
+      end
+    end
+    data.double=true
+  end,
   on_use = function(self, room, effect)  --皆滿足?
       effect.from:drawCards(1,tsoaktthiac.name)
       room:setPlayerMark(effect.from,"@@tsoaktthiac-turn",1)
-      if not effect.from.dead and effect.from:hasMark("tsoaktthiac-phase") then
+      if not effect.from.dead and effect.double then
           effect.tos[1]:drawCards(1,tsoaktthiac.name)
       end
   end,
 })
 
-tsoaktthiac:addEffect(fk.SkillEffect, {
-  can_refresh= function(self, event, target, player, data)
-    return target==player and data.skill:getSkeleton().name==tsoaktthiac.name
-  end,
-  on_refresh = function(self, event, target, player, data)
-    local to = data.skill_data.tos[1]
-    local n = to:getHandcardNum()
-    local m = #to:getCardIds("e")
-    local room=player.room
-    for _, p in ipairs(room:getOtherPlayers(to)) do
-        if p:getHandcardNum()>n 
-        or #p:getCardIds("e")>m 
-      then
-      return
-      end
-    end
-    room:setPlayerMark(target,"tsoaktthiac-phase",1)
-  end,
-})
+-- tsoaktthiac:addEffect(fk.SkillEffect, {
+--   can_refresh= function(self, event, target, player, data)
+--     return target==player and data.skill:getSkeleton().name==tsoaktthiac.name
+--   end,
+--   on_refresh = function(self, event, target, player, data)
+--     local to = data.skill_data.tos[1]
+--     local n = to:getHandcardNum()
+--     local m = #to:getCardIds("e")
+--     local room=player.room
+--     for _, p in ipairs(room:getOtherPlayers(to)) do
+--         if p:getHandcardNum()>n 
+--         or #p:getCardIds("e")>m 
+--       then
+--       return
+--       end
+--     end
+--     room:setPlayerMark(target,"tsoaktthiac-phase",1)
+--   end,
+-- })
 
-tsoaktthiac:addEffect(fk.DamageCaused, {
+tsoaktthiac:addEffect(fk.DamageInflicted, {
   is_delay_effect = true, --語音
   can_trigger = function(self, event, target, player, data)
     return data.from==player and player:getMark("@@tsoaktthiac-turn")>0 --選擇旹滿足項數

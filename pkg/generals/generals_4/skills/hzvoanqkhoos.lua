@@ -4,7 +4,7 @@ local hzvoanqkhoos = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["hzvoanqkhoos"] = "紈絝",
-  [":hzvoanqkhoos"] = "一末段,伱可發動.伱將手牌補至體值",
+  [":hzvoanqkhoos"] = "一末段始旹,伱可發動.伱將手牌抽至體力值",
 
   ["$hzvoanqkhoos1"] = "鼠目寸光如何了卻我心思",
   ["$hzvoanqkhoos2"] = "吾薄有家資",

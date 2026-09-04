@@ -3,7 +3,7 @@ local equipSkill = fk.CreateSkill {
   attached_equip = "tshjit_seec_kiams",
 }
 
-equipSkill:addEffect(fk.DamageCaused, {
+equipSkill:addEffect(fk.DamageInflicted, {
   can_trigger = function(self, event, target, player, data)
     return data.from == player and player:hasSkill(equipSkill.name) 
     and (not data.chain) 
@@ -14,7 +14,8 @@ equipSkill:addEffect(fk.DamageCaused, {
   on_use = function(self, event, target, player, data)
     local room = player.room
     local n=data.damage
-    data:preventDamage()
+    -- data:preventDamage()
+      S.preventDamage({damageData=data, skillName=equipSkill.name})
     local to = data.to
     for i = 1, 2*n,1 do
       if player.dead or to.dead or to:isNude() then break end

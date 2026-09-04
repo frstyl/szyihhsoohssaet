@@ -38,7 +38,7 @@ hzfacqtszhioc:addEffect(fk.CardEffectCancelledOut, {
     end
   end,
   on_use = function(self, event, target, player, data)
-    S.playCard(player,event:getCostData(self).cards, hzfacqtszhioc.name)
+    S.playCard(event:getCostData(self).cards, hzfacqtszhioc.name,player)
     data.isCancellOut = false
     if player.dead then return end
     if not data.use then return end

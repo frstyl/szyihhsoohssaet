@@ -4,7 +4,7 @@ local bjevsgxes = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["bjevsgxes"] = "驃騎",
-  [":bjevsgxes"] = "伱起動卽旹牌旹,若此牌与伱所起動上1牌有褈合目幖,伱可發動.此牌額外生效1次",
+  [":bjevsgxes"] = "伱起動卽旹牌旹,若此牌与伱所起動上1牌有褈合目幖,伱可發動.此牌對其額外生效1次",
 
   ["#bjevsgxes-invoke"] = "驃騎： 令 %arg 額外生效",
 
@@ -37,24 +37,30 @@ bjevsgxes:addEffect(fk.CardUsing, {--TargetSpecifying
   can_trigger = function(self, event, target, player, data)
     if
       target == player and player:hasSkill(bjevsgxes.name) 
-      and data.extra_data and data.extra_data.bjevsgxesCheck == true
+      and data.extra_data and data.extra_data.bjevsgxesCheck
     then
         return true
     end
   end,
-  on_cost = function(self, event, target, player, data)
-    if player.room:askToSkillInvoke(player, {
-      skill_name = bjevsgxes.name,
-      prompt = "#bjevsgxes-invoke:::"..data.card:toLogString(),
-      -- prompt = "#bjevsgxes-invoke:"..data.to.id.."::"..data.card:toLogString(),
-    }) 
-    then
-      event:setCostData(self, {tos = {data.to}})
-      return true
-    end
-  end,
+  -- on_cost = function(self, event, target, player, data)
+  --   if player.room:askToSkillInvoke(player, {
+  --     skill_name = bjevsgxes.name,
+  --     prompt = "#bjevsgxes-invoke:::"..data.card:toLogString(),
+  --     -- prompt = "#bjevsgxes-invoke:"..data.to.id.."::"..data.card:toLogString(),
+  --   }) 
+  --   then
+  --     event:setCostData(self, {tos = {data.to}})
+  --     return true
+  --   end
+  -- end,
   on_use = function(self, event, target, player, data)
-    data.additionalEffect = (data.additionalEffect or 0) + 1
+    -- data.additionalEffect = (data.additionalEffect or 0) + 1
+    local room=player.room
+    data.additionalEffectToPlayer = data.additionalEffectToPlayer or {}
+    for _, pid in ipairs(data.extra_data.bjevsgxesCheck) do
+      local p = room:getPlayerById(pid)
+      data.additionalEffectToPlayer[p]=(data.additionalEffectToPlayer[p] or 0) +1
+    end
   end,
   
   can_refresh = function(self, event, target, player, data)
@@ -64,13 +70,19 @@ bjevsgxes:addEffect(fk.CardUsing, {--TargetSpecifying
     local room = player.room
     if  data.tos and #data.tos>0 then 
       if S.getCardUsageType(data.card.trueName)==1  then 
+        local bjevsgxesCheck={}
         local tos=table.map(data.tos,Util.IdMapper)
         for _, p in ipairs(player:getTableMark("bjevsgxes")) do
           if table.contains(tos,p) then
-          data.extra_data = data.extra_data or {}
-          data.extra_data.bjevsgxesCheck = true
-          break
+            -- data.extra_data = data.extra_data or {}
+            -- data.extra_data.bjevsgxesCheck = true
+            -- break
+            table.insertIfNeed(bjevsgxesCheck,p)
           end
+        end
+        if #bjevsgxesCheck>0 then 
+           data.extra_data = data.extra_data or {}
+          data.extra_data.bjevsgxesCheck = bjevsgxesCheck
         end
       end
 

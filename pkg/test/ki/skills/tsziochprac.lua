@@ -76,7 +76,7 @@ tsziochprac:addEffect(fk.CardUsing, {
   end,
 })
 
--- tsziochprac:addEffect(fk.DamageCaused, {
+-- tsziochprac:addEffect(fk.DamageInflicted, {
 --   is_delay_effect = true,
 --   -- anim_type = "drawcard",
 --   can_trigger = function(self, event, target, player, data)
@@ -93,7 +93,7 @@ tsziochprac:addEffect(fk.CardUsing, {
 --   end,
 -- })
 
-tsziochprac:addEffect(fk.DamageCaused, {
+tsziochprac:addEffect(fk.DamageInflicted, {
   is_delay_effect = true,
   -- anim_type = "drawcard",
   can_trigger = function(self, event, target, player, data)

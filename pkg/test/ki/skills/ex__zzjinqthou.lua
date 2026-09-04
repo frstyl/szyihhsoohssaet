@@ -1,6 +1,6 @@
 Fk:loadTranslationTable{
   ["ex__zzjinqthou"] = "神偸",
-  [":ex__zzjinqthou"] = "其它脚色A段終旹,若A當段內得到牌,伱可將1牌轉化爲因敵爲資對A起動發動.",
+  [":ex__zzjinqthou"] = "其它脚色A段終旹,若A于段內得到牌,伱可將1牌轉化爲因敵爲資對A起動發動.",
 
   ["ex__zzjinqthou-use"] = "神偸 昰否將牌轉化爲因敵爲資對 %src 起動",
 

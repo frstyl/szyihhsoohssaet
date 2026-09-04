@@ -10,7 +10,7 @@ Fk:loadTranslationTable{
   ["$gianskoot1"] = "寶刀未老 壯气猶存",
 }
 
-gianskoot:addEffect(fk.Damage, {
+gianskoot:addEffect(fk.Damaged, {
   anim_type = "drawcard",
   can_trigger = function(self, event, target, player, data)
     return data.from == player and player:hasSkill(gianskoot.name)  and data.extra_data and data.extra_data.gianskoot

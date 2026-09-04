@@ -5,7 +5,7 @@ local qwerkiams = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["qwerkiams"] = "彗劍",
-  [":qwerkiams"] = "伱起動{錦囊/裝僃}旹,必發.令伱所起動下一牌{无視用視距離次數/傷害回復基數+1}",
+  [":qwerkiams"] = "伱起動{計謀/裝僃}旹,必發.令伱所起動下一牌{无視用視距離次數/傷害回復基數+1}",
 
   ["@qwerkiams"] = "彗劍",
 

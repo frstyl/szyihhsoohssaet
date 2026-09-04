@@ -6,7 +6,7 @@ Fk:loadTranslationTable{
 ["generals_11"] = "101~110",
 ["tsshioh__kvoan"] = "楚",
 }
---
+--羅戩
 --童 牛
 --龔端 龔正
  --黃達
@@ -29,11 +29,21 @@ Fk:loadTranslationTable{
 General:new(extension, "dvoanssoamnniac", "tsshioh__kvoan", 4):addSkills{"szjetthoeojs"}  --忘 
 Fk:loadTranslationTable{
 ["dvoanssoamnniac"] = "段三",
-["#dvoanssoamnniac"] = "大蟲窩",
+["#dvoanssoamnniac"] = "大蟲窩",--淮西天魔?
 ["designer:dvoanssoamnniac"] = "設計",
 ["cv:dvoanssoamnniac"] = "配音",
 ["illustrator:dvoanssoamnniac"] = "畫師",
 ["~dvoanssoamnniac"] = "伱",
+}
+
+General:new(extension, "dvoansnzjis", "tsshioh__kvoan", 5):addSkills{"giacqthoeojs"} 
+Fk:loadTranslationTable{
+["dvoansnzjis"] = "段二",
+["#dvoansnzjis"] = "",
+["designer:dvoansnzjis"] = "設計",
+["cv:dvoansnzjis"] = "配音",
+["illustrator:dvoansnzjis"] = "畫師",
+["~dvoansnzjis"] = "伱",
 }
 
 General:new(extension, "lihdzsios", "tsshioh__kvoan", 3):addSkills{"tszhyitsjevs","kiamsmuoh"}
@@ -44,6 +54,16 @@ Fk:loadTranslationTable{
 ["cv:lihdzsios"] = "配音",
 ["illustrator:lihdzsios"] = "畫師",
 ["~lihdzsios"] = "金劍落地再不能起",
+}
+
+General:new(extension, "liusljip", "pujh", 5):addSkills{"dzeetliac"} --kiaplooh
+Fk:loadTranslationTable{
+["liusljip"] = "廖立",
+["#liusljip"] = "酋",
+["designer:liusljip"] = "設計",
+["cv:liusljip"] = "配音",
+["illustrator:liusljip"] = "畫師",
+["~liusljip"] = "",
 }
 
 General:new(extension, "hzeejqszics", "tsshioh__kvoan", 4):addSkills{"tszjecsprac","gxeqprac"}
@@ -66,15 +86,16 @@ Fk:loadTranslationTable{
 ["~khousmjet"] = "a",
 }
 
-General:new(extension, "doohhzaok", "tsshioh__kvoan", 5):addSkills{"craktszjens","jiacqtshjes"}
+General:new(extension, "doohhzaok", "tsshioh__kvoan", 5):addSkills{"craktszjens","hzoojqssaok"}
 Fk:loadTranslationTable{
 ["doohhzaok"] = "杜壆",
 ["#doohhzaok"] = "西軍統軍",
 ["designer:doohhzaok"] = "設計",
 ["cv:doohhzaok"] = "配音",
 ["illustrator:doohhzaok"] = "畫師",
-["~doohhzaok"] = "雙權難敵四手",
+["~doohhzaok"] = "雙拳難敵四手",
 }
+--酆泰
 --
 -- 102. 第一百零一回　謀墳地陰險產逆　蹈春陽妖𧰚生姦
 -- 103. 第一百零二回　王慶因姦喫官司　龔端被打師軍犯
@@ -85,7 +106,7 @@ Fk:loadTranslationTable{
 -- 107. 第一百零六回　書生談笑卻強敵　水軍汨沒破堅城
 -- 108. 第一百零七回　宋江大勝紀山軍　朱武打破六花陣
 -- 109. 第一百零八回　喬道淸興霧取城　小旋風藏炮擊賊
-General:new(extension, "seevqkaaqsyer", "pujh", 5):addSkills{"liuksyer","ddwenqszio"}
+General:new(extension, "seevqkaaqsyer", "tsiacs", 4):addSkills{"liuksyer","ddwenqszio"}
 Fk:loadTranslationTable{
 ["seevqkaaqsyer"] = "蕭嘉繐",
 ["#seevqkaaqsyer"] = "天生嘉禾",

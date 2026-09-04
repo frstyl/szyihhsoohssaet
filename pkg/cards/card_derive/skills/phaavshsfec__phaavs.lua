@@ -83,7 +83,7 @@ equipSkill:addEffect(fk.TurnStart, {
   end,
 })
 
-equipSkill:addEffect(fk.TargetSpecified, { --CardUsing?
+equipSkill:addEffect(fk.TargetConfirmed, { --CardUsing?
   can_trigger = function(self, event, target, player, data)
     return data.from == player and player:hasSkill(equipSkill.name)
      and data.card.trueName == "ssaet" 

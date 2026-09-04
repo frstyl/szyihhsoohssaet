@@ -3,7 +3,7 @@ local keejskwih = fk.CreateSkill({
 })
 Fk:loadTranslationTable{
   ["keejskwih"] = "繼晷",  --䘙生 養生
-  [":keejskwih"] = "一脚色A 一次失去不少于2牌後,伱可發動｡伱流失1體力,令A抽2,",  --被取得算2
+  [":keejskwih"] = "一脚色A 一次失去不少于2牌後,伱可發動｡伱流失1,令A抽2,",  --被取得算2
 
   ["#keejskwih-invoke"] = "繼晷  令 %src 抽2",
   ["#keejskwih-choose"] = "繼晷  選擇發動目幖",

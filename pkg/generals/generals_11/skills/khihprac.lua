@@ -5,7 +5,7 @@ local khihprac = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["khihprac"] = "起兵",
-  [":khihprac"] = "額定抽牌旹,必發,伱選1項發動,➀抽牌數+x,本段伱攻程爲x.當轉終旹,若伱當轉內未致傷,伱流失1體力(x爲伱體力值定值)➁抽牌數+y,當轉伱存牌數+y,自守(y爲伱已損體力值定值)",  --攻程基于體力值
+  [":khihprac"] = "額定抽牌旹,必發,伱選1項發動,➀抽牌數+x,本段伱攻程爲x.1轉終旹,若伱1轉內未致傷,伱流失1(x爲伱體力數定值)➁抽牌數+y,1轉伱存牌數+y,自守(y爲伱已損體力數定值)",  --攻程基于體力數
 
   ["#khihprac_hp"] = "多抽%arg，",
   ["#khihprac_losthp"] = "多抽%arg",
@@ -44,7 +44,7 @@ khihprac:addEffect(fk.DrawNCards, {
   end,
 })
 
--- khihprac:addEffect(fk.Damage, {
+-- khihprac:addEffect(fk.Damaged, {
   -- can_refresh = function(self, event, target, player, data)
     -- return player.seat==1 and data.from:getMark("@@khihprac-damage-turn") >0
   -- end,

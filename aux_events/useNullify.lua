@@ -2,26 +2,26 @@
 local szyih_guos = require 'packages/szyihhsoohssaet/_base'
 
 
---- UseNullifyData 使用无效的数据
+--- UseNullifyData 起動无效的数据
 
 ---@class szyih_guos.UseNullifyData: UseNullifyDataSpec, TriggerData
 szyih_guos.UseNullifyData = TriggerData:subclass("UseNullifyData")
 
---- 使用无效 TriggerEvent
+--- 起動无效 TriggerEvent
 ---@class szyih_guos.UseNullify: TriggerEvent
 ---@field public data szyih_guos.UseNullifyData
 szyih_guos.UseNullify = TriggerEvent:subclass("UseNullifyEvent")
 
---- 使用无效事件始 用于delay效果
+--- 起動无效事件始 用于delay效果
 ---@class szyih_guos.PreUseNullify: szyih_guos.UseNullify
 szyih_guos.PreUseNullify = szyih_guos.UseNullify:subclass("szyih_guos.PreUseNullify")
 
---- 使用无效旹 防止
+--- 起動无效旹 防止
 ---@class szyih_guos.BeforeUseNullify: szyih_guos.UseNullify
 szyih_guos.BeforeUseNullify = szyih_guos.UseNullify:subclass("szyih_guos.BeforeUseNullify")
 
 
---- 使用无效结束后
+--- 起動无效结束后
 ---@class szyih_guos.UseNullifyFinished: szyih_guos.UseNullify
 szyih_guos.AfterUseNullify = szyih_guos.UseNullify:subclass("szyih_guos.AfterUseNullify")
 
@@ -32,7 +32,7 @@ szyih_guos.AfterUseNullify = szyih_guos.UseNullify:subclass("szyih_guos.AfterUse
 ---@field public addEffect fun(self: SkillSkeleton, key: szyih_guos.UseNullify,
 ---  data: TrigSkelSpec<UseNullifyTrigFunc>, attr: TrigSkelAttribute?): SkillSkeleton
 
---- 使用无效 GameEvent
+--- 起動无效 GameEvent
 -- szyih_guos.UseNullifyEvent = "UseNullify"
 
 -- Fk:addGameEvent(szyih_guos.UseNullifyEvent, nil, --prepare function
@@ -68,8 +68,8 @@ szyih_guos.AfterUseNullify = szyih_guos.UseNullify:subclass("szyih_guos.AfterUse
 
 
 Fk:loadTranslationTable{
-  ["#UseNullify"] = "%from 所使用 %arg 无效",
-  ["#AntiUseNullifyed"] = "%from 所使用 %arg 反无效",
+  ["#UseNullify"] = "%from 所起動 %arg 无效",
+  ["#AntiUseNullifyed"] = "%from 所起動 %arg 反无效",
 }
 
 

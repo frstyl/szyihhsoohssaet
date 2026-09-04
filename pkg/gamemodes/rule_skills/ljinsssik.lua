@@ -1,11 +1,12 @@
 local ljinsssik = fk.CreateSkill {
   name = "#ljinsssik",
-  tags={Skill.Compulsory}
+  tags={Skill.Compulsory,Skill.Composite},
+  mode_skill = true,
 }
 
 Fk:loadTranslationTable{
   ["ljinsssik"] = "吝嗇",
-  [":ljinsssik"] = "伱存牌數+2,伱越過段/轉前,伱可發動,防止之,伱流失1體力,",
+  [":ljinsssik"] = "恆續,伱存牌數+2｡伱越過段/轉前,伱可發動,防止之,伱流失1",
 }
 
 -- local S = require "packages/szyihhsoohssaet/szyih_guos" 

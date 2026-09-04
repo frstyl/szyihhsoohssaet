@@ -48,7 +48,7 @@ hzoanscioh:addEffect(fk.CardUsing, {
     end
   end,
   on_use = function(self, event, target, player, data)
-    S.playCard(player,cards,hzoanscioh.name)
+    S.playCard(cards,hzoanscioh.name,player)
     S.useNullify(data,player,hzoanscioh.name)
   end,
 })

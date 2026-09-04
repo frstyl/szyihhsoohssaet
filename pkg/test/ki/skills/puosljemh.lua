@@ -4,7 +4,7 @@ local puosljemh = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["puosljemh"] = "賦斂",
-  [":puosljemh"] = "預段始旹,伱可發動.全部存活脚色選擇1項執行➀將1牌置入府庫➁流失1體力",  --輪始旹?
+  [":puosljemh"] = "預段始旹,伱可發動.全部存活脚色選擇1項執行➀將1牌置入府庫➁流失1",  --輪始旹?
 
   ["#puosljemh-input"] = "賦斂  將1牌置入府庫,否則失去體力",
 }

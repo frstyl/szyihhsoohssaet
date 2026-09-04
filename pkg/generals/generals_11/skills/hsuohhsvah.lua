@@ -4,7 +4,7 @@ local hsuohhsvah = fk.CreateSkill {
 
 Fk:loadTranslationTable{
 ["hsuohhsvah"] = "欨火",
-[":hsuohhsvah"] = "主旹,伱可選擇1脚色發動,伱予其1火傷,伱占卜,若占卜牌爲♥️,伱予己1火傷｡与此技能當段上一占卜牌同花之牌被起動旹,褈置此技能次數.",
+[":hsuohhsvah"] = "主旹,伱可選擇1脚色發動,伱予其1火傷,伱占卜,若占卜牌爲♥️,伱予己1火傷｡与此技能1段上一占卜牌同花之牌被起動旹,褈置此技能次數.",
 
 ["#hsuohhsvah"]="欨火 占卜",
 

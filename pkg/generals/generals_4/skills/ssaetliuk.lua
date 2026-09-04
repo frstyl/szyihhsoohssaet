@@ -7,7 +7,7 @@ Fk:loadTranslationTable{
   ["ssaetliuk"] = "殺戮",
   [":ssaetliuk"] = "➀恆續｡伱起動殺旹能且必選擇全部合理目幖.➁伱起動殺結算完畢旹,若此牌致傷,必發.伱占卜x次,若占卜牌爲黑伱取得之,此殺不計入次數限制｡x爲此牌致傷次數",
 
-  -- ["@ssaet_times-phase"] = "殺數",
+  -- ["ssaet_times-phase"] = "殺數",
 
   -- ["$ssaetliuk"] = "喫俺一斧",
 }
@@ -22,7 +22,7 @@ ssaetliuk:addEffect(fk.PreCardUse, {
   on_trigger = function(self, event, target, player, data)
     local room = player.room
     local targets = data.tos
-    local ex=data:getExtraTargets(data.extra_data)
+    local ex=data:getExtraTargets({bypass_distances = data.extra_data and data.extra_data.bypass_distances or false, bypass_times=true})
     for _, p in ipairs(room.players)  do
       if  table.contains(ex,p) then
       table.insertIfNeed(targets,p)
@@ -67,7 +67,7 @@ ssaetliuk:addEffect(fk.CardUseFinished, {
       room:judge(judge)
       if  judge.card.color == Card.Black then 
         -- room:addSkill("ssaet_times")
-        -- room:addPlayerMark(player, "@ssaet_times-phase",1)
+        -- room:addPlayerMark(player, "ssaet_times-phase",1)
         if not data.extraUse then
           player:addCardUseHistory(data.card.trueName, -1)
           data.extraUse = true

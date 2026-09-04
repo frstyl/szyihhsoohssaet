@@ -5,7 +5,7 @@ local hsoohgxes = fk.CreateSkill{
 }
 Fk:loadTranslationTable{
 ["hsoohgxes"] = "虎騎",
-[":hsoohgxes"] = "➀伱至其他脚色距離-1.➁主段始旹觸發,伱可虛擬起動｢殺｣",
+[":hsoohgxes"] = "➀伱至其它脚色距離-1.➁伱預段始旹必發,伱可虛擬起動｢殺｣",
 
 ["#hsoohgxes-choose"] = "虎騎 虛擬起動｢殺｣",
 }
@@ -21,7 +21,7 @@ hsoohgxes:addEffect("distance", {
 hsoohgxes:addEffect(fk.EventPhaseStart, {
   anim_type = "offensive",
   can_trigger = function(self, event, target, player, data)
-    return target == player and player:hasSkill(hsoohgxes.name) and player.phase == Player.Play
+    return target == player and player:hasSkill(hsoohgxes.name) and data.phase == Player.Start
   end,
   on_use = function(self, event, target, player, data)
     local room = player.room

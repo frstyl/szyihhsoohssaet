@@ -11,7 +11,7 @@ Fk:loadTranslationTable{
 ["$ljenqdzjep2"] = "兄弟,吾先行一步",
 }
 
-ljenqdzjep:addEffect(fk.Damage, {
+ljenqdzjep:addEffect(fk.Damaged, {
   can_refresh= function(self, event, target, player, data)
     return data.from==player and player:hasSkill(ljenqdzjep.name)  and data.from~=data.to 
   end,
@@ -28,7 +28,7 @@ ljenqdzjep:addEffect(fk.Damaged, {
   end,
 })
 
-ljenqdzjep:addEffect(fk.Damage, {
+ljenqdzjep:addEffect(fk.Damaged, {
 
   can_trigger = function(self, event, target, player, data)
     return data.from==player and player:hasSkill(ljenqdzjep.name)  and data.from~=data.to and not table.contains(player:getTableMark("ljenqdzjep-round"))

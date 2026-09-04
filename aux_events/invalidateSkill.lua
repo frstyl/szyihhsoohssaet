@@ -48,7 +48,7 @@ Fk:loadTranslationTable{
 ---@param player ServerPlayer @ 角色  --同旹多角色?
 ---@param skill_name string|table @ 技能多个 (|)分割 有"+"者恢復  ?需約同旹失效復效 類cardmove?
 ---@param temp? TempMarkSuffix|"" @ 作用范围，``-round`` ``-turn`` ``-phase``或不填
----@param source_skill? string @ 控制失效与否的技能。（保证不会与其他控制技能互相干扰）
+---@param source_skill? string @ 控制失效与否的技能。（保证不会与其它控制技能互相干扰）
 ---@param sendlog? boolean @ 是否发送战报，默认发送
 ---@param no_trigger? boolean @ 是否不触发相关时机
 

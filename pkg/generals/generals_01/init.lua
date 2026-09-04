@@ -10,12 +10,33 @@ Fk:loadTranslationTable{
 ["tsiacs"] = "將",
 }
 
+--楔子　張天師祈禳瘟疫　洪太尉誤走妖魔
+General:new(extension, "hzoucqsjin", "kvoan", 5):addSkills { "tsiocsmoa"}  --縱魔
+Fk:loadTranslationTable{
+["hzoucqsjin"] = "洪信",
+["#hzoucqsjin"] = "洪太尉",
+["designer:hzoucqsjin"] = "設計",
+["cv:hzoucqsjin"] = "配音",
+["illustrator:hzoucqsjin"] = "畫師",
+["~hzoucqsjin"] = "走者是何等祅魔",
+}
+
+General:new(extension, "ttiacqtszjinqnzjin", "pujh", 3):addSkills { "khuoqmoa","gijqnziac","ddxevhhsioc"}
+Fk:loadTranslationTable{
+["ttiacqtszjinqnzjin"] = "張眞人",
+["#ttiacqtszjinqnzjin"] = "天師",
+["designer:ttiacqtszjinqnzjin"] = "設計",
+["cv:ttiacqtszjinqnzjin"] = "配音",
+["illustrator:ttiacqtszjinqnzjin"] = "畫師",
+["~ttiacqtszjinqnzjin"] = "天意烏",
+}
+
+
+
 Fk:loadTranslationTable{
 ["hqxim"] = "侌",
 ["jiac"] = "昜",
 }
-
-
 
 local jiac__boojqnzioqhsoeojh = General:new(extension, "jiac__boojqnzioqhsoeojh", "pujh", 3)
 jiac__boojqnzioqhsoeojh:addSkills { "buamshqxim","ljeqddxin","lunqhzooj"} 
@@ -79,16 +100,16 @@ Fk:loadTranslationTable{
 ["~jiac__muohdoarloac"] = "苦乎",
 }
 
-local hqxim__muohdoarloac = General:new(extension, "hqxim__muohdoarloac", "mjin", 3,3,General.Female)
-hqxim__muohdoarloac:addSkills { "loakkoan","leechjiak","ljetmuns"}
-hqxim__muohdoarloac:addRelatedSkill("tsziukzzyit_dzjecshsfas")
+local hqxim__phoanqkximqleen = General:new(extension, "hqxim__phoanqkximqleen", "mjin", 3,3,General.Female)
+hqxim__phoanqkximqleen:addSkills { "loakkoan","leechjiak","ljetmuns"}
+hqxim__phoanqkximqleen:addRelatedSkill("tsziukzzyit_dzjecshsfas")
 Fk:loadTranslationTable{
-["hqxim__muohdoarloac"] = "潘金蓮",
-["#hqxim__muohdoarloac"] = "鏡花水月",
-["designer:hqxim__muohdoarloac"] = "設計",
-["cv:hqxim__muohdoarloac"] = "配音",
-["illustrator:hqxim__muohdoarloac"] = "畫師",
-["~hqxim__muohdoarloac"] = "苦乎",
+["hqxim__phoanqkximqleen"] = "潘金蓮",
+["#hqxim__phoanqkximqleen"] = "鏡花水月",
+["designer:hqxim__phoanqkximqleen"] = "設計",
+["cv:hqxim__phoanqkximqleen"] = "配音",
+["illustrator:hqxim__phoanqkximqleen"] = "畫師",
+["~hqxim__phoanqkximqleen"] = "苦乎",
 }
 
 
@@ -128,8 +149,8 @@ Fk:loadTranslationTable{
 ["~jiac__tsziukpru"] = "苦乎",
 }
 
-local hqxim__hzoohsoamnniac = General:new(extension, "hqxim__hzoohsoamnniac", "mjin", 3,3, General.Female)
-hqxim__hzoohsoamnniac:addSkills { "tthiuqtoav","deecstshjin","hzaocqdzioc"}
+local hqxim__hzoohsoamnniac = General:new(extension, "hqxim__hzoohsoamnniac", "mjin", 4,4, General.Female)
+hqxim__hzoohsoamnniac:addSkills { "tthiuqtoav","deecstshjin",} --"hzaocqdzioc"
 hqxim__hzoohsoamnniac:addRelatedSkill("tsziukzzyit_guacqboavs")
 Fk:loadTranslationTable{
 ["hqxim__hzoohsoamnniac"] = "扈三娘",
@@ -188,28 +209,57 @@ Fk:loadTranslationTable{
 ["~hqxim__ddxecqhquanhnzje"] = "苦乎",
 }
 
---楔子　張天師祈禳瘟疫　洪太尉誤走妖魔
-General:new(extension, "hzoucqsjin", "kvoan", 5):addSkills { "tsiocsmoa"}  --縱魔
+---------------
+
+General:new(extension, "caok__caokhzvoa", "tsiacs", 3):addSkills {"hzvoaqcaok" } --,
 Fk:loadTranslationTable{
-["hzoucqsjin"] = "洪信",
-["#hzoucqsjin"] = "洪太尉",
-["designer:hzoucqsjin"] = "設計",
-["cv:hzoucqsjin"] = "配音",
-["illustrator:hzoucqsjin"] = "畫師",
-["~hzoucqsjin"] = "走者是何等祅魔",
+["caok__caokhzvoa"] = "樂和",
+["#caok__caokhzvoa"] = "鐵叫子",
+["designer:caok__caokhzvoa"] = "設計",
+["cv:caok__caokhzvoa"] = "配音",
+["illustrator:caok__caokhzvoa"] = "畫師",
+["~caok__caokhzvoa"] = "此曲終已",
 }
 
-General:new(extension, "ttiacqtszjinqnzjin", "pujh", 3):addSkills { "khuoqmoa","gijqnziac","ddxevhhsioc"}
+General:new(extension, "caok__maahljin", "pujh", 3):addSkills {"jiacqhqik" } --,
 Fk:loadTranslationTable{
-["ttiacqtszjinqnzjin"] = "張眞人",
-["#ttiacqtszjinqnzjin"] = "天師",
-["designer:ttiacqtszjinqnzjin"] = "設計",
-["cv:ttiacqtszjinqnzjin"] = "配音",
-["illustrator:ttiacqtszjinqnzjin"] = "畫師",
-["~ttiacqtszjinqnzjin"] = "天意烏",
+["caok__maahljin"] = "馬麟",
+["#caok__maahljin"] = "鐵笛仙",
+["designer:caok__maahljin"] = "設計",
+["cv:caok__maahljin"] = "配音",
+["illustrator:caok__maahljin"] = "畫師",
+["~caok__maahljin"] = "此曲終已",
 }
 
+General:new(extension, "ttiacqsziukjjas", "pujh", 3):addSkills {"ttxinsphuoh","koucqbuat" } --,
+Fk:loadTranslationTable{
+["ttiacqsziukjjas"] = "張叔夜",
+["#ttiacqsziukjjas"] = "天兵",
+["designer:ttiacqsziukjjas"] = "設計",
+["cv:ttiacqsziukjjas"] = "配音",
+["illustrator:ttiacqsziukjjas"] = "畫師",
+["~ttiacqsziukjjas"] = "",
+}
 
+General:new(extension, "ddiucqssxiqdoavh", "pujh", 5):addSkills {"touktszjens" } 
+Fk:loadTranslationTable{
+["ddiucqssxiqdoavh"] = "种師道",
+["#ddiucqssxiqdoavh"] = "經略使",
+["designer:ddiucqssxiqdoavh"] = "設計",
+["cv:ddiucqssxiqdoavh"] = "配音",
+["illustrator:ddiucqssxiqdoavh"] = "畫師",
+["~ddiucqssxiqdoavh"] = "",
+}
+
+General:new(extension, "ddiucqssxiqttiuc", "pujh", 4):addSkills {"kiamsmrac","krachbuac" } --,
+Fk:loadTranslationTable{
+["ddiucqssxiqttiuc"] = "种師中",
+["#ddiucqssxiqttiuc"] = "天兵",
+["designer:ddiucqssxiqttiuc"] = "設計",
+["cv:ddiucqssxiqttiuc"] = "配音",
+["illustrator:ddiucqssxiqttiuc"] = "畫師",
+["~ddiucqssxiqttiuc"] = "",
+}
 
 -- --
 -- 1. 楔子　張天師祈禳瘟疫　洪太尉誤走妖魔

@@ -5,12 +5,12 @@ local tszjevqtsziac = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["tszjevqtsziac"] = "昭彰",  --賞罰
-  [":tszjevqtsziac"] = "脚色A對除其外脚色致{傷/療}後,必發｡伱令A{弃己x/抽1}｡x爲A當輪致傷點數合",
+  [":tszjevqtsziac"] = "脚色A對除其外脚色致{傷/療}後,必發｡伱令A{弃己x/抽1}｡x爲A1輪致傷點數合",
 
 
 }
 
-tszjevqtsziac:addEffect(fk.Damage, {
+tszjevqtsziac:addEffect(fk.Damaged, {
   anim_type = "offensive",
   can_trigger = function(self, event, target, player, data)
     return 

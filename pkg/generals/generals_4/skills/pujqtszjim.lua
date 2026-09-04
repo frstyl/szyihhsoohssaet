@@ -4,7 +4,7 @@ local pujqtszjim = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["pujqtszjim"] = "飛針",
-  [":pujqtszjim"] = "印牌:以一脚色裝僃區內1{武器/非武器}轉化起動演練{閃/殺}",
+  [":pujqtszjim"] = "印牌:以一脚色裝僃區內1{武器/非武器}轉化起動或演練{閃/殺}",
 
 
   ["#pujqtszjim"] = "飛針：裝僃僃區武器轉化爲殺」 非武器轉化爲「閃」",

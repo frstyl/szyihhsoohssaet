@@ -4,7 +4,7 @@ local hzoavqszjin = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["hzoavqszjin"] = "𠢕紳",
-  [":hzoavqszjin"] = "➀伱額定抽牌旹,若此抽牌數大于0,伱可1脚色發動,伱此次抽牌數-1,目幖脚色將手牌補至體力上限.➁段限1,主旹.選擇1其它脚色与伱x手牌(x=max(1,Ceiling(手牌數/2))并聲明1段類發動,伱將所選牌交予目幖脚色,其于此轉後執行1額外轉止含伱所聲明之段,此轉內其致傷旹,伱抽1",  
+  [":hzoavqszjin"] = "➀伱額定抽牌前,若抽牌數大于0,伱可選1脚色發動,伱此次抽牌數-1,目幖脚色將手牌抽至體力上限.➁主旹.選擇1其它脚色与伱x手牌(x=max(1,ceiling(手牌數/2))并聲明1段類發動,伱將所選牌交予目幖脚色,其于此轉後執行1額外轉止含伱所聲明之段,此轉內其致傷旹,伱抽1",  
 
   ["#hzoavqszjin-active"] = "𠢕紳 將半數手牌交与1脚色,其執行額外主段",
   ["#hzoavqszjin-draw"] = "𠢕紳 令1脚色將手牌補至體力上限",
@@ -74,26 +74,42 @@ hzoavqszjin:addEffect("active", {
     if not target.dead then
       local phaseList = {Player.Start, Card.Judge, Player.Draw, Player.Play, Player.Discard, Player.Finish}
       local choice = phaseList[table.indexOf({"預段","伏段","補段","主段","撤段","末段"},  self.interaction.data)]  --+1
-      target:gainAnExtraTurn(true, hzoavqszjin.name, {choice}, {hzoavqszjin_from=player.id})
+      -- target:gainAnExtraTurn(true, hzoavqszjin.name, {choice}, {hzoavqszjin_from=player.id})
+      target:gainAnExtraPhase(choice, hzoavqszjin.name, true, {hzoavqszjin_from=player.id})
     end
   end,
 })
 
-hzoavqszjin:addEffect(fk.TurnStart, {
+-- hzoavqszjin:addEffect(fk.TurnStart, {
+--   can_refresh = function(self, event, target, player, data)
+--     return data.reason == hzoavqszjin.name and data.extra_data and data.extra_data.hzoavqszjin_from==player.id
+--   end,
+--   on_refresh = function(self, event, target, player, data)
+--     player.room:setPlayerMark(target, "@@hzoavqszjin-turn", player.id)
+--   end,
+-- })
+hzoavqszjin:addEffect(fk.EventPhaseStart, {
   can_refresh = function(self, event, target, player, data)
-    return data.reason == hzoavqszjin.name and data.extra_data and data.extra_data.hzoavqszjin_from==player.id
+    return data.reason == hzoavqszjin.name
+    and target==player
+    -- and data.extra_data and data.extra_data.hzoavqszjin_from==player.id
   end,
   on_refresh = function(self, event, target, player, data)
-      player.room:setPlayerMark(target, "@@hzoavqszjin-turn", player.id)
+    player.room:setPlayerMark(target, "@@hzoavqszjin", player.id)
+    player.room.logic:getCurrentEvent():findParent(GameEvent.Phase,true):addCleaner(function()
+      player.room:setPlayerMark(target, "@@hzoavqszjin", nil)
+    end)
   end,
 })
 
-hzoavqszjin:addEffect(fk.DamageCaused, {
+hzoavqszjin:addEffect(fk.DamageInflicted, {
   can_trigger = function(self, event, target, player, data)
-    return data.from:getMark("@@hzoavqszjin-turn") == player.id
+    return 
+    player==data.from and player:getMark("@@hzoavqszjin")~=0
+    -- data.from:getMark("@@hzoavqszjin-turn") == player.id --誰發動?
   end,
   on_trigger = function(self, event, target, player, data)
-     player:drawCards(1,hzoavqszjin.name)
+     player.room:getPlayerById(player:getMark("@@hzoavqszjin")):drawCards(1,hzoavqszjin.name)
   end,
 })
 

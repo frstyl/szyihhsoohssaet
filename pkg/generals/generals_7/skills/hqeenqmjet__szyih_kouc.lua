@@ -3,7 +3,7 @@ local skill = fk.CreateSkill {
 }
 Fk:loadTranslationTable{
   ["hqeenqmjet__szyih_kouc_skill"] = "水攻",
-  -- ["#szyih_kouc_skill"] = "选择一其他脚色，其需選擇1項➀弃全部裝僃(无裝僃不可選),➁伱予其1傷",
+  -- ["#szyih_kouc_skill"] = "选择一其它脚色，其需選擇1項➀弃全部裝僃(无裝僃不可選),➁伱予其1傷",
   -- ["#szyih_kouc_use"] = "是否對 %src 起動水攻",
   ["#hqeenqmjet__szyih_kouc_skill_discard"] = "伱對 %src 起動水攻 是否弃裝僃",
 

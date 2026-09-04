@@ -42,7 +42,7 @@ tszhiocqphioc_active:addEffect("active", {
   end,
   on_use = function(self, room, effect)
     local n =#effect.cards
-    S.playCard(effect.from,effect.cards,"tszhiocqphioc")
+    S.playCard(effect.cards,"tszhiocqphioc",effect.from)
     effect.from:drawCards(n, tszhiocqphioc_active.name)
     room:setPlayerMark(effect.from,"@@tszhiocqphioc",n)
 

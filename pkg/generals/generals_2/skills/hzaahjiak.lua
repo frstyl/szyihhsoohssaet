@@ -3,7 +3,7 @@ local hzaahjiak = fk.CreateSkill {
 }
 Fk:loadTranslationTable{
 ["hzaahjiak"] = "下藥",
-[":hzaahjiak"] = "主旹.伱可將♠️手牌轉化爲｢投毒｣起動發動.本轉內,伱對迷狀態脚色致傷歬,伱可發動,流失等傷害值量體力,伱取得其1牌.伱起動｢投毒｣可額外指定1目幖",
+[":hzaahjiak"] = "主旹.伱可將♠️手牌轉化爲｢投毒｣起動發動.本轉內,伱對迷狀態脚色致傷歬,伱可發動,流失(傷害值),伱取得其1牌.伱起動｢投毒｣可額外指定1目幖",
 ["#hzaahjiak"]="下藥 將黑桃手牌轉化爲｢投毒｣起動",
 
 ["#hzaahjiak-invoke"] = "下藥 防止對 %src 傷害",

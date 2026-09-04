@@ -4,7 +4,7 @@ local khuoqthoot = fk.CreateSkill({
 
 Fk:loadTranslationTable{
   ["khuoqthoot"] = "驅𠫓",--驕矜
-  [":khuoqthoot"] = "伱起動演練牌旹,伱可發動｡伱抽2,中止當轉｡",
+  [":khuoqthoot"] = "伱起動或演練牌旹,伱可發動｡伱抽2,中止1轉｡",
 
 
   ["$khuoqthoot1"] = "矢贯坚石，劲冠三军！", 

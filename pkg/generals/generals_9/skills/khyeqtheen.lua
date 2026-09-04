@@ -17,7 +17,11 @@ khyeqtheen:addEffect(fk.EventPhaseStart, {
   end,
   on_use = function(self, event, target, player, data)
     local room = player.room
-    local result = room:askToGuanxing(player, { cards = room:getNCards(2)})
+    local result = room:askToGuanxing(player, {
+       cards = room:getNCards(2),
+       skill_name=khyeqtheen.name,
+       skip=true,
+      })
   end,
 })
 

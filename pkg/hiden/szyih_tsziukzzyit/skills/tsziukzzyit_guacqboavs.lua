@@ -10,7 +10,7 @@ Fk:loadTranslationTable{
 local S = require "packages/szyihhsoohssaet/szyih_guos" 
 
 
-tsziukzzyit_hzaechquns:addEffect(fk.DamageCaused, {
+tsziukzzyit_hzaechquns:addEffect(fk.DamageInflicted, {
   -- globle=true,
   can_trigger= function(self, event, target, player, data)
     return player.seat==1 and S.hasTsziukzzyit(data.from ,"guacqboavs")

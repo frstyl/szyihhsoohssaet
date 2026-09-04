@@ -4,13 +4,13 @@ local dookszjih = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["dookszjih"] = "毒矢",  --毒💩️
-  [":dookszjih"] = "伱起動殺對目幖脚色致傷旹,伱可➀預打出1手牌發動,爲目幖附加毒.➁發動,此傷-1,目幖脚色牢+1",
+  [":dookszjih"] = "伱起動殺對目幖脚色致傷旹,伱可➀預打出1手牌發動,爲目幖附加毒.➁發動,傷害值-1,目幖牢+1",
 
   ["#dookszjih-invoke"] = "毒矢 打出0至1手牌對 %src 發動",
 
   -- ["dook"] = "毒",  --技能
   -- ["@@dook"] = "毒",  --幖記
-  -- ["@@antirecover-turn"] = "回復无效",
+  -- ["@@prohibit _recover-turn"] = "禁療",
   -- ["#PreventRecoverBySkill"] = "由于 %arg 的效果，%from 受到回復被防止",
 
   ["$dookszjih1"] = "明搶易躲毒矢難防",
@@ -19,7 +19,7 @@ Fk:loadTranslationTable{
 
 local S = require "packages/szyihhsoohssaet/szyih_guos" 
 
-dookszjih:addEffect(fk.DamageCaused, {
+dookszjih:addEffect(fk.DamageInflicted, {
   anim_type = "offensive",
   can_trigger = function(self, event, target, player, data)
     return  data.from==player and player:hasSkill(dookszjih.name)
@@ -58,29 +58,29 @@ dookszjih:addEffect(fk.DamageCaused, {
         -- data:changeDamage(-1)
       player.room:addPlayerMark(data.to,"@loav",1)
     elseif #cards ==1 then
-      S.playCard(player,cards,dookszjih.name)
+      S.playCard(cards,dookszjih.name,player)
       player.room:setPlayerMark(data.to,"@@dook",1)
-      room:addSkill("dook_rule")
+      -- room:addSkill("dook_rule")
     end
   end,
 })
 
--- dookszjih:addEffect(fk.TurnStart, {
---   is_delay_effect=true,
---   can_trigger = function(self, event, target, player, data)
---     return target==player and player:getMark("@@dook")>0
---   end,
---   on_trigger = function(self, event, target, player, data)
---     player.room:loseHp(player,1,"dook",player)  --毒skill
---     player.room:setPlayerMark(player,"@@dook",0)
---     player.room:setPlayerMark(player,"@@antirecover-turn",1)
---   end,
--- })
+dookszjih:addEffect(fk.TurnStart, {
+  is_delay_effect=true,
+  can_trigger = function(self, event, target, player, data)
+    return target==player and player:getMark("@@dook")>0
+  end,
+  on_trigger = function(self, event, target, player, data)
+    player.room:loseHp(player,1,"dook",player)  --毒skill
+    player.room:setPlayerMark(player,"@@dook",0)
+    player.room:setPlayerMark(player,"@@prohibit _recover-turn",1)
+  end,
+})
 
 -- dookszjih:addEffect(fk.PreHpRecover, {
 --   is_delay_effect=true,
 --   can_trigger = function(self, event, target, player, data)
---     return target==player and player:getMark("@@antirecover-turn")>0
+--     return target==player and player:getMark("@@prohibit _recover-turn")>0
 --   end,
 --   on_trigger = function(self, event, target, player, data)
 --     data.prevented=true

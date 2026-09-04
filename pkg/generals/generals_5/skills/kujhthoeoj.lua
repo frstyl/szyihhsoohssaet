@@ -4,7 +4,7 @@ local kujhthoeoj = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["kujhthoeoj"] = "鬼胎",
-  [":kujhthoeoj"] = "A起動｢桃｣/｢酒｣對唯一目幖B生效歬旹,若A B皆不爲伱且伱已損,伱可打出1紅桃牌發動.此牌轉迻于伱",
+  [":kujhthoeoj"] = "A起動｢桃｣/｢酒｣對僅存目幖B生效歬旹,若A B皆不爲伱且伱已損,伱可打出1紅桃牌發動.此牌轉迻于伱",
 
   ["#kujhthoeoj-invoke"] = "鬼胎 %src 對%dest 起動%arg 將生效 伱可打出1紅桃牌發動.此牌轉迻于伱",
 
@@ -44,7 +44,9 @@ kujhthoeoj:addEffect(fk.BeforeCardEffect, {
   end,
   on_use = function(self, event, target, player, data)
     local room = player.room
-    S.playCard(player,event:getCostData(self).cards,kujhthoeoj.name)
+    S.playCard(event:getCostData(self).cards,kujhthoeoj.name,player)
+    data.extra_data=data.extra_data or {}
+    data.extra_data.origin_to=data.extra_data.origin_to or data.to
     data.to=player
   end,
 })

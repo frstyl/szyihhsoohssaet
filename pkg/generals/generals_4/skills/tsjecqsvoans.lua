@@ -4,7 +4,7 @@ local tsjecqsvoans = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["tsjecqsvoans"] = "精算",
-  [":tsjecqsvoans"] = "印牌:以伱可x張手牌轉化起動(需牌點數合爲13)卽旹牌發動｡起動後伱將手牌數補至x.",
+  [":tsjecqsvoans"] = "印牌:以伱可x張手牌轉化起動(需牌點數合爲13)卽旹{行動/物資/計謀}牌發動｡起動後伱將手牌數補至x.",
 
   ["#tsjecqsvoans"] = "精算：選擇點數合爲13之牌",
 }

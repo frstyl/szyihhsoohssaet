@@ -13,6 +13,8 @@ Fk:loadTranslationTable{
   ["$pujqkiams3"] = "飛劍破空",
 }
 
+local S = require "packages/szyihhsoohssaet/szyih_guos" 
+
 -- local U = require "packages/utility/utility"
 -- pujqkiams: addAcquireEffect(function (self, player)
 --   local t=player.room:getBanner(pujqkiams.name) or {}
@@ -145,7 +147,7 @@ pujqkiams:addEffect(fk.AfterCardsMove, {
     local room = player.room
     local cards = event:getCostData(self).cards
     local tos =event:getCostData(self).tos
-    S.playCard(player,{cards[2]},pujqkiams.name)
+    S.playCard({cards[2]},pujqkiams.name,player)
 
     local c=Fk:getCardById(cards[1])
     local card = Fk:cloneCard(c.name, c.suit, c.number)  --虛牌鎖无色?

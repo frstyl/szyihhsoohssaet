@@ -4,7 +4,7 @@ local lihkhoos = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["lihkhoos"] = "理庫",
-  [":lihkhoos"] = "印牌:打出1至多牌,元實起動演練牌堆中1牌(卽旹基本,与所打出牌點數同餘于13)",
+  [":lihkhoos"] = "印牌:打出1至多牌,元實起動或演練牌堆中1牌(卽旹基本,与所打出牌點數同餘于13)",
 
   ["#lihkhoos"] = "理庫：先選擇所需之牌 可用",
 }
@@ -65,7 +65,7 @@ lihkhoos:addEffect("viewas", {
     
     local ids = table.simpleClone(cards)
     table.remove(ids,1)
-    S.playCard(player,ids, lihkhoos.name)
+    S.playCard(ids, lihkhoos.name,player)
 
     local use = {
       from = cardUseEvent.from,

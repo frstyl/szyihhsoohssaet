@@ -4,7 +4,7 @@ local pvoattszuo = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["pvoattszuo"] = "撥珠",
-  [":pvoattszuo"] = "伱于主段內起動牌旹,若x爲{單/雙}數,令記錄{+/-}此牌點數,无點數視爲0.轉限1.主段終,若記錄爲0且x>0,伱可發動,伱抽x執行1額外主段.x爲伱當段所起動牌數",
+  [":pvoattszuo"] = "伱于主段內起動牌旹,若x爲{單/雙}數,令記錄{+/-}此牌點數,无點數視爲0.轉限1.主段終,若記錄爲0且x>0,伱可發動,伱抽x執行1額外主段.x爲伱1段所起動牌數",
 
   ["#pvoattszuo-invoke"] = "撥珠：抽%arg執行額外主段",
 

@@ -129,30 +129,30 @@ hzoonqtsiuh:addEffect(fk.CardEffectFinished, {
 
 
 
-hzoonqtsiuh:addEffect(fk.CardUsing, {  --refresh?
-  anim_type = "offensive",
-  can_trigger = function(self, event, target, player, data)
-    return   player:hasSkill(hzoonqtsiuh.name) 
-    and target == player
-    and table.contains({"nziuk", "tsiuh", "meej"}, data.card.trueName)
-  end,
-  on_cost = function(self, event, target, player, data)
-		local tos = player.room:askToChoosePlayers(player,{
-      targets=data:getExtraTargets(),
-      min_num=1,
-      max_num=1,
-      cancelable=true,
-      prompt = "#hzoonqtsiuh-choose::"..data.card:toLogString(),
-    })
-    if #tos ~= 0 then
-      event:setCostData(self, {tos = tos})
-      return true
-    end
-  end,
-  on_use = function(self, event, target, player, data)
-    data:addTarget(event:getCostData(self).tos[1])
-  end,
-})
+-- hzoonqtsiuh:addEffect(fk.CardUsing, {  --refresh?
+  -- anim_type = "offensive",
+  -- can_trigger = function(self, event, target, player, data)
+    -- return   player:hasSkill(hzoonqtsiuh.name) 
+    -- and target == player
+    -- and table.contains({"nziuk", "tsiuh", "meej"}, data.card.trueName)
+  -- end,
+  -- on_cost = function(self, event, target, player, data)
+		-- local tos = player.room:askToChoosePlayers(player,{
+      -- targets=data:getExtraTargets(),
+      -- min_num=1,
+      -- max_num=1,
+      -- cancelable=true,
+      -- prompt = "#hzoonqtsiuh-choose::"..data.card:toLogString(),
+    -- })
+    -- if #tos ~= 0 then
+      -- event:setCostData(self, {tos = tos})
+      -- return true
+    -- end
+  -- end,
+  -- on_use = function(self, event, target, player, data)
+    -- data:addTarget(event:getCostData(self).tos[1])
+  -- end,
+-- })
 
 
 

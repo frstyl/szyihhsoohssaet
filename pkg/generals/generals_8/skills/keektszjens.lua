@@ -6,7 +6,7 @@ local S = require "packages/szyihhsoohssaet/szyih_guos"
 
 Fk:loadTranslationTable{ --拆解
   ["keektszjens"] = "激戰",
-  [":keektszjens"] = "伱起動殺或鬥將旹可發動.此牌致傷旹傷害值+1,其被抵消旹,伱選擇執行弃2手牌或流失1體力",
+  [":keektszjens"] = "伱起動｢殺｣或｢鬥將｣旹可發動.此牌致傷旹傷害值+1,伱抽1,其被抵消旹,伱選擇執行弃2手牌或流失1",
   ["#keektszjens"] = "激戰 流失體力加傷",
 
   ["#changeDamageBySkill"] = "由于 %arg 的效果，對 %from 傷害 + %arg2",
@@ -34,9 +34,9 @@ keektszjens:addEffect(fk.CardUsing, {  --
   end,
 })
 
-keektszjens:addEffect(fk.DamageCaused, {
+keektszjens:addEffect(fk.DamageInflicted, {
   can_trigger = function(self, event, target, player, data)
-    if player.seat~=1 then return end 
+    if player.seat~=Fk:currentRoom().curren then return end 
     return  data.event_data
         and data.event_data.extra_data
         and data.event_data.extra_data.keektszjens
@@ -45,6 +45,7 @@ keektszjens:addEffect(fk.DamageCaused, {
     -- player.room:sendLog{ type = "#changeDamageBySkill", from = data.to.id, arg = keektszjens.name ,arg2=1}
     -- data:changeDamage(1)
     S.changeDamage({damageData=data,num=1,skillName=keektszjens.name})
+    player.room:getPlayerById(data.event_data.extra_data.keektszjens):drawCards(1,keektszjens.name)
   end,
 })
 

@@ -4,7 +4,7 @@ local kaamqprac = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["kaamqprac"] = "監兵",
-  [":kaamqprac"] = "轉脚色起動牌旹,伱可打出1紅{黑/牌}發動.當轉脚色｢殺｣每段次數限制計數設爲{0/上限}",
+  [":kaamqprac"] = "轉脚色起動牌旹,伱可打出1紅{黑/牌}發動.1轉脚色｢殺｣每段次數限制計數設爲{0/上限}",
 
   ["#kaamqprac-invoke"] = "監兵：伱可以打出一紅/黑牌令 %dest ｢杀｣次數爲 0/上限",
 
@@ -39,7 +39,7 @@ kaamqprac:addEffect(fk.CardUsing, {
     end
   end,
   on_use = function(self, event, target, player, data)
-    S.playCard(player,event:getCostData(self).cards,kaamqprac.name)
+    S.playCard(event:getCostData(self).cards,kaamqprac.name,player)
     local card =Fk:cloneCard("ssaet")  --setVSPattern neg
     -- card:setVSPattern(nil,target,"ssaet|z|z|z")
     if event:getCostData(self).color==Card.Red then

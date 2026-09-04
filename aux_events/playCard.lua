@@ -2,7 +2,7 @@
 local szyih_guos = require 'packages/szyihhsoohssaet/_base'
 
 
---- PlayCardData 打出牌  --止此2項必要--非響應  --使用打出迻動无關于使用打出事件
+--- PlayCardData 打出牌  --止此2項必要--非響應  --使用打出迻動无關于使用打出事件  --同RespondCardEvent
 ---@param card_ids integer[]|integer|Card|Card[] @ 牌
 ---@param from ServerPlayer @
 ---@param skillName? string @
@@ -17,10 +17,10 @@ szyih_guos.PlayCardData = TriggerData:subclass("PlayCardData")
 szyih_guos.PlayCard = TriggerEvent:subclass("PlayCardEvent")
 
 --- 打出牌事件始 防止
----@class szyih_guos.PreCardPlay: szyih_guos.PlayCard
-szyih_guos.PreCardPlay = szyih_guos.PlayCard:subclass("szyih_guos.PreCardPlay")
+---@class szyih_guos.PreCardPlayed: szyih_guos.PlayCard
+szyih_guos.PreCardPlayed = szyih_guos.PlayCard:subclass("szyih_guos.PreCardPlayed")
 
---- 打出牌旹 
+--- 打出牌旹 --- pre before when after post 
 ---@class szyih_guos.CardPlaying: szyih_guos.PlayCard
 szyih_guos.CardPlaying = szyih_guos.PlayCard:subclass("szyih_guos.CardPlaying")
 
@@ -44,38 +44,35 @@ function (self)
   local playCardData = self.data ---@class PlayCardDataSpec
   local room = self.room ---@type Room
   local logic = room.logic
-  local from = playCardData.from
+  local from = playCardData.from  --攷慮多人 可能nil
   local card_ids=playCardData.card_ids
+  local skillName = playCardData.skillName
+  local proposer=nil 
 
   local card =Fk:cloneCard("play")
-  card:addSubcards(card_ids)
+  card:addSubcards(card_ids)  --方便 使用打出皆能發動者
   local respondCardData={
-    from=playCardData.from,
+    from = from,
     card = card ,
     attachedSkillAndUser={muteCard=true},
   }
 
-  -- if logic:trigger(fk.PreCardPlay, from, playCardData) then  --??
-  --   logic:breakEvent()
-  -- end
-
-  if logic:trigger(fk.PreCardRespond, from, respondCardData ) then
+  if logic:trigger(szyih_guos.PreCardPlayed, from, respondCardData) then  --??
     logic:breakEvent()
   end
 
+  -- if logic:trigger(fk.PreCardRespond, from, respondCardData ) then
+  --   logic:breakEvent()
+  -- end
 
+  room:moveCardTo(card_ids, Card.Processing, nil, fk.ReasonResponse, skillName, nil, true, proposer ) --有无?proposer
 
-  local skillName = playCardData.skillName
-
-
-  room:moveCardTo(card_ids, Card.Processing, nil, fk.ReasonResponse, skillName, nil, true, from )
-
-      -- room:moveCards({
+  -- room:moveCards({
   --   ids = card_ids,
   --   toArea = Card.Processing,
   --   skillName = skillName,
   --   moveReason = fk.ReasonResponse,
-  --   proposer = from,
+  --   proposer = proposer,
   -- })
   room:sendFootnote(card_ids, {
     type = "##PlayCard",
@@ -88,8 +85,8 @@ function (self)
     arg = #card_ids,
     arg2 = skillName,
   }
-  logic:trigger(fk.CardPlaying, from, playCardData)
-  logic:trigger(fk.CardResponding, from, respondCardData)
+  logic:trigger(szyih_guos.CardPlaying, from, playCardData)
+  -- logic:trigger(fk.CardResponding, from, respondCardData)
 end , 
 function (self) --cleaner function
 
@@ -105,8 +102,8 @@ function (self) --cleaner function
     attachedSkillAndUser={muteCard=true},
   }
 
-  room.logic:trigger(fk.CardPlayFinished, playCardData.from, playCardData)
-  room.logic:trigger(fk.CardRespondFinished, respondCardData.from, respondCardData)
+  room.logic:trigger(szyih_guos.CardPlayFinished, playCardData.from, playCardData)
+  -- room.logic:trigger(fk.CardRespondFinished, respondCardData.from, respondCardData)
 
   local ids = table.filter(playCardData.card_ids, function (id)
     return table.contains(room.processing_area, id)
@@ -130,14 +127,14 @@ Fk:loadTranslationTable{
   ["$PlayBySkill"] = "%from  打出 %arg牌  %card  (%arg2)",
   -- ["#PlayCard"] = "%from  打出 %card",
 
-  -- ["##PlayCard"] = "%from 打出",
+  ["##PlayCard"] = "%from 打出",
 }
 
 --弃牌後?因弃置失去牌後
 --抽牌?因抽得牌
-szyih_guos.playCard = function(from,card_ids,skillName,skipDrop)
+szyih_guos.playCard = function(card_ids,skillName,from,skipDrop)
 
-  if not from or not card_ids then return end  --眞有用
+  if not from or from.dead or not card_ids then return end  --眞有用
   if type(card_ids) == "number" then
     card_ids = {card_ids}
   end
@@ -219,6 +216,19 @@ end
 --       attachedSkillAndUser={muteCard=true},
 --     })
 -- end
+
+szyih_guos.prohibitPlay= function (player,card)
+  if type(card) == "number" then
+    card = Fk:getCardById(card)
+  end
+  local status_skills = Fk:currentRoom().status_skills[ProhibitSkill] or Util.DummyTable
+  for _, skill in ipairs(status_skills) do
+    if skill:prohibitResponse(player, card) then
+      return true
+    end
+  end
+  return false
+end
 
 --- RespondCardData 打出牌的数据
 ---@class RespondCardDataSpec

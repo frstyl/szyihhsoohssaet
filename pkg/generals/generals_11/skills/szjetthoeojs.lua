@@ -4,10 +4,10 @@ local szjetthoeojs = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["szjetthoeojs"] = "設貸",
-  [":szjetthoeojs"] = "一其它脚色主段始旹,伱可預打出a牌發動.其抽a,此段殺可用次數+1,此段終旹,(若伱未死亾)其需交与伱2×a牌,若其牌不足,其流失差值體力", 
+  [":szjetthoeojs"] = "一其它脚色主段執行旹,伱可弃置a張牌發動.其抽a,1段內｢殺｣次數上限+1,段終旹,(若伱未死亾)其需交与伱2×a牌,若其牌不足,其流失差值", 
 --殺次數?
   ["@@szjetthoeojs-phase"] = "設貸",
-  ["#szjetthoeojs-invoke"] = "設貸 %src 主段始 伱可打出牌令其抽等量牌",
+  ["#szjetthoeojs-invoke"] = "設貸 %src 主段 伱可弃置牌令其抽等量牌",
   ["#szjetthoeojs-choose"] = "設貸 交還 %src %arg牌",
 
   ["$szjetthoeojs1"] = "白銀在此將了去",  --
@@ -15,14 +15,14 @@ Fk:loadTranslationTable{
 
 local S = require "packages/szyihhsoohssaet/szyih_guos" 
 
-szjetthoeojs:addEffect(fk.EventPhaseStart, {
+szjetthoeojs:addEffect(fk.EventPhaseProceeding, {
   can_trigger = function(self, event, target, player, data)
     return player:hasSkill(szjetthoeojs.name) 
     and target~=player
     and target.phase==Player.Play
     end,
   on_cost = function(self, event, target, player, data)
-    local cards= S.askToPlayCard(player, {
+    local cards= player.room:askToDiscard(player, {
         min_num = 1,
         max_num = 999,
         include_equip = true,
@@ -32,7 +32,7 @@ szjetthoeojs:addEffect(fk.EventPhaseStart, {
         skip = true
       })
     if #cards>0 then
-      event:setCostData(self, {cards = cards,})
+      event:setCostData(self, {cards = cards,tos={target}})
       return true
     end
 
@@ -41,7 +41,8 @@ szjetthoeojs:addEffect(fk.EventPhaseStart, {
     local room=player.room
     local cards=event:getCostData(self).cards
     local n=#cards
-    S.playCard(player,event:getCostData(self).cards,szjetthoeojs.name)
+    -- S.playCard(event:getCostData(self).cards,szjetthoeojs.name,player)
+	room:throwCards(cards, szjetthoeojs.name,target,player)
     target:drawCards(n,szjetthoeojs.name)
     local t=target:getTableMark("@@szjetthoeojs-phase") 
     t[player.id]=n

@@ -4,7 +4,7 @@ local ljettseet = fk.CreateSkill {
 
 Fk:loadTranslationTable{
 ["ljettseet"] = "烈節",  --誼
-[":ljettseet"] = "伱受傷旹,若有傷源且不爲伱,伱可預与傷源賭鬥發動.伱防止此傷害.且若伱沒贏,伱流失1體力令傷源弃1手牌",
+[":ljettseet"] = "伱受傷旹,若有傷源且不爲伱,伱可預与傷源賭鬥發動.伱防止此傷害.且若伱沒贏,伱流失1令傷源弃1手牌",
 
 ["#ljettseet-invoke"]="烈節  与%src賭鬥 防止此傷害",
 

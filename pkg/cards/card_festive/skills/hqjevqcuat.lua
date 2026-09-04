@@ -12,8 +12,8 @@ local hqjevqcuat = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["&hqjevqcuat"]= "邀月",
-  [":hqjevqcuat"]= "伱額定手牌數+1",
-  [":hqjevqcuat_inner"]= "伱額定手牌數+{1}",
+  [":hqjevqcuat"]= "伱存牌數+1",
+  [":hqjevqcuat_inner"]= "伱存牌數+{1}",
   ["$hqjevqcuat1"] = "昨夜嫦娥弄玉纖,也應掐月作花鈿",
   ["$hqjevqcuat2"] = "海上生明月天涯共此旹",
 }

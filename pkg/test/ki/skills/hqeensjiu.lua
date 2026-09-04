@@ -5,7 +5,7 @@ local hqeensjiu = fk.CreateSkill({
 
 Fk:loadTranslationTable{
   ["hqeensjiu"] = "宴游",
-  [":hqeensjiu"] = "弃牌階段歬,必發.全體脚色同時選1項肰後逐个執行➀抽1➁弃1手牌.執行後,若x>y,本輪內選➀者擁有戲幖記(伱不可起動<a href='AttackCard'>進攻牌</a>);x<y,本輪內,選➁者擁有諫幖記(其它脚色至伱基礎距離爲1);x=y,伱抽x終止此轉(x y分別爲選➀➁之脚色數).伱因此技能所抽牌无視額定手牌數",
+  [":hqeensjiu"] = "伱撤段歬,必發.全體脚色同時選1項肰後逐个執行➀抽1➁弃1手牌.執行後,若x>y,本輪內選➀者擁有戲幖記(伱不可起動<a href='AttackCard'>進攻牌</a>);x<y,本輪內,選➁者擁有諫幖記(其它脚色至伱基礎距離爲1);x=y,伱抽x終止其轉(x y分別爲選➀➁之脚色數).伱因此技能所抽牌无視存牌數",
 
   ["hqeensjiu-draw"] = "宴游：抽1",
   ["hqeensjiu-discard"] = "宴游：弃1",

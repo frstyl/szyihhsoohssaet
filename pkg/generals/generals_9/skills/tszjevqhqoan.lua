@@ -4,7 +4,7 @@ local tszjevqhqoan = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["tszjevqhqoan"] = "招安",
-  [":tszjevqhqoan"] = "主旹.選擇1其它脚色A与1項發動➀對1脚色(由伱指定,除伱与A)起動1殺➁交与伱1殺或武器牌.若A執行,其抽2,否則其當轉不可起動打出基本牌",
+  [":tszjevqhqoan"] = "主旹.選擇1其它脚色A与1項發動➀對1脚色(由伱指定,除伱与A)起動1殺➁交与伱1殺或武器牌.若A執行,其抽2,否則其1轉內不可起動或打出一字名牌",  --｢{殺/閃/肉/酒}｣
 
   ["#tszjevqhqoan-active"] = "招安.選擇1項發動",
   ["#tszjevqhqoan-ssaet"] = "用殺",
@@ -14,6 +14,9 @@ Fk:loadTranslationTable{
 
   ["@@tszjevqhqoan-turn"] = "招安",
 }
+
+local S = require "packages/szyihhsoohssaet/szyih_guos" 
+
 tszjevqhqoan:addEffect("active", {
   anim_type = "support",
   prompt = "#tszjevqhqoan-active",
@@ -94,17 +97,23 @@ tszjevqhqoan:addEffect("active", {
 
 tszjevqhqoan:addEffect("prohibit", {  --不可起動打出同色牌 元版不能 轉化後牌不能 轉化歬牌不能 --肰則牌名殺?
   prohibit_use = function(self, player, card)
-    if player:getMark("@@tszjevqhqoan-turn")~=0 and S.getCardTypeByName(card)==Card.TypeBasic then
-      local subcards = card:isVirtual() and card.subcards or {card.id}
-      return #subcards > 0
-    end
+    if player:getMark("@@tszjevqhqoan-turn")~=0 then return  S.getCardNameLengthcard(card)==1 end
   end,
   prohibit_response = function(self, player, card)
-    if player:getMark("@@tszjevqhqoan-turn")~=0 and S.getCardTypeByName(card)==Card.TypeBasic then
-      local subcards = card:isVirtual() and card.subcards or {card.id}
-      return #subcards > 0
-    end
+    if player:getMark("@@tszjevqhqoan-turn")~=0  then return  S.getCardNameLengthcard(card)==1 end
   end,
+    -- prohibit_use = function(self, player, card)
+  --   if player:getMark("@@tszjevqhqoan-turn")~=0 and S.getCardTypeByName(card)==Card.TypeBasic then
+  --     local subcards = card:isVirtual() and card.subcards or {card.id}
+  --     return #subcards > 0
+  --   end
+  -- end,
+  -- prohibit_response = function(self, player, card)
+  --   if player:getMark("@@tszjevqhqoan-turn")~=0 and S.getCardTypeByName(card)==Card.TypeBasic then
+  --     local subcards = card:isVirtual() and card.subcards or {card.id}
+  --     return #subcards > 0
+  --   end
+  -- end,
 })
 
 return tszjevqhqoan

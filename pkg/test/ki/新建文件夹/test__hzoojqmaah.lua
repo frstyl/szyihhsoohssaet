@@ -4,7 +4,7 @@ local test__hzoojqmaah = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["test__hzoojqmaah"] = "回馬",
-  [":test__hzoojqmaah"] = "印牌:起動演練虛擬閃｡伱預轉化1牌爲｢殺｣起動發動,若此殺未致傷,中止次技能",
+  [":test__hzoojqmaah"] = "印牌:起動或演練虛擬閃｡伱預轉化1牌爲｢殺｣起動發動,若此殺未致傷,中止次技能",
 
   ["#test__hzoojqmaah"] = "回馬：伱可起動殺,若致傷視爲伱起動閃",
 

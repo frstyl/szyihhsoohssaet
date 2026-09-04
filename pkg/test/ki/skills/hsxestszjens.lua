@@ -1,55 +1,65 @@
-local hsxestszjens = fk.CreateSkill({
+local hsxestszjens = fk.CreateSkill{
   name = "hsxestszjens",
-})
+}
 
 Fk:loadTranslationTable{
   ["hsxestszjens"] = "戲戰",
-  [":hsxestszjens"] = "伱攻程內其它脚色起動<a href='AttackCard'>進攻牌</a>旹,伱可發動,其選擇➀此牌起動无效➁對伱起動虛擬｢鬥將｣.",
+  [":hsxestszjens"] = "伱指定/成爲｢殺｣目幖旹,伱可迻除此目幖發動,伱弃其1",
+
+  -- ["#hsxestszjens-ask"] = "戲戰 是否對 %src 發動",
+  ["#hsxestszjens-choose"] = "戲戰 選擇1手牌",
 
 
-  ["#hsxestszjens-invoke"] = "觀陣:%dest 起動 %arg 伱可發動",
-  ["#hsxestszjens-choose"] = "觀陣: 對 %src 虛擬起動鬥將",
+  ["$hsxestszjens1"] = "且慢",  --
 
-  ["$hsxestszjens1"] = "伱昰太乙三才陣何足爲奇",
-  ["$hsxestszjens2"] = "九宮八卦已无敵,河洛四像眞堪奇",
 }
 
-local S = require "packages/szyihhsoohssaet/szyih_guos"
+local S = require "packages/szyihhsoohssaet/szyih_guos" 
 
-
-hsxestszjens:addEffect(fk.CardUsing, {
-  anim_type = "control",
-  can_trigger = function(self, event, target, player, data)
-    return
-      player:hasSkill(hsxestszjens.name) 
-      -- and S.isAttackCard(data.card)  
-      and player:inMyAttackRange(target)
-  end,
+local spec={
+  anim_type = "defensive",
+  -- can_trigger = function(self, event, target, player, data)
+    -- return (data.to==player or data.from ==player)
+    -- and player:hasSkill(hsxestszjens.name) --
+    -- and data.card.trueName=="ssaet"
+    -- and not data.cancelled
+  -- end,
   on_cost = function(self, event, target, player, data)
-    local room = room
-    if player.room:askToSkillInvoke(player, { 
-      prompt = "#kvoanqddxins-invoke::" .. target.id .. ":" .. data.card:toLogString(),
-      skill_name = hsxestszjens.name,
-      })
-    then
-      event:setCostData(self, {tos={target}})
+    if player.room:askToSkillInvoke(player, { skill_name = self.name }) then
+      event:setCostData(self,{tos={data.to}})
       return true
     end
   end,
   on_use = function(self, event, target, player, data)
     local room = player.room
 
-    if player.room:askToSkillInvoke(target, { 
-      prompt = "#kvoanqddxins-choose::" .. player.id ,
-      skill_name = hsxestszjens.name,
-      })
-    then 
-      room:useVirtualCard("tous_tsiacs", nil,  target,{player}, hsxestszjens.name, true)
-    else
-      S.useNullify(data,player,hsxestszjens.name)
-    end
+      data:cancelTarget(data.to)
+      if not data.to:isKongcheng() then
+        local cid = room:askToChooseCard(player, { target = data.to, flag = "he", skill_name = hsxestszjens.name })
+        room:throwCard({cid}, hsxestszjens.name, data.to, player)
 
+      end
   end,
+}
+hsxestszjens:addEffect(fk.TargetConfirming, {
+  can_trigger = function(self, event, target, player, data)
+    return data.from==player 
+    and player:hasSkill(hsxestszjens.name)  and self:isEffectable(player)--
+    and data.card.trueName=="ssaet"
+    and not data.cancelled
+  end,
+  on_cost=spec.on_cost,
+  on_use=spec.on_use,
+})
+hsxestszjens:addEffect(fk.TargetConfirming, {
+  can_trigger = function(self, event, target, player, data)
+    return data.to ==player
+    and player:hasSkill(hsxestszjens.name)  and self:isEffectable(player)--
+    and data.card.trueName=="ssaet"
+    and not data.cancelled
+  end,
+  on_cost=spec.on_cost,
+  on_use=spec.on_use,
 })
 
 

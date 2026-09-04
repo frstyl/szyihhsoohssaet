@@ -108,7 +108,7 @@ Fk:loadTranslationTable{
   [":tsziukzzyit_dzjisjuoh"] = "伱末段始旹觸發,伱回1｡附加概率100%,觸發概25%,持續3轉 ",
 
   ["tsziukzzyit_mracsttiucs"] = "命中",
-  [":tsziukzzyit_mracsttiucs"] = "伱使用殺旹觸發,此殺不可被閃響應｡附加概率100%,觸發概100%,持續3轉",
+  [":tsziukzzyit_mracsttiucs"] = "伱起動殺旹觸發,此殺不可被閃抵消｡附加概率100%,觸發概100%,持續3轉",
 
   ["tsziukzzyit_hzaechquns"] = "𡴘運",
   [":tsziukzzyit_hzaechquns"] = "伱額定抽牌歬觸發,抽牌數+1｡附加概率75%,觸發概率50%,持續3轉.",
@@ -117,13 +117,13 @@ Fk:loadTranslationTable{
   [":tsziukzzyit_mxiqquns"] = "伱額定抽牌歬觸發,抽牌數-1｡附加概率75%,觸發概率50%,持續3轉.",
 
   ["tsziukzzyit_tthxinsdook"] = "疢毒",
-  [":tsziukzzyit_tthxinsdook"] = "預段始旹,伱隨機弃1牌, 无牌則流失1體力｡附加概率100%,觸發概100%,持續5轉",
+  [":tsziukzzyit_tthxinsdook"] = "預段始旹,伱隨機弃1牌, 无牌則流失1｡附加概率100%,觸發概100%,持續5轉",
 
   ["tsziukzzyit_maacqmiuk"] = "盲目",
-  [":tsziukzzyit_maacqmiuk"] = "恆續,若伱至目幖距離大于1,伱不能選擇其爲牌目幖｡附加概率100%,觸發概100%,持續3轉",
+  [":tsziukzzyit_maacqmiuk"] = "恆續,若伱至目幖距離大于1,伱不能選擇其爲起動目幖｡附加概率100%,觸發概100%,持續3轉",
 
   ["tsziukzzyit_hsoonqdzzyes"] = "昏睡",
-  [":tsziukzzyit_hsoonqdzzyes"] = "➀恆續,伱轉外不可使用牌｡➁伱主段始歬觸發,越過｡附加概率100%,觸發概100%,持續3轉",
+  [":tsziukzzyit_hsoonqdzzyes"] = "➀恆續,伱轉外不可起動牌｡➁伱主段始歬觸發,越過｡附加概率100%,觸發概100%,持續3轉",
 
   ["tsziukzzyit_tssiostsziuk"] = "阻咒",
   [":tsziukzzyit_tssiostsziuk"] = "恆續,伱不是酒肉藥合理目幖｡附加概率100%,觸發概100%,持續3轉",
@@ -200,16 +200,16 @@ szyih_guos.BeforeTsziukzzyitAdd = szyih_guos.TsziukzzyitAdd:subclass("szyih_guos
 
 
 --- 附加咒術旹 改變 如附加概率
----@class szyih_guos.TsziukzzyitAdding: szyih_guos.TsziukzzyitAdd
-szyih_guos.TsziukzzyitAdding = szyih_guos.TsziukzzyitAdd:subclass("szyih_guos.TsziukzzyitAdding")
+---@class szyih_guos.WhenTsziukzzyitAdd: szyih_guos.TsziukzzyitAdd
+szyih_guos.WhenTsziukzzyitAdd = szyih_guos.TsziukzzyitAdd:subclass("szyih_guos.WhenTsziukzzyitAdd")
 
 -- --- 附加咒術旹From 
--- ---@class szyih_guos.TsziukzzyitAddingFrom: szyih_guos.TsziukzzyitAdd
--- szyih_guos.TsziukzzyitAddingFrom = szyih_guos.TsziukzzyitAdd:subclass("szyih_guos.TsziukzzyitAddingFrom")
+-- ---@class szyih_guos.WhenTsziukzzyitAddFrom: szyih_guos.TsziukzzyitAdd
+-- szyih_guos.WhenTsziukzzyitAddFrom = szyih_guos.TsziukzzyitAdd:subclass("szyih_guos.WhenTsziukzzyitAddFrom")
 
---- 附加咒術结束后
----@class szyih_guos.TsziukzzyitAddFinished: szyih_guos.TsziukzzyitAdd
-szyih_guos.TsziukzzyitAddFinished = szyih_guos.TsziukzzyitAdd:subclass("szyih_guos.TsziukzzyitAddFinished")
+--- 附加咒術结束后 post?
+---@class szyih_guos.AfterTsziukzzyitAdd: szyih_guos.TsziukzzyitAdd
+szyih_guos.AfterTsziukzzyitAdd = szyih_guos.TsziukzzyitAdd:subclass("szyih_guos.AfterTsziukzzyitAdd")
 
 ---@alias TsziukzzyitAddTrigFunc fun(self: TriggerSkill, event: szyih_guos.TsziukzzyitAdd,
 ---  target: ServerPlayer, player: ServerPlayer, data: szyih_guos.TsziukzzyitAddData):any
@@ -248,7 +248,7 @@ function (self)
     -- goto finish 
   end
 
-  logic:trigger(szyih_guos.TsziukzzyitAdding, to, TsziukzzyitAddData)
+  logic:trigger(szyih_guos.WhenTsziukzzyitAdd, to, TsziukzzyitAddData)
   local probability=TsziukzzyitAddData.baseProbability
   local yes=false
   if probability==nil then yes=true
@@ -278,7 +278,7 @@ function (self)
 
 end , 
 function (self) --cleaner function
-    self.room.logic:trigger(szyih_guos.TsziukzzyitAddFinished, self.to, self.data)  --self?
+    self.room.logic:trigger(szyih_guos.AfterTsziukzzyitAdd, self.to, self.data)  --self?
 end,
  nil)--exit function
 

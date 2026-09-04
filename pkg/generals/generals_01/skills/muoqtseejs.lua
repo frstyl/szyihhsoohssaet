@@ -13,7 +13,7 @@ Fk:loadTranslationTable{
 
 }
 
-muoqtseejs:addEffect(fk.TargetSpecified, {
+muoqtseejs:addEffect(fk.TargetConfirmed, {
   anim_type = "drawcard",
   can_trigger = function (self, event, target, player, data)
     return data.from==player and player:hasSkill(muoqtseejs.name) and data.to~=data.from and data.card.trueName=="ssaet" 

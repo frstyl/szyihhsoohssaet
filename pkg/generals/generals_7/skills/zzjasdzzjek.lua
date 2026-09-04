@@ -4,8 +4,8 @@ local zzjasdzzjek = fk.CreateSkill{
 
 Fk:loadTranslationTable{
 ["zzjasdzzjek"] = "射石",  --沒鉃
-[":zzjasdzzjek"] = "➀預段發動,伱占卜2次,記彔占卜牌花色.➁轉終,淸除記錄➂伱可將伱1牌花色含于記彔者轉化爲殺起動➃伱所起動殺依記錄所含花色具有對應效果:<font color='red'>♥</font>，无視距離；"..
-  "<font color='red'>♦</font>，不可響應；♣，无視防具；♠，无視次數。若一花色記錄次數大于1,伱起動殺旹其傷害基數+1 ", --♠♥♣♦
+[":zzjasdzzjek"] = "➀伱預段始旹伱可發動,伱占卜2次,記彔占卜牌花色,轉終淸除記錄➁印牌:伱可將伱1牌花色含于記彔者轉化爲殺起動➂伱所起動殺依記錄所含花色具有對應效果:<font color='red'>♥</font>，无視距離；"..
+  "<font color='red'>♦</font>，不可響應；♣，无視防具；♠，无視次數。若一花色記錄次數大于1,其傷害基數+1 ", --♠♥♣♦
 
 ["#zzjasdzzjek-active"] = "射石 將記錄花色轉化爲殺",
 ["@zzjasdzzjek-turn"] = "射石",
@@ -57,11 +57,11 @@ zzjasdzzjek:addEffect(fk.EventPhaseStart, {
         room:setPlayerMark(player,"_zzjasdzzjek-damage-turn",1)
       end
       room:addTableMark(player,"@zzjasdzzjek-turn",suit)
-      if suit=="log_spade" then room:addPlayerMark(plaeyr,"ssaet_bypass_times-trun",1) 
+      if suit=="log_spade" then room:addPlayerMark(player,"ssaet_bypass_times-trun",1) 
       elseif  suit=="log_heart" then 
-        room:addPlayerMark(plaeyr,"ssaet_bypass_distances-trun",1) 
+        room:addPlayerMark(player,"ssaet_bypass_distances-trun",1) 
       elseif   suit=="log_club" then 
-        room:addPlayerMark(plaeyr,"@@ignore_Armor-trun",1) 
+        room:addPlayerMark(player,"@@ignore_Armor-trun",1) 
       end
 
     end
@@ -78,23 +78,6 @@ zzjasdzzjek:addEffect(fk.EventPhaseStart, {
 -- })
 
 
--- zzjasdzzjek:addEffect(fk.TargetSpecified, {  --无視防具 不可響應
---   can_refresh = function(self, event, target, player, data)
---     return target == player  and data.card
---       and data.card.trueName=="ssaet" 
---       and (table.contains(player:getTableMark("@zzjasdzzjek-turn"), "log_club") --or  table.contains(player:getTableMark("@zzjasdzzjek-turn"), "log_diamond")
---       )
---       and not data.to.dead 
---   end,
---   on_refresh = function(self, event, target, player, data) --音效
---     -- if table.contains(player:getTableMark("@zzjasdzzjek-turn"), "log_club") then
---       data.to:addQinggangTag(data)
---     -- end
---     -- if  table.contains(player:getTableMark("@zzjasdzzjek-turn"), "log_diamond")  then
---     --   data.disresponsive = true
---     -- end
---   end,
--- })
 
 zzjasdzzjek:addEffect(fk.PreCardUse, {
   can_refresh = function (self, event, target, player, data)

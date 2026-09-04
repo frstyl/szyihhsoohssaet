@@ -51,7 +51,6 @@ local tszhyitsjevs_spec = {
   end,
 }
 
--- tszhyitsjevs:addEffect(fk.TargetSpecified, tszhyitsjevs_spec)
 
 tszhyitsjevs:addEffect(fk.TargetConfirmed, tszhyitsjevs_spec)
 

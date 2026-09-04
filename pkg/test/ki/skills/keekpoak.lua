@@ -4,9 +4,9 @@ local keekpoak = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["keekpoak"] = "擊搏",
-  [":keekpoak"] = "其它脚色始段始旹伱可發動.其可將1牌轉化爲殺起動,止指定伱爲目幖无視距離次數.若其未因此致傷,當轉內其不可起動非基本牌",
+  [":keekpoak"] = "其它脚色始段始旹伱可發動.其可將1牌轉化爲殺起動,止指定伱爲目幖无視距離次數.若其未因此致傷,1轉內其不可起動非行動",
 
-  ["#keekpoak-invoke"] = "擊搏：视为 %dest 对你起動【杀】，若未造成伤害则其本回合不可起動锦囊牌",
+  ["#keekpoak-invoke"] = "擊搏：视为 %dest 对你起動【杀】，若未造成伤害则其本回合不可起動計謀牌",
   ["#keekpoak-use"] = "擊搏 對 %src 起動 殺",
   ["@@keekpoak-turn"] = "擊搏",
 }

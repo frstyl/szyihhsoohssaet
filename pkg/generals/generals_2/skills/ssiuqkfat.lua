@@ -1,8 +1,9 @@
 Fk:loadTranslationTable{
   ["ssiuqkfat"] = "搜𠜜",
-  [":ssiuqkfat"] = "伱補段始旹,伱可選1~4其它有手牌脚色發動.伱取得其各1手牌,牢+1",
+  [":ssiuqkfat"] = "伱補段始旹,伱可選1~4其它有手牌脚色發動.伱取得其各1手牌,伱牢+1",
 
-  -- ["ssiuqkfat-invoke"] = "搜𠜜 昰否",
+  -- ["#ssiuqkfat-invoke"] = "搜𠜜 昰否",
+  ["#ssiuqkfat-choose"] = "搜𠜜 選1~4其它有手牌脚色  取得其各1手牌",
 
   ["$ssiuqkfat1"] = "岳丈大人生辰將至待吾籌昰生辰綱",
   ["$ssiuqkfat2"] = "管它輩是死是𣴠昰是要獻給太師之賀禮",

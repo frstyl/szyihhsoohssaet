@@ -3,7 +3,7 @@ local skill = fk.CreateSkill {
   attached_equip = "ssaok",
 }
 
-skill:addEffect(fk.DamageCaused, {
+skill:addEffect(fk.DamageInflicted, {
   can_trigger = function(self, event, target, player, data)
     return data.from == player and player:hasSkill(skill.name) and
       data.card and data.card.trueName == "ssaet" and not data.chain and

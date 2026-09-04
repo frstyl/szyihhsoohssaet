@@ -5,7 +5,7 @@ local ssaethsooh = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["ssaethsooh"] = "殺虎",
-  [":ssaethsooh"] = "輪限1.一脚色起動傷害錦囊旹,若目幖數大于1,伱可選1至4脚色發動.此牌對其无效,若牌名爲猛虎下山,褈置此技能次數",  --
+  [":ssaethsooh"] = "輪限1.一脚色起動傷害計謀旹,若目幖數大于1,伱可選1至4脚色發動.此牌對其无效,若牌名爲猛虎下山,褈置此技能次數",  --
 
   ["#ssaethsooh-choose"] = "殺虎：選擇目幖,令此 %arg 對其无效",
 }

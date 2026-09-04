@@ -5,7 +5,7 @@ local dzuohcxes = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["dzuohcxes"] = "聚義",  --星列
-  [":dzuohcxes"] = "鎖，伱手牌上限+1。當伱手牌含有13種點數,伱獲勝",
+  [":dzuohcxes"] = "恆續,伱手牌上限+1。當伱手牌含有13種點數,伱獲勝",
 }
 
 dzuohcxes:addEffect("maxcards", {

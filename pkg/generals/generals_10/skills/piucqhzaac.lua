@@ -5,7 +5,7 @@ local piucqhzaac = fk.CreateSkill{
 
 Fk:loadTranslationTable{
 ["piucqhzaac"] = "風行",
-[":piucqhzaac"] = "伱主段弃段歬必發,伱越過之.伱失去牌旹,若伱手牌數小于體力上限,必發.伱抽1",
+[":piucqhzaac"] = "伱主段或撤段歬必發,伱越過之.伱失去牌後,若伱手牌數小于體力上限,必發.伱抽1",
 
 ["$piucqhzaac1"] = "足馭風雷一瞬千里",
 ["$piucqhzaac2"] = "風行奇術,起",

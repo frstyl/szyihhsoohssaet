@@ -1,6 +1,6 @@
 Fk:loadTranslationTable{
   ["lunqhzooj"] = "輪回",
-  [":lunqhzooj"] = "伱死亾旹必發.令殺死伱者體力上限-1,獲得技能｢輪回｣",
+  [":lunqhzooj"] = "伱死亾旹,令殺死伱者體力上限-1,獲得技能｢輪回｣",
 
   ["$lunqhzooj1"] = "哈哈哈哈哈哈哈哈！",
   ["$lunqhzooj2"] = "伯符，且看我这一手！",
@@ -8,7 +8,7 @@ Fk:loadTranslationTable{
 
 local lunqhzooj = fk.CreateSkill{
   name = "lunqhzooj",
-  tags = { Skill.Compulsory,Skill.Permanent },
+  tags = { Skill.Compulsory },--,Skill.Permanent
 }
 
 -- local S = require "packages/szyihhsoohssaet/szyih_guos" 

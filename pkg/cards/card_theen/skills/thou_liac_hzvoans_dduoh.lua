@@ -60,7 +60,7 @@ cardSkill:addEffect("cardskill", {
 
 
     room:moveCards({
-      ids = S.getKhouc(room,1),
+      ids = S.getKhouc(1),
       to = effect.from,
       toArea = Card.PlayerHand,
       moveReason = fk.ReasonJustMove,

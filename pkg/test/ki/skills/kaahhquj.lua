@@ -167,7 +167,7 @@ kaahhquj:addEffect("filter", {
 --           data.prevented=true
 --           return  true
 --         else
---           S.playCard(player,cards,kaahhquj.name)
+--           S.playCard(cards,kaahhquj.name,player)
 --         end
 
 --   end,

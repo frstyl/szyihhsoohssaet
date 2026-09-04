@@ -77,7 +77,7 @@ Fk:loadTranslationTable{
 --64. 第六十三回　呼延灼月夜賺關勝　宋公明雪天擒索超
 
 --65. 第六十四回　托塔天王夢中顯聖　浪裏白條水上報冤
-General:new(extension, "quacqdeecsliuk", "mjin", 4):addSkills{"dzjitboos","khoucqhqrach","jjenhmuoh"}
+General:new(extension, "quacqdeecsliuk", "mjin", 4):addSkills{"dzjitboos","khoucqhqrach"}
 Fk:loadTranslationTable{
 ["quacqdeecsliuk"] = "王定六",
 ["#quacqdeecsliuk"] = "𣴠閃婆",

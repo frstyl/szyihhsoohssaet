@@ -1,8 +1,8 @@
 Fk:loadTranslationTable{
   ["hzoaqnoar"] = "何奈",
-  [":hzoaqnoar"] = "其它脚色主段始旹,伱可將1紅桃手牌轉化爲无中生有對其起動",
+  [":hzoaqnoar"] = "其它脚色主段始旹,伱可將1♥️手牌轉化爲无中生有對其起動",
 
-  ["#hzoaqnoar-use"] = "何奈 昰否將紅桃手牌轉化爲无中生有對 %src 起動",
+  ["#hzoaqnoar-use"] = "何奈 昰否將️手牌轉化爲无中生有對 %src 起動",
 
   ["$hzoaqnoar1"] = "實事難入公門虛事難已抵對",
   ["$hzoaqnoar2"] = "旣肰昰桃花已開也顧不了若多",

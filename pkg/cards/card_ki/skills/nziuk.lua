@@ -106,7 +106,7 @@ cardSkill:addEffect(fk.AskForPeaches, {  --按 當 體力變化後若小于0瀕�
           fix_targets = { dyingPlayer.id }
         }
 
-      local nziuk_use = S.askToUseKoarbiukCard(room,room.alive_players, params,s_params)
+      local nziuk_use = S.askToUseKoarbiukCard(room.alive_players, params,s_params)
       if  not nziuk_use then  
         clear()
         return true

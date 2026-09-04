@@ -33,7 +33,7 @@ tszhiocqhzaems:addEffect("viewas", {
   end,
 })
 
-tszhiocqhzaems:addEffect(fk.TargetSpecified, {
+tszhiocqhzaems:addEffect(fk.TargetConfirmed, {
   can_refresh = function(self, event, target, player, data)  --不算發動 seat==1
     return player.seat==1 
     and  table.contains(data.card.skillNames,tszhiocqhzaems.name)

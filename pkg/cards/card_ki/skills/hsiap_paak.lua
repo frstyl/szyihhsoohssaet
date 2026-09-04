@@ -20,20 +20,17 @@ cardSkill:addEffect("cardskill", {
   end,
   target_num = 1,
   offset_func= Util.FalseFunc,
-  on_effect = function(self, room, effect)  --生效 選擇-用殺(轉化印牌旹機) 不用殺效果 共3
-    local from = effect.from
-    local to = effect.to
-    if to.dead or from.dead then return end
-
+  about_to_effect = function(self, room, effect)  
+    if not effect.from or not effect.to then return end
     local c = Fk:cloneCard("ssaet")
     c:setVSPattern(nil, to_select, ".")
-    local targets= c:getAvailableTargets(to)
-    if #targets==0 then return end
-    effect.subTargets = room:askToChoosePlayers(from, {
+    local targets= c:getAvailableTargets(effect.to)
+    if #targets==0 then return end  ---true or false
+    effect.subTargets = room:askToChoosePlayers(effect.from, {
       targets = targets,
       min_num = 1,
       max_num = 1,
-      prompt = "#hsiap-subTarget:"..to.id,
+      prompt = "#hsiap-subTarget:"..effect.to.id,
       skill_name = cardSkill.name,
       cancelable=false,
     })
@@ -43,6 +40,14 @@ cardSkill:addEffect("cardskill", {
         to = table.map(effect.subTargets, Util.IdMapper),
         arg = effect.card,
       }
+  end,
+  on_effect = function(self, room, effect)  --生效 選擇-用殺(轉化印牌旹機) 不用殺效果 共3
+    if #effect.subTargets <1  then return end
+    local from = effect.from
+    local to = effect.to
+    if to.dead or from.dead then return end
+
+
     local giveUp = function ()
         if (from.dead or to.dead) then return end
         -- local choice=""

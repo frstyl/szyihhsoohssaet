@@ -6,7 +6,7 @@ local tsoeojssi = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["tsoeojssi"] = "再思",
-  [":tsoeojssi"] = "伱非因此技能{得/失}牌後,必發,伱將牌堆頂x牌置于伱將牌上/伱隨機廢置x再思牌｡x爲{得/失}牌數｡印牌:廢除1手牌起動1再思牌",
+  [":tsoeojssi"] = "伱得到初始手牌後/不因此技能{得/失}牌後,必發,伱將牌堆頂x牌置于伱將牌上/伱隨機廢置x｢再思｣牌｡x爲{得/失}牌數｡印牌:廢除1手牌起動1再思牌",
 
   ["#tsoeojssi-recover"] = "再思：選擇目幖,令其回1",
   ["#tsoeojssi-card"] = "再思：選擇至多 %arg 牌交予其它脚色",

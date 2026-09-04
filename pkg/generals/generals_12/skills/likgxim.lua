@@ -3,9 +3,9 @@ local likgxim = fk.CreateSkill{
 }
 Fk:loadTranslationTable{
   ["likgxim"] = "力擒",
-  [":likgxim"] = "主旹,伱可預選擇1牌交予其它脚色發動｡視爲伱對該脚色起動鬥將(不可抵消),其隨機弃2牌且若其體力值小于伱,此技能失效",
+  [":likgxim"] = "主旹无限次,伱可交予其它脚色1牌發動｡伱對該脚色虛擬起動｢鬥將｣(不可抵消),之後其隨機弃2牌且若其體力值小于伱,此技能失效1段",
 
-  ["#likgxim-choose"] = "力擒 爲1脚色敺㪔咒術",
+  ["#likgxim"] = "力擒 予其它脚色1牌 鬥將之",
 
   ["$likgxim1"] = "能保則吉更當修爲",
   ["$likgxim2"] = "切摸妄作萬福來宜",
@@ -36,9 +36,9 @@ likgxim:addEffect("active", {  --非轉化
     room:moveCardTo(effect.cards, Player.Hand, target, fk.ReasonGive, likgxim.name, nil, false, player.id)
     if player.dead or target.dead then return end
 
-    local card = Fk:cloneCard("duel")
+    local card = Fk:cloneCard("tous_tsiacs")
     card.skillName = likgxim.name
-    if not  player:canUseTo(card, target, {bypass_distances = true, bypass_times = true}) then player:drawCards(5) return end
+    if not  player:canUseTo(card, target, {bypass_distances = true, bypass_times = true}) then return end
 
     room:useCard{  --bypase times
       from = player,
@@ -46,12 +46,15 @@ likgxim:addEffect("active", {  --非轉化
       card = card,
       unoffsetableList = table.simpleClone(room.players),
     }
+    if target.hp<player.hp then
+      room:invalidateSkill(player, likgxim.name, "-phase")
+    end
     if not target.dead then 
       local cards = table.filter(target:getCardIds("h"), function (id)
         return not target:prohibitDiscard(id)
       end)
       if #cards > 0 then
-        room:throwCard(table.random(cards,2), likgxim.name, target, target)
+        room:throwCard(room:tableRandomPick(cards,2), likgxim.name, target, target)
       end
     end
   end,

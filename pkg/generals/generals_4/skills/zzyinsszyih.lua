@@ -101,7 +101,7 @@ zzyinsszyih:addEffect(fk.AfterCardsMove, {
   end,
   on_use = function(self, event, target, player, data)
     local room = player.room
-    S.playCard(player,event:getCostData(self).cards,zzyinsszyih.name)
+    S.playCard(event:getCostData(self).cards,zzyinsszyih.name,player)
     room:damage{
       from = player,
       to = event:getCostData(self).tos[1],

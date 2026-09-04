@@ -5,7 +5,7 @@ local bypass_times = fk.CreateSkill {
 
 bypass_times:addEffect("targetmod", {
   bypass_times = function(self, player, skill, scope, card, to)
-    if card and card:isVirtual() and card.skillName==nil then return true end--bug 能印bypass_times牌无法用印牌技能--
+    -- if card and card:isVirtual() and card.skillName==nil then return true end--bug 能印bypass_times牌无法用印牌技能--
 
     if player then
       if player:hasMark("bypass_times") then return true end

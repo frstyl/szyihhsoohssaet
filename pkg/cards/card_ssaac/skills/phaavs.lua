@@ -11,7 +11,7 @@ local S = require "packages/szyihhsoohssaet/szyih_guos"
 
 
 
-phaavs_skill:addEffect(fk.Damage, {
+phaavs_skill:addEffect(fk.Damaged, {
   -- globle=true,
   anim_type = "defensive",
   can_trigger = function(self, event, target, player, data)

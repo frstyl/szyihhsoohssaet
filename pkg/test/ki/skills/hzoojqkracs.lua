@@ -4,7 +4,7 @@ local hzoojqkracs = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["hzoojqkracs"] = "回敬",
-  [":hzoojqkracs"] = "其它脚色轉終,若其當轉曾對伱起動牌,伱可選1項發動➀伱抽2,交予其1牌,➁視爲對其起動殺",
+  [":hzoojqkracs"] = "其它脚色轉終,若其1轉內曾對伱起動牌,伱可選1項發動➀伱抽2,交予其1牌,➁視爲對其起動殺",
 
 
   ["#hzoojqkracs-choice"] = "回敬：你可以对 %dest 发动“回敬”，选择一项",

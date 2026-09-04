@@ -6,9 +6,7 @@ Fk:loadTranslationTable{
   ["phaavshsfec"] = "炮轟",
   [":phaavshsfec"] = "游戲始旹,將<a href=':phaavshsfec_phaavs'>炮</a>置入伱裝僃區.伱轉始旹可發動，若伱裝僃區无炮,將炮置入伱裝僃區,否則伱改變炮類或射程",
 
-  ["#phaavshsfec-choose"] = "炮轟：你可以弃置一名其他脚色至多两张牌",
   ["#phaavshsfec-invoke"] = "炮轟：裝僃炮",
-  ["#phaavshsfec-invoke-turun"] = "炮轟：流失1體力 裝僃炮",
 
   ["$phaavshsfec1"] = "帥炮卽軍心",--大炮在此軍心不亂
   ["$phaavshsfec2"] = "大其飄揚軍威雄壯",

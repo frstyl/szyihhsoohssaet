@@ -37,7 +37,7 @@ tshjeqhsooh:addEffect(fk.Damaged, {
   end,
   on_use = function(self, event, target, player, data)
     local room = player.room
-    S.playCard(player,event:getCostData(self).cards,tshjeqhsooh.name)
+    S.playCard(event:getCostData(self).cards,tshjeqhsooh.name,player)
     if not player.dead and not data.from.dead then
     room:damage{
       from = player,

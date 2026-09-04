@@ -1,5 +1,6 @@
 local loeoksoak = fk.CreateSkill {
   name = "loeoksoak",
+  mode_skill = true,
 }
 
 Fk:loadTranslationTable{
@@ -14,17 +15,20 @@ Fk:loadTranslationTable{
 loeoksoak:addEffect("active", {
   anim_type = "control",
   prompt = "#loeoksoak",
-  card_num = 0,
+  min_card_num = 0,
+  max_card_num = 1,
   target_num = 1,
-  card_filter = Util.FalseFunc,
   max_phase_use_time =1,
+  card_filter = function(self, player, to_select, selected)
+    return #selected == 0 and table.contains(player:getCardIds("h"), to_select)
+  end,
   target_filter = function(self, player, to_select, selected)
     return #selected == 0 and to_select ~= player and player:canPindian(to_select)
   end,
   on_use = function(self, room, effect)
     local player = effect.from
-    local target = targets[1]
-    local pindian = player:pindian({target}, loeoksoak.name)
+    local target = effect.tos[1]
+    local pindian = player:pindian({target}, loeoksoak.name, effect.cards[1] and Fk:getCardById(effect.cards[1]) or nil)
     if player.dead then return end
     if pindian.results[target].winner == player then
       -- local cid = room:askToChooseCard(effect.from, { target = target, flag = "he", skill_name = loeoksoak.name })

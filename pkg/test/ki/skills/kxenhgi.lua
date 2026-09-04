@@ -4,7 +4,7 @@ local kxenhgi = fk.CreateSkill{
 
 Fk:loadTranslationTable{
 ["kxenhgi"] = "搴旗",
-[":kxenhgi"] = "伱對其它脚色致傷後,若此爲其當輪首次受傷,伱可發動,抽x.(x爲此技能發動次數)",
+[":kxenhgi"] = "伱對其它脚色致傷後,若此爲其1輪首次受傷,伱可發動,抽x.(x爲此技能發動次數)",
 
 
 ["$kxenhgi1"] = "等吾拿l頭攻再作打算",
@@ -13,7 +13,7 @@ Fk:loadTranslationTable{
 
 
 
-kxenhgi:addEffect(fk.Damage, {
+kxenhgi:addEffect(fk.Damaged, {
   anim_type = "drawcard",
   can_trigger = function(self, event, target, player, data)
     if data.from~=player or not player:hasSkill(kxenhgi.name) or data.from==data.to or data.to:getMark("kxenhgi_damage-round")~=0  then return end

@@ -23,10 +23,47 @@ cardSkill:addEffect("cardskill", {
   -- on_use = function(self, room, effect)
   --   effect.to=effect.from
   -- end,
+  target_num=1,
+  target_filter = Util.CardTargetFilter,
   can_use =Util.FalseFunc,
   offset_func= Util.FalseFunc,
   on_effect = function(self, room, effect)
-    room:setPlayerMark(effect.to,"@khfar_hzvoat_ljim-turn",1)  --計數
+    room:addPlayerMark(effect.to,"@khfar_hzvoat_ljim-turn",1)  --計數  --additionalDrank
+  end,
+})
+
+cardSkill:addEffect(fk.CardEffectFinished, {
+  -- global = true,
+  can_trigger = function(self, event, target, player, data)
+    return data.from == player
+    and data.to==player
+    and data.card
+    and data.card.trueName=="tsiuh"
+    and not (data.use and data.use.extra_data and data.use.extra_data.tsiuhRecover)  --no use
+    and not data.isCancellOut and not data.nullified
+    -- and #S.getHolders("tsyis_toah_tsiach_moon_zzjin",{player})>0
+  end,
+  on_trigger = function(self, event, target, player, data)
+    local room = player.room
+    local params={
+      skill_name = "khfar_hzvoat_ljim",
+      pattern = "tsyis_toah_tsiach_moon_zzjin",
+      prompt = "#khfar_hzvoat_ljim",
+      cancelable = true,
+      skip=true,
+        extra_data = {  --不計次?
+          khfar_hzvoat_ljim = true,
+          -- fix_targets={player.id},
+          -- must_targets=
+          exclusive_targets={data.from.id},
+        }
+    }
+    local use = S.askToUseKoarbiukCard(data.from, params, nil, nil, #S.getHolders("tsyis_toah_tsiach_moon_zzjin",{data.from})==0, true)
+    if use then
+      -- use.extra_data=use.extra_data or{}
+      -- use.extra_data.fix_targets={player.id}
+      room:useCard(use)
+    end
   end,
 })
 
@@ -39,41 +76,12 @@ cardSkill:addEffect(fk.PreCardUse, {
     local room = player.room
     data.additionalDamage = (data.additionalDamage or 0) +  player:getMark("@khfar_hzvoat_ljim-turn")
     data.extra_data = data.extra_data or {}
-    data.extra_data.khfar_hzvoat_ljim =  player:getMark("@khfar_hzvoat_ljim-turn")
+    data.extra_data.khfar_hzvoat_ljim =  true --player:getMark("@khfar_hzvoat_ljim-turn")
     room:setPlayerMark(player,"@khfar_hzvoat_ljim-turn",0)
   end,
 })
 
-cardSkill:addEffect(fk.CardEffectFinished, {
-  -- global = true,
-  can_trigger = function(self, event, target, player, data)
-    return target == player
-    and data.card
-    and data.card.trueName=="analeptic"
-    and not (data.use and data.use.extra_data and data.use.extra_data.analepticRecover)  --no use
-    and #S.getHolders("tsyis_toah_tsiach_moon_zzjin",{player})>0
-  end,
-  on_trigger = function(self, event, target, player, data)
-    local room = player.room
-    local params={
-      skill_name = "khfar_hzvoat_ljim",
-      pattern = "tsyis_toah_tsiach_moon_zzjin",
-      prompt = "#khfar_hzvoat_ljim",
-      cancelable = true,
-      skip=true,
-        extra_data = {  --不計次?
-          khfar_hzvoat_ljim = true,
-          fix_targets={player.id}
-        }
-    }
-    local use = room:askToNullification({player}, params)
-    if use then
-      use.extra_data=use.extra_data or{}
-      use.extra_data.fix_targets={player.id}
-      room:useCard(use)
-    end
-  end,
-})
+
 
 
 cardSkill:addEffect(fk.AfterCardsMove, {
@@ -85,7 +93,7 @@ cardSkill:addEffect(fk.AfterCardsMove, {
       for _, move in ipairs(data) do  --data move info
         if  move.toArea == Card.DiscardPile then
           for _, info in ipairs(move.moveInfo) do
-            if  Fk:getCardById(info.cardId).trueName == "analeptic" then
+            if  Fk:getCardById(info.cardId).trueName == "tsiuh" then
               table.insertIfNeed(ids, info.cardId)
             end
           end
@@ -117,12 +125,12 @@ cardSkill:addEffect(fk.AfterCardsMove, {
       min_num=1,
       max_num=1,
       include_equip=false,
-      will_throw=false,
+      -- will_throw=false,
       -- extra_data = {
       --   muo_tsiuh_piu_hsvoan = true,
       -- }
     }
-    local p,cid = S.askToChooseCardExclusively(nil, params)  --彊化選擇req
+    local p,cid = S.askToChooseCardExclusively(event:getCostData(self).players, params, fk.ReasonExchange)  --彊化選擇req
     if not p or #cid~=1 then return end
 
     if #ids~=1 then--再檢測?
@@ -134,28 +142,29 @@ cardSkill:addEffect(fk.AfterCardsMove, {
           })
     end
 
-        local moveInfos={}
+    room:swapCardsWithPile(p,cid,{cardid},"muo_tsiuh_piu_hsvoan","discardPile",true)
+    -- local moveInfos={}
 
-    table.insert(moveInfos,{  --改判
-      ids = cid, --id list
-      from = p,
-      toArea = Card.DiscardPile,
-      moveReason = fk.ReasonExchange,
-      skillName = "muo_tsiuh_piu_hsvoan",
-      proposer = p,
-    })
+    -- table.insert(moveInfos,{  --改判
+    --   ids = cid, --id list
+    --   from = p,
+    --   toArea = Card.DiscardPile,
+    --   moveReason = fk.ReasonExchange,
+    --   skillName = "muo_tsiuh_piu_hsvoan",
+    --   proposer = p,
+    -- })
 
   
-    table.insert(moveInfos,{---@type CardsMoveInfo
-      ids = {cardid},
-      to =  p ,
-      toArea =  Card.PlayerHand,
-      moveReason =  fk.ReasonExchange,
-      skillName = "muo_tsiuh_piu_hsvoan",
-      proposer = p,
-    } )
+    -- table.insert(moveInfos,{---@type CardsMoveInfo
+    --   ids = {cardid},
+    --   to =  p ,
+    --   toArea =  Card.PlayerHand,
+    --   moveReason =  fk.ReasonExchange,
+    --   skillName = "muo_tsiuh_piu_hsvoan",
+    --   proposer = p,
+    -- } )
 
-    room:moveCards(table.unpack(moveInfos))
+    -- room:moveCards(table.unpack(moveInfos))
 
   end,
 })

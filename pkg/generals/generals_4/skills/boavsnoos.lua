@@ -6,7 +6,7 @@ local S = require "packages/szyihhsoohssaet/szyih_guos"
 
 Fk:loadTranslationTable{
   ["boavsnoos"] = "虣怒",
-  [":boavsnoos"] = "伱起動殺旹可發動:伱流失1體力,此牌結算期閒,此牌致傷旹傷害值加x,x爲伱已損體力(變量)",
+  [":boavsnoos"] = "伱起動殺旹可發動:伱流失1,此牌結算期閒,此牌致傷旹傷害值加x,x爲伱已損體力數+此技能發動次數",
   ["#boavsnoos"] = "虣怒 流失體力加傷",
 
 
@@ -16,7 +16,6 @@ Fk:loadTranslationTable{
 
 boavsnoos:addEffect(fk.CardUsing, {
   anim_type = "offensive",
-  prompt = "#boavsnoos",
 	can_trigger = function(self, event, target, player, data)
 		return target==player and data.card.trueName=="ssaet" and player:hasSkill(boavsnoos.name)
 	end,
@@ -32,17 +31,18 @@ boavsnoos:addEffect(fk.CardUsing, {
   end,
 })
 
-boavsnoos:addEffect(fk.DamageCaused, {
-  can_refresh = function(self, event, target, player, data)
+boavsnoos:addEffect(fk.DamageInflicted, {
+  can_trigger = function(self, event, target, player, data)
     return player.seat==1
     and data.event_data
     and data.event_data.extra_data
     and data.event_data.extra_data.boavsnoos
   end,
-  on_refresh = function(self, event, target, player, data)
-    
+  on_trigger = function(self, event, target, player, data)
+    local p =player.room:getPlayerById(data.event_data.extra_data.boavsnoos)
+
     S.changeDamage({damageData=data,
-     num=player.room:getPlayerById(data.event_data.extra_data.boavsnoos):getLostHp(),
+     num=p:usedSkillTimes(boavsnoos.name, Player.HistoryGame)+p:getLostHp(),
     skillName=boavsnoos.name})
   end,
 })

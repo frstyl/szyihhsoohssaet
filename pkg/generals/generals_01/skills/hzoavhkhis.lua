@@ -15,7 +15,7 @@ local hzoavhkhis = fk.CreateSkill{
 
 local S = require "packages/szyihhsoohssaet/szyih_guos" 
 
-hzoavhkhis:addEffect(fk.Damage, {
+hzoavhkhis:addEffect(fk.Damaged, {
   anim_type = "control",
   can_trigger = function(self, event, target, player, data)
     return data.from==player and player:hasSkill(hzoavhkhis.name) and data.to~=player and data.damage>0

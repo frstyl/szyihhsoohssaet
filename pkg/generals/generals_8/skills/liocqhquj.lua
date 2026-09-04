@@ -11,7 +11,7 @@ Fk:loadTranslationTable{
   -- ["$liocqhquj1"] = "冥冥之中自有注定",
 }
 
-liocqhquj:addEffect(fk.DamageCaused, {
+liocqhquj:addEffect(fk.DamageInflicted, {
   can_trigger = function(self, event, target, player, data)
     return data.from == player and player:hasSkill(liocqhquj.name)
   end,

@@ -3,7 +3,7 @@ local koav_doac_tous_puap = fk.CreateSkill {
 }
 Fk:loadTranslationTable{
   ["koav_doac_tous_puap"] = "高唐鬥法",
-  ["#koav_doac_tous_puap"] = "选择一其他脚色，伱予其1雷傷",
+  ["#koav_doac_tous_puap"] = "选择一其它脚色，伱予其1雷傷",
 
 
 }

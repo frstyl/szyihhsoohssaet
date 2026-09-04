@@ -3,7 +3,7 @@ local phunhtthxet = fk.CreateSkill {
 }
 Fk:loadTranslationTable{
   ["phunhtthxet"] = "忿勶",
-  [":phunhtthxet"] = "伱可起動殺,伱可發動.當段內伱所起動下1殺无視距離防具",
+  [":phunhtthxet"] = "伱可起動殺,伱可發動.1段內伱所起動下1殺无視距離防具",
 
   ["#phunhtthxet"] = "忿勶 令伱所起動下1殺无視距離防具",
   ["@@phunhtthxet-phase"] = "忿勶",

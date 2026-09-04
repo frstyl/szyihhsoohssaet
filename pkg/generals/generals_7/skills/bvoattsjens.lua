@@ -4,9 +4,9 @@ local bvoattsjens = fk.CreateSkill {
 
 Fk:loadTranslationTable{
 ["bvoattsjens"] = "拔箭",  --誼
-[":bvoattsjens"] = "➀當伱受傷後伱可發動.伱體力上限-1,抽3➁伱令1其它脚色進入瀕死旹,伱可預打出1裝僃牌發動,伱體力上限+1,抽2",  --瀕死?
+[":bvoattsjens"] = "➀當伱受傷後伱可發動.伱體力上限-1,抽3➁伱令1其它脚色進入瀕死旹,伱可預出1裝僃牌發動,伱+1體力上限,抽2",  --瀕死?
 
-["#bvoattsjens-invoke"]="拔箭 是否流失1體力上限 抽3",
+["#bvoattsjens-invoke"]="拔箭 是否減1體力上限 抽3",
 ["#bvoattsjens-discard"]="拔箭 打出1裝僃加1體力上限",
 
 ["$bvoattsjens1"] = "小傷而已",
@@ -58,7 +58,7 @@ bvoattsjens:addEffect(fk.EnterDying, {
   end,
   on_use = function(self, event, target, player, data)
     local room = player.room
-    S.playCard(player,event:getCostData(self).cards,bvoattsjens.name)
+    S.playCard(event:getCostData(self).cards,bvoattsjens.name,player)
     room:changeMaxHp(player, 1)
     if player.dead then return end
     player:drawCards(3, bvoattsjens.name)

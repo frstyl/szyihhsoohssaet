@@ -1,12 +1,13 @@
 local doeocqjioch = fk.CreateSkill {
   name = "doeocqjioch",
+  tags={Skill.Compulsory},
 }
 
 Fk:loadTranslationTable{
 ["doeocqjioch"] = "騰涌",  --騰涌
-[":doeocqjioch"] = "一脚色受到火傷旹,伱可預打出1牌,防止之.當一脚色受到非傳導雷傷後,伱可打出1牌發動.除該脚色与伱全體脚色受到1无源雷傷",
+[":doeocqjioch"] = "一脚色受到火傷旹,伱可預打出1牌,防止之.當一脚色受到非傳導雷傷後,伱可打出1牌發動.除該脚色与伱全體脚色受到1雷傷(无源傳導)",
 ["#doeocqjioch-fire"]="騰涌 打出1牌  防止 %src 所受傷害",
-["#doeocqjioch-thunder"]="騰涌 %src 受到雷傷 伱可打出1基本牌  連鎖其它脚色",
+["#doeocqjioch-thunder"]="騰涌 %src 受到雷傷 伱可打出1牌  連鎖其它脚色",
 }
 
 
@@ -27,9 +28,7 @@ doeocqjioch:addEffect(fk.DamageInflicted, {
 		  include_equip = true,
 		  skill_name = doeocqjioch.name,
 		  cancelable = true,
-          pattern = tostring(Exppattern{ id = table.filter(player:getHandlyIds(), function (id)
-      return not player:prohibitResponse(Fk:getCardById(id))
-     end)}),
+      pattern = ".",
       prompt = "#doeocqjioch-fire:"..target.id,
 		  skip = true,
 		})
@@ -40,8 +39,7 @@ doeocqjioch:addEffect(fk.DamageInflicted, {
   end,
   on_use = function(self, event, target, player, data)
     local room = player.room
-    S.playCard(player,event:getCostData(self).cards,doeocqjioch.name)
-
+    S.playCard(event:getCostData(self).cards,doeocqjioch.name,player)
     S.preventDamage({damageData=data,skillName=doeocqjioch.name})  --skill??
   end,
 })
@@ -56,15 +54,15 @@ doeocqjioch:addEffect(fk.Damaged, {
   end,
   on_cost = function(self, event, target, player, data)
     local room = player.room
-		local cards =  S.askToPlayCard(player, {
+		local cards =  room:askToDiscard(player, {
 		  min_num = 1,
 		  max_num = 1,
 		  include_equip = false,
 		  skill_name = doeocqjioch.name,
 		  cancelable = true,
       -- pattern = ".|.|.|.|.|basic",  ---koaz-- ssaet,szjemh,nziuk,tsiuh
-          pattern=".",
-          prompt = "#doeocqjioch-thunder:"..target.id,
+      pattern=".",
+      prompt = "#doeocqjioch-thunder:"..target.id,
 		  skip = true,
 		})
     if #cards ~= 0 then
@@ -74,7 +72,8 @@ doeocqjioch:addEffect(fk.Damaged, {
   end,
   on_use = function(self, event, target, player, data)
     local room = player.room
-    S.playCard(player,event:getCostData(self).cards,doeocqjioch.name)
+    -- S.playCard(event:getCostData(self).cards,doeocqjioch.name,player)
+    room:throwCard(event:getCostData(self).cards,doeocqjioch.name,player,player)
     for _, p in ipairs(room:getOtherPlayers(player,true))  do --當前轉
       if  p~=target and not p.dead then
       room:damage{

@@ -23,8 +23,6 @@ cardSkill:addEffect("cardskill", {--因流程而起動 因牌效而起動
     and to_select:getMark("@loav")>0
   end,
   target_filter = Util.CardTargetFilter,
-
-
   on_effect = function(self, room, effect)
     room:setPlayerMark(effect.to,"@loav",0)
   end,
@@ -36,12 +34,13 @@ cardSkill:addEffect(fk.TurnEnd, {
   can_trigger = function(self, event, target, player, data)
     local to= S.getNextOne(target.id,1)
     if target==player and to and to:getMark("@loav")>0  then
-
-       local players = S.getHolders("liac_ssaen_hsoavh_hsoans_kiap_puap_ddiac")
-       if #players> 0  then
-        event:setCostData(self,{players=players})
         return  true
-      end
+
+      --  local players = S.getHolders("liac_ssaen_hsoavh_hsoans_kiap_puap_ddiac")
+      --  if #players> 0  then
+      --   event:setCostData(self,{players=players})
+      --   return  true
+      -- end
 
     end
   end,
@@ -61,7 +60,7 @@ cardSkill:addEffect(fk.TurnEnd, {
       }
     }
     
-    local use = room:askToNullification(event:getCostData(self).players, params)  --選上家再選下家?
+    local use = S.askToUseKoarbiukCard(S.getHolders("liac_ssaen_hsoavh_hsoans_kiap_puap_ddiac"), params) 
     if use then 
       -- use.tos={to.id}
 

@@ -4,16 +4,16 @@ local kijqtvoans = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["kijqtvoans"] = "機斷",
-  [":kijqtvoans"] = "伱段終旹,伱可預弃x牌發動,伱選擇一項➀執行1同名段➁越過當轉下一段",
+  [":kijqtvoans"] = "伱段終旹,伱可預打出x牌發動,伱選擇一項➀執行1同名段➁越過1轉下一段",
 
-  ["#kijqtvoans_active"] = "機斷 %arg 弃 %arg2",
+  ["#kijqtvoans_active"] = "機斷 %arg 打出 %arg2",
 
   ["kijqtvoans-again"] = "再次執行此段",
   ["kijqtvoans-to_skip"] = "越過下段",
 }
 
 
--- local S = require "packages/szyihhsoohssaet/szyih_guos" 
+local S = require "packages/szyihhsoohssaet/szyih_guos" 
 
 
 
@@ -39,7 +39,9 @@ kijqtvoans:addEffect(fk.EventPhaseEnd,{
   on_use = function (self, event, target, player, data)
     local room=player.room
     if #event:getCostData(self).cards>0 then
-      room:throwCard(event:getCostData(self).cards, kijqtvoans.name, player, player)
+      -- room:throwCard(event:getCostData(self).cards, kijqtvoans.name, player, player)
+       S.playCard(event:getCostData(self).cards, kijqtvoans.name,player)
+
     end
     if event:getCostData(self).choice=="kijqtvoans-again" then
       player:gainAnExtraPhase(data.phase,kijqtvoans.name,false)

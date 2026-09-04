@@ -20,14 +20,12 @@ equipSkill:addEffect(fk.DamageInflicted, {
 
 equipSkill:addEffect(fk.AfterCardsMove, {
   can_trigger = function(self, event, target, player, data)
-    if player.dead or not player:isWounded() then return end
+    if player.dead or not player:isWounded() or not Fk.skills[equipSkill.name]:isEffectable(player) then return end
     for _, move in ipairs(data) do
       if move.from == player then
         for _, info in ipairs(move.moveInfo) do
-          if info.fromArea == Card.PlayerEquip and Fk:getCardById(info.cardId).name == equipSkill.attached_equip then
-              -- local e=player.room:getCurrentEvent().parent
-            if Fk.skills[equipSkill.name]:isEffectable(player) then
-               -- and not (move.proposer and  S.isIgnoreArmorFromAToB(move.proposer,player) )--牌?
+          local card = info.beforeCard
+          if info.fromArea == Card.PlayerEquip and card.name == equipSkill.attached_equip then
               local effectEvent = player.room.logic:getCurrentEvent():findParent(GameEvent.CardEffect, true)
               if effectEvent then
                 local dat=effectEvent.data
@@ -35,8 +33,8 @@ equipSkill:addEffect(fk.AfterCardsMove, {
               else
                 return not S.isIgnoreArmorFromAToB(move.proposer, player)
               end
-            end
           end
+
         end
       end
     end
@@ -45,7 +43,7 @@ equipSkill:addEffect(fk.AfterCardsMove, {
     local room = player.room
     room:recover{
       who = player,
-      num = 1,
+      num = 1,  --多張?
       recoverBy = player,
       skillName = equipSkill.name,
     }

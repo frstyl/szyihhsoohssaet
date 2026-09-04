@@ -9,40 +9,8 @@ Fk:loadTranslationTable{
   ["card_derive"] = "水滸牌-衍生",
 }
 
---葢伏
-local ambush__ssaet = fk.CreateCard{
-  name = "ambush__ssaet",
-  type = Card.TypeBasic,
-  skill = "ssaet_skill",
-  special_skills = { "koarbiuk_cardskill" },
-  is_damage_card=true,
-}
 
-local ambush__szjemh = fk.CreateCard{
-  name = "ambush__szjemh",
-  type = Card.TypeBasic,
-  skill = "szjemh_skill",
-  special_skills = { "koarbiuk_cardskill" },
-  is_passive=true,
-}
-
-local ambush__buac_hzfan_mujs_nzjen = fk.CreateCard{
-  name = "ambush__buac_hzfan_mujs_nzjen",
-  type = Card.TypeBasic, --int
-  skill = "buac_hzfan_mujs_nzjen_skill",
-  special_skills = { "koarbiuk_cardskill" },
-  is_passive=true,
-}
-extension:loadCardSkels {
-ambush__ssaet,
-ambush__szjemh,
-ambush__buac_hzfan_mujs_nzjen,
-}
-Fk:loadTranslationTable{
-  ["ambush__ssaet"] = "葢_殺",
-  ["ambush__szjemh"] = "葢_閃",
-  ["ambush__buac_hzfan_mujs_nzjen"] = "葢_防患未肰",
-}
+--手牌可用
 local hand__szjemh = fk.CreateCard{  --名不同
   name = "&hand__szjemh",
   type = Card.TypeBasic,
@@ -105,7 +73,7 @@ extension:addCardSpec("dzzjek__ssaet")
 
 Fk:loadTranslationTable{
   ["dzzjek__ssaet"] = "飛石殺",
-  [":ambush__ssaet"] = "基本牌<br /><b>旹機</b>主段執行旹<br /><b>目幖</b>攻程內其它脚色<br /><b>效果</b>：与其1傷.因花色具有效果",
+  [":ambush__ssaet"] = "行動<br /><b>旹機</b>主段執行旹<br /><b>目幖</b>攻程內其它脚色<br /><b>效果</b>：与其1傷.因花色具有效果",
   ["#dzzjek__ssaet_skill"] = "飛石殺",
 }
 ---
@@ -116,7 +84,7 @@ local fake__nziuk = fk.CreateCard{
 }
 Fk:loadTranslationTable{
   ["fake__nziuk"] = "僞肉",
-  [":fake__nziuk"] = "基本牌<br/><b>旹機:</b>主段執行旹<br/><b>目幖:</b>自己<br/><b>效果:</b>(肉同名牌)目幖回1,選擇弃1手牌或流失1體力",
+  [":fake__nziuk"] = "物資<br/><b>旹機:</b>主段執行旹<br/><b>目幖:</b>自己<br/><b>效果:</b>(肉同名牌)目幖回1,選擇弃1手牌或流失1",
 }
 
 extension:loadCardSkels {
@@ -137,7 +105,7 @@ extension:addCardSpec("fake__nziuk")
 -- extension:loadCardSkels {ljenqtszuo__kiuc_szjih_sje_ttiac,}
 -- extension:addCardSpec("ljenqtszuo__kiuc_szjih_sje_ttiac")
 
---錦囊
+--計謀
 local buak_koavh_qwe_nzjin = fk.CreateCard{
   name = "&buak_koavh_qwe_nzjin",
   type = Card.TypeBasic,
@@ -146,9 +114,9 @@ local buak_koavh_qwe_nzjin = fk.CreateCard{
 }
 Fk:loadTranslationTable{
   ["buak_koavh_qwe_nzjin"] = "縛藁爲人",
-  [":buak_koavh_qwe_nzjin"] = "錦囊<br/><b>旹機:</b>主段執行旹<br/><b>目幖:</b>攻程內1其他脚色<br/><b>效果:</b>伱隱祕選擇僞或眞.目幖可演練殺,若執行伱取得殺,否則,伱將此牌轉化爲殺對其起動(无視次數距離不可響應)",
+  [":buak_koavh_qwe_nzjin"] = "計謀<br/><b>旹機:</b>主段執行旹<br/><b>目幖:</b>攻程內1其它脚色<br/><b>效果:</b>伱隱祕選擇僞或眞.目幖可演練殺,若執行伱取得殺,否則,伱將此牌轉化爲殺對其起動(无視次數距離不可響應)",
   ["buak_koavh_qwe_nzjin_skill"] = "縛藁爲人",
-  ["#buak_koavh_qwe_nzjin_skill"] = "縛藁爲人 選擇眞僞 對1其他脚色起動",
+  ["#buak_koavh_qwe_nzjin_skill"] = "縛藁爲人 選擇眞僞 對1其它脚色起動",
   ["#buak_koavh_qwe_nzjin_skill-response"] = "縛藁爲人 演練殺,%src可能取得之; 不演練殺,%src可能對伱起動殺",
   ["#buak_koavh_qwe_nzjin_skill_choose"] = "選擇眞僞",
 }
@@ -164,7 +132,7 @@ local muo_ttiuc_ssaac_qiuh = fk.CreateCard{
 }
 Fk:loadTranslationTable{
   ["muo_ttiuc_ssaac_qiuh"] = "无中生有",
-  [":muo_ttiuc_ssaac_qiuh"] = "錦囊<br/><b>旹機:</b>主段執行旹<br/><b>目幖:</b>1其它脚色<br/><b>效果:</b>伱抽2,其選擇1項➀對伱起動殺,此殺結算後若其傷致,伱弃所抽牌➁本局額定手牌數-1",
+  [":muo_ttiuc_ssaac_qiuh"] = "計謀<br/><b>旹機:</b>主段執行旹<br/><b>目幖:</b>1其它脚色<br/><b>效果:</b>伱抽2,其選擇1項➀對伱起動殺,此殺結算後若其傷致,伱弃所抽牌➁本局存牌數-1",
 }
 extension:loadCardSkels {muo_ttiuc_ssaac_qiuh,}
 extension:addCardSpec("muo_ttiuc_ssaac_qiuh")
@@ -179,7 +147,7 @@ local tsjas_toav_ssaet_nzjin = fk.CreateCard{
 }
 Fk:loadTranslationTable{
   ["tsjas_toav_ssaet_nzjin"] = "借刀殺人",
-  [":tsjas_toav_ssaet_nzjin"] = "錦囊牌<br/><b>旹機:</b>主段執行旹<br/><b>目幖:</b>1其它脚色A与A殺合理目幖B,對A起動.<br/><b>效果:</b> A可對B起動1殺,且A可將此牌轉化爲殺",
+  [":tsjas_toav_ssaet_nzjin"] = "計謀牌<br/><b>旹機:</b>主段執行旹<br/><b>目幖:</b>1其它脚色A与A殺合理目幖B,對A起動.<br/><b>效果:</b> A可對B起動1殺,且A可將此牌轉化爲殺",
 }
 extension:loadCardSkels {tsjas_toav_ssaet_nzjin,}
 extension:addCardSpec("tsjas_toav_ssaet_nzjin")
@@ -193,7 +161,7 @@ local dzzuoh_dzziach_khoeoj_hsfa = fk.CreateCard{
 }
 Fk:loadTranslationTable{
   ["dzzuoh_dzziach_khoeoj_hsfa"] = "樹上開花",
-  [":dzzuoh_dzziach_khoeoj_hsfa"] = "錦囊牌<br/><b>旹機:</b>主段執行旹<br/><b>目幖:</b>伱自己,若伱有空裝僃欄<br/><b>效果:</b>緟複,若伱有空裝僃欄,伱將牌堆頂1牌置入其中",
+  [":dzzuoh_dzziach_khoeoj_hsfa"] = "計謀牌<br/><b>旹機:</b>主段執行旹<br/><b>目幖:</b>伱自己,若伱有空裝僃欄<br/><b>效果:</b>緟複,若伱有空裝僃欄,伱將牌堆頂1牌置入其中",
 }
 extension:loadCardSkels {dzzuoh_dzziach_khoeoj_hsfa,}
 extension:addCardSpec("dzzuoh_dzziach_khoeoj_hsfa")
@@ -207,7 +175,7 @@ local lje_kaens = fk.CreateCard{
 }
 Fk:loadTranslationTable{
   ["lje_kaens"] = "離閒",
-  [":lje_kaens"] = "錦囊牌  <br/><b>旹機:</b>主段執行旹  <br/><b>目幖:</b>无限制  <br/><b>目幖數:</b>2  <br/><b>效果:</b>目幖參与共同賭鬥",
+  [":lje_kaens"] = "計謀牌  <br/><b>旹機:</b>主段執行旹  <br/><b>目幖:</b>无限制  <br/><b>目幖數:</b>2  <br/><b>效果:</b>目幖參与共同賭鬥",
 }
 extension:loadCardSkels {lje_kaens,}
 extension:addCardSpec("lje_kaens")
@@ -220,7 +188,8 @@ local tthxins_hsvoah_toah_kiap = fk.CreateCard{
 }
 Fk:loadTranslationTable{
   ["tthxins_hsvoah_toah_kiap"] = "趁火打劫",
-  [":tthxins_hsvoah_toah_kiap"] = "錦囊牌  <br/><b>旹機:</b>其它脚色受傷後  <br/><b>目幖:</b>受傷脚色需其有牌  <br/><b>目幖數:</b>1  <br/><b>效果:</b>伱取得目幖1脾  <br/><b>額外:</b>因動",
+  [":tthxins_hsvoah_toah_kiap"] = "計謀牌  <br/><b>旹機:</b>其它脚色受傷後  <br/><b>目幖:</b>受傷脚色需其有牌  <br/><b>目幖數:</b>1  <br/><b>效果:</b>伱取得目幖1脾  <br/><b>額外:</b>因動",
+
 }
 extension:loadCardSkels {tthxins_hsvoah_toah_kiap,}
 extension:addCardSpec("tthxins_hsvoah_toah_kiap")

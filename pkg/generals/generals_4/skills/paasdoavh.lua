@@ -4,15 +4,15 @@ local paaskeecs = fk.CreateSkill {
 
 Fk:loadTranslationTable{
 ["paaskeecs"] = "霸徑",
-[":paaskeecs"] = "其它脚色主段始旹,伱預打出1基本牌發動,該脚色本轉不可起動牌与伱所弃牌同色者(含子牌)",
-["#paaskeecs-ask"]="霸徑 弃牌 令 %src 不可起動打出同色牌",
-["@paaskeecs-turn"] = "霸徑",
+[":paaskeecs"] = "其它脚色主段執行旹,伱可打出1行動牌發動,該脚色當轉不可起動或轉化起動牌与伱所打出牌同色者",
+["#paaskeecs-ask"]="霸徑 打出牌 令 %src 不可起動打出同色牌",
+["@paaskeecs_prohibit"] = "霸徑",
 }
 
 local S = require "packages/szyihhsoohssaet/szyih_guos"
 
 
-paaskeecs:addEffect(fk.EventPhaseStart, {
+paaskeecs:addEffect(fk.EventPhaseProceeding, {
   anim_type = "control",
   can_trigger = function(self, event, target, player, data)
     return   target ~= player and player:hasSkill(paaskeecs.name) and target.phase == Player.Play and (not target.dead) 
@@ -47,7 +47,10 @@ paaskeecs:addEffect(fk.EventPhaseStart, {
 				from=player,
 				attachedSkillAndUser={muteCard=true},
 			})
-    room:addTableMarkIfNeed(target, "@paaskeecs-turn",card:getColorString())  --tos?
+    room:addTableMarkIfNeed(target, "@paaskeecs_prohibit",card:getColorString())  --tos?
+	      room.logic:getCurrentEvent():findParent(Game.Phase):addCleaner(function()
+			room:setPlayerMark(target,"@paaskeecs_prohibit",nil)
+      end)
   end,
 })
 
@@ -55,35 +58,35 @@ paaskeecs:addEffect(fk.EventPhaseStart, {
   -- mute =true,
   -- is_delay_effect = true,
   -- can_refresh = function (self, event, target, player, data)
-    -- if #player.room:getMark("@paaskeecs-turn")==0 then return end
+    -- if #player.room:getMark("@paaskeecs_prohibit")==0 then return end
   -- end,
   -- on_refresh = function (self, event, target, player, data)
-    -- player.room:setMark("@paaskeecs-turn", 0)
+    -- player.room:setMark("@paaskeecs_prohibit", 0)
   -- end,
 -- })
 
 paaskeecs:addEffect("prohibit", {  --不可起動打出同色牌 元版不能 轉化後牌不能 轉化歬牌不能 --肰則牌名殺?
   prohibit_use = function(self, player, card)
-    if player:getMark("@paaskeecs-turn")==0 then return end
-    if table.contains(player:getTableMark("@paaskeecs-turn"), card:getColorString()) then
+    if player:getMark("@paaskeecs_prohibit")==0 then return end
+    if table.contains(player:getTableMark("@paaskeecs_prohibit"), card:getColorString()) then
       return true
     end
     if  card:isVirtual() then
       for _,id in ipairs(card.subcards) do
-        if table.contains(player:getTableMark("@paaskeecs-turn"), Fk:getCardById(id):getColorString()) then
+        if table.contains(player:getTableMark("@paaskeecs_prohibit"), Fk:getCardById(id):getColorString()) then
           return true
         end
       end
     end
   end,
   -- prohibit_response = function(self, player, card)
-  --   if player:getMark("@paaskeecs-turn")==0 then return end
-  --   if table.contains(player:getTableMark("@paaskeecs-turn"), card:getColorString()) then
+  --   if player:getMark("@paaskeecs_prohibit")==0 then return end
+  --   if table.contains(player:getTableMark("@paaskeecs_prohibit"), card:getColorString()) then
   --     return true
   --   end
   --   if  card:isVirtual() then
   --     for _,id in ipairs(card.subcards) do
-  --       if table.contains(player:getTableMark("@paaskeecs-turn"), Fk:getCardById(id):getColorString()) then
+  --       if table.contains(player:getTableMark("@paaskeecs_prohibit"), Fk:getCardById(id):getColorString()) then
   --         return true
   --       end
   --     end

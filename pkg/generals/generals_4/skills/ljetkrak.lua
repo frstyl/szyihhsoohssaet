@@ -4,7 +4,7 @@ local ljetkrak = fk.CreateSkill{
 }
 Fk:loadTranslationTable{
 ["ljetkrak"] = "烈戟",
-[":ljetkrak"] = "伱補段終旹,預打出1牌發動,伱越過當轉主段弃段,可虛擬起動1｢殺｣,此殺:无視距離次數限制,結算期閒伱无視防具,致傷旹伱可起動1元實手牌(无視次數)",
+[":ljetkrak"] = "伱補段終旹,預打出1牌發動,伱越過1轉主段撤段,可虛擬起動1｢殺｣,此殺:无視距離次數限制,結算期閒伱无視防具,致傷旹伱可起動1元實手牌(无視次數)",
 
 ["#ljetkrak-invoke"] = "烈戟 打出1牌發動",
 ["#ljetkrak-use"] = "烈戟 伱可虛擬起動殺 (目幖上限 %arg) ",
@@ -64,7 +64,7 @@ ljetkrak:addEffect(fk.EventPhaseEnd, {
   end,
   on_use = function(self, event, target, player, data)
     local room = player.room
-    S.playCard(player,event:getCostData(self).cards,ljetkrak.name)
+    S.playCard(event:getCostData(self).cards,ljetkrak.name,player)
 
     player:skip(Player.Play)
     player:skip(Player.Discard)
@@ -76,7 +76,7 @@ ljetkrak:addEffect(fk.EventPhaseEnd, {
         player.room:removePlayerMark(player, "@@ignore_Armor",1)
     end)
 
-    -- player.room:addPlayerMark(player, "ssaet_target",1)
+    -- player.room:addPlayerMark(player, "ssaet_target_number",1)
     local card =Fk:cloneCard("ssaet")
     local n =card.skill:getMaxTargetNum(player, card)+1
     local use =room:askToUseVirtualCard(player, {
@@ -89,11 +89,11 @@ ljetkrak:addEffect(fk.EventPhaseEnd, {
         bypass_times = true,
         extraUse = true,
         ljetkrak=player.id,
-        extra_target_number=1,
+        target_number=1,
       },
       skip = true,
     })
-    -- player.room:removePlayerMark(player, "ssaet_target",1)
+    -- player.room:removePlayerMark(player, "ssaet_target_number",1)
     if use then
       use.extra_data=use.extra_data or {}
       use.extra_data.ljetkrak=player.id
@@ -118,24 +118,8 @@ ljetkrak:addEffect(fk.EventPhaseEnd, {
   end,
 })
 
--- ljetkrak:addEffect(fk.TargetSpecified, {  --青鋼
---   can_trigger = function(self, event, target, player, data)
---     return target == player  and data.card
---     and table.contains(data.card.skillNames, ljetkrak.name)
---     and not data.to.dead
---   end,
---   on_trigger = function(self, event, target, player, data)
 
---     player.room:addPlayerMark(, "@@punsmuoh-MarkArmorNullified-phase",1)
-
---       player.room.logic:getCurrentEvent():findParent(GameEvent.UseCard, true):addCleaner(function()
---          player.room:removePlayerMark(data.to,"@@punsmuoh-MarkArmorNullified-phase", 1) 
---          end
---       )
---   end,
--- })
-
-ljetkrak:addEffect(fk.Damage, {  --致傷用牌
+ljetkrak:addEffect(fk.Damaged, {  --致傷用牌
   is_delay_effect=true,
   can_trigger = function(self, event, target, player, data)
     return 

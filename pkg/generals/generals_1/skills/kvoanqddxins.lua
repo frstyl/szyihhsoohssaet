@@ -4,7 +4,7 @@ local kvoanqddxins = fk.CreateSkill({
 
 Fk:loadTranslationTable{
   ["kvoanqddxins"] = "觀陣",
-  [":kvoanqddxins"] = "其它脚色起動<a href='AttackCard'>進攻牌</a>旹,伱可預打出1同花色牌發動,伱令此牌起動无效.",
+  [":kvoanqddxins"] = "其它脚色起動<a href='AttackCard'>進攻牌</a>旹,伱預打出1同花色牌發動,伱令此牌起動无效.",
 
 
   ["#kvoanqddxins-card"] = "觀陣:%dest 起動 %arg 伱可打出1同花色牌發令其无效",
@@ -25,7 +25,7 @@ kvoanqddxins:addEffect(fk.CardUsing, {
       and target ~= player 
       and data.card.suit~=Card.NoSuit
       and S.isAttackCard(data.card)  
-      and not player:isNude()
+      and not player:isKongcheng()
   end,
   on_cost = function(self, event, target, player, data)
     local room = room
@@ -56,7 +56,7 @@ kvoanqddxins:addEffect(fk.CardUsing, {
   end,
   on_use = function(self, event, target, player, data)
     local room = player.room
-    S.playCard(player,event:getCostData(self).cards,kvoanqddxins.name)
+    S.playCard(event:getCostData(self).cards,kvoanqddxins.name,player)
     S.useNullify(data,player,kvoanqddxins.name)
   end,
 })

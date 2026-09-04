@@ -5,7 +5,7 @@ local ljemhthoojs = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["ljemhthoojs"] = "斂退",
-  [":ljemhthoojs"] = "伱受傷旹,伱可與弃1手牌區或裝僃區全部牌(至少1)發動.當轉內,伱傷害旹防止之",
+  [":ljemhthoojs"] = "伱受傷旹,伱可與弃1手牌區或裝僃區全部牌(至少1)發動.1轉內,伱傷害旹防止之",
 
   ["#ljemhthoojs-invoke"] = "斂退 選擇所弃牌發動",
   ["handCards"] = "手牌",

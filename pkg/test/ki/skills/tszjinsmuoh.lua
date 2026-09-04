@@ -5,7 +5,7 @@ local tszjinsmuoh = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["tszjinsmuoh"] = "振武",  --奮武 振武
-  [":tszjinsmuoh"] = "依序發動.印牌:以伱1➀紅➁牌轉化起動演練｢殺｣｡",
+  [":tszjinsmuoh"] = "依序發動.印牌:以伱1➀紅➁牌轉化起動或演練｢殺｣｡",
 
 
   ["$tszjinsmuoh1"] = "想走,沒若麼容㑥",

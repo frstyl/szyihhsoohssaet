@@ -81,7 +81,7 @@ ljenqtszuo:addEffect("active", {
 --   end,
 -- })
 
--- ljenqtszuo:addEffect(fk.TargetSpecified, {
+-- ljenqtszuo:addEffect(fk.TargetConfirmed, {
 -- 	can_refresh = function(self, event, target, player, data)
 -- 		return data.from==player 
 --     -- and player:hasSkill(ljenqtszuo.name) 

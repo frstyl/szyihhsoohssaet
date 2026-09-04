@@ -17,9 +17,10 @@ local S = require "packages/szyihhsoohssaet/szyih_guos"
 
 
 
-ddiqtszjecs:addEffect(fk.DamageCaused,{
+ddiqtszjecs:addEffect(fk.DamageInflicted, {
   can_trigger = function(self, event, target, player, data)
-    if  data.from  == player and player:hasSkill(ddiqtszjecs.name) and data.to and data.to~=player then
+    if  data.from  == player and player:hasSkill(ddiqtszjecs.name) and self:isEffectable(player) 
+	and data.to~=data.from then
       return true
     end
   end,
@@ -86,7 +87,9 @@ ddiqtszjecs:addEffect(fk.DamageCaused,{
 
 ddiqtszjecs:addEffect(fk.DamageInflicted, {
   can_trigger = function(self, event, target, player, data)
-    if target == player and player:hasSkill(ddiqtszjecs.name) and data.from and data.from~=player then
+    if target == player and player:hasSkill(ddiqtszjecs.name)
+	and self:isEffectable(player) 
+	and data.from and data.from~=player then
       return true    
     end
   end,

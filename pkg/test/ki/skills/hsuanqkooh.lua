@@ -4,7 +4,7 @@ local hsuanqkooh = fk.CreateSkill {
 
 Fk:loadTranslationTable {
   ["hsuanqkooh"] = "喧鼓",
-  [":hsuanqkooh"] = "其它脚色末段始旹,伱可預打出1{黑/紅}牌發動.其展示全部手牌,弃置其中{殺/閃},若弃牌數大于2,伱流失1體力.",
+  [":hsuanqkooh"] = "其它脚色末段始旹,伱可預打出1{黑/紅}牌發動.其展示全部手牌,弃置其中｢{殺/閃}｣,若弃牌數大于2,伱流失1.",
 
   ["#hsuanqkooh-invoke"] = "喧鼓： %dest 末段, 伱可打出1黑牌,弃置其殺,或打出1紅牌,弃置其閃",
 }

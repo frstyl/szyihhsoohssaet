@@ -4,7 +4,7 @@ local giocstseejs = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["giocstseejs"] = "共濟",
-  [":giocstseejs"] = "輪始旹,伱受傷後,伱可選1至x(x=Ceiling(存活脚色數/2))其他脚色發動.伱取得所選脚色各1手牌(伱指定敘),肰後伱各交与其1手牌",
+  [":giocstseejs"] = "輪始旹,伱受傷後,伱可選1至x(x=Ceiling(存活脚色數/2))其它脚色發動.伱取得所選脚色各1手牌(伱指定敘),肰後伱各交与其1手牌",
 
   -- ["#giocstseejs"] = "共濟 選擇脚色",
   ["#giocstseejs-choose"] = "共濟 選擇 %arg 脚色",
@@ -116,7 +116,7 @@ giocstseejs:addEffect(fk.RoundStart, {
   on_use=spec.on_use,
 })
 
-giocstseejs:addEffect(fk.Damage, {
+giocstseejs:addEffect(fk.Damaged, {
   anim_type = "control",
   can_trigger = function(self, event, target, player, data)
     return data.to==player and player:hasSkill(giocstseejs.name) 

@@ -5,7 +5,7 @@ local biussjins = fk.CreateSkill({
 
 Fk:loadTranslationTable{
   ["biussjins"] = "覆訊",
-  [":biussjins"] = "一脚色聲明起動牌後,記錄所起動牌花色.當一脚色起動耦數張牌旹,若此牌无色或其花色含于記錄,此起動无效,中止當段",
+  [":biussjins"] = "一脚色聲明起動牌後,記錄所起動牌花色.當一脚色起動耦數張牌旹,若此牌无色或其花色含于記錄,此起動无效,中止其段",
 
 
   ["#biussjins-card"] = "覆訊：%dest 起動 %arg 伱可令其无效",

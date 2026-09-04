@@ -16,7 +16,7 @@ Fk:loadTranslationTable{
 local S = require "packages/szyihhsoohssaet/szyih_guos"
 
 
-phoukkeek:addEffect(fk.TargetSpecified, {
+phoukkeek:addEffect(fk.TargetConfirmed, {
   anim_type = "offensive",
   can_trigger = function(self, event, target, player, data)
     return data.from == player and player:hasSkill(phoukkeek.name) and
@@ -43,7 +43,7 @@ phoukkeek:addEffect(fk.TargetSpecified, {
     local room = player.room
     local cards = event:getCostData(self).cards
     -- room:throwCard(cards, phoukkeek.name, player, player)
-    S.playCard(player,cards,phoukkeek.name)
+    S.playCard(cards,phoukkeek.name,player)
     if not (player.dead or data.to.dead or data.to:isNude()) then
       local n=1+#cards
     local cards = room:askToDiscard(data.to, {
@@ -59,7 +59,7 @@ phoukkeek:addEffect(fk.TargetSpecified, {
   end,
 })
 
-phoukkeek:addEffect(fk.DamageCaused, {
+phoukkeek:addEffect(fk.DamageInflicted, {
   anim_type = "offensive",
   can_trigger = function(self, event, target, player, data)
     return data.from == player and player:hasSkill(phoukkeek.name) and

@@ -5,7 +5,7 @@ local jiacqmuoh = fk.CreateSkill{
 
 Fk:loadTranslationTable{
 ["jiacqmuoh"] = "揚武",
-[":jiacqmuoh"] = "伱起動殺旹可發動.伱選擇1至2項發動｡令此殺➀結算後伱得到之➁不計入次數➂致傷旹傷害值+1,伱弃置1牌➃反抵消反失效｡若伱選擇相鄰二項,伱于結算後流失1體力",  --全部牌當閃
+[":jiacqmuoh"] = "伱起動殺旹可發動.伱隱祕選擇1至2項發動｡令此殺➀結算後伱得到之➁不計入次數➂致傷旹傷害值+1,伱弃置1牌➃反抵消反失效｡若伱選擇相鄰二項,伱于結算後流失1",  --全部牌當閃
 
 ["#jiacqmuoh-invoke"] = "揚武 選擇1至2項發動",
 
@@ -96,7 +96,7 @@ jiacqmuoh:addEffect(fk.CardUseFinished, {
   end,
 })
 
-jiacqmuoh:addEffect(fk.DamageCaused, {  --不算發動技能
+jiacqmuoh:addEffect(fk.DamageInflicted, {  --不算發動技能
   is_delay_effect = true,
   anim_type = "offensive",
   can_trigger = function(self, event, target, player, data)

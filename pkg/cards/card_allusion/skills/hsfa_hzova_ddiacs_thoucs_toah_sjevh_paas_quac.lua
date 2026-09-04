@@ -23,7 +23,7 @@ cardSkill:addEffect("cardskill", {
   end,
 })
 
-cardSkill:addEffect(fk.DamageCaused, {
+cardSkill:addEffect(fk.DamageInflicted, {
   -- global = true,
   mute = true,
   priority = 0,  --同旹自選 用牌?
@@ -34,11 +34,12 @@ cardSkill:addEffect(fk.DamageCaused, {
       and data.from~=data.to
       -- and  data.from:compareGenderWith(data.to, true) 
     then
-      local players = S.getHolders("hsfa_hzova_ddiacs_thoucs_toah_sjevh_paas_quac")
-       if #players> 0  then
-        event:setCostData(self,{players=players})
-        return  true
-      end
+              return  true
+
+      -- local players = S.getHolders("hsfa_hzova_ddiacs_thoucs_toah_sjevh_paas_quac")
+      --  if #players> 0  then
+      --   event:setCostData(self,{players=players})
+    --   end
     end
   end,
   on_trigger = function(self, event, target, player, data)
@@ -55,7 +56,7 @@ cardSkill:addEffect(fk.DamageCaused, {
         leen_hsiac_sjek_ciok = true,
       }
     }
-      local use = room:askToNullification(event:getCostData(self).players, params) 
+      local use = S.askToUseKoarbiukCard(S.getHolders("hsfa_hzova_ddiacs_thoucs_toah_sjevh_paas_quac"), params) 
       if use then
         use.extra_data=use.extra_data or{}
         use.extra_data.fix_targets={player.id}
@@ -65,7 +66,7 @@ cardSkill:addEffect(fk.DamageCaused, {
   end,
 })
 
-cardSkill:addEffect(fk.Damage, {
+cardSkill:addEffect(fk.DamageFinished , {--Damaged
   -- global = true,
   mute = true,
   priority = 0,  --同旹自選 用牌?
@@ -96,7 +97,7 @@ cardSkill:addEffect(fk.Damage, {
     local  cards = S.askToPlayCard(player, params)
 
       if #cards>0 then
-        S.playCard(player,cards,"hqjit_tshoak_tsoeojs_tshoak")
+        S.playCard(cards,"hqjit_tshoak_tsoeojs_tshoak",player)
         if  data.from:compareGenderWith(data.to)  then
           local cid = room:askToChooseCard(player, { target = data.to, flag = "he", skill_name = "hqjit_tshoak_tsoeojs_tshoak" })
           room:throwCard({cid},  "hqjit_tshoak_tsoeojs_tshoak" , data.to, player)

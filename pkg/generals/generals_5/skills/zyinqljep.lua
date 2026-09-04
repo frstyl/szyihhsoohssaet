@@ -1,6 +1,6 @@
 Fk:loadTranslationTable{
   ["zyinqljep"] = "巡獵",  --巡狩被巡守占
-  [":zyinqljep"] = "伱補段終旹,伱可選1項發動.➀預打出1♦️牌取得1其他脚色2手牌➁取得至多x其他脚色各1手牌.(x爲伱裝僃區牌數且至少爲1)",--抽牌數+x
+  [":zyinqljep"] = "伱補段終旹,伱可選1項發動.➀預打出1♦️牌取得1其它脚色2手牌➁取得至多x其它脚色各1手牌.(x爲伱裝僃區牌數且至少爲1)",--抽牌數+x
 --加彊?
 
   ["#zyinqljep-choose"] = "巡獵  可打出1方片取得1脚色2手牌 或取得至多 %arg脚色各1手牌",
@@ -61,7 +61,7 @@ zyinqljep:addEffect(fk.EventPhaseEnd, {
         end
       end
     else
-       S.playCard(player,event:getCostData(self).cards,zyinqljep.name)
+       S.playCard(event:getCostData(self).cards,zyinqljep.name,player)
 
       if player.dead then return end
         local cids = room:askToChooseCards(player, {

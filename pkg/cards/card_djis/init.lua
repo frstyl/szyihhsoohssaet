@@ -3,8 +3,8 @@ extension.extensionName = "szyihhsoohssaet"
 extension:loadSkillSkelsByPath("./packages/szyihhsoohssaet/pkg/cards/card_djis/skills")
 
 
-Fk:addDamageNature(fk.FireDamage, "fire_damage")
-Fk:addDamageNature(fk.ThunderDamage, "thunder_damage")
+Fk:addDamageNature(fk.FireDamage, "fire_damage",true )
+Fk:addDamageNature(fk.ThunderDamage, "thunder_damage", true)
 
 local meej = fk.CreateCard{
   name = "&meej",
@@ -100,9 +100,7 @@ local hsoeojh_seevs = fk.CreateCard{
   stackable_delayed = true,
   skill = "hsoeojh_seevs_skill",
 }
-extension:loadCardSkels {
-hsoeojh_seevs,
-}
+extension:loadCardSkels {hsoeojh_seevs,}
 
 
 
@@ -128,12 +126,12 @@ local pheek_piuc_toav = fk.CreateCard{
   skill = "self_equip_skill",
 }
 
-local baoh = fk.CreateCard{  --烽火
-  name = "baoh",
+local baoch = fk.CreateCard{  --狼牙棒
+  name = "baoch",
   type = Card.TypeEquip,
   sub_type = Card.SubtypeWeapon,
   attack_range = 4,
-  equip_skill = "#baoh_skill",
+  equip_skill = "#baoch_skill",
   skill = "self_equip_skill",
 }
 
@@ -174,7 +172,7 @@ extension:loadCardSkels {
   dou_dook,hqjin_szjer_ljis_doavs,hsvoah_kouc,
 
       -- tsiac_keejs_dzius_keejs,
-  pheek_piuc_toav, baoh, boav, tou_miu,
+  pheek_piuc_toav, baoch, boav, tou_miu,
   hqeen_tszji,
 
 }
@@ -256,7 +254,7 @@ extension:addCardSpec("hsoeojh_seevs", Card.Spade, 2)  --v0藤甲 v1鐵索 v2天
 extension:addCardSpec("tshoak_hsvoah_tsjek_sjin", Card.Club, 3)  --v0boav
 
 extension:addCardSpec("pheek_piuc_toav", Card.Spade, 1)  --古錠刀
-extension:addCardSpec("baoh", Card.Diamond, 1)  --元扇子
+extension:addCardSpec("baoch", Card.Diamond, 1)  --元扇子
 -- extension:addCardSpec("tshiac", Card.Club, 3)  --刀 v1 Spade, 3
 -- extension:addCardSpec("boav", Card.Spade, 2)  --元藤甲 鐵索
 extension:addCardSpec("tou_miu", Card.Club, 1)  --白銀獅子
@@ -269,20 +267,20 @@ Fk:loadTranslationTable{
   ["card_djis"] = "水滸牌-天罡",
 
   ["fire__ssaet"] = "火殺",
-  [":fire__ssaet"] = "基本牌-行動  <br /><b>旹機</b>：主段執行旹  <br /><b>目幖</b>：其它脚色  <br /><b>目幖數</b>：1 <br /><b>距離</b>：伱攻程内  <br /><b>次數</b>：同名牌每段限1次  <br /><b>效果</b>：對目幖脚色造成1火傷。",
+  [":fire__ssaet"] = "行動  <br /><b>旹機</b>：主段執行旹  <br /><b>目幖</b>：其它脚色  <br /><b>目幖數</b>：1 <br /><b>距離</b>：伱攻程内  <br /><b>次數</b>：同名牌每段限1次  <br /><b>效果</b>：對目幖脚色造成1火傷。",
   ["fire__ssaet_skill"] = "火殺",
   ["#fire__ssaet_skill"] = "火殺",
   ["#fire__ssaet_skill_multi"] = "選擇攻程內至多 %arg 名脚色，各予其1火傷",
 
   ["thunder__ssaet"] = "雷殺",
-  [":thunder__ssaet"] = "基本牌-行動  <br /><b>旹機</b>：主段執行旹  <br /><b>目幖</b>：其它脚色  <br /><b>目幖數</b>：1 <br /><b>距離</b>：伱攻程内  <br /><b>次數</b>：同名牌每段限1次  <br /><b>效果</b>：對目幖脚色造成1火傷。",
+  [":thunder__ssaet"] = "行動  <br /><b>旹機</b>：主段執行旹  <br /><b>目幖</b>：其它脚色  <br /><b>目幖數</b>：1 <br /><b>距離</b>：伱攻程内  <br /><b>次數</b>：同名牌每段限1次  <br /><b>效果</b>：對目幖脚色造成1火傷。",
   ["thunder__ssaet_skill"] = "雷殺",
-  ["#thunder__ssaet"] = "雷殺",
+  ["#thunder__ssaet_skill"] = "雷殺",
   ["#thunder__ssaet_skill_multi"] = "選擇攻程內至多 %arg 名脚色，各予其1雷傷",
 
 
   ["meej"] = "迷",
-  [":meej"] = "基本牌-物資<br /><b>旹機</b>：主段執行旹  <br /><b>目幖</b>：其它脚色  <br /><b>目幖數</b>：1  <br /><b>距離</b>：伱攻程内<br /><b>效果</b>：目幖脚色附加昏迷,不可起動演練殺閃。",
+  [":meej"] = "物資<br /><b>旹機</b>：主段執行旹  <br /><b>目幖</b>：其它脚色  <br /><b>目幖數</b>：1  <br /><b>距離</b>：伱攻程内<br /><b>效果</b>：目幖脚色附加昏迷,不可起動或演練殺閃。",
   ["free__meej"] = "迷",
   ["meej_skill"] = "迷",
   ["#meej_skill"] = "迷",
@@ -290,28 +288,28 @@ Fk:loadTranslationTable{
   ["dou_dook"] = "投毒",
   [":dou_dook"] = "锦囊牌<br /><b>旹機</b>:主段執行旹<br /><b>目幖</b>:其它脚色  <br /><b>目幖數</b>：1    <br /><b>效果</b>：其視爲起動酒,效果改爲迷",
   ["dou_dook_skill"] = "投毒",
-  ["#dou_dook_skill"] = "投毒 選擇攻程內1脚色 其不可起動演練殺閃",
+  ["#dou_dook_skill"] = "投毒 選擇攻程內1脚色 其不可起動或演練殺閃",
 
   ["hsvoah_kouc"] = "火攻",
-  [":hsvoah_kouc"] = "錦囊-延旹<br/><b>旹機</b>:主段執行旹  <br/><b>目幖</b>：有手牌脚色    <br /><b>目幖數</b>：1    <br/><b>效果</b>：目幖展示1手牌,伱可打出1牌与展示牌同花者予目幖1火傷",
+  [":hsvoah_kouc"] = "計謀-延旹<br/><b>旹機</b>:主段執行旹  <br/><b>目幖</b>：有手牌脚色    <br /><b>目幖數</b>：1    <br/><b>效果</b>：目幖展示1手牌,伱可打出1牌与展示牌同花者予目幖1火傷",
   ["hsvoah_kouc_skill"] = "火攻",
-  ["#hsvoah_kouc_skill"] = "選擇有手牌脚色，令其展示1手牌，<br />伱可以演練1同花色手牌 予其1火傷",
+  ["#hsvoah_kouc_skill"] = "選擇有手牌脚色，令其展示1手牌，<br />伱可以打出1同花色手牌 予其1火傷",
   ["#hsvoah_kouc-show"] = "%src 對伱起動火攻，伱需展示1手牌",
   ["#hsvoah_kouc-discard"] = "演練一张 %arg 手牌，予 %src 1火傷",
 
 
   ["hsio_hzvoach_hqjit_tshiac"] = "虛晃一槍",
-  [":hsio_hzvoach_hqjit_tshiac"] = "錦囊牌  <br/><b>旹機</b>:主段執行旹  <br/><b>目幖</b>：其它脚色  <br /><b>目幖數</b>：1   <br/><b>效果</b>：伱展示1殺,目幖脚色選擇1項,➀令伱回1(若伱未損則不可選)➁視爲伱對其起動此殺",
+  [":hsio_hzvoach_hqjit_tshiac"] = "計謀牌  <br/><b>旹機</b>:主段執行旹  <br/><b>目幖</b>：其它脚色  <br /><b>目幖數</b>：1   <br/><b>效果</b>：伱展示1殺,目幖脚色選擇1項,➀令伱回1(若伱未損則不可選)➁視爲伱對其起動此殺",
   ["hsio_hzvoach_hqjit_tshiac_skill"] = "虛晃一槍",
   ["#hsio_hzvoach_hqjit_tshiac_skill"] = "虛晃一槍 伱展示1殺,選擇1目幖脚色",
 
   ["hqjin_szjer_ljis_doavs"] = "因勢利導",
-  [":hqjin_szjer_ljis_doavs"] = "錦囊牌<br /><b>旹機</b>：主段執行旹  <br /><b>目幖</b>：：其它脚色  <br /><b>目幖數</b>：1  <br /><b>延旹</b>：將此牌置于目幖脚色伏區,目幖上下家受到屬性傷後生效。   <br /><b>效果</b>：与目幖相同傷害",
+  [":hqjin_szjer_ljis_doavs"] = "計謀牌<br /><b>旹機</b>：主段執行旹  <br /><b>目幖</b>：：其它脚色  <br /><b>目幖數</b>：1  <br /><b>延旹</b>：將此牌置于目幖脚色伏區,目幖上下家受到屬性傷後生效。   <br /><b>效果</b>：与目幖相同傷害",
   ["hqjin_szjer_ljis_doavs_skill"] = "因勢利導",
   ["#hqjin_szjer_ljis_doavs_skill"] = "因勢利導 對 ",
 
   ["tshoak_hsvoah_tsjek_sjin"] = "厝火積薪",
-  [":tshoak_hsvoah_tsjek_sjin"] = "錦囊牌<br/><b>旹機</b>:主段執行旹<br/><b>目幖</b>：其它脚色  <br /><b>目幖數</b>：1  <br /><b>延旹</b>：將此牌置于目幖脚色伏區,目幖受到火傷旹生效。<br/><b>效果</b>：傷害值+1,結算後將此牌置入目幖伏區.",
+  [":tshoak_hsvoah_tsjek_sjin"] = "計謀牌<br/><b>旹機</b>:主段執行旹<br/><b>目幖</b>：其它脚色  <br /><b>目幖數</b>：1  <br /><b>延旹</b>：將此牌置于目幖脚色伏區,目幖受到火傷旹生效。<br/><b>效果</b>：傷害值+1,結算後將此牌置入目幖伏區.",
   ["tshoak_hsvoah_tsjek_sjin_skill"] = "厝火積薪",
   ["#tshoak_hsvoah_tsjek_sjin_skill"] = "厝火積薪 延旹",
 
@@ -321,14 +319,18 @@ Fk:loadTranslationTable{
   ["#tvoans_liac_dzyet_quan_skill"] = "斷糧絕援 延旹,選擇距離1脚色起動",
 
 
+  ["hsoeojh_seevs"] = "海嘯",
+  [":hsoeojh_seevs"] = "法術-天災  <br /><b>旹機</b>：主段執行旹  <br /><b>目幖</b>：无限制  <br /><b>目幖數</b>：伱  <br /><b>延旹</b>：將此牌置于目幖脚色伏區,目幖伏段執行旹生效  <br /><b>生效</b>：目幖A占卜阶段占卜生效,A占卜,若結果爲黑色AJQK,A弃全部牌,;否則將此牌至入下家伏區  <br /><b>額外</b>：此牌被抵消後至入目幖下家伏區",
+  ["hsoeojh_seevs_skill"] = "海嘯",
+  ["#hsoeojh_seevs_skill"] = "起動海嘯 置入伱伏區",
 
   ["pheek_piuc_toav"] = "劈風刀",
   [":pheek_piuc_toav"] = "装备牌·武器<br/><b>攻程</b>：2<br/><b>武器技能</b>：。伱起動【殺】對目幖致傷时，若其无手牌，傷害值+1。",
   ["#pheek_piuc_toav"] = "劈風刀",
 
-  ["baoh"] = "棒",
-  [":baoh"] = "装备牌·武器<br/><b>攻程</b>：4<br/><b>武器技能</b>：伱傷明起動普【殺】後，伱可發動,此【殺】改爲火【殺】。",
-  ["#baoh_skill"] = "棒",
+  ["baoch"] = "棒",
+  [":baoch"] = "装备牌·武器<br/><b>攻程</b>：4<br/><b>武器技能</b>：伱傷明起動普【殺】後，伱可發動,此【殺】改爲火【殺】。",
+  ["#baoch_skill"] = "棒",
 
 
   ["boav"] = "袍",

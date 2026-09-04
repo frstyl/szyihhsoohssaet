@@ -16,7 +16,7 @@ ssaocqhsooh:addEffect(fk.CardUsing, {
 })
 
 
--- ssaocqhsooh:addEffect(fk.TargetSpecified, {
+-- ssaocqhsooh:addEffect(fk.TargetConfirmed, {
 --   anim_type = "offensive",
 --   can_trigger = function(self, event, target, player, data)
 --     return target == player and player:hasSkill(ssaocqhsooh.name)

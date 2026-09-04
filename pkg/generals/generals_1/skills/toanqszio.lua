@@ -5,7 +5,7 @@ local toanqszio = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["toanqszio"] = "丹書",
-  [":toanqszio"] = "伱成为｢殺｣目幖後必發,起動者執行1項：➀實打出x手牌；➁此｢殺｣對伱无效。(x爲伱已損體力值至少爲1)",
+  [":toanqszio"] = "伱成为｢殺｣目幖後必發,起動者執行1項：➀弃置x手牌；➁此起動對伱无效。(x爲伱已損體力數至少爲1)",
 
   ["#toanqszio-discard"] = "丹書：打出 %arg ，或此殺對 %src 无效",
 
@@ -28,16 +28,19 @@ toanqszio:addEffect(fk.TargetConfirmed, {
         max_num=n,
         include_equip=false,
         pattern=tostring(Exppattern{ id = table.filter(from:getCardIds("h"),function(id)
-          return  not from:prohibitResponse(Fk:getCardById(id))
+          return  not 
+          -- from:prohibitResponse(Fk:getCardById(id))
+          from:prohibitDiscard(Fk:getCardById(id))
         end
         ) }),
         prompt = "#toanqszio-discard:"..player.id.."::"..n,
         cancelable = true,
       })
     if #cards==n then
-      S.playCard(from,cards,toanqszio.name)
+      toom:throwCard(cards,toanqszio.name,from,from)
+      -- S.playCard(cards,toanqszio.name,from)
     else
-      S.effectNullify(data,player,toanqszio.name)
+      S.effectNullify(data,player,toanqszio.name, true)
     end
   end,
 })

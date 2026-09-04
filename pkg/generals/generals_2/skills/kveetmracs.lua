@@ -6,7 +6,7 @@ local kveetmracs = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["kveetmracs"] = "決命",
-  [":kveetmracs"] = "鎖,恆續效果.若伱體力值不大于{1/2/3}伱不是{殺/鬥將/埋伏}合理目幖",
+  [":kveetmracs"] = "恆續.若伱體力數不大于{1/2/3}伱不是{殺/鬥將/埋伏}合理目幖",
 
   ["$kveetmracs1"] = "絕處逢生",
   ["$kveetmracs2"] = "一腔熱血止賣与識貨者"

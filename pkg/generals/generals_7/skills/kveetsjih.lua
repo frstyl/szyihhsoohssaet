@@ -7,14 +7,14 @@ local S = require "packages/szyihhsoohssaet/szyih_guos"
 
 Fk:loadTranslationTable{
   ["kveetsjih"] = "決死",
-  [":kveetsjih"] = "伱對一脚色傷旹,若其已損必發,傷害值+x｡伱起動牌指定目幖旹,若其已損,必發,其當轉不可起動打出牌,若其半損(上取整),其非必發技當轉失效",
+  [":kveetsjih"] = "伱對一脚色傷旹,若其已損必發,傷害值+x｡伱起動牌指定目幖旹,若其已損,必發,其1轉不可起動打出牌,若其半損(上取整),其非必發技1轉失效",
 
   ["$kveetsjih1"] = "寶刀未老 壯气長存",
 
   ["@@kveetsjih-prohibit-turn"] = "決死",
 }
 
-kveetsjih:addEffect(fk.DamageCaused, {
+kveetsjih:addEffect(fk.DamageInflicted, {
   can_trigger = function(self, event, target, player, data)
     return data.from == player and player:hasSkill(kveetsjih.name) 
     --and data.to.hp<2
@@ -25,7 +25,7 @@ kveetsjih:addEffect(fk.DamageCaused, {
   end,
 })
 
-kveetsjih:addEffect(fk.TargetSpecifying, {  --fk.TargetSpecified
+kveetsjih:addEffect(fk.TargetConfirming, {  --fk.TargetSpecified
   can_trigger= function(self, event, target, player, data)
     return data.from == player 
     and player:hasSkill(kveetsjih.name) 

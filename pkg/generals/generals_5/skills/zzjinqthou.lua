@@ -1,6 +1,6 @@
 Fk:loadTranslationTable{
   ["zzjinqthou"] = "神偸",
-  [":zzjinqthou"] = "轉脚色得到牌後,伱可將1牌轉化爲｢因敵爲資｣對其起動發動.",
+  [":zzjinqthou"] = "牌進入1轉脚色A手牌區後,伱可將1牌轉化爲｢因敵爲資｣對A起動發動.",
 
   ["#zzjinqthou-use"] = "神偸 昰否將黑牌轉化爲因敵爲資對 %src 起動",
 
@@ -59,10 +59,10 @@ zzjinqthou:addEffect(fk.AfterCardsMove, {
 
       for _, move in ipairs(data) do
         if move.to  == current
-          and table.contains({Card.PlayerEquip,Card.PlayerHand }, move.toArea)  
+          and move.toArea==Card.PlayerHand  
         then
           for _, info in ipairs(move.moveInfo) do
-            if not (move.from==player and table.contains({Card.PlayerEquip,Card.PlayerHand }, info.fromArea) ) then
+            if not (move.from==move.to and  move.toArea==Card.PlayerHand  ) then
               event:setCostData(self,{tos={current}})
               break
             end
@@ -74,11 +74,11 @@ zzjinqthou:addEffect(fk.AfterCardsMove, {
 
     end
     
+    if not  player:hasSkill(zzjinqthou.name)   then return end
     return event:getCostData(self) 
     and event:getCostData(self).tos~=nil
     and event:getCostData(self).tos[1]
     and event:getCostData(self).tos[1]~=player 
-    and player:hasSkill(zzjinqthou.name)  
     and not player:isKongcheng()
   end,
   on_cost=spec.on_cost,

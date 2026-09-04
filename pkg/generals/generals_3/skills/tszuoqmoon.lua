@@ -1,11 +1,11 @@
 local tszuoqmoon = fk.CreateSkill({
   name = "tszuoqmoon",
-  -- tags={Skill.Compulsory},
+  tags={Skill.Compulsory},
 })
 
 Fk:loadTranslationTable{
   ["tszuoqmoon"] = "朱門",
-  [":tszuoqmoon"] = "➀游戲始旹,必發.伱起動虛擬｢樹上開花｣(不可被抵消)➁殺鬥將迷對伱生效歬,若伱裝僃區有同色牌,伱可發動.此牌對伱无效",
+  [":tszuoqmoon"] = "➀游戲始旹,必發.伱起動虛擬｢樹上開花｣(不可抵消)➁{殺/鬥將/迷}對伱生效歬,若伱裝僃區有同花牌,必發,此牌對伱无效",
 
 
   ["$tszuoqmoon1"] = "官人我臉申過去伱敢打无",
@@ -40,6 +40,7 @@ tszuoqmoon:addEffect(fk.PreCardEffect, {
   can_trigger = function(self, event, target, player, data)
       if   data.to==player and player:hasSkill(tszuoqmoon.name) and data.card and  table.contains({"ssaet","tous_tsiacs","meej"},data.card.trueName) and data.card.suit~=Card.NoSuit then 
         local suit = data.card.suit
+        if suit == Card.NoSuit then return end
         for _,id in ipairs(player:getCardIds("e")) do
           if Fk:getCardById(id).suit==suit then
             return true

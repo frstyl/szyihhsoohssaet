@@ -7,6 +7,7 @@ Fk:loadTranslationTable{
 
   ["$tszjecsprac1"] = "待我擺个陣勢",
 }
+local S = require "packages/szyihhsoohssaet/szyih_guos" 
 
 tszjecsprac:addEffect("viewas", {
   anim_type = "defensive",
@@ -22,7 +23,7 @@ tszjecsprac:addEffect("viewas", {
   card_filter = function(self, player, to_select, selected)
     return #selected == 0 
     and table.contains(player:getCardIds("h"), to_select)
-    and not Fk:getCardById(to_select):hasMark("@@open")
+    and  S.canSetVisible(to_select)
     and (
       (self.interaction.data =="hand__szjemh"  and Fk:getCardById(to_select).color == Card.Red )
       or  (self.interaction.data =="hand__buac_hzfan_mujs_nzjen"  and Fk:getCardById(to_select).color == Card.Black )
@@ -40,14 +41,13 @@ tszjecsprac:addEffect("viewas", {
     player.room:addSkill("openCards")
     local  card = Fk:getCardById(use.card.fake_subcards[1])
     player.room:showCards(cards,player,player)
-    player.room:addCardMark(card,"concealed-inhand",1)
-    player.room:setCardMark(card,"view_as","khouc")
+    S.setCardsVisible(card)
   end,
   enabled_at_response = function(self, player, response) 
     return  not response 
     -- and not player:isKongcheng()
     and table.find(player:getCardIds("h"),function(id)
-				return not Fk:getCardById(id):hasMark("@@open")
+				return not Fk:getCardById(id):hasMark("@@opend")
 			end
 			)
   end,

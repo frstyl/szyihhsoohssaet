@@ -4,7 +4,7 @@ local kiamsmrac = fk.CreateSkill {
 }
 Fk:loadTranslationTable{
   ["kiamsmrac"] = "劍鳴",
-  [":kiamsmrac"] = "伱可起動演練殺旹,伱可虛擬起動｢殺｣(无視次數限制)發動",
+  [":kiamsmrac"] = "伱可起動或演練殺旹,伱可虛擬起動｢殺｣(无視距離次數限制)發動",
 
   ["#kiamsmrac"] = "劍鳴 起動殺",
 }
@@ -25,7 +25,7 @@ kiamsmrac:addEffect("viewas", {
   target_filter = function(self, player, to_select, selected, selected_cards, c, extra_data)
     local card=Fk:cloneCard("ssaet")
     card.skillName = kiamsmrac.name
-    return  card:getSkill(player):targetFilter(player, to_select, selected, _, card, {bypass_distances=false,bypass_times=true}) --不繼承extra_data
+    return  card:getSkill(player):targetFilter(player, to_select, selected, _, card, {bypass_distances=true,bypass_times=true}) --不繼承extra_data
   end,
   feasible = function(self, player, selected, selected_cards, card)
     return #selected ~= 0
@@ -36,7 +36,7 @@ kiamsmrac:addEffect("viewas", {
     -- local card=Fk:cloneCard("ssaet")
     -- player.room:useCard()
     -- room:askToUseVirtualCard
-    room:useVirtualCard("ssaet",nil,player,tos,kiamsmrac.name,true,{bypass_distances=false,bypass_times=true})
+    room:useVirtualCard("ssaet",nil,player,tos,kiamsmrac.name,true,{bypass_distances=true,bypass_times=true})
     return kiamsmrac.name
   end,
   enabled_at_play = function(self, player) 

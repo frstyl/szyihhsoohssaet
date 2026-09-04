@@ -4,8 +4,8 @@ local muo_ttiuc_ssaac_qiuh = fk.CreateSkill {
 
 Fk:loadTranslationTable{
 
-  ["#muo_ttiuc_ssaac_qiuh"] = "无中生有：令一名脚色对你起動殺，否則額定手牌數-1",
-  ["#muo_ttiuc_ssaac_qiuh-use"] = "无中生有：对 %src 起動殺，否則額定手牌數-1",
+  ["#muo_ttiuc_ssaac_qiuh"] = "无中生有：令一名脚色对你起動殺，否則存牌數-1",
+  ["#muo_ttiuc_ssaac_qiuh-use"] = "无中生有：对 %src 起動殺，否則存牌數-1",
 
 }
 

@@ -4,7 +4,7 @@ local ljimqkij = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["ljimqkij"] = "臨機",
-  [":ljimqkij"] = "伱可將牌轉化爲其同子類牌起動演練",
+  [":ljimqkij"] = "伱可將牌轉化爲其同子類牌起動或演練",
 
 
   ["$ljimqkij1"] = "承吾父之勇，翊军立阵。",

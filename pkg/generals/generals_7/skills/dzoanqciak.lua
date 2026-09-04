@@ -4,10 +4,10 @@ local dzoanqciak = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["dzoanqciak"] = "殘虐",
-  [":dzoanqciak"] = "每輪限1.當伱攻程內1脚色瀕死結算後(每局每脚色限1次),伱可預打出1牌選擇伱距離1內1其它脚色發動.伱与其2傷.若伱因此技能殺死脚色,伱可流失1體力再次執行.",  --每脚色1次?每輪1次?刷新?殺死發動?
+  [":dzoanqciak"] = "每輪限1.當伱攻程內1脚色瀕死結算後(每局每脚色限1次),伱可預打出1牌選擇伱距離1內1其它脚色發動.伱与其2傷.若伱因此技能殺死脚色,伱可流失1再次執行.",  --每脚色1次?每輪1次?刷新?殺死發動?
 
   ["#dzoanqciak-choose"] = "殘虐 打出1牌 予1脚色2傷",
-  ["#dzoanqciak-losehp"] = "殘虐 選擇脚色 伱流失1體力 与其2傷",
+  ["#dzoanqciak-losehp"] = "殘虐 選擇脚色 伱流失1 与其2傷",
 
   ["$dzoanqciak1"] = "讓俺再宰一个",
 }
@@ -51,7 +51,7 @@ dzoanqciak:addEffect(fk.AfterDying, {
   on_use = function(self, event, target, player, data)
     local room = player.room
     room:addTableMark(player, dzoanqciak.name, target.id)
-    S.playCard(player,event:getCostData(self).card,dzoanqciak.name)
+    S.playCard(event:getCostData(self).card,dzoanqciak.name,player)
     local tos = event:getCostData(self).tos
     if  tos[1].dead then return end
 

@@ -33,7 +33,7 @@ Fk:loadTranslationTable{
 }
 
 --淸風寨
-General:new(extension, "hqeenqzzyins", "pujh", 5):addSkills { "hsoohseevs" }
+General:new(extension, "hqeenqzzyins", "pujh", 5):addSkills { "hsoohseevs","loohdvoat"}
 Fk:loadTranslationTable{
 ["hqeenqzzyins"] = "燕順",
 ["#hqeenqzzyins"] = "錦毛虎",
@@ -51,6 +51,16 @@ Fk:loadTranslationTable{
 ["cv:quacqhqrac"] = "配音",
 ["illustrator:quacqhqrac"] = "畫師",
 ["~quacqhqrac"] = "有已娘子值此一生",
+}
+
+General:new(extension, "ddxevstheenqdzziuh", "pujh", 4):addSkills {"dziacstsoak","cooqkou",}--,
+Fk:loadTranslationTable{
+["ddxevstheenqdzziuh"] = "鄭天壽",
+["#ddxevstheenqdzziuh"] = "白面郎君",
+["designer:ddxevstheenqdzziuh"] = "設計",
+["cv:ddxevstheenqdzziuh"] = "配音",
+["illustrator:ddxevstheenqdzziuh"] = "畫師",
+["~ddxevstheenqdzziuh"] = "",
 }
 --33. 第三十二回　宋江夜看小鰲山　花榮大鬧淸風寨
 
@@ -134,7 +144,7 @@ Fk:loadTranslationTable{
 ["~lihljip"] = "生不帶來死不帶去",
 }
 
-General:new(extension, "lihtsyins", "mjin", 4):addSkills { "crakliu", "tszhyeqpoa"}  --deecstsshaek
+General:new(extension, "lihtsyins", "mjin", 3,4):addSkills { "crakliu", "jiacqpoa"}  --deecstsshaek
 Fk:loadTranslationTable{
 ["lihtsyins"] = "李俊",
 ["#lihtsyins"] = "渾江龍",
@@ -144,7 +154,7 @@ Fk:loadTranslationTable{
 ["~lihtsyins"] = "兄弟輩僃船出海緟頭再來",
 }
 
-General:new(extension, "doucqhquj", "mjin", 4):addSkills {  "doarloacs","zzicqloacs",}  --dzjemqdzoac --忘已
+General:new(extension, "doucqhquj", "mjin", 3):addSkills { "hsicqloan","zzicqloacs","dzjemqszyih"}  --dzjemqdzoac --忘已 波浪瀾濤 
 Fk:loadTranslationTable{
 ["doucqhquj"] = "童威",
 ["#doucqhquj"] = "出洞蛟",
@@ -154,7 +164,7 @@ Fk:loadTranslationTable{
 ["~doucqhquj"] = "止看後浪推歬浪",
 }
 
-General:new(extension, "doucqmaach", "mjin", 4):addSkills { "ttiachloak", "poaqdoav","dzjemqszyih"}  --zzicqloacs
+General:new(extension, "doucqmaach", "mjin", 4):addSkills { "ttiachloak","dzjemqszyih"}  --poaqdoav  thoavqdoav
 Fk:loadTranslationTable{
 ["doucqmaach"] = "童猛",
 ["#doucqmaach"] = "翻江蜃",
@@ -279,7 +289,7 @@ Fk:loadTranslationTable{
 ["illustrator:tshoartoeoktsziac"] = "畫師",
 ["~tshoartoeoktsziac"] = "本以爲立下奇功 不想反招此禍事",
 }
-General:new(extension, "tshoarkrac", "kvoan", 4):addSkills {"kaaqszio"}--, "dvoatguan" 
+General:new(extension, "tshoarkrac", "kvoan", 4):addSkills {"kaaqszio","dvoatguan" }--, 
 Fk:loadTranslationTable{
 ["tshoarkrac"] = "蔡京",
 ["#tshoarkrac"] = "姦相",
@@ -290,7 +300,7 @@ Fk:loadTranslationTable{
 }
 --40 樑山泊漢汉劫法場 白龍廟英雄小聚義
 
-General:new(extension, "sp__tsiachkracs", "mjin", 3):addSkills{"bracqttiacs"}   --"hzfektszuo" tsjecqsvoans  -- bracqttiacs
+General:new(extension, "sp__tsiachkracs", "mjin", 3):addSkills{"tszjeqkeejs",""}   --"hzfektszuo" tsjecqsvoans  -- hzaeksvoans pvoattszuo
 Fk:loadTranslationTable{
 ["sp__tsiachkracs"] = "蔣敬",
 ["#sp__tsiachkracs"] = "神算子",
@@ -300,7 +310,7 @@ Fk:loadTranslationTable{
 ["~sp__tsiachkracs"] = "人算不如天算",
 }
 
-General:new(extension, "tsiachkracs", "pujh", 3):addSkills{"tszjeqkeejs","tsjecqsvoans","pvoattszuo"}   --"hzfektszuo" tsjecqsvoans  -- bracqttiacs
+General:new(extension, "tsiachkracs", "pujh", 3):addSkills{"lihkhoos","ddiuqtsshaek"}   --"hzfektszuo" tsjecqsvoans  -- hzaeksvoans  
 Fk:loadTranslationTable{
 ["tsiachkracs"] = "蔣敬",
 ["#tsiachkracs"] = "神算子",

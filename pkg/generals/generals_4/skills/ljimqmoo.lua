@@ -1,14 +1,14 @@
 local ljimqmoo = fk.CreateSkill {
   name = "ljimqmoo",
-  tags = { Skill.Compulsory },
+  tags = { Skill.Compulsory, Skill.Composite },
   derived_piles = "ljimqmoo_dzis",
 }
 
 Fk:loadTranslationTable{
 ["ljimqmoo"] = "臨摹",
-[":ljimqmoo"] = "➀當一元實牌A起動結算完旹(若其在処理區),伱可發動,將A置于伱武將牌上稱爲「字」➁伱轉終旹,若｢字｣數大于伱體力值,必發,伱廢置超出部分,➂印牌:以伱1牌轉化爲1｢字｣起動(同名同花色同點數)｡起動前廢置此｢字｣",
+[":ljimqmoo"] = "➀當一元實牌A起動結算完旹(若其在処理區),伱可發動,將A置于伱武將牌上稱爲「字」➁伱轉終旹,若｢字｣數大于伱體力數,必發,伱廢置超出部分,➂印牌:以伱1牌轉化爲1｢字｣起動(同名同花色同點數)｡起動前廢置此｢字｣",
 -- [":ljimqmoo"] = "➀當一牌A因起動結算完從処理區進入弃牌堆歬,若A目幖包含伱,伱可發動,將A置于伱武將牌上稱爲「字」➁當伱可起動一牌,若字中有之且伱有牌,伱可發動.將廢置此字,將1牌轉化爲此字起動(同名同花色同點數)｡➂轉終,廢置全部字",
--- [":ljimqmoo"] = "➀當一元實牌A起動結算完旹,若A目幖包含伱或伱至起動者距離不大于1,必發,將A置于伱武將牌上稱爲「字」➁轉終,若字數大于伱體力值,必發,伱廢置超出部分,印取x空(x爲所廢置字所含花色數)➂印牌:以伱1牌轉化爲某字起動(同名同花色同點數)｡廢置某字發動｡",
+-- [":ljimqmoo"] = "➀當一元實牌A起動結算完旹,若A目幖包含伱或伱至起動者距離不大于1,必發,將A置于伱武將牌上稱爲「字」➁轉終,若字數大于伱體力數,必發,伱廢置超出部分,印取x空(x爲所廢置字所含花色數)➂印牌:以伱1牌轉化爲某字起動(同名同花色同點數)｡廢置某字發動｡",
 
 ["ljimqmoo_dzis"] = "字",
 
@@ -105,7 +105,7 @@ ljimqmoo:addEffect(fk.TurnEnd, {
       -- end
     -- table.removeOne(suits,Card.NoSuit)
     player.room:moveCardTo(remove, Card.DiscardPile, nil, fk.ReasonPutIntoDiscardPile, ljimqmoo.name, nil, true, player)
-    -- local ids= S.getKhouc(room,#suits)
+    -- local ids= S.getKhouc(#suits)
     -- room:moveCards({
     --   ids = ids,
     --   to = player,

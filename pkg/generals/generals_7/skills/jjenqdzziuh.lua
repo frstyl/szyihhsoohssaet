@@ -30,7 +30,7 @@ jjenqdzziuh:addEffect("active", {
   end,
   on_use = function(self, room, effect)
     -- room:throwCard(effect.cards, jjenqdzziuh.name, effect.from, effect.from)
-    S.playCard(effect.from , effect.cards,jjenqdzziuh.name)
+    S.playCard( effect.cards,jjenqdzziuh.name,effect.from )
 
     room:changeMaxHp(effect.tos[1], 1)  --无來源
   end,

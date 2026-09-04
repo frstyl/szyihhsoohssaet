@@ -20,7 +20,7 @@ addCardSkill:addEffect(fk.GamePrepared, {
       --   yes =true
         local package = Fk.packages[pkname]
         if package.type==Package.CardPack         
-        and not table.contains(Fk:currentRoom().disabled_packs, pkname)  
+        and not table.contains(Fk:currentRoom().disabled_packs, pkname)  --
         and package.extensionName=="szyihhsoohssaet"   
         then
           yes =true

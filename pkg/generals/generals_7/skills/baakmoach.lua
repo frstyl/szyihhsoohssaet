@@ -1,10 +1,10 @@
 local paakmoach = fk.CreateSkill {
   name = "paakmoach",
-  tags = { Skill.Compulsory },
+  -- tags = { Skill.Compulsory },
 }
 Fk:loadTranslationTable{
   ["paakmoach"] = "白蟒",
-  [":paakmoach"] = "伱有1額外武器欄｡伱起動殺指定目幖後必發,目幖抵消所需｢閃｣數爲x(x爲數此殺目幖數)",  --失效旹機
+  [":paakmoach"] = "伱有1額外武器欄｡伱起動殺指定目幖後,伱可發動,伱褈鑄1牌,目幖抵消所需｢閃｣數爲x(x爲數此殺目幖數)",  --失效旹機
 --.➀恆續,伱攻程+2.➁若伱攻程內其它存活脚色數不大于2,
   -- ["#paakmoach-choose"] = "白蟒 選擇額外目幖",
 
@@ -36,7 +36,7 @@ paakmoach:addLoseEffect (function (self, player)
     
 end)
 
-paakmoach:addEffect(fk.TargetSpecified, {
+paakmoach:addEffect(fk.TargetConfirmed, {
   anim_type = "offensive",
   can_trigger = function(self, event, target, player, data)
     return data.from == player and player:hasSkill(paakmoach.name) 
@@ -46,6 +46,7 @@ paakmoach:addEffect(fk.TargetSpecified, {
   -- local x=(1 + #table.filter(player.room:getOtherPlayers(player), function (p)
   --       return player:inMyAttackRange(p) 
   --     end) ) //2
+    if not data.to:isNude() then player.room:recastCard( player.room:askToCards(player,{min_num=1,max_num=1,include_equip=true}), player, paakmoach.name) end
     local x = data.use and data.use.tos and #data.use.tos or 1
     data:setResponseTimes(x, data.to)  --1?
   end,

@@ -20,7 +20,7 @@ hzfacsdzoeoj:addEffect(fk.AfterCardsMove, {
     if not player:hasSkill(hzfacsdzoeoj.name) then return end
     local ids = {}
       for _, move in ipairs(data) do
-        if fk.ReasonDiscard==move.moveReason
+        if move.moveReason==fk.ReasonDiscard
           and move.from ~= player 
           -- and move.toArea == Card.DiscardPile
         then
@@ -29,18 +29,19 @@ hzfacsdzoeoj:addEffect(fk.AfterCardsMove, {
           end
         end
       end
-      ids = table.filter(ids, function (id)
-        return table.contains(player.room.discard_pile, id)
-      end)
-      ids = player.room.logic:moveCardsHoldingAreaCheck(ids)
-      if #ids > 0 then
-        event:setCostData(self, {ids = ids})
-        return true
-      end
+      
+    ids = table.filter(ids, function (id)
+      return table.contains(player.room.discard_pile, id)
+    end)
+    ids = player.room.logic:moveCardsHoldingAreaCheck(ids)
+    if #ids > 0 then
+      event:setCostData(self, {ids = ids})
+      return true
+    end
   end,
   on_cost = function(self, event, target, player, data)
 
-      local ids, choice = player.room:askToChooseCardsAndChoice(player, {
+      local cards, choice = player.room:askToChooseCardsAndChoice(player, {
         cards = event:getCostData(self).ids,
         min_num = 1,
         max_num = math.max(player:getLostHp(),1),
@@ -48,13 +49,13 @@ hzfacsdzoeoj:addEffect(fk.AfterCardsMove, {
         prompt = "#hzfacsdzoeoj-choose",
         cancel_choices = {"Cancel"}
       })
-      if choice=="Cancel" or #ids==0 then return end
-      event:setCostData(self, { cards = ids})
+      if choice=="Cancel" or #cards==0 then return end
+      event:setCostData(self, { cards = cards})
       return true
   end,
   on_use = function(self, event, target, player, data)
     -- player.room:moveCardTo(event:getCostData(self).cards, Card.PlayerHand, player, fk.ReasonPrey, hzfacsdzoeoj.name, nil, true, player)
-    room:obtainCard(player, event:getCostData(self).cards, true, fk.ReasonPrey, player, hzfacsdzoeoj.name)
+    player.room:obtainCard(player, event:getCostData(self).cards, true, fk.ReasonPrey, player, hzfacsdzoeoj.name)
   end,
 })
 

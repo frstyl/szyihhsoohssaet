@@ -4,7 +4,7 @@ local ceenqjiak = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["ceenqjiak"] = "研藥",
-  [":ceenqjiak"] = "伱可將黑殺轉化爲雷殺,紅牌轉化爲火殺起動發動.伱起動屬性殺无視距離",
+  [":ceenqjiak"] = "印牌:以伱黑殺/紅牌轉化發動雷殺/火殺",
 
   ["#ceenqjiak-active"] = "研藥：黑殺轉化爲雷殺,紅牌轉化爲火殺起動",
 

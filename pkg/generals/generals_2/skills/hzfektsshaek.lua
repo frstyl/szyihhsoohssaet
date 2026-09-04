@@ -6,15 +6,16 @@ local hzfektsshaek = fk.CreateSkill {
 
 Fk:loadTranslationTable{
 ["hzfektsshaek"] = "劃策",
-[":hzfektsshaek"] = "轉限1｡印牌:以伱1手牌轉化起動一卽旹錦囊A",  --畫策牌无視距離?
-["#hzfektsshaek"] = "劃策: 將1手牌轉化爲一卽旹錦囊起動",
+[":hzfektsshaek"] = "轉限1｡印牌:以伱1手牌轉化起動一卽旹計謀A",  --畫策牌无視距離?
+["#hzfektsshaek"] = "劃策: 將1手牌轉化爲一卽旹計謀起動",
 }
 
 local S = require "packages/szyihhsoohssaet/szyih_guos" 
 
-local names=table.concat(table.filter(Fk:getAllCardNames("b"), function(name)
-      return S.isInstantTrick(name)
-    end),";")
+-- local names=table.concat(table.filter(Fk:getAllCardNames("b"), function(name)
+--       return S.isInstantTrick(name)
+--     end),";")
+
 hzfektsshaek:addEffect("viewas", {
   name = "hzfektsshaek",
   -- pattern = "^(szjemh,theem_prac_kaemh_tsoavs)|.|.|.|.|basic",

@@ -4,7 +4,7 @@ local phjenqtheec = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["phjenqtheec"] = "偏聽",
-  [":phjenqtheec"] = "伱成爲梅花牌目幖後，伱可發動.伱抽x(x爲伱體力值)",
+  [":phjenqtheec"] = "伱成爲起動目幖後,若爲♣️牌伱可發動.伱抽x(x爲伱體力數)",  --使用者體力
 
   ["$phjenqtheec1"] = "通判所言有理見得亟明",
   ["$phjenqtheec2"] = "昰个卻正是反詩汝若里得來",

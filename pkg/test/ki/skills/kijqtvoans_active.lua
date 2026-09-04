@@ -24,7 +24,7 @@ kijqtvoans_active:addEffect("active", {
     return 
     -- table.contains(player:getCardIds("h"), to_select)
     -- and  
-    not player:prohibitDiscard(to_select)  --攷慮可弃否
+    not player:prohibitResponse(Fk:getCardById(to_select))
   end,
   target_filter = Util.FalseFunc,
   on_use = function(self, room, effect)

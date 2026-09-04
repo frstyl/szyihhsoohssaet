@@ -4,7 +4,7 @@ local siacqphouk = fk.CreateSkill {
 
 Fk:loadTranslationTable{
 ["siacqphouk"] = "相撲",
-[":siacqphouk"] = "主旹,与1其它各色賭鬥發動.若伱贏,當轉內,伱至其距離爲1,伱對其致旹傷害值次,伱可令1脚色回1;若伱未贏,其与伱1傷",
+[":siacqphouk"] = "主旹,与1其它各色賭鬥發動.若伱贏,1轉內,伱至其距離爲1,伱對其致旹傷害值次,伱可令1脚色回1;若伱未贏,其与伱1傷",
 
 ["@@siacqphouk_win-turn"]="相撲",
 ["#siacqphouk"]="相撲 選擇一脚色賭鬥",
@@ -16,7 +16,8 @@ siacqphouk:addEffect("active", {
   anim_type = "offensive",
   prompt = "#siacqphouk",
   max_phase_use_time = 1,
-  card_num = 1,
+  min_card_num = 0,
+  max_card_num = 1,
   target_num = 1,
   can_use = function(self, player)
     return not player:isKongcheng() and player:usedSkillTimes(siacqphouk.name, Player.HistoryPhase) == 0
@@ -30,7 +31,7 @@ siacqphouk:addEffect("active", {
   on_use = function(self, room, effect)
     local player = effect.from
     local target = effect.tos[1]
-    local pindian = player:pindian({target}, siacqphouk.name,Fk:getCardById(effect.cards[1]))
+    local pindian = player:pindian({target}, siacqphouk.name,effect.cards[1] and Fk:getCardById(effect.cards[1]) or nil)
     if player.dead then return end
     if pindian.results[target].winner == player then
       room:addTableMark(player, "@@siacqphouk_win-turn", effect.tos[1].id) --num
@@ -46,7 +47,7 @@ siacqphouk:addEffect("active", {
   end,
 })
 
-siacqphouk:addEffect(fk.DamageCaused, {
+siacqphouk:addEffect(fk.DamageInflicted, {
   anim_type = "support",
   is_delay_effect=true,
   can_trigger = function (self, event, target, player, data)

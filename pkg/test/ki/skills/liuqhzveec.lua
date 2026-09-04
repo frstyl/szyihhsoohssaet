@@ -32,7 +32,7 @@ liuqhzveec:addEffect("active", {
   on_use = function (self, room, effect)
     local player =effect.from
     local cards = effect.cards
-    S.playCard(player,cards,liuqhzveec.name)
+    S.playCard(cards,liuqhzveec.name,player)
     if player:isAlive() then
       player:drawCards(#cards, liuqhzveec.name)
     end

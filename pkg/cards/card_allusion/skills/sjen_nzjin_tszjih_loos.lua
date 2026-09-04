@@ -15,7 +15,7 @@ cardSkill:addEffect("active", {
   on_use = function(self, room, effect)
     local player=effect.from
     -- room:throwCard(effect.cards, cardSkill.name, player, player)
-    S.playCard(player,effect.cards,cardSkill.name)
+    S.playCard(effect.cards,cardSkill.name,player)
     local to = effect.tos[1]
     local cid = room:askToChooseCard(effect.from, { target = to, flag = "h", skill_name = cardSkill.name })
     to:showCards(cid)

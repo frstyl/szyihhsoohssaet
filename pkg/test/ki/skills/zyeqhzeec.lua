@@ -5,7 +5,7 @@ local zyeqhzeec = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["zyeqhzeec"] = "隨形",
-  [":zyeqhzeec"] = "若場上一裝僃无其它同子類牌,伱視爲裝僃之｡若場上有脚色手牌數冣多,伱可如手牌起動演練其手牌", --視爲有其它脚色坐騎技能
+  [":zyeqhzeec"] = "若場上一裝僃无其它同子類牌,伱視爲裝僃之｡若場上有脚色手牌數冣多,伱可如手牌起動或演練其手牌", --視爲有其它脚色坐騎技能
 }
 
 local S = require "packages/szyihhsoohssaet/szyih_guos" 

@@ -4,7 +4,7 @@ local tshjesthoeoms = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["tshjesthoeoms"] = "刺探",
-  [":tshjesthoeoms"] = "其它脚色失去牌後,若失牌數不少于2或元因爲額定弃牌,伱可發動,伱對其起動虛擬｢偸樑換柱｣.",--弃牌後
+  [":tshjesthoeoms"] = "其它脚色A牌直接進入弃牌堆後,,伱可發動,伱對A起動虛擬｢偸樑換柱｣.",--弃牌後  --因弃置
 
   ["#tshjesthoeoms-invoke"] = "刺探：是否對%src 起動虛擬｢偸樑換柱｣",
   ["#tshjesthoeoms-choose"] = "刺探：是否起動虛擬｢偸樑換柱｣",
@@ -16,30 +16,55 @@ tshjesthoeoms:addEffect(fk.AfterCardsMove, {
   trigger_times = function(self, event, target, player, data)
     return 999
   end,
+  -- can_trigger = function(self, event, target, player, data)
+  --   if not player:hasSkill(tshjesthoeoms.name)  then return end   --多次?
+  --   if event:getCostData(self) then return true 
+  --   else
+  --     local n={}
+  --     local tos={}
+
+  --     for _, move in ipairs(data) do
+  --       if move.from and move.to ~=move.from or not table.contains({Card.PlayerHand,Card.PlayerEquip}, move.toArea) then
+  --         for _, info in ipairs(move.moveInfo) do
+  --           if   (info.fromArea == Card.PlayerHand or info.fromArea == Card.PlayerEquip)   then
+  --             n[move.from] = (n[move.from] or 0 )+ (move.skillName == "phase_discard" and 2 or 1)
+  --           end
+  --         end
+  --       end
+  --     end
+
+  --     for k,v in pairs(n) do
+  --       if n[k]>=2 then
+  --         table.insert(tos,k)
+  --         -- table.insert(tos,player.room:getPlayerById(k))
+
+  --       end
+  --     end
+  --     if #tos==0 then return end
+  --       event:setCostData(self, {triggers = tos,choosed={}})
+  --       return true
+  --   end
+
+
+  -- end,
   can_trigger = function(self, event, target, player, data)
     if not player:hasSkill(tshjesthoeoms.name)  then return end   --多次?
     if event:getCostData(self) then return true 
     else
-      local n={}
+
       local tos={}
 
       for _, move in ipairs(data) do
-        if move.from and move.to ~=move.from or not table.contains({Card.PlayerHand,Card.PlayerEquip}, move.toArea) then
+        if move.from and move.toArea==Card.DiscardPile then  -- and move.moveReason == fk.ReasonDiscard 
           for _, info in ipairs(move.moveInfo) do
             if   (info.fromArea == Card.PlayerHand or info.fromArea == Card.PlayerEquip)   then
-              n[move.from] = (n[move.from] or 0 )+ (move.skillName == "phase_discard" and 2 or 1)
+              table.insertIfNeed(tos,move.from)
             end
           end
         end
       end
 
-      for k,v in pairs(n) do
-        if n[k]>=2 then
-          table.insert(tos,k)
-          -- table.insert(tos,player.room:getPlayerById(k))
 
-        end
-      end
       if #tos==0 then return end
         event:setCostData(self, {triggers = tos,choosed={}})
         return true

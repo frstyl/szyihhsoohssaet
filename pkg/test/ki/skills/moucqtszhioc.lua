@@ -6,7 +6,7 @@ Fk:loadTranslationTable{
   ["moucqtszhioc"] = "冡衝",
   [":moucqtszhioc"] = "游戲始旹,伱轉始旹,若伱未裝僃<a href=':moucqtszhioc_hzaach'>戰艦</a>, 將其置入伱裝僃區.伱主段始旹",
 
-  ["#moucqtszhioc-choose"] = "冡衝：你可以弃置一名其他脚色至多两张牌",
+  ["#moucqtszhioc-choose"] = "冡衝：你可以弃置一名其它脚色至多两张牌",
   ["#moucqtszhioc-invoke"] = "冡衝：裝僃戰艦",
 
   ["$moucqtszhioc1"] = "帥炮卽軍心",--大炮在此軍心不亂

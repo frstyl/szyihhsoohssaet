@@ -5,8 +5,8 @@ local kximqthoac = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["kximqthoac"] = "金湯",
-  -- [":kximqthoac"] = "鎖恆續效果.當伱受傷旹,若伱體力值小于2且傷害爲无屬傷害,防止之;若伱體力值小于3且傷害值大于1,傷害值減至1",
-  [":kximqthoac"] = "伱受傷旹,必發.防止之,肰後若此技能當轉發動次數大于:1,伱流失1體力;2,伱回1,此技能失效｡伱轉始旹,恢復此技能｡伱死亾旹,伱可選擇1其它腳色發動,其得到此技能",
+  -- [":kximqthoac"] = "當伱受傷旹,若伱體力值小于2且傷害爲无屬傷害,防止之;若伱體力值小于3且傷害值大于1,傷害值減至1",
+  [":kximqthoac"] = "伱受傷旹,必發.防止之,若當旹此技能1轉發動次數大于:1,伱流失1;2,伱回1,此技能失效｡伱轉始旹,恢復此技能｡伱死亾旹,伱可選擇1其它腳色發動,其得到此技能",
 
   ["#kximqthoac-choose"] = "金湯 選擇1腳色得到｢金湯｣",
 }
@@ -37,7 +37,7 @@ kximqthoac:addEffect(fk.DamageInflicted, {
 
 kximqthoac:addEffect(fk.TurnStart, {
   can_trigger = function(self, event, target, player, data)
-    return target == player and player:hasSkill(kximqthoac.name,true,true)
+    return target == player and player:hasSkill(kximqthoac.name,true)
   end,
   on_trigger = function(self, event, target, player, data)
     player.room:validateSkill(player, kximqthoac.name)

@@ -41,19 +41,20 @@ cardSkill:addEffect(fk.Damaged, {  --合并諸牌  --于時機問牌skill占卜�
   priority = 0.001, 
   can_trigger = function(self, event, target, player, data)
     if  player.seat~=1  then return end
-      local players=S.getHolders("tthxins_hsvoah_toah_kiap")
-      local card=Fk:cloneCard("tthxins_hsvoah_toah_kiap")
-      card:setVSPattern(nil,nil,".")
-      local ps={}
-      for _, p in pairs(players) do
-        if S.magicCanUse(p,card) then
-          table.insert(ps,p)
-        end
-      end
-      if #ps>0 then
-        event:setCostData(self,{players=ps})
-        return true
-      end
+	return true
+      -- local players=S.getHolders("tthxins_hsvoah_toah_kiap")
+      -- local card=Fk:cloneCard("tthxins_hsvoah_toah_kiap")
+      -- card:setVSPattern(nil,nil,".")
+      -- local ps={}
+      -- for _, p in pairs(players) do
+        -- if S.magicCanUse(p,card) then
+          -- table.insert(ps,p)
+        -- end
+      -- end
+      -- if #ps>0 then
+        -- event:setCostData(self,{players=ps})
+        -- return true
+      -- end
   end,
   on_trigger = function(self, event, target, player, data)
     local room=player.room
@@ -61,18 +62,21 @@ cardSkill:addEffect(fk.Damaged, {  --合并諸牌  --于時機問牌skill占卜�
       skill_name = "tthxins_hsvoah_toah_kiap",
       pattern="tthxins_hsvoah_toah_kiap",
       cancelable=true,
-      prompt="#tthxins_hsvoah_toah_kiap-invoke:"..data.to.id,
+      prompt="#tthxins_hsvoah_toah_kiap_skill-invoke:"..data.to.id,
       skip=true,
       extra_data = {
-        tthxins_hsvoah_toah_kiap = target,
+        tthxins_hsvoah_toah_kiap = data.to,
       }
       -- event_data = data,
     }
-    local use = S.askToUseKoarbiukCard(room,event:getCostData(self).players,params)
-    if use then
-      room:useCard(use)
+    while true do
+      local use = S.askToUseKoarbiukCard(S.getHolders("tthxins_hsvoah_toah_kiap"),params)
+      if use then
+        room:useCard(use)
+      else
+        return
+      end
     end
-
   end,
 })
 

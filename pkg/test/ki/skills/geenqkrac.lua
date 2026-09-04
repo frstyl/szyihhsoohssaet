@@ -4,13 +4,13 @@ local hzeenqkrac = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["hzeenqkrac"] = "弦驚",
-  [":hzeenqkrac"] = "伱起動殺指定目幖後,伱可聲明1花色發動｡目幖不可抵消此｢殺｣,可選擇弃置1至多張牌并流失1體力,伱展示目幖全部牌此｢殺｣對其傷害基數+x(x爲展示牌与伱所聲明同花者)｡",
+  [":hzeenqkrac"] = "伱起動殺指定目幖後,伱可聲明1花色發動｡目幖不可抵消此｢殺｣,可選擇弃置1至多張牌并流失1,伱展示目幖全部牌此｢殺｣對其傷害基數+x(x爲展示牌与伱所聲明同花者)｡",
 
   ["#hzeenqkrac-invoke"] = "弦驚 聲明1花色對 %dest 發動",
   ["#hzeenqkrac-discard"] = "弦驚：%src 聲明%arg，伱可以弃置牌",
 }
 
-hzeenqkrac:addEffect(fk.TargetSpecified, {
+hzeenqkrac:addEffect(fk.TargetConfirmed, {
   anim_type = "offensive",
   can_trigger = function(self, event, target, player, data)
     return data.from  == player and player:hasSkill(hzeenqkrac.name) and

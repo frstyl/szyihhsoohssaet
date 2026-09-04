@@ -62,7 +62,7 @@ zzyinspiuc:addEffect(fk.FinishJudge, {
   --   end
   -- end,
   on_use = function (self, event, target, player, data)
-    S.playCard(player,event:getCostData(self).cards,zzyinspiuc.name)
+    S.playCard(event:getCostData(self).cards,zzyinspiuc.name,player)
     player.room:damage{
         from = player,
         to = event:getCostData(self).tos[1],

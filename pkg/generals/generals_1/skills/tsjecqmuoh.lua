@@ -4,8 +4,8 @@ local tsjecqmuoh = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["tsjecqmuoh"] = "精武",
-  [":tsjecqmuoh"] = "主旹无限次.預打出1牌選擇1項發動.若所打出爲裝僃牌,伱抽1,可選額外項.伱所起動下1｢殺｣有對應效果.選項➀无視距離限制➁无視次數限制➂无視防具➃不可抵消,額外選項➄目幖上限+1➅傷害基數+1➆生效次數1次",
-
+  [":tsjecqmuoh"] = "主旹无限次.預打出1牌選擇1項發動.伱所起動下1｢殺｣有對應效果.選項➀无視距離限制➁无視次數限制➂无視防具➃不可抵消(下列須打出裝僃牌可選)➄目幖上限+1➅傷害基數+1➆生效次數1次",
+--反失效? 封技能
   ["#tsjecqmuoh"] = "打出1發 選擇效果彊化下1殺",
   ["@[:]tsjecqmuoh"] = "精武",
   -- ["@[tsjecqmuoh]"] = "精武",
@@ -27,7 +27,7 @@ Fk:loadTranslationTable{
   [":@@tsjecqmuoh_additionalDamage"]= "",
   [":@@tsjecqmuoh_additionalEffect"]= "",
    
-  ["$tsjecqmuoh1"] = "伱要學 我點撥伱耑正",
+  ["$tsjecqmuoh1"] = "伱要學 我點撥伱耑正",  --每效果至少1句
 
 }
 -- Fk:addQmlMark{
@@ -77,7 +77,7 @@ tsjecqmuoh:addEffect("active", {
   end,
   on_use = function(self, room, effect)
 
-    S.playCard(effect.from,effect.cards,tsjecqmuoh.name)
+    S.playCard(effect.cards,tsjecqmuoh.name,effect.from)
     room:addTableMark(effect.from,"@[:]tsjecqmuoh",self.interaction.data)
 
     if self.interaction.data== "@@tsjecqmuoh_ignoreArmor" then
@@ -90,7 +90,7 @@ tsjecqmuoh:addEffect("active", {
       room:addTableMark(effect.from,"ssaet_bypass_times",1)
     end
     if self.interaction.data== "@@tsjecqmuoh_extraTarget" then
-      room:addTableMark(effect.from,"ssaet_target",1)
+      room:addTableMark(effect.from,"ssaet_target_number",1)
     end
   end,
 })
@@ -128,7 +128,7 @@ tsjecqmuoh:addEffect("active", {
 
 tsjecqmuoh:addEffect(fk.PreCardUse, {
   can_refresh = function (self, event, target, player, data)
-    return data.from == player and player:hasSkill(tsjecqmuoh.name) and data.card.trueName == "ssaet"  --data.from:getMark
+    return data.from == player and data.card.trueName == "ssaet"  --data.from:getMark
     and #player:getTableMark("@[:]tsjecqmuoh")>0
   end,
   on_refresh = function (self, event, target, player, data)
@@ -161,7 +161,7 @@ tsjecqmuoh:addEffect(fk.PreCardUse, {
       room:removeTableMark(player,"ssaet_bypass_times",1)
     end
     if table.contains(t,"@@tsjecqmuoh_extraTarget") then
-      room:removeTableMark(player,"ssaet_target",1)
+      room:removeTableMark(player,"ssaet_target_number",1)
     end
 
     player.room:setPlayerMark(player,"@[:]tsjecqmuoh",0)

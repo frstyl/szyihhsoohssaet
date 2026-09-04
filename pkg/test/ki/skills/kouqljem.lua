@@ -12,13 +12,13 @@ Fk:loadTranslationTable{
   ["$kouqljem2"] = "今，必斩汝马下！",
 }
 
-kouqljem:addEffect(fk.DamageCaused, {
+kouqljem:addEffect(fk.DamageInflicted, {
   anim_type="offensive",
   can_trigger = function(self, event, target, player, data)
     return data.from  == player and player:hasSkill(kouqljem.name) 
     and data.to~=player
     -- and player.room.logic:damageByCardEffect()
-    -- and data.card and (data.card.trueName == "ssaet" or data.card.trueName == "duel")
+    -- and data.card and (data.card.trueName == "ssaet" or data.card.trueName == "tous_tsiacs")
     and #data.to:getAvailableEquipSlots() >0
   end,
   on_cost = function(self, event, target, player, data)

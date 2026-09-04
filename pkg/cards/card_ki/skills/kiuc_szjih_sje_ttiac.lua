@@ -16,13 +16,14 @@ skill:addEffect("cardskill", {
     if effect.to.dead then return end
     local loopTimes = effect:getResponseTimes()
     local respond
+    local params = { ---@type AskToUseCardParams
+      skill_name = 'szjemh',
+      pattern = 'szjemh',
+      cancelable = true,
+      event_data = effect
+    }
     for i = 1, loopTimes do
-      local params = { ---@type AskToUseCardParams
-        skill_name = 'szjemh',
-        pattern = 'szjemh',
-        cancelable = true,
-        event_data = effect
-      }
+
       respond = room:askToResponse(effect.to, params)
       if respond then
         room:responseCard(respond)
@@ -43,8 +44,6 @@ skill:addEffect("cardskill", {
   end,
 })
 
-skill:addAI(nil, "__card_skill")
-skill:addAI(nil, "default_card_skill")
 
 
 
