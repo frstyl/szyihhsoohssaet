@@ -7,7 +7,7 @@ Fk:loadTranslationTable{
   [":sziuhhqaes"] = "每輪始旹,伱可發動｡伱牢+1,執行1補段｡伱越過轉後,伱執行1主段｡",
 --加彊?
 
-  -- ["#sziuhhqaes-invoke"] = "守隘 昰否打出1牌𠫓擊 %src",
+  -- ["#sziuhhqaes-invoke"] = "守隘 昰否投出1牌𠫓擊 %src",
 
   -- ["$sziuhhqaes1"] = "太歲頭上也敢動土",
   -- ["$sziuhhqaes2"] = "爺爺在此𠊱伱多旹了",

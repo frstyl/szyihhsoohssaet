@@ -38,6 +38,7 @@ nziokcoavs:addEffect(fk.EventPhaseProceeding, {  --EventPhaseStart
           bypass_times = false,
           exclusive_targets = {player.id},
           extraUse = false,
+          bypass_moment=true,
         }
       })
       if use then

@@ -6,8 +6,8 @@ local dzyetkeejs = fk.CreateSkill {
 
 Fk:loadTranslationTable{
 ["dzyetkeejs"] = "絕計",
-[":dzyetkeejs"] = "轉限1｡印牌:以伱全部手牌轉化起動一卽旹計謀A｡伱爲此牌增或減x目幖(x爲子牌數)",  --畫策牌无視距離?
-["#dzyetkeejs"] = "絕計: 將1手牌轉化爲一卽旹計謀起動",
+[":dzyetkeejs"] = "轉限1｡印牌:以伱全部手牌轉化起動一卽旹謀策A｡伱爲此牌增或減x目幖(x爲子牌數)",  --畫策牌无視距離?
+["#dzyetkeejs"] = "絕計: 將1手牌轉化爲一卽旹謀策起動",
 }
 
 local S = require "packages/szyihhsoohssaet/szyih_guos" 

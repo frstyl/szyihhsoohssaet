@@ -5,7 +5,7 @@ local tszjecqbuat = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["tszjecqbuat"] = "征伐",
-  [":tszjecqbuat"] = "伱末段始旹,伱可与1其它脚色賭鬥發動｡若伱贏,伱選1多x腳色對其起動虛擬｢殺｣(x爲身分(勢力)數);沒贏,伱抽3,自守至伱下下(轉終)",  --下个 轉終 not 下轉之終
+  [":tszjecqbuat"] = "伱末段始旹,伱可与1其它脚色賭鬥發動｡若伱贏,伱選1多x腳色對其起動虛擬｢殺｣(无視甲冑,x爲身分(勢力)數);沒贏,伱抽3,自守至伱下下(轉終)",  --下个 轉終 not 下轉之終
 
   ["#tszjecqbuat-choose"] = "征伐 選擇賭鬥目幖",
   ["#tszjecqbuat-win"] = "征伐 選擇殺目幖",
@@ -57,8 +57,11 @@ tszjecqbuat:addEffect(fk.EventPhaseStart, {
     local to = event:getCostData(self).tos[1]
     local pindian = player:pindian({to}, tszjecqbuat.name)
     if pindian.results[to].winner == player then
+      local card=Fk:cloneCard("ssaet")
+      card.skillName = tszjecqbuat.name
+
       -- local targets = table.filter(room:getOtherPlayers(player, false), function (p)
-        -- return player:canUseTo(Fk:cloneCard("ssaet"), p, {bypass_distances = true, bypass_times = true})
+        -- return player:canUseTo(card, p, {bypass_distances = true, bypass_times = true})
       -- end)
       local tos = room:askToChoosePlayers(player, {
         min_num = 1,
@@ -66,8 +69,18 @@ tszjecqbuat:addEffect(fk.EventPhaseStart, {
         targets = room:getOtherPlayers(player),
         prompt = "#tszjecqbuat-win",
         cancelable=false,
+
       })
-      room:useVirtualCard("ssaet", nil, player, tos, tszjecqbuat.name, true)  --zzin souk
+      room:useCard{
+      from = player,
+      tos = tos,
+      card = card,
+      extraUse=false,
+      extra_data={
+        ignore_Armor_to=table.simpleClone(player.room.players),
+      },
+    }
+      -- room:useVirtualCard("ssaet", nil, player, tos, tszjecqbuat.name, true,{ignore_Armor_to=table.simpleClone(player.room.players)})  --zzin souk
     else
       player:drawCards(3, tszjecqbuat.name)
       room:addSkill("dzjissziuh")

@@ -1,11 +1,13 @@
 local sooshseec = fk.CreateSkill {
   name = "sooshseec",
   -- tags = { Skill.Compulsory },
+  related_skills={"tsziukzzyit_mxenhcioh"}
+
 }
 
 Fk:loadTranslationTable{
   ["sooshseec"] = "𦃃馨",
-  [":sooshseec"] = "伱主段終旹,伱可預打出1牌選擇1脚色發動.伱爲所選脚色附加免敔,且至伱下次發動此技能,其致傷後,伱抽1",
+  [":sooshseec"] = "伱主段終旹,伱可預投出1牌選擇1脚色發動.伱爲所選脚色附加咒術｢免敔｣,且至伱下次發動此技能,其致傷後,伱抽1",
 
   ["#sooshseec-choose"] = "𦃃馨 選擇目幖",
 

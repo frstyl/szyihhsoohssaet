@@ -6,12 +6,12 @@ local S = require "packages/szyihhsoohssaet/szyih_guos"
 
 Fk:loadTranslationTable{
   ["zjimqkhrak"] = "尋隙",
-  [":zjimqkhrak"] = "其它脚色A主段始旹,(若其未被此發動技能)伱可發動.伱弃置其1牌,1段內其至伱距離爲1,无幖不含伱(或无目幖)則不可起動牌.段終旹,若其未對伱致傷,伱可打出1手牌予其1傷",
+  [":zjimqkhrak"] = "其它脚色A主段始旹,(若其未被此發動技能)伱可發動.伱弃置其1牌,1段內其至伱距離爲1,无幖不含伱(或无目幖)則不可起動牌.段終旹,若其未對伱致傷,伱可投出1手牌予其1傷",
 
 --无距離次數限制
   ["@@zjimqkhrak-phase"] = "尋隙",
   ["#zjimqkhrak-invoke"] = "尋隙 %src主段始 是否攪事",
-  ["#zjimqkhrak-damage"] = "尋隙 打出1牌 予%src 1傷",
+  ["#zjimqkhrak-damage"] = "尋隙 投出1牌 予%src 1傷",
 
   ["$zjimqkhrak1"] = "伱昰幹何",
 }
@@ -51,7 +51,7 @@ zjimqkhrak:addEffect("prohibit", {
   end,
   prohibit_use = function(self, player, card)
     if player:getMark("@@zjimqkhrak-phase")~=0  then 
-      return card and card.skill and card.skill:getMinTargetNum(player)==0
+      return card  and S.isTargetedCard(card.trueName)
     end
   end,
 })

@@ -8,7 +8,7 @@ local S = require "packages/szyihhsoohssaet/szyih_guos"
 
 Fk:loadTranslationTable{
   ["phoasddxins"] = "破陣",
-  [":phoasddxins"] = "伱起動計謀牌无視距離.伱起動卽旹計謀牌A旹必發,其它脚色不可響應A,若A与上一被起動牌同花,A額外生效1次",
+  [":phoasddxins"] = "伱起動謀策牌无視距離.伱起動卽旹謀策牌A旹必發,其它脚色不可響應A,若A与上一被起動牌同花,A額外生效1次",
 --加彊?
 
   ["@phoasddxins"] = "破陣",
@@ -17,6 +17,16 @@ Fk:loadTranslationTable{
   ["$phoasddxins2"] = "意志被摧毀了无",
 }
 
+phoasddxins:addAcquireEffect(function (self, player,is_start)
+    if not is_start then
+        player.room.logic:getEventsByRule(GameEvent.UseCard, 1, function (e)  --使用過且在弃牌堆
+        local use=e.data
+            player.room:setPlayerMark(player,"@phoasddxins",use.card:getSuitString(true)) 
+        return true
+
+      end,nil, Player.HistoryGame)
+    end
+end)
 phoasddxins:addLoseEffect (function (self, player)
     player.room:setPlayerMark(player,"@phoasddxins",0) 
 end)

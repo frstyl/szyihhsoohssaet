@@ -4,7 +4,7 @@ local kxesssaac = fk.CreateSkill({
 
 Fk:loadTranslationTable{
   ["kxesssaac"] = "寄生",
-  [":kxesssaac"] = "其它脚色A轉始旹,伱可預打出1手牌發動,1轉內,A起動牌旹,伱抽1",
+  [":kxesssaac"] = "其它脚色A轉始旹,伱可預投出1手牌發動,1轉內,A起動牌旹,伱抽1",
 
 
   ["#kxesssaac-invoke"] = "寄生:%dest 轉始,發動",

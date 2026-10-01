@@ -4,7 +4,7 @@ local khoonstous = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["khoonstous"] = "困鬥",
-  [":khoonstous"] = "伱受傷後至多傷害值次,若有傷源A且其存活,伱可預打出1牌指定脚色B(在傷源A攻程內)發動.A對B起動虛擬｢鬥將｣",
+  [":khoonstous"] = "伱受傷後至多傷害值次,若有傷源A且其存活,伱可預投出1牌指定脚色B(在傷源A攻程內)發動.A對B起動虛擬｢鬥將｣",
 
   ["#khoonstous-discard"] = "困鬥：伱受到殺伤害，你可以弃置一牌令 %src 鬥將 一脚色",
 

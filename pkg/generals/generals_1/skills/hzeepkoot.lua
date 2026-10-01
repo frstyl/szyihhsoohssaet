@@ -4,9 +4,9 @@ local hzeepkoot = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["hzeepkoot"] = "俠骨",
-  [":hzeepkoot"] = "一其色受到傷害旹伱可打出1牌發動,若此傷害大于1減爲1否則-1｡若有傷源牌,伱取得之｡若打出牌不爲裝僃牌,伱選擇執行 流失1或此技能失效1轉｡",
+  [":hzeepkoot"] = "一其色受到傷害旹伱可投出1牌發動,若此傷害大于1減爲1否則-1｡若有傷源牌,伱取得之｡若投出牌不爲軍器牌,伱選擇執行 流失1或此技能失效1轉｡",
 
-  ["#hzeepkoot-invoke"]="俠骨 打出1脾 減少%src 所受傷害",
+  ["#hzeepkoot-invoke"]="俠骨 投出1脾 減少%src 所受傷害",
   ["#hzeepkoot-delay"]="俠骨 流失1 否則技能失效",
 }
 

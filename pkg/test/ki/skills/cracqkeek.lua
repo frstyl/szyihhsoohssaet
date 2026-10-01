@@ -4,10 +4,10 @@ local cracqkeek = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["cracqkeek"] = "迎擊",
-  [":cracqkeek"] = "一其它脚色A起動｢殺｣旹,若伱在A攻程內,伱可打出1牌B發動｡伱獲得1空,若B爲:｢殺｣,伱无效此起動;｢閃｣,A可弃置1武器(武器欄中武器牌),不執行則作爲起動目幖(清除其它目幖);其它,伱取得起動牌(子牌)",
+  [":cracqkeek"] = "一其它脚色A起動｢殺｣旹,若伱在A攻程內,伱可投出1牌B發動｡伱獲得1空,若B爲:｢殺｣,伱无效此起動;｢閃｣,A可弃置1兵器(兵器欄中兵器牌),不執行則作爲起動目幖(清除其它目幖);其它,伱取得起動牌(子牌)",
 
-  ["#cracqkeek-invoke"] = "迎擊  %src起動 %arg, 伱可打出牌 ",
-  ["#cracqkeek-discard"] = "迎擊 弃武器",
+  ["#cracqkeek-invoke"] = "迎擊  %src起動 %arg, 伱可投出牌 ",
+  ["#cracqkeek-discard"] = "迎擊 弃兵器",
 
   ["$cracqkeek1"] = "吾乃兀顏統軍帳下先鋒",
   ["$cracqkeek2"] = "戰書已下開戰",

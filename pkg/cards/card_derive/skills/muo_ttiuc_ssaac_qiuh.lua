@@ -28,6 +28,7 @@ muo_ttiuc_ssaac_qiuh:addEffect("cardskill", {
       extra_data = {
         exclusive_targets = {player.id},
         bypass_times = false,
+          bypass_moment=true,
       }
     })
     if use then

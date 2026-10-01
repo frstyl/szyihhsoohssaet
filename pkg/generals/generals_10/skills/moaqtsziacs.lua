@@ -5,7 +5,8 @@ local moaqtsziacs = fk.CreateSkill({
 
 Fk:loadTranslationTable{
   ["moaqtsziacs"] = "魔障",
-  [":moaqtsziacs"] = "伱末段始旹,必發:伱占卜,若爲♦️♥️伱令伱弃1手牌,回1;若爲♠️♣️伱抽1,予己1傷",
+  [":moaqtsziacs"] = "伱末段始旹,必發:伱占卜,若爲:♦️/♥️伱回1,未損則體力上限+1;♠️/♣️伱受1无源傷害",
+  -- [":moaqtsziacs"] = "伱末段始旹,必發:伱占卜,若爲♦️♥️伱令伱弃1手牌,回1;若爲♠️♣️伱抽1,予己1傷",
 
   ["#moaqtsziacs-choose"] = "魔障：你可以令一名脚色进行占卜",
 
@@ -27,23 +28,28 @@ moaqtsziacs:addEffect(fk.EventPhaseStart, {
     }
     room:judge(judge)
     if table.contains({Card.Diamond,Card.Heart},judge.card.suit) then
-      room:askToDiscard( player, {
-              min_num = 1,
-              max_num = 1,
-              skill_name = skillName,
-              include_equip = false,
-              cancelable = false,
-            })
-      room:recover{
-        who = player,
-        num = 1,
-        recoverBy = player,
-        skillName = moaqtsziacs.name,
-      }
+      -- room:askToDiscard( player, {
+      --         min_num = 1,
+      --         max_num = 1,
+      --         skill_name = skillName,
+      --         include_equip = false,
+      --         cancelable = false,
+      --       })
+      if  player:isWounded() then
+        room:recover{
+          who = player,
+          num = 1,
+          recoverBy = player,
+          skillName = moaqtsziacs.name,
+        }
+      else
+        room:changeMaxHp(player, 1)
+      end
+
     elseif table.contains({Card.Spade,Card.Club},judge.card.suit) then
-      player:drawCards(1,moaqtsziacs.name)
+      -- player:drawCards(1,moaqtsziacs.name)
       room:damage{
-        from = player,
+        from = nil,
         to = player,
         damage = 1,
         skillName = moaqtsziacs.name,

@@ -6,10 +6,11 @@ extension:loadSkillSkelsByPath("./packages/szyihhsoohssaet/pkg/cards/card_theen/
 --葢伏
 local ambush__ssaet = fk.CreateCard{
   name = "ambush__ssaet",
-  type = Card.TypeBasic,
   skill = "ssaet_skill",
   -- special_skills = { "koarbiuk_cardskill" },
+  type = Card.TypeBasic,
   sub_type=Card.SubtypeDelayedTrick,
+  stackable_delayed = true,
   is_damage_card=true,
 }
 
@@ -35,14 +36,14 @@ ambush__buac_hzfan_mujs_nzjen,
 }
 Fk:loadTranslationTable{
   ["ambush__ssaet"] = "伏殺",
-  [":ambush__ssaet"] = "行動  <br /><b>旹機</b>：主段執行旹  <br /><b>目幖</b>：其它脚色  <br /><b>目幖數</b>：1  <br /><b>距離</b>：伱攻程内  <br /><b>次數</b>：同名牌每段限1次  <br /><b>效果</b>：對目幖脚色造成1点傷害。  <br /><b>額外</b>：伏段執行旹,伱可起動葢伏之｢殺｣",
+  [":ambush__ssaet"] = "/行動牌/  <br /><b>旹機</b>：主段執行旹  <br /><b>目幖</b>：其它脚色  <br /><b>目幖數</b>：1  <br /><b>距離</b>：伱攻程内  <br /><b>次數</b>：同名牌每段限1次  <br /><b>效果</b>：對目幖脚色造成1点傷害。  <br /><b>額外</b>：伏段執行旹,伱可起動葢伏之｢殺｣",
   -- ["ambush__ssaet"] = "伏殺",
   
   ["ambush__szjemh"] = "伏閃",
-  [":ambush__szjemh"] = "行動  <br /><b>旹機</b>:｢殺｣A對目幖生效前  <br /><b>目幖</b>:A  <br /><b>目幖數</b>：0  <br /><b>效果</b>：抵消A對目幖效果。  <br /><b>額外</b>：因動-抵消｡葢伏可用｡每旹機限1次｡全體脚色同旹選擇是否起動其葢伏之｢閃｣",
+  [":ambush__szjemh"] = "/行動牌/  <br /><b>旹機</b>:｢殺｣A對目幖生效前  <br /><b>目幖</b>:A  <br /><b>目幖數</b>：0  <br /><b>效果</b>：抵消A對目幖效果。  <br /><b>額外</b>：因動-抵消｡葢伏可用｡每旹機限1次｡全體脚色同旹選擇是否起動其葢伏之｢閃｣",
 
   ["ambush__buac_hzfan_mujs_nzjen"] = "伏_防患未肰",
-  [":ambush__buac_hzfan_mujs_nzjen"] = "锦囊牌    <br /><b>旹機</b>：锦囊牌A生效前    <br /><b>目幖</b>：A    <br /><b>目幖數</b>：0  <br /><b>效果</b>：抵消A效果      <br /><b>額外</b>：因動-抵消｡葢伏可用｡每旹機限1次,全體脚色同旹選擇是否起動其葢伏之｢防患未肰｣",
+  [":ambush__buac_hzfan_mujs_nzjen"] = "/謀策牌/     <br /><b>旹機</b>：謀策牌A生效前    <br /><b>目幖</b>：A    <br /><b>目幖數</b>：0  <br /><b>效果</b>：抵消A效果      <br /><b>額外</b>：因動-抵消｡葢伏可用｡每旹機限1次,全體脚色同旹選擇是否起動其葢伏之｢防患未肰｣",
 
 }
 --
@@ -135,10 +136,10 @@ local tsjek_tshoavh_doon_liac = fk.CreateCard{
   type = Card.TypeTrick,
   sub_type = Card.SubtypeDelayedTrick,
   skill = "tsjek_tshoavh_doon_liac_skill",
+  stackable_delayed = true,
+
 }
-extension:loadCardSkels {
-tsjek_tshoavh_doon_liac,
-}
+extension:loadCardSkels {tsjek_tshoavh_doon_liac,}
 
 local djis_douch = fk.CreateCard{
   name = "djis_douch",
@@ -149,21 +150,19 @@ local djis_douch = fk.CreateCard{
   is_damage_card = true,
   damage_type = fk.NormalDamage,
 }
-extension:loadCardSkels {
-djis_douch,
-}
+extension:loadCardSkels {djis_douch,}
 
 --
-local soeojs_doac_ceej = fk.CreateCard{
-  name = "soeojs_doac_ceej",
+local tou_miu = fk.CreateCard{
+  name = "tou_miu",
   type = Card.TypeEquip,
   sub_type = Card.SubtypeArmor,
-  equip_skill = "#soeojs_doac_ceej_skill",
+  equip_skill = "#tou_miu_skill",
   skill = "self_equip_skill",
 }
-extension:loadCardSkels {
-soeojs_doac_ceej,
-}
+extension:loadCardSkels {tou_miu,}
+
+
 
 local jjas_hzaac_hqij = fk.CreateCard{
   name = "jjas_hzaac_hqij",
@@ -172,9 +171,7 @@ local jjas_hzaac_hqij = fk.CreateCard{
   equip_skill = "#jjas_hzaac_hqij_skill",
   skill = "self_equip_skill",
 }
-extension:loadCardSkels {
-jjas_hzaac_hqij,
-}
+extension:loadCardSkels {jjas_hzaac_hqij,}
 
 local kiuc = fk.CreateCard{
   name = "kiuc",
@@ -184,9 +181,7 @@ local kiuc = fk.CreateCard{
   equip_skill = "#kiuc_skill",
   skill = "self_equip_skill",
 }
-extension:loadCardSkels {
-kiuc,
-}
+extension:loadCardSkels {kiuc,}
 
 local pjen= fk.CreateCard{
   name = "pjen",
@@ -219,7 +214,6 @@ local tszjevs_jjas_ciok_ssxi_tsih = fk.CreateCard{
 
 
 extension:loadCardSkels {
-    soeojs_doac_ceej,
     tszjevs_jjas_ciok_ssxi_tsih,
     thoeop_syet_hqoo_tszyi,
     -- kiuc,
@@ -228,15 +222,12 @@ extension:loadCardSkels {
     szyih_kouc,
 
     thoeoms_tsshaet,
-
-    tsjek_tshoavh_doon_liac,
-
 }
 
 extension:addCardSpec("ssaet", Card.Spade, 2)
 extension:addCardSpec("ssaet",Card.Spade, 4)
 extension:addCardSpec("ssaet",Card.Spade, 7)
-extension:addCardSpec("ssaet",Card.Club, 3)
+extension:addCardSpec("ssaet",Card.Club, 10)
 extension:addCardSpec("ssaet", Card.Club, 11)
 extension:addCardSpec("ssaet", Card.Diamond, 3)
 
@@ -256,9 +247,9 @@ extension:addCardSpec("szjemh", Card.Heart, 6)
 extension:addCardSpec("szjemh", Card.Heart, 7)
 extension:addCardSpec("szjemh", Card.Diamond, 2)
 extension:addCardSpec("szjemh", Card.Diamond, 6)  --analeptic
+extension:addCardSpec("ambush__szjemh", Card.Diamond, 1)
 extension:addCardSpec("ambush__szjemh", Card.Diamond, 7)
 extension:addCardSpec("ambush__szjemh", Card.Diamond, 8)
-extension:addCardSpec("ambush__szjemh", Card.Diamond, 9)  --analeptic 
 extension:addCardSpec("ambush__szjemh", Card.Diamond, 11)
 
 extension:addCardSpec("nziuk", Card.Heart, 3)  --v2
@@ -280,6 +271,7 @@ extension:addCardSpec("tsiuh", Card.Club, 6)  --v1 ssaet
 
 extension:addCardSpec("ambush__buac_hzfan_mujs_nzjen", Card.Diamond, 13)  --將計就計 无懈
 extension:addCardSpec("ambush__buac_hzfan_mujs_nzjen", Card.Heart, 12)
+
 extension:addCardSpec("tsiac_keejs_dzius_keejs", Card.Heart, 13)
 extension:addCardSpec("tsiac_keejs_dzius_keejs", Card.Club, 13)
 
@@ -287,8 +279,8 @@ extension:addCardSpec("szyih_kouc",Card.Spade, 3) --v1 ssaet
 extension:addCardSpec("szyih_kouc", Card.Spade, 8)  --v1 thunder__ssaet
 
 extension:addCardSpec("mae_biuk",Card.Spade, 1)
-extension:addCardSpec("mae_biuk",Card.Club, 1)
-extension:addCardSpec("mae_biuk",Card.Diamond, 1)
+extension:addCardSpec("mae_biuk",Card.Club, 2)
+extension:addCardSpec("mae_biuk",Card.Diamond, 9)
 -- extension:addCardSpec("mae_biuk",Card.Spade, 2)  --v1生死之戰
 
 extension:addCardSpec("pik_dzziach_liac_ssaen",Card.Heart, 1)  --v1 theen
@@ -313,8 +305,8 @@ extension:addCardSpec("pjen", Card.Club, 7)  --雌雄虎眼鞭
 extension:addCardSpec("kiuc", Card.Diamond, 10)  --天地日月弓
 extension:addCardSpec("ddiach", Card.Diamond, 12)  --水磨禪杖 Diamond, 12nziuk
 
-extension:addCardSpec("jjas_hzaac_hqij", Card.Club, 2)  --v1藤甲, v1地 Club, 2 meej
-extension:addCardSpec("soeojs_doac_ceej", Card.Club, 10)  --賽唐猊
+extension:addCardSpec("jjas_hzaac_hqij", Card.Club, 3)  --v1藤甲, v1地 Club, 2 meej
+extension:addCardSpec("tou_miu", Card.Club, 1)  --白銀獅子
 
 extension:addCardSpec("thoeop_syet_hqoo_tszyi", Card.Club, 8)  --踏䨮烏騅
 -- extension:addCardSpec("tszjevs_jjas_ciok_ssxi_tsih", Card.Heart, 12) --Card.Diamond, 11
@@ -324,84 +316,85 @@ Fk:loadTranslationTable{
   ["card_theen"] = "水滸牌-地煞",
 
 
-  ["ddxims__tsiuh"] = "鴆酒",
-  [":ddxims__tsiuh"] = "物資  <br /><b>旹機</b>主段執行旹  <br /><b>目幖</b>无限制  <br /><b>目幖</b>：伱  <br /><b>效果</b>：目幖體力上限減至體力數,正常酒",
+  -- ["ddxims__tsiuh"] = "鴆酒",
+  -- [":ddxims__tsiuh"] = "物資  <br /><b>旹機</b>主段執行旹  <br /><b>目幖</b>无限制  <br /><b>目幖</b>：伱  <br /><b>效果</b>：目幖體力上限減至體力數,正常酒",
 
   ["thoeoms_tsshaet"] = "探察",
-  [":thoeoms_tsshaet"] = "锦囊牌  <br /><b>旹機</b>:主段執行旹  <br /><b>目幖</b>：其它脚色  <br /><b>目幖數</b>：1  <br /><b>效果</b>：伱觀看其區域全部牌,可展示其中1,若爲葢伏牌,伱弃置之｡目幖腳色區域內牌1轉內對伱可見｡",
+  [":thoeoms_tsshaet"] = "/謀策牌/   <br /><b>旹機</b>:主段執行旹  <br /><b>目幖</b>：其它脚色  <br /><b>目幖數</b>：1  <br /><b>效果</b>：伱觀看其區域全部牌,可展示其中1,若爲葢伏牌,伱弃置之｡目幖腳色區域內牌1轉內對伱可見｡",
   ["#thoeoms_tsshaet"] = "选择1其它脚色，觀看其區域全部牌",
 
   ["mae_biuk"] = "埋伏",
-  [":mae_biuk"] = "锦囊牌  <br /><b>旹機</b>:伏段執行旹  <br /><b>目幖</b>：其它脚色  <br /><b>目幖數</b>：1  <br /><b>距離</b>：伱至其距離1  <br /><b>效果</b>：目幖脚色可演練2閃,不足則伱予其1傷。<br /><b>額外</b>：葢伏可用,否則不可用",
+  [":mae_biuk"] = "/謀策牌/   <br /><b>旹機</b>:伏段執行旹  <br /><b>目幖</b>：其它脚色  <br /><b>目幖數</b>：1  <br /><b>距離</b>：伱至其距離1  <br /><b>效果</b>：目幖脚色可演練2閃,不足則伱予其1傷。<br /><b>額外</b>：葢伏可用,否則不可用",
   ["#mae_biuk_skill"] = "选择1其它脚色，其需演練2閃,否則伱予其1傷",
   ["#mae_biuk_response"] = "%src 對伱起動 埋伏, 伱可演練閃  (當前第%arg, 總需 %arg2)",
   ["mae_biuk_skill"] = "埋伏",
 
   ["theem_prac_kaemh_tsoavs"] = "添兵減竈",  --添兵減竈theem_prac_kaemh_tsoavs 以退爲進 欲擒固縱 
-  [":theem_prac_kaemh_tsoavs"] = "锦囊牌  <br /><b>旹機</b>:殺對伱生效歬  <br /><b>目幖</b>：无  <br /><b>目幖數</b>：0  <br /><b>效果</b>：抵消此殺對伱效果,殺起動者可對伱起動殺,若其未起動殺致傷,伱予其1傷。<br /><b>額外</b>：可且止可起動葢伏之｢添兵減竈｣",
+  [":theem_prac_kaemh_tsoavs"] = "/謀策牌/   <br /><b>旹機</b>:殺對伱生效歬  <br /><b>目幖</b>：无  <br /><b>目幖數</b>：0  <br /><b>效果</b>：抵消此殺對伱效果,殺起動者可對伱起動殺,若其未起動殺致傷,伱予其1傷。<br /><b>額外</b>：可且止可起動葢伏之｢添兵減竈｣",
   ["#theem_prac_kaemh_tsoavs_skill"] = "抵消此殺 殺起動者需對伱起動殺,否則伱予其1傷",
   ["#theem_prac_kaemh_tsoavs_ssaet"] = "添兵減竈 對 %src 起動殺,否則其予伱1傷",
   ["theem_prac_kaemh_tsoavs_skill"] = "添兵減竈",  --添兵減竈theem_prac_kaemh_tsoavs 以退爲進 欲擒固縱 
 
   ["pik_dzziach_liac_ssaen"] = "逼上梁山",
-  [":pik_dzziach_liac_ssaen"] = "锦囊牌  <br /><b>旹機</b>:主段執行旹  <br /><b>目幖</b>：其它脚色,伱与其(手牌-體力)不同號  <br /><b>目幖數</b>：1   <br /><b>效果</b>：目幖脚色流失1,弃2牌,抽3。",
+  [":pik_dzziach_liac_ssaen"] = "/謀策牌/   <br /><b>旹機</b>:主段執行旹  <br /><b>目幖</b>：其它脚色,伱与其(手牌-體力)不同號  <br /><b>目幖數</b>：1   <br /><b>效果</b>：目幖脚色流失1,弃2牌,抽3。",
   ["#pik_dzziach_liac_ssaen_skill"] = "选择1其它脚色，其流失1,弃2牌,抽3",
   ["#pik_dzziach_liac_ssaen_ask"] = "逼上梁山 弃2",
   ["pik_dzziach_liac_ssaen_skill"] = "逼上梁山",
 
   ["tsiac_keejs_dzius_keejs"] = "將計就計",
-  [":tsiac_keejs_dzius_keejs"] = "锦囊牌  <br /><b>旹機</b>計謀牌A生效歬,A目幖數不大于1  <br /><b>目幖</b>A  <br /><b>目幖數</b>：0   <br /><b>效果</b>:抵消A,伱于A結算後取得之  <br /><b>額外</b>：因動-抵消｡葢伏可用,否則不可用｡每旹機限1次,全體脚色同旹選擇是否起動其葢伏之｢將計就計｣",
+  [":tsiac_keejs_dzius_keejs"] = "/謀策牌/   <br /><b>旹機</b>謀策牌A生效歬,A目幖數不大于1  <br /><b>目幖</b>A  <br /><b>目幖數</b>：0   <br /><b>效果</b>:抵消A,伱于A結算後取得之  <br /><b>額外</b>：因動-抵消｡葢伏可用,否則不可用｡每旹機限1次,全體脚色同旹選擇是否起動其葢伏之｢將計就計｣",
   ["tsiac_keejs_dzius_keejs_skill"] = "將計就計",
 
 
   ["szyih_kouc"] = "水攻",
-  [":szyih_kouc"] = "锦囊牌  <br /><b>旹機</b>：伏段執行旹  <br /><b>目幖</b>：其它脚色  <br /><b>目幖數</b>：1  <br /><b>效果</b>：目幖脚色需弃全部裝僃,否則伱予其1傷。  <br /><b>額外</b>：葢伏可用,否則不可用",
+  [":szyih_kouc"] = "/謀策牌/   <br /><b>旹機</b>：伏段執行旹  <br /><b>目幖</b>：其它脚色  <br /><b>目幖數</b>：1  <br /><b>效果</b>：目幖脚色需弃全部裝僃,否則伱予其1傷。  <br /><b>額外</b>：葢伏可用,否則不可用",
   ["szyih_kouc_skill"] = "水攻",
 
   ["thou_liac_hzvoans_dduoh"] = "偸樑換柱",
-  [":thou_liac_hzvoans_dduoh"] = "锦囊牌  <br /><b>旹機</b>:伏段執行旹  <br /><b>目幖</b>：其它脚色  <br /><b>目幖數</b>：1  <br /><b>效果</b>：伱印取1空,觀看目幖脚色手牌,伱可用1手牌交換其1手牌  <br /><b>額外</b>：葢伏可用,否則不可用",
+  [":thou_liac_hzvoans_dduoh"] = "/謀策牌/   <br /><b>旹機</b>:伏段執行旹  <br /><b>目幖</b>：其它脚色  <br /><b>目幖數</b>：1  <br /><b>效果</b>：伱印取1空,觀看目幖脚色手牌,伱可用1手牌交換其1手牌  <br /><b>額外</b>：葢伏可用,否則不可用",
   ["#thou_liac_hzvoans_dduoh_skill"] = "偸樑換柱 觀看目幖脚色手牌,伱可用1手牌交換其1手牌",
   ["thou_liac_hzvoans_dduoh_skill"] = "偸樑換柱",
 
 
   ["tsjek_tshoavh_doon_liac"] = "積艸屯糧",
-  [":tsjek_tshoavh_doon_liac"] = "锦囊牌  <br/><b>旹機</b>:主段執行旹  <br/><b>目幖</b>：无限制  <br /><b>目幖數</b>：1  <br /><b>延旹</b>：將此牌置于目幖脚色伏區,目幖伏段執行旹生效<br/><b>效果</b>：目幖占卜：若占卜牌非虛,A取得占卜牌.除非若占卜牌存在且爲♦️，否則跳过A的弃牌阶段。",
+  [":tsjek_tshoavh_doon_liac"] = "/謀策牌/   <br/><b>旹機</b>:主段執行旹  <br/><b>目幖</b>：无限制  <br /><b>目幖數</b>：1  <br /><b>延旹</b>：將此牌置于目幖脚色伏區,目幖勶段始前生效  <br/><b>效果</b>：目幖占卜：若占卜牌非虛,A取得占卜牌.除非若占卜牌存在且爲♦️，否則跳过A的弃牌阶段。",
   ["#tsjek_tshoavh_doon_liac"] = "積艸屯糧 将此牌置于其占卜区内。其占卜阶段生效占卜：<br/>若结果不为<font color='red'>♦</font>，其跳过弃牌阶段",
   ["tsjek_tshoavh_doon_liac_skill"] = "積艸屯糧" ,
   [":tsjek_tshoavh_doon_liac_skill"] = "積艸屯糧 延旹 越過撤段" ,
   ["#tsjek_tshoavh_doon_liac_skill"] = "積艸屯糧 延旹 越過撤段" ,
 
   ["djis_douch"] = "地動",
-  [":djis_douch"] = "法術-天災<br/><b>旹機</b>：主段執行旹  <br /><b>目幖</b>：无限制  <br /><b>目幖數</b>：1  <br /><b>預起動</b>：伱  <br /><b>延旹</b>：將此牌置于目幖脚色伏區,目幖伏段執行旹生效<br/><b>效果</b>：目幖占卜,若:花色爲♥️,其弃置全部裝僃,受x傷(x爲所弃裝僃數);否則將此牌至入下家伏區  <br /><b>額外</b>：此牌被抵消後至入目幖下家伏區",
+  [":djis_douch"] = "/天災牌/  <br/><b>旹機</b>：主段執行旹  <br /><b>目幖</b>：伏區无同名牌者  <br /><b>目幖數</b>：1  <br /><b>預起動</b>：伱  <br /><b>延旹</b>：將此牌置于目幖脚色伏區,目幖伏段執行旹生效  <br/><b>效果</b>：目幖占卜,若:花色爲♥️,其弃置全部裝僃,受x傷(x爲所弃裝僃數);否則將此牌至入下家伏區  <br /><b>額外</b>：此牌被抵消後至入目幖下家伏區",
   ["#djis_douch"] = "地動",
   ["#djis_douch_skill"] = "起動地動 置入伱伏區",
   ["djis_douch_skill"] = "地動",
 
 
-  ["soeojs_doac_ceej"] = "賽唐猊",
-  [":soeojs_doac_ceej"] = "裝僃牌防具<br/><b>防具技能</b>：{屬性/虛/轉化}殺對伱生效歬,防止之.伱受傷後,若來源不爲伱且牌爲殺,來源弃其武器",
-  ["#soeojs_doac_ceej_skill"] = "賽唐猊",
-  ["soeojs_doac_ceej_skill"] = "賽唐猊",
+
+  ["tou_miu"] = "兜鍪",
+  [":tou_miu"] = "/軍器牌/甲冑/  <br /><b>甲冑技能</b>：➀伱受傷旹,若傷害大于1,減至1。➁伱失去所裝僃兜鍪後,伱抽2",
+  ["tou_miu_skill"] = "兜鍪",
 
   ["jjas_hzaac_hqij"] = "夜行衣",
-  [":jjas_hzaac_hqij"] = "裝僃牌防具<br/><b>防具技能</b>：若殺无點或點數大于伱體力數,伱不是其合理目幖",
+  [":jjas_hzaac_hqij"] = "/軍器牌/甲冑/  <br/><b>甲冑技能</b>：若殺无點或點數大于伱體力數,伱不是其合理目幖",
   ["#jjas_hzaac_hqij_skill"] = "夜行衣",
   ["jjas_hzaac_hqij_skill"] = "夜行衣",
 
   ["pjen"] = "鞭",
-  [":pjen"] = "裝僃牌武器<br/><b>攻程</b>：2<br/><b>武器技能</b>：伱起動殺指定目幖A後,可演練1同花手牌發動,此殺對A傷害基數+1",
+  [":pjen"] = "/軍器牌/兵器/  <br/><b>攻程</b>：2<br/><b>兵器技能</b>：伱起動殺指定目幖A後,可演練1同花手牌發動,此殺對A傷害基數+1",
   ["#pjen-discard"] = "鞭 伱對 %dest 起動 %arg, 可演練同花牌令傷害基數對其+1",
   ["pjen_skill"] = "鞭",
 
   ["kiuc"] = "弓",
-  [":kiuc"] = "裝僃牌武器<br/><b>攻程</b>：9<br/><b>武器技能</b>：伱起動无屬殺旹,可額外指定1目幖A,需伱至A距離等于伱至目幖1距離",
+  [":kiuc"] = "/軍器牌/兵器/  <br/><b>攻程</b>：9<br/><b>兵器技能</b>：伱起動无屬殺旹,可額外指定1目幖A,需伱至A距離等于伱至目幖1距離",
   ["kiuc_skill"] = "弓",
 
   ["tszjevs_jjas_ciok_ssxi_tsih"] = "照夜玉獅子",
-  [":tszjevs_jjas_ciok_ssxi_tsih"] = "+1",
+  [":tszjevs_jjas_ciok_ssxi_tsih"] = "/軍器牌/防敔坐騎/  <br /><b>目幖</b>：有防敔坐騎欄者  <br /><b>目幖數</b>：1     <br /><b>預起動</b>：伱            <br/><b>防敔坐騎</b>：起動結算旹將此牌置于目幖脚色防敔坐騎欄,持續生效  <br /><b>坐騎技能</b>：其它脚色至伱距离+1。",
 
   ["thoeop_syet_hqoo_tszyi"] = "踏䨮烏騅",
-  [":thoeop_syet_hqoo_tszyi"] = "-1",
+  [":thoeop_syet_hqoo_tszyi"] =  "/軍器牌/進攻坐騎/  <br /><b>目幖</b>：有進攻坐騎欄者  <br /><b>目幖數</b>：1     <br /><b>預起動</b>：伱              <br/><b>進攻坐騎 </b>：起動結算旹將此牌置于目幖脚色進攻坐騎欄,持續生效  <br /><b>坐騎技能</b>：伱至其它脚色距離-1。",
+
 }
 
 

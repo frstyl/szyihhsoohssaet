@@ -7,19 +7,21 @@ local S = require "packages/szyihhsoohssaet/szyih_guos"
 
 Fk:loadTranslationTable{
   ["dooqmxe"] = "荼蘼",
-  [":dooqmxe"] = "伱始段始旹,伱可選1其它有手牌脚色發動:伱取得其全部手牌;1段內伱對其致傷旹,防止之;段終,伱交予其x手牌(x爲其體力數).",
+  [":dooqmxe"] = "伱始段始旹,伱可選1其它脚色A發動,A交与伱全部手牌,伱選擇2花色,其它花色手牌交与A",  --1段內伱對其致傷旹,防止之;段終,伱交予其x手牌(x爲其體力數).
   
   ["#dooqmxe-choose"] = "荼蘼 選擇目幖",
 
   ["$dooqmxe1"] = "我欲行夏禹旧事，为天下人。",
 
 }
-local S = require "packages/szyihhsoohssaet/szyih_guos" 
+
+-- local S = require "packages/szyihhsoohssaet/szyih_guos" 
+local U = require "packages.utility.utility"
 
 dooqmxe:addEffect(fk.EventPhaseStart, {
   anim_type = "support",
   can_trigger = function (self, event, target, player, data)
-    return target==player and  player:hasSkill(dooqmxe.name)  and data.phase==Player.Play
+    return target==player and  player:hasSkill(dooqmxe.name)  and data.phase==Player.Start
   end,
   on_cost= function(self, event, target, player, data)
     local tos = player.room:askToChoosePlayers(player, {
@@ -37,50 +39,74 @@ dooqmxe:addEffect(fk.EventPhaseStart, {
   end,
   on_use = function (self, event, target, player, data)
     local to = event:getCostData(self).tos[1]
-    player.room:moveCardTo(to:getCardIds("h"), Card.PlayerHand, player, fk.ReasonPrey, dooqmxe.name, nil, false, player)
+    player.room:moveCardTo(to:getCardIds("h"), Card.PlayerHand, player, fk.ReasonGive, dooqmxe.name, nil, false, to)
+    if player.dead then return end
+
+    local all_choices = {"log_spade", "log_club", "log_heart", "log_diamond"}
+    local listCards = { {}, {}, {}, {} }
+    for _, id in ipairs(player:getCardIds("h")) do
+      local suit = Fk:getCardById(id).suit
+      if suit ~= Card.NoSuit then
+        table.insertIfNeed(listCards[suit], id)
+      end
+    end
+
+    local suits=U.askForChooseCardList(player.room, player, all_choices, listCards, 2, 2, dooqmxe.name, "#dooqmxe-give", true, false)
+    table.insert(suits,"log_nosuit")
+    -- suits=table.map(suits,function(suit) return table.indexOf(suits,suit) end)
+    local t={}
+    for i,suit in ipairs(all_choices) do
+      t[i] = table.contains(suits,suit) 
+    end
+    local cards = table.filter(player:getCardIds("h"), function (id)
+      -- return not table.contains(suits, Fk:getCardById(id).suit)
+      return not t[Fk:getCardById(id).suit] 
+    end)    
+    player.room:moveCardTo(cards, Card.PlayerHand, to, fk.ReasonGive, dooqmxe.name, nil, false, player)
+
     -- player.room:addTableMarkIfNeed(player, "dooqmxe-phase", to.id)
-    player.room:setPlayerMark(player, "dooqmxe-phase", to.id)
+    -- player.room:setPlayerMark(player, "dooqmxe-phase", to.id)
   end,
 })
 
 
-dooqmxe:addEffect(fk.DamageInflicted, {
-  anim_type = "support",
-  is_delay_effect = true,
-  can_trigger = function (self, event, target, player, data)
-    return data.from==player and  player:getMark("dooqmxe-phase")==data.to.id
-  end,
-  on_trigger = function (self, event, target, player, data)
-    player.room:sendLog{ type = "#PreventDamageBySkill", from = data.to.id, arg = dooqmxe.name }
-    S.preventDamage({damageData=data,skillName=dooqmxe.name})  --skill??
-  end,
-})
+-- dooqmxe:addEffect(fk.DamageInflicted, {
+--   anim_type = "support",
+--   is_delay_effect = true,
+--   can_trigger = function (self, event, target, player, data)
+--     return data.from==player and  player:getMark("dooqmxe-phase")==data.to.id
+--   end,
+--   on_trigger = function (self, event, target, player, data)
+--     player.room:sendLog{ type = "#PreventDamageBySkill", from = data.to.id, arg = dooqmxe.name }
+--     S.preventDamage({damageData=data,skillName=dooqmxe.name})  --skill??
+--   end,
+-- })
 
-dooqmxe:addEffect(fk.EventPhaseEnd, {
-  mute = true,
-  is_delay_effect = true,
-  can_trigger = function(self, event, target, player, data)
-    return target == player and player.phase == Player.Play and player:getMark("dooqmxe-phase") ~= 0
-  end,
-  on_use = function(self, event, target, player, data)
-    local room = player.room
-    local to =player.room:getPlayerById(player:getMark("dooqmxe-phase"))
-        local cards = player:getCardIds("h")
-        local n = to.hp
-        if n < #cards then
-          cards = room:askToCards(player, {
-            min_num = n,
-            max_num = n,
-            include_equip = false,
-            skill_name = dooqmxe.name,
-            cancelable = false,
-            prompt = "#dooqmxe-give::"..to.id..":"..n,
-          })
-        end
-        room:moveCardTo(cards, Card.PlayerHand, to, fk.ReasonGive, dooqmxe.name, nil, false, player)
+-- dooqmxe:addEffect(fk.EventPhaseEnd, {
+--   mute = true,
+--   is_delay_effect = true,
+--   can_trigger = function(self, event, target, player, data)
+--     return target == player and player.phase == Player.Play and player:getMark("dooqmxe-phase") ~= 0
+--   end,
+--   on_use = function(self, event, target, player, data)
+--     local room = player.room
+--     local to =player.room:getPlayerById(player:getMark("dooqmxe-phase"))
+--         local cards = player:getCardIds("h")
+--         local n = to.hp
+--         if n < #cards then
+--           cards = room:askToCards(player, {
+--             min_num = n,
+--             max_num = n,
+--             include_equip = false,
+--             skill_name = dooqmxe.name,
+--             cancelable = false,
+--             prompt = "#dooqmxe-give::"..to.id..":"..n,
+--           })
+--         end
+--         room:moveCardTo(cards, Card.PlayerHand, to, fk.ReasonGive, dooqmxe.name, nil, false, player)
 
-  end,
-})
+--   end,
+-- })
 
 
 return dooqmxe

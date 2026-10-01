@@ -39,40 +39,41 @@ hzaeksvoans:addEffect(fk.EventPhaseEnd, {
       prompt = "#hzaeksvoans-invoke::"..target.id,
     })  
     then return end
-    local t ={}
+    local cards ={}
         room.logic:getEventsOfScope(GameEvent.UseCard, 1, function (e)
       local dat=e.data
         if dat.from == target  then
-          table.insert(t,dat.card.number)
+          table.insert(cards,dat.card)
         end
     end, Player.HistoryPhase)
 
     -- local t=target:getTableMark("hzaeksvoans_record-phase")
-    local n =#t
+    local n =#cards
     if n ==0 then return true end
     -- local ids= S.getKhouc(n)
     local ids={}
     for i=1, n, 1  do
-        local card = room:printCard("khouc", Card.Spade,t[i])
+      -- if cards[i].number~=0 then
+      local card = room:printCard("khouc", Card.Spade, cards[i].number)
+      room:setCardMark(card,"view_as", {name=cards[i].name, suit=cards[i].suit, number=cards[i].number, color=cards[i].color})
       table.insert(ids,card.id)
-      -- room:setCardMark(Fk:getCardById(ids[i]),"@hzaeksvoans-number", t[i])
+      -- end
+
+      -- room:setCardMark(Fk:getCardById(ids[i]),"view_as-public", {name=cards[i].name, suit=cards[i].suit, number=cards[i].number, card=cards[i].card})
     end
-    local result = room:askToGuanxing(player,{
-      cards=ids,
-      -- top_limit=,
-      -- top_limit=,
+    -- room:moveCardTo(ids, Card.PlayerHand, player, fk.ReasonJudge)
+    local result = room:askToArrangeCards(player,{
+      card_map = {ids, "#hzaeksvoans-left", "#hzaeksvoans-right"},
       skill_name=hzaeksvoans.name,
-      title="#hzaeksvoans-tip",
-      skip=true,
-      area_names={"#hzaeksvoans-left","#hzaeksvoans-right"},
+      prompt="#hzaeksvoans-tip",
     })
     local l=0
     local r=0
-    for _, id in ipairs(result.top) do
+    for _, id in ipairs(result[1]) do
       -- l=l+ Fk:getCardById(id):getMark("@hzaeksvoans-number")
       l=l+Fk:getCardById(id).number
     end
-    for _, id in ipairs(result.bottom) do
+    for _, id in ipairs(result[2]) do
       -- r=r+Fk:getCardById(id):getMark("@hzaeksvoans-number")
       r=r+Fk:getCardById(id).number
     end

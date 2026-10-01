@@ -43,7 +43,7 @@ szyih_guos.setLoav = function (playerid, num,skillName)
     return false
     end
     room:setPlayerMark(player,"@loav",num)
-    room.logic:trigger(fk.TurnedOver, self, data)
+    room.logic:trigger(fk.TurnedOver, player, data)
 end
 
 szyih_guos.addLoav = function (playerid, num,skillName)
@@ -133,6 +133,7 @@ szyih_guos.convertSubtype = function (t)  --class
     "armor",
     "offensive_horse",
     "treasure",
+    "scourge",
     "magic",
     "allusion",
   }
@@ -145,9 +146,10 @@ end
 
 szyih_guos.convertType = function (t)  --class
   local map={
-    "basic",
+    "action",
     "trick",
     "equip",
+    "goods",
     "magic",
     "allusion",
   }
@@ -193,6 +195,7 @@ szyih_guos.isToSkipPhase = function (playerid, phase)  --phase  class --canSkip
 end
 
 --位次 起點不論生死
+---@return Player []
 szyih_guos.getSeats = function (player, ignoreRemoved, ignoreRest)
     local players=Fk:currentRoom().players
     players = table.filter(players,function(p)  --players按座次排  非行動敘
@@ -489,7 +492,7 @@ szyih_guos.clearVisible= function(room,card)
   end
 end
 
----@param state? number @ 1亮 
+---@param state? number @ 1亮 string??
 
 szyih_guos.setCardsVisible= function(cards,state, temp,area)
   local room=Fk:currentRoom()
@@ -581,7 +584,7 @@ szyih_guos.getPlayerKoarbiukCards = function (players,pattern)
   local ps ={}
   for  _, p in ipairs(players) do
     for _,id in ipairs(p:getCardIds("j")) do
-      if ((p:getVirualEquip(id)  and p:getVirualEquip(id).name == "koarbiuk_card" )
+      if ((p:getVirtualEquip(id)  and p:getVirtualEquip(id).name == "koarbiuk_card" )
         -- or (#Fk:getCardById(id):getTableMark("@@koarbiuk-inarea")>0)
       )
         and  (pattern==nil or Fk:getCardById(id):matchPattern(pattern) )
@@ -602,7 +605,7 @@ end
 szyih_guos.getPlayerDelayCards = function (player)  
   local cards = table.filter(player:getCardIds("j"), 
     function(id)
-      return (not player:getVirualEquip(id)  or player:getVirualEquip(id).name ~= "koarbiuk_card" )
+      return (not player:getVirtualEquip(id)  or player:getVirtualEquip(id).name ~= "koarbiuk_card" )
       and (#Fk:getCardById(id):getTableMark("@@koarbiuk-inarea")==0)
     end)
   return cards
@@ -900,7 +903,7 @@ szyih_guos.askToUseKoarbiukCard = function(players, params, special_params, expa
 
 
   local askForUseCardData = {  --trigger
-    -- user=nil,
+    user=target,
     cardName = card_name,
     pattern = pattern,
     extraData = extra_data,
@@ -913,7 +916,7 @@ szyih_guos.askToUseKoarbiukCard = function(players, params, special_params, expa
   local useResult
 
   room.logic:trigger(fk.HandleAskForPlayCard, target, askForUseCardData, true)
-  room.logic:trigger(fk.AskForCardUse, target, askForUseCardData)  --插入中還被封?--止用于refresh 无法記錄次數
+  room.logic:trigger(fk.AskForCardUse, target, askForUseCardData)  --插入中還被封?--止用于refresh 无法記錄次數 --用HandleAskForPlayCard 刪去此
   askForUseCardData.afterRequest = true
   room.logic:trigger(fk.HandleAskForPlayCard, target, askForUseCardData, true)
   askForUseCardData.afterRequest = false
@@ -1077,8 +1080,56 @@ szyih_guos.askToUseKoarbiukCard = function(players, params, special_params, expa
 
 end
 
+---@param params AskToVirtualUseParams @ 
+szyih_guos.askToVirutalUse= function(player, params)
+  if not params.card then return end
+  local card=Fk:cloneCard(params.card.name, params.card.suit,  params.card.number)
+  card.color=params.card.color
+  for k, v in pairs(params.card ) do
+    if card[k] == nil then
+      card[k] = v
+    end
+  end
+
+  if player:prohibitUse(card) 
+    or (#card:getAvailableTargets(player, extra_data) ==0 and card:getSkill(player):getMinTargetNum()~=0)  --isTargetedCard
+    or  (card.is_passive and  extra_data.not_passive ) 
+  then
+    return 
+  end
+
+  params.pattern = type(params.pattern) == "string" and params.pattern or tostring(Exppattern{ id = params.pattern })
+  params.skill_name = params.skill_name or ""
+  params.prompt = params.prompt or ("#virtual_use:::".. card:toLogString()..":"..params.skill_name)
+
+  if (params.cancelable == nil) then params.cancelable = true end
+  local extra_data = params.extra_data and table.simpleClone(params.extra_data) or {}
+  extra_data.card=card
+  if extra_data.bypass_times == nil then extra_data.bypass_times = true end
+  if extra_data.extraUse == nil then extra_data.extraUse = true end
+  if extra_data.not_passive == nil then extra_data.not_passive = true end
 
 
+  local _, dat = player.room:askToUseActiveSkill(player, {
+    skill_name = "virtual_use",
+    prompt = params.prompt,
+    cancelable = cancelable,
+    extra_data = extra_data,
+  })
+  if not dat then return end
+
+  local use = {
+    from = player,
+    tos  = #dat.targets > 0 and dat.targets or card:getDefaultTarget(player, extra_data),
+    card = card,
+    extraUse = false,
+  }
+
+  if not skipUse then
+    player.room:useCard(use)
+  end
+  return use
+end
 --
 szyih_guos.mixCard = function (card)  --多子牌緟算色點 updateColorAndNumber  --virtual id 0 无法已id得牌
   if type(card) ~= "table" then
@@ -1182,7 +1233,7 @@ end
 -- end
 
 
-szyih_guos.getCardUsageType = function(cardid) --卽旹 延遲 持續 --計謀止延旹計謀牌 代表延旹,卽旹爲basic
+szyih_guos.getCardUsageType = function(cardid) --卽旹 延遲 持續 --謀策止延旹謀策牌 代表延旹,卽旹爲basic
   local card=cardid
   if type(card) == "number" then
     card = Fk:getCardById(cardid)
@@ -1199,184 +1250,217 @@ szyih_guos.getCardUsageType = function(cardid) --卽旹 延遲 持續 --計謀�
 end
 
 --local cardNameAndType = {}
-szyih_guos.getCardSubtypeByName = function(card,is_verse,to_string)  --getNamesBySubtype
-  local cardNames = {  }--基 計謀 裝僃 法術 事件   --en?
-    cardNames[1] = {"ssaet",            "fire__ssaet", "thunder__ssaet",  "chaos__ssaet",
-          "szjemh",              "chaos__szjemh",
+-- szyih_guos.getCardSubtypeByName = function(card,is_verse,to_string)  --getNamesBySubtype
+--   local cardNames = {  }--基 謀策 裝僃 法術 事件   --en?
+--     cardNames[1] = {"ssaet",            "fire__ssaet", "thunder__ssaet",  "chaos__ssaet",
+--           "szjemh",              "chaos__szjemh",
 
-          "gij",  --tsjer cvos jox
-          "slash",            "fire__slash", "thunder__slash",  "chaos__slash", "ambush__slash",
-          "jink",              "chaos__jink",
-              }
-    cardNames[2] =  {"nziuk",
-          "tsiuh",  
-          "jiak",
-          "meej",
-          "deep",  --derive?
-          "tsoucs",
-          "cuat_pjech",
-          "thoac_qwen",
-          "hzvoac_paav",
+--           "gij",  --tsjer cvos jox
+--           "slash",            "fire__slash", "thunder__slash",  "chaos__slash", "ambush__slash",
+--           "jink",              "chaos__jink",
+--               }
+--     cardNames[2] =  {"nziuk",
+--           "tsiuh",  
+--           "jiak",
+--           "meej",
+--           "deep",  --derive?
+--           "tsoucs",
+--           "cuat_pjech",
+--           "thoac_qwen",
+--           "hzvoac_paav",
 
-          "ssaac_dzzjin_koac",  --生辰綱
+--           "ssaac_dzzjin_koac",  --生辰綱
 
-          "peach",  "fake__peach",
-          "analeptic",  
-          "mint",
-          "ecstasy",
-          -- "tsoucs",
-          -- "cuat_pjech",
-          -- "thoac_qwen",
-        }
+--           "peach",  "fake__peach",
+--           "analeptic",  
+--           "mint",
+--           "ecstasy",
+--           -- "tsoucs",
+--           -- "cuat_pjech",
+--           -- "thoac_qwen",
+--         }
 
-    cardNames[3] = {
-          "buac_hzfan_mujs_nzjen","buac_muj_dooh_dzjemh", "tsiac_keejs_dzius_keejs","theem_prac_kaemh_tsoavs",
+--     cardNames[3] = {
+--           "buac_hzfan_mujs_nzjen","buac_muj_dooh_dzjemh", "tsiac_keejs_dzius_keejs","theem_prac_kaemh_tsoavs",
 
-          "hqjin_deek_qwe_tsji", "buoh_teejh_tthiu_sjin", "hsiap_paak",
-          "tous_tsiacs", "hsvoah_kouc","szyih_kouc",  "pik_dzziach_liac_ssaen", "hzaac_tshjes","mae_biuk","thou_liac_hzvoans_dduoh", "hsio_hzvoach_hqjit_tshiac", "hqjin_szjer_ljis_doavs", "moan_theen_kvas_hsoeojh","sjevs_lih_dzoac_toav","thooms_tsshaet",
+--           "hqjin_deek_qwe_tsji", "buoh_teejh_tthiu_sjin", "hsiap_paak",
+--           "tous_tsiacs", "hsvoah_kouc","szyih_kouc",  "pik_dzziach_liac_ssaen", "hzaac_tshjes","mae_biuk","thou_liac_hzvoans_dduoh", "hsio_hzvoach_hqjit_tshiac", "hqjin_szjer_ljis_doavs", "moan_theen_kvas_hsoeojh","sjevs_lih_dzoac_toav","dou_dook","thooms_tsshaet",
           
-          "theet_soak_ljen_hzfen",  --鐵索算何 ->因勢利導
-          "maach_hsooh_hzaah_ssaen",  "kiuc_szjih_sje_ttiac",  --"muans_tsjens_dzeej_puat",
-          "ttis_tsiuh_szjet_jjen", "hsiu_jiach_ssaac_sik",
-          --己
-          "liac_tshoavh_seen_hzaac","mxevs_svoans_quo_seen", 
+--           "theet_soak_ljen_hzfen",  --鐵索算何 ->因勢利導
+--           "maach_hsooh_hzaah_ssaen",  "kiuc_szjih_sje_ttiac",  --"muans_tsjens_dzeej_puat",
+--           "ttis_tsiuh_szjet_jjen", "hsiu_jiach_ssaac_sik",
+--           --己
+--           "liac_tshoavh_seen_hzaac","mxevs_svoans_quo_seen", 
           
-          --延旹
-          "khxes_kheet_sis_tssaas", "tvoans_liac_dzyet_quan", "tsjek_tshoavh_doon_liac",  "tshoak_hsvoah_tsjek_sjin",
-          --derive
-          "buak_koavh_qwe_nzjin", "muo_ttiuc_ssaac_qiuh", "dzzuoh_dzziach_khoeoj_hsfa","tsjas_toav_ssaet_nzjin","ljeq_kaens", "tthxins_hsvoah_toah_kiap",
+--           --延旹
+--           "khxes_kheet_sis_tssaas", "tvoans_liac_dzyet_quan", "tsjek_tshoavh_doon_liac",  "tshoak_hsvoah_tsjek_sjin",
+--           --derive
+--           "buak_koavh_qwe_nzjin", "muo_ttiuc_ssaac_qiuh", "dzzuoh_dzziach_khoeoj_hsfa","tsjas_toav_ssaet_nzjin","ljeq_kaens", "tthxins_hsvoah_toah_kiap",
           
-          "nullification", -- "counter", "deliberate",
-          "snatch", "dismantlement", "collateral", --en nzjen
-          "duel", "fire_attack",--"water_attack",  --"pik_dzziach_liac_ssaen",
-          "iron_chain",
-          "savage_assault", "archery_attack",
-          "amazing_grace", "god_salvation",
-          "ex_nihilo",  
+--           "nullification", -- "counter", "deliberate",
+--           "snatch", "dismantlement", "collateral", --en nzjen
+--           "duel", "fire_attack",--"water_attack",  --"pik_dzziach_liac_ssaen",
+--           "iron_chain",
+--           "savage_assault", "archery_attack",
+--           "amazing_grace", "god_salvation",
+--           "ex_nihilo",  
 
           
-          "indulgence", "supply_shortage", --"tsjek_tshoavh_doon_liac",
+--           "indulgence", "supply_shortage", --"tsjek_tshoavh_doon_liac",
 
-        }
+--         }
 
-    cardNames[4] = {"kaeh_hqvoans_toav",
-          "ssaoc_toav","nzjit_cuat_ssaoc_toav", "tshjit_seec_kiams", "cio_ddiac_kiams", "pheek_piuc_toav",   "pjen",  --"paet_loeoc_koac_pjen","koon_coo_kiams",  --
-          "puoh", "miu","toav","ddiach","hqianh_cuat_toav", --"ddiach_paet_dzzja_miu", "kxim_tssaems_puoh ", "szyih_moa_dzzjen_ddiach", "teemh_koac_tsiac",  "tsheec_lioc_hqianh_cuat_toav"
-          "krak","ssaok", "baoch", --"puac_theen_hzfek_krak","kou_ljem_tshiac",  "loac_caa_baoch", 
-          "kiuc","teev_kiuc",--无名?
-          "phaavs", --礟
-          "ddiak",
+--     cardNames[4] = {"kaeh_hqvoans_toav",
+--           "ssaoc_toav","nzjit_cuat_ssaoc_toav", "tshjit_seec_kiams", "cio_ddiac_kiams", "pheek_piuc_toav",   "pjen",  --"paet_loeoc_koac_pjen","koon_coo_kiams",  --
+--           "puoh", "miu","toav","ddiach","hqianh_cuat_toav", --"ddiach_paet_dzzja_miu", "kxim_tssaems_puoh ", "szyih_moa_dzzjen_ddiach", "teemh_koac_tsiac",  "tsheec_lioc_hqianh_cuat_toav"
+--           "krak","ssaok", "baoch", --"puac_theen_hzfek_krak","kou_ljem_tshiac",  "loac_caa_baoch", 
+--           "kiuc","teev_kiuc",--无名?
+--           "phaavs", --礟
+--           "ddiak",
 
-          "crossbow",
-          "guding_blade","double_swords","ice_sword","qinggang_sword",
-          "axe","spear","blade",
-          "fan","halberd",
-          "kylin_bow",
-      }
-    cardNames[5] ={"svoah_tsih_kaap","boos_nzjin_kaap","soam_ddioc_khoeojh",  "lioc_boav", "biucs_szjes_khooj","soeojs_doac_ceej",
-          "eight_diagram","nioh_shield","vine", "silver_lion",
-          "jjas_hzaac_hqij",
-                }
+--           "crossbow",
+--           "guding_blade","double_swords","ice_sword","qinggang_sword",
+--           "axe","spear","blade",
+--           "fan","halberd",
+--           "kylin_bow",
+--       }
+--     cardNames[5] ={"svoah_tsih_kaap","boos_nzjin_kaap","soam_ddioc_khoeojh",  "lioc_boav", "biucs_szjes_khooj","soeojs_doac_ceej",
+--           "eight_diagram","nioh_shield","vine", "silver_lion",
+--           "jjas_hzaac_hqij",
+--                 }
 
-    cardNames[6]={  "syet_baak_kwenh_moav","tsheen_lih_seej_piuc", "gi_ljin_szius", 
-    "hqeen_tszji", 
-    "tszjevs_jjas_ciok_ssxi_tsih",
-    "ljen_hzfan_maah" ,
-      }
+--     cardNames[6]={  "syet_baak_kwenh_moav","tsheen_lih_seej_piuc", "gi_ljin_szius", 
+--     "hqeen_tszji", 
+--     "tszjevs_jjas_ciok_ssxi_tsih",
+--     "ljen_hzfan_maah" ,
+--       }
           
-    cardNames[7]={"cxin_ssik_gwen_hsfa","syet_paavs","tszhjek_thoos", 
-    "thoop_syet_hqoo_tszyi",  
-    "tsheec_tshouc_maah" , 
-            }
+--     cardNames[7]={"cxin_ssik_gwen_hsfa","syet_paavs","tszhjek_thoos", 
+--     "thoop_syet_hqoo_tszyi",  
+--     "tsheec_tshouc_maah" , 
+--             }
 
-    cardNames[8]= {"hoeojh_tshjev",
-          "kaap_maah",
-          "gi",
-          "soam_dzzjin_gi"
-        }
+--     cardNames[8]= {"hoeojh_tshjev",
+--           "kaap_maah",
+--           "gi",
+--           "soam_dzzjin_gi"
+--         }
     
-    cardNames[9] = {"theen_looj", "szjemh_deens","lightning", "theen_looj",--
-       "hsoeojh_seevs", "hqoon_jyek",
-    "ssaen_hsvoah","djis_douch",
-              }  --天災屬法術
+--     cardNames[9] = {"theen_looj", "szjemh_deens","lightning", "theen_looj",--
+--        "hsoeojh_seevs", "hqoon_jyek",
+--     "ssaen_hsvoah","djis_douch",
+--               }  --天災屬法術
 
-    cardNames[10]={
-          "lih_doeojs_doav_kiac",
-          "refingency",
+--     cardNames[10]={
+--           "lih_doeojs_doav_kiac",
+--           "refingency",
 
-          "theen_djis_puanh_phius", --七死七生cvos jox 挩胎換骨? hzvah_piu禍福无門 ?--theen qiuh piu tsshik,gvoah piu toan hzaac
-          "lioc_zzja_khih_liuk",--
+--           "theen_djis_puanh_phius", --七死七生cvos jox 挩胎換骨? hzvah_piu禍福无門 ?--theen qiuh piu tsshik,gvoah piu toan hzaac
+--           "lioc_zzja_khih_liuk",--
 
-          "hzvoans_tsiacs",--jje_hzeec_hzvoans_hqrach
-          "hsoo_piuc_hsvoans_quoh",
+--           "hzvoans_tsiacs",--jje_hzeec_hzvoans_hqrach
+--           "hsoo_piuc_hsvoans_quoh",
 
-          "szjep_hzoon",
-          "jje_seec_jjek_sius",
+--           "szjep_hzoon",
+--           "jje_seec_jjek_sius",
 
-          "tsjas_szji_hzfan_hzoon",
-          "khuo_kujh_dzziuk_zja",  --難分類
+--           "tsjas_szji_hzfan_hzoon",
+--           "khuo_kujh_dzziuk_zja",  --難分類
 
-          "douc_ssaac_giocx_sjih",
-          "bioc_hsioc_hsfas_kjit", --Ex
-          "tsoeojs_ssaac", --枯木逢萅
-          "tsoeoj_hzvoah",--天災?
+--           "douc_ssaac_giocx_sjih",
+--           "bioc_hsioc_hsfas_kjit", --Ex
+--           "tsoeojs_ssaac", --枯木逢萅
+--           "tsoeoj_hzvoah",--天災?
 
-        }
-    cardNames[11] = {"tous_puap_phoas_koav_ljem",
-          "liac_ssaen_hsoavh_hsoans_kiap_puap_ddiac",
-          "soocs_kouc_mrac_cuos_kiuh_theen_gveen_nnioh",
-          "ttxes_tshuoh_ssaac_dzzjin_koac",
-          "hsfa_hzova_ddiacs_thoucs_toah_sjevh_paas_quac",
-          "tsyis_toah_tsiach_moon_zzjin",
-          "quac_boa_thoom_hsoojh_szyet_piuc_dzjec",
-          "zjim_jiac_lou_deej_puad_szi",
-          "dzzi_tshjen_doavs_kaap",
-       }
+--         }
+--     cardNames[11] = {"tous_puap_phoas_koav_ljem",
+--           "liac_ssaen_hsoavh_hsoans_kiap_puap_ddiac",
+--           "soocs_kouc_mrac_cuos_kiuh_theen_gveen_nnioh",
+--           "ttxes_tshuoh_ssaac_dzzjin_koac",
+--           "hsfa_hzova_ddiacs_thoucs_toah_sjevh_paas_quac",
+--           "tsyis_toah_tsiach_moon_zzjin",
+--           "quac_boa_thoom_hsoojh_szyet_piuc_dzjec",
+--           "zjim_jiac_lou_deej_puad_szi",
+--           "dzzi_tshjen_doavs_kaap",
+--        }
 
-  -- cardNames[12]={"khouc"} --😓️?
+--   -- cardNames[12]={"khouc"} --😓️?
 
-  if is_verse== true then
-    return cardNames[card] or {}
-  end
+--   if is_verse== true then
+--     return cardNames[card] or {}
+--   end
 
-  local cardName =""
-  if type(card) == "string"  then
-    cardName=card
-  elseif type(card) == "number" then
-    cardName = Fk:getCardById(card).trueName  --name?
-  elseif  type(card) == "table" then
-    cardName=card.trueName
-  end
+--   local cardName =""
+--   if type(card) == "string"  then
+--     cardName=card
+--   elseif type(card) == "number" then
+--     cardName = Fk:getCardById(card).trueName  --name?
+--   elseif  type(card) == "table" then
+--     cardName=card.trueName
+--   end
 
-  for i, names in pairs(cardNames) do
-    if table.contains(names, cardName) then
-      return to_string~=true and i else szyih_guos.convertSubtype(i)
+--   for i, names in pairs(cardNames) do
+--     if table.contains(names, cardName) then
+--       return to_string~=true and i else szyih_guos.convertSubtype(i)
+--     end
+--   end
+
+--   -- if  table.contains({"khouc"} , cardName) then
+--   --   return -1
+--   -- end
+
+--   return 0 --nil?未知?无類?
+-- end
+
+szyih_guos.getCardSubtypeByName = function(card,is_verse,to_string)
+  if is_verse then
+    if type(card)=="string" then card =szyih_guos.convertSubtype(card) end
+    local t={}
+    for _, c in ipairs(Fk.cards) do
+      if c.package then
+        if not table.contains(Fk:currentRoom().disabled_packs, c.package.name) and szyih_guos.getCardSubtypeByName(name)==card then
+          table.insertIfNeed(t, c.name)
+        end
+      end
     end
+    return t
+    -- local t= table.filter(Fk:getAllCardNames("btde", false, false), function(name) return szyih_guos.getCardSubtypeByName(name)==card end) 
   end
+  
+  if type(card)=="number" then card =Fk:getCardById(card) 
+  elseif type(card)=="string" then card=Fk:cloneCard(card)
+  end
+  local n=0
 
-  -- if  table.contains({"khouc"} , cardName) then
-  --   return -1
-  -- end
-
-  return 0 --nil?未知?无類?
+  if card.type==Card.TypeEquip then n = card.sub_type+1 end
+  local s=Fk:translate(":"..card.name)
+  if string.find(s,"/行動牌/") then n = 1
+  elseif string.find(s,"/物資牌/") then n = 2
+  elseif string.find(s,"/謀策牌/") then n = 3
+  elseif string.find(s,"/天災牌/") then n = 9
+  elseif string.find(s,"/法術牌/") then n = 11
+  elseif string.find(s,"/事件牌/") then n = 10
+  end
+  return to_string~=true and n or szyih_guos.convertSubtype(n)
 end
 
 ---@field public is_verse bool @ 輸入類返回名列表
 szyih_guos.getCardTypeByName = function(card,is_verse,to_string) --寫一遍就行 Subtype --getNamesBytype
-  local cardTypes = {}--基 計謀 裝僃 法術 事件   --en?
+  local cardTypes = {}--基 謀策 裝僃 法術 事件   --en?
   cardTypes[1]={1}  --基 物,作
-  cardTypes[2]={3}  --計謀
+  cardTypes[2]={3}  --謀策
   cardTypes[3]={4,5,6,7,8} --5類裝僃
-  cardTypes[4]={2}  --物 實體牌--解釋不清 多數計謀亦行動
+  cardTypes[4]={2}  --物 實物牌--解釋不清 多數謀策亦行動
 
-  cardTypes[5]={9,10}  --天災 法術
-  cardTypes[6]={11}  --事件
+  cardTypes[5]={9}  --天災
+  cardTypes[6]={10}  --事件
+  cardTypes[7]={11}  --法術
   -- cardTypes[7]={12}  --无
 
   if is_verse==true then
     if type(card)~="number" or cardTypes[card] ==nil then return {} end
-    local t=szyih_guos.getCardSubtypeByName(cardTypes[card][1],true)
-    for i=2, #cardTypes[card],1 do
+    local t={}
+    for i=1, #cardTypes[card],1 do
       table.insertTable(t,szyih_guos.getCardSubtypeByName(cardTypes[card][i],true))
     end
     return t
@@ -1480,7 +1564,8 @@ end
 
 szyih_guos.isAttackCard = function(card)
     local cardNames ={"slash","duel", "dismantlement", "snatch", "savage_assault", "archery_attack", "fire_attack","indulgence", "supply_shortage",
-  "ssaet","tous_tsiac","hqjin_deek_qwe_tsji", "buoh_teejh_tthiu_sjin", "hsvoah_kouc", "szyih_kouc", "maach_hsooh_hzaah_ssaen", "kiuc_szjih_sje_ttiac", "tvoans_liac_dzyet_quan", "khxes_kheet_sis_tssaas" }
+  "ssaet","tous_tsiac","hqjin_deek_qwe_tsji", "buoh_teejh_tthiu_sjin", "hsvoah_kouc", "szyih_kouc", "maach_hsooh_hzaah_ssaen", "kiuc_szjih_sje_ttiac", "tvoans_liac_dzyet_quan", "khxes_kheet_sis_tssaas",
+  "tous_puap_phoas_koav_ljem","dou_dook"}
     local cardName =""
     if type(card) == "string"  then
       cardName=card
@@ -1497,19 +1582,18 @@ Fk:loadTranslationTable{
   ["AttackCard"] = "\"<b>進攻牌</b>\" 殺 鬥將 釜底抽薪 因敵爲資 猛虎下山 弓矢斯張 火攻 水攻 掎挈伺詐 斷糧絕援",
 }
 
-szyih_guos.isTargetedCard = function(cardid)
-  local card=cardid
-  if type(card) == "number" then
-    card = Fk:getCardById(cardid)
-  elseif type(card) == "string" then
-    card=Fk:cloneCard(card)
+szyih_guos.isTargetedCard = function(cardName)
+  local name=cardName
+  if type(name) == "number" then
+    name = Fk:getCardById(cardName).trueName
   end
-  local name=card.trueName 
   local t={"jink","gij","szjemh",
   "nullification","theem_prac_kaemh_tsoavs","tsiac_keejs_dzius_keejs", "buac_hzfan_mujs_nzjen",
   "lih_doeojs_doav_kiac","lioc_zzja_khih_liuk","theen_djis_puanh_phius","tsjas_szji_hzfan_hzoon"}
   return not table.contains(t, name)
-  -- card.skill:getMinTargetNum(player) or card.skill:fixTargets(player, self, extra_data)
+
+  -- local card=Fk:cloneCard(name)
+  -- return (card.skill:getMinTargetNum(player)>0  or card.multiple_targets)
 end
 
 szyih_guos.isInstantTrick = function(cardName)  --name
@@ -1825,10 +1909,10 @@ szyih_guos.isIgnoreArmorFromAToB = function(from,to,card,useData,effectData)
           return true
         end
         if not from then return end
-        if from:hasMark("@@ignore_Armor")  then ----无視任意防具 不分來源 不失效｡ 可与MarkArmorInvalidTo合併
+        if from:hasMark("@@ignore_Armor")  then ----无視任意甲冑 不分來源 不失效｡ 可与MarkArmorInvalidTo合併
           return true--qinggang?
         end
-        if from:hasMark("ssaet_ignore_Armor") and card.trueName=="ssaet"   then ----无視任意防具 不分來源 不失效｡ 可与MarkArmorInvalidTo合併
+        if from:hasMark("ssaet_ignore_Armor") and card.trueName=="ssaet"   then ----无視任意甲冑 不分來源 不失效｡ 可与MarkArmorInvalidTo合併
           return true--qinggang?
         end
         for _, skillName in ipairs(from:getTableMark("ignore_Armor_by_skills"))  do --狀態技 
@@ -1898,10 +1982,10 @@ szyih_guos.isIgnorePlayerSkillsFromAToB = function(from,to,card,useData,effectDa
           return true
         end
         if not from then return end
-        if from:hasMark("@@ignore_player_skills")  then ----无視任意防具 不分來源 不失效｡ 可与MarkArmorInvalidTo合併
+        if from:hasMark("@@ignore_player_skills")  then ----无視任意甲冑 不分來源 不失效｡ 可与MarkArmorInvalidTo合併
           return true--qinggang?
         end
-        if from:hasMark("ssaet_ignore_player_skills") and card.trueName=="ssaet"   then ----无視任意防具 不分來源 不失效｡ 可与MarkArmorInvalidTo合併
+        if from:hasMark("ssaet_ignore_player_skills") and card.trueName=="ssaet"   then ----无視任意甲冑 不分來源 不失效｡ 可与MarkArmorInvalidTo合併
           return true--qinggang?
         end
         for _, skillName in ipairs(from:getTableMark("ignore_player_skills_by_skills"))  do --狀態技 
@@ -1923,12 +2007,16 @@ szyih_guos.isIgnorePlayerSkillsFromAToB = function(from,to,card,useData,effectDa
 end
 
 --攷慮虛擬
+---@param cardSubtype CardSubtype|string @ 卡牌子类 | 裝僃名
+---@return number|false
 szyih_guos.hasEquip = function(player,cardSubtype, converted, virtual)
+  local n = 0
   for _, cardId in ipairs(player.player_cards[Player.Equip]) do
     card = converted~=false and player:getVirtualEquip(cardId) or Fk:getCardById(cardId)
     if (cardSubtype == nil or card.sub_type == cardSubtype or card.trueName == cardSubtype) 
-    and not card.name:endsWith("not_equip") then
-      return true
+      and not card.name:endsWith("not_equip") 
+    then
+      n=n+1
     end
   end
 
@@ -1940,14 +2028,16 @@ szyih_guos.hasEquip = function(player,cardSubtype, converted, virtual)
     --and Fk.skills[name] and table.contains(Fk.skills[name].skill_filter(self,player) or {}, card.equip_skill)
     then
       if (cardSubtype == nil or card.sub_type == cardSubtype or card.trueName == cardSubtype) then
-        return true
+        n=n+1
       end
     end
   end
 
-  return  false
+  if  n==0 then return false else return n end
 end
 
+
+---@param cardSubtype CardSubtype @ 卡牌子类
 ---@return card[]
 szyih_guos.getEquips = function(player,cardSubtype, converted, virtual)
   local cards= {}
@@ -1995,19 +2085,40 @@ szyih_guos.getMaxCards = function(player)
   end
   return math.max(math.max(baseValue[maxBaseLevel])+correct, 0)
 end
---doPhase
+
+----CardUsing
+szyih_guos.scourgeCanUse = function(card_skill, player,card,extra_data)
+  if  player:prohibitUse(card)  then return false end  --不在此判斷
+  for k,v in ipairs(player:getTableMark("scourgeTimes-turn")) do
+    if v and v>0 then return end
+  end
+  return true
+end
+
+szyih_guos.scourgeOnUse = function(card_skill, player, use)
+  local t= player:getTableMark("scourgeTimes-turn")
+  t[use.card.trueName]  = (t[use.card.trueName] or 0)+1
+  player.room:setPlayerMark(player,"scourgeTimes-turn", t)
+end
 
 szyih_guos.magicCanUse = function(player,card,extra_data)
   if  player:prohibitUse(card)  then return false end  --不在此判斷
-  local t= player:getTableMark("magicTimes-turn")
-  return (t[card.trueName] or 0) ==0
+  local cost = tonumber(Fk:translate(card.name.."_cost"))
+  
+  --過量 法力值負
+  return ( player:getMark("costed_puaplik-round") +cost ) <= ((Fk:currentRoom():getBanner("RoundCount") or 0 )+player:getMark("puaplik-round"))  --臨旹上限?
 end
 
 szyih_guos.magicOnUse = function(player,use)
-  local t= player:getTableMark("magicTimes-turn")
-  t[use.card.trueName]  = (t[use.card.trueName] or 0)+1
-  player.room:setPlayerMark(player,"magicTimes-turn", t)
+  local cost = tonumber(Fk:translate(use.card.name.."_cost"))
+  player.room:addPlayerMark(player,"costed_puaplik-round",cost)
+  local max= ((Fk:currentRoom():getBanner("RoundCount") or 0 )+player:getMark("puaplik-round")) 
+  player.room:setPlayerMark(player,"@remaining_puaplik-round",{player:getMark("costed_puaplik-round"),"/",max})
 end
+
+Fk:loadTranslationTable{
+  ["@remaining_puaplik-round"]="法力",
+}
 
 szyih_guos.koarbiukCanUse = function(player,card,extra_data)
   if  player:prohibitUse(card)  then return false end
@@ -2015,15 +2126,105 @@ szyih_guos.koarbiukCanUse = function(player,card,extra_data)
   -- if table.contains({"hzfekdzis"}, card.skillName) then return true end
 end
 
+szyih_guos.cardTargetFilter = function(card_skill, player, to_select, selected, _, card, extra_data)
+      if  extra_data then 
+        if extra_data.must_targets then
+          -- must_targets: 必须先选择must_targets内的**所有**目标
+          if not (#extra_data.must_targets <= #selected or
+                table.contains(extra_data.must_targets, to_select.id)) then
+            return false
+          end
+        end
+        if extra_data.include_targets then
+          -- include_targets: 必须先选择include_targets内的**其中一个**目标
+          if not (table.hasIntersection(extra_data.include_targets, selected) or
+                table.contains(extra_data.include_targets, to_select.id)) then
+            return false
+          end
+        end
+        if extra_data.exclusive_targets then
+          -- exclusive_targets: **只能选择**exclusive_targets内的目标
+          if not table.contains(extra_data.exclusive_targets, to_select.id) then return false end
+        end
+      end
 
+    local max_target_num = card_skill:getMaxTargetNum(player, card)
+    if extra_data then  --不占目幖數?目幖上限?
+      if extra_data.target_number then max_target_num=max_target_num+extra_data.target_number end
+      if extra_data.extra_target then  --不占目幖數
+          max_target_num = max_target_num + #table.filter(selected,function(p) return table.contains(extra_data.extra_targets,p.id) end )
+      end
+      if extra_data.fix_target_num then max_target_num=extra_data.fix_target_num end
+    end 
+    if max_target_num > 0 and #selected >= max_target_num then return end
 
-szyih_guos.useToSelfFilter = function(self, player, to_select, selected, _, card, extra_data)
-  if player:isProhibited(to_select, card) then return end
-  local ex = extra_data or {}
+    if not card_skill:modTargetFilter(player, to_select, selected, card, extra_data) then return end
+
+    if not player:hasMark("bypass_prohibited") and player:isProhibited(to_select, card) then return end
+    return true
+end
+
+szyih_guos.delayTargetFilter = function(card_skill, player, to_select, selected, _, card, extra_data)
+    if not card_skill:modTargetFilter(player, to_select, selected, card, extra_data) then return end
+    
+    extra_data = extra_data or {}
+    local max_target_num = card_skill:getMaxTargetNum(player, card)
+     --不占目幖數?目幖上限?
+      if extra_data.fix_target_num then 
+        max_target_num=extra_data.fix_target_num 
+      else
+          if extra_data.target_number then max_target_num=max_target_num+extra_data.target_number end
+          if extra_data.extra_target then  --不占目幖數
+              max_target_num = max_target_num + #table.filter(selected,function(p) return table.contains(extra_data.extra_targets,p.id) end )
+          end
+
+      end
+    if max_target_num > 0 and #selected >= max_target_num then return end
+
+    if card.type == Card.TypeEquip and #to_select:getAvailableEquipSlots(card.sub_type) == 0 then return true end --getCardUsageType
+      
+    if card.sub_type == Card.SubtypeDelayedTrick 
+        and 
+        ( to_select:isJudgeAreaSealed()
+        or (not card.stackable_delayed and to_select:hasDelayedTrick(card.name)  ) 
+      ) 
+    then return end
+    for _, sk in ipairs(Fk:currentRoom().status_skills[ProhibitSkill] or Util.DummyTable ) do
+      if sk:isProhibited(player, to_select, card) then
+        return false
+      end
+    end
+
+    if extra_data.must_targets then
+      -- must_targets: 必须先选择must_targets内的**所有**目标
+      if not (#extra_data.must_targets <= #selected or
+            table.contains(extra_data.must_targets, to_select.id)) then
+        return false
+      end
+    end
+    if extra_data.include_targets then
+      -- include_targets: 必须先选择include_targets内的**其中一个**目标
+      if not (table.hasIntersection(extra_data.include_targets, selected) or
+            table.contains(extra_data.include_targets, to_select.id)) then
+        return false
+      end
+    end
+    if extra_data.exclusive_targets then
+      -- exclusive_targets: **只能选择**exclusive_targets内的目标
+      if not table.contains(extra_data.exclusive_targets, to_select.id) then return false end
+    end
+    
+    return true
+end
+
+szyih_guos.useToSelfFilter = function(card_skill, player, to_select, selected, _, card, extra_data)
+  -- if player:isProhibited(to_select, card) then return end
+  if not card_skill:modTargetFilter(player, to_select, selected, card, extra_data) then return end
+  local ex = table.simpleClone(extra_data or {}) 
   if (must_targets==nil or #ex.must_targets==0) and not  ex.bypass_fix_target then
     ex.must_targets=table.map(card:getFixedTargets(player, extra_data) or {player}, Util.IdMapper)
   end
-  if not Util.CardTargetFilter(self, player, to_select, selected, _, card, ex) then return end
+  if not szyih_guos.delayTargetFilter(card_skill, player, to_select, selected, _, card, ex) then return end
   return true
 end
 
@@ -2034,5 +2235,6 @@ dofile 'packages/szyihhsoohssaet/aux_events/revive.lua'
 dofile 'packages/szyihhsoohssaet/aux_events/changeDamage.lua'
 dofile 'packages/szyihhsoohssaet/aux_events/invalidateSkill.lua'
 dofile 'packages/szyihhsoohssaet/aux_events/playCard.lua'
+dofile 'packages/szyihhsoohssaet/aux_events/operateCard.lua'
 
 return szyih_guos

@@ -7,7 +7,7 @@ Fk:loadTranslationTable{
 [":bunqzjins"] = "伱致傷旹若其➀无屬,伱可發動,改爲火傷➁火屬,伱可選擇1手牌發動｡褈鑄爲｢因勢利導｣",
 
 ["#bunqzjins-invoke"] = "焚㶳 伱對 %src 致傷 是否 轉爲火傷",
-["#bunqzjins-choose"] = "焚㶳 打出1手牌 獲得 ｢因勢利導｣",
+["#bunqzjins-choose"] = "焚㶳 投出1手牌 獲得 ｢因勢利導｣",
 
 ["@@bunqzjins-turn"] = "焚㶳",
 

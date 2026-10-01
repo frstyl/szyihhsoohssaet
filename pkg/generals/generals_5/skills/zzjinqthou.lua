@@ -38,7 +38,7 @@ local spec={
       skip = true,
     })
     if use then
-      event:setCostData(self, { extra_data = use,tos={to} })
+      event:setCostData(self, { extra_data = use,tos=use.tos})
       return true
     end
   end,

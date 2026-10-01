@@ -36,9 +36,10 @@ phiuskun:addEffect(fk.TargetConfirmed, {
             table.insert(generals, S.getKhouc(1, {"@phiuskun", to.general })[1]) 
 
           -- end
-          if H:hasGeneral(data.to,true) then
-          table.insert(generals, S.getKhouc(1, {"@phiuskun",  to.deputyGeneral})[1]) 
-          end
+          -- if H:hasGeneral(data.to,true) then
+          -- if to.deputyGeneral and to.deputyGeneral~= "" then
+          --   table.insert(generals, S.getKhouc(1, {"@phiuskun",  to.deputyGeneral})[1]) 
+          -- end
     -- for _, k  in ipairs ({"m","d"}) do  --多將應該table
     --   if H:hasGeneral(data.to,k=="m") then
     --    table.insert(generals, S.getKhouc(1, {"@phiuskun", k=="m" and to.general or to.deputyGeneral})[1]) 
@@ -103,4 +104,12 @@ phiuskun:addEffect(fk.TargetConfirmed, {
 --     return not  S.hasEquip(player, skill:getSkeleton().attached_equip )
 --   end,
 -- })
+
+phiuskun:addEffect("filter", {
+  card_pic_filter = function (self, card)
+    if card:getMark("@phiuskun") ~= 0 then
+      return "general:"..card:getMark("@phiuskun")
+    end
+  end,
+})
 return phiuskun

@@ -59,6 +59,7 @@ hzvoanstssaenh:addEffect(fk.FinishJudge, {
         expand_pile = cards,
         bypass_times=true,
         extraUse=true,
+        bypass_moment=true,
       },
       skip = false,
     })

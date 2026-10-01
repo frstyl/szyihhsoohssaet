@@ -1,5 +1,6 @@
 local tszjinstoamh = fk.CreateSkill {
   name = "tszjinstoamh",
+  add_skills = {"change_attack_range"},
 }
 Fk:loadTranslationTable{
   ["tszjinstoamh"] = "震膽",

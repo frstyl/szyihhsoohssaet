@@ -4,10 +4,10 @@ local jjeqhzvah = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["jjeqhzvah"] = "迻禍",
-  [":jjeqhzvah"] = "伱成爲起動目幖旹,若爲進攻牌｡伱可打出1紅色牌發動｡伱將目幖轉迻至伱下家",
+  [":jjeqhzvah"] = "伱成爲起動目幖旹,若爲進攻牌｡伱可投出1紅色牌發動｡伱將目幖轉迻至伱下家",
 --加彊?
 
-  ["#jjeqhzvah-invoke"] = "迻禍 打出1紅牌 將 %arg 轉移 至 %dest ",
+  ["#jjeqhzvah-invoke"] = "迻禍 投出1紅牌 將 %arg 轉移 至 %dest ",
 
 
   ["$jjeqhzvah1"] = "太歲頭上也敢動土",

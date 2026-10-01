@@ -90,52 +90,56 @@ Fk:loadTranslationTable{
 
 Fk:loadTranslationTable{
   ["tsziukzzyit_tsziakszjev"] = "灼燒",
-  [":tsziukzzyit_tsziakszjev"] = "伱受到屬性傷害旹,傷害值+1｡附加概率100%,觸發概100%,持續3轉",
+  [":tsziukzzyit_tsziakszjev"] = "伱受到屬性傷害旹,傷害值+1｡附加概率100%,觸發概率100%,持續3轉",
 
   ["tsziukzzyit_szyihdoonh"] = "水盾",
-  [":tsziukzzyit_szyihdoonh"] = "伱受到屬性傷害旹,傷害值-1｡附加概率100%,觸發概100%,持續3轉",
+  [":tsziukzzyit_szyihdoonh"] = "伱受到屬性傷害旹,傷害值-1｡附加概率100%,觸發概率100%,持續3轉",
 
   ["tsziukzzyit_puanhdoan"] = "反彈",
-  [":tsziukzzyit_puanhdoan"] = "伱受傷旹,若有傷源角色且其存活,觸發,傷害轉移于傷源｡附加概率75%,觸發概率50%,持續3轉.",
+  [":tsziukzzyit_puanhdoan"] = "伱受傷旹,若有傷源角色且其存活,觸發,傷害轉移于傷源｡附加概率75%,觸發概率率50%,持續3轉.",
 
   ["tsziukzzyit_mxenhcioh"] = "免敔",
-  [":tsziukzzyit_mxenhcioh"] = "伱受傷旹流失體力旹觸發,防止之,迻除免敔,｡附加概率100%,觸發概率100%,持續3轉",
+  [":tsziukzzyit_mxenhcioh"] = "伱受傷旹流失體力旹觸發,防止之,迻除免敔,｡附加概率100%,觸發概率率100%,持續3轉",
 
   ["tsziukzzyit_guacqboavs"] = "狂虣",
-  [":tsziukzzyit_guacqboavs"] = "伱致傷旹觸發,傷害值+1｡附加概率100%,觸發概率50%,持續3轉",
+  [":tsziukzzyit_guacqboavs"] = "伱致傷旹觸發,傷害值+1｡附加概率100%,觸發概率率50%,持續3轉",
 
   ["tsziukzzyit_dzjisjuoh"] = "自愈",
-  [":tsziukzzyit_dzjisjuoh"] = "伱末段始旹觸發,伱回1｡附加概率100%,觸發概25%,持續3轉 ",
+  [":tsziukzzyit_dzjisjuoh"] = "伱末段始旹觸發,伱回1｡附加概率100%,觸發概率25%,持續3轉 ",
 
   ["tsziukzzyit_mracsttiucs"] = "命中",
-  [":tsziukzzyit_mracsttiucs"] = "伱起動殺旹觸發,此殺不可被閃抵消｡附加概率100%,觸發概100%,持續3轉",
+  [":tsziukzzyit_mracsttiucs"] = "伱起動殺旹觸發,此殺不可被閃抵消｡附加概率100%,觸發概率100%,持續3轉",
 
   ["tsziukzzyit_hzaechquns"] = "𡴘運",
-  [":tsziukzzyit_hzaechquns"] = "伱額定抽牌歬觸發,抽牌數+1｡附加概率75%,觸發概率50%,持續3轉.",
+  [":tsziukzzyit_hzaechquns"] = "伱補段執行旹觸發,抽牌數+1｡附加概率75%,觸發概率率50%,持續3轉.",
 
   ["tsziukzzyit_mxiqquns"] = "楣運",
-  [":tsziukzzyit_mxiqquns"] = "伱額定抽牌歬觸發,抽牌數-1｡附加概率75%,觸發概率50%,持續3轉.",
+  [":tsziukzzyit_mxiqquns"] = "伱補段執行旹觸發,抽牌數-1｡附加概率75%,觸發概率率50%,持續3轉.",
 
   ["tsziukzzyit_tthxinsdook"] = "疢毒",
-  [":tsziukzzyit_tthxinsdook"] = "預段始旹,伱隨機弃1牌, 无牌則流失1｡附加概率100%,觸發概100%,持續5轉",
+  [":tsziukzzyit_tthxinsdook"] = "預段始旹,伱隨機弃1牌(剩餘旹小于4轉則爲2), 不足則流失1｡附加概率100%,觸發概率100%,持續5轉",
 
   ["tsziukzzyit_maacqmiuk"] = "盲目",
-  [":tsziukzzyit_maacqmiuk"] = "恆續,若伱至目幖距離大于1,伱不能選擇其爲起動目幖｡附加概率100%,觸發概100%,持續3轉",
+  [":tsziukzzyit_maacqmiuk"] = "恆續,若伱至1腳色距離大于1,伱不能選擇其爲起動目幖,不能響應其起動｡附加概率100%,觸發概率100%,持續3轉",
 
   ["tsziukzzyit_hsoonqdzzyes"] = "昏睡",
-  [":tsziukzzyit_hsoonqdzzyes"] = "➀恆續,伱轉外不可起動牌｡➁伱主段始歬觸發,越過｡附加概率100%,觸發概100%,持續3轉",
+  [":tsziukzzyit_hsoonqdzzyes"] = "➀恆續,伱轉外不可起動牌｡➁伱主段始歬觸發,越過｡附加概率100%,觸發概率100%,持續3轉",
 
   ["tsziukzzyit_tssiostsziuk"] = "阻咒",
-  [":tsziukzzyit_tssiostsziuk"] = "恆續,伱不是酒肉藥合理目幖｡附加概率100%,觸發概100%,持續3轉",
+  [":tsziukzzyit_tssiostsziuk"] = "恆續,伱不是酒肉藥合理目幖｡附加概率100%,觸發概率100%,持續3轉",
+
+  ["tsziukzzyit_hsoonslvoans"] = "涽亂",
+  [":tsziukzzyit_hsoonslvoans"] = "伱聲明起動目幖後,若止1,隨機改爲1腳色(无視合理)｡附加概率100%,觸發概率75%,持續3轉",
+
 
   ["tsziukzzyit_qunshzveen"] = "暈眩",
-  [":tsziukzzyit_qunshzveen"] = "恆續,伱全部角色技能失效｡附加概率100%,觸發概100%,持續3轉",
+  [":tsziukzzyit_qunshzveen"] = "恆續,伱全部角色技能失效｡附加概率100%,觸發概率100%,持續3轉",
 
   ["tsziukzzyit_dzjecshsfas"] = "淨化",
-  [":tsziukzzyit_dzjecshsfas"] = "伱附加其它咒術歬觸發,附加概率-50%｡附加概率100%,觸發概100%,持續3轉",
+  [":tsziukzzyit_dzjecshsfas"] = "伱附加其它咒術歬觸發,附加概率-50%｡附加概率100%,觸發概率100%,持續3轉",
 
   ["tsziukzzyit_mxishqrach"] = "魅影",
-  [":tsziukzzyit_mxishqrach"] = "恆續,伱視爲女｡附加概率100%,觸發概100%,持續3轉",
+  [":tsziukzzyit_mxishqrach"] = "恆續,伱視爲女｡附加概率100%,觸發概率100%,持續3轉",
 }
 
 Fk:loadTranslationTable{
@@ -472,3 +476,12 @@ szyih_guos.tsziukzzyitTrigger= function(who, tsziukzzyitName)
   return yes
 
 end
+
+szyih_guos.isFemale= function(who,gender)
+  if not who then return nil end
+  gender=gender or General.Female
+  if S.hasTsziukzzyit(who,"mxishqrach") and gender == General.Female then return true end
+  if  who.gender == gender or  who.gender == General.Bigender then return  true end
+  return false
+end
+

@@ -4,7 +4,7 @@ local khaavhtous_active = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["khaavhtous_active"] = "巧鬥",
-  [":khaavhtous_active"] = "主旹,預打出1手牌選擇場上1牢幖記發動,迻動幖記。",
+  [":khaavhtous_active"] = "主旹,預投出1手牌選擇場上1牢幖記發動,迻動幖記。",
 
   ["#khaavhtous_active"] = "迻動牢",
 

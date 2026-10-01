@@ -3,7 +3,7 @@ local ddwenqszio = fk.CreateSkill {
 }
 Fk:loadTranslationTable{
   ["ddwenqszio"] = "傳書",
-  [":ddwenqszio"] = "主旹,預打出1牌發動。全體脚色得1空｡輪終,全體脚色可將空轉化爲殺起動",
+  [":ddwenqszio"] = "主旹,預投出1牌發動。全體脚色得1空｡輪終,全體脚色可將空轉化爲殺起動",
 
   ["#ddwenqszio-use"] = "傳書 將空牌轉化爲殺",
 }

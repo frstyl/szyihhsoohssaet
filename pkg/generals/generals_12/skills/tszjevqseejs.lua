@@ -5,9 +5,10 @@ local tszjevqseejs = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["tszjevqseejs"] = "招𱙝",
-  [":tszjevqseejs"] = "伱預段始旹,可選1其它脚色A發動.伱占卜,占卜牌生效後,若其爲{紅/黑},{伱/A}取得之,若此次流程未有3張連續同色且A未死亾,伱可再次執行｡",--平均7 但可能離譜
+  [":tszjevqseejs"] = "伱預段始旹,可選1其它脚色A發動.伱占卜,占卜畱于處理區,若未有3張連續同色伱可再執行或令分配之,伱得紅A得黑,已此所得牌1輪內无視額定弃牌",--平均7 但可能離譜
 
   ["#tszjevqseejs-invoke"] = "招𱙝 選擇目幖",
+  ["@@tszjevqseejs-inhand-round"] = "招𱙝",
 
   ["$tszjevqseejs1"] = "髣髴兮若轻云之蔽月。",
   ["$tszjevqseejs2"] = "飘飖兮若流风之回雪。",
@@ -34,53 +35,83 @@ tszjevqseejs:addEffect(fk.EventPhaseStart, {
   end,
   on_use = function(self, event, target, player, data)
     local room = player.room
+    
+    room.logic:getCurrentEvent():addCleaner(function()
+      room:cleanProcessingArea(nil, tszjevqseejs.name)
+    end)
+
     local to = event:getCostData(self).tos[1]
     room:setPlayerMark(player,"tszjevqseejs-phase", to.id)
     local t={}
-
+    -- local exe 
     while true do
       local judge = {
         who = player,
         reason = tszjevqseejs.name,
         pattern = ".|.|diamond,spade,club,heart",
+        skipDrop=true,
       }
       room:judge(judge)
       if player.dead or to.dead   then return end 
-      table.insert(t,judge.card.color)
+      table.insert(t,judge.card)
+
       local n = #t
-      if n>2 and t[n]==t[n-1] and t[n-1]==t[n-2] then return end
-      if not room:askToSkillInvoke(player, { skill_name = tszjevqseejs.name })  then return end
+      if n>2 and t[n].color==t[n-1].color and t[n-1].color==t[n-2].color then return end
+      if not room:askToSkillInvoke(player, { skill_name = tszjevqseejs.name })  then 
+        -- exe=true
+        break
+      end
     end
+
+
+      local reds={}
+      local blacks={}
+      for _,card in ipairs(t) do
+        if room:getCardArea(card) == Card.Processing then
+          if card.color==Card.Red then 
+            table.insertTable(reds, Card:getIdList(card))
+          elseif card.color==Card.Black then 
+            table.insertTable(blacks, Card:getIdList(card))
+          end
+        end
+      end
+      if #reds>0 or #blacks>0 then
+        local list={}
+        list[player.id]=reds
+        list[to.id]=blacks
+      room:doYiji(list, nil, tszjevqseejs.name, {"@@tszjevqseejs-inhand-round",1 , "exclude-inhand-round",1})
+      end
+
 end,
 })
 
-tszjevqseejs:addEffect(fk.FinishJudge, {
-  mute = true,
-  is_delay_effect = true,
-  can_trigger = function(self, event, target, player, data)
-    if  target == player 
-    and data.reason == tszjevqseejs.name
-    and player.room:getCardArea(data.card) == Card.Processing 
-    then
-      if  data.card.color== Card.Red and not player.dead then
-        event:setCostData(self,{tos={player}})
-        return true 
-      elseif   data.card.color== Card.Black then
-        local to =player.room:getPlayerById(player:getMark("tszjevqseejs-phase"))
-        if to and not to.dead then
-          event:setCostData(self,{tos={to}})
-          return true 
-        end
+-- tszjevqseejs:addEffect(fk.FinishJudge, {
+--   mute = true,
+--   is_delay_effect = true,
+--   can_trigger = function(self, event, target, player, data)
+--     if  target == player 
+--     and data.reason == tszjevqseejs.name
+--     and player.room:getCardArea(data.card) == Card.Processing 
+--     then
+--       if  data.card.color== Card.Red and not player.dead then
+--         event:setCostData(self,{tos={player}})
+--         return true 
+--       elseif   data.card.color== Card.Black then
+--         local to =player.room:getPlayerById(player:getMark("tszjevqseejs-phase"))
+--         if to and not to.dead then
+--           event:setCostData(self,{tos={to}})
+--           return true 
+--         end
 
-      end
-    end    
+--       end
+--     end    
 
-  end,
-  on_use = function(self, event, target, player, data)
-    local to =event:getCostData(self).tos[1]
-    player.room:obtainCard(to, data.card, true, fk.ReasonPrey, nil, tszjevqseejs.name)
-  end,
-})
+--   end,
+--   on_use = function(self, event, target, player, data)
+--     local to =event:getCostData(self).tos[1]
+--     player.room:obtainCard(to, data.card, true, fk.ReasonPrey, nil, tszjevqseejs.name)
+--   end,
+-- })
 
 
 -- tszjevqseejs:addEffect(fk.EventPhaseStart, {

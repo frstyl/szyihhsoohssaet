@@ -1,8 +1,8 @@
 Fk:loadTranslationTable{
   ["hqoeomsmiu"] = "暗謀",
-  [":hqoeomsmiu"] = "應動｡一脚色{占卜牌生效前/賭鬥牌亮出前},伱可選其一手牌發動.伱打出此牌代替元{占卜/賭鬥}牌同旹取得元牌。",
+  [":hqoeomsmiu"] = "應動｡一脚色{占卜牌生效前/賭鬥牌亮出前},伱可選其一手牌發動.伱投出此牌代替元{占卜/賭鬥}牌同旹取得元牌。",
 
-  ["#hqoeomsmiu-judge"] = "是否發動 暗謀，打出%dest一张牌代替 其 %arg 占卜",
+  ["#hqoeomsmiu-judge"] = "是否發動 暗謀，投出%dest一张牌代替 其 %arg 占卜",
   ["#hqoeomsmiu-pindian"] = "是否發動 暗謀 改變賭鬥牌",
 
   -- ["#ChangedPindian"] = "%from 發動｢%arg｣把 %to 賭鬥牌改爲 %arg2",

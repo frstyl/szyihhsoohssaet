@@ -4,9 +4,9 @@ local dziacstsoak = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["dziacstsoak"] = "匠作",
-  [":dziacstsoak"] = "印牌:以伱1{黑/紅}非行动牌轉化爲｢{殺/閃}｣起動或演練｡起動後,若牌名与上次發動牌名:同,伱抽1;不同,伱可弃置其它脚色1牌",
+  [":dziacstsoak"] = "印牌:以伱1{黑/紅}非行动牌視爲｢{殺/閃}｣起動或演練｡起動後,若牌名与上次發動牌名:同,伱抽1;不同,伱可弃置其它脚色1牌",
 
-  ["#dziacstsoak"] = "匠作 將1{黑/紅}非行动牌轉化爲{殺/閃}",
+  ["#dziacstsoak"] = "匠作 將1{黑/紅}非行动牌視爲{殺/閃}",
   ["@dziacstsoak"] = "匠作",
 
   ["#dziacstsoak-choose"] = "匠作 弃其它脚色牌",
@@ -26,7 +26,6 @@ dziacstsoak:addEffect("viewas", {
   card_filter = function(self, player, to_select, selected)
     return #selected == 0 
     and S.getCardTypeByName(Fk:getCardById(to_select).trueName)~=1
-    and S.getCardTypeByName(Fk:getCardById(to_select).trueName)~=6
     and Fk:getCardById(to_select).color ~= Card.NoColor
   end,
   view_as = function(self, player, cards)
@@ -36,7 +35,8 @@ dziacstsoak:addEffect("viewas", {
       c=Fk:cloneCard("szjemh")
     end
     c.skillName = dziacstsoak.name
-    c:addSubcard(cards[1])
+    -- c:addSubcard(cards[1])
+    c.id=cards[1]
     return c
   end,
   before_use = function(self, player, use)

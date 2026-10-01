@@ -4,7 +4,7 @@ local ddiachszjer = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["ddiachszjer"] = "仗勢",
-  [":ddiachszjer"] = "應動｡伱受到傷害旹,若有傷源且不爲伱,伱可選1脚色非伱或傷源發動.其可對傷源起動1牌,若其起動牌且此牌致傷,防止伱所受傷害,否則伱可令其弃1手牌",
+  [":ddiachszjer"] = "應動｡伱受到傷害旹,若有傷源且不爲伱,伱可選1脚色非伱或傷源發動.其可對傷源起動1牌(无視距離次數),若其起動牌且此牌致傷,防止伱所受傷害,否則伱可令其弃1手牌",
 
   ["#ddiachszjer-invoke"] = "仗勢：選擇1脚色 令其對 %src 選擇牌",
   ["#ddiachszjer-use"] = "仗勢：对 %dest 起動牌，若致傷防止 %src所受傷害",
@@ -50,6 +50,7 @@ ddiachszjer:addEffect(fk.DamageInflicted, {
         exclusive_targets = {data.from.id},
         bypass_times = true,
         extraUse = true,
+        bypass_moment=true,
       },
       skip=false,
     })

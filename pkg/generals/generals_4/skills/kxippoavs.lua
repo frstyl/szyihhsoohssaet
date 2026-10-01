@@ -4,9 +4,9 @@ local kxippoavs = fk.CreateSkill{
 
 Fk:loadTranslationTable{
 ["kxippoavs"] = "急報",
-[":kxippoavs"] = "一轉始旹記彔伱手牌數.轉終旹,若伱手牌數与轉始旹相等,伱可預打出1手牌發動,伱獲得1額外轉",
+[":kxippoavs"] = "一轉始旹記彔伱手牌數.轉終旹,若伱手牌數与轉始旹相等,伱可預投出1手牌發動,伱獲得1額外轉",
 
-["#kxippoavs-invoke"] = "急報 %src 轉終 是否打出牌執行額外轉",
+["#kxippoavs-invoke"] = "急報 %src 轉終 是否投出牌執行額外轉",
 ["@kxippoavs-turn"] = "急報",
 
 ["$kxippoavs1"] = "快",

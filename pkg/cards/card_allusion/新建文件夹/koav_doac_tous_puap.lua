@@ -10,7 +10,7 @@ Fk:loadTranslationTable{
 koav_doac_tous_puap:addEffect("cardskill", {
   prompt = "#koav_doac_tous_puap",
   target_num = 1,
-  can_use = Util.FalseFunc,  --不能主動旹用
+  can_use = Util.FalseFunc,  --不能主動旹用?
     mod_target_filter = function(self, player, to_select, selected, card)
     return to_select ~= player 
   end,
@@ -43,6 +43,7 @@ koav_doac_tous_puap:addEffect(fk.FinishJudge, {
       pattern="tous_puap_phoas_koav_ljem",
       cancelable=true,
       prompt="koav_doac_tous_puap",
+	  extra_data={koav_doac_tous_puap=true}
     })
     if use then
       player.room:useCard(use)

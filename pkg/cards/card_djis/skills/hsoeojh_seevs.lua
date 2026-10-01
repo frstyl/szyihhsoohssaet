@@ -8,14 +8,14 @@ skill:addEffect("cardskill", {
   mod_target_filter = Util.TrueFunc,
   can_use = function(self, player, card, extra_data)
     if player:prohibitUse(card) then return end
-    return  S.magicCanUse(player, card, extra_data)
+    return  S.scourgeCanUse(self, player, card, extra_data)
   end,
   target_num=1,
   target_filter = function(self, player, to_select, selected, _, card, extra_data)
     return S.useToSelfFilter(self, player, to_select, selected, _, card, extra_data)
   end,
   on_use = function(self, room, cardUseEvent)
-    S.magicOnUse(cardUseEvent.from, cardUseEvent)
+    S.scourgeOnUse(self, cardUseEvent.from, cardUseEvent)
   end,
   offset_func= Util.FalseFunc,
   on_effect = function(self, room, effect)
@@ -50,7 +50,7 @@ skill:addEffect("cardskill", {
     repeat
       nextp = nextp:getNextAlive(true)
       if nextp == to then
-        if nextp:isProhibited(nextp, effect.card) then
+        if nextp:isProhibitedTarget(effect.card) then
           room:moveCards{
             ids = room:getSubcardsByRule(effect.card, { Card.Processing }),
             toArea = Card.DiscardPile,
@@ -60,7 +60,7 @@ skill:addEffect("cardskill", {
         end
         break
       end
-    until   not nextp:isProhibited(nextp, effect.card)
+    until   not nextp:isProhibitedTarget(effect.card)
 -- not nextp:hasDelayedTrick(effect.card.name) and
 
     if effect.card:isVirtual() then

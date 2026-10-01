@@ -5,7 +5,7 @@ local jiacqmuoh = fk.CreateSkill{
 
 Fk:loadTranslationTable{
 ["jiacqmuoh"] = "揚武",
-[":jiacqmuoh"] = "伱起動殺旹可發動.伱隱祕選擇1至2項發動｡令此殺➀結算後伱得到之➁不計入次數➂致傷旹傷害值+1,伱弃置1牌➃反抵消反失效｡若伱選擇相鄰二項,伱于結算後流失1",  --全部牌當閃
+[":jiacqmuoh"] = "伱起動殺旹可發動.伱隱祕選擇1至2項發動｡令此殺➀結算後伱得到之➁不計入次數➂致傷旹傷害值+1,伱弃置1牌➃反抵消反失效｡結算後若伱選擇2項,此技能失效1轉1,若相鄰,伱流失",  --全部牌當閃
 
 ["#jiacqmuoh-invoke"] = "揚武 選擇1至2項發動",
 
@@ -49,6 +49,7 @@ jiacqmuoh:addEffect(fk.CardUsing, {----TargetSpecified
     data.extra_data.jiacqmuoh={}
     data.extra_data.jiacqmuoh.choices=choices
     data.extra_data.jiacqmuoh.from=player.id
+    if #choices==2 then data.extra_data.jiacqmuoh.two=true end
     if event:getCostData(self).adjacent then 
       data.extra_data.jiacqmuoh.adjacent=true
     end
@@ -87,11 +88,19 @@ jiacqmuoh:addEffect(fk.CardUseFinished, {
     if player.dead then return end
     local room=player.room
     if   data.extra_data.jiacqmuoh.get and player.room:getCardArea(data.card) == Card.Processing then
-    player.room:obtainCard(player, data.card, true, fk.ReasonPrey, player, jiacqmuoh.name)
+      player.room:obtainCard(player, data.card, true, fk.ReasonPrey, player, jiacqmuoh.name)
+      if player.dead then return end
+    end
+    if data.extra_data.jiacqmuoh.two then
+      room:invalidateSkill(player,jiacqmuoh.name,"-turn")
+      if player.dead then return end
+
     end
     if data.extra_data.jiacqmuoh.adjacent then
-      room:loseHp(player,1,jiacqmuoh.name,player)
+            room:loseHp(player,1,jiacqmuoh.name,player)
+
     end
+
 
   end,
 })

@@ -26,7 +26,7 @@ touh_ttwenh_seec_jje:addEffect(fk.AskForRetrial, {  --与技能同旹 算起動?
     local room = player.room
 
     local use = room:askToUseCard(player, {  --起動
-      skill_name = touh_ttwenh_seec_jje.name,
+      skill_name = "tous_puap_phoas_koav_ljem",
       pattern = "tous_puap_phoas_koav_ljem",
       prompt = "#touh_ttwenh_seec_jje-ask::"..target.id,
       cancelable = true,

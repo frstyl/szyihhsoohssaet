@@ -3,7 +3,7 @@ local punskeek = fk.CreateSkill {
 }
 Fk:loadTranslationTable{
   ["punskeek"] = "奮毄",
-  [":punskeek"] = "伱可將1牌轉化爲殺起動發動.若目幖脚色體力值不小于伱體力值,其不可起動｢閃｣響應此｢殺｣",
+  [":punskeek"] = "印牌:以伱1牌轉化起動｢殺｣.若目幖脚色體力值不小于伱體力值,其不可起動｢閃｣響應此｢殺｣",
 
   ["$punskeek1"] = "天下兴亡，侠客当为之己任。",
   ["$punskeek2"] = "隐居江湖之远，敢争天下之先！",
@@ -15,6 +15,7 @@ punskeek:addEffect("viewas", {
   prompt = "#punskeek",
   mute_card = true,
   handly_pile = true,
+  include_equip=true,
   card_filter = function(self, player, to_select, selected)
     return #selected == 0 
   end,

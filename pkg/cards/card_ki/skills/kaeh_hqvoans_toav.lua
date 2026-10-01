@@ -4,19 +4,27 @@ local equipSkill = fk.CreateSkill {
   attached_equip = "kaeh_hqvoans_toav",
 }
 
--- local S = require "packages/szyihhsoohssaet/szyih_guos" 
+local S = require "packages/szyihhsoohssaet/szyih_guos" 
 
 equipSkill:addEffect("targetmod", {
   residue_func = function (self, player, skill, scope, card, to)
-    if player:hasSkill(equipSkill.name) and card and card.trueName == "ssaet"   then --and not S.isIgnoreArmorFromAToB(to,player,card)
-        return 2
+    -- if player:hasSkill(equipSkill.name) and 
+    if     player
+    and  card and card.trueName == "ssaet"
+    and S.hasEquip(player,equipSkill.attached_equip)
+    and not S.isIgnoreArmorFromAToB(to,player,card)
+    and  Fk.skills[equipSkill.name]:isEffectable(player)    
+    then 
+      -- local n =#table.filter(S.getEquips(player, Card.SubTypeWeapon),function(c) return c.name==equipSkill.attached_equip end) 
+         
+        return 2*S.hasEquip(player,equipSkill.attached_equip)
     end
   end,
 })
 
 equipSkill:addEffect(fk.CardUsing, {
   can_refresh = function(self, event, target, player, data)
-    return target == player and player:hasSkill(equipSkill.name) and player.phase == Player.Play and
+    return target == player and player:hasSkill(equipSkill.name) and
       data.card.trueName == "ssaet" and not data.extraUse and player:usedCardTimes("ssaet", Player.HistoryPhase) > 1
   end,
   on_refresh = function(self, event, target, player, data)

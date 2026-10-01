@@ -1,11 +1,12 @@
 
 local buamshqxim = fk.CreateSkill {
   name = "buamshqxim",
+  related_skills={"tsziukzzyit_hsoonqdzzyes"},
 }
 
 Fk:loadTranslationTable{
   ["buamshqxim"] = "梵音",
-  [":buamshqxim"] = "主旹,伱可預弃x不同大類牌指定x脚色發動.爲所所脚色附加昏睡",
+  [":buamshqxim"] = "主旹,伱可預弃x不同大類牌指定x脚色發動.爲所所脚色附加咒術｢昏睡｣",
 
   ["#buamshqxim"] = "梵音：x不同類牌指定x脚色",
 

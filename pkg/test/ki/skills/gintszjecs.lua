@@ -4,7 +4,7 @@ local gintszjecs = fk.CreateSkill {
 }
 Fk:loadTranslationTable{
   ["gintszjecs"] = "勤政",
-  [":gintszjecs"] = "伱起動打出牌旹,必發,伱將牌堆頂1牌置于伱將牌上｡伱可于元牌旹機將2/3/4勤政轉化爲{殺閃/肉酒/鬥糧}起動",
+  [":gintszjecs"] = "伱起動投出牌旹,必發,伱將牌堆頂1牌置于伱將牌上｡伱可于元牌旹機將2/3/4勤政轉化爲{殺閃/肉酒/鬥糧}起動",
 
   ["gintszjecs_tszjecs"] = "勤政",
 

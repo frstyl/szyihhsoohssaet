@@ -4,7 +4,7 @@ local khyeqtheen = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["khyeqtheen"] = "窺天",
-  [":khyeqtheen"] = "伱{預段/末段}始旹伱可發動｡伱觀看牌堆頂2牌,將之緟排序置于牌堆頂或牌堆底",
+  [":khyeqtheen"] = "伱{預段/末段}始旹伱可發動｡伱觀看牌堆頂x牌,將之緟排序置于牌堆頂或牌堆底(x=max(伱體力值,1))",
 
   ["$khyeqtheen1"] = "一眼望天謀定而後動",
   ["$khyeqtheen2"] = "略施小計可一通天下",
@@ -18,7 +18,7 @@ khyeqtheen:addEffect(fk.EventPhaseStart, {
   on_use = function(self, event, target, player, data)
     local room = player.room
     local result = room:askToGuanxing(player, {
-       cards = room:getNCards(2),
+       cards = room:getNCards(math.max(player.hp,1)),
        skill_name=khyeqtheen.name,
        skip=true,
       })

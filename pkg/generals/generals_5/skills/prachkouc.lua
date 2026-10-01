@@ -1,6 +1,6 @@
 Fk:loadTranslationTable{
   ["prachkouc"] = "秉公",
-  [":prachkouc"] = "伱預段始旹,伱選擇1x>0脚色發動,其將x手牌交与除其外一脚色,若x>2,伱可令其回1(x=該脚色手牌數-其體力數)",
+  [":prachkouc"] = "伱預段始旹,伱選擇1x>0脚色發動,其將x手牌交与除其外一脚色,若x>2,其受伱1回復(x=該脚色手牌數-其體力數)",
 
   ["#prachkouc-choose"] = "秉公 選擇發動目幖",
   ["#prachkouc-give-choose"] = "秉公 選擇 %arg 牌交与1其它脚色",

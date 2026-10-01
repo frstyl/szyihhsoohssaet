@@ -12,7 +12,7 @@ Fk:loadTranslationTable{
 --加彊?
   ["@phiocqkxims-phase"] = "封禁",
   ["phiocqkxims-use"] = "起動",
-  ["phiocqkxims-response"] = "打出",
+  ["phiocqkxims-response"] = "投出",
   ["phiocqkxims-discard"] = "弃置",
 
 }

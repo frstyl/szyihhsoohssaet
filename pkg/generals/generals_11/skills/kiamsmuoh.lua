@@ -4,7 +4,7 @@ local kiamsmuoh = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["kiamsmuoh"] = "劍舞",
-  [":kiamsmuoh"] = "伱起動牌對目幖脚色A致傷後,伱可發動(每次起動牌限1次).伱亮出牌堆頂5牌,伱對A起動其中殺(无視距離次數且傷害改爲流失體力),若亮出牌中无殺,伱流失1.",
+  [":kiamsmuoh"] = "伱起動牌對目幖脚色A致傷後,伱可發動(每次起動牌限1次).伱亮出牌堆頂5牌,伱對A起動其中殺(无視距離次數且傷害改爲流失體力),若亮出牌中无｢殺｣,伱流失1.",
 
   ["kiamsmuoh-choose"] = "劍舞 選擇目幖",
 }
@@ -15,29 +15,42 @@ local kiamsmuoh_spec = {
     return data.from == player and player:hasSkill(kiamsmuoh.name) 
     and data.card 
     and not data.to.dead
-	and 	  data.event_data and data.event_data.use
-	  and	  not (  data.event_data.use.extra_data and data.event_data.use.extra_data.kiamsmuoh)
+	  and data.event_data and data.event_data.use
+	  and	not (  data.event_data.use.extra_data and data.event_data.use.extra_data.kiamsmuoh)
 
   end,
 
   on_use = function(self, event, target, player, data)
-         data.event_data.use.extra_data =  data.event_data.use.extra_data or {}
-        data.event_data.use.extra_data.kiamsmuoh=true
+    data.event_data.use.extra_data =  data.event_data.use.extra_data or {}
+    data.event_data.use.extra_data.kiamsmuoh=true
     local room=player.room
     local to =data.to
     local nossaet=true
     local cards = room:getNCards(5)
+
+    room.logic:getCurrentEvent():addCleaner(function()
+      room:cleanProcessingArea(cards, kiamsmuoh.name)
+    end)
+    -- room:turnOverCardsFromDrawPile(player, cards, kiamsmuoh.name)
     room:moveCards({
       ids = cards,
       toArea = Card.Processing,
-      moveReason = fk.ReasonPrey,
+      moveReason = fk.ReasonPut,
       skillName = kiamsmuoh.name,
       proposer = player.id,
+      moveVisible=true
     })
+
+
+
     for i=1, #cards,1 do
+      if player.dead then return end
       local card= Fk:getCardById(cards[i])
-      if card.trueName =="ssaet" then
+      if card.trueName =="ssaet" 
+        and room:getCardArea(card) == Card.Processing 
+      then
         -- table.insert(card.skillNames , kiamsmuoh.name)
+        
         nossaet=false
         local extra_data={}
         extra_data.kiamsmuoh_ssaet=true

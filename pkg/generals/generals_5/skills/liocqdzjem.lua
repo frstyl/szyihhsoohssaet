@@ -4,7 +4,7 @@ local liocqdzjem = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["liocqdzjem"] = "龍濳",
-  [":liocqdzjem"] = "一脚色A成爲起動目幖旹(每次起動限1次),若爲計謀牌且伱至A距離不大于1,伱可➀發動.A与伱各抽1,A選1手牌置于牌堆頂➁迻除此目幖發動,伱弃置1手牌",
+  [":liocqdzjem"] = "一脚色A成爲起動目幖旹(每次起動限1次),若爲謀策牌且伱至A距離不大于1,伱可➀發動.A与伱各抽1,A選1手牌置于牌堆頂➁迻除此目幖發動,伱弃置1手牌",
 
   ["#liocqdzjem-ask"] = "龍濳 是否對 %src 發動",
   ["#liocqdzjem-choose"] = "龍濳 選擇1手牌",

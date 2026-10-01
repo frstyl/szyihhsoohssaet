@@ -12,12 +12,12 @@ local S = require "packages/szyihhsoohssaet/szyih_guos"
 Fk:loadTranslationTable{
   ["#hsoonslvoans-effected"] = "%from 溷亂生效, %arg 目幖改 %to",
 }
-tsziukzzyit_hsoonslvoans:addEffect(fk.CardUsing, {
+tsziukzzyit_hsoonslvoans:addEffect(fk.AfterCardTargetDeclared, {  --TargetConfirming
   anim_type = "negative",
   -- is_delay_effect = true,
   -- globle=true,
   can_trigger = function(self, event, target, player, data)
-    return target == player 
+    return data.from == player 
     -- and table.contains({"ssaet","tous_tsiacs","mae_biuk",data.card.trueName})
     and #data.tos==1
     and data.tos[1]~=player
@@ -29,7 +29,7 @@ tsziukzzyit_hsoonslvoans:addEffect(fk.CardUsing, {
 
       local targets=room.alive_players
 
-      local random_target = table.random(targets)
+      local random_target = room:tableRandomPick(targets,1)[1]
       player.room:sendLog{ type = "#hsoonslvoans-effected", from = player.id,to={random_target.id},arg=data.card:toLogString()}
 
       data:removeTarget(data.tos[1])

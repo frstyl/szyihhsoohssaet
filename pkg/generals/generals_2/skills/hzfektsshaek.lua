@@ -6,8 +6,8 @@ local hzfektsshaek = fk.CreateSkill {
 
 Fk:loadTranslationTable{
 ["hzfektsshaek"] = "劃策",
-[":hzfektsshaek"] = "轉限1｡印牌:以伱1手牌轉化起動一卽旹計謀A",  --畫策牌无視距離?
-["#hzfektsshaek"] = "劃策: 將1手牌轉化爲一卽旹計謀起動",
+[":hzfektsshaek"] = "轉限1｡印牌:以伱1手牌轉化起動一卽旹謀策A",  --畫策牌无視距離?
+["#hzfektsshaek"] = "劃策: 將1手牌轉化爲一卽旹謀策起動",
 }
 
 local S = require "packages/szyihhsoohssaet/szyih_guos" 

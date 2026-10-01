@@ -4,7 +4,7 @@ local quanhszuos = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["quanhszuos"] = "遠戍",
-  [":quanhszuos"] = "轉始旹,伱可1明置手牌發動｡伱因起動打出失去手牌區明置牌後,伱可發動,伱抽x,x=max(1,伱明置手牌數)",
+  [":quanhszuos"] = "轉始旹,伱可1明置手牌發動｡伱因起動投出失去手牌區明置牌後,伱可發動,伱抽x,x=max(1,伱明置手牌數)",
 
   ["#quanhszuos-ask"] = "遠戍：明置1牌",
 

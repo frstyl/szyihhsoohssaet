@@ -5,7 +5,7 @@ local giacqpaas = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["giacqpaas"] = "彊霸",
-  [":giacqpaas"] = "伱末段終旹,伱可預打出1手牌選擇1其它男脚色發動.伱予其1傷,伱伱未損,改爲2傷",
+  [":giacqpaas"] = "伱末段終旹,伱可預投出1手牌選擇1其它男脚色發動.伱予其1傷,伱伱未損,改爲2傷",
 
   ["#giacqpaas-choose"] = "彊霸 選擇牌与目幖 予其%arg傷",
 
@@ -30,7 +30,7 @@ giacqpaas:addEffect(fk.EventPhaseStart, {
       min_num = 1,
       max_num = 1,
       targets = table.filter(player.room.alive_players, function(p)
-      return p~=player and p.gender == General.Male
+      return p~=player and S.isFamle(p,General.Male)
       end),  --
       -- targets=player.room.alive_players,
       pattern = tostring(Exppattern{ id = table.filter(player:getHandlyIds(), function (id)
@@ -47,8 +47,8 @@ giacqpaas:addEffect(fk.EventPhaseStart, {
   end,
   on_use = function (self, event, target, player, data)
     -- local to =event:getCostData(self).tos[1]
-	    S.playCard(event:getCostData(self).cards,giacqpaas.name,player)
-
+    S.playCard(event:getCostData(self).cards,giacqpaas.name,player)
+    if player.dead then return end
     player.room:damage{
         from = player,
         to = event:getCostData(self).tos[1],

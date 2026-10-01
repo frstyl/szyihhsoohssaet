@@ -6,7 +6,7 @@ local S = require "packages/szyihhsoohssaet/szyih_guos"
 
 Fk:loadTranslationTable{
   ["tsyiscuat"] = "醉月",
-  [":tsyiscuat"] = "伱起動｢殺/酒｣旹可發動:伱選擇➀獲得1｢殺/酒｣➁下起動殺或酒无視距離次數限制➂此起動額外生效1次,",--➃打出全部手牌(含酒),与1腳色等量傷害
+  [":tsyiscuat"] = "伱起動｢殺/酒｣旹可發動:伱選擇➀獲得1｢殺/酒｣➁下起動殺或酒无視距離次數限制➂此起動額外生效1次,",--➃投出全部手牌(含酒),与1腳色等量傷害
 
   ["#tsyiscuat-invoke"] = "醉月 選擇",
 

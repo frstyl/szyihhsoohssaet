@@ -8,7 +8,7 @@ local S = require "packages/szyihhsoohssaet/szyih_guos"
 
 Fk:loadTranslationTable{
   ["jjenhmiu"] = "演謀",
-  [":jjenhmiu"] = "伱起動卽旹計謀牌A旹可發動,伱起動A,繼承元信息,瀕死防止死亡,結算終旹受傷腳色弃1,不可嵌套｡",
+  [":jjenhmiu"] = "伱起動卽旹謀策牌A旹可發動,伱起動A,繼承元信息,瀕死防止死亡,結算終旹受傷腳色弃1,不可嵌套｡",
 --加彊?
 
   ["#jjenhmiu_delay"] = "演謀 後續效果",  --%from 

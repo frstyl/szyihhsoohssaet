@@ -11,7 +11,7 @@ local jiokhsoak = fk.CreateSkill{
   -- tags = { Skill.Compulsory,Skill.Permanent },
 }
 
--- local S = require "packages/szyihhsoohssaet/szyih_guos" 
+local S = require "packages/szyihhsoohssaet/szyih_guos" 
 
 jiokhsoak:addEffect(fk.Death, {
   anim_type = "control",
@@ -23,7 +23,7 @@ jiokhsoak:addEffect(fk.Death, {
       min_num = 1,
       max_num = 1,
       targets = table.filter(player.room.alive_players, function(p)
-      return p.gender == General.Female and (p.role ~= "lord" )
+      return S.isFamle(p) and (p.role ~= "lord" )
       end),  --
       skill_name = jiokhsoak.name,
       prompt = "#jiokhsoak-choose",

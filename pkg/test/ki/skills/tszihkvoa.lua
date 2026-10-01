@@ -4,10 +4,10 @@ local tszihkvoa = fk.CreateSkill({
 
 Fk:loadTranslationTable{
   ["tszihkvoa"] = "止戈",
-  [":tszihkvoa"] = "其它脚色主段始旹,伱可發動,其可交与伱1殺或武器牌,不執行則弃置1牌,對伱起動虛擬鬥將",
+  [":tszihkvoa"] = "其它脚色主段始旹,伱可發動,其可交与伱1殺或兵器牌,不執行則弃置1牌,對伱起動虛擬鬥將",
 
 
-  ["#tszihkvoa-card"] = "觀陣:%dest 起動 %arg 伱可打出1同花色牌發令其无效",
+  ["#tszihkvoa-card"] = "觀陣:%dest 起動 %arg 伱可投出1同花色牌發令其无效",
   -- ["#tszihkvoa-damage"] = "觀陣：伱受到 %arg 傷害 伱可弃1同花色牌發防止傷害",
 
   ["$tszihkvoa1"] = "伱昰太乙三才陣何足爲奇",

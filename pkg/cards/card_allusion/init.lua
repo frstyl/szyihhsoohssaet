@@ -7,7 +7,7 @@ Fk:loadTranslationTable{
   ["allusion"] = "事件牌",
 }
 
----裝僃牌?
+---軍器牌?
 
 local liac_ssaen_hsoavh_hsoans_kiap_puap_ddiac = fk.CreateCard{
   name = "liac_ssaen_hsoavh_hsoans_kiap_puap_ddiac",
@@ -23,7 +23,7 @@ liac_ssaen_hsoavh_hsoans_kiap_puap_ddiac,
 extension:addCardSpec("liac_ssaen_hsoavh_hsoans_kiap_puap_ddiac",Card.Diamond, 13)
 Fk:loadTranslationTable{
   ["liac_ssaen_hsoavh_hsoans_kiap_puap_ddiac"] = "梁山好漢劫法場",
-  [":liac_ssaen_hsoavh_hsoans_kiap_puap_ddiac"] = "事件牌  <br /><b>大鬧江州</b>: 一脚色轉終旹,若其下家牢,對其起動迻除牢。  <br /><b>拔刀相助</b>: 主段執行旹,弃1名脚色伏區1延旹計謀牌。",
+  [":liac_ssaen_hsoavh_hsoans_kiap_puap_ddiac"] = "/事件牌/  <br /><b>大鬧江州</b>: 一脚色轉終旹,若其下家牢,對其起動迻除牢。  <br /><b>拔刀相助</b>: 主段執行旹,弃1名脚色伏區1延旹謀策牌。",
 
   ["liac_ssaen_hsoavh_hsoans_kiap_puap_ddiac_skill"] = "梁山好漢劫法場",
 
@@ -46,7 +46,8 @@ extension:loadCardSkels {zjim_jiac_lou_deej_puad_szi,}
 extension:addCardSpec("zjim_jiac_lou_deej_puad_szi",Card.Spade, 7)
 Fk:loadTranslationTable{
   ["zjim_jiac_lou_deej_puad_szi"] = "潯陽樓提反䛐",
-  [":zjim_jiac_lou_deej_puad_szi"] = "事件牌  <br /><b>笑黃巢</b>: 伱起動酒結算終旹,對伱起動,伱抽x(x爲存活反賊數)  <br /><b>揭竿而起</b>: 主段執行旹,伱可選1其它有手牌脚色,伱弃此牌,令其弃1手牌",
+  [":zjim_jiac_lou_deej_puad_szi"] = "/事件牌/  <br /><b>笑黃巢</b>: 伱起動酒結算終旹,對伱起動,伱抽x(x爲存活反賊數)  <br /><b>揭竿而起</b>: 主段執行旹,伱可選1其它有手牌脚色,伱弃此牌,令其弃1手牌",
+  ["zjim_jiac_lou_deej_puad_szi_skill"] = "潯陽樓提反䛐",
 
 
   ["sjevs_hzvoac_dzaav"] = "笑黃巢",
@@ -73,13 +74,13 @@ dzzi_tshjen_doavs_kaap,
 extension:addCardSpec("dzzi_tshjen_doavs_kaap",Card.Club, 12)
 Fk:loadTranslationTable{
   ["dzzi_tshjen_doavs_kaap"] = "時遷盜甲",
-  [":dzzi_tshjen_doavs_kaap"] = "事件牌  <br /><b>狸貓九變</b>: 一因敵爲資結算後,對一其它脚色裝僃防具者起動,取得其防具  <br /><b>偷天換日</b>: 主段執行旹,伱可以此牌交換牌堆頂1牌",
+  [":dzzi_tshjen_doavs_kaap"] = "/事件牌/  <br /><b>狸貓九變</b>: 一因敵爲資結算後,對一其它脚色裝僃甲冑者起動,取得其甲冑  <br /><b>偷天換日</b>: 主段執行旹,伱可以此牌交換牌堆頂1牌",
 
   ["dzzi_tshjen_doavs_kaap_skill"] = "時遷盜甲",
   [":dzzi_tshjen_doavs_kaap_skill"] = "時遷盜甲",
   
   ["li_mxev_kiuh_pxens"] = "狸貓九變",
-  ["#li_mxev_kiuh_pxens"] = "狸貓九變 取得其它脚色防具",
+  ["#li_mxev_kiuh_pxens"] = "狸貓九變 取得其它脚色甲冑",
 
   ["thou_theen_hzvoans_nzjit"] = "偷天換日",
   ["#thou_theen_hzvoans_nzjit"] = "伱主段執行旹,以此牌交換牌堆頂1牌",
@@ -100,7 +101,7 @@ soocs_kouc_mrac_cuos_kiuh_theen_gveen_nnioh,
 extension:addCardSpec("soocs_kouc_mrac_cuos_kiuh_theen_gveen_nnioh",Card.Heart, 2)
 Fk:loadTranslationTable{
   ["soocs_kouc_mrac_cuos_kiuh_theen_gveen_nnioh"] = "宋公明遇九天玄女",
-  [":soocs_kouc_mrac_cuos_kiuh_theen_gveen_nnioh"] = "事件牌  <br /><b>神授天書</b>: 伱受傷旹起動,防止傷害  <br /><b>仙人指路</b>: 主段執行旹,伱可選1其它有手牌脚色,伱弃此牌,取得其1手牌",
+  [":soocs_kouc_mrac_cuos_kiuh_theen_gveen_nnioh"] = "/事件牌/  <br /><b>神授天書</b>: 伱受傷旹起動,防止傷害  <br /><b>仙人指路</b>: 主段執行旹,伱可選1其它有手牌脚色,伱弃此牌,取得其1手牌",
 
   ["soocs_kouc_mrac_cuos_kiuh_theen_gveen_nnioh_skill"] = "神授天書",
 
@@ -126,7 +127,7 @@ tous_puap_phoas_koav_ljem,
 extension:addCardSpec("tous_puap_phoas_koav_ljem",Card.Heart, 8)
 Fk:loadTranslationTable{
   ["tous_puap_phoas_koav_ljem"] = "鬥法破高廉",
-  [":tous_puap_phoas_koav_ljem"] = "事件牌  <br /><b>高唐鬥法</b>: 一脚色的占卜牌结果为黑桃且生效后，对除你以外一脚色起動。目标脚色受到1点雷电伤害。  <br /><b>斗轉星迻 </b>: 一腳色的占卜牌生效前，你可以用这张牌替换之。",
+  [":tous_puap_phoas_koav_ljem"] = "/事件牌/  <br /><b>高唐鬥法</b>: 一脚色的占卜牌结果为黑桃且生效后，对除你以外一脚色起動。目标脚色受到1点雷电伤害。  <br /><b>斗轉星迻 </b>: 一腳色的占卜牌生效前，你可以用这张牌替换之。",
   ["tous_puap_phoas_koav_ljem_skill"] = "鬥法破高廉",
 
   ["koav_doac_tous_puap"] = "高唐鬥法：",
@@ -149,7 +150,7 @@ tsyis_toah_tsiach_moon_zzjin,
 extension:addCardSpec("tsyis_toah_tsiach_moon_zzjin",Card.Club, 9)
 Fk:loadTranslationTable{
   ["tsyis_toah_tsiach_moon_zzjin"] = "醉打蔣門神",
-  [":tsyis_toah_tsiach_moon_zzjin"] = "事件牌  <br /><b>快活林</b>: 酒➀對伱效果結算終旹，對伱起動,伱下次起動殺傷害基數+1  <br /><b>无酒不歡</b>: 伱轉外,1酒進入弃牌堆,你可以此牌替換之。",
+  [":tsyis_toah_tsiach_moon_zzjin"] = "/事件牌/  <br /><b>快活林</b>: 酒➀對伱效果結算終旹，對伱起動,伱下次起動殺傷害基數+1  <br /><b>无酒不歡</b>: 伱轉外,1酒進入弃牌堆,你可以此牌替換之。",
 
   ["khfar_hzvoat_ljim"] = "快活林",
   ["#khfar_hzvoat_ljim"] = "快活林 令伱下1殺傷害基數+1",
@@ -184,7 +185,7 @@ ttxes_tshuoh_ssaac_dzzjin_koac,
 extension:addCardSpec("ttxes_tshuoh_ssaac_dzzjin_koac",Card.Diamond, 10)
 Fk:loadTranslationTable{
   ["ttxes_tshuoh_ssaac_dzzjin_koac"] = "智取生辰綱",
-  [":ttxes_tshuoh_ssaac_dzzjin_koac"] = "事件牌  <br /><b>七星聚義</b>: 一脚色起動迷後,對1其它脚色伏區有生辰綱者起動｡廢置生辰綱,伱抽5  <br /><b>彊取𠢕敚</b>: 主段執行旹,伱可選1其它有手牌脚色,伱弃此牌,令其弃1手牌",
+  [":ttxes_tshuoh_ssaac_dzzjin_koac"] = "/事件牌/  <br /><b>七星聚義</b>: 一脚色起動迷後,對1其它脚色伏區有生辰綱者起動｡廢置生辰綱,伱抽5  <br /><b>彊取𠢕敚</b>: 主段執行旹,伱可選1其它有手牌脚色,伱弃此牌,令其弃1手牌",
 
 
   ["tshjit_seec_dzuoh_cxes"] = "七星聚義",
@@ -208,7 +209,7 @@ hsfa_hzova_ddiacs_thoucs_toah_sjevh_paas_quac,
 extension:addCardSpec("hsfa_hzova_ddiacs_thoucs_toah_sjevh_paas_quac",Card.Spade, 11)
 Fk:loadTranslationTable{
   ["hsfa_hzova_ddiacs_thoucs_toah_sjevh_paas_quac"] = "花和尙痛打小霸王",
-  [":hsfa_hzova_ddiacs_thoucs_toah_sjevh_paas_quac"] = "事件牌  <br /><b>憐香惜玉</b>: 其它脚色A對B致傷旹起動,A自弃2  <br /><b>一錯再錯</b>: 伱對其它脚色致傷後可弃置此牌伱抽1。",
+  [":hsfa_hzova_ddiacs_thoucs_toah_sjevh_paas_quac"] = "/事件牌/  <br /><b>憐香惜玉</b>: 其它脚色A對B致傷旹起動,A自弃2  <br /><b>一錯再錯</b>: 伱對其它脚色致傷後可弃置此牌伱抽1。",
   ["hsfa_hzova_ddiacs_thoucs_toah_sjevh_paas_quac_skill"] = "鬥法破高廉",
 
   ["leen_hsiac_sjek_ciok"] = "憐香惜玉：",
@@ -233,7 +234,7 @@ quac_boa_thoeom_hsoojh_szyet_piuc_dzjec,
 extension:addCardSpec("quac_boa_thoeom_hsoojh_szyet_piuc_dzjec",Card.Club, 1)
 Fk:loadTranslationTable{
   ["quac_boa_thoeom_hsoojh_szyet_piuc_dzjec"] = "王婆貪賄說風情",
-  [":quac_boa_thoeom_hsoojh_szyet_piuc_dzjec"] = "事件牌  <br /><b>王婆說媒</b>:  <br /><b>旹機</b>:  A殺死B後  <br /><b>目幖</b>: 對A与子目幖C <br /><b>效果</b>: 交換A与C全部手牌裝僃,伱取得A之1牌.  <br /><b>額外</b>:A/B/C皆不爲伱.  <br /><b>魚水之歡</b>: 一脚色A防具進入弃牌堆後,伱可弃此牌,令A回1",
+  [":quac_boa_thoeom_hsoojh_szyet_piuc_dzjec"] = "/事件牌/  <br /><b>王婆說媒</b>:  <br /><b>旹機</b>:  A殺死B後  <br /><b>目幖</b>: 對A与子目幖C <br /><b>效果</b>: 交換A与C全部手牌裝僃,伱取得A之1牌.  <br /><b>額外</b>:A/B/C皆不爲伱.  <br /><b>魚水之歡</b>: 一脚色A甲冑進入弃牌堆後,伱可弃此牌,令A回1",
 
   ["cio_szyih_tszi_hsvoan"] = "魚水之歡",
 
@@ -261,11 +262,11 @@ extension:addCardSpec("deep", Card.Diamond, 10)
 
 Fk:loadTranslationTable{
   ["deep"] = "僞信",
-  [":deep"] = "物資  <br /><b>旹機</b>：主段執行旹/展示旹  <br /><b>目幖</b>：无  <br />  <b>效果</b>：此牌本身无效果,可起動.  <b>額外</b>：當伱手牌中僞信被展示,伱弃置之｡當僞信明置離開伱手牌區,因花執行效果{♥️火傷/♦️无屬傷/♠️/♣️雷傷}。",
+  [":deep"] = "/物資牌/  <br /><b>旹機</b>：主段執行旹/展示旹  <br /><b>目幖</b>：无  <br />  <b>效果</b>：此牌本身无效果,可起動.  <b>額外</b>：當伱手牌中僞信被展示,伱弃置之｡當僞信明置離開伱手牌區,因花執行效果{♥️火傷/♦️无屬傷/♠️/♣️雷傷}。",
   ["#deep_skill"] = "僞信 自曝",
 
   ["ddwen_kaah_sjins"] = "傳假信",
-  [":ddwen_kaah_sjins"] = "事件牌  <br /><b>憐香惜玉</b>: <br /><b>旹機</b>: 主旹  <br /><b>目幖</b>: 无 <br /><b>目幖數</b>: 0  <br /><b>效果</b>: 將1｢僞信｣加入牌堆頂",
+  [":ddwen_kaah_sjins"] = "/事件牌/  <br /><b>憐香惜玉</b>: <br /><b>旹機</b>: 主旹  <br /><b>目幖</b>: 无 <br /><b>目幖數</b>: 0  <br /><b>效果</b>: 將1｢僞信｣加入牌堆頂",
   ["ddwen_kaah_sjins_skill"] = "傳假信",
 }
 

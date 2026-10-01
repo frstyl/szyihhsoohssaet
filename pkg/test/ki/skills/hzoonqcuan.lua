@@ -5,12 +5,12 @@ local hzoonqcuan = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["hzoonqcuan"] = "渾元",
-  [":hzoonqcuan"] = "伱攻程內脚色受傷旹,伱可發動.其占卜,伱可打出与占卜牌{異色/同色}牌令傷害值{-1/+1}",
+  [":hzoonqcuan"] = "伱攻程內脚色受傷旹,伱可發動.其占卜,伱可投出与占卜牌{異色/同色}牌令傷害值{-1/+1}",
 
   ["#hzoonqcuan-invoke"] = "渾元：%src 受傷,是否發動",
 
-  ["#hzoonqcuan1-invoke"] = "渾元：你可打出黑牌令 %dest 所受傷+1",
-  ["#hzoonqcuan2-invoke"] = "渾元：你可打出紅牌令 %dest 所受傷-1",
+  ["#hzoonqcuan1-invoke"] = "渾元：你可投出黑牌令 %dest 所受傷+1",
+  ["#hzoonqcuan2-invoke"] = "渾元：你可投出紅牌令 %dest 所受傷-1",
 }
 
 local spec = {

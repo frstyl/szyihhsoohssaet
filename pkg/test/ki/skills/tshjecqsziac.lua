@@ -1,6 +1,7 @@
 local tshjecqsziac = fk.CreateSkill{
   name = "tshjecqsziac",
   -- tags={Skill.Limited},
+  add_skills={"operate_card_skill"}
 }
 
 Fk:loadTranslationTable{
@@ -13,48 +14,17 @@ Fk:loadTranslationTable{
 }
 
 
--- local S = require "packages/szyihhsoohssaet/szyih_guos" 
+local S = require "packages/szyihhsoohssaet/szyih_guos" 
 
 
-tshjecqsziac:addEffect(fk.AfterCardsMove, {
+tshjecqsziac:addEffect(S.AfterOperateCard, {
+  priority=-1,--AfterDrawCard
   can_trigger = function(self, event, target, player, data)
-    if not player:hasSkill(tshjecqsziac.name)  then return end
-
-      for _, move in ipairs(data) do
-        return move.moveReason==fk.ReasonDraw and data.to==player --不同旹抽牌
-
-        -- if move.to == player and table.contains({Card.PlayerEquip,Card.PlayerHand }, move.toArea)  then
-        --   local ids = {}
-        --   for _, info in ipairs(move.moveInfo) do
-        --     if not (move.from==player and table.contains({Card.PlayerEquip,Card.PlayerHand }, info.fromArea) ) then
-        --       table.insertIfNeed(ids,info.cardId)
-        --     end
-        --   end
-
-        --   ids = table.filter(ids, function (id)  --simpleClone
-        --     return table.contains(player:getCardIds("he"), id)
-        --   end)
-        --   ids = player.room.logic:moveCardsHoldingAreaCheck(ids)
-        --   if #ids>0 then
-        --     event:setCostData(self,{cards=ids})
-        --   return true end
-
-        -- end
-
-      end
-        
-    
+    return  player:hasSkill(tshjecqsziac.name) 
+    and data.type==fk.ReasonDraw
+    and target==player
   end,
-  -- on_cost = function(self, event, target, player, data)
-  --  if player.room:askToViewCardsAndChoice(player, {  --askToChooseCardsAndChoice askToCards
-  --       cards = event:getCostData(self).cards,
-  --       choices = { "OK", "Cancel" },
-  --       skill_name = tshjecqsziac.name,
-  --       prompt = "#tshjecqsziac-invoke"
-  --     }) == "OK" then
-  --       return true
-  --     end
-  -- end,
+
   on_cost = function(self, event, target, player, data)
     local cards = player.room:askToCards(player, { ---@type AskToCardsParams
       min_num = 1,
@@ -106,4 +76,7 @@ tshjecqsziac:addEffect(fk.AfterCardsMove, {
     end
   end,
 })
+
+-- tshjecqsziac:addEffect(fk.BeforeDrawCard, {  --被防止
+
 return tshjecqsziac

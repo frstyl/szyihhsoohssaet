@@ -4,15 +4,15 @@ local paaskeecs = fk.CreateSkill {
 
 Fk:loadTranslationTable{
 ["paaskeecs"] = "霸徑",
-[":paaskeecs"] = "其它脚色主段執行旹,伱可打出1行動牌發動,該脚色當轉不可起動或轉化起動牌与伱所打出牌同色者",
-["#paaskeecs-ask"]="霸徑 打出牌 令 %src 不可起動打出同色牌",
+[":paaskeecs"] = "其它脚色主段始旹,伱可投出1行動牌發動,該脚色當轉起動子牌不可与伱所投出牌同色",
+["#paaskeecs-ask"]="霸徑 投出牌 令 %src 不可起動投出同色牌",
 ["@paaskeecs_prohibit"] = "霸徑",
 }
 
 local S = require "packages/szyihhsoohssaet/szyih_guos"
 
 
-paaskeecs:addEffect(fk.EventPhaseProceeding, {
+paaskeecs:addEffect(fk.EventPhaseStart, {
   anim_type = "control",
   can_trigger = function(self, event, target, player, data)
     return   target ~= player and player:hasSkill(paaskeecs.name) and target.phase == Player.Play and (not target.dead) 
@@ -48,7 +48,7 @@ paaskeecs:addEffect(fk.EventPhaseProceeding, {
 				attachedSkillAndUser={muteCard=true},
 			})
     room:addTableMarkIfNeed(target, "@paaskeecs_prohibit",card:getColorString())  --tos?
-	      room.logic:getCurrentEvent():findParent(Game.Phase):addCleaner(function()
+	      room.logic:getCurrentEvent():findParent(GameEvent.Turn):addCleaner(function()
 			room:setPlayerMark(target,"@paaskeecs_prohibit",nil)
       end)
   end,
@@ -65,17 +65,19 @@ paaskeecs:addEffect(fk.EventPhaseProceeding, {
   -- end,
 -- })
 
-paaskeecs:addEffect("prohibit", {  --不可起動打出同色牌 元版不能 轉化後牌不能 轉化歬牌不能 --肰則牌名殺?
+paaskeecs:addEffect("prohibit", {  --不可起動投出同色牌 元版不能 轉化後牌不能 轉化歬牌不能 --肰則牌名殺?
   prohibit_use = function(self, player, card)
     if player:getMark("@paaskeecs_prohibit")==0 then return end
-    if table.contains(player:getTableMark("@paaskeecs_prohibit"), card:getColorString()) then
-      return true
-    end
+
     if  card:isVirtual() then
       for _,id in ipairs(card.subcards) do
         if table.contains(player:getTableMark("@paaskeecs_prohibit"), Fk:getCardById(id):getColorString()) then
           return true
         end
+      end
+    else
+      if table.contains(player:getTableMark("@paaskeecs_prohibit"), card:getColorString()) then
+        return true
       end
     end
   end,

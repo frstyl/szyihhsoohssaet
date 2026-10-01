@@ -5,7 +5,7 @@ local tsiocsmoa = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["tsiocsmoa"] = "縱魔",
-  [":tsiocsmoa"] = "應動｡伱起動｢殺｣指定目幖旹,伱可迻除此目幖發動｡伱抽2,起動虛擬｢猛虎下山｣,此牌效果改爲:目幖可打出屬性｢殺｣,若打出伱抽1,否則伱予目幖1傷,目幖隨機自弃1牌",
+  [":tsiocsmoa"] = "應動｡伱起動｢殺｣指定目幖旹,伱可迻除此目幖發動｡伱抽1,起動虛擬｢猛虎下山｣,此牌效果改爲:目幖可演練屬性｢殺｣,若執行伱抽1,否則伱予其1傷,目幖隨機自弃1牌",
 
   ["#tsiocsmoa-invoke"] = "縱魔 是否對 %src發動",
 
@@ -31,9 +31,9 @@ tsiocsmoa:addEffect(fk.TargetConfirming, {
   on_use = function (self, event, target, player, data)
     local room = player.room
 
-    player:drawCards(2,tsiocsmoa.name)
+    player:drawCards(1,tsiocsmoa.name)
     data:cancelTarget(data.to)
-    if player.dead then return end
+    -- if player.dead then return end
 
     local card = Fk:cloneCard("maach_hsooh_hzaah_ssaen")
     card.skill=Fk.skills["tsiocsmoa__maach_hsooh_hzaah_ssaen_skill"]

@@ -195,7 +195,7 @@ Fk:loadTranslationTable{
 ["~ttiacqtshjec"] = "一技之長不足傍身",
 }
 
-General:new(extension, "teecqtoeoksoon", "kvoan", 6,5):addSkills{"bvoattsjens"}
+General:new(extension, "teecqtoeoksoon", "kvoan", 6,6):addSkills{"bvoattsjens"}
 Fk:loadTranslationTable{
 ["teecqtoeoksoon"] = "丁得孫",
 ["#teecqtoeoksoon"] = "中箭虎",

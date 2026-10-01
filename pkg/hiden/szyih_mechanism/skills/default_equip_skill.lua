@@ -40,7 +40,54 @@ skill:addEffect("cardskill", {
         prompt = "#GameRuleReplaceEquipment",
       })
     end
-  end
+  end,
+  on_action = function(self, room, use, finished)
+    room:sortByAction(use.tos)
+    local target=use.tos[1]
+    if not target then return end
+
+    local target = use.tos[1]
+    local subType = use.card.sub_type
+    local existingEquipId
+
+    if use.toPutSlot == nil and #target:getAvailableEquipSlots(subType)>1 then  --裝僃欄應幖號
+      local choices = table.map(target:getEquipments(subType), function(id, index)
+        return "#EquipmentChoice:" .. index .. "::" .. Fk:translate(Fk:getCardById(id).name)
+      end)
+      if target:hasEmptyEquipSlot(subType) then
+        table.insert(choices, Util.convertSubtypeAndEquipSlot(subType))
+      end
+      use.toPutSlot = room:askToChoice(target, {
+        choices = choices,
+        skill_name = "replace_equip",
+        prompt = "#GameRuleReplaceEquipment",
+      })
+
+      if use.toPutSlot:startsWith("#EquipmentChoice") then
+        local index = useCardData.toPutSlot:split(":")[2]
+        existingEquipId = target:getEquipments(useCardData.card.sub_type)[tonumber(index)]
+      end
+    end
+
+    local moves={}
+    if   existingEquipId  then  --有敘?
+      table.insert(moves,{
+        ids = { existingEquipId },
+        from = target,
+        toArea = Card.DiscardPile,
+        moveReason = fk.ReasonPutIntoDiscardPile,
+      }) 
+    end
+    table.insert(moves,{ ---@type CardsMoveInfo
+        ids = realCardIds,
+        to = target,
+        toArea = Card.PlayerEquip,
+        moveReason = fk.ReasonUse,
+      })
+    room:moveCards(moves)
+
+
+  end,
 })
 
 

@@ -1,9 +1,11 @@
 local attack_range = fk.CreateSkill{
-  name = "attack_range",
+  name = "change_attack_range",
 }
 
 
 Fk:loadTranslationTable{
+  -- ["change_attack_range"]="",
+  -- [":change_attack_range"]="",
 
   ["@minus_attack_range"] = "攻程-",
   ["@attack_range"] = "攻程",

@@ -6,7 +6,7 @@ local ddxenqtous = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["ddxenqtous"] = "纏鬥",
-  [":ddxenqtous"] = "印牌:以伱全部手牌(需大于1)轉化起動{殺/鬥將}｡此牌:无視距離次數制限制且不可響應;對目幖致傷旹,{其獲得x纏鬥幖記/伱可令非目幖已損脚色回復x},x爲此牌子牌數.幖記:有幖記者致傷旹,迻除1幖記,防止傷害.",
+  [":ddxenqtous"] = "印牌:以伱全部手牌(需有)轉化起動{殺/鬥將}｡此牌:繞過距離次數制限制且不可響應,對目幖致傷旹,{其獲得x纏鬥幖記/伱可令非目幖已損脚色回復x},x爲此牌子牌數.幖記:有幖記者致傷旹,迻除1幖記,防止傷害.",
 --失敗各抽1 --如過彊改陰陽轉換技
 
   ["#ddxenqtous"] = "纏鬥：將全部手牌轉化爲殺或鬥將",
@@ -54,7 +54,7 @@ ddxenqtous:addEffect("viewas", {
       -- player.room:setPlayerMark(player,"__ddxenqtous_tous_tsiacs-phase", t)
       use.extra_data=      use.extra_data or{}
       use.extra_data.ddxenqtous=t
-      use.extraUse=true
+      -- use.extraUse=true
   end,
   enabled_at_play = function(self, player)
     return not player:isKongcheng()  --不能用如手牌之牌

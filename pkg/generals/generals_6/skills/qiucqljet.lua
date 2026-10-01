@@ -4,11 +4,14 @@ local qiucqljet = fk.CreateSkill {
 
 Fk:loadTranslationTable{
 ["qiucqljet"] = "雄烈",
-[":qiucqljet"] = "伱起動殺指定目幖後伱可發動.伱与其同旹弃0至多手牌,若伱減其:手牌數差非正,此殺對其傷害基數+1;弃牌數差非負,其隨機弃置其手牌區1閃且不可抵消此殺｡",  --謀奕猜拳眞行
+[":qiucqljet"] = "伱起動殺指定目幖後伱可發動.伱与其同旹投出0至多手牌,若伱較其:手牌數差非正,此殺對其傷害基數+1;投出牌數差非負,其隨機弃置其手牌區1閃且不可抵消此殺｡",  --謀奕猜拳眞行
 
 ["#qiucqljet-invoke"] = "雄烈 是否對%src 發動",
+["#qiucqljet-discard"] = "雄烈 投出手牌",
 -- ["#qiucqljetResult"] = "雄烈: %from 于 %to 手牌數 %arg",
 }
+
+local S = require "packages/szyihhsoohssaet/szyih_guos" 
 
 qiucqljet:addEffect(fk.TargetConfirmed, {
   anim_type = "offensive",
@@ -24,33 +27,43 @@ qiucqljet:addEffect(fk.TargetConfirmed, {
   on_use = function(self, event, target, player, data)
     local room=player.room
     local to =data.to
-
-    local result = room:askToJointCards(player, {
+    local param={
       players = { player, to },
       min_num = 0,
       max_num = 999,
       cancelable = false,
       skill_name = qiucqljet.name,
       prompt = "#qiucqljet-discard",
-      will_throw = true,
-    })
+      -- will_throw = true,
+      pattern=".",
+    }
+
+    local pattern=table.filter( player:getCardIds("h"),function(id) return  not player:prohibitResponse(Fk:getCardById(id)) end )
+    table.insertTable(pattern, table.filter( to:getCardIds("h"),function(id) return  not to:prohibitResponse(Fk:getCardById(id)) end ))
+    local result = room:askToJointCards(player, param)
+
+
+    -- local result =  S.askToChooseCardExclusively(player, param, fk.ReasonResponse)
     local moves = {}
     local dis={}
+    local card_ids={}
     for _, p in ipairs({ player, to }) do
       local cards = result[p] or {}
       dis[p]=#cards 
-      if #cards > 0 then
-        table.insert(moves, {
-          ids = cards,
-          from = p,
-          toArea = Card.DiscardPile,
-          moveReason = fk.ReasonDiscard,
-          proposer = p,
-          skillName = qiucqljet.name,
-        })
-      end
+      moves[p]={card_ids=cards, skillName=qiucqljet.name,from=p}
+      table.insertTable(card_ids,cards)
+        -- table.insert(moves, {
+        --   ids = cards,
+        --   from = p,
+        --   toArea = Card.DiscardPile,
+        --   moveReason = fk.ReasonResponse,
+        --   proposer = p,
+        --   skillName = qiucqljet.name,
+        -- })
     end
-    room:moveCards(table.unpack(moves))
+    -- room:moveCards(table.unpack(moves))
+    -- S.playCardSimultaneously(moves)
+    room:moveCardTo(card_ids, Card.DiscardPile, nil, fk.ReasonResponse)
     if to.dead then return end
 
     local n = player:getHandcardNum()-to:getHandcardNum()

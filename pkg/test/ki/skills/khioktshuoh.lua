@@ -4,7 +4,7 @@ local khioktshuoh = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["khioktshuoh"] = "曲取",
-  [":khioktshuoh"] = "伱起動牌指定其它腳色爲目幖後,伱可發動.其抽1,肰後伱取得其1牌",
+  [":khioktshuoh"] = "伱起動牌指定其它腳色爲目幖後,伱可發動.其抽1,伱取得其1牌",
 
   ["#khioktshuoh-ask"] = "曲取 是否對 %src 發動",
   ["#khioktshuoh-choose"] = "曲取 選擇1手牌",

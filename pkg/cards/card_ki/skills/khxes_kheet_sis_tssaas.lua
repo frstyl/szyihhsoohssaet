@@ -1,15 +1,22 @@
 local skill = fk.CreateSkill {
   name = "khxes_kheet_sis_tssaas_skill",
 }
--- local S = require "packages/szyihhsoohssaet/szyih_guos" 
+local S = require "packages/szyihhsoohssaet/szyih_guos" 
 
 skill:addEffect("cardskill", {
   prompt = "#khxes_kheet_sis_tssaas_skill",
+  max_round_use_time = 1,
+  target_num = 1,
   mod_target_filter = function(self, player, to_select, selected, card, distance_limited)
     return to_select ~= player
+    and
+      ((extra_data and extra_data.bypass_times)
+        or self:withinTimesLimit(player, Player.HistoryRound, card, "khxes_kheet_sis_tssaas", to_select)
+  )
   end,
-  target_filter = Util.CardTargetFilter,
-  target_num = 1,
+  target_filter = function(self, player, to_select, selected, _, card, extra_data)
+    return S.delayTargetFilter(self, player, to_select, selected, _, card, extra_data)
+  end,
   offset_func= Util.FalseFunc,
   on_effect = function(self, room, effect)
     if not (effect.extar_data and  effect.extar_data.phase_data) then return end
@@ -83,7 +90,8 @@ skill:addEffect(fk.EventPhaseChanging , {
     or (data.phase==Player.Play and "khxes_kheet_sis_tssaas") 
     or (data.phase==Player.Draw and "tvoans_liac_dzyet_quan") 
 
-    for _,cid in  ipairs(target:getCardIds(Player.Judge)) do
+    for _,cid in  pairs(target:getCardIds(Player.Judge)) do
+      if data.phase_end then return end
       local c=   target:getVirtualEquip(cid) or Fk:getCardById(cid)
       if c.trueName==name then exe(c)  end
     end

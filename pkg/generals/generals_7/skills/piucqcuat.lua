@@ -1,6 +1,6 @@
 Fk:loadTranslationTable{
   ["piucqcuat"] = "風月",
-  [":piucqcuat"] = "伱末段始,伱可發動.伱抽1,若有其它存活女脚色,改爲抽2,伱選1牌交与1女脚色",
+  [":piucqcuat"] = "伱末段始,伱可發動.伱抽1,若有其它存活女脚色,改爲抽2,伱可選1牌交与1女脚色",
 
   ["$piucqcuat1"] = "惹得煙花三兩支",
   ["#piucqcuat-give-choose"] = "風月 選擇 1 牌交与1其它女脚色",
@@ -11,6 +11,8 @@ local piucqcuat = fk.CreateSkill{
   name = "piucqcuat",
 }
 
+local S = require "packages/szyihhsoohssaet/szyih_guos" 
+
 piucqcuat:addEffect(fk.EventPhaseStart, {
   anim_type = "drawcard",
   can_trigger = function(self, event, target, player, data)
@@ -20,7 +22,7 @@ piucqcuat:addEffect(fk.EventPhaseStart, {
     local room=player.room
     local ps={}
     for _,p in ipairs(room:getOtherPlayers(player)) do
-      if p:isFemale() then
+      if S.isFemale(p) then
         table.insert(ps,p)
       end
     end
@@ -37,8 +39,9 @@ piucqcuat:addEffect(fk.EventPhaseStart, {
         targets = ps,
         skill_name = piucqcuat.name,
         prompt = "#piucqcuat-give-choose",
-        cancelable = flase,  --theemh
+        cancelable = true,  --theemh
         will_throw = false,
+		include_equip=true,
       })
       if #tos>0 and #cards>0 then
         room:moveCardTo(cards, Player.Hand, tos[1], fk.ReasonGive, piucqcuat.name, nil, false, tos[1].id)

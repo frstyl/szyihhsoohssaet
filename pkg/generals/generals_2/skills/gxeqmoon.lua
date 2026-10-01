@@ -6,7 +6,7 @@ local gxeqmoon= fk.CreateSkill({
 
 Fk:loadTranslationTable{
 ["gxeqmoon"] = "奇門",
-[":gxeqmoon"] = "一脚色轉始歬,選擇一其它脚色A發動(不能已被奇門).A占卜.占卜後伱可打出1手牌与占卜牌同色,令A失去當旹全部技能,轉終旹或此技能離場旹A獲得因此所失技能.",
+[":gxeqmoon"] = "一脚色轉始歬,選擇一其它脚色A發動(不能已被奇門).A占卜.占卜後伱可投出1手牌与占卜牌同色,令A失去當旹全部技能,轉終旹或此技能離場旹A獲得因此所失技能.",
 ["#gxeqmoon-choose"] = "奇門 %src轉始 選擇一脚色，令其占卜",
 ["#gxeqmoon-discard"] = "奇門 弃1 %arg 手牌令 %src  失去技能至轉終",
 ["@[:]gxeqmoon"] = "奇門 ",
@@ -112,10 +112,10 @@ gxeqmoon:addEffect(fk.BeforeTurnStart,{  --未始
 
 
 gxeqmoon:addEffect(fk.TurnEnd,{   --目幖
-  can_refresh = function(self, event, target, player, data)
+  can_trigger = function(self, event, target, player, data)
     return target == player  --行動敘
   end,
-  on_refresh = function(self, event, target, player, data)
+  on_trigger = function(self, event, target, player, data)
     local room = player.room
 		for _,p in pairs(room.alive_players) do
 			if p:getMark("@[:]gxeqmoon") ~= 0  then --目幖
@@ -157,21 +157,21 @@ local clean_spec =function(player)  --源
 end
 
 gxeqmoon:addEffect(fk.Death,{ 
-  can_refresh = function(self, event, target, player, data)
+  can_trigger = function(self, event, target, player, data)
     return target == player and player:getMark("gxeqmoon_target") ~= 0  --源
   end,
-  on_refresh = function(self, event, target, player, data)
+  on_trigger = function(self, event, target, player, data)
 		clean_spec(player)
 	end,
 })
 
 gxeqmoon:addEffect(fk.EventLoseSkill,{ --可能无失機而不回復?
-  can_refresh = function(self, event, target, player, data)
+  can_trigger = function(self, event, target, player, data)
     return target == player
 		 and data.skill.name==gxeqmoon.name
 		 and player:getMark("gxeqmoon_target") ~= 0
   end,
-  on_refresh = function(self, event, target, player, data)
+  on_trigger = function(self, event, target, player, data)
 		clean_spec(player)
 	end,
 })

@@ -16,7 +16,12 @@ tsziukzzyit_hzaechquns:addEffect(fk.TurnStart, {
   end,
   on_trigger = function(self, event, target, player, data)
     player.room:sendLog{ type = "#tthxinsdook-effected", from = player.id}
-    player.room:throwCard(table.random(player:getCardIds("h"),1),tsziukzzyit_hzaechquns.name,player,player)
+    local n =player:getMark("@tsziukzzyit_tthxinsdook")>3 and 1 or 2
+    if #player:getCardIds("h")>=n then
+    player.room:throwCard(room:tableRandomPick(player:getCardIds("h"),n),tsziukzzyit_hzaechquns.name,player,player)
+    else
+      room:loseHp(player,1,tsziukzzyit_hzaechquns.name, player)
+    end
   end,
 })
 

@@ -5,8 +5,8 @@ local khoucqmoon = fk.CreateSkill {
 }
 
 Fk:loadTranslationTable{
-  ["khoucqmoon"] = "空門",
-  [":khoucqmoon"] = "伱失去伱冣後手牌後,必發,伱回1.伱減去伱冣後體力後,必發,伱抽1｡恆續,若伱无手牌,伱不是進攻牌距離目幖",
+  ["khoucqmoon"] = "空門",  --用熵
+  [":khoucqmoon"] = "伱失去伱冣後手牌後,必發,伱回1.伱減去伱冣後體力後,必發,伱抽1｡恆續,若伱无手牌,伱不是進攻牌合理目幖",
 
   ["#khoucqmoon-invoke"] = "背水 是否發動 不選目幖則抽牌",
 

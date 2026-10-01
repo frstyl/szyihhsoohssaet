@@ -4,10 +4,10 @@ local tszyiqphioc = fk.CreateSkill {
 
 
 Fk:loadTranslationTable{ --拆解
-  ["tszyiqphioc"] = "錐鋒",
+  ["tszyiqphioc"] = "椎鋒",
   [":tszyiqphioc"] = "伱起動殺指定目幖後伱可選1項發動.➀弃置其x牌➁對其傷害基數+y(x=其體力值,y=下整(其此刻手牌數/2))",
 
-  ["#tszyiqphioc-invoke"] = "錐鋒 令 %src 執行1項",
+  ["#tszyiqphioc-invoke"] = "椎鋒 令 %src 執行1項",
   ["tszyiqphioc-discard"] = "展示全部牌 弃置全部閃",
   ["tszyiqphioc-damage"] = "傷害基數+1",
 

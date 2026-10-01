@@ -4,9 +4,9 @@ local hzoavqtooh = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["hzoavqtooh"] = "𠢕賭",
-  [":hzoavqtooh"] = "伱預段末段始旹,伱可預打1黑桃牌發動.伱預測牌堆頂5牌點數分布爲大(8~13點至多)或小(1~6點至多),亮出牌堆頂5牌.若伱測對,伱取得對應點數之牌.冣後將餘牌廢置.其它脚色可于聲明旹參与,伱執行檢譣後,對者抽1,錯者弃1",
+  [":hzoavqtooh"] = "伱預段末段始旹,伱可預弃置1♠️或♥️牌發動.伱預測牌堆頂5牌點數分布爲大(8~13點至多)或小(1~6點至多),亮出牌堆頂5牌.若伱測對,伱取得對應點數之牌.冣後將餘牌廢置.其它脚色可于聲明旹參与,伱執行檢譣後,對者抽1,錯者弃1",
 
-  ["#hzoavqtooh-invoke"] = "𠢕賭 打出1黑桃牌發動",
+  ["#hzoavqtooh-invoke"] = "𠢕賭 投出1黑桃牌發動",
   ["#hzoavqtooh-choose"] = "𠢕賭 選擇大(8~13點多)小(1~6點多)",
   ["#hzoavqtooh-Cancel"] = "𠢕賭 不賭",
   ["#hzoavqtooh-discard"] = "𠢕賭 失敗 弃1牌",
@@ -30,7 +30,7 @@ hzoavqtooh:addEffect(fk.EventPhaseStart, {
     return target == player and player:hasSkill(hzoavqtooh.name) and (player.phase == Player.Finish or player.phase == Player.Start )
   end,
   on_cost = function(self, event, target, player, data)
-    local cards =  S.askToPlayCard(player, {
+    local cards =  player.room.askToDiscard(player, {
       min_num = 1,
       max_num = 1,
       include_equip = true,
@@ -47,32 +47,40 @@ hzoavqtooh:addEffect(fk.EventPhaseStart, {
   end,
   on_use = function(self, event, target, player, data)
     local room = player.room
-    S.playCard(event:getCostData(self).cards,hzoavqtooh.name,player)
+    -- S.playCard(event:getCostData(self).cards,hzoavqtooh.name,player)
+    room:throwCard(event:getCostData(self).cards,hzoavqtooh.name,player,player)
+    if not player.dead then
+      local playerchoice=room:askToChoice(player, {
+        choices = {"hzoavqtooh-doar","hzoavqtooh-sjevh"},
+        skill_name = hzoavqtooh.name,
+        prompt="#hzoavqtooh-choose",
+      })
+      room:sendLog{ type = "#hzoavqtooh-choose", from = player.id, arg = hzoavqtooh.name ,arg2= playerchoice}
+      local params = {
+        players = room:getOtherPlayers(player),
+        choices = {"hzoavqtooh-doar","hzoavqtooh-sjevh","hzoavqtooh-Cancel"},
+        prompt = "#hzoavqtooh-choose",
+        skillName = hzoavqtooh.name,
+        send_log = true,
+      }
+    end
 
-    local playerchoice=room:askToChoice(player, {
-      choices = {"hzoavqtooh-doar","hzoavqtooh-sjevh"},
-      skill_name = hzoavqtooh.name,
-      prompt="#hzoavqtooh-choose",
-    })
-    room:sendLog{ type = "#hzoavqtooh-choose", from = player.id, arg = hzoavqtooh.name ,arg2= playerchoice}
-    local params = {
-      players = room:getOtherPlayers(player),
-      choices = {"hzoavqtooh-doar","hzoavqtooh-sjevh","hzoavqtooh-Cancel"},
-      prompt = "#hzoavqtooh-choose",
-      skillName = hzoavqtooh.name,
-      send_log = true,
-    }
-   
     local req = player.room:askToJointChoice(player,params)
 
     local cards=room:getNCards(5)
+    room.logic:getCurrentEvent():addCleaner(function()
+        room:cleanProcessingArea(cards,hzoavqtooh.name)
+    end)
     room:moveCards({
       ids = cards,
       toArea = Card.Processing,
       moveReason = fk.ReasonPrey,
       skillName = hzoavqtooh.name,
       proposer = player.id,
-    })    
+    })
+
+
+
     -- room:showCards(cards)
 
     -- local sjevh={}
@@ -80,7 +88,7 @@ hzoavqtooh:addEffect(fk.EventPhaseStart, {
     local get={}
     get["hzoavqtooh-sjevh"]={}
     get["hzoavqtooh-doar"]={}
-    get["hzoavqtooh-other"]={}
+    get["hzoavqtooh-other"]={}  --7點 0點
     for _, id in ipairs(cards) do
       local n=Fk:getCardById(id).number
       if 0<n and n<7 then
@@ -96,15 +104,13 @@ hzoavqtooh:addEffect(fk.EventPhaseStart, {
     end
     local x,y,z =#get["hzoavqtooh-sjevh"],#get["hzoavqtooh-other"],#get["hzoavqtooh-doar"]
     local result={}
-    if y>x and  y>z then
-      result={}  --thouc booj
-    elseif x==z and x>=z then
-      result={"hzoavqtooh-sjevh","hzoavqtooh-doar"}  --thouc ssaet
-    elseif x>y and x>=z then
+    if x>=y and x>=z then 
       result={"hzoavqtooh-sjevh"}
-    elseif z>x and z>=y then
+    end
+    if z>=x and z>=y then 
       result={"hzoavqtooh-doar"}
     end
+
     
     local arg2=""
     if #result==1 then 
@@ -142,7 +148,9 @@ hzoavqtooh:addEffect(fk.EventPhaseStart, {
       end
     end
 
-    room:cleanProcessingArea(cards)
+
+
+    
 
   end,
 })

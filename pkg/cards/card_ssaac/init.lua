@@ -115,7 +115,7 @@ douc_ssaac_giocx_sjih,
 
 local bioc_hsioc_hsfas_kjit = fk.CreateCard{
   name = "bioc_hsioc_hsfas_kjit",
-  type = Card.TypeTrick, --法術 
+  type = Card.TypeTrick, --/法術牌/ 
   skill = "bioc_hsioc_hsfas_kjit_skill",
   multiple_targets = true,
 }
@@ -139,9 +139,7 @@ local lih_doeojs_doav_kiac = fk.CreateCard{
   skill = "lih_doeojs_doav_kiac_skill",
   is_passive=true,
 }
-extension:loadCardSkels {
-lih_doeojs_doav_kiac,
-}
+extension:loadCardSkels {lih_doeojs_doav_kiac,}
 
 local refingency = fk.CreateCard{  --名不同
   name = "refingency",
@@ -407,140 +405,160 @@ Fk:loadTranslationTable{
   ["magic"] = "法術牌",
 
   -- ["lvoans_tszjens_ssaet"] = "亂戰殺",
-  -- [":lvoans_tszjens_ssaet"] = "行動  <br /><b>旹機</b>：主段執行旹  <br /><b>目幖</b>：攻程內其它脚色  <br /><b>效果</b>：此牌隨機轉爲3種殺之1。",
+  -- [":lvoans_tszjens_ssaet"] = "行動  <br/><b>旹機</b>：主段執行旹  <br/><b>目幖</b>：攻程內其它脚色  <br/><b>效果</b>：此牌隨機轉爲3種殺之1。",
 
   ["chaos__ssaet"] = "亂戰殺",
-  [":chaos__ssaet"] = "行動  <br /><b>旹機</b>：主段執行旹  <br /><b>目幖</b>：其它脚色  <br /><b>目幖數</b>：1 <br /><b>距離</b>：伱攻程内  <br /><b>次數</b>：同名牌每段限1次  額外</b>:結算前隨機變爲{无屬/雷/火}殺",
+  [":chaos__ssaet"] = "/行動牌/  <br/><b>旹機</b>：主段執行旹  <br/><b>目幖</b>：其它脚色  <br/><b>目幖數</b>：1 <br/><b>距離</b>：伱攻程内  <br/><b>次數</b>：每腳色每牌名每段限1次    額外</b>：結算前隨機變爲{无屬/雷/火}殺,效果增加:伱爲目幖附加隨機咒術",
   ["chaos__ssaet_skill"] = "亂戰殺",
   ["#chaos__ssaet_skill"] = "亂戰殺 選攻程內1其它脚色,對予其1傷",
   ["@@card_damage_nature-phase"] = "亂戰殺",
   ["#chaos__ssaet_nature"] = "%arg2 屬性爲 %arg",
 
   ["chaos__szjemh"] = "亂戰閃",
-  [":chaos__szjemh"] = "行動  <br /><b>旹機</b>：｢殺｣对你生效前  <br /><b>目幖</b>：此｢殺｣  <br /><b>效果</b>：抵消此｢殺｣效果,迻除伱咒術。 <br /><b>額外</b>：因動-抵消｡殺目幖需爲伱｡每旹機限1次｡",
+  [":chaos__szjemh"] = "/行動牌/  <br/><b>旹機</b>：｢殺｣对你生效前  <br/><b>目幖</b>：此｢殺｣  <br/><b>效果</b>：抵消此｢殺｣效果,迻除伱咒術。 <br/><b>額外</b>：因動-抵消｡每旹機限1次｡",
   ["chaos__szjemh_skill"] = "亂戰閃",
   ["#chaos__szjemh_skill"] = "亂戰閃",
 
   -- ["lvoans_tszjens_szjemh"] = "亂戰閃",
-  -- [":lvoans_tszjens_szjemh"] = "行動  <br /><b>旹機</b>：殺對伱生效歬  <br /><b>目幖</b>：此殺  <br /><b>效果</b>：抵消此殺。",
+  -- [":lvoans_tszjens_szjemh"] = "行動  <br/><b>旹機</b>：殺對伱生效歬  <br/><b>目幖</b>：此殺  <br/><b>效果</b>：抵消此殺。",
   -- ["lvoans_tszjens_szjemh"] = "亂戰閃 抵消此殺。",
 
   ["jiak"] = "藥",
-  [":jiak"] = "物資  <br /><b>旹機</b>：主段執行旹  <br /><b>目幖</b>：已損脚色      <br/><b>目幖數</b>:1  <br /><b>效果</b>：目幖回1,解除咒術。",
+  [":jiak"] = "/物資牌/  <br/><b>旹機</b>：主段執行旹  <br/><b>目幖</b>：已損脚色      <br/><b>目幖數</b>:1  <br/><b>效果</b>：目幖回1,解除咒術。",
   ["jiak_skill"] = "藥 目幖回1,解除咒術",
 
 
-
-
   ["mxevs_svoans_quo_seen"] = "廟算于先",
-  [":mxevs_svoans_quo_seen"] = "計謀  <br/><b>旹機</b>:主段執行旹  <br/><b>目幖</b>:无限制      <br/><b>目幖數</b>:伱  <br/><b>效果</b>:目幖自3个隨機計謀名選1,計謀无視距離不可抵消",
+  [":mxevs_svoans_quo_seen"] = "/謀策牌/  <br/><b>旹機</b>:主段執行旹  <br/><b>目幖</b>:无限制      <br/><b>目幖數</b>:伱  <br/><b>效果</b>:目幖自3个隨機謀策名選1,謀策无視距離不可抵消",
   ["mxevs_svoans_quo_seen_skill"] = "廟算于先",
-  ["#mxevs_svoans_quo_seen_skill"] = "廟算于先 對自己起動 自3个隨機計謀名選1獲得",
+  ["#mxevs_svoans_quo_seen_skill"] = "廟算于先 對自己起動 自3个隨機謀策名選1獲得",
   ["#mxevs_svoans_quo_seen_skill-choose"] = "廟算于先 選擇牌名",
   ["@@mxevs_svoans_quo_seen-turn"] = "廟算于先",
 
+  ["refingency"] = "轉景",
+  [":refingency"] = "/法術牌/  <br/><b>旹機</b>：伱成爲牌僅存目幖旹  <br/><b>消耗</b>:2法力  <br/><b>目幖</b>：无限制  <br/><b>目幖數</b>：1     <br/><b>效果</b>：轉迻目幖",
+  ["refingency_cost"] = "2",
+  ["#refingency-use"] = "轉景 轉移 %arg ",
+  ["refingency_skill"] = "轉景",
+  [":refingency_skill"] = "轉移牌目幖",
+
   ["hzvoans_tsiacs"] = "應物變化",
-  [":hzvoans_tsiacs"] = "法術  <br/><b>旹機</b>:主段執行旹  <br/><b>目幖</b>:无限制    <br/><b>目幖數</b>:1  <br/><b>預起動</b>:伱 <br/><b>效果</b>:目幖自3个隨機將牌選1替換當前將牌",
+  [":hzvoans_tsiacs"] = "/法術牌/  <br/><b>旹機</b>:主段執行旹  <br/><b>消耗</b>:2法力  <br/><b>目幖</b>:无限制    <br/><b>目幖數</b>:1  <br/><b>預起動</b>:伱 <br/><b>效果</b>:目幖自3个隨機將牌選1替換當前將牌",
+  ["hzvoans_tsiacs_cost"] = "2",
   ["hzvoans_tsiacs_skill"] = "應物變化",
   ["#hzvoans_tsiacs_skill"] = "應物變化 對自己起動 自3个隨機將牌選1替換當前將牌",
   ["#hzvoans_tsiacs_skill-choose"] = "應物變化 選擇將牌",
 
   
   ["tsjas_szji_hzfan_hzoon"] = "借屍還䰟",
-  [":tsjas_szji_hzfan_hzoon"] = "法術  <br/><b>旹機</b>:1脚色A進入瀕死旹  <br/><b>目幖</b>:死亾脚色B    <br/><b>目幖數</b>:1   <br/><b>效果</b>:A死亡,B 抽3牌1體力復活  <br /><b>額外</b>：因動｡每旹機限1次,全體脚色同旹選擇是否起動",
+  [":tsjas_szji_hzfan_hzoon"] = "/法術牌/  <br/><b>旹機</b>:1脚色A進入瀕死旹  <br/><b>消耗</b>:3法力  <br/><b>目幖</b>:死亾脚色B    <br/><b>目幖數</b>:1   <br/><b>效果</b>:A死亡,B 抽3牌1體力復活  <br/><b>額外</b>：因動｡每旹機限1次,全體脚色同旹選擇是否起動",
+  ["#tsjas_szji_hzfan_hzoon-use"] = "借屍還䰟 對死亾脚色起動 其復活",
+  ["tsjas_szji_hzfan_hzoon_cost"] = "3",
   ["tsjas_szji_hzfan_hzoon_skill"] = "借屍還䰟",
   ["#tsjas_szji_hzfan_hzoon_skill"] = "借屍還䰟 對死亾脚色起動 其復活",
 
 
   ["szjep_hzoon"] = "攝䰟",
-  [":szjep_hzoon"] = "法術  <br/><b>旹機</b>:主段執行旹  <br/><b>目幖</b>:A,B    <br /><b>目幖數</b>：1  <br/><b>效果</b>:A生爲死B爲死  <br/><b>額外</b>:死脚色受傷後,生脚色回復傷害值體力",
+  [":szjep_hzoon"] = "/法術牌/  <br/><b>旹機</b>:主段執行旹  <br/><b>消耗</b>:1法力  <br/><b>目幖</b>:A,B    <br/><b>目幖數</b>：1  <br/><b>效果</b>:A生爲死B爲死  <br/><b>額外</b>:死脚色受傷後,生脚色回復傷害值體力",
+  ["szjep_hzoon_cost"] = "1",
   ["#szjep_hzoon_skill"] = "攝䰟 A生爲死B爲死",
 
   ["jje_seec_jjek_sius"] = "迻星易宿",
-  [":jje_seec_jjek_sius"] = "法術  <br /><b>旹機</b>：主段執行旹  <br /><b>目幖</b>：其它脚色  <br /><b>目幖數</b>：1  <br /><b>效果</b>：目幖體力-x,伱+x(x隨機,至少爲1,至多爲max{1,min{伱已損體力數,目幖體力數-1}})",
+  [":jje_seec_jjek_sius"] = "/法術牌/  <br/><b>旹機</b>：主段執行旹  <br/><b>消耗</b>:2法力  <br/><b>目幖</b>：其它脚色  <br/><b>目幖數</b>：1  <br/><b>效果</b>：目幖體力-x,伱+x(x隨機,至少爲1,至多爲max{1,min{伱已損體力數,目幖體力數-1}})",
+  ["jje_seec_jjek_sius_cost"] = "2",
   ["#jje_seec_jjek_sius_skill"] = "迻星易宿 選1其它脚色 目幖體力-x,伱+x(x隨機,至少爲1,至多爲max{1,min{伱已損體力數,目幖體力數-1}})",
+
   ["douc_ssaac_giocx_sjih"] = "同生共死", --靈魂連
-  [":douc_ssaac_giocx_sjih"] = "法術  <br/><b>旹機</b>:主段執行旹  <br/><b>目幖</b>:无限制    <br/><b>目幖數</b>:1至多  <br/><b>預起動</b>:全部脚色  <br/><b>效果</b>:一脚色體力變化後,其它脚色執行相同效果",
+  [":douc_ssaac_giocx_sjih"] = "/法術牌/  <br/><b>旹機</b>:主段執行旹   <br/><b>消耗</b>:1法力  <br/><b>目幖</b>:无限制    <br/><b>目幖數</b>:1至多  <br/><b>預起動</b>:全部脚色  <br/><b>效果</b>:一脚色體力變化後,其它脚色執行相同效果",
+  ["douc_ssaac_giocx_sjih_cost"] = "1",
   ["douc_ssaac_giocx_sjih_skill"] = "同生共死",
   ["#douc_ssaac_giocx_sjih_skill"] = "同生共死 一脚色體力變化後,其它脚色執行相同效果", --靈魂連
   ["@@douc_ssaac_giocx_sjih"] = "同生共死",
 
   ["khuo_kujh_dzziuk_zja"] = "驅鬼逐邪",
-  [":khuo_kujh_dzziuk_zja"] = "法術  <br /><b>旹機</b>：➀主段執行旹/➁一脚色復活前  <br /><b>目幖</b>：1至2有咒術脚色/此死亾脚色  <br /><b>目幖數</b>：1至2/1  <br /><b>效果</b>：迻除目幖咒術/防止復活",
+  [":khuo_kujh_dzziuk_zja"] = "/法術牌/  <br/><b>旹機</b>：➀主段執行旹/➁一脚色復活前  <br/><b>消耗</b>:1法力  <br/><b>目幖</b>：1至2有咒術脚色/此死亾脚色  <br/><b>目幖數</b>：1至2/1  <br/><b>效果</b>：迻除目幖咒術/防止復活",
+  ["khuo_kujh_dzziuk_zja_cost"] = "1",
+  ["#khuo_kujh_dzziuk_zja_use"] = "驅鬼逐邪 防止復活",
   ["#khuo_kujh_dzziuk_zja_skill"] = "驅鬼逐邪 選1至2有咒術脚色 迻除目幖咒術",
 
   ["tsoeojs_ssaac"] = "枯木逢萅",--khoo_mouk_bioc_tszhyin
-  [":tsoeojs_ssaac"] = "法術  <br/><b>旹機</b>:主段執行旹  <br/><b>目幖</b>:无限制  <br /><b>目幖數</b>：1至多  <br /><b>預起動</b>：選擇全部合理目幖  <br/><b>效果</b>:目幖各回復體力至滿,弃x手牌(x爲所回體力數)",
+  [":tsoeojs_ssaac"] = "/法術牌/  <br/><b>旹機</b>:主段執行旹  <br/><b>消耗</b>:3法力  <br/><b>目幖</b>:无限制  <br/><b>目幖數</b>：1至多  <br/><b>預起動</b>：選擇全部合理目幖  <br/><b>效果</b>:目幖各回復體力至滿,弃x手牌(x爲所回體力數)",
+  ["tsoeojs_ssaac_cost"] = "3",
   ["tsoeojs_ssaac__skill"] = "枯木逢萅",
   ["#tsoeojs_ssaac_skill"] = "枯木逢萅 全體各回復體力至滿,弃x手牌(x爲所回體力數)",
   ["#tsoeojs_ssaac-discard"] = "枯木逢萅 弃%arg手牌",
 
   ["tsoeoj_hzvoah"] = "災禍",
-  [":tsoeoj_hzvoah"] = "法術  <br/><b>旹機</b>:主段執行旹  <br/><b>目幖</b>:其它脚色    <br /><b>目幖數</b>：1至多  <br /><b>預起動</b>：選擇全部合理目幖  <br/><b>效果</b>:目幖選擇可演練1紅色牌,未執行附加隨機負面咒術",
+  [":tsoeoj_hzvoah"] = "/法術牌/  <br/><b>旹機</b>:主段執行旹  <br/><b>消耗</b>:3法力  <br/><b>目幖</b>:其它脚色    <br/><b>目幖數</b>：1至多  <br/><b>預起動</b>：選擇全部合理目幖  <br/><b>效果</b>:目幖選擇可演練1紅色牌,未執行附加隨機負面咒術",
+  ["tsoeoj_hzvoah_cost"] = "3",
   ["tsoeoj_hzvoah_skill"] = "災禍",
   ["#tsoeoj_hzvoah_skill"] = "災禍 目幖選擇➀演練1紅色牌➁附加隨機負面咒術",
   ["#tsoeoj_hzvoah_skill-ask"] = "災禍 請演練紅色牌",
 
   ["bioc_hsioc_hsfas_kjit"] = "逢凶化吉",
-  [":bioc_hsioc_hsfas_kjit"] = "法術  <br /><b>旹機</b>：主段執行旹  <br /><b>目幖</b>：无限制  <br /><b>目幖數</b>：1至多  <br /><b>預起動</b>：選擇全部合理目幖   <br /><b>效果</b>：目幖抽x,x爲其已損體力數。",
+  [":bioc_hsioc_hsfas_kjit"] = "/法術牌/  <br/><b>旹機</b>：主段執行旹  <br/><b>消耗</b>:3法力  <br/><b>目幖</b>：无限制  <br/><b>目幖數</b>：1至多  <br/><b>預起動</b>：選擇全部合理目幖   <br/><b>效果</b>：目幖抽x,x爲其已損體力數。",
+  ["bioc_hsioc_hsfas_kjit_cost"] = "3",
   ["bioc_hsioc_hsfas_kjit_skill"] = "逢凶化吉",
   ["#bioc_hsioc_hsfas_kjit_skill"] = "全脚色抽牌 數量爲其已損體力數",
 
 
   ["lioc_zzja_khih_liuk"] = "龍蛇起陸", --
-  [":lioc_zzja_khih_liuk"] = "法術  <br/><b>旹機</b>:主段執行旹  <br/><b>目幖</b>:无目幖    <br/><b>目幖數</b>:0  <br/><b>效果</b>:起動者下家執行:伱失去1體力,若伱未因此死亾,伱下家執行此效果  <br /><b>額外</b>：全體脚色已損才可起動",
+  [":lioc_zzja_khih_liuk"] = "/法術牌/  <br/><b>旹機</b>:主段執行旹  <br/><b>消耗</b>:4法力  <br/><b>目幖</b>:无目幖    <br/><b>目幖數</b>:0  <br/><b>效果</b>:起動者下家執行:伱失去1體力,若伱未因此死亾,伱下家執行此效果  <br/><b>額外</b>：全體脚色已損才可起動",
+  ["lioc_zzja_khih_liuk_cost"] = "4", --
   ["lioc_zzja_khih_liuk_skill"] = "龍蛇起陸",
   ["#lioc_zzja_khih_liuk_skill"] = "龍蛇起陸  伱下家執行:其失去1體力,若其未因此死亾,其下家執行", --
 
   ["theen_djis_puanh_phius"] = "天地反覆",
-  [":theen_djis_puanh_phius"] = "法術牌  <br /><b>旹機</b>：主段執行旹  <br /><b>目幖</b>：无  <br /><b>目幖數</b>：0  <br /><b>效果</b>：全體脚色依次執行,若其存𣴠其流失1,若其死亾,其復𣴠(若體力上限小于1改爲1)。",
+  [":theen_djis_puanh_phius"] = "/法術牌/  <br/><b>旹機</b>：主段執行旹  <br/><b>消耗</b>:4法力  <br/><b>目幖</b>：无  <br/><b>目幖數</b>：0  <br/><b>效果</b>：全體脚色依次執行,若其存𣴠其流失1,若其死亾,其復𣴠(若體力上限小于1改爲1)。",
+  ["theen_djis_puanh_phius_cost"] = "4",
   ["#theen_djis_puanh_phius_skill"] = "天地反覆 全體脚色依次執行,若其存𣴠其流失1,若其死亾,其復𣴠",
 
   ["lih_doeojs_doav_kiac"] = "李代桃僵",
-  [":lih_doeojs_doav_kiac"] = "法術  <br /><b>旹機</b>：一脚色受傷旹  <br /><b>目幖</b>：无  <br /><b>目幖數</b>：0   <br /><b>效果</b>：起動者流失1,防止傷害  <br /><b>額外</b>：因動｡每旹機限1次,全體脚色同旹選擇是否起動",
+  [":lih_doeojs_doav_kiac"] = "/法術牌/  <br/><b>旹機</b>：一脚色受傷旹  <br/><b>消耗</b>:1法力  <br/><b>目幖</b>：无  <br/><b>目幖數</b>：0   <br/><b>效果</b>：起動者流失1,防止傷害  <br/><b>額外</b>：因動｡每旹機限1次,全體脚色同旹選擇是否起動",
+  ["lih_doeojs_doav_kiac_cost"] = "1",
+  ["#lih_doeojs_doav_kiac-use"] = "李代桃僵 流失1,防止 %src 傷害",
   ["#lih_doeojs_doav_kiac_skill"] = "李代桃僵 流失1,防止傷害",
-  ["#lih_doeojs_doav_kiac-invoke"] = "李代桃僵 流失1,防止 %src 傷害",
  
-  ["hsoo_piuc_hsvoans_quoh"] = "呼風喚雨",
-  [":hsoo_piuc_hsvoans_quoh"] = "法術  <br/><b>旹機</b>：主段執行旹    <br /><b>目幖</b>：无限制   <br /><b>目幖數</b>：1     <br /><b>預起動</b>：伱    <br /><b>延旹</b>：將此牌置于目幖伏區,目幖伏段執行旹生效<br/><b>效果</b>：伱獲得1天災牌.",
-  ["#hsoo_piuc_hsvoans_quoh_skill"] = "呼風喚雨",
+  -- ["hsoo_piuc_hsvoans_quoh"] = "呼風喚雨",
+  -- [":hsoo_piuc_hsvoans_quoh"] = "/法術牌/  <br/><b>旹機</b>：主段執行旹    <br/><b>目幖</b>：无限制   <br/><b>目幖數</b>：1     <br/><b>預起動</b>：伱    <br/><b>延旹</b>：將此牌置于目幖伏區,目幖伏段執行旹生效<br/><b>效果</b>：伱獲得1天災牌.",
+  -- ["#hsoo_piuc_hsvoans_quoh_skill"] = "呼風喚雨",
 
   ["hqoon_jyek"] = "瘟疫",
-  [":hqoon_jyek"] = "法術-延旹  <br/><b>旹機</b>:主段執行旹  <br/><b>目幖</b>:无限制    <br /><b>目幖數</b>：1     <br /><b>預起動</b>：伱   <br /><b>延旹</b>：將此牌置于目幖伏區,目幖伏段執行旹生效  <br/><b>效果</b>:目幖占卜,若花色爲♥️,其解除咒術,否則附加隨機咒術,將此牌迻至其下家  <br /><b>額外</b>：此牌被抵消後至入目幖下家伏區",
+  [":hqoon_jyek"] = "/天災牌/  <br/><b>旹機</b>:主段執行旹  <br/><b>目幖</b>:伏區无同名牌者    <br/><b>目幖數</b>：1     <br/><b>預起動</b>：伱   <br/><b>延旹</b>：將此牌置于目幖伏區,目幖伏段執行旹生效  <br/><b>效果</b>:目幖占卜,若花色爲♥️,其解除咒術,否則附加隨機咒術,將此牌迻至其下家  <br/><b>額外</b>：此牌被抵消後至入目幖下家伏區",
   ["#hqoon_jyek"] = "瘟疫 ",
-  ["hqoon_jyek_skill"] = "災禍",
+  ["hqoon_jyek_skill"] = "瘟疫",
 
   ["ssaen_hsvoah"] = "山火",
-  [":ssaen_hsvoah"] = "法術-天災-延旹  <br/><b>旹機</b>：主段執行旹  <br/><b>目幖</b>:无限制    <br /><b>目幖數</b>：1     <br /><b>預起動</b>：伱     <br /><b>延旹</b>：將此牌置于目幖伏區,目幖伏段執行旹生效  <br/><b>效果</b>：目幖效占卜,若:花色爲♥️,目幖受2火傷,其上下家各受1火傷;否則將此牌至入下家伏區  <br /><b>額外</b>：此牌被抵消後至入目幖下家伏區",
+  [":ssaen_hsvoah"] = "/天災牌/  <br/><b>旹機</b>：主段執行旹  <br/><b>目幖</b>:伏區无同名牌者    <br/><b>目幖數</b>：1     <br/><b>預起動</b>：伱     <br/><b>延旹</b>：將此牌置于目幖伏區,目幖伏段執行旹生效  <br/><b>效果</b>：目幖效占卜,若:花色爲♥️,目幖受2火傷,其上下家各受1火傷;否則將此牌至入下家伏區  <br/><b>額外</b>：此牌被抵消後至入目幖下家伏區",
 
-  ["hqximh_quoh_dzziak"] = "飲羽石",
-  [":hqximh_quoh_dzziak"] = "裝僃牌-武器  <br/><b>攻程</b>：无限大  <br /><b>武器技能</b>：主段執行旹.將x張殺轉化爲殺起動發動.傷害基數x,x爲1至3,結算完後弃置此牌。",
+  -- ["hqximh_quoh_dzziak"] = "飲羽石",
+  -- [":hqximh_quoh_dzziak"] = "/軍器牌/兵器/  <br/><b>攻程</b>：无限大  <br/><b>兵器技能</b>：主段執行旹.將x張殺轉化爲殺起動發動.傷害基數x,x爲1至3,結算完後弃置此牌。",
 
   ["phaavs"] = "炮",
-  [":phaavs"] = "裝僃牌-武器  <br/><b>攻程</b>：12  <br/><b>武器技能</b>：當伱起動殺致屬性傷後,必發,伱對受傷脚色上下家附加咒術「眩暈」。",
+  [":phaavs"] = "/軍器牌/兵器/  <br/><b>目幖</b>：有兵器欄  <br/><b>目幖數</b>：1  <br/><b>預起動</b>：伱  <br/><b>攻程</b>：12  <br/><b>兵器技能</b>：當伱起動殺致屬性傷後,必發,伱對受傷脚色上下家附加咒術「眩暈」。",
 
   ["tshiac"] = "點鋼槍",
-  [":tshiac"] = "裝僃牌武器  <br/><b>攻程</b>：3  <br/><b>武器技能</b>：伱起動殺所致傷害視爲流失體力",
+  [":tshiac"] = "/軍器牌/兵器/  <br/><b>目幖</b>：有兵器欄   <br/><b>目幖數</b>：1  <br/><b>預起動</b>：伱  <br/><b>攻程</b>：3  <br/><b>兵器技能</b>：伱起動殺所致傷害視爲流失體力",
   ["#tshiac_skill"] = "點鋼槍",
 
   ["ljen_hzfan_maah"] = "連環馬",
-  [":ljen_hzfan_maah"] = "裝僃牌-防敔馬  <br/><b>技能</b>：伱存牌數+2",
+  [":ljen_hzfan_maah"] = "/軍器牌/防敔坐騎/  <br/><b>目幖</b>：有防敔坐騎欄者  <br/><b>目幖數</b>：1   <br/><b>預起動</b>：伱  <br/><b>技能</b>：伱存牌數+2",
   
   ["tsheec_tshouc_maah"] = "靑鬃馬",
-  [":tsheec_tshouc_maah"] = "裝僃牌-進攻馬  <br /><b>目幖</b>：有進攻坐騎欄者  <br /><b>目幖數</b>：1     <br /><b>預起動</b>：伱            <br/><b>進攻坐騎</b>：起動結算旹將此牌置于目幖進攻坐騎欄,持續生效    <br/><b>技能</b>：伱至其它脚色距離-2",
+  [":tsheec_tshouc_maah"] = "/軍器牌/進攻坐騎/  <br/><b>目幖</b>：有進攻坐騎欄者  <br/><b>目幖數</b>：1   <br/><b>預起動</b>：伱  <br/><b>預起動</b>：伱            <br/><b>進攻坐騎</b>：起動結算旹將此牌置于目幖進攻坐騎欄,持續生效    <br/><b>技能</b>：伱至其它脚色距離-2",
 
   ["hsoeojh_tshiu"] = "海鰍",
-  [":hsoeojh_tshiu"] = "裝僃牌-寶物  <br /><b>目幖</b>：有寶物欄者  <br /><b>目幖數</b>：1     <br /><b>預起動</b>：伱   <br/><b>寶物</b>：起動結算旹將此牌置于目幖寶物欄,持續生效  <br/><b>寶物技能</b>：伱不是計謀合理目幖",
+  [":hsoeojh_tshiu"] = "/軍器牌/寶物/  <br/><b>目幖</b>：有寶物欄者  <br/><b>目幖數</b>：1     <br/><b>預起動</b>：伱   <br/><b>寶物</b>：起動結算旹將此牌置于目幖寶物欄,持續生效  <br/><b>寶物技能</b>：伱不是謀策合理目幖",
 
   ["soam_dzzjin_gi"] = "三辰旗",
-  [":soam_dzzjin_gi"] = "裝僃牌-寶物  <br /><b>目幖</b>：有寶物欄者  <br /><b>目幖數</b>：1     <br /><b>預起動</b>：伱  <br/><b>寶物技能</b>：伱不越過轉.",
+  [":soam_dzzjin_gi"] = "/軍器牌/寶物/  <br/><b>目幖</b>：有寶物欄者  <br/><b>目幖數</b>：1     <br/><b>預起動</b>：伱  <br/><b>寶物技能</b>：伱不越過轉.",
 
   ["kaap_maah"] = "甲馬",
-  [":kaap_maah"] = "裝僃牌-寶物  <br /><b>目幖</b>：有寶物欄者  <br /><b>目幖數</b>：1     <br /><b>預起動</b>：伱  <br/><b>寶物技能</b>：伱不越過轉.",
+  [":kaap_maah"] = "/軍器牌/寶物/  <br/><b>目幖</b>：有寶物欄者  <br/><b>目幖數</b>：1     <br/><b>預起動</b>：伱  <br/><b>寶物技能</b>：伱不越過轉.",
   ["kaap_maah_skill"] = "甲馬",
 
   ["nzuo_biuk"] = "鶴氅",--hzoak_tszhiach
-  [":kaap_maah"] = "裝僃牌-防具  <br /><b>目幖</b>：有防具欄者  <br /><b>目幖數</b>：1     <br /><b>預起動</b>：伱  <br/><b>防具技能</b>：恆續｡伱不是卽旹計謀合理目幖",
-  ["kaap_maah_skill"] = "鶴氅",
+  [":nzuo_biuk"] = "/軍器牌/甲冑/  <br/><b>目幖</b>：有甲冑欄者  <br/><b>目幖數</b>：1     <br/><b>預起動</b>：伱  <br/><b>甲冑技能</b>：恆續｡伱不是卽旹謀策合理目幖",
+  ["nzuo_biuk_skill"] = "鶴氅",
 }
 return extension

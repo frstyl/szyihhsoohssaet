@@ -1,11 +1,13 @@
 local puanhmiuk = fk.CreateSkill {
   name = "puanhmiuk",
   -- tags = { Skill.Compulsory },
+  related_skills={"tsziukzzyit_puanhdoan"}
+
 }
 
 Fk:loadTranslationTable{
   ["puanhmiuk"] = "反目",
-  [":puanhmiuk"] = "➀伱回復體力後,伱可發動:伱爲伱或1其它女脚色附加反彈.➁伱失去反彈後,伱可發動:伱體力上限-1,爲己附加反彈",
+  [":puanhmiuk"] = "➀伱回復體力後,伱可使用1腳色(伱或1女脚色)發動:伱爲其附加咒術｢反彈｣.➁伱失去｢反彈｣後,伱可發動:伱體力上限-1,爲伱附加｢反彈｣",
 
   ["#puanhmiuk-choose"] = "反目 選擇目幖",
 
@@ -25,7 +27,7 @@ puanhmiuk:addEffect(fk.HpRecover, {
       min_num = 1,
       max_num = 1,
       targets = table.filter(player.room.alive_players, function(p)
-      return p==player or p.gender == General.Female
+      return p==player or S.isFamle(p)
       end),  --
       skill_name = puanhmiuk.name,
       prompt = "#puanhmiuk-choose",

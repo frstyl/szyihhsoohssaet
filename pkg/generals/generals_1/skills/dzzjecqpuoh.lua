@@ -81,7 +81,7 @@ dzzjecqpuoh:addEffect(fk.AfterCardsMove, {
 --     and ClientInstance
 --     and ClientInstance.current_request_handler
 --     and (ClientInstance.current_request_handler:isInstanceOf(Fk.request_handlers["AskForUseCard"])
---       or ClientInstance.current_request_handler:isInstanceOf(Fk.request_handlers["AskForResponseCard"])  --打出 --PlayCard
+--       or ClientInstance.current_request_handler:isInstanceOf(Fk.request_handlers["AskForResponseCard"])  --投出 --PlayCard
 --       or ClientInstance.current_request_handler:isInstanceOf(Fk.request_handlers["PlayCard"]) 
 --       )
 --   end,

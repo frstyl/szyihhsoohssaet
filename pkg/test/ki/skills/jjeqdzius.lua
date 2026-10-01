@@ -1,5 +1,6 @@
 local jjeqdzius = fk.CreateSkill {
   name = "jjeqdzius",
+  add_skills = {"change_phase_draw", "change_attack_range"},
 }
 
 Fk:loadTranslationTable{

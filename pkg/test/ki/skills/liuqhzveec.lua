@@ -5,7 +5,7 @@ local liuqhzveec = fk.CreateSkill {
 
 Fk:loadTranslationTable{
 ["liuqhzveec"] = "流螢",
-[":liuqhzveec"] = "主旹,伱打出一至多牌發動.伱抽x,予脚色伱坐次後y者1點无源火傷(x=所弃牌數,y=所弃牌點數合)｡若受傷者爲伱,褈置此技能次數",
+[":liuqhzveec"] = "主旹,伱投出一至多牌發動.伱抽x,予脚色伱坐次後y者1點无源火傷(x=所弃牌數,y=所弃牌點數合)｡若受傷者爲伱,褈置此技能次數",
 --區分伱已此法所起動 与 此牌?
 ["#liuqhzveec-active"] = "隨機傷一脚色",
 

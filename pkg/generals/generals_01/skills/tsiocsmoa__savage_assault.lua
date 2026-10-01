@@ -4,7 +4,7 @@ local skill = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["tsiocsmoa__maach_hsooh_hzaah_ssaen_skill"] = "縱魔__猛虎下山",
-  -- [":tsiocsmoa"] = "應動｡伱起動｢殺｣指定目幖旹,伱可發動｡伱抽2,迻除此目幖,起動虛擬｢猛虎下山｣,此牌效果:目幖可打出屬性｢殺｣若打出伱抽1,否則伱予目幖1傷,目幖隨機自弃1牌",
+  -- [":tsiocsmoa"] = "應動｡伱起動｢殺｣指定目幖旹,伱可發動｡伱抽2,迻除此目幖,起動虛擬｢猛虎下山｣,此牌效果:目幖可投出屬性｢殺｣若投出伱抽1,否則伱予目幖1傷,目幖隨機自弃1牌",
 }
 skill:addEffect("cardskill", {
   prompt = "#tsiocsmoa__maach_hsooh_hzaah_ssaen_skill",

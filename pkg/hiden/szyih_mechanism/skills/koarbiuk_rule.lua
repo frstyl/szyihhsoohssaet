@@ -27,7 +27,19 @@ koarbiuk_rule:addEffect(fk.EventPhaseProceeding, {  --手牌可用之牌 葢牌�
 
   on_trigger = function(self, event, target, player, data)
     local room=player.room
-    if data.phase ==Player.Judge then
+    if data.phase ==Player.Draw then
+      data.n = 2
+      local n = 0
+      for _, suffix in ipairs({"","-round" , "-turn" , "-phase" , "-noclear"}) do
+        n=n+player:getMark("@phase_draw"..suffix) 
+        n=n-player:getMark("@minus_phase_draw"..suffix) 
+      end
+      data.n=data.n+n
+      room.logic:trigger(fk.DrawNCards, player, data)
+      room:drawCards(player, data.n, "phase_draw")
+      room.logic:trigger(fk.AfterDrawNCards, player, data)
+    
+    elseif data.phase ==Player.Judge then
       local cardNames ={"mae_biuk","thou_liac_hzvoans_dduoh","szyih_kouc"} 
       while true do
         if data.phase_end then return end
@@ -85,9 +97,10 @@ koarbiuk_rule:addEffect(fk.EventPhaseProceeding, {  --手牌可用之牌 葢牌�
           card = Fk:getCardById(cid)
         end
 
-        if  not table.contains({"hqjin_szjer_ljis_doavs","tshoak_hsvoah_tsjek_sjin","koarbiuk_card"},card.trueName)
-        and 
-        table.contains(target:getCardIds(Player.Judge), cid) and card.skill and card.skill.name ~= "default_card_skill"
+        if   table.contains({"theen_looj","ssaen_hsvoah","djis_douch","hsoeojh_seevs",  "ssaac_dzzjin_koac"},card.trueName)
+          and 
+          table.contains(target:getCardIds(Player.Judge), cid) 
+          and card.skill and card.skill.name ~= "default_card_skill"
         then
           room:moveCardTo(card, Card.Processing, nil, fk.ReasonPut, "phase_judge")
           if card:isVirtual() then
@@ -112,10 +125,11 @@ koarbiuk_rule:addEffect(fk.EventPhaseProceeding, {  --手牌可用之牌 葢牌�
       end
       
     elseif data.phase == Player.Discard then
-        local toBeDis =target:getCardIds(Player.Hand)
-        local discardNum=#target:getCardIds(Player.Hand) - S.getMaxCards(target)
+        local toBeDis =target:getCardIds(Player.Hand)  --可弃牌
+        local discardNum=#target:getCardIds(Player.Hand) - S.getMaxCards(target)  --需弃數
         for _, id in ipairs(target:getCardIds(Player.Hand)) do
             local card = Fk:getCardById(id)
+            if card:hasMark("exclude") then table.removeOne(toBeDis, id) discardNum=discardNum-1 goto continue  end
             for _, skill in ipairs(room.status_skills[MaxCardsSkill] or Util.DummyTable) do  --不應該是狀態
               if   skill:excludeFrom(target, card) then table.removeOne(toBeDis, id) discardNum=discardNum-1 goto continue  end
               --不占用 
@@ -130,13 +144,14 @@ koarbiuk_rule:addEffect(fk.EventPhaseProceeding, {  --手牌可用之牌 葢牌�
         end
         room:broadcastProperty(target, "MaxCards")
 
-        if discardNum > 0 then
+        if discardNum > 0 and #toBeDis>0 then
+          -- data.n=discardNum
           local data={
           num = discardNum,
           -- include_equip = false,
           skillName = "phase_discard",
           toBeDis = toBeDis,
-        }
+          }
           local _, ret = room:askToUseActiveSkill(target, {
             skill_name = "phase_discard_skill",
             prompt = "#phase_discard:::"..discardNum,
@@ -146,7 +161,7 @@ koarbiuk_rule:addEffect(fk.EventPhaseProceeding, {  --手牌可用之牌 葢牌�
           if ret and ret.cards and #ret.cards>0 then
           room:throwCard(ret.cards, "phase_discard", target, target)
           end
-      end
+        end
 
     elseif data.phase ==Player.Play then
       local logic=room.logic
@@ -176,6 +191,7 @@ koarbiuk_rule:addEffect(fk.EventPhaseProceeding, {  --手牌可用之牌 葢牌�
           logic:trigger(fk.BeforePlayCard, target, data)
           if data.phase_end then clear() return end
 
+          player.room:setPlayerMark(player,"@ssaet_remain_times-phase",{ player:usedCardTimes("ssaet", Player.HistoryPhase), "/",Fk:cloneCard("ssaet").skill:getMaxUseTime(player, Player.HistoryPhase, Fk:cloneCard("ssaet")) })
           local dat = { timeout = room:getBanner("Timeout") and room:getBanner("Timeout")[tostring(target.id)] or room.timeout }
           logic:trigger(fk.StartPlayCard, target, dat, true)
 
@@ -206,7 +222,7 @@ koarbiuk_rule:addEffect(fk.EventPhaseProceeding, {  --手牌可用之牌 葢牌�
 --   card_visible = function (self, player, card)
 --     -- local owner = Fk:currentRoom():getCardOwner(card)
 --     -- if owner and (#card:getTableMark("@@koarbiuk-inarea")>0
---     -- (or owner:getVirualEquip(card.id) and owner:getVirualEquip(card.id).name == "koarbiuk_card")) then
+--     -- (or owner:getVirtualEquip(card.id) and owner:getVirtualEquip(card.id).name == "koarbiuk_card")) then
 --     --   return player == owner
 --     -- end
 --     if table.contains(S.getPlayerKoarbiukCards(player),card.id ) then
@@ -220,7 +236,7 @@ koarbiuk_rule:addEffect(fk.EventPhaseProceeding, {  --手牌可用之牌 葢牌�
 --   --   local cid = info.cardId
 --   --   if move.from and move.toArea == Card.PlayerJudge then
 --   --     local from = Fk:currentRoom():getPlayerById(move.from)
---   --     if #Fk:getCardById(cid):getTableMark("@@koarbiuk-inarea")>0 or (from:getVirualEquip(cid) and from:getVirualEquip(cid).name == "koarbiuk_card") then
+--   --     if #Fk:getCardById(cid):getTableMark("@@koarbiuk-inarea")>0 or (from:getVirtualEquip(cid) and from:getVirtualEquip(cid).name == "koarbiuk_card") then
 --   --       return false
 --   --     end
 --   --   end

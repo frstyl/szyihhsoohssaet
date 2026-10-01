@@ -29,7 +29,7 @@ kwiqsik:addEffect(fk.AfterCardsMove, {
   can_trigger = function(self, event, target, player, data)
     if not player:hasSkill(kwiqsik.name)  then return end
 
-      for _, move in ipairs(data) do  --起動打出未寫proposer
+      for _, move in ipairs(data) do  --起動投出未寫proposer
         if move.from ==player 
         and fk.ReasonDiscard== move.moveReason 
         then

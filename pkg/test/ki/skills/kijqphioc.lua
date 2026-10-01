@@ -1,5 +1,6 @@
 local kijqphioc = fk.CreateSkill {
   name = "kijqphioc",
+  tags={Skill.NotViewAs},
 }
 Fk:loadTranslationTable{
   ["kijqphioc"] = "譏鋒",

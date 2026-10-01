@@ -1,6 +1,8 @@
 local deevhloucs = fk.CreateSkill{
   name = "deevhloucs",
   -- tags = { Skill.Compulsory },
+  related_skills={"tsziukzzyit_hsoonslvoans"},
+
 }
 
 Fk:loadTranslationTable{

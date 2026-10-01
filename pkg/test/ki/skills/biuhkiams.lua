@@ -4,7 +4,7 @@ local biuhkiams = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["biuhkiams"] = "負劍",
-  [":biuhkiams"] = "主旹,伱聲名1/名字数花色/點數發動,檢𡩡裝僃牌置于伱將牌上, 伱虛擬裝僃之",
+  [":biuhkiams"] = "主旹,伱聲名1/名字数花色/點數發動,檢𡩡軍器牌置于伱將牌上, 伱虛擬裝僃之",
 
   ["#biuhkiams"] = "負劍 隨機獲得1此花色坐騎牌",
   ["#biuhkiams-choose"] = "負劍 選擇1脚色 發動荐馬",

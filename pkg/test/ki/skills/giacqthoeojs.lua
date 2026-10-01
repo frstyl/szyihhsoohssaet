@@ -47,6 +47,7 @@ giacqthoeojs:addEffect(fk.PreCardEffect, {
           bypass_times = false,
           extraUse = false,
           bypass_distances=false,
+          bypass_moment=true,
         },
       cancelable=true,
       })
@@ -55,7 +56,7 @@ giacqthoeojs:addEffect(fk.PreCardEffect, {
     data.use.extra_data=data.use.extra_data or {}
     data.use.extra_data.giacqthoeojs=data.use.extra_data.giacqthoeojs or {}
     table.insert(data.use.extra_data.giacqthoeojs, player.id)
-    data.original_to=data.original_to or data.to.id
+    data.origin_to=data.origin_to or data.to.id
     -- room.logic:getCurrentEvent():findParent(GameEvent.UseCard):addCleaner(function()  --可以被跳
     --   if  target:isNude() or player.dead or target.dead then return end
     --   local card = room:askToCards(target, {
@@ -77,8 +78,8 @@ giacqthoeojs:addEffect(fk.PreCardEffect, {
   can_trigger = function(self, event, target, player, data) --敘基于起動者
     if data.extra_data and data.extra_data.giacqthoeojs 
       -- and not player.room:getPlayerById(data.extra_data.giacqthoeojs[2]).dead
-      and not player.room:getPlayerById(data.original_to).dead
-      and not player.room:getPlayerById(data.original_to):getHandcardNum()>0
+      and not player.room:getPlayerById(data.origin_to).dead
+      and not player.room:getPlayerById(data.origin_to):getHandcardNum()>0
     then
       return true
     end
@@ -86,7 +87,7 @@ giacqthoeojs:addEffect(fk.PreCardEffect, {
   end,
   on_trigger = function (self, event, target, player, data)
     local room=player.room
-    local from = player.room:getPlayerById(data.original_to)
+    local from = player.room:getPlayerById(data.origin_to)
     for _, id in ipairs(data.extra_data.giacqthoeojs ) do
       local p=room:getPlayerById(id)
       if not p.dead and from:getHandcardNum()>0 then

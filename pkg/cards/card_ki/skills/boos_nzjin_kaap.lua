@@ -30,8 +30,10 @@ local S = require "packages/szyihhsoohssaet/szyih_guos"
 equipSkill:addEffect(fk.TargetConfirming, {
   anim_type = "defensive",
   can_trigger = function(self, event, target, player, data)
-    return data.to == player and player:hasSkill(equipSkill.name) 
+    return data.to == player 
     and  data.card.trueName == "ssaet" 
+    and S.hasEquip(data.to,equipSkill.attached_equip)  
+    and  Fk.skills[equipSkill.name]:isEffectable(player)    
     and not S.isIgnoreArmorFromAToB(data.from, data.to, data.card, data.use)
   end,
   on_use = function(self, event, target, player, data)

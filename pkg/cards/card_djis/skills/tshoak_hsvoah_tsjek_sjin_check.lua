@@ -12,6 +12,7 @@ skill:addEffect(fk.DamageInflicted, {
   -- global = true,
   can_trigger = function(self, event, target, player, data)
     return target==player
+    -- and data.damageType ~= fk.NormDamage 
     and data.damageType == fk.FireDamage 
     and  player:hasDelayedTrick("tshoak_hsvoah_tsjek_sjin")
   end,
@@ -37,7 +38,7 @@ skill:addEffect(fk.DamageInflicted, {
           room:doCardEffect(effect_data)
         end
     for _, id in ipairs(player:getCardIds(Player.Judge)) do
-      local c = player:getVirualEquip(id)
+      local c = player:getVirtualEquip(id)
       if not c then c = Fk:getCardById(id) end
       if c.trueName == "tshoak_hsvoah_tsjek_sjin" then
         exe(c)

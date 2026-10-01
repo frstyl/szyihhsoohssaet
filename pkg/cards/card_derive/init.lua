@@ -52,9 +52,16 @@ extension:addCardSpec("hand__theem_prac_kaemh_tsoavs")
 
 Fk:loadTranslationTable{
   ["hand__szjemh"] = "護_閃",
+  [":hand__szjemh"] = "/行動牌/",
+
   ["hand__buac_hzfan_mujs_nzjen"] = "護_防患未肰",
+  [":hand__buac_hzfan_mujs_nzjen"] = "/謀策牌/",
+
   ["hand__tsiac_keejs_dzius_keejs"] = "護_將計就計",
+  [":hand__tsiac_keejs_dzius_keejs"] = "/謀策牌/",
+
   ["hand__theem_prac_kaemh_tsoavs"] = "護_添兵減竈",
+  [":hand__theem_prac_kaemh_tsoavs"] = "/謀策牌/",
 }
 
 ----動作
@@ -73,7 +80,7 @@ extension:addCardSpec("dzzjek__ssaet")
 
 Fk:loadTranslationTable{
   ["dzzjek__ssaet"] = "飛石殺",
-  [":ambush__ssaet"] = "行動<br /><b>旹機</b>主段執行旹<br /><b>目幖</b>攻程內其它脚色<br /><b>效果</b>：与其1傷.因花色具有效果",
+  [":ambush__ssaet"] = "/行動牌/  <br /><b>旹機</b>主段執行旹<br /><b>目幖</b>攻程內其它脚色<br /><b>效果</b>：予其1傷.因花色具有效果",
   ["#dzzjek__ssaet_skill"] = "飛石殺",
 }
 ---
@@ -84,7 +91,7 @@ local fake__nziuk = fk.CreateCard{
 }
 Fk:loadTranslationTable{
   ["fake__nziuk"] = "僞肉",
-  [":fake__nziuk"] = "物資<br/><b>旹機:</b>主段執行旹<br/><b>目幖:</b>自己<br/><b>效果:</b>(肉同名牌)目幖回1,選擇弃1手牌或流失1",
+  [":fake__nziuk"] = "/物資牌/  <br/><b>旹機:</b>主段執行旹<br/><b>目幖:</b>自己<br/><b>效果:</b>(肉同名牌)目幖回1,選擇弃1手牌或流失1",
 }
 
 extension:loadCardSkels {
@@ -105,7 +112,7 @@ extension:addCardSpec("fake__nziuk")
 -- extension:loadCardSkels {ljenqtszuo__kiuc_szjih_sje_ttiac,}
 -- extension:addCardSpec("ljenqtszuo__kiuc_szjih_sje_ttiac")
 
---計謀
+--謀策
 local buak_koavh_qwe_nzjin = fk.CreateCard{
   name = "&buak_koavh_qwe_nzjin",
   type = Card.TypeBasic,
@@ -114,7 +121,7 @@ local buak_koavh_qwe_nzjin = fk.CreateCard{
 }
 Fk:loadTranslationTable{
   ["buak_koavh_qwe_nzjin"] = "縛藁爲人",
-  [":buak_koavh_qwe_nzjin"] = "計謀<br/><b>旹機:</b>主段執行旹<br/><b>目幖:</b>攻程內1其它脚色<br/><b>效果:</b>伱隱祕選擇僞或眞.目幖可演練殺,若執行伱取得殺,否則,伱將此牌轉化爲殺對其起動(无視次數距離不可響應)",
+  [":buak_koavh_qwe_nzjin"] = "/謀策牌/  <br/><b>旹機:</b>主段執行旹<br/><b>目幖:</b>攻程內1其它脚色<br/><b>效果:</b>伱隱祕選擇僞或眞.目幖可演練殺,若執行伱取得殺,否則,伱將此牌轉化爲殺對其起動(无視次數距離不可響應)",
   ["buak_koavh_qwe_nzjin_skill"] = "縛藁爲人",
   ["#buak_koavh_qwe_nzjin_skill"] = "縛藁爲人 選擇眞僞 對1其它脚色起動",
   ["#buak_koavh_qwe_nzjin_skill-response"] = "縛藁爲人 演練殺,%src可能取得之; 不演練殺,%src可能對伱起動殺",
@@ -132,7 +139,7 @@ local muo_ttiuc_ssaac_qiuh = fk.CreateCard{
 }
 Fk:loadTranslationTable{
   ["muo_ttiuc_ssaac_qiuh"] = "无中生有",
-  [":muo_ttiuc_ssaac_qiuh"] = "計謀<br/><b>旹機:</b>主段執行旹<br/><b>目幖:</b>1其它脚色<br/><b>效果:</b>伱抽2,其選擇1項➀對伱起動殺,此殺結算後若其傷致,伱弃所抽牌➁本局存牌數-1",
+  [":muo_ttiuc_ssaac_qiuh"] = "/謀策牌/  <br/><b>旹機:</b>主段執行旹<br/><b>目幖:</b>1其它脚色<br/><b>效果:</b>伱抽2,其選擇1項➀對伱起動殺,此殺結算後若其傷致,伱弃所抽牌➁本局存牌數-1",
 }
 extension:loadCardSkels {muo_ttiuc_ssaac_qiuh,}
 extension:addCardSpec("muo_ttiuc_ssaac_qiuh")
@@ -147,7 +154,7 @@ local tsjas_toav_ssaet_nzjin = fk.CreateCard{
 }
 Fk:loadTranslationTable{
   ["tsjas_toav_ssaet_nzjin"] = "借刀殺人",
-  [":tsjas_toav_ssaet_nzjin"] = "計謀牌<br/><b>旹機:</b>主段執行旹<br/><b>目幖:</b>1其它脚色A与A殺合理目幖B,對A起動.<br/><b>效果:</b> A可對B起動1殺,且A可將此牌轉化爲殺",
+  [":tsjas_toav_ssaet_nzjin"] = "/謀策牌/  <br/><b>旹機:</b>主段執行旹<br/><b>目幖:</b>1其它脚色A与A殺合理目幖B,對A起動.<br/><b>效果:</b> A可對B起動1殺,且A可將此牌轉化爲殺",
 }
 extension:loadCardSkels {tsjas_toav_ssaet_nzjin,}
 extension:addCardSpec("tsjas_toav_ssaet_nzjin")
@@ -161,7 +168,7 @@ local dzzuoh_dzziach_khoeoj_hsfa = fk.CreateCard{
 }
 Fk:loadTranslationTable{
   ["dzzuoh_dzziach_khoeoj_hsfa"] = "樹上開花",
-  [":dzzuoh_dzziach_khoeoj_hsfa"] = "計謀牌<br/><b>旹機:</b>主段執行旹<br/><b>目幖:</b>伱自己,若伱有空裝僃欄<br/><b>效果:</b>緟複,若伱有空裝僃欄,伱將牌堆頂1牌置入其中",
+  [":dzzuoh_dzziach_khoeoj_hsfa"] = "/謀策牌/  <br/><b>旹機:</b>主段執行旹<br/><b>目幖:</b>伱自己,若伱有空裝僃欄<br/><b>效果:</b>緟複,若伱有空裝僃欄,伱將牌堆頂1牌置入其中",
 }
 extension:loadCardSkels {dzzuoh_dzziach_khoeoj_hsfa,}
 extension:addCardSpec("dzzuoh_dzziach_khoeoj_hsfa")
@@ -175,7 +182,7 @@ local lje_kaens = fk.CreateCard{
 }
 Fk:loadTranslationTable{
   ["lje_kaens"] = "離閒",
-  [":lje_kaens"] = "計謀牌  <br/><b>旹機:</b>主段執行旹  <br/><b>目幖:</b>无限制  <br/><b>目幖數:</b>2  <br/><b>效果:</b>目幖參与共同賭鬥",
+  [":lje_kaens"] = "/謀策牌/  <br/><b>旹機:</b>主段執行旹  <br/><b>目幖:</b>无限制  <br/><b>目幖數:</b>2  <br/><b>效果:</b>目幖參与共同賭鬥",
 }
 extension:loadCardSkels {lje_kaens,}
 extension:addCardSpec("lje_kaens")
@@ -188,7 +195,7 @@ local tthxins_hsvoah_toah_kiap = fk.CreateCard{
 }
 Fk:loadTranslationTable{
   ["tthxins_hsvoah_toah_kiap"] = "趁火打劫",
-  [":tthxins_hsvoah_toah_kiap"] = "計謀牌  <br/><b>旹機:</b>其它脚色受傷後  <br/><b>目幖:</b>受傷脚色需其有牌  <br/><b>目幖數:</b>1  <br/><b>效果:</b>伱取得目幖1脾  <br/><b>額外:</b>因動",
+  [":tthxins_hsvoah_toah_kiap"] = "/謀策牌/  <br/><b>旹機:</b>其它脚色受傷後  <br/><b>目幖:</b>受傷脚色需其有牌  <br/><b>目幖數:</b>1  <br/><b>效果:</b>伱取得目幖1脾  <br/><b>額外:</b>因動",
 
 }
 extension:loadCardSkels {tthxins_hsvoah_toah_kiap,}
@@ -204,7 +211,7 @@ local moucqtszhioc_hzaach = fk.CreateCard{
 extension:loadCardSkels {moucqtszhioc_hzaach,}
 Fk:loadTranslationTable{
   ["moucqtszhioc_hzaach"] = "戰艦",
-  [":moucqtszhioc_hzaach"] = "裝僃牌-寶物  <br/><b>寶物 </b>：起動後將此牌置于目幖脚色寶物欄,持續生效  寶物技能</b>：伱轉始旹,伱可調整此牌(模式或攻程總1次)｡伱起動",
+  [":moucqtszhioc_hzaach"] = "/軍器牌/寶物/  <br/><b>寶物 </b>：起動後將此牌置于目幖脚色寶物欄,持續生效  寶物技能</b>：伱轉始旹,伱可調整此牌(模式或攻程總1次)｡伱起動",
 
   ["#moucqtszhioc_hzaach_skill"] = "戰艦",
 }
@@ -227,7 +234,7 @@ local phaavshsfec_phaavs = fk.CreateCard{
 extension:loadCardSkels {phaavshsfec_phaavs,}
 Fk:loadTranslationTable{
   ["phaavshsfec_phaavs"] = "炮",
-  [":phaavshsfec_phaavs"] = "裝僃牌武器  <br/><b>武器</b>：起動後將此牌置于目幖脚色武器欄,持續生效    <br/><b>攻程</b>：6<br/><b>武器技能</b>：伱起動殺旹,若伱半損(上取整)此殺不可響應",
+  [":phaavshsfec_phaavs"] = "/軍器牌/兵器/  <br/><b>兵器</b>：起動後將此牌置于目幖脚色兵器欄,持續生效    <br/><b>攻程</b>：6<br/><b>兵器技能</b>：伱起動殺旹,若伱半損(上取整)此殺不可響應",
   ["#phaavshsfec_phaavs_skill"] = "炮",
 }
 
@@ -244,7 +251,7 @@ extension:loadCardSkels {phiocqmoac_toav,}
 -- extension:addCardSpec("phiocqmoac_toav")
 Fk:loadTranslationTable{
   ["phiocqmoac_toav"] = "刀",
-  [":phiocqmoac_toav"] = "裝僃牌武器  <br/><b>武器</b>：起動後將此牌置于目幖脚色武器欄,持續生效    <br/><b>攻程</b>：2<br/><b>武器技能</b>：伱起動｢殺｣旹,若伱半損(上取整)此｢殺｣不可響應",
+  [":phiocqmoac_toav"] = "/軍器牌/兵器/  <br/><b>兵器</b>：起動後將此牌置于目幖脚色兵器欄,持續生效    <br/><b>攻程</b>：2<br/><b>兵器技能</b>：伱起動｢殺｣旹,若伱半損(上取整)此｢殺｣不可響應",
   ["phiocqmoac_toav_skill"] = "刀",
 }
 --
@@ -259,7 +266,7 @@ extension:loadCardSkels {gracqgi_gi,}
 -- extension:addCardSpec("gracqgi_gi",5,Card.Heart)
 Fk:loadTranslationTable{
   ["gracqgi_gi"] = "杏黃旗",
-  [":gracqgi_gi"] =  "裝僃牌寶物  <br/><b>寶物</b>：起動後將此牌置于目幖脚色寶物欄,持續生效    <br/><b>寶物技能</b>与伱同陣營(隊列)脚色攻程+1。",
+  [":gracqgi_gi"] =  "/軍器牌/寶物/  <br/><b>寶物</b>：起動後將此牌置于目幖脚色寶物欄,持續生效    <br/><b>寶物技能</b>与伱同陣營(隊列)脚色攻程+1。",
   ["gracqgi_gi_skill"] = "杏黃旗",
   [":gracqgi_gi_skill"] = "杏黃旗",
 }
@@ -286,7 +293,7 @@ local noaqmjens_mjens = fk.CreateCard{
 extension:loadCardSkels {noaqmjens_mjens,}
 Fk:loadTranslationTable{
   ["noaqmjens_mjens"] = "面具",
-  [":noaqmjens_mjens"] = "裝僃牌寶物  <br/><b>寶物</b>：起動後將此牌置于目幖脚色寶物欄,持續生效    <br/><b>寶物技能</b>：",
+  [":noaqmjens_mjens"] = "/軍器牌/寶物/  <br/><b>寶物</b>：起動後將此牌置于目幖脚色寶物欄,持續生效    <br/><b>寶物技能</b>：",
   ["#noaqmjens_mjens_skill"] = "面具",
 }
 

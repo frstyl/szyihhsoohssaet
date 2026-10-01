@@ -5,11 +5,11 @@ local sk = fk.CreateSkill{
 
 
 Fk:loadTranslationTable{
--- ["@@MarkArmorNullified"] = "防具失效",
--- ["@@MarkArmorNullified-phase"] = "防具失效",
--- ["@@MarkArmorNullified-turn"] = "防具失效",
--- ["@@MarkArmorNullified-round"] = "防具失效",
-["@@ignore_Armor"] = "无視防具",
+-- ["@@MarkArmorNullified"] = "甲冑失效",
+-- ["@@MarkArmorNullified-phase"] = "甲冑失效",
+-- ["@@MarkArmorNullified-turn"] = "甲冑失效",
+-- ["@@MarkArmorNullified-round"] = "甲冑失效",
+["@@ignore_Armor"] = "无視甲冑",
 
 }
 
@@ -25,7 +25,7 @@ sk:addEffect('invalidity', {
             Fk:cloneCard(skill:getSkeleton().attached_equip).sub_type == Card.SubtypeArmor 
           )
     then return end 
-      if player:hasMark("@@MarkArmorNullified") then return true end  --防具无效 不等于 被全部脚色无視, 无視防具 等于 无視任意脚色防具
+      if player:hasMark("@@MarkArmorNullified") then return true end  --甲冑无效 不等于 被全部脚色无視, 无視甲冑 等于 无視任意脚色甲冑
 
         --player == to
       local from=nil

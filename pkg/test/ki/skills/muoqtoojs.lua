@@ -5,7 +5,7 @@ local muoqtoojs = fk.CreateSkill {
 
 Fk:loadTranslationTable{
 ["muoqtoojs"] = "无對",
-[":muoqtoojs"] = "伱起動牌旹,(每轉輪流執行){➀伱可發動➁必發}其它脚色不可起動打出,持續1轉/迻除➀效果,伱取得起動牌(子牌)",
+[":muoqtoojs"] = "伱起動牌旹,(每轉輪流執行){➀伱可發動➁必發}其它脚色不可起動投出,持續1轉/迻除➀效果,伱取得起動牌(子牌)",
 
 ["@@muoqtoojs-turn"] = "无對",
 

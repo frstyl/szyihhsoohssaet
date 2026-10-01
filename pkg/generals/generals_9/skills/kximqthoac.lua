@@ -6,7 +6,7 @@ local kximqthoac = fk.CreateSkill {
 Fk:loadTranslationTable{
   ["kximqthoac"] = "金湯",
   -- [":kximqthoac"] = "當伱受傷旹,若伱體力值小于2且傷害爲无屬傷害,防止之;若伱體力值小于3且傷害值大于1,傷害值減至1",
-  [":kximqthoac"] = "伱受傷旹,必發.防止之,若當旹此技能1轉發動次數大于:1,伱流失1;2,伱回1,此技能失效｡伱轉始旹,恢復此技能｡伱死亾旹,伱可選擇1其它腳色發動,其得到此技能",
+  [":kximqthoac"] = "伱受傷旹,必發.防止之,若此技能1轉發動次數爲:2,伱流失2;3,伱回3,此技能失效至伱轉始旹｡➁伱死亾旹,伱可選擇1其它腳色發動,其得到此技能",
 
   ["#kximqthoac-choose"] = "金湯 選擇1腳色得到｢金湯｣",
 }
@@ -19,14 +19,19 @@ kximqthoac:addEffect(fk.DamageInflicted, {
     return target == player and player:hasSkill(kximqthoac.name)
   end,
   on_use = function(self, event, target, player, data)
+    event:setCostData(self,{n=1+player:usedSkillTimes(kximqthoac.name, Player.HistoryTurn)})
+    return true
+  end,
+  on_use = function(self, event, target, player, data)
     S.preventDamage({damageData=data,prevented=true, skillName=kximqthoac.name})
-    if  player:usedSkillTimes(kximqthoac.name, Player.HistoryTurn) >1 then
-      player.room:loseHp(player,1,kximqthoac.name,player)
+    local times=event:getCostData(self).n
+    if  times ==2 then
+      player.room:loseHp(player,2,kximqthoac.name,player)
     end
-    if  player:usedSkillTimes(kximqthoac.name, Player.HistoryTurn) >2 then
+    if  times ==3 then
       player.room:recover{
             who = player,
-            num = 1,
+            num = 3,
             recoverBy = player,
             skillName = kximqthoac.name,
           }
@@ -36,10 +41,10 @@ kximqthoac:addEffect(fk.DamageInflicted, {
 })
 
 kximqthoac:addEffect(fk.TurnStart, {
-  can_trigger = function(self, event, target, player, data)
+  can_refresh = function(self, event, target, player, data)
     return target == player and player:hasSkill(kximqthoac.name,true)
   end,
-  on_trigger = function(self, event, target, player, data)
+  on_refresh = function(self, event, target, player, data)
     player.room:validateSkill(player, kximqthoac.name)
   end,
 })

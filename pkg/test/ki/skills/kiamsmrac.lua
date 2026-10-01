@@ -30,9 +30,9 @@ kiamsmrac:addEffect("viewas", {
   feasible = function(self, player, selected, selected_cards, card)
     return #selected ~= 0
   end,
-  on_use = function(self, room, cardUseEvent, card, params)  --beforeUse前 returun轉化起動信息  --cardUseEvent 實爲SkillUseData ,params handleUseCardParams is_response, card viewAs--beforeUse
-    local player = cardUseEvent.from
-    local tos =cardUseEvent.tos
+  on_use = function(self, room, SkillUseData, card, handleUseCardParams)  --beforeUse前 
+    local player = SkillUseData.from
+    local tos =SkillUseData.tos
     -- local card=Fk:cloneCard("ssaet")
     -- player.room:useCard()
     -- room:askToUseVirtualCard

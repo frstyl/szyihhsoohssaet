@@ -10,98 +10,109 @@ Fk:loadTranslationTable{
 ["tsiacs"] = "將",
 }
 
-General:new(extension, "ddxevhgxit", "kvoan", 3):addSkills{"hqeensjiu", "ljeqtszjecs"}  --, "loucsguan"
+General:new(extension, "ddxev_hgxit", "kvoan", 3):addSkills{"hqeensjiu", "ljeqtszjecs"}  --, "loucsguan"
 Fk:loadTranslationTable{
-["ddxevhgxit"] = "趙佶",
-["#ddxevhgxit"] = "宋徽宗",
-["designer:ddxevhgxit"] = "設計",
-["cv:ddxevhgxit"] = "配音",
-["illustrator:ddxevhgxit"] = "画师",
-["~ddxevhgxit"] = "家山回首三千里,目斷天南无雁飛",
+["ddxev_hgxit"] = "趙佶",
+["#ddxev_hgxit"] = "宋徽宗",
+["designer:ddxev_hgxit"] = "設計",
+["cv:ddxev_hgxit"] = "配音",
+["illustrator:ddxev_hgxit"] = "画师",
+["~ddxev_hgxit"] = "家山回首三千里,目斷天南无雁飛",
 }
 
-General:new(extension, "quacqtsjins", "tsiacs", 4):addSkills {"tsjecqmuoh"}
+General:new(extension, "quac_tsjins", "tsiacs", 4):addSkills {"tsjecqmuoh"}
 Fk:loadTranslationTable{
-["quacqtsjins"] = "王進",
-["#quacqtsjins"] = "敎頭",
-["designer:quacqtsjins"] = "設計",
-["cv:quacqtsjins"] = "配音",
-["illustrator:quacqtsjins"] = "畫師",
-["~quacqtsjins"] = "大意了",
+["quac_tsjins"] = "王進",
+["#quac_tsjins"] = "敎頭",
+["designer:quac_tsjins"] = "設計",
+["cv:quac_tsjins"] = "配音",
+["illustrator:quac_tsjins"] = "畫師",
+["~quac_tsjins"] = "大意了",
 }
 --山東東平府史進 關西史斌
-General:new(extension, "ssihtsjins", "tsiacs", 4):addSkills {"hzeepkoot","muohbaoch"}
+General:new(extension, "ssih_tsjins", "tsiacs", 4):addSkills {"hzeepkoot","muohbaoch"}
 Fk:loadTranslationTable{
-["ssihtsjins"] = "史進",
-["#ssihtsjins"] = "九文龍",
-["designer:ssihtsjins"] = "設計",
-["cv:ssihtsjins"] = "配音",
-["illustrator:ssihtsjins"] = "畫師",
-["~ssihtsjins"] = "大意了",
+["ssih_tsjins"] = "史進",
+["#ssih_tsjins"] = "九文龍",
+["designer:ssih_tsjins"] = "設計",
+["cv:ssih_tsjins"] = "配音",
+["illustrator:ssih_tsjins"] = "畫師",
+["~ssih_tsjins"] = "大意了",
 }
 
-General:new(extension, "tszuoqmuoh", "pujh", 3):addSkills{"kvoanqddxins","phoasddxins", "poosddxins",}  --少華山
+General:new(extension, "tszuo_muoh", "pujh", 3):addSkills{"kvoanqddxins","phoasddxins", "poosddxins",}  --少華山
 Fk:loadTranslationTable{
-["tszuoqmuoh"] = "朱武",
-["#tszuoqmuoh"] = "神機軍師",
-["designer:tszuoqmuoh"] = "設計",
-["cv:tszuoqmuoh"] = "配音",
-["illustrator:tszuoqmuoh"] = "畫師",
-["~tszuoqmuoh"] = "生門已破,此戰敗也",
+["tszuo_muoh"] = "朱武",
+["#tszuo_muoh"] = "神機軍師",
+["designer:tszuo_muoh"] = "設計",
+["cv:tszuo_muoh"] = "配音",
+["illustrator:tszuo_muoh"] = "畫師",
+["~tszuo_muoh"] = "生門已破,此戰敗也",
 }
 
-General:new(extension, "jiacqtszhyin", "pujh", 5):addSkills{"thoohsjins"}
+General:new(extension, "jiac_tszhyin", "pujh", 5):addSkills{"thoohsjins"}
 Fk:loadTranslationTable{
-["jiacqtszhyin"] = "楊春",
-["#jiacqtszhyin"] = "白花蛇",
-["designer:jiacqtszhyin"] = "設計",
-["cv:jiacqtszhyin"] = "配音",
-["illustrator:jiacqtszhyin"] = "畫師",
-["~jiacqtszhyin"] = "狠",
+["jiac_tszhyin"] = "楊春",
+["#jiac_tszhyin"] = "白花蛇",
+["designer:jiac_tszhyin"] = "設計",
+["cv:jiac_tszhyin"] = "配音",
+["illustrator:jiac_tszhyin"] = "畫師",
+["~jiac_tszhyin"] = "狠",
 }
 
-General:new(extension, "ddxinqdoat", "pujh", 4):addSkills{"jiaktsjins","bvoatddiu"}
+General:new(extension, "ddxin_doat", "pujh", 4):addSkills{"jiaktsjins","bvoatddiu"}
 Fk:loadTranslationTable{
-["ddxinqdoat"] = "陳達",
-["#ddxinqdoat"] = "躍㵎虎",
-["designer:ddxinqdoat"] = "設計",
-["cv:ddxinqdoat"] = "配音",
-["illustrator:ddxinqdoat"] = "畫師",
-["~ddxinqdoat"] = "兄弟義气,不求同生但求同死",
+["ddxin_doat"] = "陳達",
+["#ddxin_doat"] = "躍㵎虎",
+["designer:ddxin_doat"] = "設計",
+["cv:ddxin_doat"] = "配音",
+["illustrator:ddxin_doat"] = "畫師",
+["~ddxin_doat"] = "兄弟義气,不求同生但求同死",
 }
 --lihkjit 李吉
 
 --3 史大郎夜走華陰縣　魯提轄拳打鎮關西
-General:new(extension, "loohdoat__loohttxesszjin", "kvoan", 5):addSkills{"boavsgwen"}
+General:new(extension, "loohdoat__looh_ttxes_szjin", "kvoan", 5):addSkills{"boavsgwen"}
 Fk:loadTranslationTable{
-["loohdoat__loohttxesszjin"] = "魯達",
-["#loohdoat__loohttxesszjin"] = "魯提轄",
-["designer:loohdoat__loohttxesszjin"] = "設計",
-["cv:loohdoat__loohttxesszjin"] = "配音",
-["illustrator:loohdoat__loohttxesszjin"] = "畫師",
-["~loohdoat__loohttxesszjin"] = "洒家需喫官司 不如及早撒開",
+["loohdoat__looh_ttxes_szjin"] = "魯達",
+["#loohdoat__looh_ttxes_szjin"] = "魯提轄",
+["designer:loohdoat__looh_ttxes_szjin"] = "設計",
+["cv:loohdoat__looh_ttxes_szjin"] = "配音",
+["illustrator:loohdoat__looh_ttxes_szjin"] = "畫師",
+["~loohdoat__looh_ttxes_szjin"] = "洒家需喫官司 不如及早撒開",
 }
 
-General:new(extension, "lihttiuc", "mjin", 5):addSkills{"khaenqljins","tsheejqtsheej"}  --86
+General:new(extension, "lih_ttiuc", "mjin", 5):addSkills{"khaenqljins","tsheejqtsheej"}  --86
 Fk:loadTranslationTable{
-["lihttiuc"] = "李忠",
-["#lihttiuc"] = "打虎將",
-["designer:lihttiuc"] = "設計",
-["cv:lihttiuc"] = "配音",
-["illustrator:lihttiuc"] = "畫師",
-["~lihttiuc"] = "止可惜若俺那祖傳之膏藥嗚",
+["lih_ttiuc"] = "李忠",
+["#lih_ttiuc"] = "打虎將",
+["designer:lih_ttiuc"] = "設計",
+["cv:lih_ttiuc"] = "配音",
+["illustrator:lih_ttiuc"] = "畫師",
+["~lih_ttiuc"] = "止可惜若俺那祖傳之膏藥嗚",
 }
 --kximqtshyisleen 金翠蓮 
 -- 金老
 
-General:new(extension, "ddxecsdoo", "mjin", 5):addSkills{"maanqhzfacs"}  --市井
+General:new(extension, "kxim_tshyis_leen", "mjin", 3):addSkills{"tshjecqsziac","phjevqbouc"}  --市井
 Fk:loadTranslationTable{
-["ddxecsdoo"] = "鄭屠",
-["#ddxecsdoo"] = "鎭關西",
-["designer:ddxecsdoo"] = "設計",
-["cv:ddxecsdoo"] = "配音",
-["illustrator:ddxecsdoo"] = "畫師",
-["~ddxecsdoo"] = "打得好打得好",
+["kxim_tshyis_leen"] = "金翠蓮",
+["#kxim_tshyis_leen"] = "",
+["designer:kxim_tshyis_leen"] = "設計",
+["cv:kxim_tshyis_leen"] = "配音",
+["illustrator:kxim_tshyis_leen"] = "畫師",
+["~kxim_tshyis_leen"] = "",
+}
+
+
+General:new(extension, "ddxecs_doo", "mjin", 5):addSkills{"maanqhzfacs"}  --市井
+Fk:loadTranslationTable{
+["ddxecs_doo"] = "鄭屠",
+["#ddxecs_doo"] = "鎭關西",
+["designer:ddxecs_doo"] = "設計",
+["cv:ddxecs_doo"] = "配音",
+["illustrator:ddxecs_doo"] = "畫師",
+["~ddxecs_doo"] = "打得好打得好",
 }
 
 --4 趙員外重修文殊院　魯智深大鬧五臺山 
@@ -109,24 +120,24 @@ Fk:loadTranslationTable{
 --趙員外
 --五臺山 智眞
 --5小霸王醉入銷金帳　花和尚大鬧桃花村
-General:new(extension, "loohttxesszjin", "pujh", 4):addSkills{"likbvoat","dzovashsfas"}  --13
+General:new(extension, "looh_ttxes_szjin", "pujh", 4):addSkills{"likbvoat","dzovashsfas"}  --13
 Fk:loadTranslationTable{
-["loohttxesszjin"] = "魯智㴱",
-["#loohttxesszjin"] = "花和尚",
-["designer:loohttxesszjin"] = "設計",
-["cv:loohttxesszjin"] = "配音",
-["illustrator:loohttxesszjin"] = "畫師",
-["~loohttxesszjin"] = "錢塘江上朝信來,今日方知我是我",
+["looh_ttxes_szjin"] = "魯智㴱",
+["#looh_ttxes_szjin"] = "花和尚",
+["designer:looh_ttxes_szjin"] = "設計",
+["cv:looh_ttxes_szjin"] = "配音",
+["illustrator:looh_ttxes_szjin"] = "畫師",
+["~looh_ttxes_szjin"] = "錢塘江上朝信來,今日方知我是我",
 }
 
-General:new(extension, "tsziuqthouc", "pujh", 3):addSkills{"hsfaqdeen","giacqtshuos"}
+General:new(extension, "tsziu_thouc", "pujh", 3):addSkills{"hsfaqdeen","giacqtshuos"}
 Fk:loadTranslationTable{
-["tsziuqthouc"] = "周通",
-["#tsziuqthouc"] = "小霸王",
-["designer:tsziuqthouc"] = "設計",
-["cv:tsziuqthouc"] = "配音",
-["illustrator:tsziuqthouc"] = "畫師",
-["~tsziuqthouc"] = "雖有霸王相奈无霸王功",
+["tsziu_thouc"] = "周通",
+["#tsziu_thouc"] = "小霸王",
+["designer:tsziu_thouc"] = "設計",
+["cv:tsziu_thouc"] = "配音",
+["illustrator:tsziu_thouc"] = "畫師",
+["~tsziu_thouc"] = "雖有霸王相奈无霸王功",
 }
 --匪李忠
 
@@ -137,109 +148,109 @@ Fk:loadTranslationTable{
 --7 花和尚倒拔垂楊柳　豹子頭誤入白虎堂 
 --力拔
 --保劍記
-General:new(extension, "ljimqtthioc", "tsiacs", 5):addSkills { "toojskveet" }
+General:new(extension, "ljim_tthioc", "tsiacs", 5):addSkills { "toojskveet" }
 Fk:loadTranslationTable{
-["ljimqtthioc"] = "林冲",  --沖ddiuc
-["#ljimqtthioc"] = "豹子頭",
-["designer:ljimqtthioc"] = "設計",
-["cv:ljimqtthioc"] = "配音",
-["illustrator:ljimqtthioc"] = "畫師",
-["~ljimqtthioc"] = "家讎何日報",
+["ljim_tthioc"] = "林冲",  --沖ddiuc
+["#ljim_tthioc"] = "豹子頭",
+["designer:ljim_tthioc"] = "設計",
+["cv:ljim_tthioc"] = "配音",
+["illustrator:ljim_tthioc"] = "畫師",
+["~ljim_tthioc"] = "家讎何日報",
 }
 
-General:new(extension, "koavqcaaqnoeojs", "kvoan", 3):addSkills { "kaanqteev" }
+General:new(extension, "koav_caa_noeojs", "kvoan", 3):addSkills { "kaanqteev" }
 Fk:loadTranslationTable{
-["koavqcaaqnoeojs"] = "高衙內",  --高朋
-["#koavqcaaqnoeojs"] = "花花太歲",
-["designer:koavqcaaqnoeojs"] = "設計",
-["cv:koavqcaaqnoeojs"] = "配音",
-["illustrator:koavqcaaqnoeojs"] = "畫師",
-["~koavqcaaqnoeojs"] = "无趣",
+["koav_caa_noeojs"] = "高衙內",  --高朋
+["#koav_caa_noeojs"] = "花花太歲",
+["designer:koav_caa_noeojs"] = "設計",
+["cv:koav_caa_noeojs"] = "配音",
+["illustrator:koav_caa_noeojs"] = "畫師",
+["~koav_caa_noeojs"] = "无趣",
 }
 --錦兒
 
-General:new(extension, "ljimqtsheej", "mjin", 3, 3,General.Female):addSkills { "sziuhmuacs","ljettseet","dzjishqeejs" }
+General:new(extension, "ljim_tsheej", "mjin", 3, 3,General.Female):addSkills { "sziuhmuacs","ljettseet","dzjishqeejs" }
 Fk:loadTranslationTable{
-["ljimqtsheej"] = "林妻",  --張貞娘 張眞娘 林沖娘子  
-["#ljimqtsheej"] = "傲雪梅",
-["designer:ljimqtsheej"] = "設計",
-["cv:ljimqtsheej"] = "配音",
-["illustrator:ljimqtsheej"] = "畫師",
-["~ljimqtsheej"] = "保重",
+["ljim_tsheej"] = "林妻",  --張貞娘 張眞娘 林沖娘子  
+["#ljim_tsheej"] = "傲雪梅",
+["designer:ljim_tsheej"] = "設計",
+["cv:ljim_tsheej"] = "配音",
+["illustrator:ljim_tsheej"] = "畫師",
+["~ljim_tsheej"] = "保重",
 }
-General:new(extension, "koavqgiu", "kvoan", 3):addSkills{"tshiukkiuk","hzfacshzaac","ttiacqszjer"}--"phoanqguan"
+General:new(extension, "koav_giu", "kvoan", 3):addSkills{"tshiukkiuk","hzfacshzaac","ttiacqszjer"}--"phoanqguan"
 Fk:loadTranslationTable{
-["koavqgiu"] = "高俅",
-["#koavqgiu"] = "太尉",
-["designer:koavqgiu"] = "設計",
-["cv:koavqgiu"] = "配音演员",
-["illustrator:koavqgiu"] = "画师",
-["~koavqgiu"] = "報應,都是報應",
+["koav_giu"] = "高俅",
+["#koav_giu"] = "太尉",
+["designer:koav_giu"] = "設計",
+["cv:koav_giu"] = "配音演员",
+["illustrator:koav_giu"] = "画师",
+["~koav_giu"] = "報應,都是報應",
 }
 --乾鳥頭富安
 
-General:new(extension, "liukkheem", "kvoan", 3):addSkills{"hqoeomsmiu","peejshzooh"}  --szjitkeejs --謙退
+General:new(extension, "liuk_kheem", "kvoan", 3):addSkills{"hqoeomsmiu","peejshzooh"}  --szjitkeejs --謙退
 Fk:loadTranslationTable{
-["liukkheem"] = "陸謙",
-["#liukkheem"] = "陸虞𥎦",
-["designer:liukkheem"] = "設計",
-["cv:liukkheem"] = "配音演员",
-["illustrator:liukkheem"] = "画师",
-["~liukkheem"] = "兄弟我知錯已",
+["liuk_kheem"] = "陸謙",
+["#liuk_kheem"] = "陸虞𥎦",
+["designer:liuk_kheem"] = "設計",
+["cv:liuk_kheem"] = "配音演员",
+["illustrator:liuk_kheem"] = "画师",
+["~liuk_kheem"] = "兄弟我知錯已",
 }
 --8 林教頭刺配滄州道　魯智深大鬧野豬林
-General:new(extension, "touchtthxev_sjetpaas", "tsiacs", 4):addSkills{"tszjetnziok"}
+General:new(extension, "touch_tthxev_sjet_paas", "tsiacs", 4):addSkills{"tszjetnziok"}
 Fk:loadTranslationTable{
-["touchtthxev_sjetpaas"] = "董超 薛霸",
-["#touchtthxev_sjetpaas"] = "黑獄叓",
-["designer:touchtthxev_sjetpaas"] = "設計",
-["cv:touchtthxev_sjetpaas"] = "配音演员",
-["illustrator:touchtthxev_sjetpaas"] = "画师",
-["~touchtthxev_sjetpaas"] = "昰黃泉路上伱我作伴夫",
+["touch_tthxev_sjet_paas"] = "董超 薛霸",
+["#touch_tthxev_sjet_paas"] = "黑獄叓",
+["designer:touch_tthxev_sjet_paas"] = "設計",
+["cv:touch_tthxev_sjet_paas"] = "配音演员",
+["illustrator:touch_tthxev_sjet_paas"] = "画师",
+["~touch_tthxev_sjet_paas"] = "昰黃泉路上伱我作伴夫",
 }
 
 --9 柴進門招天下客　林沖棒打洪教頭
-General:new(extension, "dzsaeqtsjins", "kvoan", 3,4):addSkills { "hzoavqszjin","toanqszio" }
+General:new(extension, "dzsae_tsjins", "kvoan", 3):addSkills { "hzoavqszjin","toanqszio" }
 Fk:loadTranslationTable{
-["dzsaeqtsjins"] = "柴進",
-["#dzsaeqtsjins"] = "小旋風",
-["designer:dzsaeqtsjins"] = "設計",
-["cv:dzsaeqtsjins"] = "配音",
-["illustrator:dzsaeqtsjins"] = "畫師",
-["~dzsaeqtsjins"] = "難道,昰先朝之物,沒用已",
+["dzsae_tsjins"] = "柴進",
+["#dzsae_tsjins"] = "小旋風",
+["designer:dzsae_tsjins"] = "設計",
+["cv:dzsae_tsjins"] = "配音",
+["illustrator:dzsae_tsjins"] = "畫師",
+["~dzsae_tsjins"] = "難道,昰先朝之物,沒用已",
 }
 
-General:new(extension, "ljimqkaavsdou", "tsiacs", 4):addSkills { "nziokcoavs" }
+General:new(extension, "hzouc_kaavs_dou", "tsiacs", 4):addSkills { "nziokcoavs" }
 Fk:loadTranslationTable{
-["ljimqkaavsdou"] = "洪敎頭",
-["#ljimqkaavsdou"] = "假把式",
-["designer:ljimqkaavsdou"] = "設計",
-["cv:ljimqkaavsdou"] = "配音",
-["illustrator:ljimqkaavsdou"] = "畫師",
-["~ljimqkaavsdou"] = "",
+["hzouc_kaavs_dou"] = "洪敎頭",
+["#hzouc_kaavs_dou"] = "假把式",
+["designer:hzouc_kaavs_dou"] = "設計",
+["cv:hzouc_kaavs_dou"] = "配音",
+["illustrator:hzouc_kaavs_dou"] = "畫師",
+["~hzouc_kaavs_dou"] = "",
 }
 --10 林教頭風雪山神廟　陸虞候火燒草料場
 --差撥
 
 --11 朱貴水亭施號箭　林沖雪夜上梁山
-General:new(extension, "tszioqkujs", "pujh", 4):addSkills{"ddwenqtsjens","loavhleens"}
+General:new(extension, "tszio_kujs", "pujh", 4):addSkills{"ddwenqtsjens","loavhleens"}
 Fk:loadTranslationTable{
-["tszioqkujs"] = "朱貴",  --同
-["#tszioqkujs"] = "旱地忽律",
-["designer:tszioqkujs"] = "設計",
-["cv:tszioqkujs"] = "配音",
-["illustrator:tszioqkujs"] = "畫師",
-["~tszioqkujs"] = "禍福无門唯人自招",
+["tszio_kujs"] = "朱貴",  --同
+["#tszio_kujs"] = "旱地忽律",
+["designer:tszio_kujs"] = "設計",
+["cv:tszio_kujs"] = "配音",
+["illustrator:tszio_kujs"] = "畫師",
+["~tszio_kujs"] = "禍福无門唯人自招",
 }
 
-General:new(extension, "quacqlyin", "pujh", 3):addSkills{"dzzjecqpuoh","hzaepdoos"}
+General:new(extension, "quac_lyin", "pujh", 3):addSkills{"dzzjecqpuoh","hzaepdoos"}
 Fk:loadTranslationTable{
-["quacqlyin"] = "王倫",  --同
-["#quacqlyin"] = "白衣秀士",
-["designer:quacqlyin"] = "設計",
-["cv:quacqlyin"] = "配音",
-["illustrator:quacqlyin"] = "畫師",
-["~quacqlyin"] = "我之心腹都在若里",
+["quac_lyin"] = "王倫",  --同
+["#quac_lyin"] = "白衣秀士",
+["designer:quac_lyin"] = "設計",
+["cv:quac_lyin"] = "配音",
+["illustrator:quac_lyin"] = "畫師",
+["~quac_lyin"] = "我之心腹都在若里",
 }
 
 return extension

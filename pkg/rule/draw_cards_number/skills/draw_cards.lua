@@ -10,7 +10,7 @@ draw_cards:addEffect("cardskill", {
 
 draw_cards:addEffect(fk.BeforeDrawCard, {--改變旹
   -- global=true,
-  priority=999, --禁插入結算
+  priority=-999, --禁插入結算
   can_trigger = function(self, event, target, player, data)
     return data.who == player and data.num>5 
   end,

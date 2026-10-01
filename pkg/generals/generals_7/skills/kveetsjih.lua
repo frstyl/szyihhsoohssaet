@@ -7,7 +7,7 @@ local S = require "packages/szyihhsoohssaet/szyih_guos"
 
 Fk:loadTranslationTable{
   ["kveetsjih"] = "決死",
-  [":kveetsjih"] = "伱對一脚色傷旹,若其已損必發,傷害值+x｡伱起動牌指定目幖旹,若其已損,必發,其1轉不可起動打出牌,若其半損(上取整),其非必發技1轉失效",
+  [":kveetsjih"] = "伱對一脚色傷旹,若其已損必發,傷害值+x｡伱起動牌指定目幖旹,若其已損,必發,其1轉不可起動投出牌,若其半損(上取整),其非必發技1轉失效",
 
   ["$kveetsjih1"] = "寶刀未老 壯气長存",
 

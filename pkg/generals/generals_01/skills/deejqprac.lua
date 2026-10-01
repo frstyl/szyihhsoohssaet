@@ -1,11 +1,13 @@
 local deejqprac = fk.CreateSkill{
   name = "deejqprac",
   -- tags = { Skill.Compulsory },
+  related_skills={"tsziukzzyit_mracsttiucs"},
+
 }
 
 Fk:loadTranslationTable{
   ["deejqprac"] = "提兵",
-  [":deejqprac"] = "伱主段始旹,伱可發動:爲一脚色附加命中",
+  [":deejqprac"] = "伱主段始旹,伱可發動:爲1脚色附加咒術｢命中｣",
   
   ["#deejqprac-choose"] = "提兵 選擇目幖",
 

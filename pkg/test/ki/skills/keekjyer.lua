@@ -4,7 +4,7 @@ local keekjyer = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["keekjyer"] = "擊銳",
-  [":keekjyer"] = "伱對A致傷旹,若A之x>0,伱可發動,傷害值+x(x爲A符合項數:體力值/手牌區牌數/裝僃區牌數/全場冣大)",
+  [":keekjyer"] = "伱對A致傷旹,若A之x>0,伱可發動,傷害值+x(x爲A全場冣大項數:體力值/手牌區牌數/裝僃區牌數/)",
 
   ["#keekjyer-invoke"] = "擊銳 是否對 %src 發動 0牌确定則其弃牌",
 }

@@ -54,6 +54,7 @@ hqoeomstsjens:addEffect(fk.CardEffectCancelledOut, {
         bypass_distances = true,  --渻?
         bypass_times = true,
         extraUse = true,
+        bypass_moment=true,
       }
     })
     if use  then

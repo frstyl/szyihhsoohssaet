@@ -29,14 +29,16 @@ ttwiqhqrach:addEffect(fk.AfterCardsMove, {
 
   end,
   on_cost = function(self, event, target, player, data)
-    local use = player.room:askToPlayCard(player, {
+    local use = player.room:askToUseCard(player, {
       skill_name = ttwiqhqrach.name,
+      pattern = ".", --
       prompt = "#ttwiqhqrach-use",
       cancelable = true,
       extra_data = {
         bypass_distances = false,
         bypass_times = false,
         extraUse = false,
+        bypass_moment=true,
       },
       skip = true,
     })

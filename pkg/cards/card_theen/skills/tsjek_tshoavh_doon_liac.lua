@@ -1,18 +1,21 @@
 local skill = fk.CreateSkill {
   name = "tsjek_tshoavh_doon_liac_skill",
 }
-local S = require "packages/szyihhsoohssaet/szyih_guos" 
 
 -- Fk:loadTranslationTable{ 
 --   ["#tsjek_tshoavh_doon_liac_skill"] = "積艸屯糧 延旹 越過撤段" ,
 -- }
 
+local S = require "packages/szyihhsoohssaet/szyih_guos" 
+
 skill:addEffect("cardskill", {
   prompt = "#tsjek_tshoavh_doon_liac_skill",
   can_use = Util.CanUse,
-  mod_target_filter = Util.TrueFunc,
-  target_filter = Util.CardTargetFilter,
   target_num = 1,
+  mod_target_filter = Util.TrueFunc,
+  target_filter = function(self, player, to_select, selected, _, card, extra_data)
+    return S.delayTargetFilter(self, player, to_select, selected, _, card, extra_data)
+  end,
   offset_func= Util.FalseFunc,
   on_effect = function(self, room, effect)
     if not (effect.extar_data and  effect.extar_data.phase_data) then return end

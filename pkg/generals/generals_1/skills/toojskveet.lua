@@ -76,7 +76,7 @@ local toojskveet_spec = {
 ---@field extraData UseExtraData
 ---@field eventData? CardEffectData @ 询问此响应的事件，例如借刀之于问杀
 ---@field result? any
----@field isResponse? boolean @ 是否为打出事件
+---@field isResponse? boolean @ 是否为投出事件
 ---@field afterRequest? boolean @ 是否已询问
 ---@field overtimes? ServerPlayer[] @ 此响应超时的玩家
 

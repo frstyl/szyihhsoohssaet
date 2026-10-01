@@ -5,10 +5,10 @@ local punsmuoh = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["punsmuoh"] = "奮武",
-  [":punsmuoh"] = "依序發動.➀伱可將1紅牌轉化爲殺起動發動.此殺不計入次數,其結算終旹若其未對目幖致傷,令伱下次所起動殺无視距離且致傷旹傷害值+1,➁伱可將1黑牌轉化爲殺起動發動.此牌反失效反抵消",
+  [":punsmuoh"] = "依序發動.印牌:以伱1{➀紅/➁黑}牌轉化起動｢殺｡此牌{➀不計入次數,;➁反失效反抵消}其結算終旹若其未對目幖致傷,令伱下次所起動殺无視距離且致傷旹傷害值+1",
 
-  ["@@punsmuoh-switch-yang"] = "奮武",
-  ["@@punsmuoh-switch-yin"] = "奮武",
+  ["punsmuoh-switch-yang"] = "奮武",
+  ["punsmuoh-switch-yin"] = "奮武",
   ["punsmuoh-nodamage"] = "奮武",
 
   ["$punsmuoh1"] = "想走,沒若麼容㑥",
@@ -29,12 +29,12 @@ punsmuoh:addEffect("viewas", {
     if #cards ~= 1 then return end
     local c = Fk:cloneCard("ssaet")
     c.skillName = punsmuoh.name  --幖記此牌
-    c:setMark("@@punsmuoh-switch".."-"..player:getSwitchSkillState(punsmuoh.name,false,true),player.id)
+    c:setMark("punsmuoh-switch".."-"..player:getSwitchSkillState(punsmuoh.name,false,true),player.id)
     c:addSubcard(cards[1])
     return c
   end,
   before_use = function(self, player, use)
-    if use.card:getMark("@@punsmuoh-switch-yin") then
+    if use.card.color==Card.Black then
       use.extra_data =use.extra_data or {}
       use.extra_data.antiNullify=true
       use.extra_data.antiCancel=true
@@ -53,16 +53,19 @@ punsmuoh:addEffect("viewas", {
 punsmuoh:addEffect(fk.CardUseFinished, {-- CardEffectCancelledOut
   anim_type = "drawcard",
   can_refresh = function(self, event, target, player, data)
-    if  data.card:getMark("@@punsmuoh-switch-yang")==player.id
+    if not data.damageDealt
+    and 
+     (data.card:getMark("punsmuoh-switch-yang")==player.id or data.card:getMark("punsmuoh-switch-yin")==player.id)
     -- and player.id == data.card:getMark("punsmuoh-from")
-    then
-      if  not data.damageDealt  then return true end
-      for _,p in ipairs(data.tos) do
-        if not data.damageDealt[p] or data.damageDealt[p]<=0 then
-          return true
-        end
-      end
-    end
+    then 
+      return true
+   end
+      -- for _,p in ipairs(data.tos) do
+      --   if not data.damageDealt[p] or data.damageDealt[p]<=0 then
+      --     return true
+      --   end
+      -- end
+
   end,
   on_refresh = function(self, event, target, player, data)
     player.room:setPlayerMark(player,"punsmuoh-nodamage",1)
@@ -72,7 +75,6 @@ punsmuoh:addEffect(fk.CardUseFinished, {-- CardEffectCancelledOut
 
 punsmuoh:addEffect(fk.CardUsing, {  --不算發動技能  --加傷幖記
   is_delay_effect = true,
-  anim_type = "drawcard",
   can_refresh = function(self, event, target, player, data)
     return target==player
     and data.card   and data.card.trueName=="ssaet"
@@ -80,13 +82,21 @@ punsmuoh:addEffect(fk.CardUsing, {  --不算發動技能  --加傷幖記
   end,
   on_refresh = function(self, event, target, player, data)
     data.extra_data=data.extra_data or {}
-    data.antiNullify=true
     player.room:setPlayerMark(player,"punsmuoh-nodamage",0)
     player.room:setCardMark(data.card,"punsmuoh-damage-card-phase",player.id)  --  --插入中起動此牌會增傷
     player.room.logic:getCurrentEvent():findParent(GameEvent.UseCard, true):addCleaner(function()
       player.room:setCardMark(data.card, "punsmuoh-damage-card-phase", 0)  --  --插入中起動此牌會增傷
     end)
   end,
+})
+punsmuoh:addEffect("targetmod", {
+  -- bypass_times = function(self, player, skill, scope, card)
+  -- end,
+  bypass_distances = function(self, player, skill, card)
+    return card and card.trueName=="ssaet" and player:getMark("punsmuoh-nodamage")>0
+  end,
+  -- extra_target_func = function(self, player, skill, card)
+  -- end,
 })
 
 punsmuoh:addEffect(fk.DamageInflicted, {  --不算發動技能
@@ -102,7 +112,7 @@ punsmuoh:addEffect(fk.DamageInflicted, {  --不算發動技能
 
 -- punsmuoh:addEffect(fk.TargetConfirmed, {  --不算發動技能
 --   can_trigger = function (self, event, target, player, data)
---     return data.card:getMark("@@punsmuoh-switch-yin")==player.id
+--     return data.card:getMark("punsmuoh-switch-yin")==player.id
 --     -- and data.from==player --問一次
 --   end,
 --   on_trigger = function (self, event, target, player, data)
@@ -114,7 +124,7 @@ punsmuoh:addEffect(fk.DamageInflicted, {  --不算發動技能
 
 local anti={
   can_trigger = function (self, event, target, player, data)
-    return data.card:getMark("@@punsmuoh-switch-yin")==player.id
+    return data.card:getMark("punsmuoh-switch-yin")==player.id
     -- and data.from==player --問一次
   end,
   on_trigger = function (self, event, target, player, data)
@@ -148,14 +158,5 @@ punsmuoh:addEffect(fk.CardEffectCancelledOut, {  --不算發動技能
 --   end,
 -- })
 
-punsmuoh:addEffect("targetmod", {
-  -- bypass_times = function(self, player, skill, scope, card)
-  -- end,
-  bypass_distances = function(self, player, skill, card)
-    return card and card.trueName=="ssaet" and player:getMark("punsmuoh-nodamage")>0
-  end,
-  -- extra_target_func = function(self, player, skill, card)
-  -- end,
-})
 
 return punsmuoh

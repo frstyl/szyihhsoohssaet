@@ -85,7 +85,7 @@ thoavqliak:addEffect("active", {
       if room:getCardArea(cid)==Card.PlayerEquip then
           room:moveCardIntoEquip(to2[1], cid, thoavqliak.name, true, player)  --player?why not id
       else
-      -- local cardToMove = room:getCardOwner(cid):getVirualEquip(cid) or Fk:getCardById(cid)
+      -- local cardToMove = room:getCardOwner(cid):getVirtualEquip(cid) or Fk:getCardById(cid)
         room:moveCardTo({cid},Card.PlayerJudge,to2[1], Fk.ReasonPut, thoavqliak.name,nil,true,player)
       end
     else

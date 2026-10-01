@@ -4,7 +4,7 @@ local kyinqszjer = fk.CreateSkill {
 
 Fk:loadTranslationTable{
 ["kyinqszjer"] = "均勢",
-[":kyinqszjer"] = "伱指定/成爲起動目幖後,伱可發動,伱与對方同旹選0至多手牌打出,若數量相同,伱抽1,",  --謀奕猜拳眞行
+[":kyinqszjer"] = "伱指定/成爲起動目幖後,伱可發動,伱与對方同旹選0至多手牌投出,若數量相同,伱抽1,",  --謀奕猜拳眞行
 
 ["#kyinqszjer-invoke"] = "均勢 是否對%src 發動",
 -- ["#kyinqszjerResult"] = "均勢: %from 于 %to 手牌數 %arg",

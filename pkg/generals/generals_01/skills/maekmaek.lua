@@ -1,22 +1,22 @@
-local maekmaek = fk.CreateSkill{
-  name = "maekmaek",
+local khjenhkhuan = fk.CreateSkill{
+  name = "khjenhkhuan",
   -- tags = { Skill.Compulsory },
 }
 
 Fk:loadTranslationTable{
-  ["maekmaek"] = "脈脈",
-  [":maekmaek"] = "伱末段始旹,伱可選1其它已損脚色發動,伱令伱与其各回1,翻面牢+1",
+  ["khjenhkhuan"] = "繾綣",
+  [":khjenhkhuan"] = "伱末段始旹,伱可選1其它已損脚色發動,伱令伱与其各回1,翻面牢+1",
 
-  ["#maekmaek-invoke:"] = "无濟 是否對 %src發動",
+  ["#khjenhkhuan-choose"] = "繾綣 選1其它已損脚色發動",
 
-  ["$maekmaek1"] = "我欲行夏禹旧事，为天下人。",
+  ["$khjenhkhuan1"] = "我欲行夏禹旧事，为天下人。",
 
 }
 
-maekmaek:addEffect(fk.EventPhaseStart, {
+khjenhkhuan:addEffect(fk.EventPhaseStart, {
   anim_type = "control",
   can_trigger = function (self, event, target, player, data)
-    return target==player and player:hasSkill(maekmaek.name) and data.phase==Player.Finish
+    return target==player and player:hasSkill(khjenhkhuan.name) and data.phase==Player.Finish
     and table.find(player.room.alive_players,function(p)
       return p~=player and p:isWounded()
     end)
@@ -30,8 +30,8 @@ maekmaek:addEffect(fk.EventPhaseStart, {
       min_num = 1,
       max_num = 1,
       targets = targets,  --
-      skill_name = maekmaek.name,
-      prompt = "#maekmaek-choose",
+      skill_name = khjenhkhuan.name,
+      prompt = "#khjenhkhuan-choose",
       cancelable = true,
     })
     if #tos > 0 then
@@ -47,7 +47,7 @@ maekmaek:addEffect(fk.EventPhaseStart, {
       who = p,
       num = 1,
       recoverBy = player,
-      skillName = maekmaek.name,
+      skillName = khjenhkhuan.name,
     }
     room:addPlayerMark(p,"@loav",1)
   end
@@ -58,4 +58,4 @@ maekmaek:addEffect(fk.EventPhaseStart, {
 
 
 
-return maekmaek
+return khjenhkhuan

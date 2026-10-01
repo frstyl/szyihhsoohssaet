@@ -87,7 +87,7 @@ cardSkill:addEffect(fk.Damaged, {
     local exe=function(to,direction)
 
           for _, id in ipairs(to:getCardIds(Player.Judge)) do
-            local c = to:getVirualEquip(id) or Fk:getCardById(id)
+            local c = to:getVirtualEquip(id) or Fk:getCardById(id)
             if c.trueName == "hqjin_szjer_ljis_doavs" then
               local card=c
               room:moveCardTo(card, Card.Processing, nil, fk.ReasonPut, "hqjin_szjer_ljis_doavs_skill")

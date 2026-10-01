@@ -1,17 +1,22 @@
 local skill = fk.CreateSkill {
   name = "tvoans_liac_dzyet_quan_skill",
 }
--- local S = require "packages/szyihhsoohssaet/szyih_guos" 
+local S = require "packages/szyihhsoohssaet/szyih_guos" 
 
 skill:addEffect("cardskill", {
   prompt = "#tvoans_liac_dzyet_quan_skill",
   distance_limit = 1,
-  mod_target_filter = function(self, player, to_select, selected, card, extra_data)
-    return to_select ~= player and not (not (extra_data and extra_data.bypass_distances) and
-      not self:withinDistanceLimit(player, false, card, to_select))
-  end,
-  target_filter = Util.CardTargetFilter,
   target_num = 1,
+  mod_target_filter = function(self, player, to_select, selected, card, extra_data)
+    return to_select ~= player 
+    and (
+       (extra_data and extra_data.bypass_distances) 
+       or self:withinDistanceLimit(player, false, card, to_select)
+      )
+  end,
+  target_filter = function(self, player, to_select, selected, _, card, extra_data)
+    return S.delayTargetFilter(self, player, to_select, selected, _, card, extra_data)
+  end,
   offset_func= Util.FalseFunc,
   on_effect = function(self, room, effect)
     if not (effect.extar_data and  effect.extar_data.phase_data) then return end

@@ -12,13 +12,13 @@ local noosssaet = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["noosssaet"] = "怒殺",
-  [":noosssaet"] = "➀主旹,伱可預打出1殺,選擇1脚色除伱外體力值至大者發動.伱与其1傷.➁主旹,伱可預打出1牌非殺,選擇1脚色除伱外手牌數至大者發動.伱弃置其2牌.",
+  [":noosssaet"] = "➀主旹,伱可預投出1殺,選擇1脚色除伱外體力值至大者發動.伱予其1傷.➁主旹,伱可預投出1牌非殺,選擇1脚色除伱外手牌數至大者發動.伱弃置其2牌.",
 
-  -- ["#noosssaet"] = "怒殺：打出一殺，与1脚色1傷 ",
-  -- ["#noosssaet-discard"] = "怒殺：打出一牌 對 %src 傷害+1",
+  -- ["#noosssaet"] = "怒殺：投出一殺，与1脚色1傷 ",
+  -- ["#noosssaet-discard"] = "怒殺：投出一牌 對 %src 傷害+1",
 
-  ["noosssaet_hp"] = "打出1殺 与1腳色傷害",
-  ["noosssaet_hand"] = "打出非殺 弃1腳色2牌",
+  ["noosssaet_hp"] = "投出1殺 与1腳色傷害",
+  ["noosssaet_hand"] = "投出非殺 弃1腳色2牌",
   ["$noosssaet1"] = "伱昰廝是喫已熊心豹子膽。",
 }
 local S = require "packages/szyihhsoohssaet/szyih_guos" 

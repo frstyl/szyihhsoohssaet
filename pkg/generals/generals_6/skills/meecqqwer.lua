@@ -4,9 +4,9 @@ local muoshqinh = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["muoshqinh"] = "霧隱",
-  [":muoshqinh"] = "伱輪始旹,伱可預打出2x手牌指定至多x脚色發動:爲所選脚色附加霧隱幖記,輪終淸除,伱印取得2*x空牌.霧隱幖記效果:脚色受到非雷傷旹,迻除幖記,防止傷害",
+  [":muoshqinh"] = "伱輪始旹,伱可預投出2x手牌指定至多x脚色發動:爲所選脚色附加霧隱幖記,輪終淸除,伱印取得2*x空牌.霧隱幖記效果:脚色受到非雷傷旹,迻除幖記,防止傷害",
 
-  ["#muoshqinh_active"] = "霧隱 打出2x手牌指定x脚色發動",
+  ["#muoshqinh_active"] = "霧隱 投出2x手牌指定x脚色發動",
   ["@@muoshqinh-round"] = "霧隱",
 
   ["$muoshqinh1"] = "侌司鬼神 護附吾身",

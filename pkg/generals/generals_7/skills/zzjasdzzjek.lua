@@ -4,8 +4,8 @@ local zzjasdzzjek = fk.CreateSkill{
 
 Fk:loadTranslationTable{
 ["zzjasdzzjek"] = "射石",  --沒鉃
-[":zzjasdzzjek"] = "➀伱預段始旹伱可發動,伱占卜2次,記彔占卜牌花色,轉終淸除記錄➁印牌:伱可將伱1牌花色含于記彔者轉化爲殺起動➂伱所起動殺依記錄所含花色具有對應效果:<font color='red'>♥</font>，无視距離；"..
-  "<font color='red'>♦</font>，不可響應；♣，无視防具；♠，无視次數。若一花色記錄次數大于1,其傷害基數+1 ", --♠♥♣♦
+[":zzjasdzzjek"] = "伱預段始旹伱可發動,伱占卜2次,記彔占卜牌花色,轉終淸除記錄｡轉內伱可印牌:將伱1牌花色含于記彔者轉化｣起動｢殺｣;伱所起動殺依記錄所含花色具有對應效果:<font color='red'>♥</font>，无視距離；"..
+  "<font color='red'>♦</font>，不可響應；♣，无視甲冑与武將技能；♠，无視次數。若一花色記錄褈復記錄,｢殺｣傷害基數+1 ", --♠♥♣♦
 
 ["#zzjasdzzjek-active"] = "射石 將記錄花色轉化爲殺",
 ["@zzjasdzzjek-turn"] = "射石",
@@ -16,26 +16,6 @@ Fk:loadTranslationTable{
 
 
 
-zzjasdzzjek:addEffect("viewas", {
-  anim_type = "offensive",
-  -- pattern = "ssaet",
-  prompt = "#zzjasdzzjek-active",
-  mute_card = true,
-  handly_pile = true,
-  card_filter = function(self, player, to_select, selected)
-    return #selected == 0 and table.contains(player:getTableMark("@zzjasdzzjek-turn"), Fk:getCardById(to_select):getSuitString(true) )
-  end,
-  view_as = function(self, player, cards)
-    if #cards ~= 1 then return end
-    local c = Fk:cloneCard("ssaet")
-    c.skillName = zzjasdzzjek.name
-    c:addSubcard(cards[1])
-    return c
-  end,
-  enabled_at_response = function(self, player, response) --響應
-    return  not response  --此response为打出 不能用于打出 
-  end,
-})
 
 
 zzjasdzzjek:addEffect(fk.EventPhaseStart, {
@@ -45,6 +25,8 @@ zzjasdzzjek:addEffect(fk.EventPhaseStart, {
   end,
   on_use = function(self, event, target, player, data)
     local room = player.room
+    local suits=player:getTableMark("@@ignore_Armor-trun")
+    local damage=false
     for i=1,2,1 do
       local judge = {
         who = player,
@@ -52,19 +34,37 @@ zzjasdzzjek:addEffect(fk.EventPhaseStart, {
         pattern = ".|.|spade,club,heart,diamond",
       }
       room:judge(judge)
-      local suit = judge.card:getSuitString(true)
+      local suit=judge.card:getSuitString(true)
       if table.contains(player:getTableMark("@zzjasdzzjek-turn"), suit ) then
+        damage=true
+      end
+      table.insert(suits,suit)
+    end
+      
+      if damage then
         room:setPlayerMark(player,"_zzjasdzzjek-damage-turn",1)
       end
-      room:addTableMark(player,"@zzjasdzzjek-turn",suit)
-      if suit=="log_spade" then room:addPlayerMark(player,"ssaet_bypass_times-trun",1) 
-      elseif  suit=="log_heart" then 
-        room:addPlayerMark(player,"ssaet_bypass_distances-trun",1) 
-      elseif   suit=="log_club" then 
-        room:addPlayerMark(player,"@@ignore_Armor-trun",1) 
-      end
 
-    end
+      for _, suit in ipairs(suits) do
+        if suit=="log_spade" then 
+          room:addPlayerMark(player,"ssaet_bypass_times-trun",1) 
+        elseif  suit=="log_heart" then 
+          room:addPlayerMark(player,"ssaet_bypass_distances-trun",1) 
+        elseif   suit=="log_club" then 
+          room:addPlayerMark(player,"@@ignore_Armor-trun",1) 
+        end
+      end
+      room:setPlayerMark(player,"@zzjasdzzjek-turn",suit)
+
+
+    
+
+      player.room:handleAddLoseSkills(player, "zzjasdzzjek_view&",nil,false,true)
+        
+      player.room.logic:getCurrentEvent():findParent(GameEvent.Turn, true):addCleaner(function()
+      player.room:handleAddLoseSkills(player, "-zzjasdzzjek_view&",nil,false,true)
+         end
+      )
   end,
 })
 
@@ -96,6 +96,7 @@ zzjasdzzjek:addEffect(fk.PreCardUse, {
     if  table.contains(player:getTableMark("@zzjasdzzjek-turn"), "log_club") then
       data.extra_data=data.extra_data or {}
       data.extra_data.ignore_Armor_to=table.simpleClone(player.room.players)
+      data.extra_data.ignore_player_skills_to=table.simpleClone(player.room.players)
     end
 
     if player:getMark("_zzjasdzzjek-damage-turn")>0 then

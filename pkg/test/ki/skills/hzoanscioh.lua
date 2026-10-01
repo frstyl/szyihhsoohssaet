@@ -4,9 +4,9 @@ local hzoanscioh = fk.CreateSkill {
 
 Fk:loadTranslationTable{
 ["hzoanscioh"] = "扞敔",
-[":hzoanscioh"] = "牌被起動旹,伱記錄其花色｡殺被起動旹,伱可預打出1牌(此牌花色含于記錄)發動,伱令此｢殺｣起動无效",
+[":hzoanscioh"] = "牌被起動旹,伱記錄其花色｡殺被起動旹,伱可預投出1牌(此牌花色含于記錄)發動,伱令此｢殺｣起動无效",
 
-["#hzoanscioh-invoke"] = "扞敔: %dest 起動 %arg 伱可打出1同花色牌發令其无效",
+["#hzoanscioh-invoke"] = "扞敔: %dest 起動 %arg 伱可投出1同花色牌發令其无效",
 
 }
 

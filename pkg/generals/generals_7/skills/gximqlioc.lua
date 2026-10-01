@@ -5,7 +5,7 @@ local gximqlioc = fk.CreateSkill{
 
 Fk:loadTranslationTable{
 ["gximqlioc"] = "擒龍",
-[":gximqlioc"] = "恆續若伱有空武器欄,伱起動殺无視次數目幖上限+1",--无次數限制?
+[":gximqlioc"] = "恆續若伱有空兵器欄,伱起動殺无視次數目幖上限+1",--无次數限制?
 
 
 ["$gximqlioc"] = "論拳腳功夫,某是不會輸之",

@@ -4,7 +4,7 @@ local gianqkouc = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["gianqkouc"] = "赶工",
-  [":gianqkouc"] = "伱轉始前,伱可發動｡至多x腳色各抽1,可用1,伱牢+1",
+  [":gianqkouc"] = "伱轉始前,伱可發動｡至多x腳色各抽1,起動1,伱牢+1",
 
   ["#gianqkouc-choose"] = "赶工 選擇目幖",
   -- ["#gianqkouc-use"] = "赶工 起動一牌",
@@ -43,6 +43,7 @@ gianqkouc:addEffect(fk.BeforeTurnStart,{--TurnStart
     end
 
       local params={
+        pattern = ".", --
         cancelable=false,
         skip=false,
         skill_name=gianqkouc.name,
@@ -50,10 +51,17 @@ gianqkouc:addEffect(fk.BeforeTurnStart,{--TurnStart
           bypass_distances=false,
           bypass_times=false,
           extraUse=false,
+          bypass_moment=true,
+
       }
     }
     for _, p in ipairs(tos) do
-      if not p.dead then room:askToPlayCard(target, params) end
+      if not p.dead then
+	  local use=room:askToUseCard(p, params) 
+		  if use then
+		   room:useCard(use)
+		  end
+	  end
     end
 
     S.skipTurn(player,gianqkouc.name,data)  --手動

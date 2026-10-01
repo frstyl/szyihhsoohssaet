@@ -40,7 +40,7 @@ Fk:loadTranslationTable{
 
 local jiac__boojqnzioqhsoeojh = General:new(extension, "jiac__boojqnzioqhsoeojh", "pujh", 3)
 jiac__boojqnzioqhsoeojh:addSkills { "buamshqxim","ljeqddxin","lunqhzooj"} 
-jiac__boojqnzioqhsoeojh:addRelatedSkill("tsziukzzyit_hsoonqdzzyes")
+-- jiac__boojqnzioqhsoeojh:addRelatedSkill("tsziukzzyit_hsoonqdzzyes")
 Fk:loadTranslationTable{
 ["jiac__boojqnzioqhsoeojh"] = "裴如海",
 ["#jiac__boojqnzioqhsoeojh"] = "海闍黎",
@@ -50,23 +50,23 @@ Fk:loadTranslationTable{
 ["~jiac__boojqnzioqhsoeojh"] = "終究舍不去昰塵緣",
 }
 
-local hqxim__phoanqkhaavhqun = General:new(extension, "hqxim__phoanqkhaavhqun", "mjin", 3,3,General.Female)
-hqxim__phoanqkhaavhqun:addSkills { "dzjecqdook","dooqmxe","dzyetjyen"}
-hqxim__phoanqkhaavhqun:addRelatedSkill("tsziukzzyit_tthxinsdook")
+local hqxim__phvoan_khaavh_qun = General:new(extension, "hqxim__phvoan_khaavh_qun", "mjin", 3,3,General.Female)
+hqxim__phvoan_khaavh_qun:addSkills { "dzjecqdook","dooqmxe","dzyetjyen"}
+-- hqxim__phvoan_khaavh_qun:addRelatedSkill("tsziukzzyit_tthxinsdook")
 Fk:loadTranslationTable{
-["hqxim__phoanqkhaavhqun"] = "潘巧雲",
-["#hqxim__phoanqkhaavhqun"] = "花開荼蘼",
-["designer:hqxim__phoanqkhaavhqun"] = "設計",
-["cv:hqxim__phoanqkhaavhqun"] = "配音",
-["illustrator:hqxim__phoanqkhaavhqun"] = "畫師",
-["~hqxim__phoanqkhaavhqun"] = "苦乎",
+["hqxim__phvoan_khaavh_qun"] = "潘巧雲",
+["#hqxim__phvoan_khaavh_qun"] = "花開荼蘼",
+["designer:hqxim__phvoan_khaavh_qun"] = "設計",
+["cv:hqxim__phvoan_khaavh_qun"] = "配音",
+["illustrator:hqxim__phvoan_khaavh_qun"] = "畫師",
+["~hqxim__phvoan_khaavh_qun"] = "苦乎",
 }
 
 
 local jiac__lihkoos = General:new(extension, "jiac__lihkoos", "mjin", 4)
 jiac__lihkoos:addSkills { "deevhloucs","meejqdzoeoj","koushzaems"}
-jiac__lihkoos:addRelatedSkill("nzjipkous")
-jiac__lihkoos:addRelatedSkill("tsziukzzyit_hsoonslvoans")
+-- jiac__lihkoos:addRelatedSkill("nzjipkous")
+-- jiac__lihkoos:addRelatedSkill("tsziukzzyit_hsoonslvoans")
 Fk:loadTranslationTable{
 ["jiac__lihkoos"] = "李固",
 ["#jiac__lihkoos"] = "惡管家",
@@ -76,21 +76,21 @@ Fk:loadTranslationTable{
 ["~jiac__lihkoos"] = "苦乎",
 }
 
-local hqxim__kaahdzzjeh = General:new(extension, "hqxim__kaahdzzjeh", "mjin", 3,3, General.Female)
-hqxim__kaahdzzjeh:addSkills { "khitdzjec","piucshsiap","deecssjim"}
-hqxim__kaahdzzjeh:addRelatedSkill("tsziukzzyit_hzaechquns")
+local hqxim__kaah_dzzjeh = General:new(extension, "hqxim__kaah_dzzjeh", "mjin", 3,3, General.Female)
+hqxim__kaah_dzzjeh:addSkills { "khitdzjec","piucshsiap","deecssjim"}
+-- hqxim__kaah_dzzjeh:addRelatedSkill("tsziukzzyit_hzaechquns")
 Fk:loadTranslationTable{
-["hqxim__kaahdzzjeh"] = "賈氏",
-["#hqxim__kaahdzzjeh"] = "花折墜月",
-["designer:hqxim__kaahdzzjeh"] = "設計",
-["cv:hqxim__kaahdzzjeh"] = "配音",
-["illustrator:hqxim__kaahdzzjeh"] = "畫師",
-["~hqxim__kaahdzzjeh"] = "苦乎",
+["hqxim__kaah_dzzjeh"] = "賈氏",
+["#hqxim__kaah_dzzjeh"] = "花折墜月",
+["designer:hqxim__kaah_dzzjeh"] = "設計",
+["cv:hqxim__kaah_dzzjeh"] = "配音",
+["illustrator:hqxim__kaah_dzzjeh"] = "畫師",
+["~hqxim__kaah_dzzjeh"] = "苦乎",
 }
 
 local jiac__muohdoarloac=General:new(extension, "jiac__muohdoarloac", "mjin", 1)
 jiac__muohdoarloac:addSkills { "khutdzioc","nzjinhnziok","hzoeomqhzoeons"}
-jiac__muohdoarloac:addRelatedSkill("tsziukzzyit_mxiqquns")
+-- jiac__muohdoarloac:addRelatedSkill("tsziukzzyit_mxiqquns")
 Fk:loadTranslationTable{
 ["jiac__muohdoarloac"] = "武大郎",
 ["#jiac__muohdoarloac"] = "三寸丁穀樹皮",
@@ -100,22 +100,22 @@ Fk:loadTranslationTable{
 ["~jiac__muohdoarloac"] = "苦乎",
 }
 
-local hqxim__phoanqkximqleen = General:new(extension, "hqxim__phoanqkximqleen", "mjin", 3,3,General.Female)
-hqxim__phoanqkximqleen:addSkills { "loakkoan","leechjiak","ljetmuns"}
-hqxim__phoanqkximqleen:addRelatedSkill("tsziukzzyit_dzjecshsfas")
+local hqxim__phvoan_kxim_leen = General:new(extension, "hqxim__phvoan_kxim_leen", "mjin", 3,3,General.Female)
+hqxim__phvoan_kxim_leen:addSkills { "loakkoan","leechjiak","ljetmuns"}
+-- hqxim__phvoan_kxim_leen:addRelatedSkill("tsziukzzyit_dzjecshsfas")
 Fk:loadTranslationTable{
-["hqxim__phoanqkximqleen"] = "潘金蓮",
-["#hqxim__phoanqkximqleen"] = "鏡花水月",
-["designer:hqxim__phoanqkximqleen"] = "設計",
-["cv:hqxim__phoanqkximqleen"] = "配音",
-["illustrator:hqxim__phoanqkximqleen"] = "畫師",
-["~hqxim__phoanqkximqleen"] = "苦乎",
+["hqxim__phvoan_kxim_leen"] = "潘金蓮",
+["#hqxim__phvoan_kxim_leen"] = "鏡花水月",
+["designer:hqxim__phvoan_kxim_leen"] = "設計",
+["cv:hqxim__phvoan_kxim_leen"] = "配音",
+["illustrator:hqxim__phvoan_kxim_leen"] = "畫師",
+["~hqxim__phvoan_kxim_leen"] = "苦乎",
 }
 
 
 local jiac__quacqkhracs= General:new(extension, "jiac__quacqkhracs", "mjin", 4)
-jiac__quacqkhracs:addSkills { "meejqtsyis","zjimqhsfa","szikmuj"}
-jiac__quacqkhracs:addRelatedSkill("tsziukzzyit_mxishqrach")
+jiac__quacqkhracs:addSkills { "zjimqhsfa","meejqtsyis","szikmuj" }--, -
+-- jiac__quacqkhracs:addRelatedSkill("tsziukzzyit_mxishqrach")
 Fk:loadTranslationTable{
 ["jiac__quacqkhracs"] = "王慶",
 ["#jiac__quacqkhracs"] = "偷香竊玉", --陰險產屰
@@ -127,7 +127,7 @@ Fk:loadTranslationTable{
 
 local hqxim__doucqkxevqsius =General:new(extension, "hqxim__doucqkxevqsius", "mjin", 3,3, General.Female)
 hqxim__doucqkxevqsius:addSkills { "liuqhzfa","hseekdziac","hsfaqtsoacs"}
-hqxim__doucqkxevqsius:addRelatedSkill("tsziukzzyit_dzjisjuoh")
+-- hqxim__doucqkxevqsius:addRelatedSkill("tsziukzzyit_dzjisjuoh")
 Fk:loadTranslationTable{
 ["hqxim__doucqkxevqsius"] = "童嬌秀",
 ["#hqxim__doucqkxevqsius"] = "秋水揚波",
@@ -137,33 +137,33 @@ Fk:loadTranslationTable{
 ["~hqxim__doucqkxevqsius"] = "苦乎",
 }
 
-local jiac__tsziukpru=General:new(extension, "jiac__tsziukpru", "mjin", 4)
-jiac__tsziukpru:addSkills { "deejqprac","hzoavhkhis","bjesphioc"}
-jiac__tsziukpru:addRelatedSkill("tsziukzzyit_mracsttiucs")
+local jiac__tsziuk_pru=General:new(extension, "jiac__tsziuk_pru", "mjin", 4)
+jiac__tsziuk_pru:addSkills { "deejqprac","hzoavhkhis","bjesphioc"}
+-- jiac__tsziuk_pru:addRelatedSkill("tsziukzzyit_mracsttiucs")
 Fk:loadTranslationTable{
-["jiac__tsziukpru"] = "祝彪",
-["#jiac__tsziukpru"] = "小郎君",
-["designer:jiac__tsziukpru"] = "設計",
-["cv:jiac__tsziukpru"] = "配音",
-["illustrator:jiac__tsziukpru"] = "畫師",
-["~jiac__tsziukpru"] = "苦乎",
+["jiac__tsziuk_pru"] = "祝彪",
+["#jiac__tsziuk_pru"] = "小郎君",
+["designer:jiac__tsziuk_pru"] = "設計",
+["cv:jiac__tsziuk_pru"] = "配音",
+["illustrator:jiac__tsziuk_pru"] = "畫師",
+["~jiac__tsziuk_pru"] = "苦乎",
 }
 
-local hqxim__hzoohsoamnniac = General:new(extension, "hqxim__hzoohsoamnniac", "mjin", 4,4, General.Female)
-hqxim__hzoohsoamnniac:addSkills { "tthiuqtoav","deecstshjin",} --"hzaocqdzioc"
-hqxim__hzoohsoamnniac:addRelatedSkill("tsziukzzyit_guacqboavs")
+local hqxim__hzooh_soam__nniac = General:new(extension, "hqxim__hzooh_soam__nniac", "mjin", 4,4, General.Female)
+hqxim__hzooh_soam__nniac:addSkills { "tthiuqtoav","deecstshjin",} --"hzaocqdzioc"
+-- hqxim__hzooh_soam__nniac:addRelatedSkill("tsziukzzyit_guacqboavs")
 Fk:loadTranslationTable{
-["hqxim__hzoohsoamnniac"] = "扈三娘",
-["#hqxim__hzoohsoamnniac"] = "巾幗鬚眉",
-["designer:hqxim__hzoohsoamnniac"] = "設計",
-["cv:hqxim__hzoohsoamnniac"] = "配音",
-["illustrator:hqxim__hzoohsoamnniac"] = "畫師",
-["~hqxim__hzoohsoamnniac"] = "苦乎",
+["hqxim__hzooh_soam__nniac"] = "扈三娘",
+["#hqxim__hzooh_soam__nniac"] = "巾幗鬚眉",
+["designer:hqxim__hzooh_soam__nniac"] = "設計",
+["cv:hqxim__hzooh_soam__nniac"] = "配音",
+["illustrator:hqxim__hzooh_soam__nniac"] = "畫師",
+["~hqxim__hzooh_soam__nniac"] = "苦乎",
 }
 
 local jiac__ttiacqquacs =General:new(extension, "jiac__ttiacqquacs", "mjin", 3)
 jiac__ttiacqquacs:addSkills { "hsoonqhsoojs","muoqtseejs","seenhkiap"}  --dzoeokzzyon
-jiac__ttiacqquacs:addRelatedSkill("tsziukzzyit_maacqmiuk")
+-- jiac__ttiacqquacs:addRelatedSkill("tsziukzzyit_maacqmiuk")
 Fk:loadTranslationTable{
 ["jiac__ttiacqquacs"] = "張旺",
 ["#jiac__ttiacqquacs"] = "𢧵江鬼",  --不彀侌昜
@@ -174,8 +174,8 @@ Fk:loadTranslationTable{
 }
 
 local hqxim__lihkhaavhnoo = General:new(extension, "hqxim__lihkhaavhnoo", "mjin", 3,3, General.Female)
-hqxim__lihkhaavhnoo:addSkills { "tsziukmoan","maekmaek","dzziuqhquans"}
-hqxim__lihkhaavhnoo:addRelatedSkill("tsziukzzyit_tssiostsziuk")
+hqxim__lihkhaavhnoo:addSkills { "loucssjecs","khjenhkhuan","dzziuqhquans"}
+-- hqxim__lihkhaavhnoo:addRelatedSkill("tsziukzzyit_tssiostsziuk")
 Fk:loadTranslationTable{
 ["hqxim__lihkhaavhnoo"] = "李巧奴",
 ["#hqxim__lihkhaavhnoo"] = "愁紅慘綠",
@@ -187,7 +187,7 @@ Fk:loadTranslationTable{
 
 local jiac__touchbrac = General:new(extension, "jiac__touchbrac", "mjin", 4,5)
 jiac__touchbrac:addSkills { "puanhmiuk","giacqpaas","jiokhsoak"}
-jiac__touchbrac:addRelatedSkill("tsziukzzyit_puanhdoan")
+-- jiac__touchbrac:addRelatedSkill("tsziukzzyit_puanhdoan")
 Fk:loadTranslationTable{
 ["jiac__touchbrac"] = "董平",
 ["#jiac__touchbrac"] = "濁流淸源",--東平都監
@@ -199,7 +199,7 @@ Fk:loadTranslationTable{
 
 local hqxim__ddxecqhquanhnzje = General:new(extension, "hqxim__ddxecqhquanhnzje", "mjin", 3,3, General.Female)
 hqxim__ddxecqhquanhnzje:addSkills{ "sooshseec","leecqpheec","tsheejqdzyet"}
-hqxim__ddxecqhquanhnzje:addRelatedSkill("tsziukzzyit_mxenhcioh")
+-- hqxim__ddxecqhquanhnzje:addRelatedSkill("tsziukzzyit_mxenhcioh")
 Fk:loadTranslationTable{
 ["hqxim__ddxecqhquanhnzje"] = "程婉兒",
 ["#hqxim__ddxecqhquanhnzje"] = "淒風楚雨",
@@ -211,7 +211,7 @@ Fk:loadTranslationTable{
 
 ---------------
 
-General:new(extension, "caok__caokhzvoa", "tsiacs", 3):addSkills {"hzvoaqcaok" } --,
+General:new(extension, "caok__caokhzvoa", "mjin", 3):addSkills {"hzvoaqcaok" } --,
 Fk:loadTranslationTable{
 ["caok__caokhzvoa"] = "樂和",
 ["#caok__caokhzvoa"] = "鐵叫子",
@@ -221,7 +221,7 @@ Fk:loadTranslationTable{
 ["~caok__caokhzvoa"] = "此曲終已",
 }
 
-General:new(extension, "caok__maahljin", "pujh", 3):addSkills {"jiacqhqik" } --,
+General:new(extension, "caok__maahljin", "mjin", 3):addSkills {"jiacqhqik" } --,
 Fk:loadTranslationTable{
 ["caok__maahljin"] = "馬麟",
 ["#caok__maahljin"] = "鐵笛仙",
@@ -229,6 +229,16 @@ Fk:loadTranslationTable{
 ["cv:caok__maahljin"] = "配音",
 ["illustrator:caok__maahljin"] = "畫師",
 ["~caok__maahljin"] = "此曲終已",
+}
+
+General:new(extension, "caok__ddxevh_gxit", "mjin", 3):addSkills {"liuqsziac","tthxechdzoeoj" } --,
+Fk:loadTranslationTable{
+["caok__ddxevh_gxit"] = "趙佶",
+["#caok__ddxevh_gxit"] = "端王",
+["designer:caok__ddxevh_gxit"] = "設計",
+["cv:caok__ddxevh_gxit"] = "配音",
+["illustrator:caok__ddxevh_gxit"] = "畫師",
+["~caok__ddxevh_gxit"] = "",
 }
 
 General:new(extension, "ttiacqsziukjjas", "pujh", 3):addSkills {"ttxinsphuoh","koucqbuat" } --,

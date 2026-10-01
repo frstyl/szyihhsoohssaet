@@ -91,32 +91,29 @@ cardSkill:addEffect("cardskill", {
       arg2=cardUseEvent.card:toLogString()
       -- arg2 =cardUseEvent.card:getString,
     }
-    cardUseEvent:changeCard(natures[n]) --標記
+    local card=Fk:cloneCard(natures[n])
+    local c = table.simpleClone(use.card)
+    for k, v in pairs(c) do
+      card[k] = v
+    end
+    use.card.skill = self
   end,
   -- on_action = function(self, room, use, finished)
   -- end,
   offset_func= Util.FalseFunc,
   on_effect = function(self, room, effect)
-    if not effect.to.dead then
-  --     local map={["ssaet"]=fk.NormalDamage,
-  --   ["thunder__ssaet"]=fk.FireDamage,
-  -- ["fire__ssaet"]=fk.ThunderDamage,}
-  -- local nature=map[effect.card.name]
-  -- if effect.card:getMark("@@card_damage_nature-phase")=="thunder__ssaet" then
-  --   nature=2
-  -- end
+    if not effect.to.dead then     end
       room:damage({
         from = effect.from,
         to = effect.to,
         card = effect.card,
         damage = 1,
-        damageType = effect.card:getMark("@@card_damage_nature-phase") or 1,
+        damageType = Fk:cloneCard(effect.card.name).damage_type,
         skillName = cardSkill.name,
         event_data= effect,
       })
-      effect.from:drawCards(2,cardSkill.name)
-      -- S.addTsziukzzyit()
-    end
+    if effect.to.dead then return end
+    S.addTsziukzzyitBuff(effect.to,nil,effect.from,effect.card)
   end,
 })
 

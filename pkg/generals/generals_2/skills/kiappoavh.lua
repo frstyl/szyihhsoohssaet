@@ -5,7 +5,7 @@ local kiappoavh = fk.CreateSkill{
 
 Fk:loadTranslationTable{
 ["kiappoavh"] = "劫寶",
-[":kiappoavh"] = "其它脚色額外抽牌前,若其手牌全場冣多或抽牌數大于2,伱可發動.改爲伱執行,中止元旹機",
+[":kiappoavh"] = "其它脚色抽牌前,若其手牌全場冣多或抽牌數大于2,伱可發動.改爲伱執行",
 
 ["#kiappoavh-invoke"] = "劫寶 %src 將抽%arg 是否劫取",
 }
@@ -17,7 +17,7 @@ kiappoavh:addEffect(fk.BeforeDrawCard, {
   can_trigger = function (self, event, target, player, data)
     if  player:hasSkill(kiappoavh.name)
      and data.who~=player 
-      and data.skillName~="phase_draw"
+      -- and data.skillName~="phase_draw"
       then
      if data.num>2 then return true end
      local n =data.who:getHandcardNum()
@@ -33,8 +33,12 @@ kiappoavh:addEffect(fk.BeforeDrawCard, {
     }) 
   end,
   on_use = function(self, event, target, player, data)
-    player.room:drawCards(player, data.num,  data.skillName.name, data.fromPlace )
-    return true
+    -- player.room:drawCards(player, data.num,  data.skillName.name, data.fromPlace )
+		data.extra_data=data.extra_data or {}
+		data.extra_data.origin_to=data.who
+				data.who=player
+				target=player
+    -- return true
   end,
 })
 

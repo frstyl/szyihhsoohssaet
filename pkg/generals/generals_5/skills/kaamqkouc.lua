@@ -41,6 +41,7 @@ local spec={
       room:throwCard({cid}, kaamqkouc.name, target, player)
     else
       local params={
+        pattern = ".", --
         cancelable=false,
         skip=false,
         skill_name=kaamqkouc.name,
@@ -48,9 +49,10 @@ local spec={
           bypass_distances=false,
           bypass_times=false,
           extraUse=false,
+          bypass_moment=true,
       },
       }
-      local use =room:askToPlayCard(target, params)
+      local use =room:askToUseCard(target, params)
       if not use then target:showCards(player:getCardIds("he")) end
     end
   end,

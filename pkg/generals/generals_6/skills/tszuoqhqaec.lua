@@ -44,8 +44,12 @@ tszuoqhqaec:addEffect("prohibit", {
 
 -- tszuoqhqaec:addEffect("filter", {
 --   card_filter = function(self, card, player)
---     return player:hasSkill(tszuoqhqaec.name) and card.trueName == "tsiuh" 
---     and table.contains(player:getCardIds("h"), card.id)
+--     if ClientInstance and ClientInstance.current_request_handler
+--     and ClientInstance.current_request_handler.player  ==player then
+--       return player:hasSkill(tszuoqhqaec.name) and card.trueName == "tsiuh" 
+--       and table.contains(player:getCardIds("h"), card.id)
+--     end
+
 --   end,
 --   view_as = function(self, player, card)
 --     local card = Fk:cloneCard("nziuk", card.suit, card.number)
@@ -53,4 +57,5 @@ tszuoqhqaec:addEffect("prohibit", {
 --     return card
 --   end,
 -- })
+
 return tszuoqhqaec

@@ -4,7 +4,7 @@ local lihkhoos = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["lihkhoos"] = "理庫",
-  [":lihkhoos"] = "印牌:打出1至多牌,元實起動或演練牌堆中1牌(卽旹基本,与所打出牌點數同餘于13)",
+  [":lihkhoos"] = "印牌:投出1至多牌,元實起動或演練牌堆中1牌(卽旹基本,与所投出牌點數同餘于13)",
 
   ["#lihkhoos"] = "理庫：先選擇所需之牌 可用",
 }
@@ -83,7 +83,7 @@ lihkhoos:addEffect("viewas", {
     if not self:enabledAtResponse(player, false) then return end
 
     local all_names =  table.filter(Fk:getAllCardNames("bt"), function(name)
-      return S.isCommonTrick(name)
+      return S.isInstantTrick(name)
     end)
 
     return true

@@ -21,7 +21,7 @@ tszjettszhioc:addEffect(fk.DamageInflicted, {
   end,
   on_cost = function(self, event, target, player, data)
     if player.room:askToSkillInvoke(player,{skill_name="tszjettszhioc",prompt="#tszjettszhioc-invoke:"..data.to.id..":"..data.from.id}) then
-      event:setCostData(self,{tos={data.to}})
+      event:setCostData(self,{tos={data.from}})
       return true
     end
   end,

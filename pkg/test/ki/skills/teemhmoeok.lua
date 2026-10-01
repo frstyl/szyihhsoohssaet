@@ -4,10 +4,10 @@ local teemhmoeok = fk.CreateSkill({
 
 Fk:loadTranslationTable{
   ["teemhmoeok"] = "點墨",
-  [":teemhmoeok"] = "一脚色A起動牌旹,伱可打出1牌發動,伱令此起動无效,A抽x(x爲起動牌与伱打出牌字數絕對差)",
+  [":teemhmoeok"] = "一脚色A起動牌旹,伱可投出1牌發動,伱令此起動无效,A抽x(x爲起動牌与伱投出牌字數絕對差)",
 
 
-  ["#teemhmoeok-card"] = "點墨:%dest 起動 %arg 伱可打出牌發令其无效",
+  ["#teemhmoeok-card"] = "點墨:%dest 起動 %arg 伱可投出牌發令其无效",
   -- ["#teemhmoeok-damage"] = "點墨：伱受到 %arg 傷害 伱可弃1同花色牌發防止傷害",
 
   ["$teemhmoeok1"] = "伱昰太乙三才陣何足爲奇",

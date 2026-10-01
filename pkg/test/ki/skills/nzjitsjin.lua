@@ -4,7 +4,7 @@ local nzjitsjin = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["nzjitsjin"] = "日新",
-  [":nzjitsjin"] = "伱打出牌旹,伱可發動,伱抽x(x爲此技能發動次數).",
+  [":nzjitsjin"] = "伱投出牌旹,伱可發動,伱抽x(x爲此技能發動次數).",
 
 
   ["#nzjitsjin-invoke"] = "日新 抽 %arg",

@@ -4,8 +4,8 @@ local tooshzeen = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["tooshzeen"] = "妬賢",
-  [":tooshzeen"] = "其它脚色A于其補段外得牌後,若其在伱攻程內,伱可預打出1手牌B發動｡B暗置于処理區,A選擇1項執行➀交予伱1♣️牌,流失1➁与伱賭鬥(B爲伱賭鬥牌) 未贏者選擇1項令A執行➀或➂(展示全部手牌,弃置其中點數不小于B點數者)",
-  -- [":tooshzeen"] = "其它脚色A于其補段外得牌後,若其在伱攻程內,伱可預打出1手牌(畱于処理區)發動.A選擇1項➀交予伱1♣️牌,流失1,取得伱所打出牌➁展示全部手牌,弃置其中點數不小于x者(x爲伱所打出牌之點數),若无伱弃1",
+  [":tooshzeen"] = "其它脚色A于其補段外得牌後,若其在伱攻程內,伱可預投出1手牌B發動｡B暗置于処理區,A選擇1項執行➀交予伱1♣️牌,流失1➁与伱賭鬥(B爲伱賭鬥牌) 未贏者選擇1項令A執行➀或➂(展示全部手牌,弃置其中點數不小于B點數者)",
+  -- [":tooshzeen"] = "其它脚色A于其補段外得牌後,若其在伱攻程內,伱可預投出1手牌(畱于処理區)發動.A選擇1項➀交予伱1♣️牌,流失1,取得伱所投出牌➁展示全部手牌,弃置其中點數不小于x者(x爲伱所投出牌之點數),若无伱弃1",
 
 
   ["#tooshzeen-invoke"] = "妬賢 %src抽牌 是否發動",
@@ -125,10 +125,10 @@ tooshzeen:addEffect(fk.AfterCardsMove, {
     -- local card=event:getCostData(self).cards
     
     if   table.contains(player:getCardIds("h"),card.id) then
-      room:moveCardTo(card,Card.Processing,nil,fk.ReasonResponse, tooshzeen.name, nil, false, player,{})
-        room.logic:getCurrentEvent():addCleaner(function()
+      room.logic:getCurrentEvent():addCleaner(function()
         room:cleanProcessingArea({card.id}, tooshzeen.name)
       end)
+      room:moveCardTo(card,Card.Processing,nil,fk.ReasonResponse, tooshzeen.name, nil, false, player,{})
     end
 
 

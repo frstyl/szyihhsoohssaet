@@ -4,9 +4,9 @@ local tszjeqttwit = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["tszjeqttwit"] = "支絀",
-  [":tszjeqttwit"] = "伱起動牌旹,伱可{減1存牌數/打出1牌}發動,伱{抽1,存牌數+1} ",
+  [":tszjeqttwit"] = "伱起動牌旹,伱可{減1存牌數/投出1牌}發動,伱{抽1,存牌數+1} ",
 
-  ["#tszjeqttwit-invoke"] = "支絀 打出1牌存牌數+1 或減1存牌數抽1",
+  ["#tszjeqttwit-invoke"] = "支絀 投出1牌存牌數+1 或減1存牌數抽1",
   -- ["$tszjeqttwit1"] = "将为军魂，需以身作则。",
   -- ["$tszjeqttwit2"] = "整肃三军，可育虎贲。",
 }

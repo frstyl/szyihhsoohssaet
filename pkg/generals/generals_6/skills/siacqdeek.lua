@@ -7,7 +7,7 @@ local siacqdeek= fk.CreateSkill({
 
 Fk:loadTranslationTable{
 ["siacqdeek"] = "相敵",
-[":siacqdeek"] = "每局限x次(x初始爲1,伱受傷後或伱轉始旹加1,此技能離場歸零)一脚色轉始旹伱可發動動,伱觀看牌堆頂3牌,可取得其1,排敘餘牌｡",
+[":siacqdeek"] = "每局限x次(x初始爲1,伱受傷後或伱轉始旹加1),其它脚色抽牌前/占卜前伱可發動動,伱觀看牌堆頂3牌,可取得其1或排敘餘牌｡",
 ["@siacqdeek"] = "相敵 ",
 ["#siacqdeek-choose"] = "相敵 ",
 
@@ -23,13 +23,15 @@ siacqdeek:addLoseEffect (function (self, player)
     player.room:setPlayerMark(player,"@siacqdeek",0) 
 end)
 
-siacqdeek:addEffect(fk.TurnStart,{
+local spec={
 	anim_type = "control",
   times = function(self, player)
     return player:getMark("@siacqdeek")
   end,
 	can_trigger = function(self, event, target, player, data)
-		return player:hasSkill(siacqdeek.name) and player:getMark("@siacqdeek")>0
+		return player:hasSkill(siacqdeek.name) 
+    and target~=player
+    and player:getMark("@siacqdeek")>0 
 	end,
 	on_cost = function(self, event, target, player, data)
     return player.room:askToSkillInvoke(player, {
@@ -49,8 +51,8 @@ siacqdeek:addEffect(fk.TurnStart,{
       prompt = "#siacqdeek-choose",
       free_arrange = true,
       box_size = 0,
-      max_limit = {3, 3},
-      min_limit = {3, 0},
+      max_limit = {3, 1},
+      min_limit = {2, 0},
       -- pattern = ".|.|.",
     })[2]
     -- if #get > 0 then  --必拿 默認第3??
@@ -58,20 +60,21 @@ siacqdeek:addEffect(fk.TurnStart,{
 
     -- end
     end,
-})
+}
+siacqdeek:addEffect(fk.BeforeDrawCard,spec)
+siacqdeek:addEffect(fk.StartJudge,spec)
 
 local addmark = {
-    can_refresh = function(self, event, target, player, data)
+  can_trigger= function(self, event, target, player, data)
     return  target==player and player:hasSkill(siacqdeek.name)
   end,
-  on_refresh = function(self, event, target, player, data)
-        player.room:addPlayerMark(player,"@siacqdeek",1)
+  on_trigger = function(self, event, target, player, data)
+    player.room:addPlayerMark(player,"@siacqdeek",1)
   end,
 }
 
 
 siacqdeek:addEffect(fk.TurnStart,addmark) 
-
 siacqdeek:addEffect(fk.Damaged,addmark)
 
 

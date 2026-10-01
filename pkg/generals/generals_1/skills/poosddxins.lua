@@ -5,7 +5,7 @@ local poosddxins = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["poosddxins"] = "布陣",
-  [":poosddxins"] = "每局限1.伱末段始旹,若伱有手牌,伱可選1項發動發動.➀連續无限次,伱可打出1手牌,交換2名脚色座次➁打出全部緟排全部脚色座次",
+  [":poosddxins"] = "每局限1.伱末段始旹,若伱有手牌,伱可選1項發動發動.➀連續无限次,伱可投出1手牌,交換2名脚色座次➁投出全部緟排全部脚色座次",
 
   ["#poosddxins-invoke"] = "布陣：緟排脚色座次",
   ["$TaMo"] = "布陣",

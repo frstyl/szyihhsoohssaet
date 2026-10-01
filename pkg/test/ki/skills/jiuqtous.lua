@@ -70,7 +70,7 @@ jiuqtous:addEffect("active", {
   end,
 })
 
-jiuqtous:addEffect(fk.CardUseFinished, {  --无視防具 --待改
+jiuqtous:addEffect(fk.CardUseFinished, {  --无視甲冑 --待改
   can_refresh = function(self, event, target, player, data)
     return target==player and data.card.trueName=="ssaet"
   end,

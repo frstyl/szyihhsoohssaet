@@ -4,10 +4,10 @@ local khiakdeek = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["khiakdeek"] = "卻敵",
-  [":khiakdeek"] = "一其它脚色A起動殺旹,若伱在A攻程內,伱可打出1牌无色或与殺異色者發動,此次起動无效,A選擇弃1武器(武器欄中武器牌)或令伱選擇➀伱對A起動虛擬｢殺｣(无視次數限制)➁伱取得此｢殺｣(子牌)",
+  [":khiakdeek"] = "一其它脚色A起動殺旹,若伱在A攻程內,伱可投出1牌无色或与殺異色者發動,此次起動无效,A選擇弃1兵器(兵器欄中兵器牌)或令伱選擇➀伱對A起動虛擬｢殺｣(无視次數限制)➁伱取得此｢殺｣(子牌)",
 
-  ["#khiakdeek-invoke"] = "卻敵  %src起動 %arg, 伱可打出1異色牌令其无效",
-  ["#khiakdeek-discard"] = "卻敵 弃武器",
+  ["#khiakdeek-invoke"] = "卻敵  %src起動 %arg, 伱可投出1異色牌令其无效",
+  ["#khiakdeek-discard"] = "卻敵 弃兵器",
 
   ["$khiakdeek1"] = "吾乃兀顏統軍帳下先鋒",
   ["$khiakdeek2"] = "戰書已下開戰",
@@ -89,6 +89,7 @@ khiakdeek:addEffect(fk.CardUsing, {
       --   prompt = prompt, 
       --   cancelable = true, 
       --   extra_data =  {
+          -- bypass_moment=true,
 
       --   must_targets = {data.from.id},
       --   -- bypass_times = true,

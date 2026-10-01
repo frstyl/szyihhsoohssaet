@@ -35,7 +35,7 @@ skill:addEffect("cardskill", {
     repeat
       nextp = nextp:getNextAlive(true)
       if nextp == to then
-        if nextp:isProhibited(nextp, effect.card) then
+        if nextp:isProhibitedTarget(effect.card) then
           room:moveCards{
             ids = room:getSubcardsByRule(effect.card, { Card.Processing }),
             toArea = Card.DiscardPile,
@@ -45,7 +45,7 @@ skill:addEffect("cardskill", {
         end
         break
       end
-    until   not nextp:isProhibited(nextp, effect.card)
+    until   not nextp:isProhibitedTarget(effect.card)
 -- not nextp:hasDelayedTrick(effect.card.name) and
 
     if effect.card:isVirtual() then

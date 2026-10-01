@@ -5,7 +5,7 @@ local ttaekseec = fk.CreateSkill {
 
 Fk:loadTranslationTable{
 ["ttaekseec"] = "摘星",
-[":ttaekseec"] = "應動｡當一判斷牌生效歬,若其爲花色爲♦️,伱可預打出1手牌發動,此牌作爲新占卜牌同旹伱取得元占卜牌,伱抽1.",
+[":ttaekseec"] = "應動｡當一判斷牌生效歬,若其爲花色爲♦️,伱可預投出1手牌發動,此牌作爲新占卜牌同旹伱取得元占卜牌,伱抽1.",
 ["#ttaekseec-ask"] = "摘星  以一张牌交換 %dest %arg 占卜",
 }
 

@@ -1,20 +1,19 @@
-local tszjevqtsziac = fk.CreateSkill {
-  name = "tszjevqtsziac",
-  targs={Skill.Compulsory},
+local tsoacqbxih = fk.CreateSkill {
+  name = "tsoacqbxih",
+  tags={Skill.Compulsory},
+  -- tags = {Skill.Composite},
 }
 
 Fk:loadTranslationTable{
-  ["tszjevqtsziac"] = "昭彰",  --賞罰
-  [":tszjevqtsziac"] = "脚色A對除其外脚色致{傷/療}後,必發｡伱令A{弃己x/抽1}｡x爲A1輪致傷點數合",
-
-
+  ["tsoacqbxih"] = "臧否",  --賞罰
+  [":tsoacqbxih"] = "脚色A對除其外脚色致{傷/療}後,必發｡伱令A{弃己x/抽1}｡x爲A1輪致傷點數合",
 }
 
-tszjevqtsziac:addEffect(fk.Damaged, {
+tsoacqbxih:addEffect(fk.Damaged, {
   anim_type = "offensive",
   can_trigger = function(self, event, target, player, data)
     return 
-    player:hasSkill(tszjevqtsziac.name) 
+    player:hasSkill(tsoacqbxih.name) 
     and data.from and not data.from.dead
     and data.to~=data.from
   end,
@@ -37,18 +36,18 @@ tszjevqtsziac:addEffect(fk.Damaged, {
       min_num = n,
       max_num = n,
       include_equip = true,
-      skill_name = tszjevqtsziac.name,
+      skill_name = tsoacqbxih.name,
       cancelable = false,
     })
   end,
 })
 
 
-tszjevqtsziac:addEffect(fk.HpRecover, {
+tsoacqbxih:addEffect(fk.HpRecover, {
   anim_type = "support",
   can_trigger = function(self, event, target, player, data)
     return
-    player:hasSkill(tszjevqtsziac.name) 
+    player:hasSkill(tsoacqbxih.name) 
     and data.recoverBy and not data.recoverBy.dead
     and data.who~=data.recoverBy
   end,
@@ -57,7 +56,7 @@ tszjevqtsziac:addEffect(fk.HpRecover, {
     return true
   end,
   on_use = function(self, event, target, player, data)
-    data.recoverBy:drawCards(1,tszjevqtsziac.name)
+    data.recoverBy:drawCards(1,tsoacqbxih.name)
   end,
 })
-return tszjevqtsziac
+return tsoacqbxih

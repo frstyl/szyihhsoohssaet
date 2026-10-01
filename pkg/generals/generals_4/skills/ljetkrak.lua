@@ -4,9 +4,9 @@ local ljetkrak = fk.CreateSkill{
 }
 Fk:loadTranslationTable{
 ["ljetkrak"] = "烈戟",
-[":ljetkrak"] = "伱補段終旹,預打出1牌發動,伱越過1轉主段撤段,可虛擬起動1｢殺｣,此殺:无視距離次數限制,結算期閒伱无視防具,致傷旹伱可起動1元實手牌(无視次數)",
+[":ljetkrak"] = "伱補段終旹,預投出1牌發動,伱越過1轉主段撤段,可虛擬起動1｢殺｣,此殺:无視距離次數限制,結算期閒伱无視甲冑,致傷旹伱可起動1元實手牌(无視次數)",
 
-["#ljetkrak-invoke"] = "烈戟 打出1牌發動",
+["#ljetkrak-invoke"] = "烈戟 投出1牌發動",
 ["#ljetkrak-use"] = "烈戟 伱可虛擬起動殺 (目幖上限 %arg) ",
 ["#ljetkrak-extra_use"] = "烈戟 伱可起動元實手牌 ",
 }
@@ -138,6 +138,7 @@ ljetkrak:addEffect(fk.Damaged, {  --致傷用牌
       extra_data = {
         bypass_times = true,
         extraUse = true,
+        bypass_moment=true,
       }
     })
     -- if use then

@@ -4,7 +4,7 @@ local paakmoach = fk.CreateSkill {
 }
 Fk:loadTranslationTable{
   ["paakmoach"] = "白蟒",
-  [":paakmoach"] = "伱有1額外武器欄｡伱起動殺指定目幖後,伱可發動,伱褈鑄1牌,目幖抵消所需｢閃｣數爲x(x爲數此殺目幖數)",  --失效旹機
+  [":paakmoach"] = "伱有1額外兵器欄｡伱起動殺指定目幖後,伱可發動,伱褈鑄1牌,目幖抵消所需｢閃｣數爲x(x爲數此殺目幖數)",  --失效旹機
 --.➀恆續,伱攻程+2.➁若伱攻程內其它存活脚色數不大于2,
   -- ["#paakmoach-choose"] = "白蟒 選擇額外目幖",
 

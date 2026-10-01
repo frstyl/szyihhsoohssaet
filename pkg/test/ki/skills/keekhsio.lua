@@ -28,6 +28,7 @@ keekhsio:addEffect(fk.CardUsing, {
         -- exclusive_targets = {data.to.id},
         -- bypass_distances = true,
         -- bypass_times = true,
+        bypass_moment=true,
       },
       skip = true,
     })

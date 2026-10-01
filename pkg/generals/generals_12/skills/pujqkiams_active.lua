@@ -28,7 +28,7 @@ pujqkiams_active:addEffect("active", {  --飛劍選牌
 
 -- Fk:loadTranslationTable{
 --   ["pujqkiams"] = "飛劍",
---   [":pujqkiams"] = "非伱區域之殺不因起動打出進入弃牌堆後,你可以預打出1不牌与此殺不同色發動,伱起動虛擬此殺(无視距離且不可響應)。",
+--   [":pujqkiams"] = "非伱區域之殺不因起動投出進入弃牌堆後,你可以預投出1不牌与此殺不同色發動,伱起動虛擬此殺(无視距離且不可響應)。",
 -- }
 
 return pujqkiams_active

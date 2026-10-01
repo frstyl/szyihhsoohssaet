@@ -117,10 +117,10 @@ Fk:loadTranslationTable{
   ["not_equip_filter_skill"] = "非裝僃",
   ["khouc_skill"] = "空",
 
-  ["WeaponSlot__not_equip"] = "武器",
+  ["WeaponSlot__not_equip"] = "兵器",
   [":WeaponSlot__not_equip"] = "空",
 
-  ["ArmorSlot__not_equip"] = "防具",
+  ["ArmorSlot__not_equip"] = "甲冑",
   [":ArmorSlot__not_equip"] = "空",
 
   ["OffensiveRideSlot__not_equip"] = "攻馬",

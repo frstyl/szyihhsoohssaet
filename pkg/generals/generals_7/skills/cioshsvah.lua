@@ -5,8 +5,8 @@ local cioshsvah = fk.CreateSkill {
 
 Fk:loadTranslationTable{
 ["cioshsvah"] = "馭火",  --馭火
-[":cioshsvah"] = "伱受到火傷旹,伱可選1項➀預打出1牌,防止此傷➁將此傷轉迻于伱上家或下家(有向)",
-["#cioshsvah-fire"]="馭火 打出1牌防止此傷  或選擇目幖轉迻傷害",
+[":cioshsvah"] = "伱受到火傷旹,伱可選1項➀預投出1牌,防止此傷➁將此傷轉迻于伱上家或下家(有向)",
+["#cioshsvah-fire"]="馭火 投出1牌防止此傷  或選擇目幖轉迻傷害",
 }
 
 

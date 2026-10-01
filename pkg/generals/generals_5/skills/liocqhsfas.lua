@@ -4,9 +4,9 @@ local liocqhsfas = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["liocqhsfas"] = "龍化",
-  [":liocqhsfas"] = "一其它脚色A起動卽旹計謀對僅存目幖B生效爲前,伱可打出1牌選1項發動.➀此起動對B无效,伱弃A 1牌➁將效果目幖轉爲除A B外1脚色",  --多次生效?
+  [":liocqhsfas"] = "一其它脚色A起動卽旹謀策對僅存目幖B生效爲前,伱可投出1牌選1項發動.➀此起動對B无效,伱弃A 1牌➁將效果目幖轉爲除A B外1脚色",  --多次生效?
 
-  ["#liocqhsfas-invoke"] = "龍化 %src 對 %dest 起動%arg 將生效 是否打出1牌轉迻 不選目幖則弃 %src 牌",
+  ["#liocqhsfas-invoke"] = "龍化 %src 對 %dest 起動%arg 將生效 是否投出1牌轉迻 不選目幖則弃 %src 牌",
   ["#liocqhsfas-choose"] = "龍化選擇目幖 或弃 %src 牌",
 
   ["$liocqhsfas1"] = "算計于人休要害了自己",

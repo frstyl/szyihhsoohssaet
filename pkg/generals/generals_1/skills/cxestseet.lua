@@ -11,7 +11,7 @@ Fk:loadTranslationTable{
 ["draw2"]="抽1",
 ["shield1"]="+1護甲",
 
-["#cijsljet-choose"]="毅烈  將全部牌交予1其它脚色 令其回1",
+-- ["#cijsljet-choose"]="毅烈  將全部牌交予1其它脚色 令其回1",
 
 ["$cijsljet1"] = "弓弩叢中逃性命 刀槍林裏救英雄",
 

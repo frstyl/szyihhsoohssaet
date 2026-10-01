@@ -4,9 +4,9 @@ local kujhthoeoj = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["kujhthoeoj"] = "鬼胎",
-  [":kujhthoeoj"] = "A起動｢桃｣/｢酒｣對僅存目幖B生效歬旹,若A B皆不爲伱且伱已損,伱可打出1紅桃牌發動.此牌轉迻于伱",
+  [":kujhthoeoj"] = "A起動｢桃｣/｢酒｣對僅存目幖B生效歬旹,若A B皆不爲伱且伱已損,伱可投出1紅桃牌發動.此牌轉迻于伱",
 
-  ["#kujhthoeoj-invoke"] = "鬼胎 %src 對%dest 起動%arg 將生效 伱可打出1紅桃牌發動.此牌轉迻于伱",
+  ["#kujhthoeoj-invoke"] = "鬼胎 %src 對%dest 起動%arg 將生效 伱可投出1紅桃牌發動.此牌轉迻于伱",
 
   ["$kujhthoeoj1"] = "客官昰是毒酒不能欱",
 }

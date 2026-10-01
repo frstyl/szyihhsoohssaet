@@ -5,7 +5,7 @@ local phuachtszjer = fk.CreateSkill({
 
 Fk:loadTranslationTable{
   ["phuachtszjer"] = "仿製",
-  [":phuachtszjer"] = "➀段限1,其它脚色可于其主旹展示一牌,令伱記彔其牌名.➁段限1,伱可將1牌轉化爲1記錄牌起動發動,迻除該記錄",  --彊度
+  [":phuachtszjer"] = "➀段限1,其它脚色可于其主旹展示一牌,令伱記彔其牌名.➁段限1,伱可將1牌視爲1記錄牌起動發動,迻除該記錄",  --彊度
 
   ["#phuachtszjer"] = "轉化",
 
@@ -35,8 +35,9 @@ phuachtszjer:addEffect("viewas", {
     if #cards ~= 1 or self.interaction.data == nil then return end
     local card = Fk:cloneCard(self.interaction.data)
     card.skillName = phuachtszjer.name
-    card:addSubcards(cards)
-    S.mixCard(card)
+    card.id=cards[1]
+    -- card:addSubcards(cards)
+    -- S.mixCard(card)
     return card
   end,
   before_use = function (self, player, use)

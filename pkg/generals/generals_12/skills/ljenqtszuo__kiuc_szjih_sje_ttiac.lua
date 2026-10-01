@@ -3,7 +3,7 @@ local skill = fk.CreateSkill {
 }
 Fk:loadTranslationTable{
   ["ljenqtszuo__kiuc_szjih_sje_ttiac_skill"] = "連珠__弓矢斯張",
-  -- [":tsiocsmoa"] = "應動｡伱起動｢殺｣指定目幖旹,伱可發動｡伱抽2,迻除此目幖,起動虛擬｢猛虎下山｣,此牌效果:目幖可打出屬性｢殺｣若打出伱抽1,否則伱予目幖1傷,目幖隨機自弃1牌",
+  -- [":tsiocsmoa"] = "應動｡伱起動｢殺｣指定目幖旹,伱可發動｡伱抽2,迻除此目幖,起動虛擬｢猛虎下山｣,此牌效果:目幖可投出屬性｢殺｣若投出伱抽1,否則伱予目幖1傷,目幖隨機自弃1牌",
 }
 skill:addEffect("cardskill", {
   prompt = "#ljenqtszuo__kiuc_szjih_sje_ttiac_skill",

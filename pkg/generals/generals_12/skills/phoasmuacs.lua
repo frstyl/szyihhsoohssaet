@@ -3,10 +3,10 @@ local phoasmuacs = fk.CreateSkill {
 }
 Fk:loadTranslationTable{
   ["phoasmuacs"] = "破妄",
-  [":phoasmuacs"] = "印牌:起動虛擬｢防患未肰抵消｣｡若伱手牌數不等于體力數(不小于0)伱可打出x手牌或流失x發動(x爲伱手牌數體力數之差)",
+  [":phoasmuacs"] = "印牌:起動虛擬｢防患未肰抵消｣｡若伱手牌數不等于體力數(不小于0)伱可投出x手牌或流失x發動(x爲伱手牌數體力數之差)",
 
   ["#phoasmuacs"] = "破妄 視爲起動防患未肰旹",
-  ["#phoasmuacs-discard"] = "破妄 打出%arg手牌",
+  ["#phoasmuacs-discard"] = "破妄 投出%arg手牌",
 
   ["$phoasmuacs1"] = "不破不立破而後立",
 }

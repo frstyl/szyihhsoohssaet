@@ -4,7 +4,7 @@ local dzeensmaah = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["dzeensmaah"] = "荐馬",
-  [":dzeensmaah"] = "一脚色進入瀕死,伱可將1坐騎牌置入其裝僃區發動,令其回1(无法將脚色自己坐騎置入其坐騎欄)",
+  [":dzeensmaah"] = "一脚色進入瀕死,伱可將1坐騎牌置入其裝僃區發動,其受伱1回復(无法將脚色自己坐騎置入其坐騎欄)",
 
   ["#dzeensmaah-choose"] = "荐馬 %src 進入瀕死 可選擇1坐騎牌置入其裝僃區發動,令其回1",
 

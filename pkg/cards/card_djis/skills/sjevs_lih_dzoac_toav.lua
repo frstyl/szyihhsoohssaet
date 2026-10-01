@@ -4,8 +4,8 @@ local cardSkill = fk.CreateSkill {
 
 Fk:loadTranslationTable{
 -- ["dou_dook_skill"] = "投毒",  --下藥
--- [":dou_dook_skill"] = "投毒 選擇攻程內1脚色 其不可起動打出殺閃",
-["#dou_dook_skill"] = "投毒 選擇攻程內1脚色 其不可起動打出殺閃",
+-- [":dou_dook_skill"] = "投毒 選擇攻程內1脚色 其不可起動投出殺閃",
+["#dou_dook_skill"] = "投毒 選擇攻程內1脚色 其不可起動投出殺閃",
 }
 
 cardSkill:addEffect("cardskill", {

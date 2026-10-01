@@ -79,6 +79,7 @@ cardSkill:addEffect("cardskill", {
       must_targets = table.map(effect.subTargets, Util.IdMapper),
       bypass_times = false,
       extraUse=false,
+      bypass_moment=true,
     }
     local use = room:askToUseCard(to, { skill_name = "ssaet", pattern = "ssaet", prompt = prompt, cancelable = true, extra_data = extra_data, event_data = effect })
     if use then

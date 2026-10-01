@@ -4,7 +4,7 @@ local kxipkius = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["kxipkius"] = "彶救",
-  [":kxipkius"] = "一腳色瀕死結算旹,伱可發動｡伱選擇其1區域弃置其中全部牌,若有♠️,伱令其回1",
+  [":kxipkius"] = "一腳色瀕死結算旹,伱可發動｡伱選擇其1區域弃置其中全部牌,若有♠️,其受伱1回復",
 
   ["#kxipkius-ask"] = "彶救 選擇 %dest 一區域",
 }

@@ -8,8 +8,8 @@ local ttaekseec= fk.CreateSkill{
 
 Fk:loadTranslationTable{
 ["test__ttaekseec"] = "摘星",
-[":test__ttaekseec"] = "一判斷牌生效歬,若其爲花色爲♦️,伱可預打出一牌A發動,A作爲新占卜牌,伱獲得元占卜牌,抽1.",
-["#ttaekseec-ask"] = "摘星  打出一张牌改變 %src 占卜",
+[":test__ttaekseec"] = "一判斷牌生效歬,若其爲花色爲♦️,伱可預投出一牌A發動,A作爲新占卜牌,伱獲得元占卜牌,抽1.",
+["#ttaekseec-ask"] = "摘星  投出一张牌改變 %src 占卜",
 }
 
 ttaekseec:addEffect(fk.AskForRetrial,{
@@ -39,7 +39,7 @@ ttaekseec:addEffect(fk.AskForRetrial,{
       local newId = respondCardData.card:getEffectiveId()
       local oldId = data.card:getEffectiveId()
       -- room:responseCard(respond)  
-      if logic:trigger(fk.PreCardRespond, respondCardData.from, respondCardData) then--打出 後續作爲占卜牌 不執行RespondCard:clear()
+      if logic:trigger(fk.PreCardRespond, respondCardData.from, respondCardData) then--投出 後續作爲占卜牌 不執行RespondCard:clear()
         logic:breakEvent()
       end
       room:moveCards{

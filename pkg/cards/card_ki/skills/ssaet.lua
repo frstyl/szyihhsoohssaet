@@ -78,9 +78,9 @@ cardSkill:addEffect("cardskill", {
       if extra_data.fix_target_num then max_target_num=extra_data.fix_target_num end
     end 
     if max_target_num > 0 and #selected >= max_target_num then return end
+    if not self:modTargetFilter(player, to_select, selected, card, extra_data) then return end
 
     if not player:hasMark("ssaet_bypass_prohibited") and player:isProhibited(to_select, card) then return end
-    if not self:modTargetFilter(player, to_select, selected, card, extra_data) then return end
     return true
   end,
   offset_func= Util.FalseFunc,

@@ -13,7 +13,7 @@ local equipSkill = fk.CreateSkill {
 -- })
 
 equipSkill:addAcquireEffect (function (self, player)  --作爲技能而非效果 不起動ignoreArmor 攷慮技能失效
-  player.room:addTableMark(player,"ssaet_ignore_Armor_by_skills",equipSkill.name) --殺无視防具 止殺流程有效,含選擇目幖.
+  player.room:addTableMark(player,"ssaet_ignore_Armor_by_skills",equipSkill.name) --殺无視甲冑 止殺流程有效,含選擇目幖.
 end)
 equipSkill:addLoseEffect (function (self, player)
   player.room:removeTableMark(player,"ssaet_ignore_Armor_by_skills",equipSkill.name) 

@@ -4,9 +4,9 @@ local cardSkill = fk.CreateSkill{
 }
 
 Fk:loadTranslationTable{
-  ["#bvoat_toav_siac_dzsios"] = "拔刀相助 打出此牌与1 弃置其它脚色伏區1延旹牌",
+  ["#bvoat_toav_siac_dzsios"] = "拔刀相助 投出此牌与1 弃置其它脚色伏區1延旹牌",
   ["#bvoat_toav_siac_dzsios-choose"] = "拔刀相助 選擇目幖",
-  ["#bvoat_toav_siac_dzsios"] = "拔刀相助 打出牌",
+  ["#bvoat_toav_siac_dzsios"] = "拔刀相助 投出牌",
 }
 
 local S = require "packages/szyihhsoohssaet/szyih_guos"
@@ -24,7 +24,7 @@ cardSkill:addEffect("active", {  --歬轉終
      p~=player 
     and
        table.find(to_select:getCardIds("j"), function(cid)
-          return(not to_select:getVirualEquip(cid) or to_select:getVirualEquip(cid).name~="koarbiuk_card") and Fk:getCardById(cid).name~="koarbiuk_card"
+          return(not to_select:getVirtualEquip(cid) or to_select:getVirtualEquip(cid).name~="koarbiuk_card") and Fk:getCardById(cid).name~="koarbiuk_card"
           end)
       
 
@@ -41,7 +41,7 @@ cardSkill:addEffect("active", {  --歬轉終
         max = 1,
         -- flag = "he",
         flag = { card_data = {{to.general, table.filter(to:getCardIds("j"), function(cid)
-    return not to:getVirualEquip(cid) or to:getVirualEquip(cid).name~="koarbiuk_card" and Fk:getCardById(cid).name~="koarbiuk_card"
+    return not to:getVirtualEquip(cid) or to:getVirtualEquip(cid).name~="koarbiuk_card" and Fk:getCardById(cid).name~="koarbiuk_card"
     end)}} },  --可見
         skill_name = cardSkill.name,
         prompt = "#bvoat_toav_siac_dzsios-discard",

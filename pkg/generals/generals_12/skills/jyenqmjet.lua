@@ -3,9 +3,11 @@ local jyenqmjet = fk.CreateSkill {
 }
 
 Fk:loadTranslationTable{
-["jyenqmjet"] = "緣滅",--1/4花田
-[":jyenqmjet"] = "伱回復體力後,至多回復值次,伱可指定1其它脚色發動,伱与其各占卜,若同色,伱予其1傷,不同色,伱与其各抽1",
-["#jyenqmjet-choose"]="緣滅 選擇1脚色占卜",
+  ["jyenqmjet"] = "緣滅",--1/4花田
+  [":jyenqmjet"] = "伱回復體力後,至多回復值次,伱可指定1其它脚色發動,伱与其各占卜,若同色,伱予其1傷,不同色,伱變更勢力",
+
+  ["#jyenqmjet-choose"]="緣滅 選擇1脚色占卜",
+  ["#jyenqmjet-change"]="緣滅 變更勢力",
 }
 
 jyenqmjet:addEffect(fk.HpRecover, {
@@ -61,9 +63,17 @@ jyenqmjet:addEffect(fk.HpRecover, {
         skillName = jyenqmjet.name,
       }
     else
-      player:drawCards(1,jyenqmjet.name)
-      if to.dead then return end
-      to:drawCards(1,jyenqmjet.name)
+      if player.dead then return end
+      local kingdoms = { "kvoan","tsiacs","pujh","mjin","leev__kvoan","tsshioh__kvoan","tsjins__kvoan","qwachloak__kvoan"}
+      local       choice = room:askToChoice(player, {
+        choices = kingdoms,
+        skill_name = "#jyenqmjet-change",
+      })
+        room:changeKingdom(player, choice, true)
+
+      -- player:drawCards(1,jyenqmjet.name)
+      -- if to.dead then return end
+      -- to:drawCards(1,jyenqmjet.name)
     end
   end,
 })

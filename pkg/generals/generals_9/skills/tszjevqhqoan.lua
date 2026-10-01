@@ -4,8 +4,8 @@ local tszjevqhqoan = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["tszjevqhqoan"] = "招安",
-  [":tszjevqhqoan"] = "主旹.選擇1其它脚色A与1項發動➀對1脚色(由伱指定,除伱与A)起動1殺➁交与伱1殺或武器牌.若A執行,其抽2,否則其1轉內不可起動或打出一字名牌",  --｢{殺/閃/肉/酒}｣
-
+  [":tszjevqhqoan"] = "主旹.選擇1其它脚色A發動,A對1脚色(由伱指定,除伱与A)起動1殺.若A執行,其抽2,否則其1轉內起動或投出牌名字數不可爲1",  --｢{殺/閃/肉/酒}｣
+--➁交与伱1殺或兵器牌
   ["#tszjevqhqoan-active"] = "招安.選擇1項發動",
   ["#tszjevqhqoan-ssaet"] = "用殺",
   ["#tszjevqhqoan-ssaet-subTargets"] = "選擇殺目幖",
@@ -26,37 +26,37 @@ tszjevqhqoan:addEffect("active", {
   target_filter = function(self, player, to_select, selected)
     return #selected == 0 and to_select ~= player
   end,
-  interaction = function(self, player)
-    local choices={"#tszjevqhqoan-give","#tszjevqhqoan-ssaet"}
-    -- local choice = player.room:askToChoice(player, {
-    --   choices = choices,
-    --   skill_name = khiochhsaas.name,
-    --   prompt = "#tszjevqhqoan-choose",
-    -- })
-        return UI.ComboBox {
-      choices = choices
-    }
-  end,
+  -- interaction = function(self, player)
+  --   local choices={"#tszjevqhqoan-give","#tszjevqhqoan-ssaet"}
+  --   -- local choice = player.room:askToChoice(player, {
+  --   --   choices = choices,
+  --   --   skill_name = khiochhsaas.name,
+  --   --   prompt = "#tszjevqhqoan-choose",
+  --   -- })
+  --       return UI.ComboBox {
+  --     choices = choices
+  --   }
+  -- end,
   on_use = function(self, room, effect)
     local target = effect.tos[1]
     local player = effect.from
     local isdone = false
-    choice=self.interaction.data
+    -- choice=self.interaction.data
     --1
-    if choice == "#tszjevqhqoan-give" then
-        card = room:askToCards(target,{
-        min_num=0,
-        max_num=1,
-        include_equip=true,
-        pattern = "ssaet|.|.;.|.|.|.|.|weapon",
-        })
-        if #card~=0 then
--- function MoveEventWrappers:moveCardTo(card, to_place, target, reason, skill_name, special_name, visible, proposer, moveMark, visiblePlayers)
+--     if choice == "#tszjevqhqoan-give" then
+--         card = room:askToCards(target,{
+--         min_num=0,
+--         max_num=1,
+--         include_equip=true,
+--         pattern = "ssaet|.|.;.|.|.|.|.|weapon",
+--         })
+--         if #card~=0 then
+-- -- function MoveEventWrappers:moveCardTo(card, to_place, target, reason, skill_name, special_name, visible, proposer, moveMark, visiblePlayers)
 
-        room:moveCardTo(card, Player.Hand, player, fk.ReasonGive, tszjevqhqoan.name, nil, false, target)
-        isdone=true
-        end
-    else 
+--         room:moveCardTo(card, Player.Hand, player, fk.ReasonGive, tszjevqhqoan.name, nil, false, target)
+--         isdone=true
+--         end
+--     else 
         local targets = table.filter(room.alive_players,function(p)
             return p~=player and p~=target
             end)
@@ -77,7 +77,8 @@ tszjevqhqoan:addEffect("active", {
           cancelable = true, 
           extra_data = {
             must_targets = table.map(subTargets, Util.IdMapper),
-            bypass_times = true,
+            -- bypass_times = true,
+            bypass_moment=true,
         },
          })
         if use then
@@ -85,7 +86,7 @@ tszjevqhqoan:addEffect("active", {
             isdone=true
             room:useCard(use)
         end
-    end
+    -- end
     --2
     if isdone==true then
         target:drawCards(2,tszjevqhqoan.name)
@@ -95,7 +96,7 @@ tszjevqhqoan:addEffect("active", {
   end,
 })
 
-tszjevqhqoan:addEffect("prohibit", {  --不可起動打出同色牌 元版不能 轉化後牌不能 轉化歬牌不能 --肰則牌名殺?
+tszjevqhqoan:addEffect("prohibit", {  --不可起動投出同色牌 元版不能 轉化後牌不能 轉化歬牌不能 --肰則牌名殺?
   prohibit_use = function(self, player, card)
     if player:getMark("@@tszjevqhqoan-turn")~=0 then return  S.getCardNameLengthcard(card)==1 end
   end,

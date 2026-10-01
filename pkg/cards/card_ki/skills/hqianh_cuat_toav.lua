@@ -19,6 +19,7 @@ skill:addEffect(fk.CardEffectCancelledOut, {
         -- exclusive_targets = {data.to.id},
         bypass_distances = true,
         bypass_times = true,
+        bypass_moment=true,
       }
     }
     local use = room:askToUseCard(player, params)

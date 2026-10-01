@@ -6,7 +6,7 @@ Fk:loadTranslationTable{
 ["jikpjis"] = "翼庇",
 [":jikpjis"] = "輪始旹,伱選擇1腳色A發動｡1輪內,一｢殺｣若目幖不含伱則不能選擇A",
 
-["#jikpjis-invoke"] = "翼庇 打出1牌發動",
+["#jikpjis-invoke"] = "翼庇 投出1牌發動",
 }
 
 local S = require "packages/szyihhsoohssaet/szyih_guos"

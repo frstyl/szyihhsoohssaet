@@ -10,10 +10,10 @@ equipSkill:addEffect(fk.PreCardEffect, {
   mute = true,
   can_trigger = function(self, event, target, player, data)
     return data.to == player 
-    and player:hasSkill(equipSkill.name) 
-    -- and  S.hasEquip(player, attached_equip) and self:isEffectable(player) 
     and not data.nullified
     and  table.contains({"ssaet", "maach_hsooh_hzaah_ssaen", "ttis_tsiuh_szjet_jjen"}, data.card.name)
+    and S.hasEquip(player,equipSkill.attached_equip)  
+    and  Fk.skills[equipSkill.name]:isEffectable(player)    
     and not S.isIgnoreArmorFromAToB(data.from, data.to, data.card, data.use, data)
   end,
   on_use = function(self, event, target, player, data)
@@ -29,14 +29,16 @@ equipSkill:addEffect(fk.PreCardEffect, {
 equipSkill:addEffect(fk.DamageInflicted, {
   mute = true,
   can_trigger = function(self, event, target, player, data)
-    return target == player and player:hasSkill(equipSkill.name) and data.damageType == fk.FireDamage
+    return data.to == player  and data.damageType == fk.FireDamage
+    and S.hasEquip(player,equipSkill.attached_equip)  
+    and  Fk.skills[equipSkill.name]:isEffectable(player)    
     and not S.isIgnoreArmorFromAToB(data.from, data.to, data.card, data.useData, data.effectData)
   end,
   on_use = function(self, event, target, player, data)
     local room = player.room
     room:broadcastPlaySound("./packages/maneuvering/audio/card/boavburn")
     room:setEmotion(player, "./packages/maneuvering/image/anim/boavburn")
-    S.changeDamage({damageData=data,num=1,skillName=equipSkill.name})
+    S.changeDamage({damageData=data,num=S.hasEquip(player,equipSkill.attached_equip)  ,skillName=equipSkill.name})
   end,
 })
 

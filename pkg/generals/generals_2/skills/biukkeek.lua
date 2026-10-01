@@ -6,10 +6,10 @@ local biukkeek = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["biukkeek"] = "伏擊",
-  [":biukkeek"] = "隱匿｡每輪限1.其它脚色伏段始旹,伱可預打出1牌發動.視爲伱對其起動埋伏,若其伏區有延時牌,伱選擇1項➀伱流失1,此牌傷害基數+1➁此牌不可抵消且此技能1輪可發動次數+1",
+  [":biukkeek"] = "隱匿｡每輪限1.其它脚色伏段始旹,伱可預投出1牌發動.視爲伱對其起動埋伏,若其伏區有延時牌,伱選擇1項➀伱流失1,此牌傷害基數+1➁此牌不可抵消且此技能1輪可發動次數+1",
 --加彊?
 
-  ["#biukkeek-invoke"] = "伏擊 昰否打出1牌𠫓擊 %src",
+  ["#biukkeek-invoke"] = "伏擊 昰否投出1牌𠫓擊 %src",
 
   ["#biukkeek-choose"] = "伏擊 選擇",
   ["biukkeek-damage"] = "埋伏傷害基數+1",

@@ -4,7 +4,7 @@ local dvoansdzoavh = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["dvoansdzoavh"] = "鍛造",
-  [":dvoansdzoavh"] = "主旹，伱可打出1手牌併(自伱手牌區裝僃區或兵)選擇1武器牌或防具牌(每牌每段限1次)發動,彊化之",
+  [":dvoansdzoavh"] = "主旹，伱可投出1手牌併(自伱手牌區裝僃區或兵)選擇1兵器牌或甲冑牌(每牌每段限1次)發動,彊化之",
 
   ["#dvoansdzoavh"] = "鍛造：選擇 所弃牌 与 裝僃",
 

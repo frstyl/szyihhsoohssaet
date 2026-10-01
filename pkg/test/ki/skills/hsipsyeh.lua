@@ -65,6 +65,7 @@ hsipsyeh:addEffect("active", {
         bypass_distances=false,
         extraUse = false,
         expand_pile = cards,
+        bypass_moment=true,
       },
     })
   end,

@@ -4,7 +4,7 @@ local seenqtszjis = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["seenqtszjis"] = "先至",
-  [":seenqtszjis"] = "伱成爲起動目幖後,伱可發動,伱抽1,若爲伱主段外,可起動1元實牌",
+  [":seenqtszjis"] = "伱成爲起動目幖後,伱可選擇1項發動,➀伱抽1➁起動1元實牌",
 
 
   ["#seenqtszjis-use"] = "先至 起動牌",
@@ -18,39 +18,60 @@ seenqtszjis:addEffect(fk.TargetConfirmed, {
   can_trigger = function(self, event, target, player, data)
     return data.to == player and player:hasSkill(seenqtszjis.name)
   end,
-  -- on_cost = function(self, event, target, player, data)
-  --   return player.room:askToSkillInvoke(player, {
-  --     skill_name = seenqtszjis.name,
-  --     prompt = "#seenqtszjis-invoke",
-  --   })
-  -- end,
+  on_cost = function(self, event, target, player, data)
+    local choice=player.room:askToChoice(from, {
+       choices = {"draw1","use","recast"},
+        skill_name = "seenqtszjis",
+        cancelable=true,
+  })
+  if choice~="Cancel" then
+    event:setCostData(self,{choice=choice})
+    return true
+  end
+  end,
   on_use = function(self, event, target, player, data)
-    player:drawCards(1, seenqtszjis.name)
-    if player.dead or player.phas==Player.Play then return end
-    player.room:askToUseRealCard(player, {
-      pattern = player:getCardIds("h"),
-      skill_name = seenqtszjis.name,
-      prompt = "#seenqtszjis-use",
-      extra_data = {
-        bypass_times = false,
-        extraUse = false,
-        bypass_distances=false,
-      },
-      cancelable=true,
-      skip=false,
-    })
-
+    local choice=event:getCostData(self).choice
+    if choice=="draw1" then
+          player:drawCards(1, seenqtszjis.name)
+    elseif choice=="use" then
+    -- if player.dead or player.phas==Player.Play then return end
+      -- player.room:askToUseRealCard(player, {
+      --   pattern = player:getCardIds("h"),
+      --   skill_name = seenqtszjis.name,
+      --   prompt = "#seenqtszjis-use",
+      --   extra_data = {
+      --     bypass_times = false,
+      --     extraUse = false,
+      --     bypass_distances=false,
+      --     bypass_moment=true,
+      --   },
+      --   cancelable=true,
+      --   skip=false,
+      -- })
+      local use = player.room:askToUseCard(player, {
+        skill_name = seenqtszjis.name,
+        pattern = ".", --
+        -- cards=,
+        prompt = "#seenqtszjis-use",
+        cancelable = false,
+        skip=false,
+        extra_data = {
+          -- bypass_distances = true,
+          bypass_times = true,
+          extraUse=true,
+          not_passive=true,
+          bypass_moment=true,
+        },
+      })
+	  if use then
+        room:useCard(use)
+      end
+      else
+        player.room:recastCard(player:getCardIds("h"), player,seenqtszjis.name)
+      end
   end,
 })
 
--- seenqtszjis:addEffect("targetmod", {
---   bypass_distances = function(self, player, skill, card,to)
---     return player:hasSkill(seenqtszjis.name) and card 
---     -- and
---     -- Fk.current and Fk.current.phase ~= Player.NotActive  
---     -- and to ==Fk.current
---     -- to==Fk:getCurrent()
---   end,
--- })
+
 
 return seenqtszjis

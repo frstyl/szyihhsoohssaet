@@ -68,7 +68,8 @@ ljimqmoo:addEffect(fk.CardUseFinished, {
   can_trigger = function(self, event, target, player, data)
     return player:hasSkill(ljimqmoo.name) 
       and not data.card:isVirtual()
-      and data.card.name == Fk:getCardById(data.card.id, true).name    --Utility.isPureCard
+      -- and data.card.name == Fk:getCardById(data.card.id, true).name    --Utility.isPureCard
+      and data.card.name == Fk:getCardById(data.card.id).name 
       and player.room:getCardArea(data.card) == Card.Processing 
       -- and (table.contains(data.tos, player) or player:compareDistance(data.from,1,"<="))
   end,

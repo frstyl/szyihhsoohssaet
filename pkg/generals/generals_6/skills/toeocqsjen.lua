@@ -1,5 +1,6 @@
 local toeocqsjen = fk.CreateSkill {
   name = "toeocqsjen",
+  -- add_skills = {"change_phase_draw",},
 }
 
 Fk:loadTranslationTable{
@@ -40,6 +41,7 @@ toeocqsjen:addEffect(fk.AfterDying, {
     elseif  choice == "MaxHp"  then
       room:changeMaxHp(target,1)
     elseif   choice == "toeocqsjen-drawN"  then
+	    room:addSkill("change_phase_draw")
       room:addPlayerMark(target,"@phase_draw",1)
 
     end

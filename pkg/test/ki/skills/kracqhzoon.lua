@@ -18,14 +18,15 @@ local kracqhzoon_spec ={
     local to=data.eventData.to
     local use = player.room:askToUseCard(player,{ ---@type AskToUseCardParams
         skill_name = kracqhzoon.name,
-        pattern = 'ssaet',  --待
+        pattern = "ssaet",  --待
         prompt = "#kracqhzoon-ask:" .. to.id,
         cancelable = true,
         extra_data={
           exclusive_targets={to.id},
           extraUse=false,
           bypass_distances = false, 
-          bypass_times = false
+          bypass_times = false,
+          bypass_moment=true,
         },
         -- event_data = effect
       })

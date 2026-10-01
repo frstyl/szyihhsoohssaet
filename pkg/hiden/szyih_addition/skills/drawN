@@ -1,8 +1,10 @@
 local drawN = fk.CreateSkill {
-  name = "drawN",
+  name = "change_phase_draw",
 }
 
 Fk:loadTranslationTable{
+  -- ["change_phase_draw"]="",
+  -- [":change_phase_draw"]="",
 
   ["@minus_phase_draw"] = "抽牌-",
   ["@phase_draw"] = "抽牌",

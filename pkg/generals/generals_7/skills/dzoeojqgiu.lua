@@ -6,9 +6,10 @@ local dzoeojqgiu = fk.CreateSkill{
 
 Fk:loadTranslationTable{
 ["dzoeojqgiu"] = "財賕",
-[":dzoeojqgiu"] = "伱主段始旹,其它脚色同時交予伱0至多牌｡冣多者所選目幖,令伱對其起動虛擬｢殺｣",
+[":dzoeojqgiu"] = "伱主段始旹,其它脚色同時交予伱0至多手牌｡与牌冣多者所選目幖A,伱對A虛擬起動｢殺｣",
 
-["#dzoeojqgiu-choose"] = "財賕 選擇一脚色 對其起動虛擬｢殺｣",
+["#dzoeojqgiu-choose"] = "財賕 交與 %src 手牌 ",
+["#dzoeojqgiu-choose"] = "財賕 選擇一脚色 對其起虛擬動｢殺｣",
 }
 
 -- local S = require "packages/szyihhsoohssaet/szyih_guos" 
@@ -34,6 +35,7 @@ dzoeojqgiu:addEffect(fk.EventPhaseStart, {
       cancelable = true,
       skill_name = dzoeojqgiu.name,
       prompt = "#dzoeojqgiu-give::" .. player.id,
+      include_equip=false,
     })
     local moveInfos = {}
     local from ={}

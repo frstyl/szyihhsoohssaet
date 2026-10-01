@@ -128,7 +128,7 @@ Fk:loadTranslationTable{
 }
 
 
-General:new(extension, "phuacqkximqtszi", "qwachloak__kvoan", 3,3, General.Female):addSkills{"tszjevqseejs","pxiqdzyet"}
+General:new(extension, "phuacqkximqtszi", "qwachloak__kvoan", 3,3, General.Female):addSkills{"tszjevqseejs","maekmaek","pxiqdzyet"}
 Fk:loadTranslationTable{
 ["phuacqkximqtszi"] = "方金芝",
 ["#phuacqkximqtszi"] = "明敎聖女",

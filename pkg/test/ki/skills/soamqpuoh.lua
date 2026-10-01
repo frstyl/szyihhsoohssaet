@@ -6,7 +6,7 @@ local soamqpuoh = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["soamqpuoh"] = "三斧",
-  [":soamqpuoh"] = "伱不可調整手牌敘｡伱失去牌後,若其數爲1且爲伱冣左/正中/冣右手牌,必發,伱抽1/可虛擬使用此牌(同名同花同點)/可弃置1腳色區域內1牌",
+  [":soamqpuoh"] = "伱不可調整手牌敘｡伱失去牌後,若其數爲1且爲伱冣左/正中/冣右手牌,必發,伱抽1/可起動此牌(繞過次數)/可弃置1腳色區域內1牌",
 
   ["$soamqpuoh1"] = "泰山虽崩于前，我亦风淸云淡。",
   ["$soamqpuoh2"] = "诸君勿忧，一切尽在掌握。",
@@ -38,6 +38,7 @@ soamqpuoh:addEffect(fk.AfterCardsMove, {
         skill_name = soamqpuoh.name,
         prompt = "#soamqpuoh-use",
         extra_data = {
+          bypass_moment=true,
           bypass_times = true,
           expand_pile = {data.extra_data.soamqpuohSideCards[3]},
         },

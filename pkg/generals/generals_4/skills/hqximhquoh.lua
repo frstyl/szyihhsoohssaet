@@ -5,8 +5,8 @@ local hqximhquoh = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["hqximhquoh"] = "飲羽",
-  [":hqximhquoh"] = "➀恆續,伱攻程(0級)基值爲5➁伱起動｢殺｣指定目幖後(每次起動限1)可發動,若:(伱至目幖距離)=(伱攻程),目幖不可響應此牌;(伱手牌數)与(目幖體力數)同餘于3,此殺无視目幖(防具与腳色)技能｡若皆有,此牌對目幖傷害基數+1;皆不滿足,伱褈鑄手牌",
-  -- [":hqximhquoh"] = "➀恆續,伱基礎攻程(无視武器)爲0➁伱起動殺指定目幖後必發,若x≤y,目幖不可響應此牌.若x≥y,此殺對目幖傷害基數+1(x爲伱至目幖距離,y爲伱攻程)",
+  [":hqximhquoh"] = "➀恆續,伱攻程(0級)基值爲5➁伱起動｢殺｣指定目幖後(每次起動限1)可發動,若:(伱至目幖距離)=(伱攻程),目幖不可響應此牌;(伱手牌數)与(目幖體力數)同餘于3,此殺无視目幖(甲冑与腳色)技能｡若皆有,此牌對目幖傷害基數+1;皆不滿足,伱褈鑄手牌",
+  -- [":hqximhquoh"] = "➀恆續,伱基礎攻程(无視兵器)爲0➁伱起動殺指定目幖後必發,若x≤y,目幖不可響應此牌.若x≥y,此殺對目幖傷害基數+1(x爲伱至目幖距離,y爲伱攻程)",
 }
 --應爲幾級fix
 local S = require "packages/szyihhsoohssaet/szyih_guos" 
@@ -73,7 +73,7 @@ hqximhquoh:addEffect(fk.TargetConfirmed, {
 
 hqximhquoh:addEffect("atkrange", {
   virtual_weapon_func = function (self, player)  --final_func  --virtual_weapon_func
-    if player:hasSkill(hqximhquoh.name) and not S.hasEquip(player,Card.SubtypeWeapon) then  --覆蓋武器?
+    if player:hasSkill(hqximhquoh.name) and not S.hasEquip(player,Card.SubtypeWeapon) then  --覆蓋兵器?
       return 5
     end
   end

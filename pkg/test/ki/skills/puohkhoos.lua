@@ -40,19 +40,19 @@ puohkhoos:addEffect(fk.AfterCardsMove, {
         move.extra_data.removefrompuohkhoos = true
       end
       if move.toArea == Card.Void and move.extra_data and move.extra_data.addtopuohkhoos then
-        local add = {}
+        local adds = {}
         for _, info in ipairs(move.moveInfo) do
           if room:getCardArea(info.cardId) == Card.Void then
             table.insert(add, info.cardId)
           end
         end
-        if #add > 0 then
+        if #adds>0 then
           room:sendLog{
             type = "#AddTopuohkhoos",
             arg = move.skillName,
-            card = add,
+            card = adds,
           }
-          table.insertTableIfNeed(puohkhoos, add)
+          table.insertTableIfNeed(puohkhoos, adds)
         end
       end
     end

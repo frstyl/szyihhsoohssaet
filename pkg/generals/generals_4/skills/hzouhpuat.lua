@@ -5,7 +5,7 @@ local hzouhpuat = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["hzouhpuat"] = "後發",
-  [":hzouhpuat"] = "其它脚色殺不因起動打出進入弃牌堆後,伱可發動.取得其中1至多.伱可將1+a殺轉化爲殺起動發動.伱爲此殺選a項➀不可抵消➁反无效➂无視防具➃目幖非必發技1轉失效(a爲1至4整數)",
+  [":hzouhpuat"] = "➀｢殺｣屬于其它腳色者進入弃牌堆後,伱可發動.取得其中1至多.➁伱可將1+a殺轉化爲殺起動發動.伱爲此殺選a項➀不可抵消➁反无效➂无視甲冑➃目幖非必發技1轉失效(a爲1至4整數)",
 
   ["#hzouhpuat-choose"] = "後發 選擇所起動殺与所弃牌",
   ["@@hzouhpuat-inhand"] = "後發",
@@ -15,7 +15,7 @@ Fk:loadTranslationTable{
   ["hzouhpuat-offset"] = "不可抵消",
   ["hzouhpuat-nullify"] = "反无效",
   ["hzouhpuat-skill"] = "目幖非必發技本轉失效",
-  ["hzouhpuat-armor"] = "无視防具",
+  ["hzouhpuat-armor"] = "无視甲冑",
 
   ["$hzouhpuat1"] = "後發先至",
 
@@ -97,8 +97,9 @@ hzouhpuat:addEffect(fk.AfterCardsMove, {
     if not  player:hasSkill(hzouhpuat.name)  then return end
           local ids = {}
       for _, move in ipairs(data) do  --data move info
-        if move.moveReason ~= fk.ReasonUse and move.moveReason ~= fk.ReasonResponse
-          and move.from  and move.from ~= player 
+        if --move.moveReason ~= fk.ReasonUse and move.moveReason ~= fk.ReasonResponse
+          -- and 
+          move.from  and move.from ~= player 
           and  move.toArea == Card.DiscardPile  --元 Area不爲 DiscardPile
         then  
 

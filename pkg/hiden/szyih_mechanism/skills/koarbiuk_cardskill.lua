@@ -11,11 +11,14 @@ local S = require "packages/szyihhsoohssaet/szyih_guos"
 
 Fk:loadTranslationTable{
   ["koarbiuk_cardskill"] = "葢伏",
-  ["#koarbiuk_cardskill"] = "葢伏此牌 置入伏區",
+  ["#koarbiuk_cardskill"] = "暗置此牌于伱伏區",
 }
 skill:addEffect("active", {
   prompt = "#koarbiuk_cardskill",
-  target_num = 0,
+  target_num = 0,  --給它人?
+  can_use = function(self, player)
+    return not  player:isJudgeAreaSealed() 
+  end,
   on_use = function(self, room, effect)
 
 	  -- room:addSkill("#koarbiuk_rule")

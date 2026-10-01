@@ -4,7 +4,7 @@ local tseejsnoans = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["tseejsnoans"] = "濟難",
-  [":tseejsnoans"] = "距伱距離不大于1之脚色A受傷後，若存在在傷源B,伱可預對B起動殺發動.若此殺對B致傷,伱終止當前段(中止結算)",
+  [":tseejsnoans"] = "距伱距離不大于1之脚色A受傷後，若存在在傷源B,伱可預對B起動｢殺｣(无視距離次數)發動.若此殺對B致傷,伱終止當前段(中止結算)",
 
   ["#tseejsnoans-ask"] = "伱可对 %src 起動【杀】。若致傷則中止此段",
 
@@ -24,7 +24,12 @@ tseejsnoans:addEffect(fk.Damaged, {
       skill_name = tseejsnoans.name,
       prompt = "#tseejsnoans-ask:" .. data.from.id,
       pattern = "ssaet",
-      extra_data = { exclusive_targets = {data.from.id}, bypass_distances = true, bypass_times = true }
+      extra_data = {
+	  exclusive_targets = {data.from.id},
+	  bypass_distances = true,
+	  bypass_times = true,
+	  bypass_moment=true,
+ }
     })
     if use then
       event:setCostData(self, use)

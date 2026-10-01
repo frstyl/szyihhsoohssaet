@@ -38,7 +38,7 @@ cooqkou:addEffect(fk.CardEffectCancelledOut, {
         n = 1,
         pattern=tostring(Exppattern{ id = table.filter(player:getCardIds("h"),function(cid)
           local card=Fk:getCardById(cid)
-        return S.getCardSubtypeByName(card.trueName)==1 and card.color~=Card.NoColor and card.color==color --and card:compareColorWith(data.card)
+        return S.getCardTypeByName(card.trueName)==1 and card.color~=Card.NoColor and card.color==color --and card:compareColorWith(data.card)
         end) }) ,        -- cards = cards,
       },
       skip = true,

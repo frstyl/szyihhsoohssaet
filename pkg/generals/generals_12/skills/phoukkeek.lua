@@ -4,9 +4,9 @@ local phoukkeek = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["phoukkeek"] = "撲擊",
-  [":phoukkeek"] = "➀當伱當起動殺指定目幖後,伱可預打出x(至少1)牌發動,令目幖弃x+1手牌.➁當伱起動殺致傷旹,若伱无手牌,必發,傷害值+1；",
+  [":phoukkeek"] = "➀當伱當起動殺指定目幖後,伱可預投出x(至少1)牌發動,令目幖弃x+1手牌.➁當伱起動殺致傷旹,若伱无手牌,必發,傷害值+1；",
 
-  ["#phoukkeek-invoke"] = "撲擊：打出牌，令 %dest 弃x+1手牌",
+  ["#phoukkeek-invoke"] = "撲擊：投出牌，令 %dest 弃x+1手牌",
   ["#phoukkeek-discard2"] = "撲擊：弃置 %arg 手牌",
 
   ["$phoukkeek1"] = "劈風刀下不斬无名之鬼",

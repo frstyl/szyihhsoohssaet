@@ -5,7 +5,7 @@ local zjimqhsfa = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["zjimqhsfa"] = "尋花",
-  [":zjimqhsfa"] = "其它腳色轉內,其它腳色區域之<font color='red'>♥</font>牌進入處理區或弃牌堆後多次(未迻動),伱可選擇其中1牌發動,伱取得之,1轉內當轉腳色至伱距離-1",
+  [":zjimqhsfa"] = "其它女腳色轉內,♥️牌自其它腳色區域進入弃牌堆或處理區後,伱可預取得其中1牌發動,1轉內當轉腳色至伱距離-1",
 
   ["#zjimqhsfa-choose"] = "尋花 取得牌",
 
@@ -13,6 +13,8 @@ Fk:loadTranslationTable{
 
   ["$zjimqhsfa1"] = "小人終日挂念娘子 甚是苦也",
 }
+
+local S = require "packages/szyihhsoohssaet/szyih_guos" 
 
 -- zjimqhsfa:addAcquireEffect(function (self, player)
 --     player.room:handleAddLoseSkills(player, "zjimqhsfa&", zjimqhsfa.name, false, true)
@@ -27,7 +29,7 @@ zjimqhsfa:addEffect(fk.AfterCardsMove, {
     return player:hasSkill(zjimqhsfa.name)
     and player.room:getCurrent()
     and player.room:getCurrent()~=player
-    and player.room:getCurrent():isFemale()
+    and (S.isFemale(player.room:getCurrent()))
   end,
   trigger_times = function(self, event, target, player, data)  --單人單旹次數 未指定player 多次觸發
     return 999

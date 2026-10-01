@@ -3,7 +3,6 @@ local szyih_guos = require 'packages/szyihhsoohssaet/_base'
 
 
 --- changeDamageData 改變傷害的数据 --preventDamage
---- reviveData 復活的数据
 ---@class changeDamageData
 ---@field public damageData DamageDataSpec @ 
 ---@field public num int @ 

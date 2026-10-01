@@ -4,12 +4,12 @@ local szioqnoans = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["szioqnoans"] = "紓難",
-  [":szioqnoans"] = "其它腳色起動進攻牌對目幖脚色生效前,伱可發➀發動,抽1,將目幖轉爲伱(目幖爲伱不可選)➁(需爲僅存目幖)打出1牌發動,此牌對目幖无效,若此牌不爲轉化/虛擬牌將將其迻除遊戲.轉終,起動者獲得之｡",
+  [":szioqnoans"] = "其它腳色起動進攻牌對目幖脚色生效前,伱可發➀發動,抽1,將目幖轉爲伱(目幖爲伱不可選)➁(需爲僅存目幖)投出1牌發動,此牌對目幖无效,若此牌不爲轉化/虛擬牌將將其迻除遊戲.轉終,起動者獲得之｡",
 
   ["#szioqnoans-invoke"] = "紓難 %src 對 %dest 起動 %arg，伱可發動",
 
   ["szioqnoans_transfer"] = "抽1 轉于伱",
-  ["szioqnoans_recycle"] = "打出1 无效",
+  ["szioqnoans_recycle"] = "投出1 无效",
 
   ["$szioqnoans1"] = "且慢",  --
   -- ["$szioqnoans1"] = "慢著,不要輕動",  --

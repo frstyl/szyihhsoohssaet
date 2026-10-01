@@ -1,14 +1,15 @@
 local thoojsdeek = fk.CreateSkill{
   name = "thoojsdeek",
+  add_skills = { "change_attack_range"},
 }
 
 
 Fk:loadTranslationTable{
   ["thoojsdeek"] = "退敵",
-  [":thoojsdeek"] = "其它脚色伏段終旹,伱可預打出1武器牌或流失1發動,其可演練1♥️閃,若執行其令伱回1,否則伱對其執行1項➀予其1傷➁弃置其裝僃區全部牌➂令其當局局攻程-1",
+  [":thoojsdeek"] = "其它脚色伏段終旹,伱可預投出1兵器牌或流失1發動,其可演練1♥️閃,若執行其令伱回1,否則伱對其執行1項➀予其1傷➁弃置其裝僃區全部牌➂令其當局局攻程-1",
 
-  ["#thoojsdeek-invoke"] = "退敵 1武器牌或流失1 對%src 發動",
-  ["#thoojsdeek-discard"] = "退敵 打出紅桃閃",
+  ["#thoojsdeek-invoke"] = "退敵 1兵器牌或流失1 對%src 發動",
+  ["#thoojsdeek-discard"] = "退敵 投出紅桃閃",
   ["#thoojsdeek-choose"] = "退敵 選擇1項",
 
 
@@ -118,6 +119,7 @@ thoojsdeek:addEffect(fk.EventPhaseEnd, {
     elseif choice == "thoojsdeek-disequips" then
       room:throwCard(target:getCardIds("e"), thoojsdeek.name, target,player)  --弃牌被𢧵?
     elseif choice == "thoojsdeek-atkrange"  then
+	room:addSkill("change_attack_range")
       room:setPlayerMark(target,"@attack_range",-1+target:getMark("@attack_range"))
     end
   end,

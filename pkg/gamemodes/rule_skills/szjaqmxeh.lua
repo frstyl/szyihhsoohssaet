@@ -5,7 +5,7 @@ local szjaqmxeh = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["szjaqmxeh"] = "奢靡",
-  [":szjaqmxeh"] = "伱起動｢殺｣｢肉｣｢酒｣旹,預打出1手牌發動,此牌數值+1",  --限1次
+  [":szjaqmxeh"] = "伱起動｢殺｣｢肉｣｢酒｣旹,預投出1手牌發動,此牌數值+1",  --限1次
 }
 
 local S = require "packages/szyihhsoohssaet/szyih_guos" 

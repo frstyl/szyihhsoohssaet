@@ -5,7 +5,7 @@ local ljephzfak = fk.CreateSkill{
 Fk:loadTranslationTable{
   ["ljephzfak"] = "爉獲",
   [":ljephzfak"] = "伱{起動效果生效前前/演練旹},若目幖或被響應者 不爲伱且有手牌且手牌不小于伱,伱可對其發動.伱取得其1手牌",
-  -- [":ljephzfak"] = "伱{起動｢殺｣指定目幖/起動或打出牌響應其它脚色}後,若其有手牌,伱可發動.伱取得其1手牌",
+  -- [":ljephzfak"] = "伱{起動｢殺｣指定目幖/起動或投出牌響應其它脚色}後,若其有手牌,伱可發動.伱取得其1手牌",
 
   ["#ljephzfak-invoke"] = "爉獲 取得%src手牌",
   ["#ljephzfak-ask"] = "爉獲 選擇1目幖 取得其1手牌",

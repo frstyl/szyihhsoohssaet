@@ -4,7 +4,7 @@ local skill = fk.CreateSkill {
 
 Fk:loadTranslationTable{
 ["meej_skill"] = "迷",
-["#meej_skill"] = "迷 對自己起動 不可起動打出殺閃",
+["#meej_skill"] = "迷 對自己起動 不可起動投出殺閃",
 
 ["@@meej-turn"] = "迷",
 }
@@ -12,43 +12,31 @@ local S = require "packages/szyihhsoohssaet/szyih_guos"
 
 skill:addEffect("cardskill", {
   prompt ="#meej_skill",
-  -- max_phase_use_time = 1,
-  -- target_num = 1,
-  -- can_use = function(self, player, card, extra_data)
-  --   if player:prohibitUse(card) then return end
-    -- return (extra_data and extra_data.bypass_times) or player.phase ~= Player.Play or
-    --   table.find(Fk:currentRoom().alive_players, function(p)
-    --     return self:withinTimesLimit(player, Player.HistoryPhase, card, "meej", p)
-    --   end)
-  -- end,
-  -- mod_target_filter = function(self, player, to_select, selected, card, extra_data)
-  --   return to_select == player and
-  --     not (not (extra_data and extra_data.bypass_distances) and not self:withinDistanceLimit(player, true, card, to_select))
-  -- end,
-  -- target_filter = function(self, player, to_select, selected, _, card, extra_data)
-  --   if not Util.CardTargetFilter(self, player, to_select, selected, _, card, extra_data) then return end
-  --   return self:modTargetFilter(player, to_select, selected, card, extra_data) and
-  --     (
-  --       #selected > 0 or
-  --       player.phase ~= Player.Play or
-  --       (extra_data and extra_data.bypass_times) or
-  --       self:withinTimesLimit(player, Player.HistoryPhase, card, "meej", to_select)
-  --     )
-  -- end,
-  -- can_use = Util.TrueFunc, -- ?CanUseToSelf
-  -- mod_target_filter =  Util.TrueFunc,
-
-  mod_target_filter = Util.TrueFunc,
-  -- can_use = Util.CanUseToSelf,
+  max_turn_use_time = 1,
   target_num=1,
-  target_filter = function(self, player, to_select, selected, _, card, extra_data)
-    return S.useToSelfFilter(self, player, to_select, selected, _, card, extra_data)
+  mod_target_filter = function(self, player, to_select, selected, card, extra_data)--攻程內其它脚色? --其它腳色
+    return  to_select ~= player --殺自己??
+    and  ( (extra_data and extra_data.bypass_distances) or self:withinDistanceLimit(player, true, card, to_select)) 
+
+    and 
+      (--次數
+        #selected > 0 
+        or
+        (extra_data and extra_data.bypass_times) 
+        or
+        self:withinTimesLimit(player, Player.HistoryTurn, card, "meej", to_select)
+      ) 
   end,
+  target_filter  = Util.CardTargetFilter,
+  
   offset_func= Util.FalseFunc,
-  on_effect = function(self, room, effect)
-    if  effect.to.dead then return end
+  on_use = function(self, room, cardUseEvent)
     room:addSkill("meej_delay")
-    room:setPlayerMark(effect.to,"@@meej-turn",1)
+  end,
+  on_effect = function(self, room, effect)
+    -- if  effect.to.dead then return end
+    -- room:addSkill("meej_delay")
+    -- room:setPlayerMark(effect.to,"@@meej-turn",1)
     -- room:broadcastProperty(to, "meej")
   end,
 })

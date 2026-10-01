@@ -6,7 +6,7 @@ local maestoav = fk.CreateSkill({
 
 Fk:loadTranslationTable{
   ["maestoav"] = "賣刀",
-  [":maestoav"] = "➀主旹无限次,伱可選1武器牌發動.將其置于武將牌上稱爲刀➁其脚色于其主旹可交予伱1~3牌取得伱1刀.伱可拒絕",
+  [":maestoav"] = "➀主旹无限次,伱可選1兵器牌發動.將其置于武將牌上稱爲刀➁其脚色于其主旹可交予伱1~3牌取得伱1刀.伱可拒絕",
 
   ["#maestoav"] = "賣刀",
 

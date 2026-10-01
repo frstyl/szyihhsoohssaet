@@ -1,11 +1,12 @@
 local leechjiak = fk.CreateSkill{
   name = "leechjiak",
   -- tags = { Skill.Compulsory },
+  -- related_skills={}
 }
 
 Fk:loadTranslationTable{
   ["leechjiak"] = "冷藥",
-  [":leechjiak"] = "其它脚色主段終旹,若其1轉未因起動殺而致傷,伱可發動:伱爲其附加溷亂",
+  [":leechjiak"] = "其它脚色主段終旹,若其1轉未因起動殺而致傷,伱可發動:伱爲其附加淨化",
 
   ["#leechjiak-invoke"] = "冷藥 是否對 %src發動",
 

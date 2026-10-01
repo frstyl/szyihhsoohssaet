@@ -4,11 +4,11 @@ local zzyinspiuc = fk.CreateSkill {
 
 Fk:loadTranslationTable{
 ["zzyinspiuc"] = "順風",
-[":zzyinspiuc"] = "一脚色A占卜牌生效後,伱可打出1牌与占卜牌同花者發動,伱予A 1火傷",
+[":zzyinspiuc"] = "一脚色A占卜牌生效後,伱可投出1牌与占卜牌同花者發動,伱予A 1火傷",
 
 
 -- ["#zzyinspiuc-invoke"] = "順風 選擇目幖与 %arg牌",
-["#zzyinspiuc-invoke"] = "順風:打出 %arg 牌,予 %dest 1火傷",
+["#zzyinspiuc-invoke"] = "順風:投出 %arg 牌,予 %dest 1火傷",
 }
 
 local S = require "packages/szyihhsoohssaet/szyih_guos" 

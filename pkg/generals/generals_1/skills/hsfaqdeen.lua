@@ -4,7 +4,7 @@ local hsfaqdeen = fk.CreateSkill {
 
 Fk:loadTranslationTable{  --分爲4?
 ["hsfaqdeen"] = "花田",--1/4花田
-[":hsfaqdeen"] = "伱{受傷/回復體力}後,至多{傷害值/回復值}次,伱可指定1其它脚色發動,伱{令其回1,未損則与伱各抽2/予其1傷}.",
+[":hsfaqdeen"] = "伱{受傷/回復體力}後,至多{傷害值/回復值}次,伱可指定1其它脚色發動,伱{回其1,未損則抽2/傷其1}.",
 
 ["#hsfaqdeen-choose"]="花田 選擇1脚色",
 ["#hsfaqdeen-recover"]="花田 選擇1脚色回1",
@@ -90,7 +90,7 @@ hsfaqdeen:addEffect(fk.Damaged, {
     })
     else
       to:drawCards(2,hsfaqdeen.name)
-      if not player.dead then player:drawCards(2) end
+      -- if not player.dead then player:drawCards(2) end
     end
   end,
 })

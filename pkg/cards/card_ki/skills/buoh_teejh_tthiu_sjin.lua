@@ -1,8 +1,8 @@
-local skill = fk.CreateSkill {
+local cardSkill = fk.CreateSkill {
   name = "buoh_teejh_tthiu_sjin_skill",
 }
 
-skill:addEffect("cardskill", {
+cardSkill:addEffect("cardskill", {
   prompt = "#buoh_teejh_tthiu_sjin_skill",
   target_num = 1,
   mod_target_filter = function(self, player, to_select, selected, card)
@@ -12,10 +12,10 @@ skill:addEffect("cardskill", {
   offset_func= Util.FalseFunc,
   on_effect = function(self, room, effect)
     if effect.from.dead or effect.to.dead or effect.to:isAllNude() then return end
-    local cid = room:askToChooseCard(effect.from, { target = effect.to, flag = "hej", skill_name = skill.name })
-    room:throwCard({cid}, skill.name, effect.to, effect.from)
+    local cid = room:askToChooseCard(effect.from, { target = effect.to, flag = "hej", skill_name = cardSkill.name })
+    room:throwCard({cid}, cardSkill.name, effect.to, effect.from)
   end,
 })
 
 
-return skill
+return cardSkill

@@ -3,17 +3,18 @@ local hqujqtszjins = fk.CreateSkill{
   name = "hqujqtszjins",
   -- tags = { Skill.Compulsory },
   tags = {Skill.Composite},
+  add_skills={"operate_card_skill"}
 }
 
--- local S = require "packages/szyihhsoohssaet/szyih_guos"
+local S = require "packages/szyihhsoohssaet/szyih_guos"
 
 Fk:loadTranslationTable{
   ["hqujqtszjins"] = "威震",
-  [":hqujqtszjins"] = "伱{起動旹/演練旹/拼點後/弃置牌後},伱可發動,伱抽1,1段內全體脚色不可{起動/打出/發起拼點/弃置牌}",
+  [":hqujqtszjins"] = "伱{起動旹/演練旹/拼點結果确定旹/弃置牌後},伱可發動,伱抽1,1段內全體脚色不可{起動/投出/發起拼點/弃置牌}",
 --加彊?
   ["@hqujqtszjins-phase"] = "威震",
   ["hqujqtszjins-use"] = "起動",
-  ["hqujqtszjins-response"] = "打出",
+  ["hqujqtszjins-response"] = "投出",
   ["hqujqtszjins-discard"] = "弃置",
   ["hqujqtszjins-pindian"] = "拼點",
 
@@ -67,22 +68,12 @@ hqujqtszjins:addEffect(fk.CardResponding, {
   end,
 })
 
-hqujqtszjins:addEffect(fk.AfterCardsMove, {
+hqujqtszjins:addEffect(S.AfterOperateCard, {
   anim_type = "control",
   can_trigger = function(self, event, target, player, data)
-    if not player:hasSkill(hqujqtszjins.name) then return end
-
-      for _, move in ipairs(data) do
-        if fk.ReasonDiscard==move.moveReason
-          -- and move.from == player 
-          -- and move.toArea == Card.DiscardPile
-          and
-          move.proposer==player
-        then
-          return true
-        end
-      end
-
+    return  player:hasSkill(hqujqtszjins.name)
+    and target==player
+    and data.type== fk.ReasonDiscard
   end,
   on_cost = function(self, event, target, player, data)
     if player.room:askToSkillInvoke(player, { skill_name = hqujqtszjins.name ,prompt="#hqujqtszjins-discard"}) then
@@ -99,6 +90,39 @@ hqujqtszjins:addEffect(fk.AfterCardsMove, {
     room:addTableMarkIfNeed(player,"@hqujqtszjins-phase","hqujqtszjins-discard")
   end,
 })
+
+-- hqujqtszjins:addEffect(fk.AfterCardsMove, {
+--   anim_type = "control",
+--   can_trigger = function(self, event, target, player, data)
+--     if not player:hasSkill(hqujqtszjins.name) then return end
+
+--       for _, move in ipairs(data) do
+--         if move.moveReason == fk.ReasonDiscard
+--           -- and move.from == player 
+--           -- and move.toArea == Card.DiscardPile
+--           and
+--           move.proposer==player
+--         then
+--           return true
+--         end
+--       end
+
+--   end,
+--   on_cost = function(self, event, target, player, data)
+--     if player.room:askToSkillInvoke(player, { skill_name = hqujqtszjins.name ,prompt="#hqujqtszjins-discard"}) then
+--         event:setCostData(self,{tos=table.simpleClone(player.room.players)})
+--       return true
+--     end
+--   end,
+--   on_use= function(self, event, target, player, data)
+--     local room=player.room
+--     player:drawCards(1,hqujqtszjins.name)
+--     local t=room:getBanner("hqujqtszjins-phase") or {}
+--     table.insertIfNeed(t,"hqujqtszjins-discard")
+--     room:setBanner("hqujqtszjins-phase",t)
+--     room:addTableMarkIfNeed(player,"@hqujqtszjins-phase","hqujqtszjins-discard")
+--   end,
+-- })
 
 hqujqtszjins:addEffect(fk.PindianResultConfirmed, {
   anim_type = "control",

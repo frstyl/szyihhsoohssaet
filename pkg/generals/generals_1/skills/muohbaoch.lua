@@ -4,7 +4,7 @@ local muohbaoch = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["muohbaoch"] = "舞棒",
-  [":muohbaoch"] = "武器牌不不屬于伱者伱進入弃牌堆後(多牌多次發動),伱可發動.伱取得其1",--(多牌止發動1次,選擇其中多張)  --不屬于伱且不爲起動打出
+  [":muohbaoch"] = "兵器牌不因伱行動進入弃牌堆後(多牌多次發動),伱可發動.伱取得其1",--(多牌止發動1次,選擇其中多張)  --不屬于伱且不爲起動投出
 
   ["#muohbaoch-choose"] = "舞棒：選牌",
   ["get_all"] = "全部取得",
@@ -25,27 +25,40 @@ muohbaoch:addEffect(fk.AfterCardsMove, {
       end
 
       for _, move in ipairs(data) do
-        if move.toArea == Card.DiscardPile then
-            for _, info in ipairs(move.moveInfo) do
-              if not ( move.from == player  and (info.fromArea == Card.PlayerHand or info.fromArea == Card.PlayerEquip)) then
+        if move.toArea == Card.DiscardPile and move.proposer~=player then
+            -- for _, info in ipairs(move.moveInfo) do
+            --   if not ( move.from == player  and (info.fromArea == Card.PlayerHand or info.fromArea == Card.PlayerEquip)) then
+            --     check(info.cardId)
+            --   end
+            -- end
+
+          if move.moveReason == fk.ReasonUse or move.moveReason == fk.ReasonResponse  then  --經處理區
+            local e= player.room.logic:getCurrentEvent().parent
+            if  (e and (e.event == GameEvent.UseCard or e.event == GameEvent.RespondCard) and e.data and e.data.from~=player) then
+              for _, info in ipairs(move.moveInfo) do  --Card:getIdList(e.data.card)
                 check(info.cardId)
               end
             end
-          -- if  move.moveReason~=fk.ReasonUse and move.moveReason~=fk.ReasonResponse then  --move.moveReason == fk.ReasonDiscard and
-          --   for _, info in ipairs(move.moveInfo) do
-          --     if move.from==nil or move.from ~= player  or (info.fromArea ~= Card.PlayerHand and info.fromArea ~= Card.PlayerEquip) then
-          --       check(info.cardId)
-          --     end
-          --   end
-          -- else  --因起動打出自處理區進入弃牌堆
-          --   local e= player.room.logic:getCurrentEvent().parent
-          --   if not (e and (e.event == GameEvent.UseCard or e.event == GameEvent.RespondCard) and e.data and e.data.from==player) then
-          --     for _, info in ipairs(move.moveInfo) do
-          --       check(info.cardId)
-          --     end
-          --   end
-
-          -- end
+          elseif  move.moveReason == fk.ReasonPindian  then 
+            local pindian_event = player.room.logic:getCurrentEvent():findParent(GameEvent.Pindian)
+            if e then
+              local pindianCards={e.data.fromCard}
+              for p,card in ipairs(e.data.results) do
+                pindianCards[p]=card
+              end
+            end
+            for p, card in pairs(pindianCards) do
+              if p~=player then
+                for _,cid in ipairs(Card:getIdList(card)) do
+                  check(info.cardId)  --是否在弃牌堆在後
+                end
+              end
+            end
+          else
+            for _, info in ipairs(move.moveInfo) do
+                check(info.cardId)
+            end
+          end
         end
       end
 

@@ -4,10 +4,10 @@ local kvoanqddxins = fk.CreateSkill({
 
 Fk:loadTranslationTable{
   ["kvoanqddxins"] = "觀陣",
-  [":kvoanqddxins"] = "其它脚色起動<a href='AttackCard'>進攻牌</a>旹,伱預打出1同花色牌發動,伱令此牌起動无效.",
+  [":kvoanqddxins"] = "應動｡它脚色聲明起動<a href='AttackCard'>進攻牌</a>旹,伱可明置1同花手牌發動,伱无效起動.",
 
 
-  ["#kvoanqddxins-card"] = "觀陣:%dest 起動 %arg 伱可打出1同花色牌發令其无效",
+  ["#kvoanqddxins-card"] = "觀陣:%dest 起動 %arg 伱可投出1同花色牌發令其无效",
   -- ["#kvoanqddxins-damage"] = "觀陣：伱受到 %arg 傷害 伱可弃1同花色牌發防止傷害",
 
   ["$kvoanqddxins1"] = "伱昰太乙三才陣何足爲奇",
@@ -17,7 +17,7 @@ Fk:loadTranslationTable{
 local S = require "packages/szyihhsoohssaet/szyih_guos"
 
 
-kvoanqddxins:addEffect(fk.CardUsing, {
+kvoanqddxins:addEffect(fk.AfterCardUseDeclared, {
   anim_type = "control",
   can_trigger = function(self, event, target, player, data)
     return
@@ -30,20 +30,12 @@ kvoanqddxins:addEffect(fk.CardUsing, {
   on_cost = function(self, event, target, player, data)
     local room = room
 
-    -- local cards = player.room:askToResponse(player,{ ---@type AskToUseCardParams
-    --     skill_name = kvoanqddxins.name,
-    --     pattern = '.|.|'.. data.card:getSuitString(),  --待
-    --     prompt = "#kvoanqddxins-card::" .. target.id .. ":" .. data.card:toLogString(),
-    --     cancelable = true,
-		-- --   include_equip = true,
-    --     -- event_data = effect  --kvoanqddxins
-    --   })
     local cards=player.room:askToCards(player,{
 			min_num=1,
 			max_num=1,
 			include_equip=false,
 			pattern=tostring(Exppattern{ id = table.filter(player:getCardIds("h"),function(id)
-				return Fk:getCardById(id).suit == data.card.suit and not player:prohibitResponse(Fk:getCardById(id))
+				return Fk:getCardById(id).suit == data.card.suit and S.canSetVisible(id,1)  -- not player:prohibitResponse(Fk:getCardById(id))
 			end
 			) }),
       prompt = "#kvoanqddxins-card::" .. target.id .. ":" .. data.card:toLogString(),
@@ -56,7 +48,9 @@ kvoanqddxins:addEffect(fk.CardUsing, {
   end,
   on_use = function(self, event, target, player, data)
     local room = player.room
-    S.playCard(event:getCostData(self).cards,kvoanqddxins.name,player)
+    -- player.room:showCards(cards,player,player)
+    S.setCardsVisible(event:getCostData(self).cards,1)
+    -- S.playCard(event:getCostData(self).cards,kvoanqddxins.name,player)
     S.useNullify(data,player,kvoanqddxins.name)
   end,
 })

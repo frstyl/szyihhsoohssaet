@@ -7,7 +7,7 @@ Fk:loadTranslationTable{
   [":khoucqhqrach"] = "伱起動或演練行動牌旹，你可指定1其它脚色發動,其須演練1同名牌,否則伱与其1雷傷。",
 
   ["#khoucqhqrach-choose"] = "空影： 選擇雷劈目幖",
-  ["#khoucqhqrach-response"] = "空影： 來自%src 打出 %arg",
+  ["#khoucqhqrach-response"] = "空影： 來自%src 投出 %arg",
 
   -- ["$khoucqhqrach1"] = "以我之真气，合天地之造化！",
   -- ["$khoucqhqrach2"] = "雷公助我！",

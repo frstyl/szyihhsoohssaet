@@ -2,6 +2,7 @@
 
 local mechanism = require "packages/szyihhsoohssaet/pkg/hiden/szyih_mechanism"
 local tsziukzzyit = require "packages/szyihhsoohssaet/pkg/hiden/szyih_tsziukzzyit"
+local addition = require "packages/szyihhsoohssaet/pkg/hiden/szyih_addition"
 -- local hiden = require "packages/szyihhsoohssaet/pkg/hiden"
 
 -- local rule = require "packages/szyihhsoohssaet/pkg/rule"
@@ -85,6 +86,7 @@ return {
 
   mechanism,
   tsziukzzyit,
+  addition,
 
 
   card_ki,

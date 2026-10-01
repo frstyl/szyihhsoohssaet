@@ -4,7 +4,7 @@ local hzoavqhqximh = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["hzoavqhqximh"] = "𠢕飲",
-  [":hzoavqhqximh"] = "伱額定抽牌前發動.伱視爲起動烈酒(无視次數),印取1空",
+  [":hzoavqhqximh"] = "伱補段執行旹發動.伱視爲起動烈酒(无視次數),印取1空",
 
   ["@jiudun_drank"] = "酒",
   ["#hzoavqhqximh-invoke"] = "𠢕飲：你可以摸一张牌，视为起動【酒】",

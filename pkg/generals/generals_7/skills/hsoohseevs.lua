@@ -4,9 +4,9 @@ local hsoohseevs = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["hsoohseevs"] = "虎嘯",
-  [":hsoohseevs"] = "伱可將1裝僃牌轉化爲猛虎下山起動發動",
+  [":hsoohseevs"] = "伱可將1軍器牌轉化爲猛虎下山起動發動",
 
-  ["#hsoohseevs"] = "虎嘯：將1裝僃牌轉化爲猛虎下山起動",
+  ["#hsoohseevs"] = "虎嘯：將1軍器牌轉化爲猛虎下山起動",
 
   ["$hsoohseevs1"] = "仰天一嘯百獸驚",
   ["$hsoohseevs2"] = "小之輩統統給我抓起來",

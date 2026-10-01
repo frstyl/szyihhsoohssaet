@@ -4,7 +4,7 @@ local hzeethzoac = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["hzeethzoac"] = "頡頏",
-  [":hzeethzoac"] = "伱指定傷害牌目幖A後,伱可發動｡伱与A同旹選擇1項生效(同項不疊加):➀此｢殺｣對A致傷旹,傷害值+1,傷害結算終旹,伱令其回1➁此次起動結算期,A不可起動打出牌",
+  [":hzeethzoac"] = "伱指定傷害牌目幖A後,伱可發動｡伱与A同旹選擇1項生效(同項不疊加):➀此｢殺｣對A致傷旹,傷害值+1,傷害結算終旹,伱其回1➁此次起動結算期,A不可起動投出牌",
 
   ["addDamage"] = "傷害+1",
   ["disresponsive"] = "不可響應",
@@ -95,7 +95,7 @@ hzeethzoac:addEffect(fk.DamageFinished, {
     player.room:recover({
         who = player.room:getPlayerById(data.event_data.currentExtraData.hzeethzoac.to),
         num = 1,
-        recoverBy = player,
+        -- recoverBy = player,
         skillName = hzeethzoac.name,
       })
   end,

@@ -4,11 +4,12 @@ local pxemqkoot = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["pxemqkoot"] = "砭骨",
-  [":pxemqkoot"] = "伱起動殺對目幖生效前,伱可聲明1花色發動,目幖可演練1此花牌,未執行則不可起動打出轉化該花牌至其轉終",
+  [":pxemqkoot"] = "伱起動殺對目幖A生效前,伱可隱祕選擇1花色發動,A可演練牌,未演練同花牌則不可起動投出該花牌,其挩離瀕死旹除除",
 
   ["@pxemqkoot"] = "砭骨",
-  ["#pxemqkoot-choose"] = "砭骨 聲明花色 %src不能起動打出之",
-  ["#pxemqkoot-response"] = "砭骨 來自%src 打出 %arg",
+  ["#pxemqkoot-choose"] = "砭骨 選擇花色 %src不能起動投出之",
+  ["#pxemqkoot-response"] = "砭骨 來自%src 演練1",
+  -- ["#pxemqkoot-response"] = "砭骨 來自%src 投出 %arg",
 }
 
 pxemqkoot:addEffect(fk.PreCardEffect, {
@@ -29,17 +30,20 @@ pxemqkoot:addEffect(fk.PreCardEffect, {
       cancelable = true,
     })
     if choices~="Cancel" then
-      event:setCostData(self, {choice = choices})
+      event:setCostData(self, {choice = choices,tos={data.to}})
       return true
     end
   end,
   on_use = function(self, event, target, player, data)
     local logsuit =event:getCostData(self).choice
     local room = player.room
-    local respond = room:askToResponse(data.to, {--?? SkillEffectDataSpec
+    local to =event:getCostData(self).tos[1]  
+    local respond = room:askToResponse(to, {--?? SkillEffectDataSpec
       skill_name = pxemqkoot.name,
-      pattern = ".|.|"..logsuit:split("_")[2],
-      prompt = "#pxemqkoot-response:" .. player.id .. "::"  .. logsuit,
+      -- pattern = ".|.|"..logsuit:split("_")[2],
+      -- prompt = "#pxemqkoot-response:" .. player.id .. "::"  .. logsuit,
+      pattern=".",
+      prompt = "#pxemqkoot-response:" .. player.id ,
       cancelable = true,
       extra_data={}
       -- event_data = {
@@ -53,9 +57,9 @@ pxemqkoot:addEffect(fk.PreCardEffect, {
       -- respond.event_data = {
       --   skill_effect_event={who=player,skill_name=pxemqkoot.name} --player.room.logic:getCurrentEvent().data
       -- }
-
       room:responseCard(respond)
-    else
+    end
+    if not to.dead and not respond or respond.card:getSuitString(true)==logsuit then
       player.room:addTableMarkIfNeed(data.to, "@pxemqkoot", logsuit)
     end
   end,
@@ -91,13 +95,14 @@ pxemqkoot:addEffect("prohibit", {
 })
 
 
-pxemqkoot:addEffect(fk.TurnEnd, {
+pxemqkoot:addEffect(fk.AfterDying, {
   -- is_delay_effect=true,
-  can_refresh = function (self, event, target, player, data)
-    return target==player and player:getMark("@pxemqkoot") ~= 0 
+  can_trigger = function (self, event, target, player, data)
+    return target==player and player:getMark("@pxemqkoot") ~= 0 and not player.dead
   end,
-  on_refresh = function (self, event, target, player, data)
+  on_trigger = function (self, event, target, player, data)
     player.room:setPlayerMark(player, "@pxemqkoot", nil)
   end,
 })
+
 return pxemqkoot

@@ -8,7 +8,7 @@ local ex__szjimhphoans= fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["ex__szjimhphoans"] = "宷判",
-  [":ex__szjimhphoans"] = "一脚色判斷牌生效歬,伱可發動,全體脚色非必發技能失效至占卜牌生效後.伱取得元占卜牌,該脚色再次占卜,以此次占卜代替元占卜",
+  [":ex__szjimhphoans"] = "一脚色判斷牌生效歬,伱可發動,全體脚色非必發技能事件期閒失效,伱取得元占卜牌,該脚色再次占卜,代替元占卜,",  --此技能期閒
   ["#ex__szjimhphoans-reJudge"] = "%from 发动了〖%arg〗 %to 新占卜牌爲 %arg2",
 }
 
@@ -24,11 +24,11 @@ ex__szjimhphoans:addEffect(fk.AskForRetrial,{
         room:addPlayerMark(p,MarkEnum.UncompulsoryInvalidity .. "-phase",1)
       end
 
-      -- room.logic:getCurrentEvent():findParent(GameEvent.Judge, true):addCleaner(function()
-      --   for _, p in ipairs(room:getOtherPlayers(player)) do  --
-      --     room:removePlayerMark(p,MarkEnum.UncompulsoryInvalidity .. "-phase", 1)
-      --   end
-      -- end)
+      room.logic:getCurrentEvent():findParent(GameEvent.Judge, true):addCleaner(function()
+        for _, p in ipairs(room:getOtherPlayers(player)) do  --
+          room:removePlayerMark(p,MarkEnum.UncompulsoryInvalidity .. "-phase", 1)
+        end
+      end)
       --1
       local oldId = data.card:getEffectiveId()
       if oldId  and room:getCardArea(oldId) ==  Card.Processing  and not  player.dead  then --data.card Card
@@ -52,10 +52,10 @@ ex__szjimhphoans:addEffect(fk.AskForRetrial,{
       arg = ex__szjimhphoans.name,
     }
     --3
-      for _, p in ipairs(room.players) do  --
-        room:removePlayerMark(p,MarkEnum.UncompulsoryInvalidity .. "-phase",1)
-      end
-      return true --中止此旹機?
+      -- for _, p in ipairs(room.players) do  --
+      --   room:removePlayerMark(p,MarkEnum.UncompulsoryInvalidity .. "-phase",1)
+      -- end
+      -- return true --中止此旹機?
 	end,
 })
 

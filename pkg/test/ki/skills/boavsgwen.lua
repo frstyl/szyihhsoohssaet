@@ -6,7 +6,7 @@ local S = require "packages/szyihhsoohssaet/szyih_guos"
 
 Fk:loadTranslationTable{
   ["boavsgwen"] = "虣拳",
-  [":boavsgwen"] = "應動｡伱｢殺｣對目幖致傷旹,伱可發動,傷害值+(體力數-1-floor(體力上限*(3-x)/3)),執行第x項,➀其不可起動｢殺｣至其轉終➁防止其回復體力至其轉終➂伱抽3,越過當轉撤段",
+  [":boavsgwen"] = "應動｡伱｢殺｣對目幖致傷旹,伱可發動,傷害值+(體力數-1-floor(體力上限*(3-x)/3)),執行第x項,➀其起動牌不可爲｢殺｣至其轉終➁防止其回復體力至其轉終➂伱抽3,越過當轉撤段",
 
   -- ["#changeDamageBySkill"] = "由于 %arg 的效果，對 %from 傷害 + %arg2",
   ["@@prohibit_ssaet"] = "禁殺",

@@ -4,7 +4,7 @@ local koamqljim = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["koamqljim"] = "甘霖",
-  [":koamqljim"] = "主旹.主旹選擇1至多手牌与1其它脚色A發動.將所選牌交与A,肰後伱選擇1項➀令A一轉內｢殺｣次數上限+1➁伱抽x,此技能1輪失效.(x爲1輪伱發動此技能次數)",
+  [":koamqljim"] = "其它腳色轉始旹,選擇1至多手牌發動.將所選牌交与A,肰後伱選擇1項➀令A1轉內｢殺｣次數上限+1➁伱抽x,此技能1輪失效.(x爲1輪內伱發動此技能次數)",
 
   ["#koamqljim-active"] = "甘霖 將1至多手牌交予其它脚色",
 
@@ -65,25 +65,24 @@ koamqljim:addEffect(fk.TurnStart, {
     and  not player:isNude()
   end,
   on_cost = function(self, event, target, player, data)
-    local ids={}
     local room=player.room
 
-        ids = room:askToCards(player, {
+      local  ids = room:askToCards(player, {
         min_num = 1,
         max_num = 999,
-        include_equip = true,
+        include_equip = false,
         skill_name = koamqljim.name,
         prompt = "#koamqljim-choose:"..target.id,
         cancelable = true,
       })
 
       if #ids > 0 then
-        event:setCostData(self,{ids=ids})
+        event:setCostData(self,{cards=ids,tos={data.to}})
         return true
       end
   end,
   on_use = function(self, event, target, player, data)
-    local ids=event:getCostData(self).ids
+    local ids=event:getCostData(self).cards
     local room=player.room
 
       room:moveCardTo(ids, Player.Hand, target, fk.ReasonGive, koamqljim.name, nil, false, player.id)

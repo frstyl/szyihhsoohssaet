@@ -5,9 +5,9 @@ local jiacqpoa = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["jiacqpoa"] = "揚波",
-  [":jiacqpoa"] = "伱因伱起動或打出或弃置失去牌後,(輪流發動)伱可{➀發動,抽1➁褈鑄2牌發動➂發動,印得3空牌➃以1牌轉化起動｢水攻｣發動}",
-  -- [":jiacqpoa"] = "伱因伱起動或打出或弃置失去牌後,令記錄a +1,若a mod {1/2/3} = 0,令a=:0 且伱可預選{1/2/3}牌發動,緟鑄之,若爲3,伱視爲起動水攻(由伱選擇)",
---打出 弃置之別 打出允許虛牌 牌數必爲1?
+  [":jiacqpoa"] = "伱因伱起動或投出或弃置失去牌後,(輪流發動)伱可{➀發動,抽1➁褈鑄2牌發動➂發動,印得3空牌➃以1牌轉化起動｢水攻｣發動}",
+  -- [":jiacqpoa"] = "伱因伱起動或投出或弃置失去牌後,令記錄a +1,若a mod {1/2/3} = 0,令a=:0 且伱可預選{1/2/3}牌發動,緟鑄之,若爲3,伱視爲起動水攻(由伱選擇)",
+--投出 弃置之別 投出允許虛牌 牌數必爲1?
 
   -- ["@jiacqpoa_number"] = "jiacqpoa",
 
@@ -28,7 +28,7 @@ jiacqpoa:addEffect(fk.AfterCardsMove, {
   can_trigger = function(self, event, target, player, data)
     if not player:hasSkill(jiacqpoa.name)  then return end
 
-      for _, move in ipairs(data) do  --起動打出未寫proposer
+      for _, move in ipairs(data) do  --起動投出未寫proposer
         if move.from ==player 
         and (move.to~=player or not table.contains({Card.PlayerEquip,Card.PlayerHand }, move.toArea)) 
         and (move.proposer==player or move.proposer==nil) --應該檢測user
@@ -139,7 +139,7 @@ end)
 --     local n=player:getMark("@jiacqpoa_number")
 --     -- local switch=player:getMark("@jiacqpoa_switch")+1  --player:usedEffectTimes(jiacqpoa.name, Player.HistoryGame)
 
---       for _, move in ipairs(data) do  --起動打出未寫proposer
+--       for _, move in ipairs(data) do  --起動投出未寫proposer
 --         if move.from ==player and (move.to~=player or not table.contains({Card.PlayerEquip,Card.PlayerHand }, move.toArea)) and (move.proposer==player or move.proposer==nil) and table.contains({fk.ReasonUse, fk.ReasonResponse, fk.ReasonDiscard}, move.moveReason) then
 --           for _, info in ipairs(move.moveInfo) do
 --             if   (info.fromArea == Card.PlayerHand or info.fromArea == Card.PlayerEquip)  then

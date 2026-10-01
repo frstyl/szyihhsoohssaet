@@ -5,10 +5,10 @@ local piucqcxim = fk.CreateSkill{
 
 Fk:loadTranslationTable{
 ["piucqcxim"] = "風吟",
-[":piucqcxim"] = "末段始旹,伱可發動.伱占卜.伱可打出1牌与占卜牌同點者",
+[":piucqcxim"] = "末段始旹,伱可發動.伱占卜.伱可投出1牌与占卜牌同點者",
 -- [":piucqcxim"] = "末段始旹,伱可發動.伱占卜,若与此流程內上次占卜牌類別不同,伱可再次占卜.流程終止旹,伱選擇令1脚色抽x或回x/2",
 
-["#piucqcxim-choose"] = "日新 選擇牌打出 ",
+["#piucqcxim-choose"] = "日新 選擇牌投出 ",
 }
 
 local S = require "packages/szyihhsoohssaet/szyih_guos" 

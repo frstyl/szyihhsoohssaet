@@ -1,6 +1,6 @@
 local jiacqhqik = fk.CreateSkill{
   name = "jiacqhqik",
-  tags={Skill.Rhyme }, --Skill.Switch
+  tags={Skill.Rhyme }, --Skill.Switch  Skill.Contract
 }
 
 Fk:loadTranslationTable{

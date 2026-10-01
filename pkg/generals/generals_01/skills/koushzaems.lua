@@ -8,7 +8,8 @@ Fk:loadTranslationTable{
 
 local koushzaems = fk.CreateSkill{
   name = "koushzaems",
-  tags = { Skill.Compulsory,Skill.Permanent },
+  tags = { Skill.Compulsory,}, --Skill.Permanent 
+  related_skills={"nzjipkous"},
 }
 
 -- local S = require "packages/szyihhsoohssaet/szyih_guos" 

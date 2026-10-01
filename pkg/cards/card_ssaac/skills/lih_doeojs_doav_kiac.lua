@@ -7,14 +7,14 @@ cardSkill:addEffect("cardskill", {
   can_use = Util.FalseFunc,
   on_use = function (self, room, cardUseEvent)
     S.magicOnUse(cardUseEvent.from, cardUseEvent)
-    cardUseEvent.toCard = use.card  --无目幖
+    cardUseEvent.toCard = cardUseEvent.card  --无目幖
   end,
   offset_func= Util.FalseFunc,
   on_effect = function(self, room, effect)
     if effect.extra_data and effect.extra_data.lih_doeojs_doav_kiac then
       room:loseHp(effect.from,1,cardSkill.name,effect.from)
       S.preventDamage({damageData=effect.extra_data.lih_doeojs_doav_kiac, skillName=cardSkill.name})  --skill??
-      if not effect.from.dead then effect.from.drawCards(1,cardSkill.name) end
+      if not effect.from.dead then effect.from:drawCards(1,cardSkill.name) end
     end
   end,
 })
@@ -59,7 +59,7 @@ cardSkill:addEffect(fk.DamageInflicted, {  --合并諸牌
       skill_name = "lih_doeojs_doav_kiac",
       pattern="lih_doeojs_doav_kiac",
       cancelable=true,
-      prompt="#lih_doeojs_doav_kiac-invoke:"..data.to.id,
+      prompt="#lih_doeojs_doav_kiac-use:"..data.to.id,
       skip=true,
       extra_data = {
         lih_doeojs_doav_kiac = true,

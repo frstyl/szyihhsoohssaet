@@ -4,7 +4,7 @@ local tshiuqssaet = fk.CreateSkill({
 
 Fk:loadTranslationTable{
   ["tshiuqssaet"] = "秌殺",
-  [":tshiuqssaet"] = "主旹,伱預打出x♣️手牌選擇x其它脚色伱至其距離不大于1者發動.伱對所選脚色各与1傷",  --可无色  --♣️?
+  [":tshiuqssaet"] = "主旹,伱預投出x♣️手牌選擇x其它脚色伱至其距離不大于1者發動.伱對所選脚色各与1傷",  --可无色  --♣️?
 
   ["#puohquat"] = "秌殺：選x♣️牌与x名至其距離不大于1其它脚色",
 }

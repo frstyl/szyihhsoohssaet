@@ -5,7 +5,7 @@ local hzoojqssaok = fk.CreateSkill {
 
 Fk:loadTranslationTable{
 ["hzoojqssaok"] = "回搠",
-[":hzoojqssaok"] = "一腳色轉終旹无限次,伱可起動弃牌堆1轉內因打出進入者發動｡",
+[":hzoojqssaok"] = "一腳色轉終旹无限次,伱可起動弃牌堆1轉內因投出進入者發動｡",
 
 
 }
@@ -27,7 +27,7 @@ hzoojqssaok:addEffect(fk.TurnEnd, {
           end
         else
           for _, info in ipairs(move.moveInfo) do
-            if  room:getCardArea(info.cardId) == Card.DiscardPile then  --因非打出進入弃牌堆
+            if  room:getCardArea(info.cardId) == Card.DiscardPile then  --因非投出進入弃牌堆
               table.removeOne(ids,info.cardId)
             end
           end
@@ -55,6 +55,7 @@ hzoojqssaok:addEffect(fk.TurnEnd, {
           extraUse=false,
           bypass_times=false,
           bypass_distances=false,
+          bypass_moment=true,
         },
         skip = true,
       })

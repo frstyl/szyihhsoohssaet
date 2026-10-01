@@ -5,6 +5,7 @@ local skill = fk.CreateSkill {
 skill:addEffect("cardskill", {
   prompt = "#maach_hsooh_hzaah_ssaen_skill",
   can_use = Util.AoeCanUse,
+  -- min_target_num = 1,
   on_use = function (self, room, cardUseEvent)
     ---@cast cardUseEvent -SkillUseData
     return Util.AoeCardOnUse(self, cardUseEvent.from, cardUseEvent, false)

@@ -2,6 +2,8 @@ local equipSKill = fk.CreateSkill{
   name = "#gracqgi_gi_skill",
   tags = { Skill.Compulsory },
   attached_equip = "gracqgi_gi",
+  add_skills = {"change_phase_draw", "change_attack_range"},
+
 }
 Fk:loadTranslationTable{
   ["#gracqgi_gi_skill"] = "旗",

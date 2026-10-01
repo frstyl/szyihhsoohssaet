@@ -5,7 +5,7 @@ local ttiachloak = fk.CreateSkill{
 
 Fk:loadTranslationTable{
 ["ttiachloak"] = "漲落",
-[":ttiachloak"] = "輪限1｡游戲始旹/輪終旹/一腳色轉始旹,伱可發動:全體脚色各選擇其x牌迻出,伱獲得技能｢濤洮｣,下1觸發旹機,每腳色獲得其上家｢漲落｣牌,伱失去｢濤洮｣｡x由伱指定,不超過伱體力數｡",
+[":ttiachloak"] = "輪限1｡游戲始旹/輪終旹/一腳色轉始旹,伱可發動:全體脚色各選擇其x牌迻出,伱獲得技能｢滔濤｣,下1觸發旹機,每腳色獲得其上家｢漲落｣牌,伱失去｢滔濤｣｡x由伱指定,不超過伱體力數｡",
 
 ["#ttiachloak-choose"] = "漲落 選擇牌迻出",
 ["$ttiachloak_ddxev"] = "漲落",
@@ -28,7 +28,7 @@ local spec={
       end
       for _, p in ipairs(room.players) do
         if p:getMark("ttiachloak-noclear")~=0 then
-          room:handleAddLoseSkills(player, "-doavqthoav", nil, true, false)
+          room:handleAddLoseSkills(player, "-thoavqdoav", nil, true, false)
         end
       end
     end
@@ -60,7 +60,7 @@ local spec={
         p:addToPile("$ttiachloak_ddxev", req[p], false, ttiachloak.name)
       end
     end
-    room:handleAddLoseSkills(player, "doavqthoav", nil, true, false)
+    room:handleAddLoseSkills(player, "thoavqdoav", nil, true, false)
     player.room:setPlayerMark(player,"ttiachloak-noclear", 1)
   end,
 }
@@ -85,7 +85,7 @@ ttiachloak:addEffect(fk.TurnStart, spec)
 --     end
 --     for _, p in ipairs(room.players) do
 --       if p:getMark("ttiachloak-noclear")~=0 then
---         room:handleAddLoseSkills(player, "-doavqthoav", nil, true, false)
+--         room:handleAddLoseSkills(player, "-thoavqdoav", nil, true, false)
 --       end
 --     end
 --   end,

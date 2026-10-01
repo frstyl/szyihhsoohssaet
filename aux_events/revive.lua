@@ -21,7 +21,7 @@ szyih_guos.ReviveData = TriggerData:subclass("ReviveData")
 ---@field public data szyih_guos.ReviveData
 szyih_guos.Revive = TriggerEvent:subclass("ReviveEvent")
 
---- 復活事件始 用于delay效果
+--- 復活事件始
 ---@class szyih_guos.PreRevive: szyih_guos.Revive
 szyih_guos.PreRevive = szyih_guos.Revive:subclass("szyih_guos.PreRevive")
 
@@ -30,9 +30,9 @@ szyih_guos.PreRevive = szyih_guos.Revive:subclass("szyih_guos.PreRevive")
 -- szyih_guos.BeforeRevive = szyih_guos.Revive:subclass("szyih_guos.BeforeRevive")
 
 
---- 復活结束后
----@class szyih_guos.ReviveFinished: szyih_guos.Revive
-szyih_guos.AfterRevive = szyih_guos.Revive:subclass("szyih_guos.ReviveFinished")
+--- 復活後
+---@class szyih_guos.AfterRevive: szyih_guos.Revive
+szyih_guos.AfterRevive = szyih_guos.Revive:subclass("szyih_guos.AfterRevive")
 
 ---@alias ReviveTrigFunc fun(self: TriggerSkill, event: szyih_guos.Revive,
 ---  target: ServerPlayer, player: ServerPlayer, data: szyih_guos.ReviveData):any

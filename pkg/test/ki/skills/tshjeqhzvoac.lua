@@ -1,6 +1,6 @@
 Fk:loadTranslationTable{
   ["tshjeqhzvoac"] = "雌黃",
-  [":tshjeqhzvoac"] = "一脚色聲明起動牌A後,伱可打出1牌B發動｡起動牌效改爲B｡A B須卽旹有目幖非應動",
+  [":tshjeqhzvoac"] = "一脚色聲明起動牌A後,伱可投出1牌B發動｡起動牌效改爲B｡A B須卽旹有目幖非應動",
 
   ["@tshjeqhzvoac-turn"] = "雌黃",
 
@@ -51,15 +51,15 @@ tshjeqhzvoac:addEffect(fk.AfterCardUseDeclared, {
     local card= Fk:getCardById(event:getCostData(self).cards[1])
       S.playCard({card.id},tshjeqhzvoac.name,player)
 
-    -- data:changeCard(card.name, data.card.suit, data.card.number, tshjeqhzvoac.name)
+    data:changeCard(card.name, data.card.suit, data.card.number, tshjeqhzvoac.name)
 
-    local newCard = data.card:clone()
-    local c = table.simpleClone(data.card)
-    for k, v in pairs(c) do
-      card[k] = v
-    end
-    newCard.skill = card.skill
-    data.card = newCard
+    -- local newCard = data.card:clone()
+    -- local c = table.simpleClone(data.card)
+    -- for k, v in pairs(c) do
+    --   card[k] = v
+    -- end
+    -- newCard.skill = card.skill
+    -- data.card = newCard
 
 end,
 })

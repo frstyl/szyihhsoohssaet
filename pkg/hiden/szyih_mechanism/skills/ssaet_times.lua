@@ -49,18 +49,18 @@ ssaet_times:addEffect("targetmod", {
   -- end,
 })
 
-ssaet_times:addEffect(fk.StartPlayCard, {
-  can_refresh = function (self, event, target, player, data)
-    return target == player
-    -- and not player:hasMark("ssaet_bypass_times") 
-  end,
-  on_refresh = function (self, event, target, player, data)
-    -- local n=
-    -- if n and n>0 then
-     player.room:setPlayerMark(player,"@ssaet_remain_times-phase",{ player:usedCardTimes("ssaet", Player.HistoryPhase) ,Fk:cloneCard("ssaet").skill:getMaxUseTime(player, Player.HistoryPhase, Fk:cloneCard("ssaet")) })
-    -- end
-  end,
-})
+-- ssaet_times:addEffect(fk.StartPlayCard, {
+--   can_refresh = function (self, event, target, player, data)
+--     return target == player
+--     -- and not player:hasMark("ssaet_bypass_times") 
+--   end,
+--   on_refresh = function (self, event, target, player, data)
+--     -- local n=
+--     -- if n and n>0 then
+--      player.room:setPlayerMark(player,"@ssaet_remain_times-phase",{ player:usedCardTimes("ssaet", Player.HistoryPhase) ,Fk:cloneCard("ssaet").skill:getMaxUseTime(player, Player.HistoryPhase, Fk:cloneCard("ssaet")) })
+--     -- end
+--   end,
+-- })
 
 ssaet_times:addEffect(fk.PreCardUse, {
   can_refresh = function (self, event, target, player, data)

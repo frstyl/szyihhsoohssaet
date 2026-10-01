@@ -110,6 +110,7 @@ cardSkill:addEffect("cardskill", {
             bypass_distances = true,
             extraUse=true,
             bypass_times = false,
+            bypass_moment=true,
           }, 
           event_data = effect,
           skip=true, 

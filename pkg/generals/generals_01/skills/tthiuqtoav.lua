@@ -1,11 +1,12 @@
 local tthiuqtoav = fk.CreateSkill{
   name = "tthiuqtoav",
   -- tags = { Skill.Compulsory },
+  related_skills={"tsziukzzyit_guacqboavs"},
 }
 
 Fk:loadTranslationTable{
   ["tthiuqtoav"] = "抽刀",
-  [":tthiuqtoav"] = "伱受傷後x次,伱爲一脚色附加狂虣",
+  [":tthiuqtoav"] = "伱受傷後至多傷害值次,伱選擇1脚色發動,伱爲其附加咒術｢狂虣｣",
 
   ["#tthiuqtoav-choose"] = "抽刀 選擇目幖",
 

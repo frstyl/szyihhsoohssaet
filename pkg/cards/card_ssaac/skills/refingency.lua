@@ -2,24 +2,13 @@ local refingency = fk.CreateSkill{
   name = "refingency_skill",
 }
 
-Fk:loadTranslationTable{
-  ["refingency"] = "轉景",
-  [":refingency"] = "應動轉移",
-  ["refingency_skill"] = "轉景",
-  [":refingency_skill"] = "轉移牌目幖",
+-- Fk:loadTranslationTable{
 
-  ["#refingency-use"] = "轉景 轉移 %arg ",
-
-}
+-- }
 
 local S = require "packages/szyihhsoohssaet/szyih_guos" 
 
 refingency:addEffect("cardskill", {
-  prompt="#khfar_hzvoat_ljim",
-  -- prompt = function(self, _, _, _, extra_data)
-  --   return extra_data.khfar_hzvoat_ljim and "#khfar_hzvoat_ljim"  
-  -- or "#muo_tsiuh_piu_hsvoan"  --extra?
-  -- end,
   mod_target_filter = function(self, player, to_select, selected, card, extra_data)
     return to_select ~= player
   end, 
@@ -40,6 +29,7 @@ refingency:addEffect(fk.TargetConfirming, {
   priority = 0,
   can_trigger = function(self, event, target, player, data)
     return data.to == player 
+    and data:isOnlyTarget(player)
   end,
   on_trigger = function(self, event, target, player, data)
     local room = player.room

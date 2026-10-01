@@ -4,7 +4,7 @@ local pouktheen = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["pouktheen"] = "卜天",
-  [":pouktheen"] = "➀恆續,牌堆頂3牌對伱可見.➁一占卜牌生效歬,伱可預打出1牌發動,自牌堆頂3牌或牌堆底1牌中選1与占卜牌交換,中止改判旹機",
+  [":pouktheen"] = "➀恆續,牌堆頂3牌對伱可見.➁一占卜牌生效歬,伱可預投出1牌發動,自牌堆頂3牌或牌堆底1牌中選1与占卜牌交換,中止改判旹機",
 
   ["#pouktheen-invoke"] = "卜天 修改 %dest %arg 占卜？",
   ["#pouktheen-choose"] = "卜天 選擇",

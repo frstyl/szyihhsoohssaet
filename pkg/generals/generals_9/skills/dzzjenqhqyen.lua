@@ -5,7 +5,7 @@ local dzzjenqhqyen = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["dzzjenqhqyen"] = "嬋娟",
-  [":dzzjenqhqyen"] = "<font color='red'>♥</font>牌A不因起動打出進入弃牌堆後,伱可發動,伱抽1,若A未迻動伱可打出1牌將A交与一脚色.", --➁伱<font color='red'>♥</font>牌A因弃置進入弃牌堆後,伱可發動.分配之
+  [":dzzjenqhqyen"] = "<font color='red'>♥</font>牌A不因起動投出進入弃牌堆後,伱可發動,伱抽1,若A未迻動伱可投出1牌將A交与一脚色.", --➁伱<font color='red'>♥</font>牌A因弃置進入弃牌堆後,伱可發動.分配之
 
   ["#dzzjenqhqyen-invoke"] = "嬋娟 是否發動",
   ["#dzzjenqhqyen-choose"] = "嬋娟 分配牌",
@@ -46,7 +46,7 @@ dzzjenqhqyen:addEffect(fk.AfterCardsMove, {
             end
           -- else
           --   local e= player.room.logic:getCurrentEvent().parent
-          --   if not (e  and e.data and e.data.card and e.from~=player) then returun end  --因起動打出迻動不會同旹有其它迻動
+          --   if not (e  and e.data and e.data.card and e.from~=player) then returun end  --因起動投出迻動不會同旹有其它迻動
           --     for _, info in ipairs(move.moveInfo) do
           --       check(info.cardId)
           --     end

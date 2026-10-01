@@ -67,14 +67,14 @@ Fk:loadTranslationTable{
 ["~quacqboa"] = "死到眼前猶作發財夢",
 }
 
-General:new(extension, "phoanqkximqleen", "mjin", 3, 3,General.Female):addSkills { "mxishzvoeok","szjimqkveej","ddximsssaet" }
+General:new(extension, "phvoan_kxim_leen", "mjin", 3, 3,General.Female):addSkills { "mxishzvoeok","szjimqkveej","ddximsssaet" }
 Fk:loadTranslationTable{
-["phoanqkximqleen"] = "潘金蓮",
-["#phoanqkximqleen"] = "牆頭杏",
-["designer:phoanqkximqleen"] = "設計",
-["cv:phoanqkximqleen"] = "配音",
-["illustrator:phoanqkximqleen"] = "畫師",
-["~phoanqkximqleen"] = "大錯鑄成兩命喪",
+["phvoan_kxim_leen"] = "潘金蓮",
+["#phvoan_kxim_leen"] = "牆頭杏",
+["designer:phvoan_kxim_leen"] = "設計",
+["cv:phvoan_kxim_leen"] = "配音",
+["illustrator:phvoan_kxim_leen"] = "畫師",
+["~phvoan_kxim_leen"] = "大錯鑄成兩命喪",
 }
 
 
@@ -89,8 +89,19 @@ Fk:loadTranslationTable{
 }
 --鄆哥
 --25 王婆計啜西門慶　淫婦藥鴆武大郎
---何九叔
+
 --26　偷骨殖何九送喪　供人頭武二設祭
+
+--何九叔
+General:new(extension, "hzoa_kiuh_sziuk", "pujh", 4, 4,General.Female):addSkills { "qwenqhzfet", "ljemhtsoacs"}  --斂骨吹魂
+Fk:loadTranslationTable{
+["hzoa_kiuh_sziuk"] = "何九叔",
+["#hzoa_kiuh_sziuk"] = "老團頭",
+["designer:hzoa_kiuh_sziuk"] = "設計",
+["cv:hzoa_kiuh_sziuk"] = "配音",
+["illustrator:hzoa_kiuh_sziuk"] = "畫師",
+["~hzoa_kiuh_sziuk"] = "",
+}
 --27 母夜叉孟州道賣人肉　武都頭十字坡遇張青
 
 General:new(extension, "soonqnzjisnniac", "pujh", 4, 4,General.Female):addSkills { "hsoeokkteems","nzjinqnziuk" }

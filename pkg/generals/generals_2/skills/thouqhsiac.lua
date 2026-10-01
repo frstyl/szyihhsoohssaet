@@ -54,7 +54,7 @@ local spec={
 
     if player.dead then return end
       local targets=table.filter(player.room:getOtherPlayers(player),function(p)
-      return p:isFemale()
+      return S.isFemale(p)
       end)
       if #targets>0 then 
          local tos = room:askToChoosePlayers(player, {

@@ -1,26 +1,26 @@
-local lvoansddxins = fk.CreateSkill{
-  name = "lvoansddxins",
+local tthaakddxins = fk.CreateSkill{
+  name = "tthaakddxins",
 }
 
 Fk:loadTranslationTable{
-  ["lvoansddxins"] = "亂陳",
-  [":lvoansddxins"] = "A起動牌對目幖生效前(每次起動限1次),若伱至A距離等于1,伱可弃置A 1牌發動｡若弃牌与B同花,B對目幖无效",
+  ["tthaakddxins"] = "坼陣",
+  [":tthaakddxins"] = "應動｡A起動牌對目幖生效前(每次起動限1次),若伱至A距離等于1,伱可弃置A 1牌發動｡若所弃牌与B同花,B對目幖起動无效",
 
-  ["#lvoansddxins-ask"] = "龍濳 是否對 %src 發動",
-  ["#lvoansddxins-choose"] = "龍濳 選擇1手牌",
+  ["#tthaakddxins-ask"] = "坼陣 是否對 %src 發動",
+  ["#tthaakddxins-choose"] = "坼陣 選擇1牌",
 
-  ["$lvoansddxins1"] = "且慢",  --
-  -- ["$lvoansddxins1"] = "慢著,不要輕動",  --
-  ["$lvoansddxins2"] = "待俺尋思尋思",
-  ["$lvoansddxins3"] = "緟新開始夫",
+  ["$tthaakddxins1"] = "且慢",  --
+  -- ["$tthaakddxins1"] = "慢著,不要輕動",  --
+  ["$tthaakddxins2"] = "待俺尋思尋思",
+  ["$tthaakddxins3"] = "緟新開始夫",
 }
 
 local S = require "packages/szyihhsoohssaet/szyih_guos" 
 
 
 -- Fk:addPoxiMethod{
---   name = "lvoansddxins_discard",
---   prompt = "#lvoansddxins-ask",
+--   name = "tthaakddxins_discard",
+--   prompt = "#tthaakddxins-ask",
 --   card_filter = function(to_select, selected, data)
 
 --     return not (Self:prohibitDiscard(Fk:getCardById(to_select)) and table.contains(data[1][2], to_select))
@@ -29,14 +29,14 @@ local S = require "packages/szyihhsoohssaet/szyih_guos"
 --     return #selected == 1
 --   end,
 -- }
-lvoansddxins:addEffect(fk.PreCardEffect, {  --TargetSpecifying TargetConfirming
+tthaakddxins:addEffect(fk.PreCardEffect, {  --TargetSpecifying TargetConfirming
   anim_type = "defensive", 
   can_trigger = function(self, event, target, player, data)
-    return  player:hasSkill(lvoansddxins.name)
+    return  player:hasSkill(tthaakddxins.name)
     and data.from
     -- and data.from~=player
     and player:compareDistance(data.from,1,"==")
-    and not (data.use and data.use.extra_data and  data.use.extra_data.lvoansddxins and table.contains(data.use.extra_data.lvoansddxins ,player.id))
+    and not (data.use and data.use.extra_data and  data.use.extra_data.tthaakddxins and table.contains(data.use.extra_data.tthaakddxins ,player.id))
 	  and not data.from:isNude()
     -- and S.getCardTypeByName(data.card.name)==2
   end,
@@ -46,7 +46,7 @@ lvoansddxins:addEffect(fk.PreCardEffect, {  --TargetSpecifying TargetConfirming
       max=1,
       target = data.from,
       flag = "he",
-      skill_name = lvoansddxins.name,
+      skill_name = tthaakddxins.name,
       cancelable=true,
     })
     if  #ids>0 then
@@ -58,13 +58,13 @@ lvoansddxins:addEffect(fk.PreCardEffect, {  --TargetSpecifying TargetConfirming
     local room = player.room
     if data.use then 
       data.use.extra_data=data.use.extra_data or {}
-      data.use.extra_data.lvoansddxins=data.use.extra_data.lvoansddxins or {}
-      table.insert(data.use.extra_data.lvoansddxins,player.id)
+      data.use.extra_data.tthaakddxins=data.use.extra_data.tthaakddxins or {}
+      table.insert(data.use.extra_data.tthaakddxins,player.id)
     end
     local cards= event:getCostData(self).cards
-    room:throwCard(cards, lvoansddxins.name, data.from, player)
+    room:throwCard(cards, tthaakddxins.name, data.from, player)
     if data.card:compareSuitWith(Fk:getCardById(cards[1])) then
-      S.effectNullify(data,player,lvoansddxins.name)
+      S.effectNullify(data,player,tthaakddxins.name,true)
     end
 
     -- return true
@@ -73,4 +73,4 @@ lvoansddxins:addEffect(fk.PreCardEffect, {  --TargetSpecifying TargetConfirming
 
 
 
-return lvoansddxins
+return tthaakddxins

@@ -8,15 +8,17 @@ local S = require "packages/szyihhsoohssaet/szyih_guos"
 equipSkill:addEffect(fk.PreCardEffect, {
   -- mute = true,
   can_trigger = function(self, event, target, player, data)
-    return data.to == player and player:hasSkill(equipSkill.name) and data.card.trueName=="ssaet"
-    and not S.isIgnoreArmorFromAToB(data.from, data.to, data.card, data.use, data)
+    return data.to == player
+    and data.card.trueName=="ssaet"     
     and
-      (
-        data.card.name=="fire__ssaet" 
-      or data.card.name=="thunder__ssaet"
-      or ( data.card:isVirtual() )
+      (data.card.damage_type~=fk.NormalDamage
+      or data.card:isVirtual() 
       -- or data.card.name ~= Fk:getCardById(data.card.id, true).name
     )
+    and S.hasEquip(player,equipSkill.attached_equip)  
+    and  Fk.skills[equipSkill.name]:isEffectable(player)    
+    and not S.isIgnoreArmorFromAToB(data.from, data.to, data.card, data.use, data)
+
   end,
   on_use = function(self, event, target, player, data)
     -- local room = player.room
@@ -30,12 +32,13 @@ equipSkill:addEffect(fk.PreCardEffect, {
 equipSkill:addEffect(fk.Damaged, {
   -- mute = true,
   can_trigger = function(self, event, target, player, data)
-    return  data.to == player and player:hasSkill(equipSkill.name)
-	
+    return  data.to == player
   and data.from and data.from~=player   
 	and data.card and data.card.trueName=="ssaet"
+  and S.hasEquip(player,equipSkill.attached_equip)  
+  and equipSkill:isEffectable(player)    
+  and not S.isIgnoreArmorFromAToB(data.from, data.to, data.card, data.useData, data.effectData)
 
-	-- return true
   end,
   on_use = function(self, event, target, player, data)
     -- local room = player.room

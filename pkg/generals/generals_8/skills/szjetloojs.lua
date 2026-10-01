@@ -6,60 +6,35 @@ local szjetloojs = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["szjetloojs"] = "設擂",
-  [":szjetloojs"] = "➀伱始段末段始旹伱可与1其它腳色賭鬥發動｡➁其它脚色主旹,其可与伱賭鬥發動.此次賭鬥若其未贏,伱取得雙方賭鬥牌➂伱得失此技能旹伱得失技能爭利",
+  [":szjetloojs"] = "➁其它脚色主旹,其可与伱賭鬥｡➁伱賭鬥結果确定旹,若有贏家,其抽1",
 
-  ["#szjetloojs-choose"] = "設擂 選擇賭鬥目幖",
 
   ["$szjetloojs2"] = "敢有出來和我爭利物的麼",
   ["$szjetloojs1"] = "東至日出，西至日沒，兩輪日月，一合乾坤，南及南蠻，北濟幽燕",
 }
 
-szjetloojs:addAcquireEffect(function (self, player)
-    player.room:handleAddLoseSkills(player, "tssaacqljis")
-end)
+-- szjetloojs:addAcquireEffect(function (self, player)
+--     player.room:handleAddLoseSkills(player, "szjetloojs")
+-- end)
 
-szjetloojs:addLoseEffect (function (self, player)
-    player.room:handleAddLoseSkills(player, "-tssaacqljis")
-end)
+-- szjetloojs:addLoseEffect (function (self, player)
+--     player.room:handleAddLoseSkills(player, "-szjetloojs")
+-- end)
 
 
-szjetloojs:addEffect(fk.EventPhaseStart, {
+szjetloojs:addEffect(fk.PindianResultConfirmed, {
   anim_type = "drawcard",
   can_trigger = function(self, event, target, player, data)
-    return target == player and player:hasSkill(szjetloojs.name) 
-    and (player.phase == Player.Finish or player.phase == Player.Start)
-    and not player:isKongcheng()
-    and
-      table.find(player.room.alive_players, function(p)
-        return player:canPindian(p)
-      end)
+    if not  player:hasSkill(szjetloojs.name)  then return end
+    if not (data.from == player or data.to ==player) then return end
+    return data.winner~=nil
   end,
-  on_cost = function(self, event, target, player, data)
-    local room = player.room
-    local targets = table.filter(room.alive_players, function(p)
-      return player:canPindian(p)
-    end)
-    local to = room:askToChoosePlayers(player, {
-      min_num = 1,
-      max_num = 1,
-      targets = targets,
-      skill_name = szjetloojs.name,
-      prompt = "#szjetloojs-choose",
-      cancelable = true,
-    })
-    if #to > 0 then
-      event:setCostData(self, {tos = to})
-      return true
-    end
-  end,
-
-  on_use = function(self, event, target, player, data)
-    local room = player.room
-    local to = event:getCostData(self).tos[1]
-    local pindian = player:pindian({to}, szjetloojs.name)
-
+  on_trigger = function(self, event, target, player, data)
+    data.winner:drawCards(1,szjetloojs.name)
   end,
 })
+
+
 
 
 

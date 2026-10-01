@@ -10,7 +10,7 @@ local sk = fk.CreateSkill{
 local S = require "packages/szyihhsoohssaet/szyih_guos" 
 
 sk:addEffect('invalidity', {
-  global = true,
+  -- global = true,
   invalidity_func = function(self, player, skill)
     if not skill:isPlayerSkill(player, true)
     or not skill:isEffectable(player)
@@ -81,7 +81,7 @@ sk:addEffect('invalidity', {
         --       local cardEffectEvent=event:findParent(GameEvent.CardEffect, true) --CardEffect
         --       if  cardEffectEvent then card=cardEffectEvent.card end
         --      --   goto check
-          end
+          -- end
         -- elseif event.data and (event.data.from or event.data.who) then
         --   from = event.data.from or event.data.who
         --  --   goto check
@@ -91,7 +91,8 @@ sk:addEffect('invalidity', {
       -- ::request::
       --多人詢問?
         if ClientInstance and ClientInstance.current_request_handler   --无視狀態技 request不屬于event中
-        and ClientInstance.current_request_handler.player  then
+          and ClientInstance.current_request_handler.player  
+        then
           from = ClientInstance.current_request_handler.player
           -- card = Fk:getCardById(ClientInstance.current_request_handler.pendings[1])
         end

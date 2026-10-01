@@ -5,7 +5,7 @@ local keenqsziuh = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["keenqsziuh"] = "堅守",
-  [":keenqsziuh"] = "印牌:打出x牌,虛擬起動或演練｢閃｣｡x爲1轉弃牌堆未含牌色",
+  [":keenqsziuh"] = "印牌:投出x牌,虛擬起動或演練｢閃｣｡x爲1轉弃牌堆未含牌色",
 
   ["#keenqsziuh"] = "堅守：起動或演練",
 

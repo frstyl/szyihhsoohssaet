@@ -5,7 +5,7 @@ Fk:loadTranslationTable{
   ["khuacqtseejs"] = "匡濟",
   [":khuacqtseejs"] = "恆續.伱桃目幖改爲任一脚色..",
 
-  ["#khuacqtseejs"] = "匡濟 令伱所起動下1殺无視距離防具",
+  ["#khuacqtseejs"] = "匡濟 令伱所起動下1殺无視距離甲冑",
   ["@khuacqtseejs-phase"] = "匡濟",
 }
 -- khuacqtseejs:addAcquireEffect(function (self, player)

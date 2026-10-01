@@ -4,7 +4,7 @@ local hsuohhsvah = fk.CreateSkill {
 
 Fk:loadTranslationTable{
 ["hsuohhsvah"] = "欨火",
-[":hsuohhsvah"] = "主旹,伱可選擇1脚色發動,伱予其1火傷,伱占卜,若占卜牌爲♥️,伱予己1火傷｡与此技能1段上一占卜牌同花之牌被起動旹,褈置此技能次數.",
+[":hsuohhsvah"] = "主旹,伱可選擇1脚色發動,伱予其1火傷,伱占卜,若占卜牌爲♥️,伱予己1火傷｡牌進入弃牌堆後,若其中牌与此占卜同花,褈置此技能次數.",
 
 ["#hsuohhsvah"]="欨火 占卜",
 
@@ -56,21 +56,40 @@ hsuohhsvah:addEffect("active", {
       }
     end
     if player.dead then return end
-    room:setPlayerMark(player,"@hsuohhsvah-phase",judgeData.card:getSuitString(true))
+    room:setPlayerMark(player,"@hsuohhsvah-phase",judgeData.card ~=Card.NoSuit and judgeData.card:getSuitString(true) or nil)
   end,
 })
 
 
 
+hsuohhsvah:addEffect(fk.BeforeCardsMove, {
+  can_trigger = function(self, event, target, player, data)
+    if  not player:hasSkill(hsuohhsvah.name,true) then return false end
 
-hsuohhsvah:addEffect(fk.CardUsing, {
-  -- anim_type = "masochism",
-  can_refresh = function (self, event, target, player, data)
-    return  player:getMark("@hsuohhsvah-phase") == data.card:getSuitString(true)
+      for _, move in ipairs(data) do
+        if  move.toArea == Card.DrawPile then
+
+          for _, info in ipairs(move.moveInfo) do --同旹迻動多脾需檢查來源
+            if   player:getMark("@hsuohhsvah-phase") == Fk:getCardById(info.cardId):getSuitString(true) then
+              return true
+            end
+          end
+        end
+      end
+
   end,
-  on_refresh = function (self, event, target, player, data)
-    player:setSkillUseHistory(hsuohhsvah.name)
+  on_trigger= function(self, event, target, player, data)
+    player:setSkillUseHistory(hsuohhsvah.name,0,Player.HistoryPhase)
   end,
 })
+-- hsuohhsvah:addEffect(fk.CardUsing, {
+--   -- anim_type = "masochism",
+--   can_trigger = function (self, event, target, player, data)
+--     return  player:getMark("@hsuohhsvah-phase") == data.card:getSuitString(true)
+--   end,
+--   on_trigger = function (self, event, target, player, data)
+--     player:setSkillUseHistory(hsuohhsvah.name)
+--   end,
+-- })
 
 return hsuohhsvah

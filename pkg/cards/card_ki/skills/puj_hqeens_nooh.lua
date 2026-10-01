@@ -25,6 +25,7 @@ sk:addEffect("active", {
         -- exclusive_targets = {data.to.id},  --必選其一
         -- bypass_distances = true,
         bypass_times = true,
+        bypass_moment=true,
       }
     }
     local use = room:askToUseCard(effect.from, params)

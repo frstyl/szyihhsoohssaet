@@ -5,7 +5,7 @@ local tshjeqhsooh = fk.CreateSkill{
 
 Fk:loadTranslationTable{
 ["tshjeqhsooh"] = "雌虎",
-[":tshjeqhsooh"] = "一女脚色A受到傷害後,若有傷源且不爲伱或A,伱可預打出x牌發動.伱与傷源1傷,令A回1｡x爲體力一半,下整",
+[":tshjeqhsooh"] = "一女脚色A受到傷害後,若有傷源且不爲伱或A,伱可預投出x牌發動.伱与傷源1傷,令A回1｡x爲體力一半,下整",
 
 ["#tshjeqhsooh-choose"] = "雌虎 選擇一脚色 視爲對其起動殺",
 }
@@ -15,7 +15,7 @@ local S = require "packages/szyihhsoohssaet/szyih_guos"
 tshjeqhsooh:addEffect(fk.Damaged, {
   anim_type = "drawcard",
   can_trigger = function(self, event, target, player, data)
-    return player:hasSkill(tshjeqhsooh.name) and target:isFemale() and data.from and data.from~=target and data.from~=player
+    return player:hasSkill(tshjeqhsooh.name) and S.isFemale(target) and data.from and data.from~=target and data.from~=player
   end,
   on_cost = function(self, event, target, player, data)
     local n =data.to.hp//2

@@ -63,7 +63,7 @@ lihkhoos_active:addEffect("viewas", {
   --   if not self:enabledAtResponse(player, false) then return end
 
   --   local all_names =  table.filter(Fk:getAllCardNames("b"), function(name)
-  --     return S.isCommonTrick(name)
+  --     return S.isInstantTrick(name)
   --   end)
 
   --   return true

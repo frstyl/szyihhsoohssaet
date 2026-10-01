@@ -4,16 +4,16 @@ local tsjecqmuoh = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["tsjecqmuoh"] = "精武",
-  [":tsjecqmuoh"] = "主旹无限次.預打出1牌選擇1項發動.伱所起動下1｢殺｣有對應效果.選項➀无視距離限制➁无視次數限制➂无視防具➃不可抵消(下列須打出裝僃牌可選)➄目幖上限+1➅傷害基數+1➆生效次數1次",
+  [":tsjecqmuoh"] = "主旹无限次.預投出1牌選擇1項發動.伱所起動下1｢殺｣有對應效果.選項➀无視距離限制➁无視次數限制➂无視甲冑➃不可抵消(下列須投出軍器牌可選)➄目幖上限+1➅傷害基數+1➆生效次數1次",
 --反失效? 封技能
-  ["#tsjecqmuoh"] = "打出1發 選擇效果彊化下1殺",
+  ["#tsjecqmuoh"] = "投出1發 選擇效果彊化下1殺",
   ["@[:]tsjecqmuoh"] = "精武",
   -- ["@[tsjecqmuoh]"] = "精武",
 
 
   ["@@tsjecqmuoh_ignoreDistances"]= "无視距離",
   ["@@tsjecqmuoh_ignoreTimes"]= "无視次數",
-  ["@@tsjecqmuoh_ignoreArmor"]= "无視防具",
+  ["@@tsjecqmuoh_ignoreArmor"]= "无視甲冑",
   ["@@tsjecqmuoh_disrespons"]= "不可響應",
   ["@@tsjecqmuoh_extraTarget"]= "目幖上限+1",
   ["@@tsjecqmuoh_additionalDamage"]= "傷害基數+1",

@@ -2,7 +2,7 @@
 local szyih_guos = require 'packages/szyihhsoohssaet/_base'
 
 
---- PlayCardData 打出牌  --止此2項必要--非響應  --使用打出迻動无關于使用打出事件  --同RespondCardEvent
+--- PlayCardData 投出牌  --止此2項必要--非響應  --使用投出迻動无關于使用投出事件  --同RespondCardEvent
 ---@param card_ids integer[]|integer|Card|Card[] @ 牌
 ---@param from ServerPlayer @
 ---@param skillName? string @
@@ -11,21 +11,21 @@ local szyih_guos = require 'packages/szyihhsoohssaet/_base'
 ---@class szyih_guos.PlayCardData: PlayCardDataSpec, TriggerData
 szyih_guos.PlayCardData = TriggerData:subclass("PlayCardData")
 
---- 打出牌 TriggerEvent
+--- 投出牌 TriggerEvent
 ---@class szyih_guos.PlayCard: TriggerEvent
 ---@field public data szyih_guos.PlayCardData
 szyih_guos.PlayCard = TriggerEvent:subclass("PlayCardEvent")
 
---- 打出牌事件始 防止
+--- 投出牌事件始 防止
 ---@class szyih_guos.PreCardPlayed: szyih_guos.PlayCard
 szyih_guos.PreCardPlayed = szyih_guos.PlayCard:subclass("szyih_guos.PreCardPlayed")
 
---- 打出牌旹 --- pre before when after post 
+--- 投出牌旹 --- pre before when after post 
 ---@class szyih_guos.CardPlaying: szyih_guos.PlayCard
 szyih_guos.CardPlaying = szyih_guos.PlayCard:subclass("szyih_guos.CardPlaying")
 
 
---- 打出牌结束
+--- 投出牌结束
 ---@class szyih_guos.CardPlayFinished: szyih_guos.PlayCard
 szyih_guos.CardPlayFinished = szyih_guos.PlayCard:subclass("szyih_guos.CardPlayFinished")
 
@@ -36,7 +36,7 @@ szyih_guos.CardPlayFinished = szyih_guos.PlayCard:subclass("szyih_guos.CardPlayF
 ---@field public addEffect fun(self: SkillSkeleton, key: szyih_guos.PlayCard,
 ---  data: TrigSkelSpec<PlayCardTrigFunc>, attr: TrigSkelAttribute?): SkillSkeleton
 
---- 打出牌 GameEvent
+--- 投出牌 GameEvent
 szyih_guos.PlayCardEvent = "PlayCard"
 
 Fk:addGameEvent(szyih_guos.PlayCardEvent, nil, --prepare function
@@ -50,7 +50,7 @@ function (self)
   local proposer=nil 
 
   local card =Fk:cloneCard("play")
-  card:addSubcards(card_ids)  --方便 使用打出皆能發動者
+  card:addSubcards(card_ids)  --方便 使用投出皆能發動者
   local respondCardData={
     from = from,
     card = card ,
@@ -124,19 +124,23 @@ end,
 
 
 Fk:loadTranslationTable{
-  ["$PlayBySkill"] = "%from  打出 %arg牌  %card  (%arg2)",
-  -- ["#PlayCard"] = "%from  打出 %card",
+  ["$PlayBySkill"] = "%from  投出 %arg牌  %card  (%arg2)",
+  -- ["#PlayCard"] = "%from  投出 %card",
 
-  ["##PlayCard"] = "%from 打出",
+  ["##PlayCard"] = "%from 投出",
 }
 
 --弃牌後?因弃置失去牌後
 --抽牌?因抽得牌
-szyih_guos.playCard = function(card_ids,skillName,from,skipDrop)
+szyih_guos.playCard = function(card_ids,skillName,from,skipDrop, areas)
 
   if not from or from.dead or not card_ids then return end  --眞有用
-  if type(card_ids) == "number" then
-    card_ids = {card_ids}
+  card_ids = Card:getIdList(card_ids)
+
+  --tobe area判斷  include_equip不對
+  if not areas then
+  local set = from:getCardIds( "he") 
+  card_ids=table.filter(card_ids,function(id)  return table.contains(set,id) end )
   end
 
   local playCardData={from=from,card_ids=card_ids,skillName=skillName,skipDrop=skipDrop}
@@ -146,34 +150,59 @@ szyih_guos.playCard = function(card_ids,skillName,from,skipDrop)
 end
 
 szyih_guos.playCardSimultaneously = function(tables)
-  if not tables or type(tables)~="table" then return end
+  if not tables or type(tables)~="table" or #tables==0 then return end
   local room = Fk:currentRoom()
   local card_ids={}
   local moveInfos={}
-  local skillName=t.skillName
 
-  for _,t in ipairs(tables) do 
-    table.insertTableIfNeed(card_ids, t.card_ids)
+  
+  local tos={}
+  for p,t in pairs(tables) do   --tos
+    table.insert(tos,p)
   end
-  room:moveCardTo(card_ids, Card.Processing, nil, fk.ReasonResponse)
+  room:sortByAction(tos)
 
-  for _,t in ipairs(tables) do 
+  local card_ids={}
+  for _,to  in ipairs(tos) do   --tos 牌位置
+    logic:trigger(szyih_guos.PreCardPlayed, to, tables[to])
+    table.insertTableIfNeed(card_ids, tables[to].card_ids)
+      table.insert(moveInfos, {
+          ids = tables[to].card_ids,
+          from = to,
+          toArea = Card.Processing,
+          moveReason = fk.ReasonResponse,
+          -- eventer = to,
+          proposer=to,
+          skillName = table[t].skillName,
+        })
+  end
+
+  room:moveCardTo(card_ids, Card.Processing, nil, fk.ReasonResponse)
+  -- room:moveCards(table.unpack(moveInfos))
+
+
+  for _,to  in ipairs(tos) do 
+    local t=tables[to]
     room:sendFootnote(t.card_ids, {
       type = "##PlayCard",
       from = t.from.id,
-    })
+  })
 
       room:sendLog{
         type =  "$PlayBySkill" ,
         from = t.from.id,
         card = t.card_ids,
         arg = #t.card_ids,
-        arg2 = skillName,
+        arg2 = t.skillName,
       }
+    logic:trigger(szyih_guos.CardPlaying, to, t)
+
   end
 
   local ids={}
-  for _,t in ipairs(tables) do 
+  for _,to  in ipairs(tos) do 
+    local t=tables[to]
+
     if not t.skipDrop then 
       for _,id in ipairs(t.card_ids) do
         if table.contains(room.processing_area, id) then
@@ -182,6 +211,8 @@ szyih_guos.playCardSimultaneously = function(tables)
         end
       end
     end
+    logic:trigger(szyih_guos.CardPlayFinished, to, t)
+
   end
 
   -- ids = room.logic:moveCardsHoldingAreaCheck(ids)
@@ -230,9 +261,9 @@ szyih_guos.prohibitPlay= function (player,card)
   return false
 end
 
---- RespondCardData 打出牌的数据
+--- RespondCardData 投出牌的数据
 ---@class RespondCardDataSpec
----@field public from ServerPlayer @ 使用/打出者
+---@field public from ServerPlayer @ 使用/投出者
 ---@field public card Card @ 卡牌本牌
 ---@field public responseToEvent? CardEffectData @ 响应事件目标
 ---@field public skipDrop? boolean @ 是否不进入弃牌堆
@@ -251,7 +282,7 @@ end
 ---@field includeArea string | table @默認不含裝僃? 如手牌? ---可以通过flag.card_data = {{牌堆1名, 牌堆1ID表},...}来定制能选择的牌
 ---@field include_equip? bool @ --保留 會修改includeArea
 ---@field expand_pile? string|integer[] @
----@field skip? bool @true不打出, 默認不打出 
+---@field skip? bool @true不投出, 默認不投出 
 ---@field tos? bool @指示線
 
 ---@param player ServerPlayer @ 要询问的玩家
@@ -323,7 +354,7 @@ szyih_guos.askToPlayCard = function (player,params)
   if ret then
    cards = ret.cards
   else
-    if  cancelable then return {} end  --不足則全弃, 不足則全打出?
+    if  cancelable then return {} end  --不足則全弃, 不足則全投出?
     cards = table.random(canPlay, max_num)
   end
 

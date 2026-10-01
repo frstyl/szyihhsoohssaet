@@ -1,6 +1,6 @@
 Fk:loadTranslationTable{
   ["khutdzioc"] = "屈從",
-  [":khutdzioc"] = "伱主段始旹,若伱未有咒術｢黴運｣,伱可發動.伱爲伱附加｢黴運｣,中止轉事件",
+  [":khutdzioc"] = "伱主段始旹,若伱未有咒術｢黴運｣,伱可發動.伱爲伱附加｢黴運｣,中止轉",
 
 
   ["#khutdzioc-invoke"] = "屈從",
@@ -12,6 +12,7 @@ Fk:loadTranslationTable{
 local khutdzioc = fk.CreateSkill{
   name = "khutdzioc",
   -- tags = { Skill.Compulsory },
+  related_skills={"tsziukzzyit_mxiqquns"}
 }
 
 local S = require "packages/szyihhsoohssaet/szyih_guos" 

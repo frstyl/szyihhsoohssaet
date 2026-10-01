@@ -1,0 +1,20 @@
+local skill = fk.CreateSkill {
+  name = "#ride_distance_skill",
+  tags = { Skill.Compulsory },
+  attached_equip = "ride",
+}
+local szyih_guos = require 'packages/szyihhsoohssaet/_base'
+
+  -- "gi_ljin_szius", "tsheen_lih_seej_piuc", "syet_baak_kwenh_moav",
+-- "tszhjek_thoos" "syet_paavs" "cxin_ssik_gwen_hsfa"
+skill:addEffect("distance", {  --失效?
+  correct_func = function(self, from, to)
+    if from  then return #table.filter(S.getEquips(from, Card.SubtypeDefensiveRide),function(c) return c.equip_skill=="#ride_distance_skill" end)  end
+
+    if to then
+      return #S.getEquips(from, Card.SubtypeOffensiveRide,function(c) return c.equip_skill=="#ride_distance_skill" end)  end
+    end
+  end,
+})
+
+return skill

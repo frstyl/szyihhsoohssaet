@@ -11,6 +11,7 @@ Fk:loadTranslationTable{
 
   ["#phuachtszjer_active"] = "仿製：展示1牌令仿製者記彔之",
 }
+local S = require "packages/szyihhsoohssaet/szyih_guos"
 
 phuachtszjer_active:addEffect("active", {
   anim_type = "offensive",
@@ -42,20 +43,35 @@ phuachtszjer_active:addEffect("active", {
     from:showCards(effect.cards)
     if from.dead or to.dead then return end
     if not room:askToSkillInvoke(to,{skill_name="phuachtszjer",prompt="phuachtszjer-ask:"..from.id}) then return end 
+
     local card = Fk:getCardById(effect.cards[1])
-    room:addTableMark(to,"phuachtszjer_card_record",card.name)
-    room:setCardMark(Fk:getCardById(effect.cards[2]),"@@phuachtszjer-inhand-turn",card.name)
+    -- room:addTableMark(to,"phuachtszjer_card_record",card.name)
+    -- room:setCardMark(Fk:getCardById(effect.cards[2]),"@@phuachtszjer",1)
+    -- room:setCardMark(Fk:getCardById(effect.cards[2]),"view_as",{name=card.name, suit=card.suit,number=card.number})
     --未迻動占卜
-    if to ==player then return end
+    room:moveCards({
+      ids = {card.id},
+      to = nil,
+      toArea = Card.DiscardPile,
+      moveReason = fk.ReasonRecast,
+      proposer = effect.from,
+      skillName = "phuachtszjer",
+      moveVisible = true,
+    })
+    if effect.from.dead then return end
+    S.printKhoucTo(effect.from, 1, "phuachtszjer", {"view_as",{name=card.name, suit=card.suit,number=card.number}})
+
+    if to ==from or to.dead  then return end
     room:moveCardTo({effect.cards[3]}, Player.Hand, to, fk.ReasonGive, "phuachtszjer", nil, false, from.id)
   end,
 })
-phuachtszjer_active:addEffect("filter", {
-  card_filter = function(self, card, player, isJudgeEvent)
-    return card:getMark("@@phuachtszjer-inhand-turn") ~= 0
-  end,
-  view_as = function(self, player, card)
-    return Fk:cloneCard(card:getMark("@@phuachtszjer-inhand-turn"), card.suit, card.number)
-  end,
-})
+
+-- phuachtszjer_active:addEffect("filter", {
+--   card_filter = function(self, card, player, isJudgeEvent)
+--     return card:getMark("@@phuachtszjer") ~= 0
+--   end,
+--   view_as = function(self, player, card)
+--     return Fk:cloneCard(card:getMark("@@phuachtszjer"), card.suit, card.number)
+--   end,
+-- })
 return phuachtszjer_active

@@ -4,7 +4,7 @@ local ljenqtszuo = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["ljenqtszuo"] = "連珠",
-  [":ljenqtszuo"] = "主旹,伱可發動,伱起動虛擬｢弓矢斯張｣.此｢弓矢斯張｣目幖目幖脚色需打出2閃響應或受到1火傷,結算期閒,全體脚色非必發技失效,",
+  [":ljenqtszuo"] = "主旹,伱可發動,伱起動虛擬｢弓矢斯張｣.此｢弓矢斯張｣目幖目幖脚色需投出2閃響應或受到1火傷,結算期閒,全體脚色非必發技失效,",
 
   ["#ljenqtszuo"] = "連珠：起動虛擬弓矢斯張",
 

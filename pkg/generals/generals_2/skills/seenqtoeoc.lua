@@ -32,7 +32,7 @@ seenqtoeoc:addEffect(fk.TurnStart,{
     --       not_passive=true,
     --     },
     --   })
-      local use = player.room:askToPlayCard(player, {
+      local use = player.room:askToUseCard(player, {
         skill_name = seenqtoeoc.name,
         pattern = ".", --
         -- cards=,
@@ -45,7 +45,8 @@ seenqtoeoc:addEffect(fk.TurnStart,{
           must_targets={target.id},
           -- include_targets = {target.id},
           not_passive=true,
-          fix_targets={target.id}
+          fix_targets={target.id},
+          bypass_moment=true,
         },
       })
       if not use then  return end

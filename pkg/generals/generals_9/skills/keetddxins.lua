@@ -4,7 +4,7 @@ local keetddxins = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["keetddxins"] = "結敶",
-  [":keetddxins"] = "游戲始旹,伱轉始旹，伱可選1項發動➀選擇1不同隊脚色,邀其入敶,其起動1防具牌(額外牌)➁令1同隊脚色獲得1護甲",
+  [":keetddxins"] = "游戲始旹,伱轉始旹，伱可選1項發動➀選擇1不同隊脚色,邀其入敶,其起動1甲冑牌(額外牌)➁令1同隊脚色獲得1護甲",
 
   ["#keetddxins-choose"] = "結敶：選擇脚色 入敶或+1護甲",
 

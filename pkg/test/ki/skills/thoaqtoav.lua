@@ -53,9 +53,11 @@ thoaqtoav:addEffect(fk.AfterCardsMove, {
         pattern = tostring(Exppattern{ id = cards }),
         cancelable = true,
         extra_data = {
+          bypass_moment=true,
           expand_pile = cards,
           extraUse=false,
           bypass_times=false,
+          bypass_moment=true,
         },
         skip = true,
       })

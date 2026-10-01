@@ -16,7 +16,7 @@ cardSkill:addEffect("cardskill", {
   on_effect = function(self, room, effect)
     local cards = table.filter(effect.to:getCardIds("j"),
         function(id)
-          return Fk:getCardById(id).trueName == "ssaac_dzzjin_koac" or  effect.to:getVirualEquip(id).trueName == "ssaac_dzzjin_koac"
+          return Fk:getCardById(id).trueName == "ssaac_dzzjin_koac" or  effect.to:getVirtualEquip(id).trueName == "ssaac_dzzjin_koac"
         end)
     if #cards >1 then
       cards = room:askToChooseCards(effect.from, {

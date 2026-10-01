@@ -6,7 +6,7 @@ local S = require "packages/szyihhsoohssaet/szyih_guos"
 
 Fk:loadTranslationTable{
 ["tsjas_szji_hzfan_hzoon"] = "借屍還䰟",
-[":tsjas_szji_hzfan_hzoon"] = "一名脚色A進入瀕死旹,,指定1死亾脚色B起動,A死B復活.",
+[":tsjas_szji_hzfan_hzoon"] = "一名脚色A進入瀕死旹,,指定1死亾脚色B起動,A死亾,B復活.",
 
 ["#tsjas_szji_hzfan_hzoon_use"] = "借屍還䰟 %src",
 }
@@ -57,7 +57,8 @@ cardSkill:addEffect("cardskill", {
     S.revive({
       who=effect.extra_data.tsjas_szji_hzfan_hzoon,
       drawN=3,
-      skill=self.name
+      skill=self.name,
+      from=effect.from,
     })
   end,
 })

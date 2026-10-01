@@ -84,7 +84,7 @@ cardSkill:addEffect(fk.AfterCardUseDeclared, {
           room:doCardEffect(effect_data)
         end
     for _, id in ipairs(player:getCardIds(Player.Judge)) do
-      local c = player:getVirualEquip(id)
+      local c = player:getVirtualEquip(id)
       if not c then c = Fk:getCardById(id) end
       if c.trueName == "tssaas_phaavs" then
           if c:getMark("tssaas_phaavs_mark-inarea")[1] == data.card.suit or  cc:getMark("tssaas_phaavs_mark-inarea")[2] == data.card.number then exe(c) end 

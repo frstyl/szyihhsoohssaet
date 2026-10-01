@@ -4,9 +4,9 @@ local hzfacqtszhioc = fk.CreateSkill {
 
 Fk:loadTranslationTable{
 ["hzfacqtszhioc"] = "橫䡴",
-[":hzfacqtszhioc"] = "一｢殺｣被閃抵消後,若此｢殺｣起動者在伱攻程內,伱可預打出伱1牌与｢殺｣同色者發動.反抵消,且伱可令此｢殺｣額外對目幖上下或下家生效1次",
+[":hzfacqtszhioc"] = "一｢殺｣被閃抵消後,若此｢殺｣起動者在伱攻程內,伱可預投出伱1牌与｢殺｣同色者發動.反抵消,且伱可令此｢殺｣額外對目幖上下或下家生效1次",
 
-["#hzfacqtszhioc-invoke"] = "橫䡴 伱可打出同花牌, 令 %arg 對 %dest 生效",
+["#hzfacqtszhioc-invoke"] = "橫䡴 伱可投出同花牌, 令 %arg 對 %dest 生效",
 ["#hzfacqtszhioc-choose"] = "橫䡴 選擇目幖 殺對其生效1次",
 }
 

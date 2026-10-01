@@ -5,9 +5,9 @@ local siuqdzjecs = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["siuqdzjecs"] = "修淨",
-  [":siuqdzjecs"] = "其它脚色A轉始旹,伱可將1裝僃牌置入其裝僃欄發動｡伱弃置A伏區牌",
+  [":siuqdzjecs"] = "其它脚色A轉始旹,伱可將1軍器牌置入其裝僃欄發動｡伱弃置A伏區牌",
 
-  ["#siuqdzjecs-invoke"] = "修淨： 裝僃牌置入 %src 裝僃欄",
+  ["#siuqdzjecs-invoke"] = "修淨： 軍器牌置入 %src 裝僃欄",
 }
 
 local S = require "packages/szyihhsoohssaet/szyih_guos" 

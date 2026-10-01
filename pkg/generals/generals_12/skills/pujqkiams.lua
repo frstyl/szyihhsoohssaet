@@ -4,7 +4,7 @@ local pujqkiams = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["pujqkiams"] = "飛劍",
-  [":pujqkiams"] = "殺A不因起動打出進入弃牌堆後(不需仍在弃牌堆),你可以預打出手牌与A不同色者并選擇1腳色發動,伱對所選腳色起動虛擬｢殺｣(与A同花同點,无視限制不可響應)。",
+  [":pujqkiams"] = "殺A不因起動投出進入弃牌堆後(不需仍在弃牌堆),你可以預投出手牌与A不同色者并選擇1腳色發動,伱對所選腳色起動虛擬｢殺｣(与A同花同點,无視限制不可響應)。",
 
   ["#pujqkiams-choose"] = "飛劍 選擇所起動殺与所弃牌",
 

@@ -5,7 +5,7 @@ local craktszjens = fk.CreateSkill {
 
 Fk:loadTranslationTable {
   ["craktszjens"] = "逆戰",
-  [":craktszjens"] = "➀恆續.伱轉內,手牌區黑{計謀/事件/法術}牌視爲无視距離｢鬥將｣｡➁伱起動鬥將指定目幖後旹必發,伱取得目幖1手牌｡➂其它脚色起動｢鬥將｣對伱生效旹,必發,目幖轉迻爲使用者",
+  [":craktszjens"] = "➀恆續.伱轉內,手牌區黑奇術牌視爲无視距離｢鬥將｣｡➁伱起動鬥將指定目幖後旹必發,伱取得目幖1手牌｡➂其它脚色起動｢鬥將｣對伱生效旹,必發,目幖轉迻爲使用者",
 
   ["#craktszjens"] = "逆戰：將1手牌置入伱裝僃區",
 
@@ -22,7 +22,7 @@ craktszjens:addEffect("filter", {
     Fk:currentRoom():getCurrent() and Fk:currentRoom():getCurrent():hasSkill(craktszjens.name)
     and
     to_select.color==Card.Black 
-    and table.contains({2,4,5},S.getCardTypeByName(to_select.trueName))
+    and S.getCardSuptypeByName(to_select.trueName)==2
     and table.contains(player:getCardIds("h"), to_select.id)
   end,
   view_as = function(self, player, to_select)

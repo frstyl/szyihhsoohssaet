@@ -4,7 +4,7 @@ local siuqmuoh = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["siuqmuoh"] = "修武",
-  [":siuqmuoh"] = "主旹无限次,伱選至1至多牌(｢殺｣或裝僃牌或物資牌)發動.緟鑄之｡以此所獲牌1轉无視存牌數",
+  [":siuqmuoh"] = "主旹无限次,伱選至1至多牌(｢殺｣或器物牌)發動.緟鑄之｡以此所獲牌1轉內无視額定弃牌",
 
   ["#siuqmuoh"] = "修武：緟鑄殺",
   ["@@siuqmuoh-inhand-turn"] = "修武",
@@ -23,7 +23,7 @@ siuqmuoh:addEffect("active", {
   card_filter = function(self, player, to_select, selected)
     local c=Fk:getCardById(to_select)
     -- return c.trueName == "ssaet" or c.type==Card.TypeEquip
-    return c.trueName=="ssaet" or c.type==Card.TypeEquip or  S.getCardSubtypeByName(c.trueName)==2
+    return c.trueName=="ssaet" or   S.getCardTypeByName(c.trueName)==2
     -- table.contains({"ssaet","nziuk","analptic","tsoucs","thoac_qwen","hzouc_paav","cuat_pjech","ssaac_dzzjin_koac"},c.trueName )
     -- (n==1 and c.trueName ~= "szjemh")
   end,

@@ -1,11 +1,12 @@
 local liuqhzfa = fk.CreateSkill{
   name = "liuqhzfa",
   -- tags = { Skill.Compulsory },
+  related_skills={"tsziukzzyit_dzjisjuoh"},
 }
 
 Fk:loadTranslationTable{
   ["liuqhzfa"] = "流華",
-  [":liuqhzfa"] = "伱末段始旹,伱可發動:爲一脚色附加自愈",
+  [":liuqhzfa"] = "伱末段始旹,伱可發動:爲1脚色附加咒術｢自愈｣",
   
   ["#liuqhzfa-choose"] = "流華 選擇目幖",
 

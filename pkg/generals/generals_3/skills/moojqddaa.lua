@@ -4,7 +4,7 @@ local moojqddaa = fk.CreateSkill{
 
 Fk:loadTranslationTable{
   ["moojqddaa"] = "梅茶",
-  [":moojqddaa"] = "伱可將梅花手牌轉化爲酒起動發動.梅茶酒无視次數。",
+  [":moojqddaa"] = "印牌:以伱♣️手牌轉起動｢酒｣(无視次數制)。",
 
   ["#moojqddaa"] = "梅茶：梅花手牌當酒",
 
@@ -19,7 +19,7 @@ moojqddaa:addEffect("viewas", {
   handly_pile = true,
   card_filter = function(self, player, to_select, selected)
     return #selected == 0 and Fk:getCardById(to_select).suit == Card.Club and
-      Fk:currentRoom():getCardArea(to_select) ~= Player.Equip
+      table.contains(player:getCardIds("h"),to_select)
   end,
   view_as = function(self, player, cards)
     if #cards ~= 1 then return nil end

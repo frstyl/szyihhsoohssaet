@@ -36,9 +36,9 @@ General:new(extension, "108", "kvoan", 3):addSkills{"khoeojqloos"}
 -- General:new(extension, "073", "kvoan", 3):addSkills{"kwehssih"}--詭使 未作
 General:new(extension, "111", "kvoan", 3):addSkills{"keekjyer",}  --技能甚至无牌
 --------------------控
-General:new(extension, "015", "kvoan", 3):addSkills{"jiacqcian","kijqcian"}  --預測 雞肋
+General:new(extension, "015", "kvoan", 3):addSkills{"jiacqcian","tssiohtsjins"}  --預測 雞肋
 General:new(extension, "080", "kvoan", 3):addSkills{"deevhtszjens"}  --預測 雞肋
-General:new(extension, "053", "kvoan", 3):addSkills{ "kijqphioc","keekpoak"}  --賤 "nziokcoavs",
+General:new(extension, "053", "kvoan", 3):addSkills{ "kijqphioc","keekpoak","sisziocs"}  --賤 "nziokcoavs", --訟 燒條神
 General:new(extension, "017", "kvoan", 3):addSkills{"hqujqtszjins","khuoqthoot"} --封牌 --中止回合
 General:new(extension, "019", "kvoan", 3):addSkills{"dvoattoamh","kxevqgxes"}  --公共 --反抵消 弃閃 封技能 視爲閃
 General:new(extension, "083", "kvoan", 3):addSkills{"kheemqsziuh"}  --雞肋止息
@@ -70,7 +70,7 @@ General:new(extension, "096", "kvoan", 3):addSkills{"keejskwih","kxipkius"}  --�
 
 General:new(extension, "114", "kvoan", 3):addSkills{"teemhmoeok",}  --无效并抽牌
 General:new(extension, "116", "kvoan", 3):addSkills{"keenqsziuh", "tszjechljet" }  --无限閃 --整列節命
-General:new(extension, "119", "kvoan", 3):addSkills{"sziktsshaek",}  --退虜
+General:new(extension, "119", "kvoan", 3):addSkills{"sziktsshaek","sjihtszjens"}  --退虜
 
 General:new(extension, "034", "kvoan", 3):addSkills{"hzoojsddxins",}  -- 潰陳 自殺  --攻輔
 
@@ -99,7 +99,7 @@ General:new(extension, "041", "kvoan", 3):addSkills{"tszjevqloeoj"}  --點數檢
 General:new(extension, "043", "kvoan", 3):addSkills{"thoeomqjiok"}  --用1抽2弃牌
 General:new(extension, "045", "kvoan", 3):addSkills{"dzjishsioh"}  --抽牌用牌
 General:new(extension, "055", "kvoan", 3):addSkills{"gyihdoos"}  --能用牌則抽牌
-General:new(extension, "068", "kvoan", 3):addSkills{"nzjitsjin","piucqcxim"}  --打出 --風吟 不可用
+General:new(extension, "068", "kvoan", 3):addSkills{"nzjitsjin","piucqcxim"}  --投出 --風吟 不可用
 General:new(extension, "075", "kvoan", 3):addSkills{"khoacsljer"}  --賣血抽牌 回血抽牌
 General:new(extension, "071", "kvoan", 3):addSkills{"kxenhgi","ljenqdzjep","bvoattszhis","dvoatkhijs"}  --一起 未作
 General:new(extension, "090", "kvoan", 3):addSkills{"quanhszuos"}  --武陸
@@ -148,12 +148,14 @@ General:new(extension, "104", "kvoan", 3):addSkills{"kijqpuat",}  --肘
 General:new(extension, "107", "kvoan", 3):addSkills{"hqoatqun","jioqqwins"}  --樂和 連招技轉換技
 
 General:new(extension, "110", "kvoan", 3):addSkills{"dzyetkeejs","jyecqhzooj"}  --奇策連營
-General:new(extension, "113", "kvoan", 3):addSkills{"szissik"}  --拼點 議事
+General:new(extension, "113", "kvoan", 3):addSkills{"szissik", "kvoanqpiuc"}  --拼點 議事
 
 General:new(extension, "117", "kvoan", 3):addSkills{"kiamsmoac","ljerphioc","tsyiscuat"}  --噄殺 劍仙 酒劍仙
 General:new(extension, "118", "kvoan", 3):addSkills{"kximhkaap",}  --裝僃 
 General:new(extension, "122", "kvoan", 3):addSkills{"kujqdzeek",}  --褈置次數 
 
+General:new(extension, "124", "kvoan", 3):addSkills{"tseettszjer","hqaeptssaak"}  --秒白版  --廢除區域
+General:new(extension, "125", "kvoan", 3):addSkills{"ddxecqtszyinh"}  --移動牌 
 --------------------自保 單保 賣血 不動白 負面  
 General:new(extension, "098", "kvoan", 3):addSkills{"cweqdoeojh"}  --褈鑄4
 General:new(extension, "099", "kvoan", 3):addSkills{"dzjiskik"}
@@ -161,6 +163,7 @@ General:new(extension, "102", "kvoan", 3):addSkills{"jikpjis"}
 
 General:new(extension, "103", "kvoan", 3):addSkills{"jjeqhzvah","dzoacqhzeep","kwehssih"} --轉迻目幖 起動旹轉迻
 General:new(extension, "121", "kvoan", 3):addSkills{"kwiqsik"}
+General:new(extension, "123", "kvoan", 3):addSkills{"tssisnzjins", "hquoqhqut"} --反擊 --魔障
 
 --------------------
 
@@ -183,10 +186,10 @@ General:new(extension, "4", "kunqkaavs", 1):addSkills{"hsxestszjens","thoaqtoav"
 --放貸蔡京
 -- 拏判定 拏拼點
 --演謀
+--探丸
 ---------
 -- 酒下藥
 -- 暗將勢力
-
 -----------f..k
 -- 雙龍-橫掃
 -- 固縱 不難 受改動
@@ -197,6 +200,61 @@ General:new(extension, "4", "kunqkaavs", 1):addSkills{"hsxestszjens","thoaqtoav"
 local test1 = General(extension, "bp", "pujh", 4)
 -- test1.shield = 1
 test1:addSkills {
+  -- "soamqsoam",
+  -- "sjemqphioc",  --對位腳色
+  -- "zjipdvoat",  --搶亮出牌
+
+  -- "khyeqjuo",  --搶亮出牌
+  -- "hqujqtszjins",
+  -- "tshjecqsziac",
+
+  -- "tszjevqmjec",  
+  -- "phoaspeek",  --不同包
+
+  -- "zjipmuoh",  --異飛石
+
+  -- "ddxecqtszyinh",
+  -- "hqaeptssaak",
+
+  -- "hquoqhqut",
+  -- "tseettszjer",
+  -- "thoocshzaat",
+
+  -- "toanqszio",
+
+  -- "sjiqkius",
+  -- "dzjisljer",
+  -- "hzoavhkhis",
+
+  -- "qiucqljet",
+  -- "sisziocs",
+  -- "phiuskun",
+  -- "tszjinstoamh",
+  -- "discard_pile_in_current_turn",
+  -- "poakloamh",
+
+  -- "siacqdeek",
+  -- "khuoqjyek",
+  
+  -- "hzvoaqcaok",  --??
+  -- "lihcaok",
+  -- "koohtszhye",
+  -- "tszjevqseejs",
+  -- "neemsneems",
+  -- "dooqmxe",
+
+  -- "kaahsziuh",
+
+  -- "liuqsziac",  --tobe
+  -- "biuknzjen",
+
+  -- "kvoanqpiuc",
+  -- "doavqthoav",
+  -- "tszjenssziuh",
+  -- "phuachtszjer",
+  -- "tssisnzjins",
+  -- "mracqtszjecs",
+
   -- "gwisliac",
   -- "kujqdzeek",
 
@@ -284,7 +342,7 @@ test1:addSkills {
   -- "poavskvoeok",
   -- "kiappoavh",
   -- "hzaavscxes",
-  -- "khoeojqloos",  --樂 文
+  -- "tthxechdzoeoj",  --樂 文
   -- "phiuskun",  --tobe general
   -- "liuqsziuh",
   -- "ssiuqkfat",
@@ -731,7 +789,7 @@ test1:addSkills {
   -- "zhiheng",
   -- "hzouhpuat",
 
-  -- "khioktshuohz",
+  -- "khioktshuoh",
 
   -- "szioqnoans",
   -- "gracqthoeop",

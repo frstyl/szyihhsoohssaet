@@ -75,6 +75,7 @@ touktszjens:addEffect(fk.Damaged, {
         extra_data = {
           bypass_times = true,
           extraUse=true,
+          bypass_moment=true,
         },
       })
       if use then

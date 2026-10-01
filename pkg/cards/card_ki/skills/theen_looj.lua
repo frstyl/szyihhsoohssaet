@@ -8,14 +8,14 @@ cardSkill:addEffect("cardskill", {
   mod_target_filter = Util.TrueFunc,
   can_use = function(self, player, card, extra_data)
     if player:prohibitUse(card) then return end
-    return  S.magicCanUse(player, card, extra_data)
+    return  S.scourgeCanUse(self, player, card, extra_data)
   end,
   target_num=1,
   target_filter = function(self, player, to_select, selected, _, card, extra_data)
     return S.useToSelfFilter(self, player, to_select, selected, _, card, extra_data)
   end,
   on_use = function(self, room, cardUseEvent)
-    S.magicOnUse(cardUseEvent.from, cardUseEvent)
+    S.scourgeOnUse(self, cardUseEvent.from, cardUseEvent)
   end,
   offset_func= Util.FalseFunc,
   on_effect = function(self, room, effect)
@@ -50,7 +50,7 @@ cardSkill:addEffect("cardskill", {
     repeat
       nextp = nextp:getNextAlive(true)
       if nextp == to then
-        if nextp:isProhibited(nextp, effect.card) then
+        if nextp:isProhibitedTarget(effect.card) then
           room:moveCards{
             ids = room:getSubcardsByRule(effect.card, { Card.Processing }),
             toArea = Card.DiscardPile,
@@ -60,7 +60,7 @@ cardSkill:addEffect("cardskill", {
         end
         break
       end
-    until not nextp:isProhibited(nextp, effect.card)
+    until not nextp:isProhibitedTarget(effect.card)
 -- not nextp:hasDelayedTrick("theen_looj") and 
 
     if effect.card:isVirtual() then
@@ -75,5 +75,54 @@ cardSkill:addEffect("cardskill", {
     }
   end,
 })
+
+
+-- cardSkill:addEffect(fk.EventPhaseChanging , {
+--   priority = 0,
+--   can_trigger = function(self, event, target, player, data)
+--     return player==target
+--       (data.phase==Player.Judge )
+--   end,
+--   -- trigger_times = function(self, event, target, player, data)
+--   --   return 999
+--   -- end,
+--   on_trigger = function(self, event, target, player, data)
+--     local room=target.room
+
+
+--     local exe=function(card)
+--       room:moveCardTo(card, Card.Processing, nil, fk.ReasonPut, "phase_judge")
+--       if card:isVirtual() then
+--         room:sendCardVirtName({cid}, card.name)
+--       end
+
+--       local effect_data = CardEffectData:new {
+--         card = card,
+--         to = target,
+--         tos = { target },
+--         extar_data={
+--           phase_data=data
+--         }
+--       }
+--       room:sendLog{
+--         type = "#CardEffect",
+--         from = target.id,
+--         arg = card:toLogString(),
+--       }
+--       room:doCardEffect(effect_data)
+--       if effect_data.isCancellOut then
+--         card.skill:onNullified(room, effect_data)
+--       end
+--     end
+
+--     local names = {"theen_looj","ssaen_hsvoah","djis_douch","hsoeojh_seevs",  "ssaac_dzzjin_koac"}
+
+--     for _,cid in  pairs(target:getCardIds(Player.Judge)) do --新來?
+--       if data.phase_end then return end
+--       local c=   target:getVirtualEquip(cid) or Fk:getCardById(cid)
+--       if table.contains(names,c.trueName) then exe(c)  end
+--     end
+--   end,
+-- })
 
 return cardSkill

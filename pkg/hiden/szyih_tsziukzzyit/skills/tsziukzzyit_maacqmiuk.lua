@@ -16,5 +16,16 @@ tsziukzzyit_maacqmiuk:addEffect("prohibit", {
   end,
 })
 
+tsziukzzyit_maacqmiuk:addEffect(fk.PreCardUse, {
+  anim_type = "offensive",
+  can_trigger = function(self, event, target, player, data)
+    return player:compareDistance(data.from,1,">")
+  end,
+  on_trigger = function(self, event, target, player, data)
+    data.disresponsiveList=data.disresponsiveList or {}
+    table.insertIfNeed(data.disresponsiveList,player)
+  end,
+})
+
 return tsziukzzyit_maacqmiuk
 

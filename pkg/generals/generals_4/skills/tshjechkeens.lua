@@ -4,10 +4,10 @@ local tshjechkeens = fk.CreateSkill {
 
 Fk:loadTranslationTable{
   ["tshjechkeens"] = "請見",
-  [":tshjechkeens"] = "伱額定抽牌後,選2手牌与1其它脚色A發動.伱將所選牌交予A,其抽2展示之,若同色,伱令其回1,若同花,其令伱回1",
+  [":tshjechkeens"] = "伱額定抽牌後,選2手牌与1其它脚色A發動.伱將所選牌交予A,其抽2展示之,若同色,伱回其1,若同花,其回伱1",
 
-  -- ["#tshjechkeens"] = "請見 選擇脚色計謀",
-  ["#tshjechkeens-invoke"] = "請見 選擇2牌脚色計謀",
+  -- ["#tshjechkeens"] = "請見 選擇脚色謀策",
+  ["#tshjechkeens-invoke"] = "請見 選擇2牌脚色謀策",
 
   ["$tshjechkeens1"] = "昰般禮物 此封家書 需与我送至",
   ["$tshjechkeens2"] = "星夜走去一遭 不可沿途耽擱",
@@ -27,7 +27,7 @@ tshjechkeens:addEffect(fk.AfterDrawNCards, {  --EventPhaseStart
      and player:getHandcardNum()>1
   end,
   on_cost = function(self, event, target, player, data)
-    local tos, cards = room:askToChooseCardsAndPlayers(player, {
+    local tos, cards = player.room:askToChooseCardsAndPlayers(player, {
       min_num = 1,
       max_num = 1,
       min_card_num = 2,
